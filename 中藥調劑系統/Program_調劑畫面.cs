@@ -703,7 +703,7 @@ namespace 中藥調劑系統
             {
                 this.Invoke(new Action(delegate
                 {
-                    rJ_Lable_處方警示.Text = "水劑處方待製)";
+                    rJ_Lable_處方警示.Text = "水劑處方待製";
                     Voice voice = new Voice();
                     voice.SpeakOnTask(RemoveParenthesesContent($"水劑處方待製"));
                 }));

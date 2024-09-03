@@ -344,6 +344,9 @@
     <None Include="Resources\light-off-removebg-preview.png" />
     <None Include="Resources\icon-for-medicine-map-papper-removebg-preview.png" />
     <None Include="Resources\exception-medical-prescription-removebg-preview.png" />
+    <None Include="Resources\check_512_sWy_icon.ico" />
+    <None Include="Resources\adjusted_system-removebg-preview2.png" />
+    <None Include="Resources\adjusted_checkmark-removebg-preview1.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>

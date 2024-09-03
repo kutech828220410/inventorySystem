@@ -83,9 +83,6 @@ namespace 智能藥庫系統
             this.rJ_Button_搜尋.MouseDownEvent += RJ_Button_搜尋_MouseDownEvent;
             this.comboBox_搜尋條件.SelectedIndex = 0;
         }
-
-   
-
         private void Dialog_申領_FormClosing(object sender, FormClosingEventArgs e)
         {
             myDialog = null;

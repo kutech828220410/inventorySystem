@@ -18,6 +18,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("名稱,VARCHAR,300,NONE")]
         名稱,
+        [Description("批序,VARCHAR,10,NONE")]
+        批序,
         [Description("藥碼,VARCHAR,20,NONE")]
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
@@ -45,6 +47,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("formulary_name")]
         public string 名稱 { get; set; }
+        /// <summary>
+        /// 批序
+        /// </summary>
+        [JsonPropertyName("index")]
+        public string 批序 { get; set; }
         /// <summary>
         /// 藥碼
         /// </summary>
@@ -94,6 +101,28 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
+        }
+        static public List<formularyClass> get_all(string API_Server)
+        {
+            string url = $"{API_Server}/api/formulary/get_all";
+
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<formularyClass> formularyClasses = returnData_out.Data.ObjToClass<List<formularyClass>>();
+            return formularyClasses;
         }
         static public void add(string API_Server, formularyClass formularyClass)
         {

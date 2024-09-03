@@ -219,6 +219,11 @@
             名稱
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.formularyClass.批序">
+            <summary>
+            批序
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.formularyClass.藥碼">
             <summary>
             藥碼

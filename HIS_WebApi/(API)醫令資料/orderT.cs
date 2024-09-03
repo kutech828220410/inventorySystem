@@ -771,7 +771,7 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                string TableName = "order_list";
+                string TableName = "ordert_list";
                 SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                 List<OrderTClass> OrderTClasses = returnData.Data.ObjToClass<List<OrderTClass>>();

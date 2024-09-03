@@ -119,7 +119,7 @@ namespace HIS_WebApi
                     {
                         formularyClasses[i].新增時間 = DateTime.Now.ToDateTimeString_6();
                         formularyClasses[i].藥名 = medClasses_buf[0].藥品名稱;
-                        formularyClasses[i].單位 = medClasses_buf[0].藥品名稱;
+                        formularyClasses[i].單位 = medClasses_buf[0].包裝單位;
                         formularyClasses[i].中西藥 = medClasses_buf[0].中西藥;
 
                         if (formularyClasses[i].中西藥.StringIsEmpty()) formularyClasses[i].中西藥 = "西藥";
@@ -200,7 +200,6 @@ namespace HIS_WebApi
                 List<object[]> list_value = sQLControl_處方集資料.GetAllRows(null);
 
                 List<formularyClass> formularyClasses = list_value.SQLToClass<formularyClass,enum_formulary>();
-                sQLControl_處方集資料.AddRows(null, list_value);
 
 
 

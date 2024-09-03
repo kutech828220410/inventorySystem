@@ -30,20 +30,10 @@ namespace 中藥調劑系統
         private void InitializeComponent()
         {
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.rJ_TextBox_帳號 = new MyUI.RJ_TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rJ_TextBox1 = new MyUI.RJ_TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.rJ_TextBox2 = new MyUI.RJ_TextBox();
             this.sqL_DataGridView_套餐選擇 = new SQLUI.SQL_DataGridView();
             this.sqL_DataGridView_套餐藥品內容 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_Button_確認送出 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // rJ_Pannel1
@@ -53,7 +43,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel1.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel1.BorderRadius = 10;
             this.rJ_Pannel1.BorderSize = 2;
-            this.rJ_Pannel1.Controls.Add(this.flowLayoutPanel1);
+            this.rJ_Pannel1.Controls.Add(this.plC_RJ_Button_確認送出);
             this.rJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.rJ_Pannel1.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel1.IsSelected = false;
@@ -65,116 +55,6 @@ namespace 中藥調劑系統
             this.rJ_Pannel1.Size = new System.Drawing.Size(1355, 258);
             this.rJ_Pannel1.TabIndex = 0;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.panel3);
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 5);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(526, 243);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.rJ_TextBox_帳號);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(495, 68);
-            this.panel3.TabIndex = 13;
-            // 
-            // rJ_TextBox_帳號
-            // 
-            this.rJ_TextBox_帳號.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_帳號.BorderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_帳號.BorderFocusColor = System.Drawing.Color.SteelBlue;
-            this.rJ_TextBox_帳號.BorderRadius = 5;
-            this.rJ_TextBox_帳號.BorderSize = 1;
-            this.rJ_TextBox_帳號.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_帳號.ForeColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_帳號.GUID = "";
-            this.rJ_TextBox_帳號.Location = new System.Drawing.Point(19, 12);
-            this.rJ_TextBox_帳號.Multiline = false;
-            this.rJ_TextBox_帳號.Name = "rJ_TextBox_帳號";
-            this.rJ_TextBox_帳號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_帳號.PassWordChar = false;
-            this.rJ_TextBox_帳號.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_帳號.PlaceholderText = "病人姓名";
-            this.rJ_TextBox_帳號.ShowTouchPannel = false;
-            this.rJ_TextBox_帳號.Size = new System.Drawing.Size(426, 43);
-            this.rJ_TextBox_帳號.TabIndex = 0;
-            this.rJ_TextBox_帳號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_帳號.Texts = "";
-            this.rJ_TextBox_帳號.UnderlineStyle = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.rJ_TextBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 77);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 68);
-            this.panel1.TabIndex = 14;
-            // 
-            // rJ_TextBox1
-            // 
-            this.rJ_TextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox1.BorderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox1.BorderFocusColor = System.Drawing.Color.SteelBlue;
-            this.rJ_TextBox1.BorderRadius = 5;
-            this.rJ_TextBox1.BorderSize = 1;
-            this.rJ_TextBox1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox1.ForeColor = System.Drawing.Color.Black;
-            this.rJ_TextBox1.GUID = "";
-            this.rJ_TextBox1.Location = new System.Drawing.Point(19, 12);
-            this.rJ_TextBox1.Multiline = false;
-            this.rJ_TextBox1.Name = "rJ_TextBox1";
-            this.rJ_TextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox1.PassWordChar = false;
-            this.rJ_TextBox1.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox1.PlaceholderText = "病歷號";
-            this.rJ_TextBox1.ShowTouchPannel = false;
-            this.rJ_TextBox1.Size = new System.Drawing.Size(426, 43);
-            this.rJ_TextBox1.TabIndex = 0;
-            this.rJ_TextBox1.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox1.Texts = "";
-            this.rJ_TextBox1.UnderlineStyle = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.rJ_TextBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 151);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 68);
-            this.panel2.TabIndex = 15;
-            // 
-            // rJ_TextBox2
-            // 
-            this.rJ_TextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox2.BorderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox2.BorderFocusColor = System.Drawing.Color.SteelBlue;
-            this.rJ_TextBox2.BorderRadius = 5;
-            this.rJ_TextBox2.BorderSize = 1;
-            this.rJ_TextBox2.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox2.ForeColor = System.Drawing.Color.Black;
-            this.rJ_TextBox2.GUID = "";
-            this.rJ_TextBox2.Location = new System.Drawing.Point(19, 12);
-            this.rJ_TextBox2.Multiline = false;
-            this.rJ_TextBox2.Name = "rJ_TextBox2";
-            this.rJ_TextBox2.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox2.PassWordChar = false;
-            this.rJ_TextBox2.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox2.PlaceholderText = "天數";
-            this.rJ_TextBox2.ShowTouchPannel = false;
-            this.rJ_TextBox2.Size = new System.Drawing.Size(426, 43);
-            this.rJ_TextBox2.TabIndex = 0;
-            this.rJ_TextBox2.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox2.Texts = "";
-            this.rJ_TextBox2.UnderlineStyle = true;
-            // 
             // sqL_DataGridView_套餐選擇
             // 
             this.sqL_DataGridView_套餐選擇.AutoSelectToDeep = false;
@@ -185,7 +65,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐選擇.CellBorderColor = System.Drawing.Color.WhiteSmoke;
             this.sqL_DataGridView_套餐選擇.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_套餐選擇.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_套餐選擇.cellStyleFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_套餐選擇.cellStyleFont = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_套餐選擇.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_套餐選擇.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_套餐選擇.columnHeaderBackColor = System.Drawing.Color.DarkGray;
@@ -208,7 +88,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐選擇.rowHeaderBackColor = System.Drawing.Color.Gray;
             this.sqL_DataGridView_套餐選擇.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_套餐選擇.RowsColor = System.Drawing.Color.LightCyan;
-            this.sqL_DataGridView_套餐選擇.RowsHeight = 40;
+            this.sqL_DataGridView_套餐選擇.RowsHeight = 65;
             this.sqL_DataGridView_套餐選擇.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_套餐選擇.selectedBorderSize = 0;
             this.sqL_DataGridView_套餐選擇.selectedRowBackColor = System.Drawing.Color.Blue;
@@ -287,6 +167,60 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐藥品內容.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_套餐藥品內容.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // plC_RJ_Button_確認送出
+            // 
+            this.plC_RJ_Button_確認送出.AutoResetState = true;
+            this.plC_RJ_Button_確認送出.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認送出.Bool = false;
+            this.plC_RJ_Button_確認送出.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認送出.BorderRadius = 15;
+            this.plC_RJ_Button_確認送出.BorderSize = 1;
+            this.plC_RJ_Button_確認送出.but_press = false;
+            this.plC_RJ_Button_確認送出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_確認送出.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_確認送出.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Button_確認送出.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_確認送出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_確認送出.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_確認送出.GUID = "";
+            this.plC_RJ_Button_確認送出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_確認送出.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_確認送出.Location = new System.Drawing.Point(1090, 5);
+            this.plC_RJ_Button_確認送出.Name = "plC_RJ_Button_確認送出";
+            this.plC_RJ_Button_確認送出.OFF_文字內容 = "確認送出";
+            this.plC_RJ_Button_確認送出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_確認送出.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認送出.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認送出.ON_BorderSize = 1;
+            this.plC_RJ_Button_確認送出.ON_文字內容 = "確認送出";
+            this.plC_RJ_Button_確認送出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_確認送出.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認送出.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認送出.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_確認送出.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_確認送出.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_確認送出.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_確認送出.ShadowSize = 3;
+            this.plC_RJ_Button_確認送出.ShowLoadingForm = false;
+            this.plC_RJ_Button_確認送出.Size = new System.Drawing.Size(260, 243);
+            this.plC_RJ_Button_確認送出.State = false;
+            this.plC_RJ_Button_確認送出.TabIndex = 147;
+            this.plC_RJ_Button_確認送出.Text = "確認送出";
+            this.plC_RJ_Button_確認送出.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認送出.TextHeight = 35;
+            this.plC_RJ_Button_確認送出.Texts = "確認送出";
+            this.plC_RJ_Button_確認送出.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_確認送出.字型鎖住 = false;
+            this.plC_RJ_Button_確認送出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_確認送出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_確認送出.文字鎖住 = false;
+            this.plC_RJ_Button_確認送出.背景圖片 = global::中藥調劑系統.Properties.Resources.adjusted_checkmark_removebg_preview1;
+            this.plC_RJ_Button_確認送出.讀取位元反向 = false;
+            this.plC_RJ_Button_確認送出.讀寫鎖住 = false;
+            this.plC_RJ_Button_確認送出.音效 = false;
+            this.plC_RJ_Button_確認送出.顯示 = false;
+            this.plC_RJ_Button_確認送出.顯示狀態 = false;
+            // 
             // Dialog_其它處方
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -304,10 +238,6 @@ namespace 中藥調劑系統
             this.Name = "Dialog_其它處方";
             this.Text = "其它處方";
             this.rJ_Pannel1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -315,14 +245,8 @@ namespace 中藥調劑系統
         #endregion
 
         private MyUI.RJ_Pannel rJ_Pannel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel3;
-        private MyUI.RJ_TextBox rJ_TextBox_帳號;
-        private System.Windows.Forms.Panel panel1;
-        private MyUI.RJ_TextBox rJ_TextBox1;
-        private System.Windows.Forms.Panel panel2;
-        private MyUI.RJ_TextBox rJ_TextBox2;
         private SQLUI.SQL_DataGridView sqL_DataGridView_套餐選擇;
         private SQLUI.SQL_DataGridView sqL_DataGridView_套餐藥品內容;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_確認送出;
     }
 }

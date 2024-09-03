@@ -96,10 +96,10 @@ namespace 智能藥庫系統
             if (materialRequisitionClasses_等待撥補.Count > 0)
             {
     
-                this.Invoke(new Action(delegate
-                {
-                    plC_RJ_Button_申領警報解除.Visible = true;
-                }));
+                //this.Invoke(new Action(delegate
+                //{
+                //    plC_RJ_Button_申領警報解除.Visible = true;
+                //}));
                 if (MyTimerBasic_申領通知_背景顏色.IsTimeOut())
                 {
                     if (plC_RJ_Button_申領.ForeColor == Color.Black)
@@ -130,10 +130,10 @@ namespace 智能藥庫系統
             }
             else
             {
-                this.Invoke(new Action(delegate
-                {
-                    plC_RJ_Button_申領警報解除.Visible = false;
-                }));
+                //this.Invoke(new Action(delegate
+                //{
+                //    plC_RJ_Button_申領警報解除.Visible = false;
+                //}));
                 this.Invoke(new Action(delegate
                 {
                     plC_RJ_Button_申領.ForeColor = Color.Black;
