@@ -118,9 +118,12 @@ namespace 中藥調劑系統
             this.button_處方內容_ScrollUp.Click += Button_處方內容_ScrollUp_Click;
             this.button_處方內容_ScrollDown.Click += Button_處方內容_ScrollDown_Click;
             this.plC_RJ_Button_調劑畫面_藥品地圖.MouseDown += PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown;
-
+       
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+ 
+
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
@@ -145,7 +148,7 @@ namespace 中藥調劑系統
             List<OrderTClass> orderTClasses = OrderTClass.get_by_rx_time_st_end(Main_Form.API_Server, dateTime.GetStartDate(), dateTime.GetEndDate());
             List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
             if (orderTClasses == null) return;
-
+            if (orderTClasses.Count == 0) return;
             orderTClasses.sort(OrderTClassMethod.SortType.領藥號);
             List<string> list_PRI_KEY = (from temp in orderTClasses
                                          select temp.PRI_KEY).Distinct().ToList();
@@ -589,7 +592,7 @@ namespace 中藥調劑系統
                 }
                 catch(Exception ex)
                 {
-
+                    Console.WriteLine($"Exception : {ex.Message}");
                 }
                
             }
@@ -834,13 +837,14 @@ namespace 中藥調劑系統
         }
         private void Function_登入(sessionClass _sessionClass)
         {
+            PLC_Device_已登入.Bool = true;
             Function_從SQL取得儲位到本地資料();
             sessionClass = _sessionClass;
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
                 this.plC_ScreenPage_main.SelecteTabText("調劑畫面");
                 this.plC_RJ_Button_登入.Texts = "登出";
-                PLC_Device_已登入.Bool = true;
+
                 rJ_Lable_調劑人員.Text = $"調劑人員 : {sessionClass.Name}";
                 rJ_Lable_調劑人員.TextColor = Color.Green;
                 Function_重置處方();
@@ -1381,6 +1385,7 @@ namespace 中藥調劑系統
             dialog_藥品地圖.ShowDialog();
 
         }
+
         #endregion
         private void Button_處方內容_ScrollDown_Click(object sender, EventArgs e)
         {

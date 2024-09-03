@@ -179,6 +179,8 @@ namespace 中藥調劑系統
             LoadingForm.form = this.FindForm();
             Dialog_AlarmForm.form = this.FindForm();
             Dialog_藥品搜尋.form = this.FindForm();
+            Dialog_其它處方.form = this.FindForm();
+
             MyDialog.form = this.FindForm();
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
@@ -188,9 +190,12 @@ namespace 中藥調劑系統
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
             this.plC_RJ_Button_強制滅燈.MouseDownEvent += PlC_RJ_Button_強制滅燈_MouseDownEvent;
+            this.plC_RJ_Button_其它處方.MouseDownEvent += PlC_RJ_Button_其它處方_MouseDownEvent;
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
+
+
         private void MyMessageBox_TimerEvent(MyMessageBox myMessageBox)
         {
             myTimer_MySerialPort_Scanner01.TickStop();
@@ -203,6 +208,11 @@ namespace 中藥調劑系統
             MySerialPort_Scanner01.ClearReadByte();
 
             myMessageBox.Close();
+        }
+        private void PlC_RJ_Button_其它處方_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_其它處方 dialog_其它處方 = new Dialog_其它處方();
+            if (dialog_其它處方.ShowDialog() != DialogResult.Yes) return;
         }
         private void PlC_RJ_Button_強制滅燈_MouseDownEvent(MouseEventArgs mevent)
         {

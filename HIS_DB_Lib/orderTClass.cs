@@ -590,6 +590,37 @@ namespace HIS_DB_Lib
             OrderTClass orderTClass = returnData_out.Data.ObjToClass<OrderTClass>();
       
         }
+
+        static public void add(string API_Server, OrderTClass orderTClass)
+        {
+            List<OrderTClass> orderTClasse = new List<OrderTClass>();
+            orderTClasse.Add(orderTClass);
+            add(API_Server, orderTClasse);
+        }
+        static public void add(string API_Server, List<OrderTClass> orderTClasses)
+        {
+            string url = $"{API_Server}/api/orderT/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = orderTClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+
+            }
+            if (returnData_out.Data == null)
+            {
+
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderTClass orderTClass = returnData_out.Data.ObjToClass<OrderTClass>();
+
+        }
+
     }
 
 

@@ -153,6 +153,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap exception_medical_prescription_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("exception-medical-prescription-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap icon_for_medicine_map_papper_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("icon-for-medicine-map-papper-removebg-preview", resourceCulture);

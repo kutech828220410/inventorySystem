@@ -728,7 +728,85 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 新增中藥醫令
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///       [OrderTClass(陣列)]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add")]
+        [HttpPost]
+        public string POST_add([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                string serverName = returnData.ServerName;
+                string serverType = returnData.ServerType;
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "order_list";
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
+                List<OrderTClass> OrderTClasses = returnData.Data.ObjToClass<List<OrderTClass>>();
+                for (int i = 0; i < OrderTClasses.Count; i++)
+                {
+                    OrderTClasses[i].GUID = Guid.NewGuid().ToString();
+                    OrderTClasses[i].產出時間 = DateTime.Now.ToDateTimeString_6();
+                    OrderTClasses[i].過帳時間 = DateTime.MinValue.ToDateTimeString();
+                    OrderTClasses[i].狀態 = "未過帳";
+
+                }
+                List<object[]> list_value = OrderTClasses.ClassToSQL<OrderTClass, enum_OrderT>();
+                sQLControl_醫令資料.AddRows(null, list_value);
+
+                if (OrderTClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"新增中藥醫令!共<{OrderTClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = OrderTClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
 
         /// <summary>
         /// 以領藥號取得中藥醫令病患列表

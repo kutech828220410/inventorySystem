@@ -191,7 +191,7 @@ namespace 中藥調劑系統
             myTimer.StartTickTime(50000);
             Console.WriteLine($"開始SQL讀取儲位資料到本地!");
             List<Task> taskList = new List<Task>();
-                  
+
             taskList.Add(Task.Run(() =>
             {
                 MyTimer myTimer2 = new MyTimer();
@@ -208,7 +208,6 @@ namespace 中藥調劑系統
             }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
-
 
             Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
         }
