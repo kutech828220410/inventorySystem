@@ -201,7 +201,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 大瓶點滴
         /// </summary>
-        [JsonPropertyName("cnt02")]
+        [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
 
         public class ICP_By_UP_Time : IComparer<medCpoeRecClass>

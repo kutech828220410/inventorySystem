@@ -1154,6 +1154,22 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.clear_data(HIS_DB_Lib.returnData)">
+            <summary>
+            清洗資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Value":""
+                    "ValueAry":["UC02"]
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.deviceController.POST_all(HIS_DB_Lib.returnData)">
             <summary>
             查詢儲位資料

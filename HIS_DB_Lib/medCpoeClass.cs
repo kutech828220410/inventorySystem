@@ -100,7 +100,11 @@ namespace HIS_DB_Lib
         [Description("交互作用,VARCHAR,10,NONE")]
         交互作用,
         [Description("交互作用等級,VARCHAR,10,NONE")]
-        交互作用等級
+        交互作用等級,
+        [Description("DC確認,VARCHAR,10,NONE")]
+        DC確認,
+        [Description("調劑異動,VARCHAR,10,NONE")]
+        調劑異動,
     }
     /// <summary>
     /// medCpoeClass資料
@@ -323,8 +327,18 @@ namespace HIS_DB_Lib
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
         /// <summary>
+        /// DC確認
+        /// </summary>
+        [JsonPropertyName("dc_check")]
+        public string DC確認 { get; set; }
+        /// <summary>
+        /// 調劑異動
+        /// </summary>
+        [JsonPropertyName("dispens_change")]
+        public string 調劑異動 { get; set; }
+        /// <summary>
         /// 雲端藥檔
-        /// </summary
+        /// </summary>
         [JsonPropertyName("med_cloud")]
         public List<medClass> 雲端藥檔 { get; set; }
         public class ICP_By_Rank : IComparer<medCpoeClass>

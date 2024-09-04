@@ -1066,7 +1066,21 @@
             交互作用等級
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:HIS_DB_Lib.medCpoeClass.雲端藥檔" -->
+        <member name="P:HIS_DB_Lib.medCpoeClass.DC確認">
+            <summary>
+            DC確認
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.調劑異動">
+            <summary>
+            調劑異動
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.雲端藥檔">
+            <summary>
+            雲端藥檔
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
             <summary>
             medCpoeClass資料
