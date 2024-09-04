@@ -1162,6 +1162,16 @@
             單位
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.頻次代碼">
+            <summary>
+            頻次代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.頻次屬性">
+            <summary>
+            頻次屬性
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeRecClass.處方醫師">
             <summary>
             處方醫師
@@ -1665,6 +1675,61 @@
         <member name="P:HIS_DB_Lib.medInterClass.ATC">
             <summary>
             ATC
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.非專利藥品名">
+            <summary>
+            非專利藥品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.植入">
+            <summary>
+            植入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.吸入">
+            <summary>
+            吸入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.滴入">
+            <summary>
+            滴入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.鼻用">
+            <summary>
+            鼻用
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.口服">
+            <summary>
+            口服
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.非經消化道">
+            <summary>
+            非經消化道
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.直腸用">
+            <summary>
+            直腸用
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.舌下口腔口腔黏膜">
+            <summary>
+            舌下口腔口腔黏膜
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.經皮膚">
+            <summary>
+            經皮膚
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.陰道用">
+            <summary>
+            陰道用
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medInventoryLogClass">

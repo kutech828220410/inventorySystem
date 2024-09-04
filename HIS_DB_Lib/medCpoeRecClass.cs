@@ -51,6 +51,10 @@ namespace HIS_DB_Lib
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
         單位,
+        [Description("頻次代碼,VARCHAR,10,NONE")]
+        頻次代碼,
+        [Description("頻次屬性,VARCHAR,10,NONE")]
+        頻次屬性,
         [Description("處方醫師,VARCHAR,10,NONE")]
         處方醫師,
         [Description("處方醫師姓名,VARCHAR,10,NONE")]
@@ -159,6 +163,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
+        /// <summary>
+        /// 頻次代碼
+        /// </summary>
+        [JsonPropertyName("freqn")]
+        public string 頻次代碼 { get; set; }
+        /// <summary>
+        /// 頻次屬性
+        /// </summary>
+        [JsonPropertyName("frqatr")]
+        public string 頻次屬性 { get; set; }
         /// <summary>
         /// 處方醫師
         /// </summary>
