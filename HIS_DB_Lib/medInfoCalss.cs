@@ -46,7 +46,7 @@ namespace HIS_DB_Lib
         售價,
         [Description("健保價,VARCHAR,10,NONE")]
         健保價,
-        [Description("更新時間,VARCHAR,10,NONE")]
+        [Description("更新時間,DATETIME,10,NONE")]
         更新時間,
     }
     public class medInfoClass
@@ -139,7 +139,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 更新時間
         /// </summary>
-        [JsonPropertyName("GUID")]
+        [JsonPropertyName("update_time")]
         public string 更新時間 { get; set; }
         static public List<medInfoClass> update_med_info(string API_Server, List<medInfoClass> medInfoClass)
         {
