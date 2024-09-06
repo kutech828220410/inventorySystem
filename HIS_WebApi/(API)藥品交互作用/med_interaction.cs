@@ -46,7 +46,31 @@ namespace HIS_WebApi._API_藥品交互作用
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0], new enum_med_Inter());
+                return CheckCreatTable(serverSettingClasses[0], new enum_med_inter());
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [HttpPost("init_med_inter_dtl")]
+        public string init_med_inter_dtl([FromBody] returnData returnData)
+        {
+
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(serverSettingClasses[0], new enum_med_inter_dtl());
             }
             catch (Exception ex)
             {
@@ -87,7 +111,7 @@ namespace HIS_WebApi._API_藥品交互作用
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter = new SQLControl(Server, DB, "med_inter", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter = sQLControl_med_inter.GetAllRows(null);
-                List<medInterClass> sql_medInter = list_med_inter.SQLToClass<medInterClass, enum_med_Inter>();
+                List<medInterClass> sql_medInter = list_med_inter.SQLToClass<medInterClass, enum_med_inter>();
 
 
                 returnData.Code = 200;
@@ -97,6 +121,42 @@ namespace HIS_WebApi._API_藥品交互作用
                 return returnData.JsonSerializationt(true);
             }
             catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [HttpPost("get_med_inter_dtl")]
+        public string get_med_inter_dtl([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl_med_inter_dtl = new SQLControl(Server, DB, "med_inter_dtl", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_inter_dtl = sQLControl_med_inter_dtl.GetAllRows(null);
+                List<medInterDtlClass> sql_medInter = list_med_inter_dtl.SQLToClass<medInterDtlClass, enum_med_inter_dtl>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medInter;
+                returnData.Result = $"取得Table {DB}.med_inter";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
@@ -124,7 +184,7 @@ namespace HIS_WebApi._API_藥品交互作用
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter = new SQLControl(Server, DB, "med_inter", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter_sql = sQLControl_med_inter.GetAllRows(null);
-                List<medInterClass> current_medInterClass = list_med_inter_sql.SQLToClass <medInterClass, enum_med_Inter> ();
+                List<medInterClass> current_medInterClass = list_med_inter_sql.SQLToClass <medInterClass, enum_med_inter> ();
                 List<medInterClass> add_medInterClass = new List<medInterClass>();
                 List<medInterClass> update_medInterClass = new List<medInterClass>();
 
@@ -151,13 +211,13 @@ namespace HIS_WebApi._API_藥品交互作用
                     }
                 }
 
-                List<object[]> add_med_inter = add_medInterClass.ClassToSQL<medInterClass, enum_med_Inter>();
-                List<object[]> update_med_inter = update_medInterClass.ClassToSQL<medInterClass, enum_med_Inter>();
+                List<object[]> add_med_inter = add_medInterClass.ClassToSQL<medInterClass, enum_med_inter>();
+                List<object[]> update_med_inter = update_medInterClass.ClassToSQL<medInterClass, enum_med_inter>();
                 if (add_med_inter.Count > 0) sQLControl_med_inter.AddRows(null, add_med_inter);
                 if (update_med_inter.Count > 0) sQLControl_med_inter.UpdateByDefulteExtra(null, update_med_inter);
 
 
-                returnData.Code = -200;
+                returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = current_medInterClass;
                 returnData.Result = $"更新Table {DB}.med_inter 共{input_medInterClass.Count}筆";
@@ -170,9 +230,8 @@ namespace HIS_WebApi._API_藥品交互作用
                 return returnData.JsonSerializationt(true);
             }
         }
-
-        [HttpPost("add_med_inter")]
-        public string add_med_inter([FromBody] returnData returnData)
+        [HttpPost("update_med_inter_dtl")]
+        public string updatemed_inter_dtl([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -190,23 +249,46 @@ namespace HIS_WebApi._API_藥品交互作用
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                SQLControl sQLControl_med_inter = new SQLControl(Server, DB, "med_inter", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_inter_dtl = new SQLControl(Server, DB, "med_inter_dtl", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_inter_dtl_sql = sQLControl_med_inter_dtl.GetAllRows(null);
+                List<medInterDtlClass> current_medInterDtlClass = list_med_inter_dtl_sql.SQLToClass<medInterDtlClass, enum_med_inter_dtl>();
+                List<medInterDtlClass> add_medInterDtlClass = new List<medInterDtlClass>();
+                List<medInterDtlClass> update_medInterDtlClass = new List<medInterDtlClass>();
 
-                List<medInterClass> input_medInterClass = returnData.Data.ObjToClass<List<medInterClass>>();
-                if (input_medInterClass == null)
+
+                List<medInterDtlClass> input_medInterDtlClass = returnData.Data.ObjToClass<List<medInterDtlClass>>();
+                if (input_medInterDtlClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
+                foreach (var medInterDtlClass in input_medInterDtlClass)
+                {
+                    List<medInterDtlClass> target_medInterClass = current_medInterDtlClass
+                        .Where(temp => temp.ATC1 == medInterDtlClass.ATC1 && temp.ATC2 == medInterDtlClass.ATC2).ToList();
+                    if (target_medInterClass.Count == 0)
+                    {
+                        medInterDtlClass.GUID = Guid.NewGuid().ToString();
+                        add_medInterDtlClass.Add(medInterDtlClass);
+                    }
+                    else
+                    {
+                        medInterDtlClass.GUID = target_medInterClass[0].GUID;
+                        update_medInterDtlClass.Add(medInterDtlClass);
+                    }
+                }
 
-                List<object[]> list_med_inter = input_medInterClass.ClassToSQL<medInterClass, enum_med_Inter>();
-                sQLControl_med_inter.AddRows(null, list_med_inter);
+                List<object[]> add_med_inter_dtl = add_medInterDtlClass.ClassToSQL<medInterDtlClass, enum_med_inter_dtl>();
+                List<object[]> update_med_inter_dtl = update_medInterDtlClass.ClassToSQL<medInterDtlClass, enum_med_inter_dtl>();
+                if (add_med_inter_dtl.Count > 0) sQLControl_med_inter_dtl.AddRows(null, add_med_inter_dtl);
+                if (update_med_inter_dtl.Count > 0) sQLControl_med_inter_dtl.UpdateByDefulteExtra(null, update_med_inter_dtl);
 
-                returnData.Code = -200;
+
+                returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = input_medInterClass;
-                returnData.Result = $"更新Table {DB}.med_inter 共{input_medInterClass.Count}筆";
+                returnData.Data = input_medInterDtlClass;
+                returnData.Result = $"更新Table {DB}.med_inter 共{input_medInterDtlClass.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -216,5 +298,7 @@ namespace HIS_WebApi._API_藥品交互作用
                 return returnData.JsonSerializationt(true);
             }
         }
+
+
     }
 }

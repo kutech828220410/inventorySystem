@@ -16,7 +16,7 @@ namespace HIS_DB_Lib
         GUID,
         [Description("藥碼,VARCHAR,10,NONE")]
         藥碼,
-        [Description("藥品名,VARCHAR,150,NONE")]
+        [Description("藥品名,VARCHAR,500,NONE")]
         藥品名,
         [Description("頻次代碼,VARCHAR,10,NONE")]
         頻次代碼,
@@ -26,21 +26,21 @@ namespace HIS_DB_Lib
         序號,
         [Description("分類號,VARCHAR,10,NONE")]
         分類號,
-        [Description("類別名,VARCHAR,10,NONE")]
+        [Description("類別名,VARCHAR,500,NONE")]
         類別名,
-        [Description("藥品通名,VARCHAR,10,NONE")]
+        [Description("藥品通名,VARCHAR,500,NONE")]
         藥品通名,
-        [Description("藥品商品名,VARCHAR,10,NONE")]
+        [Description("藥品商品名,VARCHAR,100,NONE")]
         藥品商品名,
         [Description("藥品分類,VARCHAR,10,NONE")]
         藥品分類,
-        [Description("藥品治療分類,VARCHAR,10,NONE")]
+        [Description("藥品治療分類,VARCHAR,500,NONE")]
         藥品治療分類,
-        [Description("適應症,VARCHAR,10,NONE")]
+        [Description("適應症,TEXT,10,NONE")]
         適應症,
-        [Description("用法劑量,VARCHAR,10,NONE")]
+        [Description("用法劑量,TEXT,10,NONE")]
         用法劑量,
-        [Description("備註,VARCHAR,10,NONE")]
+        [Description("備註,TEXT,10,NONE")]
         備註,
         [Description("售價,VARCHAR,10,NONE")]
         售價,

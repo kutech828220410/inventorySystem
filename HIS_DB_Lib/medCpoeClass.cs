@@ -279,7 +279,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// LKFLAG
         /// </summary>
-        [JsonPropertyName("brfnm")]
+        [JsonPropertyName("lkflag")]
         public string LKFLAG { get; set; }
         /// <summary>
         /// 排序

@@ -9,14 +9,14 @@ using System.Text.Json.Serialization;
 
 namespace HIS_DB_Lib
 {
-    [EnumDescription("med_Inter")]
-    public enum enum_med_Inter
+    [EnumDescription("med_inter")]
+    public enum enum_med_inter
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
         [Description("ATC,VARCHAR,10,NONE")]
         ATC,
-        [Description("非專利藥品名,VARCHAR,50,NONE")]
+        [Description("非專利藥品名,VARCHAR,100,NONE")]
         非專利藥品名,
         [Description("植入,VARCHAR,20,NONE")]
         植入,
@@ -39,6 +39,25 @@ namespace HIS_DB_Lib
         [Description("陰道用,VARCHAR,20,NONE")]
         陰道用,
 
+
+    }
+    [EnumDescription("med_inter_dtl")]
+    public enum enum_med_inter_dtl
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("藥名1,VARCHAR,100,NONE")]
+        藥名1,
+        [Description("ATC1,VARCHAR,10,NONE")]
+        ATC1,
+        [Description("藥名2,VARCHAR,100,NONE")]
+        藥名2,
+        [Description("ATC2,VARCHAR,10,NONE")]
+        ATC2,
+        [Description("網址1,VARCHAR,250,NONE")]
+        網址1,
+        [Description("網址2,VARCHAR,250,NONE")]
+        網址2,        
 
     }
     /// <summary>
@@ -128,5 +147,49 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medInterClass;
         }
+        
+        
+    }
+    /// <summary>
+    /// medInterDtlClass 資料
+    /// </summary>
+    public class medInterDtlClass
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 藥名1
+        /// </summary>
+        [JsonPropertyName("name_1")]
+        public string 藥名1 { get; set; }
+        /// <summary>
+        /// ATC_1
+        /// </summary>
+        [JsonPropertyName("ATC_1")]
+        public string ATC1 { get; set; }
+        /// <summary>
+        /// 藥名2
+        /// </summary>
+        [JsonPropertyName("name_2")]
+        public string 藥名2 { get; set; }
+        /// <summary>
+        /// ATC_2
+        /// </summary>
+        [JsonPropertyName("ATC_2")]
+        public string ATC2 { get; set; }
+        /// <summary>
+        /// 網址1
+        /// </summary>
+        [JsonPropertyName("medspace")]
+        public string 網址1 { get; set; }
+        /// <summary>
+        /// 網址2
+        /// </summary>
+        [JsonPropertyName("drugcom")]
+        public string 網址2 { get; set; }
+
     }
 }

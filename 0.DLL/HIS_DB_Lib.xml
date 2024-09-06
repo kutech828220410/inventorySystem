@@ -1746,6 +1746,46 @@
             陰道用
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.medInterDtlClass">
+            <summary>
+            medInterDtlClass 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.藥名1">
+            <summary>
+            藥名1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.ATC1">
+            <summary>
+            ATC_1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.藥名2">
+            <summary>
+            藥名2
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.ATC2">
+            <summary>
+            ATC_2
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.網址1">
+            <summary>
+            網址1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.網址2">
+            <summary>
+            網址2
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInventoryLogClass">
             <summary>
             medInventoryLogClass 資料
