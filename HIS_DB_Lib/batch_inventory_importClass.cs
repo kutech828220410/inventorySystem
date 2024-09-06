@@ -54,6 +54,8 @@ namespace HIS_DB_Lib
         收支原因,
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
+        [Description("備註,VARCHAR,200,NONE")]
+        備註,
     }
     public class batch_inventory_importClass
     {

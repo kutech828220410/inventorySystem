@@ -209,6 +209,56 @@
             燈號更新旗標
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.formularyClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.名稱">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.批序">
+            <summary>
+            批序
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.中西藥">
+            <summary>
+            中西藥
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.新增時間">
+            <summary>
+            新增時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.loggerClass.GUID">
             <summary>
             唯一KEY

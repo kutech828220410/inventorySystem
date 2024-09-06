@@ -38,7 +38,17 @@ namespace 智能藥庫系統
             myThread_申領.AutoStop(true);
             myThread_申領.Trigger();
 
+            plC_RJ_Button_申領警報解除.MouseDownEvent += PlC_RJ_Button_申領警報解除_MouseDownEvent;
+
         }
+
+        private void PlC_RJ_Button_申領警報解除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否解除申領警報?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
+            drawerUI_EPD_583.SetOutput("192.168.41.210", 29005, false);
+        }
+
         private int cnt_申領通知 = 0;
         private MyTimerBasic MyTimerBasic_申領通知_背景顏色 = new MyTimerBasic(1000);
         private MyTimerBasic MyTimerBasic_申領通知_開始語音提示 = new MyTimerBasic(3000);
@@ -79,11 +89,17 @@ namespace 智能藥庫系統
                 if (flag_語音提示)
                 {
                     Voice.MediaPlayAsync($@"{currentDirectory}\有新申領通知.wav");
+                    drawerUI_EPD_583.SetOutput("192.168.41.210", 29005, true);
                 }
             }
        
             if (materialRequisitionClasses_等待撥補.Count > 0)
             {
+    
+                //this.Invoke(new Action(delegate
+                //{
+                //    plC_RJ_Button_申領警報解除.Visible = true;
+                //}));
                 if (MyTimerBasic_申領通知_背景顏色.IsTimeOut())
                 {
                     if (plC_RJ_Button_申領.ForeColor == Color.Black)
@@ -94,6 +110,7 @@ namespace 智能藥庫系統
                             plC_RJ_Button_申領.BackColor = Color.Red;
                             plC_RJ_Button_申領.BackgroundColor = Color.Red;
                             plC_RJ_Button_申領.Invalidate();
+                      
                         }));
         
                     }
@@ -104,7 +121,6 @@ namespace 智能藥庫系統
                             plC_RJ_Button_申領.ForeColor = Color.Black;
                             plC_RJ_Button_申領.BackColor = Color.White;
                             plC_RJ_Button_申領.BackgroundColor = Color.White;
- 
                             plC_RJ_Button_申領.Invalidate();
                         }));               
                     }
@@ -114,6 +130,10 @@ namespace 智能藥庫系統
             }
             else
             {
+                //this.Invoke(new Action(delegate
+                //{
+                //    plC_RJ_Button_申領警報解除.Visible = false;
+                //}));
                 this.Invoke(new Action(delegate
                 {
                     plC_RJ_Button_申領.ForeColor = Color.Black;

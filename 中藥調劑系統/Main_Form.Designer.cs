@@ -32,6 +32,7 @@ namespace 中藥調劑系統
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.panel_main = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_其它處方 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_強制滅燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButtonEx3 = new MyUI.PLC_RJ_ScreenButtonEx();
             this.plC_RJ_ScreenButtonEx4 = new MyUI.PLC_RJ_ScreenButtonEx();
@@ -298,6 +299,7 @@ namespace 中藥調劑系統
             // 
             // panel_main
             // 
+            this.panel_main.Controls.Add(this.plC_RJ_Button_其它處方);
             this.panel_main.Controls.Add(this.plC_RJ_Button_強制滅燈);
             this.panel_main.Controls.Add(this.plC_RJ_ScreenButtonEx3);
             this.panel_main.Controls.Add(this.plC_RJ_ScreenButtonEx4);
@@ -320,6 +322,61 @@ namespace 中藥調劑系統
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(1904, 100);
             this.panel_main.TabIndex = 1;
+            // 
+            // plC_RJ_Button_其它處方
+            // 
+            this.plC_RJ_Button_其它處方.AutoResetState = false;
+            this.plC_RJ_Button_其它處方.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_其它處方.Bool = false;
+            this.plC_RJ_Button_其它處方.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_其它處方.BorderRadius = 10;
+            this.plC_RJ_Button_其它處方.BorderSize = 1;
+            this.plC_RJ_Button_其它處方.but_press = false;
+            this.plC_RJ_Button_其它處方.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_其它處方.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_其它處方.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Button_其它處方.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_其它處方.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_其它處方.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_其它處方.GUID = "";
+            this.plC_RJ_Button_其它處方.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_其它處方.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
+            this.plC_RJ_Button_其它處方.Location = new System.Drawing.Point(845, 0);
+            this.plC_RJ_Button_其它處方.Name = "plC_RJ_Button_其它處方";
+            this.plC_RJ_Button_其它處方.OFF_文字內容 = "其它處方";
+            this.plC_RJ_Button_其它處方.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_其它處方.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_其它處方.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_其它處方.ON_BorderSize = 1;
+            this.plC_RJ_Button_其它處方.ON_文字內容 = "其它處方";
+            this.plC_RJ_Button_其它處方.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_其它處方.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_其它處方.ON_背景顏色 = System.Drawing.Color.OrangeRed;
+            this.plC_RJ_Button_其它處方.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_其它處方.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_其它處方.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_其它處方.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_其它處方.ShadowSize = 3;
+            this.plC_RJ_Button_其它處方.ShowLoadingForm = false;
+            this.plC_RJ_Button_其它處方.Size = new System.Drawing.Size(97, 100);
+            this.plC_RJ_Button_其它處方.State = false;
+            this.plC_RJ_Button_其它處方.TabIndex = 166;
+            this.plC_RJ_Button_其它處方.Text = "其它處方";
+            this.plC_RJ_Button_其它處方.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_其它處方.TextHeight = 35;
+            this.plC_RJ_Button_其它處方.Texts = "其它處方";
+            this.plC_RJ_Button_其它處方.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_其它處方.字型鎖住 = false;
+            this.plC_RJ_Button_其它處方.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_其它處方.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_其它處方.文字鎖住 = false;
+            this.plC_RJ_Button_其它處方.背景圖片 = global::中藥調劑系統.Properties.Resources.exception_medical_prescription_removebg_preview;
+            this.plC_RJ_Button_其它處方.致能讀取位置 = "S4000";
+            this.plC_RJ_Button_其它處方.讀取位元反向 = false;
+            this.plC_RJ_Button_其它處方.讀寫鎖住 = false;
+            this.plC_RJ_Button_其它處方.音效 = false;
+            this.plC_RJ_Button_其它處方.顯示 = false;
+            this.plC_RJ_Button_其它處方.顯示狀態 = false;
             // 
             // plC_RJ_Button_強制滅燈
             // 
@@ -1798,6 +1855,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容.cellStylBackColor = System.Drawing.Color.PowderBlue;
             this.sqL_DataGridView_處方內容.cellStyleFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_處方內容.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_處方內容.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_處方內容.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_處方內容.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_處方內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
@@ -1806,6 +1864,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.sqL_DataGridView_處方內容.ContextMenuStrip = this.contextMenuStrip_處方內容;
             this.sqL_DataGridView_處方內容.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_處方內容.DataKeyEnable = false;
             this.sqL_DataGridView_處方內容.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_處方內容.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_處方內容.ImageBox = false;
@@ -1923,6 +1982,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_病患資訊.cellStylBackColor = System.Drawing.Color.PowderBlue;
             this.sqL_DataGridView_病患資訊.cellStyleFont = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_病患資訊.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_病患資訊.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_病患資訊.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_病患資訊.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_病患資訊.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
@@ -1930,6 +1990,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_病患資訊.columnHeadersHeight = 40;
             this.sqL_DataGridView_病患資訊.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.sqL_DataGridView_病患資訊.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_病患資訊.DataKeyEnable = false;
             this.sqL_DataGridView_病患資訊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_病患資訊.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_病患資訊.ImageBox = false;
@@ -2807,6 +2868,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.cellStylBackColor = System.Drawing.Color.PowderBlue;
             this.sqL_DataGridView_處方搜尋.cellStyleFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_處方搜尋.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_處方搜尋.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_處方搜尋.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_處方搜尋.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_處方搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
@@ -2815,6 +2877,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.sqL_DataGridView_處方搜尋.ContextMenuStrip = this.contextMenuStrip_處方內容;
             this.sqL_DataGridView_處方搜尋.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_處方搜尋.DataKeyEnable = false;
             this.sqL_DataGridView_處方搜尋.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_處方搜尋.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_處方搜尋.ImageBox = false;
@@ -3086,6 +3149,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_交易紀錄.cellStylBackColor = System.Drawing.Color.PowderBlue;
             this.sqL_DataGridView_交易紀錄.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_交易紀錄.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易紀錄.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_交易紀錄.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_交易紀錄.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_交易紀錄.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -3094,6 +3158,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_交易紀錄.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.sqL_DataGridView_交易紀錄.ContextMenuStrip = this.contextMenuStrip_處方內容;
             this.sqL_DataGridView_交易紀錄.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_交易紀錄.DataKeyEnable = false;
             this.sqL_DataGridView_交易紀錄.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_交易紀錄.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_交易紀錄.ImageBox = false;
@@ -4505,6 +4570,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_藥品區域.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_藥品區域.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品區域.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥品區域.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_藥品區域.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥品區域.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_藥品區域.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -4512,6 +4578,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_藥品區域.columnHeadersHeight = 18;
             this.sqL_DataGridView_藥品區域.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥品區域.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_藥品區域.DataKeyEnable = false;
             this.sqL_DataGridView_藥品區域.Dock = System.Windows.Forms.DockStyle.Left;
             this.sqL_DataGridView_藥品區域.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_藥品區域.ImageBox = false;
@@ -4851,6 +4918,7 @@ namespace 中藥調劑系統
         private System.Windows.Forms.Panel panel43;
         private System.Windows.Forms.Panel panel20;
         private MyUI.PLC_RJ_Button plC_RJ_Button_調劑畫面_藥品地圖;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_其它處方;
     }
 }
 

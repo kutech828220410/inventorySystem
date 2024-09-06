@@ -5295,6 +5295,68 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
+        <member name="M:HIS_WebApi.formulary.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.formulary.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增處方集
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  [formularyClass(陣列)]
+                },
+                "ValueAry" : 
+                [
+                  
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.formulary.POST_get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有處方集資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  
+                },
+                "ValueAry" : 
+                [
+                  
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫
@@ -5734,6 +5796,28 @@
         <member name="M:HIS_WebApi.orderT.POST_updete_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID更新中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  [OrderTClass(陣列)]
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增中藥醫令
             </summary>
             <remarks>
             以下為範例JSON範例

@@ -109,7 +109,11 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.產出時間);
+            //this.sqL_DataGridView_醫令資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.產出時間);
+
+            this.sqL_DataGridView_醫令資料.Set_ColumnText("藥碼", enum_醫囑資料.藥品碼);
+            this.sqL_DataGridView_醫令資料.Set_ColumnText("藥名", enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫令資料.Set_ColumnText("使用時間", enum_醫囑資料.開方日期);
 
             this.sqL_DataGridView_醫令資料_已選取處方.Init(table);
             this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
@@ -117,7 +121,11 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
             this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
             this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
-            
+
+            this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnText("藥碼", enum_醫囑資料.藥品碼);
+            this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnText("藥名", enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫令資料_已選取處方.Set_ColumnText("使用時間", enum_醫囑資料.開方日期);
+
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
             this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
             this.rJ_Button_選取處方.MouseDownEvent += RJ_Button_選取處方_MouseDownEvent;

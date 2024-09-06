@@ -118,9 +118,11 @@ namespace 中藥調劑系統
             this.button_處方內容_ScrollUp.Click += Button_處方內容_ScrollUp_Click;
             this.button_處方內容_ScrollDown.Click += Button_處方內容_ScrollDown_Click;
             this.plC_RJ_Button_調劑畫面_藥品地圖.MouseDown += PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown;
-
+       
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+ 
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -128,7 +130,6 @@ namespace 中藥調劑系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             this.rJ_Lable_實調.Text = dialog_NumPannel.Value.ToString("0.00");
         }
-
         private void sub_Progran_更新處方()
         {
             orderDate = plC_NumBox_更新前幾天醫令.Value;
@@ -147,7 +148,7 @@ namespace 中藥調劑系統
             List<OrderTClass> orderTClasses = OrderTClass.get_by_rx_time_st_end(Main_Form.API_Server, dateTime.GetStartDate(), dateTime.GetEndDate());
             List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
             if (orderTClasses == null) return;
-
+            if (orderTClasses.Count == 0) return;
             orderTClasses.sort(OrderTClassMethod.SortType.領藥號);
             List<string> list_PRI_KEY = (from temp in orderTClasses
                                          select temp.PRI_KEY).Distinct().ToList();
@@ -359,10 +360,8 @@ namespace 中藥調劑系統
             }
 
         }
-
         private bool flag_MySerialPort_Scanner01_enable = true;
-        private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();
-        
+        private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();      
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
@@ -593,12 +592,13 @@ namespace 中藥調劑系統
                 }
                 catch(Exception ex)
                 {
-
+                    Console.WriteLine($"Exception : {ex.Message}");
                 }
                
             }
 
         }
+
         #region Function
         public void Function_重置處方()
         {
@@ -676,6 +676,7 @@ namespace 中藥調劑系統
                     {
                         orderTClasses[i].實際調劑量 = "1";
                         orderTClasses[i].過帳時間 = DateTime.Now.ToDateTimeString_6();
+                        orderTClasses[i].交易量 = "0";
                         OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClasses[i]);
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_水劑處方待製 = true;
@@ -702,7 +703,7 @@ namespace 中藥調劑系統
             {
                 this.Invoke(new Action(delegate
                 {
-                    rJ_Lable_處方警示.Text = "水劑處方待製)";
+                    rJ_Lable_處方警示.Text = "水劑處方待製";
                     Voice voice = new Voice();
                     voice.SpeakOnTask(RemoveParenthesesContent($"水劑處方待製"));
                 }));
@@ -748,6 +749,7 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TID") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
+            if (orderTClass.頻次.ToUpper() == "QD") 包數 = "1";
             string 天數 = orderTClasses[0].天數;
 
             for (int i = 0; i < orderTClasses.Count; i++)
@@ -835,13 +837,14 @@ namespace 中藥調劑系統
         }
         private void Function_登入(sessionClass _sessionClass)
         {
+            PLC_Device_已登入.Bool = true;
             Function_從SQL取得儲位到本地資料();
             sessionClass = _sessionClass;
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
                 this.plC_ScreenPage_main.SelecteTabText("調劑畫面");
                 this.plC_RJ_Button_登入.Texts = "登出";
-                PLC_Device_已登入.Bool = true;
+
                 rJ_Lable_調劑人員.Text = $"調劑人員 : {sessionClass.Name}";
                 rJ_Lable_調劑人員.TextColor = Color.Green;
                 Function_重置處方();
@@ -1382,6 +1385,7 @@ namespace 中藥調劑系統
             dialog_藥品地圖.ShowDialog();
 
         }
+
         #endregion
         private void Button_處方內容_ScrollDown_Click(object sender, EventArgs e)
         {

@@ -25,6 +25,7 @@ namespace 中藥調劑系統
             //ExcelScaleLib.Communication.ConsoleWrite = true;
             Task.Run(new Action(delegate
             {
+                int retry = 0;
                 while(true)
                 {
                     if (myConfigClass.SCALE_COMPort.StringIsEmpty()) break;
@@ -40,6 +41,11 @@ namespace 中藥調劑系統
                     }
                     Console.WriteLine($"{DateTime.Now.ToDateTimeString()} ExcelScaleLib_Port [{myConfigClass.SCALE_COMPort}] open failed!");
                     System.Threading.Thread.Sleep(2000);
+                    retry++;
+                    if (retry >= 3)
+                    {
+                        break;
+                    }
                 }
           
 
