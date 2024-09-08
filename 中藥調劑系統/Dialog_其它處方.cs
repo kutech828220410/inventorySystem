@@ -69,7 +69,11 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "數量");
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "單位");
 
-
+            //formularyClass.add(Main_Form.API_Server, add_養肝明目飲());
+            //formularyClass.add(Main_Form.API_Server, add_防疫正氣茶());
+            //formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
+            //formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
+            //formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
             formularyClasses = formularyClass.get_all(Main_Form.API_Server);
             List<formularyClass> formularyClasses_套餐選擇 = formularyClasses
             .GroupBy(f => f.名稱)
@@ -136,7 +140,7 @@ namespace 中藥調劑系統
             formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "3", 藥碼 = "C0054-1", 數量 = "6", 備註 = "水量6000ml" });
             formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "4", 藥碼 = "C0075-1", 數量 = "6", 備註 = "水量6000ml" });
             formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "5", 藥碼 = "C0111-1", 數量 = "9", 備註 = "水量6000ml" });
-            formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "6", 藥碼 = "C0078-1", 數量 = "6", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "6", 藥碼 = "C0110-1", 數量 = "6", 備註 = "水量6000ml" });
             formularyClasses.Add(new formularyClass { 名稱 = "消脂纖體茶", 批序 = "7", 藥碼 = "C0068-1", 數量 = "4.5", 備註 = "水量6000ml" });
             return formularyClasses;
         }
@@ -144,11 +148,10 @@ namespace 中藥調劑系統
         {
             List<formularyClass> formularyClasses = new List<formularyClass>();
 
-            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "1", 藥碼 = "C0057-1", 數量 = "6", 備註 = "水量6000ml" });
-            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "2", 藥碼 = "C0108-1", 數量 = "12", 備註 = "水量6000ml" });
-            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "3", 藥碼 = "C0005-1", 數量 = "0.3", 備註 = "水量6000ml" });
-            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "4", 藥碼 = "C0020-1", 數量 = "3", 備註 = "水量6000ml" });
-            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "5", 藥碼 = "C0043-1", 數量 = "3", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "1", 藥碼 = "C0112-1", 數量 = "12", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "2", 藥碼 = "C0108-1", 數量 = "18", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "3", 藥碼 = "C0005-1", 數量 = "0.46", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "4", 藥碼 = "C0043-1", 數量 = "6", 備註 = "水量6000ml" });
             return formularyClasses;
         }
 

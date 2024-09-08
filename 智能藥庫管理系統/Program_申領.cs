@@ -62,6 +62,7 @@ namespace 智能藥庫系統
                 List<materialRequisitionClass> materialRequisitionClasses = materialRequisitionClass.get_by_requestTime(API_Server, DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
                 materialRequisitionClasses = (from temp in materialRequisitionClasses
                                               where temp.狀態 == "等待過帳"
+                                              where temp.申領類別 == "緊急申領"
                                               select temp).ToList();
                 if (materialRequisitionClasses.Count > 0)
                 {

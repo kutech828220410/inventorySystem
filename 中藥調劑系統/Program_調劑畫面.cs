@@ -750,6 +750,8 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
             if (orderTClass.頻次.ToUpper() == "QD") 包數 = "1";
+            if (orderTClass.頻次.ToUpper() == "PRN") 包數 = "1";
+            if (包數.StringIsEmpty()) 包數 = "1";
             string 天數 = orderTClasses[0].天數;
 
             for (int i = 0; i < orderTClasses.Count; i++)
