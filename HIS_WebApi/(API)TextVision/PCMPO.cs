@@ -83,16 +83,22 @@ namespace HIS_WebApi._API_TextVision
                 List<object[]> sql_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.AddRows(null, sql_textVision);
 
-                List<textVisionClass> aiResult = textVisionClass.ai_analyze(input_textVision);
+                returnData returnData_AI = textVisionClass.ai_analyze(input_textVision);
+                //if (returnData_AI.Result == "False")
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"辨識失敗";
+                //    return returnData.JsonSerializationt(true);
+                //}
 
-
+                //SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
 
                 returnData.Code = 200;
-                returnData.Data = aiResult;
+                //returnData.Data = returnData_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Method = "";
                 returnData.Result = $"";
-                return returnData.JsonSerializationt(true);
+                return returnData_AI.JsonSerializationt(true);
             }
             catch(Exception ex)
             {

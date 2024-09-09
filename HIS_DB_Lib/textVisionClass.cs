@@ -130,21 +130,21 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("CODE")]
         public string 藥品碼 { get; set; }
-        static public List<textVisionClass> ai_analyze(List<textVisionClass> textVisionClasses)
+        static public returnData ai_analyze(List<textVisionClass> textVisionClasses)
         {
-            string url = $"https://8a40-220-135-128-247.ngrok-free.app/ROI_input";
+            string url = $"http://127.0.0.1:3000/ROI_input";
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
-            List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            returnData returnData_AI = json_out.JsonDeserializet<returnData>();
+            if (returnData_AI == null) return null;
+            if (returnData_AI.Code != 200) return null;
+            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             Console.WriteLine($"{returnData}");
-            return out_textVisionClass;
+            return returnData_AI;
         }
     }
 }
