@@ -53,10 +53,33 @@ namespace HIS_WebApi
 
         }
 
+        /// <summary>
+        /// 取得所有交班藥品資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "A5",
+        ///     "ServerType" : "調劑台",
+        ///     "Data": 
+        ///     {
+        ///       
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("get_all")]
         [HttpPost]
         public string POST_get_all([FromBody] returnData returnData)
         {
+            returnData.Method = "get_all";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -77,7 +100,7 @@ namespace HIS_WebApi
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<medShiftConfigClass> medShiftConfigClasses = list_value.SQLToClass<medShiftConfigClass, enum_交班藥品設定>();
                 returnData.Code = 200;
-                returnData.Result = $"取得藥品交班資訊成功!";
+                returnData.Result = $"取得藥品交班資訊成功,共<{list_value.Count}>筆資料";
                 returnData.Data = medShiftConfigClasses;
                 return returnData.JsonSerializationt();
             }
@@ -89,6 +112,115 @@ namespace HIS_WebApi
 
             }
         }
+
+        /// <summary>
+        /// 取得所有交班藥品資料(多台合併)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///       
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_datas_all")]
+        [HttpPost]
+        public string POST_get_datas_all([FromBody] returnData returnData)
+        {
+            returnData.Method = "get_datas_all";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] ServerNames = returnData.ValueAry[0].Split(',');
+                string[] ServerTypes = returnData.ValueAry[1].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<medShiftConfigClass> medShiftConfigClasses_out = new List<medShiftConfigClass>();
+                List<medShiftConfigClass> medShiftConfigClasses_buf = new List<medShiftConfigClass>();
+                List<medShiftConfigClass> medShiftConfigClasses_temp = new List<medShiftConfigClass>();
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "本地端");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "med_shift_config";
+                        SQLControl sQLControl_med_shift_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value = sQLControl_med_shift_config.GetAllRows(null);
+                        List<medShiftConfigClass> medShiftConfigClasses = list_value.SQLToClass<medShiftConfigClass, enum_交班藥品設定>();
+                        medShiftConfigClasses_buf.LockAdd(medShiftConfigClasses);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                List<string> vs = (from temp in medShiftConfigClasses_buf
+                                   select temp.藥品碼).Distinct().ToList();
+                for (int i = 0; i < vs.Count; i++)
+                {
+                    medShiftConfigClasses_temp = (from temp in medShiftConfigClasses_buf
+                                                  where temp.藥品碼 == vs[i]
+                                                  where temp.是否交班.ToUpper() == true.ToString().ToUpper()
+                                                  select temp).ToList();
+                    if (medShiftConfigClasses_temp.Count > 0)
+                    {
+                        medShiftConfigClasses_out.Add(medShiftConfigClasses_temp[0]);
+                    }
+
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"取得藥品交班資訊成功,共<{medShiftConfigClasses_buf.Count}>筆資料";
+                returnData.Data = medShiftConfigClasses_out;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+
         [Route("update_by_code")]
         [HttpPost]
         public string POST_update_by_code([FromBody] returnData returnData)

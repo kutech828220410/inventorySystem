@@ -6718,12 +6718,12 @@
             this.plC_RJ_Pannel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_Pannel8.ForeColor = System.Drawing.Color.White;
             this.plC_RJ_Pannel8.IsSelected = false;
-            this.plC_RJ_Pannel8.Location = new System.Drawing.Point(0, 166);
+            this.plC_RJ_Pannel8.Location = new System.Drawing.Point(0, 188);
             this.plC_RJ_Pannel8.Name = "plC_RJ_Pannel8";
             this.plC_RJ_Pannel8.Padding = new System.Windows.Forms.Padding(5);
             this.plC_RJ_Pannel8.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Pannel8.ShadowSize = 3;
-            this.plC_RJ_Pannel8.Size = new System.Drawing.Size(1645, 787);
+            this.plC_RJ_Pannel8.Size = new System.Drawing.Size(1645, 765);
             this.plC_RJ_Pannel8.TabIndex = 6;
             // 
             // sqL_DataGridView_交班作業_交班表_交班明細
@@ -6766,7 +6766,7 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_交班作業_交班表_交班明細.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Server = "localhost";
-            this.sqL_DataGridView_交班作業_交班表_交班明細.Size = new System.Drawing.Size(1635, 777);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Size = new System.Drawing.Size(1635, 755);
             this.sqL_DataGridView_交班作業_交班表_交班明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_交班作業_交班表_交班明細.TabIndex = 116;
             this.sqL_DataGridView_交班作業_交班表_交班明細.TableName = "medicine_page";
@@ -6800,7 +6800,7 @@
             this.rJ_Pannel29.Padding = new System.Windows.Forms.Padding(5, 5, 10, 10);
             this.rJ_Pannel29.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel29.ShadowSize = 3;
-            this.rJ_Pannel29.Size = new System.Drawing.Size(1645, 166);
+            this.rJ_Pannel29.Size = new System.Drawing.Size(1645, 188);
             this.rJ_Pannel29.TabIndex = 5;
             // 
             // panel87
@@ -6815,9 +6815,9 @@
             this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_白班);
             this.panel87.Controls.Add(this.rJ_DatePicker_交班作業_交班表_日期);
             this.panel87.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel87.Location = new System.Drawing.Point(5, 52);
+            this.panel87.Location = new System.Drawing.Point(5, 80);
             this.panel87.Name = "panel87";
-            this.panel87.Size = new System.Drawing.Size(1630, 104);
+            this.panel87.Size = new System.Drawing.Size(1630, 98);
             this.panel87.TabIndex = 3;
             // 
             // plC_RJ_Pannel6
@@ -7209,7 +7209,7 @@
             this.panel137.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel137.Location = new System.Drawing.Point(5, 5);
             this.panel137.Name = "panel137";
-            this.panel137.Size = new System.Drawing.Size(1630, 47);
+            this.panel137.Size = new System.Drawing.Size(1630, 75);
             this.panel137.TabIndex = 4;
             // 
             // flowLayoutPanel_交班作業_交班表_庫別
@@ -7222,7 +7222,7 @@
             this.flowLayoutPanel_交班作業_交班表_庫別.Location = new System.Drawing.Point(24, 0);
             this.flowLayoutPanel_交班作業_交班表_庫別.Name = "flowLayoutPanel_交班作業_交班表_庫別";
             this.flowLayoutPanel_交班作業_交班表_庫別.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.flowLayoutPanel_交班作業_交班表_庫別.Size = new System.Drawing.Size(1604, 45);
+            this.flowLayoutPanel_交班作業_交班表_庫別.Size = new System.Drawing.Size(1604, 73);
             this.flowLayoutPanel_交班作業_交班表_庫別.TabIndex = 1;
             // 
             // checkBox1
@@ -7250,7 +7250,7 @@
             this.panel151.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel151.Location = new System.Drawing.Point(0, 0);
             this.panel151.Name = "panel151";
-            this.panel151.Size = new System.Drawing.Size(24, 45);
+            this.panel151.Size = new System.Drawing.Size(24, 73);
             this.panel151.TabIndex = 0;
             // 
             // panel_交班作業

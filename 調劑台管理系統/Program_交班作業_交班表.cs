@@ -111,31 +111,28 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_names.Count; i++)
                 {
                     CheckBox checkBox = new CheckBox();
+                    checkBox.AutoSize = true;
                     checkBox.Text = list_names[i];
-                    checkBox.Checked = true;
+                    if(list_names[i] == ServerName) checkBox.Checked = true;
+
                     flowLayoutPanel_交班作業_交班表_庫別.Controls.Add(checkBox);
                 }
-            
+                flowLayoutPanel_交班作業_交班表_庫別.Refresh();
 
             }));
         }
         private List<string> Function_交班對點_交班表_取得需交班藥品()
         {
             List<string> list_codes = new List<string>();
-            List<object[]> list_藥檔資料_buf = new List<object[]>();
-            List<object[]> list_交班藥品 = new List<object[]>();
-
-
-
-            string url = $"{Main_Form.API_Server}/api/medShiftConfig/get_all";
-            returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Main_Form.ServerName}";
-            returnData.TableName = "medicine_page";
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            List<medShiftConfigClass> medShiftConfigClasses = returnData.Data.ObjToListClass<medShiftConfigClass>();
+            List<string> list_names = Function_交班對點_交班表_取得選取調劑台名稱();
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            for (int i = 0; i < list_names.Count; i++)
+            {
+                serverNames.Add(list_names[i]);
+                serverTypes.Add("調劑台");
+            }
+            List<medShiftConfigClass> medShiftConfigClasses = medShiftConfigClass.get_datas_all(API_Server, serverNames, serverTypes);
             for (int i = 0; i < medShiftConfigClasses.Count; i++)
             {
                 if (medShiftConfigClasses[i].是否交班 != true.ToString()) continue;
@@ -164,14 +161,12 @@ namespace 調劑台管理系統
             plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool = false;
             plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool = true;
         }
-
         private void PlC_RJ_Button_交班作業_交班表_班別_小夜班_MouseDownEvent(MouseEventArgs mevent)
         {
             plC_RJ_Button_交班作業_交班表_班別_白班.Bool = false;
             plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool = true;
             plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool = false;
         }
-
         private void PlC_RJ_Button_交班作業_交班表_班別_白班_MouseDownEvent(MouseEventArgs mevent)
         {
             plC_RJ_Button_交班作業_交班表_班別_白班.Bool = true;
@@ -284,7 +279,11 @@ namespace 調劑台管理系統
                             List<medClass> medClasses = medClass.get_datas_dps_medClass_by_code(API_Server, serverNames, 藥碼);
                             if (medClasses.Count > 0)
                             {
-                                現有庫存 = medClasses[0].庫存.StringToInt32();
+                                for (int m = 0; m < medClasses.Count; m++)
+                                {
+                                    現有庫存 += medClasses[m].庫存.StringToInt32();
+                                }
+                     
                             }
                             if (list_交易紀錄_buf_buf.Count > 0)
                             {
