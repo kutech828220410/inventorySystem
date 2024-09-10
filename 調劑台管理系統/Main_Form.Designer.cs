@@ -223,8 +223,9 @@
             this.button_交班作業_管制結存_下一頁 = new System.Windows.Forms.Button();
             this.button_交班作業_管制結存_上一頁 = new System.Windows.Forms.Button();
             this.tabPage33 = new System.Windows.Forms.TabPage();
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細 = new MyUI.PLC_RJ_GroupBox();
+            this.plC_RJ_Pannel8 = new MyUI.PLC_RJ_Pannel();
             this.sqL_DataGridView_交班作業_交班表_交班明細 = new SQLUI.SQL_DataGridView();
+            this.rJ_Pannel29 = new MyUI.RJ_Pannel();
             this.panel87 = new System.Windows.Forms.Panel();
             this.plC_RJ_Pannel6 = new MyUI.PLC_RJ_Pannel();
             this.button_交班作業_交班表_預覽列印 = new System.Windows.Forms.Button();
@@ -236,6 +237,11 @@
             this.rJ_Lable140 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_交班作業_交班表_班別_白班 = new MyUI.PLC_RJ_Button();
             this.rJ_DatePicker_交班作業_交班表_日期 = new MyUI.RJ_DatePicker();
+            this.panel137 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel_交班作業_交班表_庫別 = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.panel151 = new System.Windows.Forms.Panel();
             this.panel_交班作業 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton17 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton25 = new MyUI.PLC_RJ_ScreenButton();
@@ -1676,10 +1682,12 @@
             this.plC_RJ_Pannel4.SuspendLayout();
             this.panel48.SuspendLayout();
             this.tabPage33.SuspendLayout();
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.SuspendLayout();
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.SuspendLayout();
+            this.plC_RJ_Pannel8.SuspendLayout();
+            this.rJ_Pannel29.SuspendLayout();
             this.panel87.SuspendLayout();
             this.plC_RJ_Pannel6.SuspendLayout();
+            this.panel137.SuspendLayout();
+            this.flowLayoutPanel_交班作業_交班表_庫別.SuspendLayout();
             this.panel_交班作業.SuspendLayout();
             this.收支作業.SuspendLayout();
             this.plC_ScreenPage_收支作業.SuspendLayout();
@@ -6691,55 +6699,32 @@
             // tabPage33
             // 
             this.tabPage33.BackColor = System.Drawing.Color.White;
-            this.tabPage33.Controls.Add(this.plC_RJ_GroupBox_交班作業_交班表_交班明細);
-            this.tabPage33.Controls.Add(this.panel87);
+            this.tabPage33.Controls.Add(this.plC_RJ_Pannel8);
+            this.tabPage33.Controls.Add(this.rJ_Pannel29);
             this.tabPage33.Location = new System.Drawing.Point(4, 25);
             this.tabPage33.Name = "tabPage33";
             this.tabPage33.Size = new System.Drawing.Size(1645, 953);
             this.tabPage33.TabIndex = 2;
             this.tabPage33.Text = "交班表";
             // 
-            // plC_RJ_GroupBox_交班作業_交班表_交班明細
+            // plC_RJ_Pannel8
             // 
-            // 
-            // plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel
-            // 
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.BackColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.BorderRadius = 5;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.BorderSize = 1;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Controls.Add(this.sqL_DataGridView_交班作業_交班表_交班明細);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.ForeColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.IsSelected = false;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Location = new System.Drawing.Point(0, 60);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Name = "ContentsPanel";
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.ShadowSize = 0;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.Size = new System.Drawing.Size(1645, 793);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.TabIndex = 2;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.GUID = "";
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.Location = new System.Drawing.Point(0, 100);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.Margin = new System.Windows.Forms.Padding(6);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.Name = "plC_RJ_GroupBox_交班作業_交班表_交班明細";
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.PannelBackColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.PannelBorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.PannelBorderRadius = 5;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.PannelBorderSize = 1;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.Size = new System.Drawing.Size(1645, 853);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TabIndex = 4;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleBackColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleBorderRadius = 5;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleBorderSize = 0;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleFont = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleForeColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleHeight = 60;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleTexts = "交班明細";
+            this.plC_RJ_Pannel8.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel8.BackgroundColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_Pannel8.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Pannel8.BorderRadius = 10;
+            this.plC_RJ_Pannel8.BorderSize = 2;
+            this.plC_RJ_Pannel8.Controls.Add(this.sqL_DataGridView_交班作業_交班表_交班明細);
+            this.plC_RJ_Pannel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Pannel8.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel8.IsSelected = false;
+            this.plC_RJ_Pannel8.Location = new System.Drawing.Point(0, 166);
+            this.plC_RJ_Pannel8.Name = "plC_RJ_Pannel8";
+            this.plC_RJ_Pannel8.Padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_Pannel8.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Pannel8.ShadowSize = 3;
+            this.plC_RJ_Pannel8.Size = new System.Drawing.Size(1645, 787);
+            this.plC_RJ_Pannel8.TabIndex = 6;
             // 
             // sqL_DataGridView_交班作業_交班表_交班明細
             // 
@@ -6748,7 +6733,7 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交班作業_交班表_交班明細.BorderRadius = 0;
             this.sqL_DataGridView_交班作業_交班表_交班明細.BorderSize = 2;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_交班作業_交班表_交班明細.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
@@ -6765,7 +6750,7 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_交班作業_交班表_交班明細.ImageBox = false;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.Location = new System.Drawing.Point(3, 3);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Location = new System.Drawing.Point(5, 5);
             this.sqL_DataGridView_交班作業_交班表_交班明細.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sqL_DataGridView_交班作業_交班表_交班明細.Name = "sqL_DataGridView_交班作業_交班表_交班明細";
             this.sqL_DataGridView_交班作業_交班表_交班明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
@@ -6781,9 +6766,9 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_交班作業_交班表_交班明細.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Server = "localhost";
-            this.sqL_DataGridView_交班作業_交班表_交班明細.Size = new System.Drawing.Size(1639, 787);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Size = new System.Drawing.Size(1635, 777);
             this.sqL_DataGridView_交班作業_交班表_交班明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.TabIndex = 115;
+            this.sqL_DataGridView_交班作業_交班表_交班明細.TabIndex = 116;
             this.sqL_DataGridView_交班作業_交班表_交班明細.TableName = "medicine_page";
             this.sqL_DataGridView_交班作業_交班表_交班明細.UserName = "root";
             this.sqL_DataGridView_交班作業_交班表_交班明細.可拖曳欄位寬度 = true;
@@ -6798,6 +6783,26 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交班作業_交班表_交班明細.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // rJ_Pannel29
+            // 
+            this.rJ_Pannel29.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel29.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel29.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Pannel29.BorderRadius = 10;
+            this.rJ_Pannel29.BorderSize = 2;
+            this.rJ_Pannel29.Controls.Add(this.panel87);
+            this.rJ_Pannel29.Controls.Add(this.panel137);
+            this.rJ_Pannel29.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Pannel29.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel29.IsSelected = false;
+            this.rJ_Pannel29.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Pannel29.Name = "rJ_Pannel29";
+            this.rJ_Pannel29.Padding = new System.Windows.Forms.Padding(5, 5, 10, 10);
+            this.rJ_Pannel29.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel29.ShadowSize = 3;
+            this.rJ_Pannel29.Size = new System.Drawing.Size(1645, 166);
+            this.rJ_Pannel29.TabIndex = 5;
+            // 
             // panel87
             // 
             this.panel87.Controls.Add(this.plC_RJ_Pannel6);
@@ -6809,10 +6814,10 @@
             this.panel87.Controls.Add(this.rJ_Lable140);
             this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_白班);
             this.panel87.Controls.Add(this.rJ_DatePicker_交班作業_交班表_日期);
-            this.panel87.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel87.Location = new System.Drawing.Point(0, 0);
+            this.panel87.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel87.Location = new System.Drawing.Point(5, 52);
             this.panel87.Name = "panel87";
-            this.panel87.Size = new System.Drawing.Size(1645, 100);
+            this.panel87.Size = new System.Drawing.Size(1630, 104);
             this.panel87.TabIndex = 3;
             // 
             // plC_RJ_Pannel6
@@ -6849,7 +6854,7 @@
             this.plC_RJ_Button_交班作業_交班表_設定.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交班作業_交班表_設定.Bool = false;
             this.plC_RJ_Button_交班作業_交班表_設定.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交班作業_交班表_設定.BorderRadius = 10;
+            this.plC_RJ_Button_交班作業_交班表_設定.BorderRadius = 20;
             this.plC_RJ_Button_交班作業_交班表_設定.BorderSize = 0;
             this.plC_RJ_Button_交班作業_交班表_設定.but_press = false;
             this.plC_RJ_Button_交班作業_交班表_設定.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -6902,7 +6907,7 @@
             this.plC_RJ_Button_交班作業_交班表_處方檢視.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.Bool = false;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交班作業_交班表_處方檢視.BorderRadius = 10;
+            this.plC_RJ_Button_交班作業_交班表_處方檢視.BorderRadius = 20;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.BorderSize = 0;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.but_press = false;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -7007,7 +7012,7 @@
             this.plC_RJ_Button_交班作業_交班表_生成明細.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交班作業_交班表_生成明細.Bool = false;
             this.plC_RJ_Button_交班作業_交班表_生成明細.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交班作業_交班表_生成明細.BorderRadius = 10;
+            this.plC_RJ_Button_交班作業_交班表_生成明細.BorderRadius = 20;
             this.plC_RJ_Button_交班作業_交班表_生成明細.BorderSize = 0;
             this.plC_RJ_Button_交班作業_交班表_生成明細.but_press = false;
             this.plC_RJ_Button_交班作業_交班表_生成明細.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -7195,6 +7200,58 @@
             this.rJ_DatePicker_交班作業_交班表_日期.SkinColor = System.Drawing.Color.CornflowerBlue;
             this.rJ_DatePicker_交班作業_交班表_日期.TabIndex = 55;
             this.rJ_DatePicker_交班作業_交班表_日期.TextColor = System.Drawing.Color.White;
+            // 
+            // panel137
+            // 
+            this.panel137.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel137.Controls.Add(this.flowLayoutPanel_交班作業_交班表_庫別);
+            this.panel137.Controls.Add(this.panel151);
+            this.panel137.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel137.Location = new System.Drawing.Point(5, 5);
+            this.panel137.Name = "panel137";
+            this.panel137.Size = new System.Drawing.Size(1630, 47);
+            this.panel137.TabIndex = 4;
+            // 
+            // flowLayoutPanel_交班作業_交班表_庫別
+            // 
+            this.flowLayoutPanel_交班作業_交班表_庫別.Controls.Add(this.checkBox1);
+            this.flowLayoutPanel_交班作業_交班表_庫別.Controls.Add(this.checkBox2);
+            this.flowLayoutPanel_交班作業_交班表_庫別.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel_交班作業_交班表_庫別.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.flowLayoutPanel_交班作業_交班表_庫別.ForeColor = System.Drawing.Color.Black;
+            this.flowLayoutPanel_交班作業_交班表_庫別.Location = new System.Drawing.Point(24, 0);
+            this.flowLayoutPanel_交班作業_交班表_庫別.Name = "flowLayoutPanel_交班作業_交班表_庫別";
+            this.flowLayoutPanel_交班作業_交班表_庫別.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.flowLayoutPanel_交班作業_交班表_庫別.Size = new System.Drawing.Size(1604, 45);
+            this.flowLayoutPanel_交班作業_交班表_庫別.TabIndex = 1;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(3, 8);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(54, 28);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "A5";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(63, 8);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(54, 28);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "A6";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // panel151
+            // 
+            this.panel151.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel151.Location = new System.Drawing.Point(0, 0);
+            this.panel151.Name = "panel151";
+            this.panel151.Size = new System.Drawing.Size(24, 45);
+            this.panel151.TabIndex = 0;
             // 
             // panel_交班作業
             // 
@@ -44317,10 +44374,13 @@
             this.plC_RJ_Pannel4.ResumeLayout(false);
             this.panel48.ResumeLayout(false);
             this.tabPage33.ResumeLayout(false);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ContentsPanel.ResumeLayout(false);
-            this.plC_RJ_GroupBox_交班作業_交班表_交班明細.ResumeLayout(false);
+            this.plC_RJ_Pannel8.ResumeLayout(false);
+            this.rJ_Pannel29.ResumeLayout(false);
             this.panel87.ResumeLayout(false);
             this.plC_RJ_Pannel6.ResumeLayout(false);
+            this.panel137.ResumeLayout(false);
+            this.flowLayoutPanel_交班作業_交班表_庫別.ResumeLayout(false);
+            this.flowLayoutPanel_交班作業_交班表_庫別.PerformLayout();
             this.panel_交班作業.ResumeLayout(false);
             this.收支作業.ResumeLayout(false);
             this.plC_ScreenPage_收支作業.ResumeLayout(false);
@@ -45960,8 +46020,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_大夜班;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_小夜班;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_白班;
-        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox_交班作業_交班表_交班明細;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_交班作業_交班表_交班明細;
         private System.Windows.Forms.Panel panel87;
         private MyUI.RJ_Lable rJ_Lable140;
         private MyUI.RJ_DatePicker rJ_DatePicker_交班作業_交班表_日期;
@@ -46306,7 +46364,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_單品入庫_顯示所有儲位;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋;
         internal MyUI.RJ_TextBox rJ_TextBox_收支作業_單品入庫_藥品碼;
-        private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.RJ_Pannel rJ_Pannel27;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_入庫;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_出庫;
@@ -46339,6 +46396,15 @@
         private MyUI.RJ_Button rJ_Button_藥品資料_儲位總庫存表_搜尋;
         private System.Windows.Forms.ComboBox comboBox_藥品資料_儲位總庫存表_搜尋條件;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton14;
+        private MyUI.PLC_RJ_Pannel plC_RJ_Pannel8;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_交班作業_交班表_交班明細;
+        private MyUI.RJ_Pannel rJ_Pannel29;
+        private System.Windows.Forms.Panel panel137;
+        private MyUI.RJ_Pannel ContentsPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_交班作業_交班表_庫別;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Panel panel151;
     }
 }
 

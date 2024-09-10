@@ -35,7 +35,7 @@ namespace 調劑台管理系統
             // 
             // rJ_Lable_Title
             // 
-            this.rJ_Lable_Title.BackColor = System.Drawing.Color.Navy;
+            this.rJ_Lable_Title.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_Title.BackgroundColor = System.Drawing.Color.Navy;
             this.rJ_Lable_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_Title.BorderRadius = 12;
@@ -47,6 +47,8 @@ namespace 調劑台管理系統
             this.rJ_Lable_Title.GUID = "";
             this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_Title.Name = "rJ_Lable_Title";
+            this.rJ_Lable_Title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_Title.ShadowSize = 0;
             this.rJ_Lable_Title.Size = new System.Drawing.Size(1784, 91);
             this.rJ_Lable_Title.TabIndex = 0;
             this.rJ_Lable_Title.Text = "[XXXXXX] 藥名:XXXXXXXX";
@@ -60,15 +62,20 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易記錄查詢.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交易記錄查詢.BorderRadius = 0;
             this.sqL_DataGridView_交易記錄查詢.BorderSize = 2;
+            this.sqL_DataGridView_交易記錄查詢.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_交易記錄查詢.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交易記錄查詢.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交易記錄查詢.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_交易記錄查詢.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易記錄查詢.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_交易記錄查詢.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_交易記錄查詢.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_交易記錄查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_交易記錄查詢.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 18;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_交易記錄查詢.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_交易記錄查詢.DataKeyEnable = false;
             this.sqL_DataGridView_交易記錄查詢.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_交易記錄查詢.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_交易記錄查詢.ImageBox = false;
@@ -83,6 +90,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易記錄查詢.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_交易記錄查詢.RowsHeight = 60;
             this.sqL_DataGridView_交易記錄查詢.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_交易記錄查詢.selectedBorderSize = 0;
+            this.sqL_DataGridView_交易記錄查詢.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_交易記錄查詢.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_交易記錄查詢.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_交易記錄查詢.Server = "localhost";
             this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(1784, 770);
             this.sqL_DataGridView_交易記錄查詢.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;

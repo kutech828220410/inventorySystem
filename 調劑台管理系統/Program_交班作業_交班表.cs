@@ -53,13 +53,14 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_小夜班_MouseDownEvent;
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_大夜班_MouseDownEvent;
 
+
             printerClass_交班表.Init();
             printerClass_交班表.PrintPageEvent += PrinterClass_交班表_PrintPageEvent;
 
             this.plC_UI_Init.Add_Method(this.sub_Program_交班作業_交班表);
         }
 
-     
+ 
 
         bool flag_交班作業_交班表_頁面更新 = false;
         private void sub_Program_交班作業_交班表()
@@ -74,6 +75,7 @@ namespace 調劑台管理系統
                         plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool = false;
                         plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool = false;
                     }
+                    Function_交班對點_交班表_Refresh();
                     flag_交班作業_交班表_頁面更新 = true;
                 }
             }
@@ -83,6 +85,40 @@ namespace 調劑台管理系統
             }
         }
         #region Function
+        private List<string> Function_交班對點_交班表_取得選取調劑台名稱()
+        {
+            List<string> list_names = new List<string>();
+            foreach (Control control in flowLayoutPanel_交班作業_交班表_庫別.Controls)
+            {
+                if(control is CheckBox)
+                {
+                    CheckBox checkBox = control as CheckBox;
+                    if (checkBox.Checked) list_names.Add(checkBox.Text);
+                }
+            }
+            return list_names;
+        }
+        private void Function_交班對點_交班表_Refresh()
+        {
+            this.Invoke(new Action(delegate 
+            {
+                flowLayoutPanel_交班作業_交班表_庫別.Controls.Clear();
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClass.get_serversetting_by_type(API_Server, "調劑台");
+
+                List<string> list_names = (from temp in serverSettingClasses
+                                           select temp.設備名稱).Distinct().ToList();
+                for (int i = 0; i < list_names.Count; i++)
+                {
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.Text = list_names[i];
+                    checkBox.Checked = true;
+                    flowLayoutPanel_交班作業_交班表_庫別.Controls.Add(checkBox);
+                }
+            
+
+            }));
+        }
         private List<string> Function_交班對點_交班表_取得需交班藥品()
         {
             List<string> list_codes = new List<string>();
@@ -111,6 +147,7 @@ namespace 調劑台管理系統
 
         #endregion
         #region Event
+    
         private void PrinterClass_交班表_PrintPageEvent(object sender, Graphics g, int width, int height, int page_num)
         {
             Rectangle rectangle = new Rectangle(0, 0, width, height);
@@ -163,97 +200,128 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_交班作業_交班表_班別_生成明細_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Invoke(new Action(delegate 
+            try
             {
-                if (!plC_RJ_Button_交班作業_交班表_班別_白班.Bool && !plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool && !plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool)
+                LoadingForm.ShowLoadingForm();
+                this.Invoke(new Action(delegate
                 {
-                    MyMessageBox.ShowDialog("未選擇班別!");
-                    return;
-                }
-                DateTime dateTime_st = new DateTime();
-                DateTime dateTime_end = new DateTime();
-                DateTime dateTime_temp = rJ_DatePicker_交班作業_交班表_日期.Value;
-                if (plC_RJ_Button_交班作業_交班表_班別_白班.Bool)
-                {
-                    dateTime_st = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
-                    dateTime_end = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
-                }
-                if (plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool)
-                {
-                    dateTime_st = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
-                    dateTime_end = $"{dateTime_temp.ToDateString()} 23:59:59".StringToDateTime();
-                }
-                if (plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool)
-                {
-                    dateTime_st = $"{dateTime_temp.ToDateString()} 00:00:00".StringToDateTime();
-                    dateTime_end = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
-                }
-                List<string> list_Codes = Function_交班對點_交班表_取得需交班藥品();
-                List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-                List<object[]> list_藥品資料_buf = new List<object[]>();
-                if (list_Codes.Count == 0)
-                {
-                    MyMessageBox.ShowDialog("未設定管制結存藥品,請至藥品資料設定!");
-                    return;
-                }
-                List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dateTime_st, dateTime_end, false);
-                List<object[]> list_交易紀錄_buf = new List<object[]>();
-         
-                //if (list_交易紀錄.Count == 0)
-                //{
-                //    MyMessageBox.ShowDialog("找無任何處方資料!");
-                //    return;
-                //}
-                List<object[]> list_value = new List<object[]>();
-                for (int i = 0; i < list_Codes.Count; i++)
-                {
-                    List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
-                    string 藥碼 = list_Codes[i];
-                    list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
-                    if (list_藥品資料_buf.Count > 0)
+                    if (!plC_RJ_Button_交班作業_交班表_班別_白班.Bool && !plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool && !plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool)
                     {
-                        object[] value = new object[new enum_medShiftList().GetLength()];
-                        string 藥名 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                        string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
-                        list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸領藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼領藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.系統領藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
-                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次過帳.GetEnumName()));
-                     
-                        int 處方支出 = 0;
-                        int 處方數量 = list_交易紀錄_buf_buf.Count;
-                        int 現有庫存 = Function_從SQL取得庫存(藥碼);
-                        if (list_交易紀錄_buf_buf.Count > 0)
-                        {
-
-                            if (現有庫存 == -999) 現有庫存 = 0;
-                            for (int k = 0; k < list_交易紀錄_buf_buf.Count; k++)
-                            {
-                                int 交易量 = list_交易紀錄_buf_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
-                                處方支出 += 交易量;
-                            }
-                        }
-                        value[(int)enum_medShiftList.藥碼] = 藥碼;
-                        value[(int)enum_medShiftList.藥名] = 藥名;
-                        value[(int)enum_medShiftList.處方支出] = 處方支出;
-                        value[(int)enum_medShiftList.處方數量] = 處方數量;
-                        value[(int)enum_medShiftList.現有庫存] = 現有庫存;
-                        value[(int)enum_medShiftList.起始時間] = dateTime_st.ToDateTimeString();
-                        value[(int)enum_medShiftList.結束時間] = dateTime_end.ToDateTimeString();
-                        value[(int)enum_medShiftList.管制級別] = 管制級別;
-
-                        list_value.Add(value);
+                        MyMessageBox.ShowDialog("未選擇班別");
+                        return;
                     }
-                }
-                List<object[]> list_value_buf = new List<object[]>();
-                list_value.Sort(new Icp_交班作業_交班表_交班明細());
-                this.sqL_DataGridView_交班作業_交班表_交班明細.RefreshGrid(list_value);
-                this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleTexts = $"交班明細 [{dateTime_st.ToDateTimeString()}]-[{dateTime_end.ToDateTimeString()}]";
-            }));
+                    List<string> list_names = Function_交班對點_交班表_取得選取調劑台名稱();
+                    if (list_names.Count == 0)
+                    {
+                        MyMessageBox.ShowDialog("未勾選調劑台");
+                        return;
+                    }
+                    DateTime dateTime_st = new DateTime();
+                    DateTime dateTime_end = new DateTime();
+                    DateTime dateTime_temp = rJ_DatePicker_交班作業_交班表_日期.Value;
+                    if (plC_RJ_Button_交班作業_交班表_班別_白班.Bool)
+                    {
+                        dateTime_st = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
+                        dateTime_end = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
+                    }
+                    if (plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool)
+                    {
+                        dateTime_st = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
+                        dateTime_end = $"{dateTime_temp.ToDateString()} 23:59:59".StringToDateTime();
+                    }
+                    if (plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool)
+                    {
+                        dateTime_st = $"{dateTime_temp.ToDateString()} 00:00:00".StringToDateTime();
+                        dateTime_end = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
+                    }
+                    List<string> list_Codes = Function_交班對點_交班表_取得需交班藥品();
+                    List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+                    List<object[]> list_藥品資料_buf = new List<object[]>();
+                    if (list_Codes.Count == 0)
+                    {
+                        MyMessageBox.ShowDialog("未設定管制結存藥品,請至藥品資料設定!");
+                        return;
+                    }
+                    List<string> serverNames = new List<string>();
+                    List<string> serverTypes = new List<string>();
+                    for (int i = 0; i < list_names.Count; i++)
+                    {
+                        serverNames.Add(list_names[i]);
+                        serverTypes.Add("調劑台");
+                    }
+                    List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_op_time_st_end(API_Server, dateTime_st, dateTime_end, serverNames, serverTypes);
+                    List<object[]> list_交易紀錄 = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                    List<object[]> list_交易紀錄_buf = new List<object[]>();
+
+                    //if (list_交易紀錄.Count == 0)
+                    //{
+                    //    MyMessageBox.ShowDialog("找無任何處方資料!");
+                    //    return;
+                    //}
+                    List<object[]> list_value = new List<object[]>();
+                    for (int i = 0; i < list_Codes.Count; i++)
+                    {
+                        List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
+                        string 藥碼 = list_Codes[i];
+                        list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
+                        if (list_藥品資料_buf.Count > 0)
+                        {
+                            object[] value = new object[new enum_medShiftList().GetLength()];
+                            string 藥名 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+                            string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
+                            list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸領藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼領藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.系統領藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
+                            list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次過帳.GetEnumName()));
+
+                            int 處方支出 = 0;
+                            int 處方數量 = list_交易紀錄_buf_buf.Count;
+                            int 現有庫存 = 0;
+                            List<medClass> medClasses = medClass.get_datas_dps_medClass_by_code(API_Server, serverNames, 藥碼);
+                            if (medClasses.Count > 0)
+                            {
+                                現有庫存 = medClasses[0].庫存.StringToInt32();
+                            }
+                            if (list_交易紀錄_buf_buf.Count > 0)
+                            {
+
+                                if (現有庫存 == -999) 現有庫存 = 0;
+                                for (int k = 0; k < list_交易紀錄_buf_buf.Count; k++)
+                                {
+                                    int 交易量 = list_交易紀錄_buf_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
+                                    處方支出 += 交易量;
+                                }
+                            }
+                            value[(int)enum_medShiftList.藥碼] = 藥碼;
+                            value[(int)enum_medShiftList.藥名] = 藥名;
+                            value[(int)enum_medShiftList.處方支出] = 處方支出;
+                            value[(int)enum_medShiftList.處方數量] = 處方數量;
+                            value[(int)enum_medShiftList.現有庫存] = 現有庫存;
+                            value[(int)enum_medShiftList.起始時間] = dateTime_st.ToDateTimeString();
+                            value[(int)enum_medShiftList.結束時間] = dateTime_end.ToDateTimeString();
+                            value[(int)enum_medShiftList.管制級別] = 管制級別;
+
+                            list_value.Add(value);
+                        }
+                    }
+                    List<object[]> list_value_buf = new List<object[]>();
+                    list_value.Sort(new Icp_交班作業_交班表_交班明細());
+                    this.sqL_DataGridView_交班作業_交班表_交班明細.RefreshGrid(list_value);
+                }));
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+         
             
         }
         private void PlC_RJ_Button_交班作業_交班表_班別_處方檢視_MouseDownEvent(MouseEventArgs mevent)
@@ -266,12 +334,26 @@ namespace 調劑台管理系統
                     MyMessageBox.ShowDialog("未選擇資料!");
                     return;
                 }
+                List<string> list_names = Function_交班對點_交班表_取得選取調劑台名稱();
+                if (list_names.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("未勾選調劑台");
+                    return;
+                }
+
                 string 藥碼 = list_交班明細[0][(int)enum_medShiftList.藥碼].ObjectToString();
                 string 藥名 = list_交班明細[0][(int)enum_medShiftList.藥名].ObjectToString();
                 string 起始時間 = list_交班明細[0][(int)enum_medShiftList.起始時間].ObjectToString();
                 string 結束時間 = list_交班明細[0][(int)enum_medShiftList.結束時間].ObjectToString();
-                List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
-                List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, 起始時間, 結束時間, false);
+                List<string> serverNames = new List<string>();
+                List<string> serverTypes = new List<string>();
+                for (int i = 0; i < list_names.Count; i++)
+                {
+                    serverNames.Add(list_names[i]);
+                    serverTypes.Add("調劑台");
+                }
+                List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_op_time_st_end(API_Server, 起始時間.StringToDateTime(), 結束時間.StringToDateTime(), serverNames, serverTypes);
+                List<object[]> list_交易紀錄 = transactionsClasses.ClassToSQL<transactionsClass,enum_交易記錄查詢資料>();
                 List<object[]> list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
  
 
@@ -281,6 +363,25 @@ namespace 調劑台管理系統
         }
         private void Button_交班作業_交班表_預覽列印_Click(object sender, EventArgs e)
         {
+            DateTime dateTime_st = new DateTime();
+            DateTime dateTime_end = new DateTime();
+            DateTime dateTime_temp = rJ_DatePicker_交班作業_交班表_日期.Value;
+            if (plC_RJ_Button_交班作業_交班表_班別_白班.Bool)
+            {
+                dateTime_st = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
+                dateTime_end = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
+            }
+            if (plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool)
+            {
+                dateTime_st = $"{dateTime_temp.ToDateString()} 16:00:00".StringToDateTime();
+                dateTime_end = $"{dateTime_temp.ToDateString()} 23:59:59".StringToDateTime();
+            }
+            if (plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool)
+            {
+                dateTime_st = $"{dateTime_temp.ToDateString()} 00:00:00".StringToDateTime();
+                dateTime_end = $"{dateTime_temp.ToDateString()} 08:00:00".StringToDateTime();
+
+            }
             List<object[]> list_交班明細 = this.sqL_DataGridView_交班作業_交班表_交班明細.GetAllRows();
             if (list_交班明細.Count == 0)
             {
@@ -292,7 +393,7 @@ namespace 調劑台管理系統
             returnData.ServerName = dBConfigClass.Name;
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
             returnData.Data = medShiftListClasses;
-            returnData.Value = this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleTexts;
+            returnData.Value = $"交班明細 [{dateTime_st.ToDateTimeString()}]-[{dateTime_end.ToDateTimeString()}]";
 
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/medShiftConfig/GET_SheetClass", json_in);
