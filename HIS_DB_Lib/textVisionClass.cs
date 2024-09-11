@@ -28,8 +28,6 @@ namespace HIS_DB_Lib
         座標,
         [Description("op_keyword,VARCHAR,100,NONE")]
         op_keyword,
-        [Description("UI結果,VARCHAR,500,NONE")]
-        UI結果,
         [Description("批號,VARCHAR,50,NONE")]
         批號,
         [Description("單號,VARCHAR,50,NONE")]
@@ -43,7 +41,32 @@ namespace HIS_DB_Lib
         [Description("效期,DATETIME,50,NONE")]
         效期,
         [Description("藥品碼,VARCHAR,30,INDEX")]
-        藥品碼
+        藥品碼,
+        [Description("批號信心分數,VARCHAR,20,NONE")]
+        批號信心分數,
+        [Description("效期信心分數,VARCHAR,20,NONE")]
+        效期信心分數,
+        [Description("單號信心分數,VARCHAR,20,NONE")]
+        單號信心分數,
+        [Description("藥名信心分數,VARCHAR,20,NONE")]
+        藥名信心分數,
+        [Description("中文名信心分數,VARCHAR,20,NONE")]
+        中文名信心分數,
+        [Description("數量信心分數,VARCHAR,20,NONE")]
+        數量信心分數,
+    }
+    [EnumDescription("med_code_srch")]
+    public enum enum_med_code_srch
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("藥名,VARCHAR,50,INDEX")]
+        藥名,
+        [Description("藥品碼,VARCHAR,30,NONE")]
+        藥品碼,
+        [Description("操作時間,DATETIME,50,NONE")]
+        操作時間
+
     }
     /// <summary>
     /// TextVision 資料
@@ -84,17 +107,12 @@ namespace HIS_DB_Lib
         /// 座標
         /// </summary>
         [JsonPropertyName("roi")]
-        public object 座標 { get; set; }
+        public string 座標 { get; set; }
         /// <summary>
         /// keyword
         /// </summary>
         [JsonPropertyName("op_keywords")]
-        public object op_keyword { get; set; }
-        /// <summary>
-        /// UI結果
-        /// </summary>
-        [JsonPropertyName("UI_result")]
-        public object UI結果 { get; set; }
+        public string op_keyword { get; set; }
         /// <summary>
         /// 批號
         /// </summary>
@@ -128,11 +146,41 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 藥品碼
         /// </summary>
-        [JsonPropertyName("CODE")]
+        [JsonPropertyName("code")]
         public string 藥品碼 { get; set; }
+        /// <summary>
+        /// 批號信心分數
+        /// </summary>
+        [JsonPropertyName("batch_num_conf")]
+        public string 批號信心分數 { get; set; }
+        /// <summary>
+        /// 效期信心分數
+        /// </summary>
+        [JsonPropertyName("expirydate_conf")]
+        public string 效期信心分數 { get; set; }
+        /// <summary>
+        /// 單號信心分數
+        /// </summary>
+        [JsonPropertyName("po_num_conf")]
+        public string 單號信心分數 { get; set; }
+        /// <summary>
+        /// 藥名信心分數
+        /// </summary>
+        [JsonPropertyName("name_conf")]
+        public string 藥名信心分數 { get; set; }
+        /// <summary>
+        /// 中文名信心分數
+        /// </summary>
+        [JsonPropertyName("cht_name_conf")]
+        public string 中文名信心分數 { get; set; }
+        /// <summary>
+        /// 數量信心分數
+        /// </summary>
+        [JsonPropertyName("qty_conf")]
+        public string 數量信心分數 { get; set; }
         static public returnData ai_analyze(List<textVisionClass> textVisionClasses)
         {
-            string url = $"http://127.0.0.1:3000/ROI_input";
+            string url = $"http://127.0.0.1:3000/PO_Vision";
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;
@@ -146,5 +194,28 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData_AI;
         }
+    }
+    public class medCodeSrchClass
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 中文名
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 藥品碼
+        /// </summary>
+        [JsonPropertyName("code")]
+        public string 藥品碼 { get; set; }
+        /// <summary>
+        /// 操作時間
+        /// </summary>
+        [JsonPropertyName("op_time")]
+        public string 操作時間 { get; set; }
     }
 }

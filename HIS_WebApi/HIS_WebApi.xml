@@ -4,6 +4,92 @@
         <name>HIS_WebApi</name>
     </assembly>
     <members>
+        <member name="M:HIS_WebApi._API_TextVision.PCMPO.analyze(HIS_DB_Lib.returnData)">
+            <summary>
+            執行文字辨識
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        {
+                            "op_id":
+                            "op_name":
+                            "bsse64":
+                        }
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_TextVision.PCMPO.update_textvision(HIS_DB_Lib.returnData)">
+            <summary>
+            更新文字辨識資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        {
+                            "GUID":"",
+                            "batch_num":"",
+                            "po_num":
+                            "qty":"",
+                            "expirydate":"",
+                            "code":"" 
+                        }
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_TextVision.PCMPO.update_med_code_srch(HIS_DB_Lib.returnData)">
+            <summary>
+            更新檢索表
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                       "藥名","藥品碼"
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi._API_TextVision.PCMPO.delete_textVision(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除textVision資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                        "GUID"
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.consumptionController.POST_serch_consumption_by_ST_END(HIS_DB_Lib.returnData)">
             <summary>
             取得庫存及消耗總量
@@ -976,7 +1062,7 @@
              <code>
                  {
                      
-                     "ValueAry":[處方GUID]
+                     "ValueAry":["處方GUID","L"]
                  }
              </code>
              </remarks>

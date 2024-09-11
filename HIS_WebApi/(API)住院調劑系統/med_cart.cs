@@ -319,7 +319,8 @@ namespace HIS_WebApi
                 sQLControl_med_cpoe.DeleteByBetween(null, (int)enum_med_cpoe.更新時間, starttime, endtime);
 
                 List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
-
+                //把配方機的藥拿掉
+                input_medCpoe = input_medCpoe.Where(temp => temp.藥局代碼 == "" && temp.藥局代碼 == "UC02").ToList();
                 if (input_medCpoe == null)
                 {
                     returnData.Code = -200;
@@ -438,7 +439,7 @@ namespace HIS_WebApi
         /// <code>
         ///     {
         ///         
-        ///         "ValueAry":[處方GUID]
+        ///         "ValueAry":["處方GUID","L"]
         ///     }
         /// </code>
         /// </remarks>
@@ -474,17 +475,18 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\",\"L\"]";
                     return returnData.JsonSerializationt(true);
                 }
                 string GUID = returnData.ValueAry[0];
+                string 大瓶藥標記 = returnData.ValueAry[1];
 
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                sql_medCpoe[0].大瓶點滴 = "L";
+                sql_medCpoe[0].大瓶點滴 = 大瓶藥標記;
                         
                 List<object[]>  list_medCpoe_replace = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0) sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
@@ -1551,6 +1553,10 @@ namespace HIS_WebApi
                         medCarInfoClass.姓名 = "XXX";
                         medCarInfoClass.住院號 = "31766666";
                         medCarInfoClass.病歷號 = "33445566";
+                        medCarInfoClass.住院醫師 = "王志明";
+                        medCarInfoClass.住院醫師代碼 = "UDC7777";
+                        medCarInfoClass.主治醫師 = "陳春嬌";
+                        medCarInfoClass.主治醫師代碼 = "UDC8888";
                         update_medCarInfo.Add(medCarInfoClass);
                     }                  
                 }

@@ -2826,11 +2826,6 @@
             keyword
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.UI結果">
-            <summary>
-            UI結果
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批號">
             <summary>
             批號
@@ -2864,6 +2859,56 @@
         <member name="P:HIS_DB_Lib.textVisionClass.藥品碼">
             <summary>
             藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號信心分數">
+            <summary>
+            批號信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期信心分數">
+            <summary>
+            效期信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號信心分數">
+            <summary>
+            單號信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥名信心分數">
+            <summary>
+            藥名信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名信心分數">
+            <summary>
+            中文名信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量信心分數">
+            <summary>
+            數量信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.操作時間">
+            <summary>
+            操作時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">
