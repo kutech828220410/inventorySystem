@@ -39,6 +39,8 @@
                     [
                         {
                             "GUID":"",
+                            "name":"",
+                            "cht_name":"",
                             "batch_num":"",
                             "po_num":
                             "qty":"",
@@ -61,9 +63,14 @@
             以下為JSON範例
             <code>
                 {
-                    "ValueAry":
+                    "Data":
                     [
-                       "藥名","藥品碼"
+                       {
+                            "Master_GUID":""
+                            "recog_cht_name":""
+                            "recog_name":""
+                            "code":""
+                       }
                     ]
                     
                 }

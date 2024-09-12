@@ -60,13 +60,20 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        [Description("藥名,VARCHAR,50,INDEX")]
-        藥名,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
+        [Description("辨識中文名,VARCHAR,50,INDEX")]
+        辨識中文名,
+        [Description("辨識藥名,VARCHAR,50,INDEX")]
+        辨識藥名,
         [Description("藥品碼,VARCHAR,30,NONE")]
         藥品碼,
+        [Description("藥名,VARCHAR,50,NONE")]
+        藥名, 
+        [Description("中文名,VARCHAR,50,NONE")]
+        中文名,
         [Description("操作時間,DATETIME,50,NONE")]
         操作時間
-
     }
     /// <summary>
     /// TextVision 資料
@@ -203,15 +210,35 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         /// <summary>
-        /// 中文名
+        /// 辨識單GUID
         /// </summary>
-        [JsonPropertyName("name")]
-        public string 藥名 { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        /// <summary>
+        /// 辨識中文名
+        /// </summary>
+        [JsonPropertyName("recog_cht_name")]
+        public string 辨識中文名 { get; set; }
+        /// <summary>
+        /// 辨識藥名
+        /// </summary>
+        [JsonPropertyName("recog_name")]
+        public string 辨識藥名 { get; set; }
         /// <summary>
         /// 藥品碼
         /// </summary>
         [JsonPropertyName("code")]
         public string 藥品碼 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 中文名
+        /// </summary>
+        [JsonPropertyName("cht_name")]
+        public string 中文名 { get; set; }
         /// <summary>
         /// 操作時間
         /// </summary>

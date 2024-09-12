@@ -2896,7 +2896,12 @@
             唯一KEY
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥名">
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.Master_GUID">
+            <summary>
+            辨識單GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.辨識藥名">
             <summary>
             中文名
             </summary>

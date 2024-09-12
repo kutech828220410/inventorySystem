@@ -154,23 +154,30 @@ namespace HIS_WebApi._API_TextVision
                 textVisionClass_AI[0].藥名 = Regex.Replace(textVisionClass_AI[0].藥名, pattern1, "");
 
                 string 藥名 = textVisionClass_AI[0].藥名;
+                string 中文名 = textVisionClass_AI[0].中文名;
                 List<medClass> medClasses = medClass.get_med_clouds_by_name(API, 藥名);
                 if (medClasses.Count == 0)
                 {
                     SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
-                    List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetRowsByDefult(null, (int)enum_med_code_srch.藥名,藥名);
-                    if (list_medCodeSrchClass.Count == 1)
-                    {
-                        List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
-                        textVisionClass_AI[0].藥品碼 = medCodeSrchClasses[0].藥品碼;
+                    List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
+                    List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
+                    List < medCodeSrchClass > buff_medCodeSrch = medCodeSrchClasses
+                    .Where(temp => temp.辨識中文名 == 中文名 || temp.辨識藥名 == 藥名).ToList();
+                    if (buff_medCodeSrch.Count == 1)
+                    {            
+                        textVisionClass_AI[0].藥品碼 = buff_medCodeSrch[0].藥品碼;
                     }
                     else
                     {
                         textVisionClass_AI[0].藥品碼 = "";
                     }
-                    
                 }
-                
+                else
+                {
+                    textVisionClass_AI[0].藥品碼 = medClasses[0].藥品碼;
+                    textVisionClass_AI[0].藥名 = medClasses[0].藥品學名;
+                    textVisionClass_AI[0].中文名 = medClasses[0].中文名稱;
+                }
 
                 textVisionClass_AI[0].操作者ID = input_textVision[0].操作者ID;
                 textVisionClass_AI[0].操作者姓名 = input_textVision[0].操作者姓名;
@@ -181,8 +188,6 @@ namespace HIS_WebApi._API_TextVision
                 textVisionClass_AI[0].單號信心分數 = textVisionClass_AI[0].單號信心分數.Substring(0, 5);
                 textVisionClass_AI[0].藥名信心分數 = textVisionClass_AI[0].藥名信心分數.Substring(0, 5);
                 textVisionClass_AI[0].中文名信心分數 = textVisionClass_AI[0].中文名信心分數.Substring(0, 5);
-
-
 
                 List<object[]> obj_textVisionClass = textVisionClass_AI.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, obj_textVisionClass);
@@ -217,6 +222,8 @@ namespace HIS_WebApi._API_TextVision
         ///         [
         ///             {
         ///                 "GUID":"",
+        ///                 "name":"",
+        ///                 "cht_name":"",
         ///                 "batch_num":"",
         ///                 "po_num":
         ///                 "qty":"",
@@ -276,6 +283,8 @@ namespace HIS_WebApi._API_TextVision
                 if (textVisionClasses[0].數量 != input_textVision[0].數量) textVisionClasses[0].數量 = input_textVision[0].數量;
                 if (textVisionClasses[0].效期 != input_textVision[0].效期) textVisionClasses[0].效期 = input_textVision[0].效期;
                 if (textVisionClasses[0].藥品碼 != input_textVision[0].藥品碼) textVisionClasses[0].藥品碼 = input_textVision[0].藥品碼;
+                if (textVisionClasses[0].藥名 != input_textVision[0].藥名) textVisionClasses[0].藥名 = input_textVision[0].藥名;
+                if (textVisionClasses[0].中文名 != input_textVision[0].中文名) textVisionClasses[0].中文名 = input_textVision[0].中文名;
 
                 List<object[]> Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
@@ -300,9 +309,14 @@ namespace HIS_WebApi._API_TextVision
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "ValueAry":
+        ///         "Data":
         ///         [
-        ///            "藥名","藥品碼"
+        ///            {
+        ///                 "Master_GUID":""
+        ///                 "recog_cht_name":""
+        ///                 "recog_name":""
+        ///                 "code":""
+        ///            }
         ///         ]
         ///         
         ///     }
@@ -331,42 +345,50 @@ namespace HIS_WebApi._API_TextVision
                 string Password = serverSettingClass_main[0].Password;
                 uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
 
-                if (returnData.ValueAry == null)
+                List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
+                string API = serverSettingClass_API[0].Server;
+
+                if (returnData.Data == null)
                 {
                     returnData.Data = -200;
-                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    returnData.Result = "returnData.Date 空白，請輸入對應欄位資料!";
                     return returnData.JsonSerializationt();
                 }
-                if (returnData.ValueAry.Count != 2)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"藥名\",\"藥品碼\"]";
-                    return returnData.JsonSerializationt(true);
-                }              
-                string 藥名 = returnData.ValueAry[0];
-                string 藥品碼 = returnData.ValueAry[1];
+                List<medCodeSrchClass> input_medCodeSrch = returnData.Data.ObjToClass<List<medCodeSrchClass>>();
+
+                string 辨識中文名 = input_medCodeSrch[0].辨識中文名;
+                string 辨識藥名 = input_medCodeSrch[0].辨識藥名;
+                string code = input_medCodeSrch[0].藥品碼;
 
                 SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
-                List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetRowsByDefult(null, (int)enum_med_code_srch.藥名, 藥名);
-                if(list_medCodeSrchClass.Count != 0)
+                List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
+                List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
+                List<medCodeSrchClass> buff_medCodeSrch = medCodeSrchClasses
+                    .Where(temp => temp.辨識中文名 == 辨識中文名 || temp.辨識藥名 == 辨識藥名).ToList();
+                if (buff_medCodeSrch.Count != 0)
                 {
+                    returnData.Data = "";
                     returnData.Code = 200;
                     returnData.Result = "藥名已存在";
                     return returnData.JsonSerializationt(true);
                 }
-                medCodeSrchClass medCodeSrchClass = new medCodeSrchClass
+                medClass medClass = medClass.get_med_clouds_by_code(API, code);
+                if(medClass == null)
                 {
-                    GUID = Guid.NewGuid().ToString(),
-                    操作時間 = DateTime.Now.ToDateTimeString(),
-                    藥名 = 藥名,
-                    藥品碼 = 藥品碼,
-                };
-                List<medCodeSrchClass> medCodeSrchClasses = new List<medCodeSrchClass> { medCodeSrchClass };
-          
-                List<object[]> add_medCodeSrchClass = medCodeSrchClasses.ClassToSQL<medCodeSrchClass, enum_med_code_srch>();
+                    returnData.Code = 200;
+                    returnData.Result = "藥碼不存在";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                input_medCodeSrch[0].GUID = Guid.NewGuid().ToString();
+                input_medCodeSrch[0].藥名 = medClass.藥品學名;
+                input_medCodeSrch[0].中文名 = medClass.中文名稱;
+                input_medCodeSrch[0].操作時間 = DateTime.Now.ToDateTimeString();
+
+                List<object[]> add_medCodeSrchClass = input_medCodeSrch.ClassToSQL<medCodeSrchClass, enum_med_code_srch>();
                 sQLControl_medCodeSrch.AddRows(null, add_medCodeSrchClass);
 
-                returnData.Data = medCodeSrchClasses;
+                returnData.Data = input_medCodeSrch;
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"新增<{add_medCodeSrchClass.Count}>筆";
