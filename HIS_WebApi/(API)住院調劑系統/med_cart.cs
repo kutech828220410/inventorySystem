@@ -350,9 +350,10 @@ namespace HIS_WebApi
                 for (int i = 0; i < medCpoe_sql_buf.Count; i++)
                 {
                     string Master_GUID = medCpoe_sql_buf[i].Master_GUID;
-                    medCarInfoClass targetPatient = sql_medCarInfo.FirstOrDefault(temp => temp.GUID == Master_GUID);
+                    List<medCarInfoClass> targetPatient = sql_medCarInfo.Where(temp => temp.GUID == Master_GUID).ToList();
+                    //medCarInfoClass targetPatient = sql_medCarInfo.FirstOrDefault(temp => temp.GUID == Master_GUID);
 
-                    if (targetPatient == null)
+                    if (targetPatient.Count == 0)
                     {
                         returnData.Code = -200;
                         returnData.Result = "處方資料錯誤，請更新病床資訊";
@@ -1107,19 +1108,21 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClass_main.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
 
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = serverSettingClass_main[0].Server;
+                string DB = serverSettingClass_main[0].DBName;
+                string UserName = serverSettingClass_main[0].User;
+                string Password = serverSettingClass_main[0].Password;
+                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
+                List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
+                string API = serverSettingClass_API[0].Server;
                 if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
@@ -1157,11 +1160,19 @@ namespace HIS_WebApi
                     if (GUID.Contains(medCpoeClass.GUID))
                     {
                         medCpoeClass.調劑狀態 = "Y";
+                        if(medCpoeClass.調劑異動 == "Y")
+                        {
+                            medCpoeClass.DC確認 = "Y";
+                        }                      
                         medCpoe_sql_replace.Add(medCpoeClass);
                     }
                     else
                     {
                         medCpoeClass.調劑狀態 = "";
+                        if(medCpoeClass.調劑異動 == "Y")
+                        {
+                            medCpoeClass.DC確認 = "";
+                        }
                         medCpoe_sql_replace.Add(medCpoeClass);
                     }
                 }
@@ -1177,11 +1188,8 @@ namespace HIS_WebApi
                     
                 List<object[]> list_medCarInfo_replace = new List<object[]>();
                 list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
-                sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);
-                
-                
+                sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);             
 
-                string API = $"http://{Server}:4436";
                 List<string> ValueAry = new List<string> { Master_GUID };
                 medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
 
