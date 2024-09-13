@@ -4837,6 +4837,53 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.medShiftConfigController.POST_get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有交班藥品資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+                  
+                },
+                "ValueAry" : 
+                [
+                  
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medShiftConfigController.POST_get_datas_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有交班藥品資料(多台合併)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  
+                },
+                "ValueAry" : 
+                [
+                  "口服1,口服2",
+                  "調劑台,調劑台"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫

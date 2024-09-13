@@ -76,14 +76,15 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易記錄查詢.Init(table);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnVisible(false, new enum_交易記錄查詢資料().GetEnumNames());
 
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.診別);
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.領藥號);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.庫別);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.診別);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.領藥號);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.庫存量);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.交易量);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.結存量);
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作人);
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病人姓名);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作人);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病人姓名);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病歷號);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(140, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作時間);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(140, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.開方時間);

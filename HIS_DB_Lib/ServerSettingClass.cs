@@ -357,13 +357,16 @@ namespace HIS_DB_Lib
             this.Password = Password;
         }
 
-
         static public List<string> get_department_type(string API_Server)
+        {
+            return get_department_type(API_Server, "調劑台");
+        }
+        static public List<string> get_department_type(string API_Server , string serverType)
         {
             string url = $"{API_Server}/api/ServerSetting/get_department_type";
 
             returnData returnData = new returnData();
-
+            returnData.ValueAry.Add(serverType);
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
@@ -399,6 +402,14 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             ServerSettingClass serverSettingClass = returnData_out.Data.ObjToClass<ServerSettingClass>();
             return serverSettingClass;
+        }
+        static public List<string> get_name_by_department_type(string API_Server, string 單位)
+        {
+            List<ServerSettingClass> serverSettingClasses = get_serversetting_by_department_type(API_Server, 單位);
+
+            List<string> list_str = (from temp in serverSettingClasses
+                                     select temp.設備名稱).ToList();
+            return list_str;
         }
         static public List<ServerSettingClass> get_serversetting_by_department_type(string API_Server ,string 單位)
         {

@@ -15,6 +15,8 @@ namespace batch_StackDataAccounting
 {
     class Program
     {
+        private static System.Threading.Mutex mutex;
+
         static public string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static private string DBConfigFileName = $"{currentDirectory}//DBConfig.txt";
         public class DBConfigClass
@@ -495,6 +497,16 @@ namespace batch_StackDataAccounting
         static MyThread MyThread_取藥堆疊資料_儲位亮燈;
         static public void Main(string[] args)
         {
+            mutex = new System.Threading.Mutex(true, "OnlyRun");
+            if (mutex.WaitOne(0, false))
+            {
+                
+            }
+            else
+            {
+                
+                return;
+            }
             LoadDBConfig();
             LoadMyConfig();
             API_Server = dBConfigClass.Api_Server;

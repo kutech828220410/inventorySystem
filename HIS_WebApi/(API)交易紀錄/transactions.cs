@@ -2037,7 +2037,10 @@ namespace HIS_WebApi
                         uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
+                        string date_st_str = date_st.ToDateTimeString_6();
+                        string date_end_str = date_end.ToDateTimeString_6();
+                        sQLControl_trading.TableName = TableName;
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st_str, date_end_str);
                         list_value_buf = tradingData(list_value_buf);
                         for (int i = 0; i < list_value_buf.Count; i++)
                         {
