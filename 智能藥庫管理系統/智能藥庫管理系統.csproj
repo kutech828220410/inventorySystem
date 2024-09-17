@@ -253,6 +253,12 @@
     <Compile Include="Dialog_盤點單合併.Designer.cs">
       <DependentUpon>Dialog_盤點單合併.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_盤點單合併_庫存設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併_庫存設定.Designer.cs">
+      <DependentUpon>Dialog_盤點單合併_庫存設定.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_盤點單合併_設定.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
     <EmbeddedResource Include="Dialog_盤點單合併.resx">
       <DependentUpon>Dialog_盤點單合併.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單合併_庫存設定.resx">
+      <DependentUpon>Dialog_盤點單合併_庫存設定.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog_盤點單合併_設定.resx">
       <DependentUpon>Dialog_盤點單合併_設定.cs</DependentUpon>
     </EmbeddedResource>
@@ -457,6 +466,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\medication-config-removebg-preview.png" />
+    <None Include="Resources\medicine-data-set-group-removebg-preview-removebg-preview.png" />
+    <None Include="Resources\excell-file-upload-to-server.png" />
+    <None Include="Resources\inventory-consumption-setting-removebg-preview.png" />
+    <None Include="Resources\inventory-date-setting-removebg-preview.png" />
+    <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview.png" />
     <None Include="Resources\211690_up_arrow_icon.png" />
     <None Include="Resources\211687_down_arrow_icon.png" />
     <None Include="Resources\png-transparent-arrow-computer-icons-down-arrow-angle-hand-logo-thumbnail.png" />

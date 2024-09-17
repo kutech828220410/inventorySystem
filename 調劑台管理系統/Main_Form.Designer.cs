@@ -4753,7 +4753,7 @@
             this.plC_RJ_Button_病歷號輸入.Size = new System.Drawing.Size(102, 102);
             this.plC_RJ_Button_病歷號輸入.State = false;
             this.plC_RJ_Button_病歷號輸入.TabIndex = 131;
-            this.plC_RJ_Button_病歷號輸入.Text = "病歷號輸入";
+            this.plC_RJ_Button_病歷號輸入.Text = "x";
             this.plC_RJ_Button_病歷號輸入.TextColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_病歷號輸入.TextHeight = 35;
             this.plC_RJ_Button_病歷號輸入.UseVisualStyleBackColor = false;

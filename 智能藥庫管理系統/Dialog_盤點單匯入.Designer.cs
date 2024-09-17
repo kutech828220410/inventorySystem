@@ -32,12 +32,12 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點單 = new SQLUI.SQL_DataGridView();
             this.stepViewer1 = new MyUI.StepViewer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_範例表頭下載 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_上傳 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable_狀態 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_瀏覽 = new MyUI.PLC_RJ_Button();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.plC_RJ_Button_範例表頭下載 = new MyUI.PLC_RJ_Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +105,7 @@ namespace 智能藥庫系統
             this.stepViewer1.LineWidth = 200;
             this.stepViewer1.ListDataSource = null;
             this.stepViewer1.Location = new System.Drawing.Point(4, 28);
-            this.stepViewer1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.stepViewer1.Margin = new System.Windows.Forms.Padding(5);
             this.stepViewer1.Name = "stepViewer1";
             this.stepViewer1.Size = new System.Drawing.Size(1668, 116);
             this.stepViewer1.TabIndex = 10;
@@ -121,6 +121,60 @@ namespace 智能藥庫系統
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1668, 88);
             this.panel1.TabIndex = 9;
+            // 
+            // plC_RJ_Button_範例表頭下載
+            // 
+            this.plC_RJ_Button_範例表頭下載.AutoResetState = false;
+            this.plC_RJ_Button_範例表頭下載.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_範例表頭下載.Bool = false;
+            this.plC_RJ_Button_範例表頭下載.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_範例表頭下載.BorderRadius = 20;
+            this.plC_RJ_Button_範例表頭下載.BorderSize = 0;
+            this.plC_RJ_Button_範例表頭下載.but_press = false;
+            this.plC_RJ_Button_範例表頭下載.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_範例表頭下載.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.plC_RJ_Button_範例表頭下載.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_範例表頭下載.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_範例表頭下載.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_範例表頭下載.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_範例表頭下載.GUID = "";
+            this.plC_RJ_Button_範例表頭下載.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_範例表頭下載.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_範例表頭下載.Location = new System.Drawing.Point(1453, 11);
+            this.plC_RJ_Button_範例表頭下載.Name = "plC_RJ_Button_範例表頭下載";
+            this.plC_RJ_Button_範例表頭下載.OFF_文字內容 = "範例表頭下載";
+            this.plC_RJ_Button_範例表頭下載.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_範例表頭下載.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_範例表頭下載.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_範例表頭下載.ON_BorderSize = 5;
+            this.plC_RJ_Button_範例表頭下載.ON_文字內容 = "範例表頭下載";
+            this.plC_RJ_Button_範例表頭下載.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_範例表頭下載.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_範例表頭下載.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_範例表頭下載.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_範例表頭下載.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_範例表頭下載.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_範例表頭下載.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_範例表頭下載.ShadowSize = 3;
+            this.plC_RJ_Button_範例表頭下載.ShowLoadingForm = false;
+            this.plC_RJ_Button_範例表頭下載.Size = new System.Drawing.Size(212, 63);
+            this.plC_RJ_Button_範例表頭下載.State = false;
+            this.plC_RJ_Button_範例表頭下載.TabIndex = 14;
+            this.plC_RJ_Button_範例表頭下載.Text = "範例表頭下載";
+            this.plC_RJ_Button_範例表頭下載.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_範例表頭下載.TextHeight = 0;
+            this.plC_RJ_Button_範例表頭下載.Texts = "範例表頭下載";
+            this.plC_RJ_Button_範例表頭下載.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_範例表頭下載.字型鎖住 = false;
+            this.plC_RJ_Button_範例表頭下載.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_範例表頭下載.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_範例表頭下載.文字鎖住 = false;
+            this.plC_RJ_Button_範例表頭下載.背景圖片 = null;
+            this.plC_RJ_Button_範例表頭下載.讀取位元反向 = false;
+            this.plC_RJ_Button_範例表頭下載.讀寫鎖住 = false;
+            this.plC_RJ_Button_範例表頭下載.音效 = false;
+            this.plC_RJ_Button_範例表頭下載.顯示 = false;
+            this.plC_RJ_Button_範例表頭下載.顯示狀態 = false;
             // 
             // plC_RJ_Button_上傳
             // 
@@ -255,67 +309,13 @@ namespace 智能藥庫系統
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "txt";
-            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xls, *.xlsx)|*.xls;*.xlsx|txt File (*.txt)|*.txt;";
             this.openFileDialog_LoadExcel.Multiselect = true;
             // 
             // saveFileDialog_SaveExcel
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
-            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // plC_RJ_Button_範例表頭下載
-            // 
-            this.plC_RJ_Button_範例表頭下載.AutoResetState = false;
-            this.plC_RJ_Button_範例表頭下載.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_範例表頭下載.Bool = false;
-            this.plC_RJ_Button_範例表頭下載.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_範例表頭下載.BorderRadius = 20;
-            this.plC_RJ_Button_範例表頭下載.BorderSize = 0;
-            this.plC_RJ_Button_範例表頭下載.but_press = false;
-            this.plC_RJ_Button_範例表頭下載.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_範例表頭下載.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.plC_RJ_Button_範例表頭下載.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_範例表頭下載.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_範例表頭下載.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_範例表頭下載.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_範例表頭下載.GUID = "";
-            this.plC_RJ_Button_範例表頭下載.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_範例表頭下載.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_範例表頭下載.Location = new System.Drawing.Point(1453, 11);
-            this.plC_RJ_Button_範例表頭下載.Name = "plC_RJ_Button_範例表頭下載";
-            this.plC_RJ_Button_範例表頭下載.OFF_文字內容 = "範例表頭下載";
-            this.plC_RJ_Button_範例表頭下載.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_範例表頭下載.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_範例表頭下載.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_範例表頭下載.ON_BorderSize = 5;
-            this.plC_RJ_Button_範例表頭下載.ON_文字內容 = "範例表頭下載";
-            this.plC_RJ_Button_範例表頭下載.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_範例表頭下載.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_範例表頭下載.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_範例表頭下載.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_範例表頭下載.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_範例表頭下載.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_範例表頭下載.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_範例表頭下載.ShadowSize = 3;
-            this.plC_RJ_Button_範例表頭下載.ShowLoadingForm = false;
-            this.plC_RJ_Button_範例表頭下載.Size = new System.Drawing.Size(212, 63);
-            this.plC_RJ_Button_範例表頭下載.State = false;
-            this.plC_RJ_Button_範例表頭下載.TabIndex = 14;
-            this.plC_RJ_Button_範例表頭下載.Text = "範例表頭下載";
-            this.plC_RJ_Button_範例表頭下載.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_範例表頭下載.TextHeight = 0;
-            this.plC_RJ_Button_範例表頭下載.Texts = "範例表頭下載";
-            this.plC_RJ_Button_範例表頭下載.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_範例表頭下載.字型鎖住 = false;
-            this.plC_RJ_Button_範例表頭下載.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_範例表頭下載.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_範例表頭下載.文字鎖住 = false;
-            this.plC_RJ_Button_範例表頭下載.背景圖片 = null;
-            this.plC_RJ_Button_範例表頭下載.讀取位元反向 = false;
-            this.plC_RJ_Button_範例表頭下載.讀寫鎖住 = false;
-            this.plC_RJ_Button_範例表頭下載.音效 = false;
-            this.plC_RJ_Button_範例表頭下載.顯示 = false;
-            this.plC_RJ_Button_範例表頭下載.顯示狀態 = false;
+            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xls, *.xlsx)|*.xls;*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // Dialog_盤點單匯入
             // 

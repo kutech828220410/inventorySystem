@@ -151,24 +151,14 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_上傳_MouseDownEvent(MouseEventArgs mevent)
         {
             LoadingForm.ShowLoadingForm();
-
-            string url = $"{Main_Form.API_Server}/api/inventory/excel_upload";
             List<object[]> list_value = this.sqL_DataGridView_盤點單.GetAllRows();
             for (int i = 0; i < list_value.Count; i++)
             {
                 string IC_NAME = list_value[i][(int)enum_盤點單.名稱].ObjectToString();
                 string CT = Main_Form.登入者名稱;
                 string filename = list_value[i][(int)enum_盤點單.fileName].ObjectToString();
-                DataTable dataTable = MyOffice.ExcelClass.NPOI_LoadFile(filename);
-                byte[] bytes = MyOffice.ExcelClass.NPOI_GetBytes(dataTable);
-                List<string> names = new List<string>();
-                names.Add("IC_NAME");
-                names.Add("CT");
-                List<string> values = new List<string>();
-                values.Add(IC_NAME);
-                values.Add(CT);
-                string json_out = Basic.Net.WEBApiPost(url, filename, bytes, names, values);
-                list_value[i][(int)enum_盤點單.上傳完成] = "Y";
+                bool flag_OK = inventoryClass.excel_inventory_upload(Main_Form.API_Server, filename, IC_NAME, CT, "");
+                list_value[i][(int)enum_盤點單.上傳完成] = flag_OK ? "Y" : "N";
                 this.sqL_DataGridView_盤點單.ReplaceExtra(list_value[i], true);
             }
 

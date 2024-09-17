@@ -1346,6 +1346,16 @@
             盤點藥品總表
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Stocks">
+            <summary>
+            參考庫存
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Consumptions">
+            <summary>
+            參考消耗
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
             <summary>
             合併單明細
@@ -1374,6 +1384,76 @@
         <member name="P:HIS_DB_Lib.inv_records_Class.Creat">
             <summary>
             盤點表(完整)
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_stock_Class">
+            <summary>
+            合併單庫存明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_consumption_Class">
+            <summary>
+            合併單消耗明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.加入時間">
+            <summary>
+            加入時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClassBasic.GUID">

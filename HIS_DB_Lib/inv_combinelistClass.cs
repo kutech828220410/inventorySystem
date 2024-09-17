@@ -8,8 +8,13 @@ using Basic;
 using System.ComponentModel;
 namespace HIS_DB_Lib
 {
+    public enum enum_inv_combinelist_stock_Excel
+    {
+        藥碼,
+        庫存,
+    }
     [EnumDescription("inv_combinelist")]
-    public enum enum_合併總單
+    public enum enum_inv_combinelist
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -35,7 +40,7 @@ namespace HIS_DB_Lib
         備註,
     }
     [EnumDescription("inv_sub_combinelist")]
-    public enum enum_合併單明細
+    public enum enum_inv_sub_combinelist
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -52,6 +57,39 @@ namespace HIS_DB_Lib
         [Description("備註,VARCHAR,200,None")]
         備註,
     }
+    [EnumDescription("inv_combinelist_stock")]
+    public enum enum_inv_combinelist_stock
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("合併單號,VARCHAR,30,INDEX")]
+        合併單號,
+        [Description("藥碼,VARCHAR,30,INDEX")]
+        藥碼,
+        [Description("藥名,VARCHAR,300,NONE")]
+        藥名,
+        [Description("數量,VARCHAR,30,NONE")]
+        數量,
+        [Description("加入時間,DATETIME,50,INDEX")]
+        加入時間,
+    }
+    [EnumDescription("inv_combinelist_consumption")]
+    public enum enum_inv_combinelist_consumption
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("合併單號,VARCHAR,30,INDEX")]
+        合併單號,
+        [Description("藥碼,VARCHAR,30,INDEX")]
+        藥碼,
+        [Description("藥名,VARCHAR,300,NONE")]
+        藥名,
+        [Description("數量,VARCHAR,30,NONE")]
+        數量,
+        [Description("加入時間,DATETIME,50,INDEX")]
+        加入時間,
+    }
+
     /// <summary>
     /// 合併總單
     /// </summary>
@@ -120,6 +158,19 @@ namespace HIS_DB_Lib
         public List<inv_records_Class> Records_Ary { get => records_Ary; set => records_Ary = value; }     
         private List<inv_records_Class> records_Ary = new List<inv_records_Class>();
 
+        [JsonIgnore]
+        public List<inventoryClass.creat> Creats
+        {
+            get
+            {
+                List<inventoryClass.creat> creats = new List<inventoryClass.creat>();
+                for (int i = 0; i < Records_Ary.Count; i++)
+                {
+                    creats.Add(Records_Ary[i].Creat);
+                }
+                return creats;
+            }
+        }
 
         /// <summary>
         /// 盤點藥品總表
@@ -128,7 +179,27 @@ namespace HIS_DB_Lib
         public List<inventoryClass.content> Contents { get => contents; set => contents = value; }
         private List<inventoryClass.content> contents = new List<inventoryClass.content>();
 
+        /// <summary>
+        /// 參考庫存
+        /// </summary>
+        [JsonPropertyName("stocks")]
+        public List<inv_combinelist_stock_Class> Stocks { get => stocks; set => stocks = value; }
+        private List<inv_combinelist_stock_Class> stocks = new List<inv_combinelist_stock_Class>();
 
+        /// <summary>
+        /// 參考消耗
+        /// </summary>
+        [JsonPropertyName("consumptions")]
+        public List<inv_combinelist_consumption_Class> Consumptions { get => consumptions; set => consumptions = value; }
+        private List<inv_combinelist_consumption_Class> consumptions = new List<inv_combinelist_consumption_Class>();
+
+        public bool IsHaveRecord(inventoryClass.creat creat)
+        {
+            List<inv_records_Class> records_Ary_buf = (from temp in records_Ary
+                                                       where temp.單號 == creat.盤點單號
+                                                       select temp).ToList();
+            return (records_Ary_buf.Count != 0);
+        }
         public void AddRecord(inventoryClass.creat creat)
         {
    
@@ -142,6 +213,7 @@ namespace HIS_DB_Lib
                 inv_Records_Class.名稱 = creat.盤點名稱;
                 inv_Records_Class.單號 = creat.盤點單號;
                 inv_Records_Class.類型 = "盤點單";
+                inv_Records_Class.Creat = creat;
                 records_Ary.Add(inv_Records_Class);
             }
         }
@@ -152,7 +224,22 @@ namespace HIS_DB_Lib
                                                        select temp).ToList();
             records_Ary = records_Ary_buf;
         }
-
+        public inv_combinelist_stock_Class GetStockByCode(string code)
+        {
+            List<inv_combinelist_stock_Class> stocks_buf = (from temp in stocks
+                                                            where temp.藥碼 == code
+                                                            select temp).ToList();
+            if (stocks_buf.Count == 0) return null;
+            return stocks_buf[0];
+        }
+        public inv_combinelist_consumption_Class GetConsumptionsByCode(string code)
+        {
+            List<inv_combinelist_consumption_Class> consumptions_buf = (from temp in consumptions
+                                                                        where temp.藥碼 == code
+                                                            select temp).ToList();
+            if (consumptions_buf.Count == 0) return null;
+            return consumptions_buf[0];
+        }
         public void get_all_full_creat(string API_Server)
         {
             List<Task> tasks = new List<Task>();
@@ -248,7 +335,7 @@ namespace HIS_DB_Lib
             if (inv_CombinelistClass == null) return null;
             return inv_CombinelistClass;
         }
-        static public inv_combinelistClass get_full_inv_by_SN(string API_Server , string SN)
+        static public inv_combinelistClass get_full_inv_by_SN(string API_Server, string SN)
         {
             string url = $"{API_Server}/api/inv_combinelist/get_full_inv_by_SN";
             returnData returnData = new returnData();
@@ -267,6 +354,27 @@ namespace HIS_DB_Lib
             }
             inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
             return inv_CombinelistClass;
+        }
+        static public List<System.Data.DataTable> get_full_inv_DataTable_by_SN(string API_Server, string SN)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_full_inv_DataTable_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            string dts_xml = returnData.Data.ObjToClass<string>();
+            List<System.Data.DataTable> dataTables = dts_xml.JsonDeserializeToDataTables();
+            return dataTables;
         }
         static public byte[] get_full_inv_Excel_by_SN(string API_Server, string SN , params string[] remove_col_name)
         {
@@ -340,9 +448,116 @@ namespace HIS_DB_Lib
                 return;
             }
         }
+
+        static public void add_stocks_by_SN(string API_Server, string SN , List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/add_stocks_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{SN}";
+            returnData.Data = inv_Combinelist_Stock_Classes;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
+        static public List<inv_combinelist_stock_Class> get_stocks_by_SN(string API_Server, string SN)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_stocks_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{SN}";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = returnData.Data.ObjToClass<List<inv_combinelist_stock_Class>>();
+            return inv_Combinelist_Stock_Classes;
+        }
     }
 
-  
+    public static class inv_combinelistClassMethod
+    {
+        static public System.Collections.Generic.Dictionary<string, List<inv_combinelist_stock_Class>> CoverToDictionaryByCode(this List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes)
+        {
+            Dictionary<string, List<inv_combinelist_stock_Class>> dictionary = new Dictionary<string, List<inv_combinelist_stock_Class>>();
+
+            foreach (var item in inv_Combinelist_Stock_Classes)
+            {
+                string key = item.藥碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<inv_combinelist_stock_Class> values = new List<inv_combinelist_stock_Class> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<inv_combinelist_stock_Class> SortDictionaryByCode(this System.Collections.Generic.Dictionary<string, List<inv_combinelist_stock_Class>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<inv_combinelist_stock_Class>();
+        }
+
+        static public System.Collections.Generic.Dictionary<string, List<inv_combinelist_consumption_Class>> CoverToDictionaryByCode(this List<inv_combinelist_consumption_Class> inv_Combinelist_Consumption_Classes)
+        {
+            Dictionary<string, List<inv_combinelist_consumption_Class>> dictionary = new Dictionary<string, List<inv_combinelist_consumption_Class>>();
+
+            foreach (var item in inv_Combinelist_Consumption_Classes)
+            {
+                string key = item.藥碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<inv_combinelist_consumption_Class> values = new List<inv_combinelist_consumption_Class> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<inv_combinelist_consumption_Class> SortDictionaryByCode(this System.Collections.Generic.Dictionary<string, List<inv_combinelist_consumption_Class>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<inv_combinelist_consumption_Class>();
+        }
+    }
     /// <summary>
     /// 合併單明細
     /// </summary>
@@ -375,5 +590,82 @@ namespace HIS_DB_Lib
         [JsonPropertyName("creat")]
         public inventoryClass.creat Creat { get => creat; set => creat = value; }
         private inventoryClass.creat creat = new inventoryClass.creat();
+    }
+
+
+    /// <summary>
+    /// 合併單庫存明細
+    /// </summary>
+    public class inv_combinelist_stock_Class
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 合併單號
+        /// </summary>
+        [JsonPropertyName("SN")]
+        public string 合併單號 { get; set; }
+        /// <summary>
+        /// 藥碼
+        /// </summary>
+        [JsonPropertyName("CODE")]
+        public string 藥碼 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("NAME")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 數量
+        /// </summary>
+        [JsonPropertyName("QTY")]
+        public string 數量 { get; set; }
+        /// <summary>
+        /// 加入時間
+        /// </summary>
+        [JsonPropertyName("ADD_TIME")]
+        public string 加入時間 { get; set; }
+
+    }
+
+    /// <summary>
+    /// 合併單消耗明細
+    /// </summary>
+    public class inv_combinelist_consumption_Class
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 合併單號
+        /// </summary>
+        [JsonPropertyName("SN")]
+        public string 合併單號 { get; set; }
+        /// <summary>
+        /// 藥碼
+        /// </summary>
+        [JsonPropertyName("CODE")]
+        public string 藥碼 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("NAME")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 數量
+        /// </summary>
+        [JsonPropertyName("QTY")]
+        public string 數量 { get; set; }
+        /// <summary>
+        /// 加入時間
+        /// </summary>
+        [JsonPropertyName("ADD_TIME")]
+        public string 加入時間 { get; set; }
+
     }
 }

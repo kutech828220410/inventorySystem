@@ -11,20 +11,32 @@ namespace HIS_DB_Lib
 {
     public enum enum_盤點定盤_Excel
     {
+        [Description("藥碼,VARCHAR,50,NONE")]
         藥碼,
+        [Description("料號,VARCHAR,50,NONE")]
         料號,
+        [Description("藥名,VARCHAR,50,NONE")]
         藥名,
-        單位,
+        [Description("單價,VARCHAR,50,NONE")]
         單價,
+        [Description("庫存量,VARCHAR,50,NONE")]
         庫存量,
-        庫存金額,
+        [Description("盤點量,VARCHAR,50,NONE")]
         盤點量,
-        庫存差異量,
-        異動後結存量,
-        消耗量,
+        [Description("覆盤量,VARCHAR,50,NONE")]
+        覆盤量,
+        [Description("庫存金額,VARCHAR,50,NONE")]
+        庫存金額,
+        [Description("結存金額,VARCHAR,50,NONE")]
         結存金額,
+        [Description("消耗量,VARCHAR,50,NONE")]
+        消耗量,
+        [Description("誤差量,VARCHAR,50,NONE")]
         誤差量,
-        誤差金額
+        [Description("誤差金額,VARCHAR,50,NONE")]
+        誤差金額,
+        [Description("註記,VARCHAR,50,NONE")]
+        註記,
     }
     public enum enum_盤點明細_Excel
     {
@@ -36,29 +48,13 @@ namespace HIS_DB_Lib
         盤點人員,
         盤點時間,
     }
-    public enum enum_盤點覆盤_Excel
-    {
-        藥碼,
-        料號,
-        藥名,
-        單位,
-        單價,
-        庫存量,
-        庫存金額,
-        盤點量,
-        庫存差異量,
-        異動後結存量,
-        消耗量,
-        覆盤量,
-        結存金額,
-        誤差量,
-        誤差金額
-    }
+
     public enum enum_盤點單上傳_Excel
     {
         藥碼,
         藥名,
         儲位名稱,
+        盤點量,
     }
     public enum enum_盤點狀態
     {
@@ -312,7 +308,7 @@ namespace HIS_DB_Lib
         {
             string url = $"{API_Server}/api/inventory/creat_get_by_CT_TIME_ST_END";
             returnData returnData = new returnData();
-            returnData.Value = $"{start.ToDateString()},{end.ToDateString()}";
+            returnData.Value = $"{start.ToDateTimeString_6()},{end.ToDateTimeString_6()}";
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
@@ -437,7 +433,37 @@ namespace HIS_DB_Lib
             byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
             return bytes;
         }
-        
+        static public bool excel_inventory_upload(string API_Server, string filename , string IC_NAME, string CT, string DEFAULT_OP)
+        {
+            List<string> names = new List<string>();
+            names.Add("IC_NAME");
+            names.Add("CT");
+            names.Add("DEFAULT_OP");
+            List<string> values = new List<string>();
+            values.Add(IC_NAME);
+            values.Add(CT);
+            values.Add(DEFAULT_OP);
+
+            byte[] bytes = MyOffice.ExcelClass.NPOI_LoadToBytes(filename);
+
+
+            string json_out = Basic.Net.WEBApiPost($"{API_Server}/api/inventory/excel_upload", filename, bytes, names, values);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return false;
+            }
+            if (returnData_out.Data == null)
+            {
+                return false;
+            }
+            if (returnData_out.Code != 200) return false;
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return true;
+        }
+
         static public void contents_delete_by_GUID(string API_Server, string GUID)
         {
             List<content> contents = new List<content>();

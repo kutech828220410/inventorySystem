@@ -21,6 +21,7 @@ using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Text;
+
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -786,6 +787,7 @@ namespace HIS_WebApi
 
             List<object[]> list_inventory_creat_add = new List<object[]>();
             List<object[]> list_inventory_content_add = new List<object[]>();
+            List<object[]> list_inventory_sub_content_add = new List<object[]>();
             object[] value;
             value = new object[new enum_盤點單號().GetLength()];
 
@@ -821,10 +823,21 @@ namespace HIS_WebApi
                 value[(int)enum_盤點內容.理論值] = creat.Contents[i].理論值;
                 value[(int)enum_盤點內容.新增時間] = creat.Contents[i].新增時間;
                 value[(int)enum_盤點內容.備註] = creat.Contents[i].備註;
+                for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                {
+                    object[] sub_value = new object[new enum_盤點明細().GetLength()];
+                    sub_value = creat.Contents[i].Sub_content[k].ClassToSQL<inventoryClass.sub_content, enum_盤點明細>();
+                    sub_value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
+                    sub_value[(int)enum_盤點明細.Master_GUID] = creat.Contents[i].GUID;
+                    sub_value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString_6();
+                    sub_value[(int)enum_盤點明細.盤點單號] = creat.盤點單號;
+                    list_inventory_sub_content_add.Add(sub_value);
+                }
                 list_inventory_content_add.Add(value);
             }
             sQLControl_inventory_creat.AddRows(null, list_inventory_creat_add);
             sQLControl_inventory_content.AddRows(null, list_inventory_content_add);
+            sQLControl_inventory_sub_content.AddRows(null, list_inventory_sub_content_add);
             returnData.Data = creat;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -2261,7 +2274,6 @@ namespace HIS_WebApi
                 value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].藥品碼;
                 value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].料號;
                 value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].藥品名稱;
-                value[(int)enum_盤點定盤_Excel.單位] = creat.Contents[i].包裝單位;
                 value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
                 value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].盤點量;
                 list_value.Add(value);
@@ -2283,7 +2295,6 @@ namespace HIS_WebApi
                     value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
                     value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
                     value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
-                    value[(int)enum_盤點定盤_Excel.單位] = creat.Contents[i].Sub_content[k].包裝單位;
                     value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
                     value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
                     sheetTemps_buf[0].list_value.Add(value);
@@ -2292,18 +2303,16 @@ namespace HIS_WebApi
             }
   
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
+            Enum[] enums = new Enum[] {  enum_盤點定盤_Excel.庫存量, enum_盤點定盤_Excel .盤點量 ,enum_盤點定盤_Excel .單價 ,enum_盤點定盤_Excel .庫存金額 ,enum_盤點定盤_Excel .消耗量 ,
+                enum_盤點定盤_Excel.結存金額, enum_盤點定盤_Excel .誤差量 ,enum_盤點定盤_Excel.誤差金額,enum_盤點定盤_Excel.覆盤量 };
 
-            sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
-            ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
-            ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
+            sheetClass = dataTable.NPOI_GetSheetClass(enums);
             sheetClass.Name = "盤點總表";
             sheetClasses.Add(sheetClass);
             for (int i = 0; i < sheetTemps.Count; i++)
             {
                 dataTable = sheetTemps[i].list_value.ToDataTable(new enum_盤點定盤_Excel());
-                sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
-             ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
-            , (int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
+                sheetClass = dataTable.NPOI_GetSheetClass(enums);
                 sheetClass.Name = sheetTemps[i].Name;
                 sheetClasses.Add(sheetClass);
             }
@@ -2356,6 +2365,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("excel_upload")]
+        [Route("excel_inventory_upload")]
         [HttpPost]
         public async Task<string> POST_excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
         {
@@ -2420,7 +2430,7 @@ namespace HIS_WebApi
                     creat.盤點狀態 = "等待盤點";
                     string 藥碼 = "";
                     string 料號 = "";
-             
+                    string 盤點量 = "";
                     for (int i = 0; i < list_value.Count; i++)
                     {
                         list_medClasses_buf.Clear();
@@ -2431,8 +2441,8 @@ namespace HIS_WebApi
                         content.序號 = (i + 1).ToString();
                         content.藥品碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
                         content.儲位名稱 = list_value[i][(int)enum_盤點單上傳_Excel.儲位名稱].ObjectToString();
-
-                        if(content.藥品碼.StringIsEmpty() == false)
+                        盤點量 = list_value[i][(int)enum_盤點單上傳_Excel.盤點量].ObjectToString();
+                        if (content.藥品碼.StringIsEmpty() == false)
                         {
                             list_medClasses_buf = list_medClasses_藥碼_keys.GetRows(content.藥品碼);
                         }
@@ -2450,6 +2460,16 @@ namespace HIS_WebApi
                             content.藥品名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
                             content.中文名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
                             content.包裝單位 = list_medClasses_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
+                            if(盤點量.StringIsDouble())
+                            {
+                                inventoryClass.sub_content sub_Content = new inventoryClass.sub_content();
+                                sub_Content.操作人 = "系統";
+                                sub_Content.藥品碼 = content.藥品碼;
+                                sub_Content.料號 = content.料號;
+                                sub_Content.盤點量 = 盤點量;
+                                content.Sub_content.Add(sub_Content);
+
+                            }
                             creat.Contents.Add(content);
                         }
                         else

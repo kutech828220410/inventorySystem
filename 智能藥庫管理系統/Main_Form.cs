@@ -192,7 +192,7 @@ namespace 智能藥庫系統
             Dialog_盤點單匯入.form = this.FindForm();
             Dialog_盤點明細.form = this.FindForm();
             Dialog_盤點單合併.form = this.FindForm();
-                
+            Dialog_盤點單合併_庫存設定.form = this.FindForm();
             this.WindowState = FormWindowState.Maximized;
 
             LoadDBConfig();
@@ -251,7 +251,7 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_申領_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_申領 dialog_申領 = new Dialog_申領();
+            Dialog_申領 dialog_申領 = Dialog_申領.GetForm();
             this.Invoke(new Action(delegate
             {
                 dialog_申領.ShowChildForm(panel_MainForm);
@@ -269,8 +269,11 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_盤點管理_表單合併_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_盤點單合併 dialog_盤點單合併 = new Dialog_盤點單合併();
-            dialog_盤點單合併.ShowDialog();
+            Dialog_盤點單合併 dialog_盤點單合併 = Dialog_盤點單合併.GetForm();
+            this.Invoke(new Action(delegate
+            {
+                dialog_盤點單合併.ShowChildForm(panel_MainForm);
+            }));
         }
         private void PlC_RJ_Button_盤點管理_覆盤建議設定_MouseDownEvent(MouseEventArgs mevent)
         {
