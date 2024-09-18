@@ -3892,6 +3892,72 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為合併單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_add_stocks_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號新增參考庫存
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                  [inv_combinelist_stock_Class]
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_stocks_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號取得參考庫存
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                 
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_full_inv_DataTable_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號取得完整合併單DataTable
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+               
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.inv_combinelist.POST_get_full_inv_Excel_by_SN(HIS_DB_Lib.returnData)">
             <summary>
             以合併單號取得完整合併單Excel

@@ -113,6 +113,16 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap excell_file_upload_to_server {
+            get {
+                object obj = ResourceManager.GetObject("excell-file-upload-to-server", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Files_and_Folders_file_export_arrow_512 {
             get {
                 object obj = ResourceManager.GetObject("Files_and_Folders_file_export_arrow-512", resourceCulture);
@@ -126,6 +136,26 @@ namespace 智能藥庫系統.Properties {
         internal static System.Drawing.Bitmap inspection {
             get {
                 object obj = ResourceManager.GetObject("inspection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap inventory_consumption_setting_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("inventory-consumption-setting-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap inventory_date_setting_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("inventory-date-setting-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,6 +193,16 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap medication_config_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medication-config-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap medication_inventory_inquiry {
             get {
                 object obj = ResourceManager.GetObject("medication-inventory-inquiry", resourceCulture);
@@ -176,6 +216,26 @@ namespace 智能藥庫系統.Properties {
         internal static System.Drawing.Bitmap medication_inventory_management {
             get {
                 object obj = ResourceManager.GetObject("medication-inventory-management", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_data_set_group_removebg_preview_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-data-set-group-removebg-preview-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist__add_data_plus_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist--add-data-plus-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

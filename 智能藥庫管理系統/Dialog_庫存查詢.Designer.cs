@@ -46,17 +46,17 @@ namespace 智能藥庫系統
             this.panel_藥局_效期及批號 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥局_效期及批號 = new SQLUI.SQL_DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_藥局_效期及批號_修改 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_藥局_效期及批號_新增 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_藥局_效期及批號_刪除 = new MyUI.PLC_RJ_Button();
             this.panel_藥庫_效期及批號 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥庫_效期及批號 = new SQLUI.SQL_DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
+            this.plC_RJ_Button_藥局_效期及批號_修改 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_藥局_效期及批號_新增 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_藥局_效期及批號_刪除 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥庫_效期及批號_修改 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥庫_效期及批號_新增 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥庫_效期及批號_刪除 = new MyUI.PLC_RJ_Button();
-            this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.panel2.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.panel_效期及批號.SuspendLayout();
@@ -80,26 +80,26 @@ namespace 智能藥庫系統
             // sqL_DataGridView_庫存查詢
             // 
             this.sqL_DataGridView_庫存查詢.AutoSelectToDeep = false;
-            this.sqL_DataGridView_庫存查詢.backColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_庫存查詢.backColor = System.Drawing.Color.White;
             this.sqL_DataGridView_庫存查詢.BorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_庫存查詢.BorderRadius = 0;
             this.sqL_DataGridView_庫存查詢.BorderSize = 0;
             this.sqL_DataGridView_庫存查詢.CellBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_庫存查詢.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_庫存查詢.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_庫存查詢.cellStyleFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_庫存查詢.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_庫存查詢.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_庫存查詢.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_庫存查詢.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_庫存查詢.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_庫存查詢.columnHeaderFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_庫存查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F);
             this.sqL_DataGridView_庫存查詢.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_庫存查詢.columnHeadersHeight = 70;
             this.sqL_DataGridView_庫存查詢.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.sqL_DataGridView_庫存查詢.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.sqL_DataGridView_庫存查詢.DataKeyEnable = false;
             this.sqL_DataGridView_庫存查詢.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_庫存查詢.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_庫存查詢.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_庫存查詢.ImageBox = false;
             this.sqL_DataGridView_庫存查詢.Location = new System.Drawing.Point(3, 42);
             this.sqL_DataGridView_庫存查詢.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -109,7 +109,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_庫存查詢.Port = ((uint)(3306u));
             this.sqL_DataGridView_庫存查詢.rowHeaderBackColor = System.Drawing.Color.Gray;
             this.sqL_DataGridView_庫存查詢.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_庫存查詢.RowsColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_庫存查詢.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_庫存查詢.RowsHeight = 40;
             this.sqL_DataGridView_庫存查詢.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_庫存查詢.selectedBorderSize = 0;
@@ -125,7 +125,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_庫存查詢.可選擇多列 = false;
             this.sqL_DataGridView_庫存查詢.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_庫存查詢.自動換行 = true;
-            this.sqL_DataGridView_庫存查詢.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_庫存查詢.表單字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_庫存查詢.邊框樣式 = System.Windows.Forms.BorderStyle.None;
             this.sqL_DataGridView_庫存查詢.顯示CheckBox = false;
             this.sqL_DataGridView_庫存查詢.顯示首列 = true;
@@ -476,6 +476,94 @@ namespace 智能藥庫系統
             this.panel3.Size = new System.Drawing.Size(76, 232);
             this.panel3.TabIndex = 152;
             // 
+            // panel_藥庫_效期及批號
+            // 
+            this.panel_藥庫_效期及批號.Controls.Add(this.sqL_DataGridView_藥庫_效期及批號);
+            this.panel_藥庫_效期及批號.Controls.Add(this.panel6);
+            this.panel_藥庫_效期及批號.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel_藥庫_效期及批號.Location = new System.Drawing.Point(3, 3);
+            this.panel_藥庫_效期及批號.Name = "panel_藥庫_效期及批號";
+            this.panel_藥庫_效期及批號.Size = new System.Drawing.Size(615, 232);
+            this.panel_藥庫_效期及批號.TabIndex = 23;
+            // 
+            // sqL_DataGridView_藥庫_效期及批號
+            // 
+            this.sqL_DataGridView_藥庫_效期及批號.AutoSelectToDeep = false;
+            this.sqL_DataGridView_藥庫_效期及批號.backColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_藥庫_效期及批號.BorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_藥庫_效期及批號.BorderRadius = 0;
+            this.sqL_DataGridView_藥庫_效期及批號.BorderSize = 1;
+            this.sqL_DataGridView_藥庫_效期及批號.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.sqL_DataGridView_藥庫_效期及批號.CellBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_藥庫_效期及批號.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_藥庫_效期及批號.cellStyleFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥庫_效期及批號.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥庫_效期及批號.checkedRowBackColor = System.Drawing.Color.YellowGreen;
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersHeight = 60;
+            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.sqL_DataGridView_藥庫_效期及批號.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_藥庫_效期及批號.DataKeyEnable = false;
+            this.sqL_DataGridView_藥庫_效期及批號.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_藥庫_效期及批號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥庫_效期及批號.ImageBox = false;
+            this.sqL_DataGridView_藥庫_效期及批號.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_藥庫_效期及批號.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.sqL_DataGridView_藥庫_效期及批號.Name = "sqL_DataGridView_藥庫_效期及批號";
+            this.sqL_DataGridView_藥庫_效期及批號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_藥庫_效期及批號.Password = "user82822040";
+            this.sqL_DataGridView_藥庫_效期及批號.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥庫_效期及批號.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_藥庫_效期及批號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.RowsColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_藥庫_效期及批號.RowsHeight = 30;
+            this.sqL_DataGridView_藥庫_效期及批號.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_藥庫_效期及批號.selectedBorderSize = 0;
+            this.sqL_DataGridView_藥庫_效期及批號.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥庫_效期及批號.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥庫_效期及批號.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_藥庫_效期及批號.Server = "127.0.0.0";
+            this.sqL_DataGridView_藥庫_效期及批號.Size = new System.Drawing.Size(539, 232);
+            this.sqL_DataGridView_藥庫_效期及批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_藥庫_效期及批號.TabIndex = 150;
+            this.sqL_DataGridView_藥庫_效期及批號.UserName = "root";
+            this.sqL_DataGridView_藥庫_效期及批號.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_藥庫_效期及批號.可選擇多列 = false;
+            this.sqL_DataGridView_藥庫_效期及批號.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.自動換行 = true;
+            this.sqL_DataGridView_藥庫_效期及批號.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥庫_效期及批號.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.顯示CheckBox = false;
+            this.sqL_DataGridView_藥庫_效期及批號.顯示首列 = true;
+            this.sqL_DataGridView_藥庫_效期及批號.顯示首行 = true;
+            this.sqL_DataGridView_藥庫_效期及批號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_藥庫_效期及批號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_修改);
+            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_新增);
+            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_刪除);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(539, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(76, 232);
+            this.panel6.TabIndex = 149;
+            // 
+            // openFileDialog_LoadExcel
+            // 
+            this.openFileDialog_LoadExcel.DefaultExt = "txt";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
+            // saveFileDialog_SaveExcel
+            // 
+            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
+            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
             // plC_RJ_Button_藥局_效期及批號_修改
             // 
             this.plC_RJ_Button_藥局_效期及批號_修改.AutoResetState = false;
@@ -635,84 +723,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥局_效期及批號_刪除.顯示 = false;
             this.plC_RJ_Button_藥局_效期及批號_刪除.顯示狀態 = false;
             // 
-            // panel_藥庫_效期及批號
-            // 
-            this.panel_藥庫_效期及批號.Controls.Add(this.sqL_DataGridView_藥庫_效期及批號);
-            this.panel_藥庫_效期及批號.Controls.Add(this.panel6);
-            this.panel_藥庫_效期及批號.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel_藥庫_效期及批號.Location = new System.Drawing.Point(3, 3);
-            this.panel_藥庫_效期及批號.Name = "panel_藥庫_效期及批號";
-            this.panel_藥庫_效期及批號.Size = new System.Drawing.Size(615, 232);
-            this.panel_藥庫_效期及批號.TabIndex = 23;
-            // 
-            // sqL_DataGridView_藥庫_效期及批號
-            // 
-            this.sqL_DataGridView_藥庫_效期及批號.AutoSelectToDeep = false;
-            this.sqL_DataGridView_藥庫_效期及批號.backColor = System.Drawing.Color.WhiteSmoke;
-            this.sqL_DataGridView_藥庫_效期及批號.BorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_藥庫_效期及批號.BorderRadius = 0;
-            this.sqL_DataGridView_藥庫_效期及批號.BorderSize = 1;
-            this.sqL_DataGridView_藥庫_效期及批號.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sqL_DataGridView_藥庫_效期及批號.CellBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_藥庫_效期及批號.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_藥庫_效期及批號.cellStyleFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_藥庫_效期及批號.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_藥庫_效期及批號.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderBackColor = System.Drawing.Color.DarkGray;
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeaderFont = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersHeight = 60;
-            this.sqL_DataGridView_藥庫_效期及批號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.sqL_DataGridView_藥庫_效期及批號.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.sqL_DataGridView_藥庫_效期及批號.DataKeyEnable = false;
-            this.sqL_DataGridView_藥庫_效期及批號.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_藥庫_效期及批號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_藥庫_效期及批號.ImageBox = false;
-            this.sqL_DataGridView_藥庫_效期及批號.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_藥庫_效期及批號.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.sqL_DataGridView_藥庫_效期及批號.Name = "sqL_DataGridView_藥庫_效期及批號";
-            this.sqL_DataGridView_藥庫_效期及批號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_藥庫_效期及批號.Password = "user82822040";
-            this.sqL_DataGridView_藥庫_效期及批號.Port = ((uint)(3306u));
-            this.sqL_DataGridView_藥庫_效期及批號.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_藥庫_效期及批號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.RowsColor = System.Drawing.Color.WhiteSmoke;
-            this.sqL_DataGridView_藥庫_效期及批號.RowsHeight = 30;
-            this.sqL_DataGridView_藥庫_效期及批號.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_藥庫_效期及批號.selectedBorderSize = 0;
-            this.sqL_DataGridView_藥庫_效期及批號.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_藥庫_效期及批號.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_藥庫_效期及批號.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_藥庫_效期及批號.Server = "127.0.0.0";
-            this.sqL_DataGridView_藥庫_效期及批號.Size = new System.Drawing.Size(539, 232);
-            this.sqL_DataGridView_藥庫_效期及批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_藥庫_效期及批號.TabIndex = 150;
-            this.sqL_DataGridView_藥庫_效期及批號.UserName = "root";
-            this.sqL_DataGridView_藥庫_效期及批號.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_藥庫_效期及批號.可選擇多列 = false;
-            this.sqL_DataGridView_藥庫_效期及批號.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.自動換行 = true;
-            this.sqL_DataGridView_藥庫_效期及批號.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_藥庫_效期及批號.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.顯示CheckBox = false;
-            this.sqL_DataGridView_藥庫_效期及批號.顯示首列 = true;
-            this.sqL_DataGridView_藥庫_效期及批號.顯示首行 = true;
-            this.sqL_DataGridView_藥庫_效期及批號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_效期及批號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_修改);
-            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_新增);
-            this.panel6.Controls.Add(this.plC_RJ_Button_藥庫_效期及批號_刪除);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(539, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(76, 232);
-            this.panel6.TabIndex = 149;
-            // 
             // plC_RJ_Button_藥庫_效期及批號_修改
             // 
             this.plC_RJ_Button_藥庫_效期及批號_修改.AutoResetState = false;
@@ -871,16 +881,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥庫_效期及批號_刪除.音效 = false;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.顯示 = false;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.顯示狀態 = false;
-            // 
-            // openFileDialog_LoadExcel
-            // 
-            this.openFileDialog_LoadExcel.DefaultExt = "txt";
-            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // saveFileDialog_SaveExcel
-            // 
-            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
-            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // Dialog_庫存查詢
             // 

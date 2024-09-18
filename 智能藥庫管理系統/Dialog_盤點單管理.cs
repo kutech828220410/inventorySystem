@@ -318,7 +318,6 @@ namespace 智能藥庫系統
                     plC_RJ_Button_export.背景圖片 = null;
                     plC_RJ_Button_export.讀取位元反向 = false;
                     plC_RJ_Button_export.讀寫鎖住 = false;
-                    plC_RJ_Button_export.音效 = true;
                     plC_RJ_Button_export.顯示 = false;
                     plC_RJ_Button_export.顯示狀態 = false;
                     plC_RJ_Button_export.MouseDownEventEx += PlC_RJ_Button_export_MouseDownEventEx;

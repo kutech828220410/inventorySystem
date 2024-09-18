@@ -953,6 +953,29 @@ namespace HIS_DB_Lib
             medClass_src.最小包裝單位 = medClass_dst.最小包裝單位;
             medClass_src.最小包裝數量 = medClass_dst.最小包裝數量;
         }
+
+        static public medClass SerchByBarcode(this List<medClass> medClasses , string barcode)
+        {
+            for (int i = 0; i < medClasses.Count; i++)
+            {
+                if (barcode == medClasses[i].藥品碼)
+                {
+                    return medClasses[i];
+                }
+                if (barcode == medClasses[i].料號)
+                {
+                    return medClasses[i];
+                }
+                foreach (string _barcode in medClasses[i].Barcode)
+                {
+                    if (_barcode == barcode)
+                    {
+                        return medClasses[i];
+                    }
+                }
+            }
+            return null;
+        }
     }
  
 }

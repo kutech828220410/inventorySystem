@@ -423,8 +423,6 @@ namespace HIS_WebApi
                 SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
 
                 List<object[]> list_stockRecord = sQLControl_stockRecord.GetAllRows(null);
-                List<object[]> list_stockRecord_content = sQLControl_stockRecord_content.GetAllRows(null);
-                List<object[]> list_stockRecord_content_buf = new List<object[]>();
                 List<stockRecord> stockRecords = list_stockRecord.SQLToClass<stockRecord, enum_stockRecord>();
                 if (stockRecords.Count == 0)
                 {

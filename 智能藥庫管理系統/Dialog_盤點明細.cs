@@ -142,13 +142,13 @@ namespace 智能藥庫系統
                 }
                 if(this.checkBox_已盤.Checked)
                 {
-                    contents_buf.LockAdd(contents = (from temp in this.Creat.Contents
+                    contents_buf.LockAdd((from temp in this.Creat.Contents
                                                      where temp.Sub_content.Count > 0
                                                      select temp).ToList());
                 }
                 if (this.checkBox_未盤.Checked)
                 {
-                    contents_buf.LockAdd(contents = (from temp in this.Creat.Contents
+                    contents_buf.LockAdd((from temp in this.Creat.Contents
                                                      where temp.Sub_content.Count == 0
                                                      select temp).ToList());
                 }

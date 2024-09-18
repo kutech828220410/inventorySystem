@@ -37,9 +37,12 @@ namespace 智能藥庫系統
             this.panel_MainForm = new System.Windows.Forms.Panel();
             this.sidePanel1 = new MyUI.SidePanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel58 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_庫存查詢 = new MyUI.PLC_RJ_Button();
+            this.panel59 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_庫存查詢 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_藥檔維護 = new MyUI.PLC_RJ_Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.rJ_Button6 = new MyUI.RJ_Button();
@@ -80,6 +83,7 @@ namespace 智能藥庫系統
             this.panel38 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_申領 = new MyUI.PLC_RJ_Button();
             this.panel39 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_申領警報解除 = new MyUI.PLC_RJ_Button();
             this.panel40 = new System.Windows.Forms.Panel();
             this.rJ_Button17 = new MyUI.RJ_Button();
             this.panel41 = new System.Windows.Forms.Panel();
@@ -166,13 +170,13 @@ namespace 智能藥庫系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.timer_盤點單管理 = new System.Windows.Forms.Timer(this.components);
-            this.plC_RJ_Button_申領警報解除 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.主畫面.SuspendLayout();
             this.panel_main.SuspendLayout();
             this.sidePanel1.ContentsPanel.SuspendLayout();
             this.sidePanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel58.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -307,6 +311,7 @@ namespace 智能藥庫系統
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.Controls.Add(this.panel58);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel4);
@@ -321,30 +326,17 @@ namespace 智能藥庫系統
             this.flowLayoutPanel1.Size = new System.Drawing.Size(297, 1032);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
-            // flowLayoutPanel2
+            // panel58
             // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Controls.Add(this.panel14);
-            this.flowLayoutPanel2.Controls.Add(this.panel16);
-            this.flowLayoutPanel2.Controls.Add(this.panel18);
-            this.flowLayoutPanel2.Controls.Add(this.panel20);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 2);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(287, 60);
-            this.flowLayoutPanel2.TabIndex = 1;
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Controls.Add(this.plC_RJ_Button_庫存查詢);
-            this.panel14.Controls.Add(this.panel15);
-            this.panel14.Location = new System.Drawing.Point(0, 0);
-            this.panel14.Margin = new System.Windows.Forms.Padding(0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(332, 60);
-            this.panel14.TabIndex = 0;
+            this.panel58.BackColor = System.Drawing.Color.White;
+            this.panel58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel58.Controls.Add(this.plC_RJ_Button_庫存查詢);
+            this.panel58.Controls.Add(this.panel59);
+            this.panel58.Location = new System.Drawing.Point(3, 0);
+            this.panel58.Margin = new System.Windows.Forms.Padding(0);
+            this.panel58.Name = "panel58";
+            this.panel58.Size = new System.Drawing.Size(287, 60);
+            this.panel58.TabIndex = 7;
             // 
             // plC_RJ_Button_庫存查詢
             // 
@@ -381,9 +373,9 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_庫存查詢.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_庫存查詢.ShadowSize = 0;
             this.plC_RJ_Button_庫存查詢.ShowLoadingForm = false;
-            this.plC_RJ_Button_庫存查詢.Size = new System.Drawing.Size(279, 60);
+            this.plC_RJ_Button_庫存查詢.Size = new System.Drawing.Size(232, 58);
             this.plC_RJ_Button_庫存查詢.State = false;
-            this.plC_RJ_Button_庫存查詢.TabIndex = 2;
+            this.plC_RJ_Button_庫存查詢.TabIndex = 3;
             this.plC_RJ_Button_庫存查詢.Text = "      庫存查詢";
             this.plC_RJ_Button_庫存查詢.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.plC_RJ_Button_庫存查詢.TextColor = System.Drawing.Color.Black;
@@ -401,10 +393,101 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_庫存查詢.顯示 = false;
             this.plC_RJ_Button_庫存查詢.顯示狀態 = false;
             // 
+            // panel59
+            // 
+            this.panel59.BackColor = System.Drawing.Color.White;
+            this.panel59.BackgroundImage = global::智能藥庫系統.Properties.Resources.medication_inventory_inquiry;
+            this.panel59.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel59.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel59.Location = new System.Drawing.Point(0, 0);
+            this.panel59.Name = "panel59";
+            this.panel59.Size = new System.Drawing.Size(53, 58);
+            this.panel59.TabIndex = 0;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel2.Controls.Add(this.panel14);
+            this.flowLayoutPanel2.Controls.Add(this.panel16);
+            this.flowLayoutPanel2.Controls.Add(this.panel18);
+            this.flowLayoutPanel2.Controls.Add(this.panel20);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 62);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(287, 60);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Controls.Add(this.plC_RJ_Button_藥檔維護);
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Margin = new System.Windows.Forms.Padding(0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(332, 60);
+            this.panel14.TabIndex = 0;
+            // 
+            // plC_RJ_Button_藥檔維護
+            // 
+            this.plC_RJ_Button_藥檔維護.AutoResetState = false;
+            this.plC_RJ_Button_藥檔維護.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥檔維護.Bool = false;
+            this.plC_RJ_Button_藥檔維護.BorderColor = System.Drawing.Color.Red;
+            this.plC_RJ_Button_藥檔維護.BorderRadius = 3;
+            this.plC_RJ_Button_藥檔維護.BorderSize = 0;
+            this.plC_RJ_Button_藥檔維護.but_press = false;
+            this.plC_RJ_Button_藥檔維護.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_藥檔維護.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_藥檔維護.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Button_藥檔維護.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_藥檔維護.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_藥檔維護.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥檔維護.GUID = "";
+            this.plC_RJ_Button_藥檔維護.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_藥檔維護.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_藥檔維護.Location = new System.Drawing.Point(53, 0);
+            this.plC_RJ_Button_藥檔維護.Name = "plC_RJ_Button_藥檔維護";
+            this.plC_RJ_Button_藥檔維護.OFF_文字內容 = "      藥檔維護";
+            this.plC_RJ_Button_藥檔維護.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥檔維護.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥檔維護.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥檔維護.ON_BorderSize = 0;
+            this.plC_RJ_Button_藥檔維護.ON_文字內容 = "      藥檔維護";
+            this.plC_RJ_Button_藥檔維護.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥檔維護.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥檔維護.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥檔維護.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_藥檔維護.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_藥檔維護.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_藥檔維護.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_藥檔維護.ShadowSize = 0;
+            this.plC_RJ_Button_藥檔維護.ShowLoadingForm = false;
+            this.plC_RJ_Button_藥檔維護.Size = new System.Drawing.Size(279, 60);
+            this.plC_RJ_Button_藥檔維護.State = false;
+            this.plC_RJ_Button_藥檔維護.TabIndex = 4;
+            this.plC_RJ_Button_藥檔維護.Text = "      藥檔維護";
+            this.plC_RJ_Button_藥檔維護.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.plC_RJ_Button_藥檔維護.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥檔維護.TextHeight = 0;
+            this.plC_RJ_Button_藥檔維護.Texts = "      藥檔維護";
+            this.plC_RJ_Button_藥檔維護.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_藥檔維護.字型鎖住 = false;
+            this.plC_RJ_Button_藥檔維護.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_藥檔維護.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_藥檔維護.文字鎖住 = false;
+            this.plC_RJ_Button_藥檔維護.背景圖片 = null;
+            this.plC_RJ_Button_藥檔維護.讀取位元反向 = false;
+            this.plC_RJ_Button_藥檔維護.讀寫鎖住 = false;
+            this.plC_RJ_Button_藥檔維護.音效 = true;
+            this.plC_RJ_Button_藥檔維護.顯示 = false;
+            this.plC_RJ_Button_藥檔維護.顯示狀態 = false;
+            // 
             // panel15
             // 
             this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.BackgroundImage = global::智能藥庫系統.Properties.Resources.medication_inventory_inquiry;
+            this.panel15.BackgroundImage = global::智能藥庫系統.Properties.Resources.medication_config_removebg_preview;
             this.panel15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel15.Location = new System.Drawing.Point(0, 0);
@@ -582,7 +665,7 @@ namespace 智能藥庫系統
             this.flowLayoutPanel3.Controls.Add(this.panel24);
             this.flowLayoutPanel3.Controls.Add(this.panel26);
             this.flowLayoutPanel3.Controls.Add(this.panel28);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 64);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 124);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(287, 60);
@@ -835,7 +918,7 @@ namespace 智能藥庫系統
             this.flowLayoutPanel4.Controls.Add(this.panel32);
             this.flowLayoutPanel4.Controls.Add(this.panel34);
             this.flowLayoutPanel4.Controls.Add(this.panel36);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 126);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 186);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(287, 60);
@@ -1089,7 +1172,7 @@ namespace 智能藥庫系統
             this.flowLayoutPanel5.Controls.Add(this.panel40);
             this.flowLayoutPanel5.Controls.Add(this.panel42);
             this.flowLayoutPanel5.Controls.Add(this.panel44);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 188);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 248);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Size = new System.Drawing.Size(287, 60);
@@ -1171,6 +1254,59 @@ namespace 智能藥庫系統
             this.panel39.Name = "panel39";
             this.panel39.Size = new System.Drawing.Size(53, 60);
             this.panel39.TabIndex = 0;
+            // 
+            // plC_RJ_Button_申領警報解除
+            // 
+            this.plC_RJ_Button_申領警報解除.AutoResetState = false;
+            this.plC_RJ_Button_申領警報解除.BackgroundColor = System.Drawing.Color.Gold;
+            this.plC_RJ_Button_申領警報解除.Bool = false;
+            this.plC_RJ_Button_申領警報解除.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_申領警報解除.BorderRadius = 10;
+            this.plC_RJ_Button_申領警報解除.BorderSize = 0;
+            this.plC_RJ_Button_申領警報解除.but_press = false;
+            this.plC_RJ_Button_申領警報解除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_申領警報解除.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_申領警報解除.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_申領警報解除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_申領警報解除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_申領警報解除.GUID = "";
+            this.plC_RJ_Button_申領警報解除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_申領警報解除.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
+            this.plC_RJ_Button_申領警報解除.Location = new System.Drawing.Point(177, 3);
+            this.plC_RJ_Button_申領警報解除.Name = "plC_RJ_Button_申領警報解除";
+            this.plC_RJ_Button_申領警報解除.OFF_文字內容 = "警報解除";
+            this.plC_RJ_Button_申領警報解除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_申領警報解除.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_申領警報解除.OFF_背景顏色 = System.Drawing.Color.Gold;
+            this.plC_RJ_Button_申領警報解除.ON_BorderSize = 1;
+            this.plC_RJ_Button_申領警報解除.ON_文字內容 = "警報解除";
+            this.plC_RJ_Button_申領警報解除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_申領警報解除.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_申領警報解除.ON_背景顏色 = System.Drawing.Color.OrangeRed;
+            this.plC_RJ_Button_申領警報解除.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_申領警報解除.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_申領警報解除.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_申領警報解除.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_申領警報解除.ShadowSize = 3;
+            this.plC_RJ_Button_申領警報解除.ShowLoadingForm = false;
+            this.plC_RJ_Button_申領警報解除.Size = new System.Drawing.Size(104, 53);
+            this.plC_RJ_Button_申領警報解除.State = false;
+            this.plC_RJ_Button_申領警報解除.TabIndex = 150;
+            this.plC_RJ_Button_申領警報解除.Text = "警報解除";
+            this.plC_RJ_Button_申領警報解除.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_申領警報解除.TextHeight = 35;
+            this.plC_RJ_Button_申領警報解除.Texts = "警報解除";
+            this.plC_RJ_Button_申領警報解除.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_申領警報解除.字型鎖住 = false;
+            this.plC_RJ_Button_申領警報解除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_申領警報解除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_申領警報解除.文字鎖住 = false;
+            this.plC_RJ_Button_申領警報解除.背景圖片 = null;
+            this.plC_RJ_Button_申領警報解除.讀取位元反向 = false;
+            this.plC_RJ_Button_申領警報解除.讀寫鎖住 = false;
+            this.plC_RJ_Button_申領警報解除.音效 = false;
+            this.plC_RJ_Button_申領警報解除.顯示 = false;
+            this.plC_RJ_Button_申領警報解除.顯示狀態 = false;
             // 
             // panel40
             // 
@@ -1344,7 +1480,7 @@ namespace 智能藥庫系統
             this.flowLayoutPanel_盤點單管理.Controls.Add(this.panel12);
             this.flowLayoutPanel_盤點單管理.Controls.Add(this.panel54);
             this.flowLayoutPanel_盤點單管理.Controls.Add(this.panel56);
-            this.flowLayoutPanel_盤點單管理.Location = new System.Drawing.Point(3, 250);
+            this.flowLayoutPanel_盤點單管理.Location = new System.Drawing.Point(3, 310);
             this.flowLayoutPanel_盤點單管理.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel_盤點單管理.Name = "flowLayoutPanel_盤點單管理";
             this.flowLayoutPanel_盤點單管理.Size = new System.Drawing.Size(287, 60);
@@ -1827,7 +1963,7 @@ namespace 智能藥庫系統
             this.flowLayoutPanel6.Controls.Add(this.panel48);
             this.flowLayoutPanel6.Controls.Add(this.panel50);
             this.flowLayoutPanel6.Controls.Add(this.panel52);
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 312);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 372);
             this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(287, 60);
@@ -3028,59 +3164,6 @@ namespace 智能藥庫系統
             // 
             this.timer_盤點單管理.Interval = 10;
             // 
-            // plC_RJ_Button_申領警報解除
-            // 
-            this.plC_RJ_Button_申領警報解除.AutoResetState = false;
-            this.plC_RJ_Button_申領警報解除.BackgroundColor = System.Drawing.Color.Gold;
-            this.plC_RJ_Button_申領警報解除.Bool = false;
-            this.plC_RJ_Button_申領警報解除.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_申領警報解除.BorderRadius = 10;
-            this.plC_RJ_Button_申領警報解除.BorderSize = 0;
-            this.plC_RJ_Button_申領警報解除.but_press = false;
-            this.plC_RJ_Button_申領警報解除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_申領警報解除.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_申領警報解除.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_申領警報解除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_申領警報解除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_申領警報解除.GUID = "";
-            this.plC_RJ_Button_申領警報解除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_申領警報解除.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
-            this.plC_RJ_Button_申領警報解除.Location = new System.Drawing.Point(177, 3);
-            this.plC_RJ_Button_申領警報解除.Name = "plC_RJ_Button_申領警報解除";
-            this.plC_RJ_Button_申領警報解除.OFF_文字內容 = "警報解除";
-            this.plC_RJ_Button_申領警報解除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_申領警報解除.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_申領警報解除.OFF_背景顏色 = System.Drawing.Color.Gold;
-            this.plC_RJ_Button_申領警報解除.ON_BorderSize = 1;
-            this.plC_RJ_Button_申領警報解除.ON_文字內容 = "警報解除";
-            this.plC_RJ_Button_申領警報解除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_申領警報解除.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_申領警報解除.ON_背景顏色 = System.Drawing.Color.OrangeRed;
-            this.plC_RJ_Button_申領警報解除.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_申領警報解除.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_申領警報解除.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_申領警報解除.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_申領警報解除.ShadowSize = 3;
-            this.plC_RJ_Button_申領警報解除.ShowLoadingForm = false;
-            this.plC_RJ_Button_申領警報解除.Size = new System.Drawing.Size(104, 53);
-            this.plC_RJ_Button_申領警報解除.State = false;
-            this.plC_RJ_Button_申領警報解除.TabIndex = 150;
-            this.plC_RJ_Button_申領警報解除.Text = "警報解除";
-            this.plC_RJ_Button_申領警報解除.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_申領警報解除.TextHeight = 35;
-            this.plC_RJ_Button_申領警報解除.Texts = "警報解除";
-            this.plC_RJ_Button_申領警報解除.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_申領警報解除.字型鎖住 = false;
-            this.plC_RJ_Button_申領警報解除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_申領警報解除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_申領警報解除.文字鎖住 = false;
-            this.plC_RJ_Button_申領警報解除.背景圖片 = null;
-            this.plC_RJ_Button_申領警報解除.讀取位元反向 = false;
-            this.plC_RJ_Button_申領警報解除.讀寫鎖住 = false;
-            this.plC_RJ_Button_申領警報解除.音效 = false;
-            this.plC_RJ_Button_申領警報解除.顯示 = false;
-            this.plC_RJ_Button_申領警報解除.顯示狀態 = false;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3098,6 +3181,7 @@ namespace 智能藥庫系統
             this.sidePanel1.ContentsPanel.ResumeLayout(false);
             this.sidePanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel58.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
@@ -3208,7 +3292,6 @@ namespace 智能藥庫系統
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel14;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_庫存查詢;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel16;
         private MyUI.RJ_Button rJ_Button6;
@@ -3292,6 +3375,10 @@ namespace 智能藥庫系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_盤點管理_覆盤建議設定;
         private System.Windows.Forms.Panel panel57;
         private MyUI.PLC_RJ_Button plC_RJ_Button_申領警報解除;
+        private System.Windows.Forms.Panel panel58;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_庫存查詢;
+        private System.Windows.Forms.Panel panel59;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_藥檔維護;
     }
 }
 
