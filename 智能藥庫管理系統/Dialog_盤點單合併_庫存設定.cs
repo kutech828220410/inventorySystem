@@ -53,7 +53,6 @@ namespace 智能藥庫系統
 
         private void Dialog_盤點單合併_庫存設定_LoadFinishedEvent(EventArgs e)
         {
-            this.comboBox_搜尋條件.SelectedIndex = 0;
             RefreshUI();
         }
 

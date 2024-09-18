@@ -1336,6 +1336,51 @@
             消耗量起始時間
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額上限">
+            <summary>
+            誤差總金額上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額下限">
+            <summary>
+            誤差總金額下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額致能">
+            <summary>
+            誤差總金額致能
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率上限">
+            <summary>
+            誤差百分率上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率下限">
+            <summary>
+            誤差百分率下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率致能">
+            <summary>
+            誤差百分率致能
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量上限">
+            <summary>
+            誤差數量上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量下限">
+            <summary>
+            誤差數量下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量致能">
+            <summary>
+            誤差數量致能
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Records_Ary">
             <summary>
             合併單明細
@@ -1354,6 +1399,11 @@
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Consumptions">
             <summary>
             參考消耗
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedPrices">
+            <summary>
+            參考單價
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
@@ -1452,6 +1502,41 @@
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_price_Class">
+            <summary>
+            合併單藥品單價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.單價">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.加入時間">
             <summary>
             加入時間
             </summary>

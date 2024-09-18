@@ -2589,10 +2589,8 @@ namespace 調劑台管理系統
             //狀態顯示 += this.plC_MultiStateDisplay_領藥台_01_狀態顯示.GetFontString(new Font("微軟正黑體", 24F, FontStyle.Bold), true);
             //狀態顯示 += string.Format($"登入者姓名 : {領藥台_01_登入者姓名}");
             //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.SetTextValue(PLC_Device_領藥台_01_狀態顯示_登入者姓名.GetAdress(), 狀態顯示);
-            if (!this.plC_Button_領藥台_01_領.Bool && !this.plC_Button_領藥台_01_退.Bool)
-            {
-                this.plC_Button_領藥台_01_領.Bool = true;
-            }
+            this.plC_Button_領藥台_01_領.Bool = true;
+            this.plC_Button_領藥台_01_退.Bool = false;
 
             Console.WriteLine($"登入成功! ID : {領藥台_01_ID}, 名稱 : {領藥台_01_登入者姓名}");
             this.Invoke(new Action(delegate
@@ -4572,10 +4570,8 @@ namespace 調劑台管理系統
             //狀態顯示 += this.plC_MultiStateDisplay_領藥台_02_狀態顯示.GetFontString(new Font("微軟正黑體", 24F, FontStyle.Bold), true);
             //狀態顯示 += string.Format($"登入者姓名 : {領藥台_02_登入者姓名}");
             //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.SetTextValue(PLC_Device_領藥台_02_狀態顯示_登入者姓名.GetAdress(), 狀態顯示);
-            if (!this.plC_Button_領藥台_02_領.Bool && !this.plC_Button_領藥台_02_退.Bool)
-            {
-                this.plC_Button_領藥台_02_領.Bool = true;
-            }
+            this.plC_Button_領藥台_02_領.Bool = true;
+            this.plC_Button_領藥台_02_退.Bool = false;
 
             Console.WriteLine($"登入成功! ID : {領藥台_02_ID}, 名稱 : {領藥台_02_登入者姓名}");
             this.Invoke(new Action(delegate
@@ -6564,11 +6560,8 @@ namespace 調劑台管理系統
             //狀態顯示 += this.plC_MultiStateDisplay_領藥台_03_狀態顯示.GetFontString(new Font("微軟正黑體", 24F, FontStyle.Bold), true);
             //狀態顯示 += string.Format($"登入者姓名 : {領藥台_03_登入者姓名}");
             //this.plC_MultiStateDisplay_領藥台_03_狀態顯示.SetTextValue(PLC_Device_領藥台_03_狀態顯示_登入者姓名.GetAdress(), 狀態顯示);
-            if (!this.plC_Button_領藥台_03_領.Bool && !this.plC_Button_領藥台_03_退.Bool)
-            {
-                this.plC_Button_領藥台_03_領.Bool = true;
-            }
-
+            this.plC_Button_領藥台_03_領.Bool = true;
+            this.plC_Button_領藥台_03_退.Bool = false;
             Console.WriteLine($"登入成功! ID : {領藥台_03_ID}, 名稱 : {領藥台_03_登入者姓名}");
             this.Invoke(new Action(delegate
             {
@@ -8542,11 +8535,8 @@ namespace 調劑台管理系統
             //狀態顯示 += this.plC_MultiStateDisplay_領藥台_04_狀態顯示.GetFontString(new Font("微軟正黑體", 24F, FontStyle.Bold), true);
             //狀態顯示 += string.Format($"登入者姓名 : {領藥台_04_登入者姓名}");
             //this.plC_MultiStateDisplay_領藥台_04_狀態顯示.SetTextValue(PLC_Device_領藥台_04_狀態顯示_登入者姓名.GetAdress(), 狀態顯示);
-            if (!this.plC_Button_領藥台_04_領.Bool && !this.plC_Button_領藥台_04_退.Bool)
-            {
-                this.plC_Button_領藥台_04_領.Bool = true;
-            }
-
+            this.plC_Button_領藥台_04_領.Bool = true;
+            this.plC_Button_領藥台_04_退.Bool = false;
             Console.WriteLine($"登入成功! ID : {領藥台_04_ID}, 名稱 : {領藥台_04_登入者姓名}");
             this.Invoke(new Action(delegate
             {
