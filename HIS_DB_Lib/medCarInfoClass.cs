@@ -34,6 +34,8 @@ namespace HIS_DB_Lib
         占床狀態,
         [Description("調劑狀態,VARCHAR,10,NONE")]
         調劑狀態,
+        [Description("處方異動狀態,VARCHAR,10,NONE")]
+        處方異動狀態,
         [Description("性別,VARCHAR,10,NONE")]
         性別,
         [Description("出生日期,VARCHAR,10,NONE")]
@@ -158,6 +160,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        /// <summary>
+        /// 處方異動狀態
+        /// </summary>
+        [JsonPropertyName("cpoe_change_status")]
+        public string 處方異動狀態 { get; set; }
         /// <summary>
         /// 性別
         /// </summary>

@@ -184,7 +184,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
-                DateTime lestweek = DateTime.Now.AddDays(-7);
+                DateTime lestweek = DateTime.Now.AddDays(-30);
                 DateTime yesterday = DateTime.Now.AddDays(-1);
                 string starttime = lestweek.GetStartDate().ToDateString();
                 string endtime = yesterday.GetEndDate().ToDateString();
@@ -397,14 +397,11 @@ namespace HIS_WebApi
                                 medcpoe.狀態 = "DC";
                                 medcpoe.調劑異動 = "Y";
                                 medCpoe_sql_replace.Add(medcpoe);
-                            }
-
-                                                                               
+                            }                                                                           
                         }
                     }       
                 }
-                //List<object[]> list_medCpoe_add = new List<object[]>();
-                //List<object[]> list_medCpoe_replace = new List<object[]>();
+          
 
                 List<object[]> list_medCpoe_add = medCpoe_sql_add.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -1183,8 +1180,13 @@ namespace HIS_WebApi
                 bool allDispensed = medCpoe_sql_replace.All(med => med.調劑狀態 == "Y");
                 List<object[]> list_med_carinfo = sQLControl_med_carinfo.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, Master_GUID);
                 List<medCarInfoClass> sql_medCarinfo = list_med_carinfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                if (allDispensed) sql_medCarinfo[0].調劑狀態 = "Y";
-                if(!allDispensed) sql_medCarinfo[0].調劑狀態 = "";
+                if (allDispensed) 
+                {
+                    sql_medCarinfo[0].調劑狀態 = "Y";
+                    sql_medCarinfo[0].處方異動狀態 = "";
+                }
+
+                if (!allDispensed) sql_medCarinfo[0].調劑狀態 = "";
                     
                 List<object[]> list_medCarInfo_replace = new List<object[]>();
                 list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();

@@ -166,6 +166,8 @@ namespace HIS_WebApi._API_TextVision
                     if (buff_medCodeSrch.Count == 1)
                     {            
                         textVisionClass_AI[0].藥品碼 = buff_medCodeSrch[0].藥品碼;
+                        textVisionClass_AI[0].藥名 = buff_medCodeSrch[0].藥名;
+                        textVisionClass_AI[0].中文名 = buff_medCodeSrch[0].中文名;
                     }
                     else
                     {
@@ -381,7 +383,7 @@ namespace HIS_WebApi._API_TextVision
                 }
 
                 input_medCodeSrch[0].GUID = Guid.NewGuid().ToString();
-                input_medCodeSrch[0].藥名 = medClass.藥品學名;
+                input_medCodeSrch[0].藥名 = medClass.藥品名稱;
                 input_medCodeSrch[0].中文名 = medClass.中文名稱;
                 input_medCodeSrch[0].操作時間 = DateTime.Now.ToDateTimeString();
 

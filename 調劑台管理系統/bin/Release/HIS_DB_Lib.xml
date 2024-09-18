@@ -2981,14 +2981,29 @@
             辨識單GUID
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.辨識中文名">
+            <summary>
+            辨識中文名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.辨識藥名">
             <summary>
-            中文名
+            辨識藥名
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.藥品碼">
             <summary>
             藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.中文名">
+            <summary>
+            中文名
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.操作時間">
