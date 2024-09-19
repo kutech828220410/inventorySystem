@@ -791,18 +791,21 @@ namespace HIS_WebApi
                 string GUID = returnData.ValueAry[0];
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClass_main.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = serverSettingClass_main[0].Server;
+                string DB = serverSettingClass_main[0].DBName;
+                string UserName = serverSettingClass_main[0].User;
+                string Password = serverSettingClass_main[0].Password;
+                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
+                List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
+                string API = serverSettingClass_API[0].Server;
+
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
@@ -813,8 +816,7 @@ namespace HIS_WebApi
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
-                //string API = $"http://{Server}:4436";
-                //medCarInfoClass targetPatient = HIS_DB_Lib.medCarInfoClass.get_patient_by_GUID(API, returnData.ValueAry);
+                
 
 
                 if (sql_medCarInfo == null)
@@ -833,8 +835,6 @@ namespace HIS_WebApi
 
                 List<string> Codes = sql_medCpoe.Select(temp => temp.藥碼).Distinct().ToList();
                 if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
-                string API = $"http://{Server}:4436";
-
 
                 if (!string.IsNullOrWhiteSpace(returnData.Value) && sql_medCpoe != null && returnData.Value != "all")
                 {                 
@@ -852,7 +852,6 @@ namespace HIS_WebApi
                 if(returnData.Value == "all")
                 {
                     foreach (var medCpoeClass in sql_medCpoe) medCpoeClass.調劑台 = "Y";
-                   
                 }
                 List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);
                 foreach(var cpoe in sql_medCpoe)
@@ -1033,8 +1032,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("get_medInfo_by_code")]
-        public string get_medInfo_by_code([FromBody] returnData returnData)
+        [HttpPost("get_medInfo_by_codes")]
+        public string get_medInfo_by_codes([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -1048,7 +1047,7 @@ namespace HIS_WebApi
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"code\"]";
                     return returnData.JsonSerializationt(true);
                 }
                 string code = returnData.ValueAry[0];
@@ -1066,13 +1065,15 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_info", UserName, Password, Port, SSLMode);
-                List<object[]> list_med_info = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_info.藥碼, code);
+                List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
+                list_med_info = list_med_info.GetRowsByLike((int)enum_med_info.藥碼, returnData.ValueAry[0]);
+
                 List<medInfoClass> sql_med_info = list_med_info.SQLToClass<medInfoClass, enum_med_info>();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_med_info;
-                returnData.Result = $"取得藥碼 {code} 的藥品資訊";
+                returnData.Result = $"取得{sql_med_info.Count}筆 藥品資訊";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

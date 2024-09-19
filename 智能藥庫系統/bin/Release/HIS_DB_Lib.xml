@@ -716,6 +716,11 @@
             調劑狀態
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.處方異動狀態">
+            <summary>
+            處方異動狀態
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.性別">
             <summary>
             性別

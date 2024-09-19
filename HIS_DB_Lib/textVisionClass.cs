@@ -24,8 +24,6 @@ namespace HIS_DB_Lib
         操作時間,
         [Description("Log,LONGTEXT,10,NONE")]
         Log,
-        [Description("座標,VARCHAR,50,NONE")]
-        座標,
         [Description("op_keyword,VARCHAR,100,NONE")]
         op_keyword,
         [Description("批號,VARCHAR,50,NONE")]
@@ -111,11 +109,6 @@ namespace HIS_DB_Lib
         [JsonPropertyName("logs")]
         public object Log { get; set; }
         /// <summary>
-        /// 座標
-        /// </summary>
-        [JsonPropertyName("roi")]
-        public string 座標 { get; set; }
-        /// <summary>
         /// keyword
         /// </summary>
         [JsonPropertyName("op_keywords")]
@@ -187,7 +180,7 @@ namespace HIS_DB_Lib
         public string 數量信心分數 { get; set; }
         static public returnData ai_analyze(List<textVisionClass> textVisionClasses)
         {
-            string url = $"http://127.0.0.1:3000/PO_Vision";
+            string url = $"http://220.135.128.247:3000/PO_Vision";
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;

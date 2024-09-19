@@ -156,9 +156,9 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medInfoClass;
         }
-        static public List<medInfoClass> get_medInfo_by_code(string API_Server, List<string> code)
+        static public List<medInfoClass> get_medInfo_by_codes(string API_Server, List<string> code)
         {
-            string url = $"{API_Server}/api/med_cart/get_medInfo_by_code";
+            string url = $"{API_Server}/api/med_cart/get_medInfo_by_codes";
 
             returnData returnData = new returnData ();
             returnData.ValueAry = code;

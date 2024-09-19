@@ -1168,7 +1168,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.med_cart.get_medInfo_by_code(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.med_cart.get_medInfo_by_codes(HIS_DB_Lib.returnData)">
              <summary>
             由藥碼取得藥品資訊
              </summary>

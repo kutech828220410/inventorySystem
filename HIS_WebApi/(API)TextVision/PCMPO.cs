@@ -141,17 +141,23 @@ namespace HIS_WebApi._API_TextVision
                     return returnData.JsonSerializationt(true);
                 }
                 List<textVisionClass> textVisionClass_AI = returnData_AI.Data.ObjToClass<List<textVisionClass>>();
-                if (returnData_AI.Result == "False" || textVisionClass_AI[0].中文名 == null || textVisionClass_AI[0].藥名 == null)
+                if (returnData_AI.Result == "False" )
                 {
                     returnData.Code = -200;
                     returnData.Result = $"辨識失敗";
                     return returnData.JsonSerializationt(true);
                 }
-                string pattern1 = @"^[A-Za-z0-9]+";
-                textVisionClass_AI[0].中文名 = Regex.Replace(textVisionClass_AI[0].中文名, pattern1, "");
-
-                string pattern2 = @"^\d+";
-                textVisionClass_AI[0].藥名 = Regex.Replace(textVisionClass_AI[0].藥名, pattern1, "");
+                if(textVisionClass_AI[0].中文名 != null)
+                {
+                    string pattern1 = @"^[A-Za-z0-9]+";
+                    textVisionClass_AI[0].中文名 = Regex.Replace(textVisionClass_AI[0].中文名, pattern1, "");
+                }
+                if (textVisionClass_AI[0].藥名 != null)
+                {
+                    string pattern2 = @"^\d+";
+                    textVisionClass_AI[0].藥名 = Regex.Replace(textVisionClass_AI[0].藥名, pattern2, "");
+                }
+                    
 
                 string 藥名 = textVisionClass_AI[0].藥名;
                 string 中文名 = textVisionClass_AI[0].中文名;
@@ -185,11 +191,11 @@ namespace HIS_WebApi._API_TextVision
                 textVisionClass_AI[0].操作者姓名 = input_textVision[0].操作者姓名;
                 textVisionClass_AI[0].操作時間 = input_textVision[0].操作時間;
                 textVisionClass_AI[0].圖片 = input_textVision[0].圖片;
-                textVisionClass_AI[0].批號信心分數 = textVisionClass_AI[0].批號信心分數.Substring(0, 5);
-                textVisionClass_AI[0].效期信心分數 = textVisionClass_AI[0].效期信心分數.Substring(0, 5);
-                textVisionClass_AI[0].單號信心分數 = textVisionClass_AI[0].單號信心分數.Substring(0, 5);
-                textVisionClass_AI[0].藥名信心分數 = textVisionClass_AI[0].藥名信心分數.Substring(0, 5);
-                textVisionClass_AI[0].中文名信心分數 = textVisionClass_AI[0].中文名信心分數.Substring(0, 5);
+                //textVisionClass_AI[0].批號信心分數 = textVisionClass_AI[0].批號信心分數.Substring(0, 5);
+                //textVisionClass_AI[0].效期信心分數 = textVisionClass_AI[0].效期信心分數.Substring(0, 5);
+                //textVisionClass_AI[0].單號信心分數 = textVisionClass_AI[0].單號信心分數.Substring(0, 5);
+                //textVisionClass_AI[0].藥名信心分數 = textVisionClass_AI[0].藥名信心分數.Substring(0, 5);
+                //textVisionClass_AI[0].中文名信心分數 = textVisionClass_AI[0].中文名信心分數.Substring(0, 5);
 
                 List<object[]> obj_textVisionClass = textVisionClass_AI.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, obj_textVisionClass);
