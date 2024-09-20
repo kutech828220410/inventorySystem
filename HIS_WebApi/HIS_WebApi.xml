@@ -1176,7 +1176,7 @@
              以下為JSON範例
              <code>
                  {
-                     "ValueAry":["code"]
+                     "ValueAry":["code1,code2,code3..."]
                  }
              </code>
              </remarks>

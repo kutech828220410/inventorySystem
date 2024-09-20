@@ -854,9 +854,11 @@ namespace HIS_WebApi
                     foreach (var medCpoeClass in sql_medCpoe) medCpoeClass.調劑台 = "Y";
                 }
                 List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);
+                List<medInfoClass> medInfoClasses = medInfoClass.get_medInfo_by_codes(API, Codes);
                 foreach(var cpoe in sql_medCpoe)
                 {
                     List<medClass> targetMedCloud = med_cloud.Where(temp => temp.藥品碼 == cpoe.藥碼).ToList();
+
                     if(targetMedCloud != null)
                     {
                         cpoe.雲端藥檔 = targetMedCloud;
@@ -1026,7 +1028,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "ValueAry":["code"]
+        ///         "ValueAry":["code1,code2,code3..."]
         ///     }
         /// </code>
         /// </remarks>
@@ -1047,10 +1049,11 @@ namespace HIS_WebApi
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"code\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"code1,code2,code3\"]";
                     return returnData.JsonSerializationt(true);
                 }
-                string code = returnData.ValueAry[0];
+                //string code = returnData.ValueAry[0];
+                string[] code = returnData.ValueAry[0].Split(",");
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
@@ -1066,9 +1069,8 @@ namespace HIS_WebApi
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_info", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
-                list_med_info = list_med_info.GetRowsByLike((int)enum_med_info.藥碼, returnData.ValueAry[0]);
-
                 List<medInfoClass> sql_med_info = list_med_info.SQLToClass<medInfoClass, enum_med_info>();
+                sql_med_info = sql_med_info.Where(temp => code.Contains(temp.藥碼)).ToList();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";

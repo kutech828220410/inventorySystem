@@ -159,9 +159,9 @@ namespace HIS_DB_Lib
         static public List<medInfoClass> get_medInfo_by_codes(string API_Server, List<string> code)
         {
             string url = $"{API_Server}/api/med_cart/get_medInfo_by_codes";
-
             returnData returnData = new returnData ();
-            returnData.ValueAry = code;
+            string codes = string.Join(",", code);
+            returnData.ValueAry.Add(codes);
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();

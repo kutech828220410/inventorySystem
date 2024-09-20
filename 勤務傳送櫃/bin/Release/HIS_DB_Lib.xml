@@ -2901,11 +2901,6 @@
             Log
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.座標">
-            <summary>
-            座標
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
             <summary>
             keyword
