@@ -99,6 +99,10 @@ namespace 中藥調劑系統
             {
                 RowsLED rowsLED = rowsLEDs[i];
                 rowsLEDs[i].LED_Bytes_buf = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLEDs[i]);
+                if (rowsLEDs[i].IP == "192.168.40.112")
+                {
+                    
+                }
                 if (RowsLEDUI.Check_LEDBytesBuf_Diff(rowsLEDs[i]))
                 {
                     rowsLEDs[i].LED_Bytes = rowsLEDs[i].LED_Bytes_buf;

@@ -1064,11 +1064,15 @@ namespace 中藥調劑系統
                         temp += ",";
                     }
                 }
-                temp = temp.Substring(0, temp.Length - 1);
-                Task.Run(new Action(delegate
+                if(temp.Length > 0)
                 {
-                    MyMessageBox.ShowDialog($"提示有前置處方領藥號【{temp}】請確認內容");
-                }));
+                    temp = temp.Substring(0, temp.Length - 1);
+                    Task.Run(new Action(delegate
+                    {
+                        MyMessageBox.ShowDialog($"提示有前置處方領藥號【{temp}】請確認內容");
+                    }));
+                }
+ 
 
             }
             Function_更新處方內容(PRI_KEY);
@@ -1311,10 +1315,10 @@ namespace 中藥調劑系統
                 Codes.Add(藥碼);
 
             }
-            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
-            {
-                List_RowsLED_本地資料[i] = H_Pannel_lib.RowsLEDUI.ResetLightStateLEDBytes(List_RowsLED_本地資料[i]);
-            }
+            //for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
+            //{
+            //    List_RowsLED_本地資料[i] = H_Pannel_lib.RowsLEDUI.ResetLightStateLEDBytes(List_RowsLED_本地資料[i]);
+            //}
             Function_儲位亮燈(Codes, Color.Black);
         }
         private void RJ_Button_調劑畫面_單滅_MouseDownEvent(MouseEventArgs mevent)
