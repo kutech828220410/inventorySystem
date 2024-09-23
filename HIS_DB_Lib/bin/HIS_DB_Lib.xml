@@ -1136,6 +1136,16 @@
             雲端藥檔
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥品資訊">
+            <summary>
+            藥品資訊
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.調劑紀錄">
+            <summary>
+            調劑紀錄
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
             <summary>
             medCpoeClass資料
@@ -1809,6 +1819,11 @@
         <member name="P:HIS_DB_Lib.medInfoClass.更新時間">
             <summary>
             更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.仿單">
+            <summary>
+            仿單
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medInterClass">

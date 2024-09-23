@@ -1015,6 +1015,19 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_logtime_by_master_GUID(HIS_DB_Lib.returnData)">
+             <summary>
+            以Master_GUID取得調劑紀錄
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 "ValueAry": ["Master_GUID"]
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.init_med_carinfo(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_carinfo資料庫

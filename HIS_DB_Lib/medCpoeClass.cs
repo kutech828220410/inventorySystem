@@ -341,6 +341,17 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("med_cloud")]
         public List<medClass> 雲端藥檔 { get; set; }
+        /// <summary>
+        /// 藥品資訊
+        /// </summary>
+        [JsonPropertyName("med_info")]
+        public List<medInfoClass> 藥品資訊 { get; set; }
+        /// <summary>
+        /// 調劑紀錄
+        /// </summary>
+        [JsonPropertyName("med_inve_log")]
+        public List<medInventoryLogClass> 調劑紀錄 { get; set; }
+
         public class ICP_By_Rank : IComparer<medCpoeClass>
         {
             public int Compare(medCpoeClass x, medCpoeClass y)

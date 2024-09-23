@@ -134,7 +134,21 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
+        static public List<medInventoryLogClass> get_logtime_by_master_GUID(string API_Server, string Master_GUID)
+        {
+            string url = $"{API_Server}/api/med_inventory/get_logtime_by_master_GUID";
 
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(Master_GUID);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medInventoryLogClass> out_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medInventoryLogClass;
+        }
     }
     /// <summary>
     ///  medInventoryClass資料

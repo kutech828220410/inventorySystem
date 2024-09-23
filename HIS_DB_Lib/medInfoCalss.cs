@@ -48,6 +48,8 @@ namespace HIS_DB_Lib
         健保價,
         [Description("更新時間,DATETIME,10,NONE")]
         更新時間,
+        [Description("仿單,VARCHAR,200,NONE")]
+        仿單
     }
     public class medInfoClass
     {
@@ -141,6 +143,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("update_time")]
         public string 更新時間 { get; set; }
+        /// <summary>
+        /// 仿單
+        /// </summary>
+        [JsonPropertyName("med_packeage")]
+        public string 仿單 { get; set; }
         static public List<medInfoClass> update_med_info(string API_Server, List<medInfoClass> medInfoClass)
         {
             string url = $"{API_Server}/api/med_cart/update_med_info";

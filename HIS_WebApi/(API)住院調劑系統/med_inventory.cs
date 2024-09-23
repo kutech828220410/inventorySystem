@@ -544,7 +544,69 @@ namespace HIS_WebApi._API_住院調劑系統
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        ///以Master_GUID取得調劑紀錄
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     "ValueAry": ["Master_GUID"]
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_logtime_by_master_GUID")]
+        public string get_logtime_by_master_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 應為[\"處方GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
 
+                string Master_GUID = returnData.ValueAry[0];
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl_med_inventoryLog = new SQLControl(Server, DB, "med_inventory_log", UserName, Password, Port, SSLMode);
+                List<object[]> list_medInventoryLog = sQLControl_med_inventoryLog.GetRowsByDefult(null, (int)enum_med_inventory_log.Master_GUID, Master_GUID);
+                List<medInventoryLogClass> sql_medInventoryLog = list_medInventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();
+                
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medInventoryLog;
+                //if(sql_medInventoryLog.Count == 0)
+                //returnData.Result = $"取得處方調劑紀錄共{sql_medInventoryLog.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
     }
 }

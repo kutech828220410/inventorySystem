@@ -670,7 +670,7 @@ namespace HIS_WebApi
                 List<object[]> list_update_medInfo = update_medInfo.ClassToSQL<medInfoClass, enum_med_info>();
 
                 if (list_add_medInfo.Count > 0) sQLControl_med_info.AddRows(null, list_add_medInfo);
-                if (list_update_medInfo.Count > 0) sQLControl_med_info.UpdateByDefulteExtra(null, list_add_medInfo);
+                if (list_update_medInfo.Count > 0) sQLControl_med_info.UpdateByDefulteExtra(null, list_update_medInfo);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -776,13 +776,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                if (returnData.ValueAry == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 無傳入資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                if (returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
@@ -790,22 +784,8 @@ namespace HIS_WebApi
                 }
                 string GUID = returnData.ValueAry[0];
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClass_main.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-                string Server = serverSettingClass_main[0].Server;
-                string DB = serverSettingClass_main[0].DBName;
-                string UserName = serverSettingClass_main[0].User;
-                string Password = serverSettingClass_main[0].Password;
-                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
-                List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
-                string API = serverSettingClass_API[0].Server;
-
+                var (Server, DB, UserName, Password, Port) = GetServerInfo("Main", "網頁", "VM端");                              
+                string API = GetServerAPI("Main", "網頁", "API01");
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
@@ -814,10 +794,7 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, GUID);
 
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-
-                
-
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();              
 
                 if (sql_medCarInfo == null)
                 {
@@ -836,7 +813,7 @@ namespace HIS_WebApi
                 List<string> Codes = sql_medCpoe.Select(temp => temp.藥碼).Distinct().ToList();
                 if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
 
-                if (!string.IsNullOrWhiteSpace(returnData.Value) && sql_medCpoe != null && returnData.Value != "all")
+                if (!string.IsNullOrWhiteSpace(returnData.Value) && returnData.Value != "all")
                 {                 
                     List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
             
@@ -847,24 +824,24 @@ namespace HIS_WebApi
                             medCpoeClass.調劑台 = "Y";
                         }
                     }
-
                 }
                 if(returnData.Value == "all")
                 {
                     foreach (var medCpoeClass in sql_medCpoe) medCpoeClass.調劑台 = "Y";
                 }
-                List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);
-                List<medInfoClass> medInfoClasses = medInfoClass.get_medInfo_by_codes(API, Codes);
-                foreach(var cpoe in sql_medCpoe)
+            
+                List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);            
+                List<medInfoClass> med_Info = medInfoClass.get_medInfo_by_codes(API, Codes);
+                          
+                foreach (var cpoe in sql_medCpoe)
                 {
                     List<medClass> targetMedCloud = med_cloud.Where(temp => temp.藥品碼 == cpoe.藥碼).ToList();
-
-                    if(targetMedCloud != null)
-                    {
-                        cpoe.雲端藥檔 = targetMedCloud;
-                    }
+                    List<medInfoClass> targetMedInfo = med_Info.Where(temp => temp.藥碼 == cpoe.藥碼).ToList();
+                    List<medInventoryLogClass> med_InvenLog = medInventoryLogClass.get_logtime_by_master_GUID(API, cpoe.GUID);
+                    cpoe.雲端藥檔 = targetMedCloud;                                       
+                    cpoe.藥品資訊 = targetMedInfo;
+                    cpoe.調劑紀錄 = med_InvenLog;
                 }
-
 
                 sql_medCarInfo[0].處方 = sql_medCpoe;
                 var medCarInfoClass = new medCarInfoClass();
@@ -1591,6 +1568,27 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        private (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return (serverSettingClass.Server, serverSettingClass.DBName, serverSettingClass.User, serverSettingClass.Password, (uint)serverSettingClass.Port.StringToInt32());
+        }
+        private string GetServerAPI(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return serverSettingClass.Server;
+        }
+
 
     }
 
