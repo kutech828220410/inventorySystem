@@ -35,30 +35,30 @@ namespace 智能藥庫系統
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.plC_CheckBox5 = new MyUI.PLC_CheckBox();
+            this.numTextBox_誤差總金額上限 = new MyUI.NumTextBox();
+            this.numTextBox_誤差總金額下限 = new MyUI.NumTextBox();
+            this.plC_CheckBox_誤差總金額計算 = new MyUI.PLC_CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.plC_CheckBox4 = new MyUI.PLC_CheckBox();
+            this.numTextBox_誤差百分率上限 = new MyUI.NumTextBox();
+            this.numTextBox_誤差百分率下限 = new MyUI.NumTextBox();
+            this.plC_CheckBox_誤差百分率計算 = new MyUI.PLC_CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.plC_CheckBox3 = new MyUI.PLC_CheckBox();
+            this.numTextBox_誤差數量上限 = new MyUI.NumTextBox();
+            this.numTextBox_誤差數量下限 = new MyUI.NumTextBox();
+            this.plC_CheckBox_誤差數量計算 = new MyUI.PLC_CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
-            this.numTextBox1 = new MyUI.NumTextBox();
-            this.numTextBox2 = new MyUI.NumTextBox();
-            this.numTextBox3 = new MyUI.NumTextBox();
-            this.numTextBox4 = new MyUI.NumTextBox();
-            this.numTextBox5 = new MyUI.NumTextBox();
-            this.numTextBox6 = new MyUI.NumTextBox();
             this.rJ_Pannel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -103,7 +103,7 @@ namespace 智能藥庫系統
             this.rJ_Lable3.ShadowSize = 0;
             this.rJ_Lable3.Size = new System.Drawing.Size(567, 48);
             this.rJ_Lable3.TabIndex = 2;
-            this.rJ_Lable3.Text = "誤差百分率 = 誤差數量 % 消耗量";
+            this.rJ_Lable3.Text = "誤差百分率 = 誤差數量 / 消耗量";
             this.rJ_Lable3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable3.TextColor = System.Drawing.Color.Black;
             // 
@@ -161,9 +161,9 @@ namespace 智能藥庫系統
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.numTextBox4);
-            this.panel1.Controls.Add(this.numTextBox1);
-            this.panel1.Controls.Add(this.plC_CheckBox5);
+            this.panel1.Controls.Add(this.numTextBox_誤差總金額上限);
+            this.panel1.Controls.Add(this.numTextBox_誤差總金額下限);
+            this.panel1.Controls.Add(this.plC_CheckBox_誤差總金額計算);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
@@ -174,25 +174,51 @@ namespace 智能藥庫系統
             this.panel1.Size = new System.Drawing.Size(794, 67);
             this.panel1.TabIndex = 2;
             // 
-            // plC_CheckBox5
+            // numTextBox_誤差總金額上限
             // 
-            this.plC_CheckBox5.AutoSize = true;
-            this.plC_CheckBox5.Bool = false;
-            this.plC_CheckBox5.Checked = true;
-            this.plC_CheckBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.plC_CheckBox5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox5.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox5.Location = new System.Drawing.Point(14, 22);
-            this.plC_CheckBox5.Name = "plC_CheckBox5";
-            this.plC_CheckBox5.Size = new System.Drawing.Size(67, 28);
-            this.plC_CheckBox5.TabIndex = 11;
-            this.plC_CheckBox5.Text = "計算";
-            this.plC_CheckBox5.UseVisualStyleBackColor = true;
-            this.plC_CheckBox5.文字內容 = "計算";
-            this.plC_CheckBox5.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox5.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox5.讀寫鎖住 = false;
-            this.plC_CheckBox5.音效 = true;
+            this.numTextBox_誤差總金額上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差總金額上限.Location = new System.Drawing.Point(555, 20);
+            this.numTextBox_誤差總金額上限.Name = "numTextBox_誤差總金額上限";
+            this.numTextBox_誤差總金額上限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差總金額上限.TabIndex = 14;
+            this.numTextBox_誤差總金額上限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差總金額上限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差總金額上限.小數點位置 = 0;
+            this.numTextBox_誤差總金額上限.音效 = false;
+            this.numTextBox_誤差總金額上限.顯示螢幕小鍵盤 = false;
+            // 
+            // numTextBox_誤差總金額下限
+            // 
+            this.numTextBox_誤差總金額下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差總金額下限.Location = new System.Drawing.Point(243, 20);
+            this.numTextBox_誤差總金額下限.Name = "numTextBox_誤差總金額下限";
+            this.numTextBox_誤差總金額下限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差總金額下限.TabIndex = 13;
+            this.numTextBox_誤差總金額下限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差總金額下限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差總金額下限.小數點位置 = 0;
+            this.numTextBox_誤差總金額下限.音效 = false;
+            this.numTextBox_誤差總金額下限.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_CheckBox_誤差總金額計算
+            // 
+            this.plC_CheckBox_誤差總金額計算.AutoSize = true;
+            this.plC_CheckBox_誤差總金額計算.Bool = false;
+            this.plC_CheckBox_誤差總金額計算.Checked = true;
+            this.plC_CheckBox_誤差總金額計算.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_誤差總金額計算.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差總金額計算.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差總金額計算.Location = new System.Drawing.Point(14, 22);
+            this.plC_CheckBox_誤差總金額計算.Name = "plC_CheckBox_誤差總金額計算";
+            this.plC_CheckBox_誤差總金額計算.Size = new System.Drawing.Size(67, 28);
+            this.plC_CheckBox_誤差總金額計算.TabIndex = 11;
+            this.plC_CheckBox_誤差總金額計算.Text = "計算";
+            this.plC_CheckBox_誤差總金額計算.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_誤差總金額計算.文字內容 = "計算";
+            this.plC_CheckBox_誤差總金額計算.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差總金額計算.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差總金額計算.讀寫鎖住 = false;
+            this.plC_CheckBox_誤差總金額計算.音效 = false;
             // 
             // label6
             // 
@@ -226,9 +252,9 @@ namespace 智能藥庫系統
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.numTextBox5);
-            this.panel2.Controls.Add(this.numTextBox2);
-            this.panel2.Controls.Add(this.plC_CheckBox4);
+            this.panel2.Controls.Add(this.numTextBox_誤差百分率上限);
+            this.panel2.Controls.Add(this.numTextBox_誤差百分率下限);
+            this.panel2.Controls.Add(this.plC_CheckBox_誤差百分率計算);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label3);
@@ -239,25 +265,51 @@ namespace 智能藥庫系統
             this.panel2.Size = new System.Drawing.Size(794, 67);
             this.panel2.TabIndex = 3;
             // 
-            // plC_CheckBox4
+            // numTextBox_誤差百分率上限
             // 
-            this.plC_CheckBox4.AutoSize = true;
-            this.plC_CheckBox4.Bool = false;
-            this.plC_CheckBox4.Checked = true;
-            this.plC_CheckBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.plC_CheckBox4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox4.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox4.Location = new System.Drawing.Point(14, 22);
-            this.plC_CheckBox4.Name = "plC_CheckBox4";
-            this.plC_CheckBox4.Size = new System.Drawing.Size(67, 28);
-            this.plC_CheckBox4.TabIndex = 11;
-            this.plC_CheckBox4.Text = "計算";
-            this.plC_CheckBox4.UseVisualStyleBackColor = true;
-            this.plC_CheckBox4.文字內容 = "計算";
-            this.plC_CheckBox4.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox4.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox4.讀寫鎖住 = false;
-            this.plC_CheckBox4.音效 = true;
+            this.numTextBox_誤差百分率上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差百分率上限.Location = new System.Drawing.Point(555, 20);
+            this.numTextBox_誤差百分率上限.Name = "numTextBox_誤差百分率上限";
+            this.numTextBox_誤差百分率上限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差百分率上限.TabIndex = 14;
+            this.numTextBox_誤差百分率上限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差百分率上限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差百分率上限.小數點位置 = 0;
+            this.numTextBox_誤差百分率上限.音效 = false;
+            this.numTextBox_誤差百分率上限.顯示螢幕小鍵盤 = false;
+            // 
+            // numTextBox_誤差百分率下限
+            // 
+            this.numTextBox_誤差百分率下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差百分率下限.Location = new System.Drawing.Point(243, 20);
+            this.numTextBox_誤差百分率下限.Name = "numTextBox_誤差百分率下限";
+            this.numTextBox_誤差百分率下限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差百分率下限.TabIndex = 13;
+            this.numTextBox_誤差百分率下限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差百分率下限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差百分率下限.小數點位置 = 0;
+            this.numTextBox_誤差百分率下限.音效 = false;
+            this.numTextBox_誤差百分率下限.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_CheckBox_誤差百分率計算
+            // 
+            this.plC_CheckBox_誤差百分率計算.AutoSize = true;
+            this.plC_CheckBox_誤差百分率計算.Bool = false;
+            this.plC_CheckBox_誤差百分率計算.Checked = true;
+            this.plC_CheckBox_誤差百分率計算.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_誤差百分率計算.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差百分率計算.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差百分率計算.Location = new System.Drawing.Point(14, 22);
+            this.plC_CheckBox_誤差百分率計算.Name = "plC_CheckBox_誤差百分率計算";
+            this.plC_CheckBox_誤差百分率計算.Size = new System.Drawing.Size(67, 28);
+            this.plC_CheckBox_誤差百分率計算.TabIndex = 11;
+            this.plC_CheckBox_誤差百分率計算.Text = "計算";
+            this.plC_CheckBox_誤差百分率計算.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_誤差百分率計算.文字內容 = "計算";
+            this.plC_CheckBox_誤差百分率計算.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差百分率計算.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差百分率計算.讀寫鎖住 = false;
+            this.plC_CheckBox_誤差百分率計算.音效 = false;
             // 
             // label8
             // 
@@ -301,9 +353,9 @@ namespace 智能藥庫系統
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.numTextBox6);
-            this.panel3.Controls.Add(this.numTextBox3);
-            this.panel3.Controls.Add(this.plC_CheckBox3);
+            this.panel3.Controls.Add(this.numTextBox_誤差數量上限);
+            this.panel3.Controls.Add(this.numTextBox_誤差數量下限);
+            this.panel3.Controls.Add(this.plC_CheckBox_誤差數量計算);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label11);
@@ -314,25 +366,51 @@ namespace 智能藥庫系統
             this.panel3.Size = new System.Drawing.Size(794, 67);
             this.panel3.TabIndex = 4;
             // 
-            // plC_CheckBox3
+            // numTextBox_誤差數量上限
             // 
-            this.plC_CheckBox3.AutoSize = true;
-            this.plC_CheckBox3.Bool = false;
-            this.plC_CheckBox3.Checked = true;
-            this.plC_CheckBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.plC_CheckBox3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox3.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox3.Location = new System.Drawing.Point(14, 22);
-            this.plC_CheckBox3.Name = "plC_CheckBox3";
-            this.plC_CheckBox3.Size = new System.Drawing.Size(67, 28);
-            this.plC_CheckBox3.TabIndex = 10;
-            this.plC_CheckBox3.Text = "計算";
-            this.plC_CheckBox3.UseVisualStyleBackColor = true;
-            this.plC_CheckBox3.文字內容 = "計算";
-            this.plC_CheckBox3.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox3.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox3.讀寫鎖住 = false;
-            this.plC_CheckBox3.音效 = true;
+            this.numTextBox_誤差數量上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差數量上限.Location = new System.Drawing.Point(590, 20);
+            this.numTextBox_誤差數量上限.Name = "numTextBox_誤差數量上限";
+            this.numTextBox_誤差數量上限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差數量上限.TabIndex = 15;
+            this.numTextBox_誤差數量上限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差數量上限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差數量上限.小數點位置 = 0;
+            this.numTextBox_誤差數量上限.音效 = false;
+            this.numTextBox_誤差數量上限.顯示螢幕小鍵盤 = false;
+            // 
+            // numTextBox_誤差數量下限
+            // 
+            this.numTextBox_誤差數量下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差數量下限.Location = new System.Drawing.Point(243, 20);
+            this.numTextBox_誤差數量下限.Name = "numTextBox_誤差數量下限";
+            this.numTextBox_誤差數量下限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差數量下限.TabIndex = 14;
+            this.numTextBox_誤差數量下限.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_誤差數量下限.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_誤差數量下限.小數點位置 = 0;
+            this.numTextBox_誤差數量下限.音效 = false;
+            this.numTextBox_誤差數量下限.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_CheckBox_誤差數量計算
+            // 
+            this.plC_CheckBox_誤差數量計算.AutoSize = true;
+            this.plC_CheckBox_誤差數量計算.Bool = false;
+            this.plC_CheckBox_誤差數量計算.Checked = true;
+            this.plC_CheckBox_誤差數量計算.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_誤差數量計算.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差數量計算.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差數量計算.Location = new System.Drawing.Point(14, 22);
+            this.plC_CheckBox_誤差數量計算.Name = "plC_CheckBox_誤差數量計算";
+            this.plC_CheckBox_誤差數量計算.Size = new System.Drawing.Size(67, 28);
+            this.plC_CheckBox_誤差數量計算.TabIndex = 10;
+            this.plC_CheckBox_誤差數量計算.Text = "計算";
+            this.plC_CheckBox_誤差數量計算.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_誤差數量計算.文字內容 = "計算";
+            this.plC_CheckBox_誤差數量計算.文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_誤差數量計算.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_誤差數量計算.讀寫鎖住 = false;
+            this.plC_CheckBox_誤差數量計算.音效 = false;
             // 
             // label9
             // 
@@ -438,84 +516,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_確認.顯示 = false;
             this.plC_RJ_Button_確認.顯示狀態 = false;
             // 
-            // numTextBox1
-            // 
-            this.numTextBox1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox1.Location = new System.Drawing.Point(243, 20);
-            this.numTextBox1.Name = "numTextBox1";
-            this.numTextBox1.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox1.TabIndex = 13;
-            this.numTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox1.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox1.小數點位置 = 0;
-            this.numTextBox1.音效 = false;
-            this.numTextBox1.顯示螢幕小鍵盤 = false;
-            // 
-            // numTextBox2
-            // 
-            this.numTextBox2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox2.Location = new System.Drawing.Point(243, 20);
-            this.numTextBox2.Name = "numTextBox2";
-            this.numTextBox2.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox2.TabIndex = 13;
-            this.numTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox2.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox2.小數點位置 = 0;
-            this.numTextBox2.音效 = false;
-            this.numTextBox2.顯示螢幕小鍵盤 = false;
-            // 
-            // numTextBox3
-            // 
-            this.numTextBox3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox3.Location = new System.Drawing.Point(243, 20);
-            this.numTextBox3.Name = "numTextBox3";
-            this.numTextBox3.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox3.TabIndex = 14;
-            this.numTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox3.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox3.小數點位置 = 0;
-            this.numTextBox3.音效 = false;
-            this.numTextBox3.顯示螢幕小鍵盤 = false;
-            // 
-            // numTextBox4
-            // 
-            this.numTextBox4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox4.Location = new System.Drawing.Point(555, 20);
-            this.numTextBox4.Name = "numTextBox4";
-            this.numTextBox4.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox4.TabIndex = 14;
-            this.numTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox4.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox4.小數點位置 = 0;
-            this.numTextBox4.音效 = false;
-            this.numTextBox4.顯示螢幕小鍵盤 = false;
-            // 
-            // numTextBox5
-            // 
-            this.numTextBox5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox5.Location = new System.Drawing.Point(555, 20);
-            this.numTextBox5.Name = "numTextBox5";
-            this.numTextBox5.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox5.TabIndex = 14;
-            this.numTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox5.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox5.小數點位置 = 0;
-            this.numTextBox5.音效 = false;
-            this.numTextBox5.顯示螢幕小鍵盤 = false;
-            // 
-            // numTextBox6
-            // 
-            this.numTextBox6.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox6.Location = new System.Drawing.Point(590, 20);
-            this.numTextBox6.Name = "numTextBox6";
-            this.numTextBox6.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox6.TabIndex = 15;
-            this.numTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox6.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox6.小數點位置 = 0;
-            this.numTextBox6.音效 = false;
-            this.numTextBox6.顯示螢幕小鍵盤 = false;
-            // 
             // Dialog_盤點單覆盤建議設定
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -568,16 +568,16 @@ namespace 智能藥庫系統
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private MyUI.PLC_CheckBox plC_CheckBox5;
-        private MyUI.PLC_CheckBox plC_CheckBox4;
-        private MyUI.PLC_CheckBox plC_CheckBox3;
+        private MyUI.PLC_CheckBox plC_CheckBox_誤差總金額計算;
+        private MyUI.PLC_CheckBox plC_CheckBox_誤差百分率計算;
+        private MyUI.PLC_CheckBox plC_CheckBox_誤差數量計算;
         private System.Windows.Forms.Panel panel4;
         private MyUI.PLC_RJ_Button plC_RJ_Button_確認;
-        private MyUI.NumTextBox numTextBox4;
-        private MyUI.NumTextBox numTextBox1;
-        private MyUI.NumTextBox numTextBox5;
-        private MyUI.NumTextBox numTextBox2;
-        private MyUI.NumTextBox numTextBox6;
-        private MyUI.NumTextBox numTextBox3;
+        private MyUI.NumTextBox numTextBox_誤差總金額上限;
+        private MyUI.NumTextBox numTextBox_誤差總金額下限;
+        private MyUI.NumTextBox numTextBox_誤差百分率上限;
+        private MyUI.NumTextBox numTextBox_誤差百分率下限;
+        private MyUI.NumTextBox numTextBox_誤差數量上限;
+        private MyUI.NumTextBox numTextBox_誤差數量下限;
     }
 }

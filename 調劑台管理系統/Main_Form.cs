@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.14")]
-[assembly: AssemblyFileVersion("1.2.2.14")]
+[assembly: AssemblyVersion("1.2.2.15")]
+[assembly: AssemblyFileVersion("1.2.2.15")]
 namespace 調劑台管理系統
 {
 
@@ -83,12 +83,16 @@ namespace 調劑台管理系統
 
         static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
+        static public PLC_Device PLC_Device_面板於調劑結束更新 = new PLC_Device("S5030");
+        static public PLC_Device PLC_Device_面板於過帳後更新 = new PLC_Device("S5031");
+
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
         PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
         PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
+        
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -406,6 +410,10 @@ namespace 調劑台管理系統
 
                 this.plC_ScreenPage_Main.TabChangeEvent += PlC_ScreenPage_Main_TabChangeEvent;
                 this.plC_ScreenPage_調劑樣式.Resize += PlC_ScreenPage_調劑樣式_Resize;
+
+                plC_CheckBox_面板於調劑結束更新.CheckedChanged += PlC_CheckBox_面板於調劑結束更新_CheckedChanged;
+                plC_CheckBox_面板於過帳後更新.CheckedChanged += PlC_CheckBox_面板於過帳後更新_CheckedChanged;
+
                 this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
                 this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
             }
@@ -714,6 +722,23 @@ namespace 調劑台管理系統
         {
             Basic.Screen.CloseConsole();
         }
+        private void PlC_CheckBox_面板於過帳後更新_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                plC_CheckBox_面板於調劑結束更新.Checked = false;
+            }
+        }
+        private void PlC_CheckBox_面板於調劑結束更新_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                plC_CheckBox_面板於過帳後更新.Checked = false;
+            }
+        }
+     
         #endregion
         #region Function
         private void RFID_Iint()

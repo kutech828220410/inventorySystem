@@ -18,7 +18,12 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-
+        public enum enum_儲位總庫存表
+        {
+            藥碼,
+            藥名,
+            庫存,
+        }
 
         private void Program_藥品資料_儲位總庫存表_Init()
         {
@@ -203,10 +208,9 @@ namespace 調劑台管理系統
             {
                 if (saveFileDialog_SaveExcel.ShowDialog(this) == DialogResult.OK)
                 {
-
                     DataTable datatable = new DataTable();
                     datatable = sqL_DataGridView_藥品資料_儲位總庫存表.GetDataTable(false);
-                    CSVHelper.SaveFile(datatable, saveFileDialog_SaveExcel.FileName);
+                    MyOffice.ExcelClass.NPOI_SaveFile(datatable, saveFileDialog_SaveExcel.FileName, new Enum[] { enum_藥品資料_藥檔資料.庫存 });
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
             }));

@@ -28,6 +28,24 @@ namespace HIS_DB_Lib
         StockRecord_ServerName,
         [Description("StockRecord_ServerType,VARCHAR,30,None")]
         StockRecord_ServerType,
+        [Description("誤差總金額上限,VARCHAR,30,None")]
+        誤差總金額上限,
+        [Description("誤差總金額下限,VARCHAR,30,None")]
+        誤差總金額下限,
+        [Description("誤差總金額致能,VARCHAR,30,None")]
+        誤差總金額致能,
+        [Description("誤差百分率上限,VARCHAR,30,None")]
+        誤差百分率上限,
+        [Description("誤差百分率下限,VARCHAR,30,None")]
+        誤差百分率下限,
+        [Description("誤差百分率致能,VARCHAR,30,None")]
+        誤差百分率致能,
+        [Description("誤差數量上限,VARCHAR,30,None")]
+        誤差數量上限,
+        [Description("誤差數量下限,VARCHAR,30,None")]
+        誤差數量下限,
+        [Description("誤差數量致能,VARCHAR,30,None")]
+        誤差數量致能,
         [Description("建表人,VARCHAR,30,None")]
         建表人,
         [Description("建表時間,DATETIME,50,INDEX")]
@@ -89,7 +107,22 @@ namespace HIS_DB_Lib
         [Description("加入時間,DATETIME,50,INDEX")]
         加入時間,
     }
-
+    [EnumDescription("inv_combinelist_price")]
+    public enum enum_inv_combinelist_price
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("合併單號,VARCHAR,30,INDEX")]
+        合併單號,
+        [Description("藥碼,VARCHAR,30,INDEX")]
+        藥碼,
+        [Description("藥名,VARCHAR,300,NONE")]
+        藥名,
+        [Description("單價,VARCHAR,30,NONE")]
+        單價,
+        [Description("加入時間,DATETIME,50,INDEX")]
+        加入時間,
+    }
     /// <summary>
     /// 合併總單
     /// </summary>
@@ -152,6 +185,55 @@ namespace HIS_DB_Lib
         public string 消耗量結束時間 { get; set; }
 
         /// <summary>
+        /// 誤差總金額上限
+        /// </summary>
+        [JsonPropertyName("MaxTotalErrorAmount")]
+        public string 誤差總金額上限 { get; set; }
+        /// <summary>
+        /// 誤差總金額下限
+        /// </summary>
+        [JsonPropertyName("MinTotalErrorAmount")]
+        public string 誤差總金額下限 { get; set; }
+        /// <summary>
+        /// 誤差總金額致能
+        /// </summary>
+        [JsonPropertyName("TotalErrorAmountEnable")]
+        public string 誤差總金額致能 { get; set; }
+
+        /// <summary>
+        /// 誤差百分率上限
+        /// </summary>
+        [JsonPropertyName("MaxErrorPercentage")]
+        public string 誤差百分率上限 { get; set; }
+        /// <summary>
+        /// 誤差百分率下限
+        /// </summary>
+        [JsonPropertyName("MinErrorPercentage")]
+        public string 誤差百分率下限 { get; set; }
+        /// <summary>
+        /// 誤差百分率致能
+        /// </summary>
+        [JsonPropertyName("ErrorPercentageEnable")]
+        public string 誤差百分率致能 { get; set; }
+
+
+        /// <summary>
+        /// 誤差數量上限
+        /// </summary>
+        [JsonPropertyName("MaxErrorCount")]
+        public string 誤差數量上限 { get; set; }
+        /// <summary>
+        /// 誤差數量下限
+        /// </summary>
+        [JsonPropertyName("MinErrorCount")]
+        public string 誤差數量下限 { get; set; }
+        /// <summary>
+        /// 誤差數量致能
+        /// </summary>
+        [JsonPropertyName("ErrorCountEnable")]
+        public string 誤差數量致能 { get; set; }
+
+        /// <summary>
         /// 合併單明細
         /// </summary>
         [JsonPropertyName("records_Ary")]
@@ -191,7 +273,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("consumptions")]
         public List<inv_combinelist_consumption_Class> Consumptions { get => consumptions; set => consumptions = value; }
+
         private List<inv_combinelist_consumption_Class> consumptions = new List<inv_combinelist_consumption_Class>();
+
+        /// <summary>
+        /// 參考單價
+        /// </summary>
+        [JsonPropertyName("medPrices")]
+        public List<inv_combinelist_price_Class> MedPrices { get => medPrices; set => medPrices = value; }
+        private List<inv_combinelist_price_Class> medPrices = new List<inv_combinelist_price_Class>();
+
 
         public bool IsHaveRecord(inventoryClass.creat creat)
         {
@@ -231,6 +322,14 @@ namespace HIS_DB_Lib
                                                             select temp).ToList();
             if (stocks_buf.Count == 0) return null;
             return stocks_buf[0];
+        }
+        public inv_combinelist_price_Class GetMedPriceByCode(string code)
+        {
+            List<inv_combinelist_price_Class> medPrice_buf = (from temp in medPrices
+                                                              where temp.藥碼 == code
+                                                            select temp).ToList();
+            if (medPrice_buf.Count == 0) return null;
+            return medPrice_buf[0];
         }
         public inv_combinelist_consumption_Class GetConsumptionsByCode(string code)
         {
@@ -490,6 +589,48 @@ namespace HIS_DB_Lib
             List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = returnData.Data.ObjToClass<List<inv_combinelist_stock_Class>>();
             return inv_Combinelist_Stock_Classes;
         }
+
+        static public void add_medPrices_by_SN(string API_Server, string SN, List<inv_combinelist_price_Class> inv_Combinelist_Price_Classes)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/add_medPrices_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{SN}";
+            returnData.Data = inv_Combinelist_Price_Classes;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
+        static public List<inv_combinelist_price_Class> get_medPrices_by_SN(string API_Server, string SN)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_medPrices_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{SN}";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<inv_combinelist_price_Class> inv_Combinelist_Stock_Classes = returnData.Data.ObjToClass<List<inv_combinelist_price_Class>>();
+            return inv_Combinelist_Stock_Classes;
+        }
     }
 
     public static class inv_combinelistClassMethod
@@ -556,6 +697,38 @@ namespace HIS_DB_Lib
                 return dictionary[code];
             }
             return new List<inv_combinelist_consumption_Class>();
+        }
+
+        static public System.Collections.Generic.Dictionary<string, List<inv_combinelist_price_Class>> CoverToDictionaryByCode(this List<inv_combinelist_price_Class> inv_Combinelist_price_Classes)
+        {
+            Dictionary<string, List<inv_combinelist_price_Class>> dictionary = new Dictionary<string, List<inv_combinelist_price_Class>>();
+
+            foreach (var item in inv_Combinelist_price_Classes)
+            {
+                string key = item.藥碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<inv_combinelist_price_Class> values = new List<inv_combinelist_price_Class> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<inv_combinelist_price_Class> SortDictionaryByCode(this System.Collections.Generic.Dictionary<string, List<inv_combinelist_price_Class>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<inv_combinelist_price_Class>();
         }
     }
     /// <summary>
@@ -661,6 +834,43 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("QTY")]
         public string 數量 { get; set; }
+        /// <summary>
+        /// 加入時間
+        /// </summary>
+        [JsonPropertyName("ADD_TIME")]
+        public string 加入時間 { get; set; }
+
+    }
+    /// <summary>
+    /// 合併單藥品單價
+    /// </summary>
+    public class inv_combinelist_price_Class
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 合併單號
+        /// </summary>
+        [JsonPropertyName("SN")]
+        public string 合併單號 { get; set; }
+        /// <summary>
+        /// 藥碼
+        /// </summary>
+        [JsonPropertyName("CODE")]
+        public string 藥碼 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("NAME")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 數量
+        /// </summary>
+        [JsonPropertyName("price")]
+        public string 單價 { get; set; }
         /// <summary>
         /// 加入時間
         /// </summary>

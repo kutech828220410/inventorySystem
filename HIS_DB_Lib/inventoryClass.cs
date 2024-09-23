@@ -35,6 +35,8 @@ namespace HIS_DB_Lib
         誤差量,
         [Description("誤差金額,VARCHAR,50,NONE")]
         誤差金額,
+        [Description("誤差百分率,VARCHAR,50,NONE")]
+        誤差百分率, 
         [Description("註記,VARCHAR,50,NONE")]
         註記,
     }

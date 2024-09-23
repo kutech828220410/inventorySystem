@@ -51,7 +51,11 @@ namespace 智能藥庫系統
 
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
             this.plC_RJ_Button_新建.MouseDownEvent += PlC_RJ_Button_新建_MouseDownEvent;
-            this.plC_RJ_Button_庫存設定.MouseDownEvent += PlC_RJ_Button_庫存設定_MouseDownEvent; ;
+            this.plC_RJ_Button_庫存設定.MouseDownEvent += PlC_RJ_Button_庫存設定_MouseDownEvent;
+            this.plC_RJ_Button_單價設定.MouseDownEvent += PlC_RJ_Button_單價設定_MouseDownEvent;
+
+            this.plC_RJ_Button_覆盤設定.MouseDownEvent += PlC_RJ_Button_覆盤設定_MouseDownEvent;
+
             this.plC_RJ_Button_選擇.MouseDownEvent += PlC_RJ_Button_選擇_MouseDownEvent;
             this.plC_RJ_Button_刪除.MouseDownEvent += PlC_RJ_Button_刪除_MouseDownEvent;
             this.plC_RJ_Button_下載報表.MouseDownEvent += PlC_RJ_Button_下載報表_MouseDownEvent;
@@ -60,6 +64,8 @@ namespace 智能藥庫系統
             dateTimeIntervelPicker_建表日期.SureClick += DateTimeIntervelPicker_建表日期_SureClick;
             this.comboBox_inv_Combinelist.SelectedIndexChanged += ComboBox_inv_Combinelist_SelectedIndexChanged;
         }
+
+
 
         private void Function_RereshUI(inv_combinelistClass Inv_CombinelistClass, stockRecord stockRecord)
         {
@@ -139,21 +145,26 @@ namespace 智能藥庫系統
         {
             sqL_DataGridView_盤點總表.RowsHeight = 35;
             sqL_DataGridView_盤點總表.Init(new Table(new enum_盤點定盤_Excel()));
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.藥碼);
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.料號);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.藥碼);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.料號);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.藥名);
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.註記);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.誤差百分率);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.單價);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.庫存量);
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.庫存金額);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.庫存金額);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.消耗量);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.盤點量);
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.結存金額);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.結存金額);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.覆盤量);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.誤差量);
-            sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.誤差金額);
+            sqL_DataGridView_盤點總表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_盤點定盤_Excel.誤差金額);
 
-
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.藥碼);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.庫存金額);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.結存金額);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.覆盤量);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.誤差量);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.誤差金額);
 
             dateTimeIntervelPicker_建表日期.StartTime = DateTime.Now.GetStartDate().AddMonths(-1);
             dateTimeIntervelPicker_建表日期.EndTime = DateTime.Now.GetEndDate().AddMonths(0);
@@ -218,6 +229,24 @@ namespace 智能藥庫系統
 
             Dialog_盤點單合併_庫存設定 dialog_盤點單合併_庫存設定 = new Dialog_盤點單合併_庫存設定(SN);
             dialog_盤點單合併_庫存設定.ShowDialog();
+        }
+        private void PlC_RJ_Button_單價設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = this.comboBox_inv_Combinelist.GetComboBoxText();
+            if (text.StringIsEmpty()) return;
+            string SN = RemoveParentheses(text);
+
+            Dialog_盤點單合併_單價設定 dialog_盤點單合併_單價設定 = new Dialog_盤點單合併_單價設定(SN);
+            dialog_盤點單合併_單價設定.ShowDialog();
+        }
+        private void PlC_RJ_Button_覆盤設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = this.comboBox_inv_Combinelist.GetComboBoxText();
+            if (text.StringIsEmpty()) return;
+            string SN = RemoveParentheses(text);
+            Dialog_盤點單覆盤建議設定 dialog_盤點單覆盤建議設定 = new Dialog_盤點單覆盤建議設定(SN);
+            if (dialog_盤點單覆盤建議設定.ShowDialog() != DialogResult.Yes) return;
+            inv_combinelistClass.inv_creat_update(Main_Form.API_Server, dialog_盤點單覆盤建議設定.Value);
         }
         private void PlC_RJ_Button_刪除_MouseDownEvent(MouseEventArgs mevent)
         {

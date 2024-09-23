@@ -314,7 +314,7 @@ namespace 智能藥庫系統
             // 
             // saveFileDialog_SaveExcel
             // 
-            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
+            this.saveFileDialog_SaveExcel.DefaultExt = "xlsx";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xls, *.xlsx)|*.xls;*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // Dialog_盤點單匯入

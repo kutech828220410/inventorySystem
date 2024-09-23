@@ -1441,7 +1441,7 @@ namespace 調劑台管理系統
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
                                     this.storageUI_EPD_266.DrawToEpd_UDP(storage);
-                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                                    //this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                                 }                        
                             }));
                      
@@ -1458,11 +1458,7 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-                                //if (!plC_CheckBox_測試模式.Checked)
-                                //{
-                                //    this.drawerUI_EPD_583.Set_LED_UDP(drawer);
-                                //}
-                       
+                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);  
                             }));
                     
                             list_IP.Add(IP);

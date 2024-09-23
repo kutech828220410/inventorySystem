@@ -1190,6 +1190,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.plC_RJ_Pannel7 = new MyUI.PLC_RJ_Pannel();
+            this.plC_CheckBox_面板於過帳後更新 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_面板於調劑結束更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_申領_不需輸入申領量 = new MyUI.PLC_CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.plC_CheckBox4 = new MyUI.PLC_CheckBox();
@@ -4753,7 +4755,7 @@
             this.plC_RJ_Button_病歷號輸入.Size = new System.Drawing.Size(102, 102);
             this.plC_RJ_Button_病歷號輸入.State = false;
             this.plC_RJ_Button_病歷號輸入.TabIndex = 131;
-            this.plC_RJ_Button_病歷號輸入.Text = "x";
+            this.plC_RJ_Button_病歷號輸入.Text = "病歷號輸入";
             this.plC_RJ_Button_病歷號輸入.TextColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_病歷號輸入.TextHeight = 35;
             this.plC_RJ_Button_病歷號輸入.UseVisualStyleBackColor = false;
@@ -34128,6 +34130,8 @@
             this.plC_RJ_Pannel7.BorderColor = System.Drawing.Color.Black;
             this.plC_RJ_Pannel7.BorderRadius = 2;
             this.plC_RJ_Pannel7.BorderSize = 2;
+            this.plC_RJ_Pannel7.Controls.Add(this.plC_CheckBox_面板於過帳後更新);
+            this.plC_RJ_Pannel7.Controls.Add(this.plC_CheckBox_面板於調劑結束更新);
             this.plC_RJ_Pannel7.Controls.Add(this.plC_CheckBox_申領_不需輸入申領量);
             this.plC_RJ_Pannel7.Controls.Add(this.groupBox7);
             this.plC_RJ_Pannel7.Controls.Add(this.groupBox9);
@@ -34144,6 +34148,46 @@
             this.plC_RJ_Pannel7.ShadowSize = 3;
             this.plC_RJ_Pannel7.Size = new System.Drawing.Size(1639, 355);
             this.plC_RJ_Pannel7.TabIndex = 216;
+            // 
+            // plC_CheckBox_面板於過帳後更新
+            // 
+            this.plC_CheckBox_面板於過帳後更新.AutoSize = true;
+            this.plC_CheckBox_面板於過帳後更新.Bool = false;
+            this.plC_CheckBox_面板於過帳後更新.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_面板於過帳後更新.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_面板於過帳後更新.Location = new System.Drawing.Point(22, 121);
+            this.plC_CheckBox_面板於過帳後更新.Name = "plC_CheckBox_面板於過帳後更新";
+            this.plC_CheckBox_面板於過帳後更新.Size = new System.Drawing.Size(165, 20);
+            this.plC_CheckBox_面板於過帳後更新.TabIndex = 221;
+            this.plC_CheckBox_面板於過帳後更新.Text = "面板於[過帳後]更新";
+            this.plC_CheckBox_面板於過帳後更新.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_面板於過帳後更新.寫入元件位置 = "S5031";
+            this.plC_CheckBox_面板於過帳後更新.文字內容 = "面板於[過帳後]更新";
+            this.plC_CheckBox_面板於過帳後更新.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_面板於過帳後更新.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_面板於過帳後更新.讀取元件位置 = "S5031";
+            this.plC_CheckBox_面板於過帳後更新.讀寫鎖住 = false;
+            this.plC_CheckBox_面板於過帳後更新.音效 = false;
+            // 
+            // plC_CheckBox_面板於調劑結束更新
+            // 
+            this.plC_CheckBox_面板於調劑結束更新.AutoSize = true;
+            this.plC_CheckBox_面板於調劑結束更新.Bool = false;
+            this.plC_CheckBox_面板於調劑結束更新.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_面板於調劑結束更新.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_面板於調劑結束更新.Location = new System.Drawing.Point(22, 95);
+            this.plC_CheckBox_面板於調劑結束更新.Name = "plC_CheckBox_面板於調劑結束更新";
+            this.plC_CheckBox_面板於調劑結束更新.Size = new System.Drawing.Size(181, 20);
+            this.plC_CheckBox_面板於調劑結束更新.TabIndex = 220;
+            this.plC_CheckBox_面板於調劑結束更新.Text = "面板於[調劑結束]更新";
+            this.plC_CheckBox_面板於調劑結束更新.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_面板於調劑結束更新.寫入元件位置 = "S5030";
+            this.plC_CheckBox_面板於調劑結束更新.文字內容 = "面板於[調劑結束]更新";
+            this.plC_CheckBox_面板於調劑結束更新.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_面板於調劑結束更新.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_面板於調劑結束更新.讀取元件位置 = "S5030";
+            this.plC_CheckBox_面板於調劑結束更新.讀寫鎖住 = false;
+            this.plC_CheckBox_面板於調劑結束更新.音效 = false;
             // 
             // plC_CheckBox_申領_不需輸入申領量
             // 
@@ -46405,6 +46449,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Panel panel151;
+        private MyUI.PLC_CheckBox plC_CheckBox_面板於調劑結束更新;
+        private MyUI.PLC_CheckBox plC_CheckBox_面板於過帳後更新;
     }
 }
 

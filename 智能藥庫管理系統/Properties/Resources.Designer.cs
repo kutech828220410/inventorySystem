@@ -233,6 +233,16 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap medicine_price_setting_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-price-setting-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap medicine_shift_handover_checklist__add_data_plus_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medicine-shift-handover-checklist--add-data-plus-removebg-preview", resourceCulture);
@@ -346,6 +356,16 @@ namespace 智能藥庫系統.Properties {
         internal static System.Drawing.Bitmap trash_512 {
             get {
                 object obj = ResourceManager.GetObject("trash-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 設定 {
+            get {
+                object obj = ResourceManager.GetObject("設定", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

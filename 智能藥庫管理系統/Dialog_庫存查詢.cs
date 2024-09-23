@@ -170,7 +170,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥局_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_藥局_效期及批號_新增_MouseDownEvent;
             this.plC_RJ_Button_藥局_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_藥局_效期及批號_刪除_MouseDownEvent;
             this.plC_RJ_Button_藥局_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_藥局_效期及批號_修改_MouseDownEvent;
-
             IsShown = true;
         }
 

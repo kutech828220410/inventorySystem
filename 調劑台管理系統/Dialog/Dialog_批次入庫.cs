@@ -111,9 +111,7 @@ namespace 調劑台管理系統
                 DateTime dateTime_st = dateTimeIntervelPicker_建表日期.StartTime;
                 DateTime dateTime_end = dateTimeIntervelPicker_建表日期.EndTime;
                 List<batch_inventory_importClass> batch_Inventory_ImportClasses = new List<batch_inventory_importClass>();
-                batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
-                                                 where temp.庫別 == Main_Form.ServerName
-                                                 select temp).ToList();
+      
 
                 List<object[]> list_value = new List<object[]>();
                 if (rJ_RatioButton_建表時間.Checked)
@@ -144,11 +142,17 @@ namespace 調劑台管理系統
 
                     list_value = batch_Inventory_ImportClasses.ClassToSQL<batch_inventory_importClass, enum_batch_inventory_import>();
                 }
+                batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
+                                                 where temp.庫別 == Main_Form.ServerName
+                                                 select temp).ToList();
+
                 if (list_value.Count == 0)
                 {
                     MyMessageBox.ShowDialog("查無資料");
                     return;
                 }
+  
+
 
                 sqL_DataGridView_批次入庫.RefreshGrid(list_value);
             }
