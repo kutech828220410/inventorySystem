@@ -973,10 +973,11 @@ namespace HIS_WebApi
                     string code = inv_Combinelist_Stock_Classes[i].藥碼;
                     medclass = medClasses_cloud.SerchByBarcode(code);
                     if (medclass == null) continue;
+                    string 料號 = medclass.料號;
                     string 藥碼 = medclass.藥品碼;
                     string 藥名 = medclass.藥品名稱;
                     inv_Combinelist_Stock_Classes_buf = (from temp in inv_Combinelist_Stock_Classes
-                                                         where temp.藥碼 == 藥碼
+                                                         where temp.藥碼 == 藥碼 || temp.藥碼 == 料號
                                                          select temp).ToList();
                     inv_combinelist_stock_Class inv_Combinelist_Stock_Class = new inv_combinelist_stock_Class();
                     inv_Combinelist_Stock_Class.GUID = Guid.NewGuid().ToString();

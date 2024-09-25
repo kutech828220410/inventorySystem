@@ -38,6 +38,36 @@ namespace 智能藥庫系統
 
         private void PlC_RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
+            if(numTextBox_誤差總金額下限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
+            if (numTextBox_誤差總金額上限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
+            if (numTextBox_誤差百分率下限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
+            if (numTextBox_誤差百分率上限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
+            if (numTextBox_誤差數量下限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
+            if (numTextBox_誤差數量上限.Text.StringIsDouble() == false)
+            {
+                MyMessageBox.ShowDialog("請輸入合法數字");
+                return;
+            }
             DialogResult = DialogResult.Yes;
 
             this.inv_CombinelistClass.誤差總金額致能 = plC_CheckBox_誤差總金額計算.Checked.ToString();

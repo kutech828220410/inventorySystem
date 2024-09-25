@@ -165,6 +165,8 @@ namespace 智能藥庫系統
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.覆盤量);
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.誤差量);
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.誤差金額);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.註記);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.盤點量);
 
             dateTimeIntervelPicker_建表日期.StartTime = DateTime.Now.GetStartDate().AddMonths(-1);
             dateTimeIntervelPicker_建表日期.EndTime = DateTime.Now.GetEndDate().AddMonths(0);

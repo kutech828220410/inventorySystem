@@ -2385,10 +2385,7 @@ namespace HIS_WebApi
                     returnData.Result = "ServerSetting VM端設定異常!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<object[]> list_medClasses = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
-                List<object[]> list_medClasses_buf = new List<object[]>();
-                Dictionary<object, List<object[]>> list_medClasses_藥碼_keys = list_medClasses.ConvertToDictionary((int)enum_雲端藥檔.藥品碼);
-                Dictionary<object, List<object[]>> list_medClasses_料號_keys = list_medClasses.ConvertToDictionary((int)enum_雲端藥檔.料號);
+ 
 
                 returnData.Method = "POST_excel_upload";
                 var formFile = Request.Form.Files.FirstOrDefault();
@@ -2399,6 +2396,9 @@ namespace HIS_WebApi
                     returnData.Result = "文件不得為空";
                     return returnData.JsonSerializationt(true);
                 }
+                List<medClass> medClasses_cloud = medClass.get_med_cloud("http://127.0.0.1:4433");
+                medClass medclass = null;
+
                 string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 inventoryClass.creat creat = new inventoryClass.creat();
@@ -2433,7 +2433,6 @@ namespace HIS_WebApi
                     string 盤點量 = "";
                     for (int i = 0; i < list_value.Count; i++)
                     {
-                        list_medClasses_buf.Clear();
 
                         inventoryClass.content content = new inventoryClass.content();
                         content.GUID = Guid.NewGuid().ToString();
@@ -2442,43 +2441,25 @@ namespace HIS_WebApi
                         content.藥品碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
                         content.儲位名稱 = list_value[i][(int)enum_盤點單上傳_Excel.儲位名稱].ObjectToString();
                         盤點量 = list_value[i][(int)enum_盤點單上傳_Excel.盤點量].ObjectToString();
-                        if (content.藥品碼.StringIsEmpty() == false)
+ 
+                        medclass = medClasses_cloud.SerchByBarcode(藥碼);
+                        if (medclass == null) continue;
+                        content.藥品碼 = medclass.藥品碼.ObjectToString();
+                        content.料號 = medclass.料號.ObjectToString();
+                        content.藥品名稱 = medclass.藥品名稱.ObjectToString();
+                        content.中文名稱 = medclass.中文名稱.ObjectToString();
+                        content.包裝單位 = medclass.包裝單位.ObjectToString();
+                        if (盤點量.StringIsDouble())
                         {
-                            list_medClasses_buf = list_medClasses_藥碼_keys.GetRows(content.藥品碼);
-                        }
-                        if (list_medClasses_buf.Count == 0)
-                        {
-                            if (content.料號.StringIsEmpty() == false)
-                            {
-                                list_medClasses_buf = list_medClasses_料號_keys.GetRows(content.藥品碼);
-                            }
-                        }
-                        if(list_medClasses_buf.Count > 0)
-                        {
-                            content.藥品碼 = list_medClasses_buf[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
-                            content.料號 = list_medClasses_buf[0][(int)enum_雲端藥檔.料號].ObjectToString();
-                            content.藥品名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
-                            content.中文名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
-                            content.包裝單位 = list_medClasses_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
-                            if(盤點量.StringIsDouble())
-                            {
-                                inventoryClass.sub_content sub_Content = new inventoryClass.sub_content();
-                                sub_Content.操作人 = "系統";
-                                sub_Content.藥品碼 = content.藥品碼;
-                                sub_Content.料號 = content.料號;
-                                sub_Content.盤點量 = 盤點量;
-                                content.Sub_content.Add(sub_Content);
+                            inventoryClass.sub_content sub_Content = new inventoryClass.sub_content();
+                            sub_Content.操作人 = "系統";
+                            sub_Content.藥品碼 = content.藥品碼;
+                            sub_Content.料號 = content.料號;
+                            sub_Content.盤點量 = 盤點量;
+                            content.Sub_content.Add(sub_Content);
 
-                            }
-                            creat.Contents.Add(content);
                         }
-                        else
-                        {
-                            content.藥品名稱 = "--------------------------------";
-                            content.中文名稱 = "--------------------------------";
-                            error += $"({content.藥品碼})\n";
-                            creat.Contents.Add(content);
-                        }
+                        creat.Contents.Add(content);
                     }
                 }
                 returnData.Data = creat;
