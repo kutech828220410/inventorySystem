@@ -124,7 +124,7 @@ namespace HIS_WebApi._API_TextVision
 
                 List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
                 string API = serverSettingClass_API[0].Server;
-
+                string API_AI = API.Substring(0, API.Length - 4) + "3000";
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
                 input_textVision[0].GUID = Guid.NewGuid().ToString();
@@ -132,8 +132,7 @@ namespace HIS_WebApi._API_TextVision
 
                 List<object[]> sql_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.AddRows(null, sql_textVision);
-
-                returnData returnData_AI = textVisionClass.ai_analyze(input_textVision);
+                returnData returnData_AI = textVisionClass.ai_analyze(API_AI,input_textVision);
                 if(returnData_AI == null)
                 {
                     returnData.Code = 200;
@@ -487,6 +486,8 @@ namespace HIS_WebApi._API_TextVision
                 return returnData.JsonSerializationt(true);
             }
         }
+        
+        
 
 
 

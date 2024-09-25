@@ -178,9 +178,9 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("qty_conf")]
         public string 數量信心分數 { get; set; }
-        static public returnData ai_analyze(List<textVisionClass> textVisionClasses)
+        static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
-            string url = $"http://220.135.128.247:3000/PO_Vision";
+            string url = $"{API}/PO_Vision";
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;
