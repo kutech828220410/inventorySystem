@@ -1370,7 +1370,10 @@
             this.rfiD_UI = new H_Pannel_lib.RFID_UI();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.storageUI_WT32 = new H_Pannel_lib.StorageUI_WT32();
+            this.tabPage36 = new System.Windows.Forms.TabPage();
+            this.storageUI_LCD_114 = new H_Pannel_lib.StorageUI_LCD_114();
             this.panel_系統_Pannel設定 = new System.Windows.Forms.Panel();
+            this.plC_RJ_ScreenButton27 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton12 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton13 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton8 = new MyUI.PLC_RJ_ScreenButton();
@@ -1972,6 +1975,7 @@
             this.tabPage31.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage36.SuspendLayout();
             this.panel_系統_Pannel設定.SuspendLayout();
             this.tabPage26.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -37304,6 +37308,7 @@
             this.plC_ScreenPage_系統_Pannel設定.Controls.Add(this.tabPage31);
             this.plC_ScreenPage_系統_Pannel設定.Controls.Add(this.tabPage5);
             this.plC_ScreenPage_系統_Pannel設定.Controls.Add(this.tabPage6);
+            this.plC_ScreenPage_系統_Pannel設定.Controls.Add(this.tabPage36);
             this.plC_ScreenPage_系統_Pannel設定.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_系統_Pannel設定.ForekColor = System.Drawing.Color.Black;
             this.plC_ScreenPage_系統_Pannel設定.ItemSize = new System.Drawing.Size(54, 21);
@@ -37541,8 +37546,46 @@
             this.storageUI_WT32.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("storageUI_WT32.UDP_ServerPorts")));
             this.storageUI_WT32.UserName = "root";
             // 
+            // tabPage36
+            // 
+            this.tabPage36.Controls.Add(this.storageUI_LCD_114);
+            this.tabPage36.Location = new System.Drawing.Point(4, 25);
+            this.tabPage36.Name = "tabPage36";
+            this.tabPage36.Size = new System.Drawing.Size(1637, 872);
+            this.tabPage36.TabIndex = 6;
+            this.tabPage36.Text = "LCD114";
+            this.tabPage36.UseVisualStyleBackColor = true;
+            // 
+            // storageUI_LCD_114
+            // 
+            this.storageUI_LCD_114._Password = "";
+            this.storageUI_LCD_114.DataBaseName = "TEST";
+            this.storageUI_LCD_114.DNS = "0.0.0.0";
+            this.storageUI_LCD_114.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.storageUI_LCD_114.Gateway = "0.0.0.0";
+            this.storageUI_LCD_114.IP = "localhost";
+            this.storageUI_LCD_114.IP_Adress = "0.0.0.0";
+            this.storageUI_LCD_114.Local_Port = "0";
+            this.storageUI_LCD_114.Location = new System.Drawing.Point(0, 0);
+            this.storageUI_LCD_114.Name = "storageUI_LCD_114";
+            this.storageUI_LCD_114.Password = "user82822040";
+            this.storageUI_LCD_114.Port = ((uint)(3306u));
+            this.storageUI_LCD_114.Server_IP_Adress = "0.0.0.0";
+            this.storageUI_LCD_114.Server_Port = "0";
+            this.storageUI_LCD_114.Size = new System.Drawing.Size(1637, 872);
+            this.storageUI_LCD_114.SSID = "";
+            this.storageUI_LCD_114.Station = "0";
+            this.storageUI_LCD_114.Subnet = "0.0.0.0";
+            this.storageUI_LCD_114.TabIndex = 0;
+            this.storageUI_LCD_114.TableName = "lcd114_Jsonstring";
+            this.storageUI_LCD_114.UDP_LocalPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("storageUI_LCD_114.UDP_LocalPorts")));
+            this.storageUI_LCD_114.UDP_SendTime = "0";
+            this.storageUI_LCD_114.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("storageUI_LCD_114.UDP_ServerPorts")));
+            this.storageUI_LCD_114.UserName = "root";
+            // 
             // panel_系統_Pannel設定
             // 
+            this.panel_系統_Pannel設定.Controls.Add(this.plC_RJ_ScreenButton27);
             this.panel_系統_Pannel設定.Controls.Add(this.plC_RJ_ScreenButton12);
             this.panel_系統_Pannel設定.Controls.Add(this.plC_RJ_ScreenButton13);
             this.panel_系統_Pannel設定.Controls.Add(this.plC_RJ_ScreenButton8);
@@ -37554,6 +37597,45 @@
             this.panel_系統_Pannel設定.Name = "panel_系統_Pannel設定";
             this.panel_系統_Pannel設定.Size = new System.Drawing.Size(1645, 51);
             this.panel_系統_Pannel設定.TabIndex = 116;
+            // 
+            // plC_RJ_ScreenButton27
+            // 
+            this.plC_RJ_ScreenButton27.but_press = false;
+            this.plC_RJ_ScreenButton27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton27.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton27.IconSize = 32;
+            this.plC_RJ_ScreenButton27.Location = new System.Drawing.Point(1032, 0);
+            this.plC_RJ_ScreenButton27.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton27.Name = "plC_RJ_ScreenButton27";
+            this.plC_RJ_ScreenButton27.OffBackColor = System.Drawing.Color.DarkCyan;
+            this.plC_RJ_ScreenButton27.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton27.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton27.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton27.OffText = "LCD114";
+            this.plC_RJ_ScreenButton27.OnBackColor = System.Drawing.Color.LightSeaGreen;
+            this.plC_RJ_ScreenButton27.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton27.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton27.OnIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton27.OnText = "LCD114";
+            this.plC_RJ_ScreenButton27.ShowIcon = false;
+            this.plC_RJ_ScreenButton27.Size = new System.Drawing.Size(172, 51);
+            this.plC_RJ_ScreenButton27.TabIndex = 9;
+            this.plC_RJ_ScreenButton27.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton27.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton27.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton27.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton27.控制位址 = "D0";
+            this.plC_RJ_ScreenButton27.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton27.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton27.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton27.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton27.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton27.音效 = true;
+            this.plC_RJ_ScreenButton27.頁面名稱 = "LCD114";
+            this.plC_RJ_ScreenButton27.頁面編號 = 0;
+            this.plC_RJ_ScreenButton27.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton27.顯示狀態 = false;
+            this.plC_RJ_ScreenButton27.顯示讀取位置 = "";
             // 
             // plC_RJ_ScreenButton12
             // 
@@ -44771,6 +44853,7 @@
             this.tabPage31.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
+            this.tabPage36.ResumeLayout(false);
             this.panel_系統_Pannel設定.ResumeLayout(false);
             this.tabPage26.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
@@ -46451,6 +46534,9 @@
         private System.Windows.Forms.Panel panel151;
         private MyUI.PLC_CheckBox plC_CheckBox_面板於調劑結束更新;
         private MyUI.PLC_CheckBox plC_CheckBox_面板於過帳後更新;
+        private System.Windows.Forms.TabPage tabPage36;
+        private H_Pannel_lib.StorageUI_LCD_114 storageUI_LCD_114;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton27;
     }
 }
 

@@ -99,10 +99,6 @@ namespace 中藥調劑系統
             {
                 RowsLED rowsLED = rowsLEDs[i];
                 rowsLEDs[i].LED_Bytes_buf = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLEDs[i]);
-                if (rowsLEDs[i].IP == "192.168.40.112")
-                {
-                    
-                }
                 if (RowsLEDUI.Check_LEDBytesBuf_Diff(rowsLEDs[i]))
                 {
                     rowsLEDs[i].LED_Bytes = rowsLEDs[i].LED_Bytes_buf;
@@ -355,6 +351,22 @@ namespace 中藥調劑系統
                     })));
                 }
                 Task.WhenAll(tasks).Wait();
+                rowsLEDs = List_RowsLED_本地資料;
+                storages = List_EPD266_本地資料;
+
+                for (int i = 0; i < rowsLEDs.Count; i++)
+                {
+                    RowsLED rowsLED = rowsLEDs[i];
+                    rowsLEDs[i].LED_Bytes_buf = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLEDs[i]);
+                    for (int k = 0; k < rowsLEDs[i].RowsDevices.Count; k++)
+                    {
+                        rowsLEDs[i].RowsDevices[k].SetLight(false, Color.Black, 0, 0);
+                    }
+                }
+                for (int i = 0; i < storages.Count; i++)
+                {
+                    storages[i].SetLight(false, Color.Black, 0, 0);
+                }
             }
             catch
             {

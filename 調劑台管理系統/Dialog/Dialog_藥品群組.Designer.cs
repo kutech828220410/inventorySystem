@@ -44,6 +44,7 @@ namespace 調劑台管理系統
             this.panel5 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥品資料 = new SQLUI.SQL_DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBox_只顯示調劑台品項 = new System.Windows.Forms.CheckBox();
             this.panel_藥品選擇.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -59,7 +60,7 @@ namespace 調劑台管理系統
             this.panel_藥品選擇.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_藥品選擇.Location = new System.Drawing.Point(0, 0);
             this.panel_藥品選擇.Name = "panel_藥品選擇";
-            this.panel_藥品選擇.Size = new System.Drawing.Size(862, 110);
+            this.panel_藥品選擇.Size = new System.Drawing.Size(805, 110);
             this.panel_藥品選擇.TabIndex = 141;
             // 
             // rJ_Button_藥品群組_刪除
@@ -261,13 +262,14 @@ namespace 調劑台管理系統
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.checkBox_只顯示調劑台品項);
             this.panel4.Controls.Add(this.comboBox_藥品資料_搜尋內容);
             this.panel4.Controls.Add(this.rJ_Button_藥品搜尋);
             this.panel4.Controls.Add(this.comboBox_藥品資料_搜尋條件);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(862, 0);
+            this.panel4.Location = new System.Drawing.Point(805, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(658, 110);
+            this.panel4.Size = new System.Drawing.Size(715, 110);
             this.panel4.TabIndex = 142;
             // 
             // comboBox_藥品資料_搜尋內容
@@ -279,9 +281,9 @@ namespace 調劑台管理系統
             "藥碼",
             "藥名",
             "中文名"});
-            this.comboBox_藥品資料_搜尋內容.Location = new System.Drawing.Point(221, 31);
+            this.comboBox_藥品資料_搜尋內容.Location = new System.Drawing.Point(203, 21);
             this.comboBox_藥品資料_搜尋內容.Name = "comboBox_藥品資料_搜尋內容";
-            this.comboBox_藥品資料_搜尋內容.Size = new System.Drawing.Size(296, 44);
+            this.comboBox_藥品資料_搜尋內容.Size = new System.Drawing.Size(399, 44);
             this.comboBox_藥品資料_搜尋內容.TabIndex = 152;
             // 
             // rJ_Button_藥品搜尋
@@ -301,7 +303,7 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品搜尋.GUID = "";
             this.rJ_Button_藥品搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.rJ_Button_藥品搜尋.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_藥品搜尋.Location = new System.Drawing.Point(538, 4);
+            this.rJ_Button_藥品搜尋.Location = new System.Drawing.Point(608, 3);
             this.rJ_Button_藥品搜尋.Name = "rJ_Button_藥品搜尋";
             this.rJ_Button_藥品搜尋.OFF_文字內容 = "搜尋";
             this.rJ_Button_藥品搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -347,9 +349,8 @@ namespace 調劑台管理系統
             "藥名",
             "中文名",
             "管制級別",
-            "有儲位藥品",
             "已選藥品"});
-            this.comboBox_藥品資料_搜尋條件.Location = new System.Drawing.Point(19, 31);
+            this.comboBox_藥品資料_搜尋條件.Location = new System.Drawing.Point(18, 21);
             this.comboBox_藥品資料_搜尋條件.Name = "comboBox_藥品資料_搜尋條件";
             this.comboBox_藥品資料_搜尋條件.Size = new System.Drawing.Size(179, 44);
             this.comboBox_藥品資料_搜尋條件.TabIndex = 149;
@@ -425,6 +426,19 @@ namespace 調劑台管理系統
             this.panel3.Size = new System.Drawing.Size(1520, 22);
             this.panel3.TabIndex = 144;
             // 
+            // checkBox_只顯示調劑台品項
+            // 
+            this.checkBox_只顯示調劑台品項.AutoSize = true;
+            this.checkBox_只顯示調劑台品項.Checked = true;
+            this.checkBox_只顯示調劑台品項.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_只顯示調劑台品項.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_只顯示調劑台品項.Location = new System.Drawing.Point(18, 75);
+            this.checkBox_只顯示調劑台品項.Name = "checkBox_只顯示調劑台品項";
+            this.checkBox_只顯示調劑台品項.Size = new System.Drawing.Size(181, 28);
+            this.checkBox_只顯示調劑台品項.TabIndex = 153;
+            this.checkBox_只顯示調劑台品項.Text = "只顯示調劑台品項";
+            this.checkBox_只顯示調劑台品項.UseVisualStyleBackColor = true;
+            // 
             // Dialog_藥品群組
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -443,6 +457,7 @@ namespace 調劑台管理系統
             this.panel_藥品選擇.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -464,5 +479,6 @@ namespace 調劑台管理系統
         private MyUI.PLC_RJ_Button rJ_Button_藥品群組_確認;
         private System.Windows.Forms.Panel panel3;
         private MyUI.PLC_RJ_Button rJ_Button_藥品群組_刪除;
+        private System.Windows.Forms.CheckBox checkBox_只顯示調劑台品項;
     }
 }

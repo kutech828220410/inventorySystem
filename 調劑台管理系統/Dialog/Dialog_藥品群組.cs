@@ -41,6 +41,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_藥品資料.RowPostPaintingFinishedEvent += SqL_DataGridView_藥品資料_RowPostPaintingFinishedEvent;
                 this.sqL_DataGridView_藥品資料.RowEnterEvent += SqL_DataGridView_藥品資料_RowEnterEvent;
                 this.sqL_DataGridView_藥品資料.DataGridClearGridEvent += SqL_DataGridView_藥品資料_DataGridClearGridEvent;
+                this.sqL_DataGridView_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent;
                 this.LoadFinishedEvent += Dialog_藥品群組_LoadFinishedEvent;
                 comboBox_藥品資料_搜尋條件.SelectedIndex = 0;
                 comboBox_藥品資料_搜尋條件.SelectedIndexChanged += ComboBox_藥品資料_搜尋條件_SelectedIndexChanged;
@@ -50,6 +51,30 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_刪除.MouseDownEvent += RJ_Button_藥品群組_刪除_MouseDownEvent;
             comboBox_藥品群組.SelectedIndexChanged += ComboBox_藥品群組_SelectedIndexChanged;
             this.rJ_Button_藥品搜尋.MouseDownEvent += RJ_Button_藥品搜尋_MouseDownEvent;
+        }
+
+        private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            List<object[]> RowsList_buf = new List<object[]>();
+            if (checkBox_只顯示調劑台品項.Checked)
+            {
+                List<medClass> medClasses_dps = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
+                List<medClass> medClasses_dps_buf = new List<medClass>();
+                medClasses_dps = (from temp in medClasses_dps
+                                  where temp.DeviceBasics.Count > 0
+                                  select temp).ToList();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_dps = medClasses_dps.CoverToDictionaryByCode();
+                for (int i = 0; i < RowsList.Count; i++)
+                {
+                    medClasses_dps_buf = keyValuePairs_medClasses_dps.SortDictionaryByCode(RowsList[i][(int)enum_雲端藥檔.藥品碼].ObjectToString());
+                    if (medClasses_dps_buf.Count > 0)
+                    {
+                        RowsList_buf.Add(RowsList[i]);
+                    }
+                }
+
+                RowsList = RowsList_buf;
+            }
         }
 
         #region Function
@@ -99,7 +124,7 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_藥品資料_RowEnterEvent(object[] RowValue)
         {
-            
+       
         }
         private void Dialog_藥品群組_LoadFinishedEvent(EventArgs e)
         {
