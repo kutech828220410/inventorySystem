@@ -686,6 +686,85 @@ namespace HIS_WebApi
 
             }
         }
+        [HttpPost("update_med_page_cloud")]
+        public string update_med_page_cloud([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_med_page_cloud";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                List<medClass> input_medClass = returnData.Data.ObjToClass<List<medClass>>();
+
+                if (input_medClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                SQLControl sQLControl_med_page_cloud = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                List<object[]> list_medPageCloud = sQLControl_med_page_cloud.GetAllRows(null);
+                List<medClass> sql_medPageCloud = list_medPageCloud.SQLToClass<medClass, enum_雲端藥檔>();
+                List<medClass> add_medPageCloud = new List<medClass>();
+                List<medClass> update_medPageCloud = new List<medClass>();
+
+                foreach (var medClass in input_medClass)
+                {
+                    medClass target = sql_medPageCloud.Where(temp => temp.藥品碼 == medClass.藥品碼).FirstOrDefault();
+                    if (target == null)
+                    {
+                        medClass.GUID = Guid.NewGuid().ToString();
+                        add_medPageCloud.Add(medClass);
+                    }
+                    else
+                    {
+                        bool flag_replace = false;
+                        if(medClass.藥品名稱 != target.藥品名稱) flag_replace = true;
+                        if (medClass.中文名稱 != target.中文名稱) flag_replace = true;
+                        if (medClass.最小包裝單位 != target.最小包裝單位) flag_replace = true;
+                        if (medClass.包裝單位 != target.包裝單位) flag_replace = true;
+                        if (medClass.警訊藥品 != target.警訊藥品) flag_replace = true;
+                        if (medClass.管制級別 != target.管制級別) flag_replace = true;
+                        if (medClass.開檔狀態 != target.開檔狀態) flag_replace = true;
+                        if (medClass.料號 != target.料號) flag_replace = true;
+
+                        if (flag_replace) update_medPageCloud.Add(medClass);
+                    }
+                }
+                List<object[]> list_add_medPageCloud = add_medPageCloud.ClassToSQL<medClass, enum_雲端藥檔>();
+                List<object[]> list_update_medPageCloud = update_medPageCloud.ClassToSQL<medClass, enum_雲端藥檔>();
+
+                if (list_add_medPageCloud.Count > 0) sQLControl_med_page_cloud.AddRows(null, list_add_medPageCloud);
+                if (list_update_medPageCloud.Count > 0) sQLControl_med_page_cloud.UpdateByDefulteExtra(null, list_update_medPageCloud);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = input_medClass;
+                returnData.Result = $"更新藥品資訊成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+
+            }
+        }
         /// <summary>
         ///以藥局和護理站取得占床資料
         /// </summary>
