@@ -97,7 +97,8 @@ namespace 調劑台管理系統
                 {
                     Storage storage = value_device as Storage;
                     if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock
-                        || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock)
+                        || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock
+                        || storage.DeviceType == DeviceType.EPD420 || storage.DeviceType == DeviceType.EPD420_lock)
                     {
                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                         storage.ActionDone = true;
@@ -399,13 +400,13 @@ namespace 調劑台管理系統
                 Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null)
                 {
-                    if(storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock)
+                    if(storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock)
                     {
                         flag_state = this.storageUI_EPD_266.GetInput(storage.IP);
                         this.PLC.properties.device_system.Set_Device(Input, flag_state);
            
                         AlarmEnable = storage.AlarmEnable;
-                        if (storage.DeviceType != DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock) AlarmEnable = false;
+                        if (storage.DeviceType != DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) AlarmEnable = false;
                     }
                
                 }

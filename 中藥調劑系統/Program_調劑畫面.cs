@@ -117,12 +117,12 @@ namespace 中藥調劑系統
             this.button_病患資訊_ScrollDown.Click += Button_病患資訊_ScrollDown_Click;
             this.button_處方內容_ScrollUp.Click += Button_處方內容_ScrollUp_Click;
             this.button_處方內容_ScrollDown.Click += Button_處方內容_ScrollDown_Click;
-            this.plC_RJ_Button_調劑畫面_藥品地圖.MouseDown += PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown;
+            this.plC_RJ_Button_調劑畫面_藥品地圖.MouseDownEvent += PlC_RJ_Button_調劑畫面_藥品地圖_MouseDownEvent;
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-
+     
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -1374,7 +1374,7 @@ namespace 中藥調劑系統
             }
             Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
         }
-        private void PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown(object sender, MouseEventArgs e)
+        private void PlC_RJ_Button_調劑畫面_藥品地圖_MouseDownEvent(MouseEventArgs mevent)
         {
             if (order_current_row == null)
             {
@@ -1392,7 +1392,6 @@ namespace 中藥調劑系統
             }
             Dialog_藥品地圖 dialog_藥品地圖 = new Dialog_藥品地圖(_medClass);
             dialog_藥品地圖.ShowDialog();
-
         }
 
         #endregion
