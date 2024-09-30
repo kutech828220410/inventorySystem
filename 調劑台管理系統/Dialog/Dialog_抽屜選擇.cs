@@ -67,7 +67,7 @@ namespace 調劑台管理系統
 
             List_EPD583 = Main_Form.List_EPD583_本地資料;
             List_EPD266 = (from temp in Main_Form.List_EPD266_本地資料
-                           where temp.DeviceType == DeviceType.EPD266_lock || temp.DeviceType == DeviceType.EPD290_lock
+                           where temp.DeviceType == DeviceType.EPD266_lock || temp.DeviceType == DeviceType.EPD290_lock || temp.DeviceType == DeviceType.EPD420_lock
                            select temp).ToList();
             List_Pannel35 = (from temp in Main_Form.List_Pannel35_本地資料
                            where temp.DeviceType == DeviceType.Pannel35_lock

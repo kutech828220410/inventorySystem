@@ -96,15 +96,16 @@ namespace 調劑台管理系統
             刪除選取資料,
         }
         #endregion
-
+        public static SQLUI.SQL_DataGridView _sqL_DataGridView_Locker_Index_Table;
         private void Program_系統_Init()
         {
             Table table = new Table("");
             table = new Table(new enum_Locker_Index_Table());
+            _sqL_DataGridView_Locker_Index_Table = this.sqL_DataGridView_Locker_Index_Table;
             this.sqL_DataGridView_Locker_Index_Table.Init(table);
 
 
-
+    
             if (!this.sqL_DataGridView_Locker_Index_Table.SQL_IsTableCreat()) this.sqL_DataGridView_Locker_Index_Table.SQL_CreateTable();
             else this.sqL_DataGridView_Locker_Index_Table.SQL_CheckAllColumnName(true);
 

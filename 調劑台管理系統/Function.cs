@@ -324,7 +324,9 @@ namespace 調劑台管理系統
             string TYPE = 儲位資訊[(int)enum_儲位資訊.TYPE].ObjectToString();
             if (Value is Storage)
             {
-                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName()
+                   || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName()
+                   || TYPE == DeviceType.EPD420.GetEnumName() || TYPE == DeviceType.EPD420_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
                     storage = List_EPD266_入賬資料.SortByIP(storage.IP);
@@ -738,7 +740,9 @@ namespace 調劑台管理系統
             string Type_str = "";
             for (int k = 0; k < values.Count; k++)
             {
-                if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName() || TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName())
+                if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName()
+                   || TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName()
+                   || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName())
                 {
 
                     Storage storage = (Storage)values[k];
@@ -872,7 +876,9 @@ namespace 調劑台管理系統
 
             if (Value is Storage)
             {
-                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName()
+                 || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName()
+                 || TYPE == DeviceType.EPD420.GetEnumName() || TYPE == DeviceType.EPD420_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
                     storage = List_EPD266_雲端資料.SortByIP(storage.IP);
@@ -959,7 +965,9 @@ namespace 調劑台管理系統
             string TYPE = 儲位資訊[(int)enum_儲位資訊.TYPE].ObjectToString();
             if (Value is Storage)
             {
-                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName()|| TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName()
+                 || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName()
+                 || TYPE == DeviceType.EPD420.GetEnumName() || TYPE == DeviceType.EPD420_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
                     storage = List_EPD266_雲端資料.SortByIP(storage.IP);
@@ -1352,13 +1360,16 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
+                     || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
+                     || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
                         {
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
+                            if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock
+                              ||device.DeviceType == DeviceType.EPD420_lock)
                             {
                                 list_lock_IP.Add(IP);
                             }
@@ -1431,7 +1442,9 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
+                     || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
+                     || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -1446,7 +1459,7 @@ namespace 調劑台管理系統
                             }));
                      
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD420_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
@@ -1571,40 +1584,28 @@ namespace 調劑台管理系統
         }
         public static void Function_抽屜解鎖(List<string> list_IP)
         {
-            List<Task> tasks = new List<Task>();
-            foreach(string IP in list_IP)
+            List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+            List<object[]> list_locker_table_value_buf = new List<object[]>();
+            List<object[]> list_locker_table_value_replace = new List<object[]>();
+            for (int i = 0; i < list_IP.Count; i++)
             {
-                string ip = IP;
-                tasks.Add(Task.Run(new Action(delegate 
-                {             
-                    Storage storage_EPD_266 = List_EPD266_本地資料.SortByIP(ip);
-                    if (storage_EPD_266 != null)
-                    {
-                        _storageUI_EPD_266.Set_LockOpen(storage_EPD_266);
-                        return;
-                    }
-                    Storage storageUI_WT32 = List_Pannel35_本地資料.SortByIP(ip);
-                    if (storage_EPD_266 != null)
-                    {
-                        _storageUI_WT32.Set_LockOpen(storageUI_WT32);
-                        return;
-                    }
-                    Drawer drawer_EPD583 = List_EPD583_雲端資料.SortByIP(IP);
-                    if (drawer_EPD583 != null)
-                    {
-                        _drawerUI_EPD_583.Set_LockOpen(drawer_EPD583);
-                        return;
-                    }
+                string IP = list_IP[i];
 
-                })));
-          
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                if(list_locker_table_value_buf.Count > 0)
+                {
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
 
+                    list_locker_table_value_replace.Add(list_locker_table_value_buf[0]);
 
+                }
             }
-            Task.WhenAll(tasks).Wait();
+            if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
+
         }
-  
-   
+
+
 
         public static string Function_ReadBacodeScanner01()
         {
