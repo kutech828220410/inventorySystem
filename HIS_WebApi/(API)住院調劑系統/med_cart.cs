@@ -732,16 +732,17 @@ namespace HIS_WebApi
                     }
                     else
                     {
-                        bool flag_replace = false;
-                        if(medClass.藥品名稱 != target.藥品名稱) flag_replace = true;
-                        if (medClass.中文名稱 != target.中文名稱) flag_replace = true;
-                        if (medClass.最小包裝單位 != target.最小包裝單位) flag_replace = true;
-                        if (medClass.包裝單位 != target.包裝單位) flag_replace = true;
-                        if (medClass.警訊藥品 != target.警訊藥品) flag_replace = true;
-                        if (medClass.管制級別 != target.管制級別) flag_replace = true;
-                        if (medClass.開檔狀態 != target.開檔狀態) flag_replace = true;
-                        if (medClass.料號 != target.料號) flag_replace = true;
-
+                        //bool flag_replace = false;
+                        //if(medClass.藥品名稱 != target.藥品名稱) flag_replace = true;
+                        //if (medClass.中文名稱 != target.中文名稱) flag_replace = true;
+                        //if (medClass.最小包裝單位 != target.最小包裝單位) flag_replace = true;
+                        //if (medClass.包裝單位 != target.包裝單位) flag_replace = true;
+                        //if (medClass.警訊藥品 != target.警訊藥品) flag_replace = true;
+                        //if (medClass.管制級別 != target.管制級別) flag_replace = true;
+                        //if (medClass.開檔狀態 != target.開檔狀態) flag_replace = true;
+                        //if (medClass.料號 != target.料號) flag_replace = true;
+                        //if (medClass.料號 != target.料號) flag_replace = true;
+                        bool flag_replace = AreMedClassDiff(medClass, target);
                         if (flag_replace) update_medPageCloud.Add(medClass);
                     }
                 }
@@ -1744,8 +1745,21 @@ namespace HIS_WebApi
             }
             return serverSettingClass.Server;
         }
-
-
+        private bool AreMedClassDiff(medClass medClass, medClass target)
+        {
+            if (medClass == null || target == null) return true;
+            var type = typeof(medClass);
+            foreach(var poperty in type.GetProperties())
+            {
+                var medclassValue = poperty.GetValue(medClass);
+                var targetValue = poperty.GetValue(target);
+                if(!object.Equals(medclassValue, targetValue))
+                {
+                    return true;
+                }
+            }
+            return false;         
+        }
     }
 
 }
