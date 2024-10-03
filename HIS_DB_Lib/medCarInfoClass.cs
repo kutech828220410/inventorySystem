@@ -359,7 +359,22 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
+        static public List<medClass> update_med_page_cloud(string API_Server, List<medClass> medClasses)
+        {
+            string url = $"{API_Server}/api/med_cart/update_med_page_cloud";
 
+            returnData returnData = new returnData();
+            returnData.Data = medClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medClass> out_medClass = returnData.Data.ObjToClass<List<medClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medClass;
+        }
         static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
