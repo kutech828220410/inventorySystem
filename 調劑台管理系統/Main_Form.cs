@@ -526,6 +526,7 @@ namespace 調劑台管理系統
             this.Program_儲位管理_Pannel35_Init();
             this.Program_共用區_Init();
 
+            this.Program_LCD114_索引表_Init();
             this.Program_取藥堆疊資料_Init();
             if (!this.ControlMode) this.Program_調劑作業_Init();
 
@@ -1066,9 +1067,8 @@ namespace 調劑台管理系統
 
 
 
-        #endregion
 
- 
+        #endregion
     }
 
 

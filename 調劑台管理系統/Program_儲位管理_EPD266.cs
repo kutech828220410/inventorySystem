@@ -553,7 +553,6 @@ namespace 調劑台管理系統
                 storage.BackColor = Color.White;
                 storage.ForeColor = Color.Black;
             }
-
             value = new object[new enum_儲位管理_EPD266_儲位資料().GetLength()];
             value[(int)enum_儲位管理_EPD266_儲位資料.IP] = storage.GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.儲位名稱] = storage.GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString();
