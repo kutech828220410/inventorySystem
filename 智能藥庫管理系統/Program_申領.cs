@@ -61,8 +61,7 @@ namespace 智能藥庫系統
             {
                 List<materialRequisitionClass> materialRequisitionClasses = materialRequisitionClass.get_by_requestTime(API_Server, DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
                 materialRequisitionClasses = (from temp in materialRequisitionClasses
-                                              where temp.狀態 == "等待過帳"
-                                              where temp.申領類別 == "緊急申領"
+                                              where temp.狀態 == "等待過帳"                                          
                                               select temp).ToList();
                 if (materialRequisitionClasses.Count > 0)
                 {
@@ -76,21 +75,42 @@ namespace 智能藥庫系統
             if(MyTimerBasic_申領通知_開始語音提示.IsTimeOut())
             {
                 bool flag_語音提示 = false;
+                bool flag_燈號提示 = false;
                 for (int i = 0; i < materialRequisitionClasses_等待撥補.Count; i++)
                 {
                     materialRequisitionClasses_已通知_buf = (from temp in materialRequisitionClasses_已通知
                                                           where temp.GUID == materialRequisitionClasses_等待撥補[i].GUID
+                                                          where temp.申領類別 == "緊急申領"
                                                           select temp).ToList();
                     if (materialRequisitionClasses_已通知_buf.Count == 0)
                     {
                         materialRequisitionClasses_已通知.Add(materialRequisitionClasses_等待撥補[i]);
-                        flag_語音提示 = true;
+                        if(materialRequisitionClasses_等待撥補[i].申領類別 == "緊急申領")
+                        {
+                            flag_語音提示 = true;
+                            flag_燈號提示 = true;
+                        }
+                        if (materialRequisitionClasses_等待撥補[i].申領類別 == "一般申領")
+                        {
+                            flag_燈號提示 = true;
+                        }
                     }
                 }
                 if (flag_語音提示)
                 {
                     Voice.MediaPlayAsync($@"{currentDirectory}\有新申領通知.wav");
-                    drawerUI_EPD_583.SetOutput("192.168.41.210", 29005, true);
+                }
+                if (flag_燈號提示)
+                {
+                    try
+                    {
+
+                    }
+                    catch
+                    {
+                        drawerUI_EPD_583.SetOutput("192.168.41.210", 29005, true);
+                    }
+            
                 }
             }
        
