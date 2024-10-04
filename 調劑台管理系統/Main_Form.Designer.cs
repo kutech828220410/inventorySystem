@@ -1399,6 +1399,7 @@
             this.tabPage35 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_共用區設定 = new SQLUI.SQL_DataGridView();
             this.tabPage38 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_LCD114_索引表 = new SQLUI.SQL_DataGridView();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox28 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_特殊輸出表 = new SQLUI.SQL_DataGridView();
@@ -1608,7 +1609,8 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.sqL_DataGridView_LCD114_索引表 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_Button_LCD114_索引表_匯入 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_LCD114_索引表_匯出 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -37976,7 +37978,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(475, 355);
+            this.tabPage4.Size = new System.Drawing.Size(1637, 926);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "取藥堆疊子資料";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -38021,7 +38023,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_取藥堆疊子資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_取藥堆疊子資料.Server = "localhost";
-            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(469, 349);
+            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(1631, 920);
             this.sqL_DataGridView_取藥堆疊子資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_取藥堆疊子資料.TabIndex = 26;
             this.sqL_DataGridView_取藥堆疊子資料.TableName = "take_medicine_substack_new";
@@ -38043,7 +38045,7 @@
             this.tabPage10.Controls.Add(this.sqL_DataGridView_批次領藥資料);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(475, 355);
+            this.tabPage10.Size = new System.Drawing.Size(1637, 926);
             this.tabPage10.TabIndex = 2;
             this.tabPage10.Text = "批次領藥資料";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -38088,7 +38090,7 @@
             this.sqL_DataGridView_批次領藥資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_批次領藥資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_批次領藥資料.Server = "192.168.226.38";
-            this.sqL_DataGridView_批次領藥資料.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_批次領藥資料.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_批次領藥資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_批次領藥資料.TabIndex = 119;
             this.sqL_DataGridView_批次領藥資料.TableName = "UDFTPSTK4";
@@ -38110,7 +38112,7 @@
             this.tabPage11.Controls.Add(this.sqL_DataGridView_管制抽屜權限資料);
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(475, 355);
+            this.tabPage11.Size = new System.Drawing.Size(1637, 926);
             this.tabPage11.TabIndex = 3;
             this.tabPage11.Text = "管制抽屜權限資料";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -38155,7 +38157,7 @@
             this.sqL_DataGridView_管制抽屜權限資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_管制抽屜權限資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_管制抽屜權限資料.Server = "192.168.226.38";
-            this.sqL_DataGridView_管制抽屜權限資料.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_管制抽屜權限資料.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_管制抽屜權限資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_管制抽屜權限資料.TabIndex = 119;
             this.sqL_DataGridView_管制抽屜權限資料.TableName = "locker_data";
@@ -38311,7 +38313,7 @@
             this.tabPage15.Controls.Add(this.sqL_DataGridView_藥品設定表);
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(475, 355);
+            this.tabPage15.Size = new System.Drawing.Size(1637, 926);
             this.tabPage15.TabIndex = 6;
             this.tabPage15.Text = "藥品設定表";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -38356,7 +38358,7 @@
             this.sqL_DataGridView_藥品設定表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_藥品設定表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品設定表.Server = "localhost";
-            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_藥品設定表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品設定表.TabIndex = 29;
             this.sqL_DataGridView_藥品設定表.TableName = "med_config";
@@ -38378,7 +38380,7 @@
             this.tabPage35.Controls.Add(this.sqL_DataGridView_共用區設定);
             this.tabPage35.Location = new System.Drawing.Point(4, 22);
             this.tabPage35.Name = "tabPage35";
-            this.tabPage35.Size = new System.Drawing.Size(1637, 926);
+            this.tabPage35.Size = new System.Drawing.Size(475, 355);
             this.tabPage35.TabIndex = 7;
             this.tabPage35.Text = "共用區設定";
             this.tabPage35.UseVisualStyleBackColor = true;
@@ -38422,7 +38424,7 @@
             this.sqL_DataGridView_共用區設定.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_共用區設定.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_共用區設定.Server = "127.0.0.0";
-            this.sqL_DataGridView_共用區設定.Size = new System.Drawing.Size(1637, 772);
+            this.sqL_DataGridView_共用區設定.Size = new System.Drawing.Size(475, 772);
             this.sqL_DataGridView_共用區設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_共用區設定.TabIndex = 1;
             this.sqL_DataGridView_共用區設定.UserName = "root";
@@ -38440,6 +38442,8 @@
             // 
             // tabPage38
             // 
+            this.tabPage38.Controls.Add(this.plC_RJ_Button_LCD114_索引表_匯出);
+            this.tabPage38.Controls.Add(this.plC_RJ_Button_LCD114_索引表_匯入);
             this.tabPage38.Controls.Add(this.sqL_DataGridView_LCD114_索引表);
             this.tabPage38.Location = new System.Drawing.Point(4, 22);
             this.tabPage38.Name = "tabPage38";
@@ -38447,6 +38451,61 @@
             this.tabPage38.TabIndex = 9;
             this.tabPage38.Text = "LCD_114_索引表";
             this.tabPage38.UseVisualStyleBackColor = true;
+            // 
+            // sqL_DataGridView_LCD114_索引表
+            // 
+            this.sqL_DataGridView_LCD114_索引表.AutoSelectToDeep = true;
+            this.sqL_DataGridView_LCD114_索引表.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_LCD114_索引表.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_LCD114_索引表.BorderRadius = 10;
+            this.sqL_DataGridView_LCD114_索引表.BorderSize = 2;
+            this.sqL_DataGridView_LCD114_索引表.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_LCD114_索引表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_LCD114_索引表.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_LCD114_索引表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_LCD114_索引表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_LCD114_索引表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
+            this.sqL_DataGridView_LCD114_索引表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_LCD114_索引表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_LCD114_索引表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_LCD114_索引表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_LCD114_索引表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_LCD114_索引表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_LCD114_索引表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_LCD114_索引表.DataKeyEnable = false;
+            this.sqL_DataGridView_LCD114_索引表.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sqL_DataGridView_LCD114_索引表.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_LCD114_索引表.ImageBox = false;
+            this.sqL_DataGridView_LCD114_索引表.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_LCD114_索引表.Name = "sqL_DataGridView_LCD114_索引表";
+            this.sqL_DataGridView_LCD114_索引表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_LCD114_索引表.Password = "user82822040";
+            this.sqL_DataGridView_LCD114_索引表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_LCD114_索引表.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_LCD114_索引表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_LCD114_索引表.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_LCD114_索引表.RowsHeight = 50;
+            this.sqL_DataGridView_LCD114_索引表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_LCD114_索引表.selectedBorderSize = 0;
+            this.sqL_DataGridView_LCD114_索引表.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_LCD114_索引表.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_LCD114_索引表.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_LCD114_索引表.Server = "127.0.0.0";
+            this.sqL_DataGridView_LCD114_索引表.Size = new System.Drawing.Size(802, 926);
+            this.sqL_DataGridView_LCD114_索引表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_LCD114_索引表.TabIndex = 2;
+            this.sqL_DataGridView_LCD114_索引表.UserName = "root";
+            this.sqL_DataGridView_LCD114_索引表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_LCD114_索引表.可選擇多列 = false;
+            this.sqL_DataGridView_LCD114_索引表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_LCD114_索引表.自動換行 = true;
+            this.sqL_DataGridView_LCD114_索引表.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_LCD114_索引表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_LCD114_索引表.顯示CheckBox = false;
+            this.sqL_DataGridView_LCD114_索引表.顯示首列 = true;
+            this.sqL_DataGridView_LCD114_索引表.顯示首行 = true;
+            this.sqL_DataGridView_LCD114_索引表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_LCD114_索引表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
             // tabPage8
             // 
@@ -44418,60 +44477,111 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
-            // sqL_DataGridView_LCD114_索引表
+            // plC_RJ_Button_LCD114_索引表_匯入
             // 
-            this.sqL_DataGridView_LCD114_索引表.AutoSelectToDeep = true;
-            this.sqL_DataGridView_LCD114_索引表.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_LCD114_索引表.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_LCD114_索引表.BorderRadius = 10;
-            this.sqL_DataGridView_LCD114_索引表.BorderSize = 2;
-            this.sqL_DataGridView_LCD114_索引表.CellBorderColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_LCD114_索引表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_LCD114_索引表.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_LCD114_索引表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_LCD114_索引表.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_LCD114_索引表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_LCD114_索引表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_LCD114_索引表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_LCD114_索引表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_LCD114_索引表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_LCD114_索引表.columnHeadersHeight = 18;
-            this.sqL_DataGridView_LCD114_索引表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_LCD114_索引表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sqL_DataGridView_LCD114_索引表.DataKeyEnable = false;
-            this.sqL_DataGridView_LCD114_索引表.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sqL_DataGridView_LCD114_索引表.Font = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_LCD114_索引表.ImageBox = false;
-            this.sqL_DataGridView_LCD114_索引表.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_LCD114_索引表.Name = "sqL_DataGridView_LCD114_索引表";
-            this.sqL_DataGridView_LCD114_索引表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_LCD114_索引表.Password = "user82822040";
-            this.sqL_DataGridView_LCD114_索引表.Port = ((uint)(3306u));
-            this.sqL_DataGridView_LCD114_索引表.rowHeaderBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_LCD114_索引表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_LCD114_索引表.RowsColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_LCD114_索引表.RowsHeight = 50;
-            this.sqL_DataGridView_LCD114_索引表.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_LCD114_索引表.selectedBorderSize = 0;
-            this.sqL_DataGridView_LCD114_索引表.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_LCD114_索引表.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_LCD114_索引表.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_LCD114_索引表.Server = "127.0.0.0";
-            this.sqL_DataGridView_LCD114_索引表.Size = new System.Drawing.Size(802, 926);
-            this.sqL_DataGridView_LCD114_索引表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_LCD114_索引表.TabIndex = 2;
-            this.sqL_DataGridView_LCD114_索引表.UserName = "root";
-            this.sqL_DataGridView_LCD114_索引表.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_LCD114_索引表.可選擇多列 = false;
-            this.sqL_DataGridView_LCD114_索引表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_LCD114_索引表.自動換行 = true;
-            this.sqL_DataGridView_LCD114_索引表.表單字體 = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_LCD114_索引表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_LCD114_索引表.顯示CheckBox = false;
-            this.sqL_DataGridView_LCD114_索引表.顯示首列 = true;
-            this.sqL_DataGridView_LCD114_索引表.顯示首行 = true;
-            this.sqL_DataGridView_LCD114_索引表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_LCD114_索引表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.plC_RJ_Button_LCD114_索引表_匯入.AutoResetState = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Bool = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_LCD114_索引表_匯入.BorderRadius = 20;
+            this.plC_RJ_Button_LCD114_索引表_匯入.BorderSize = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯入.but_press = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_LCD114_索引表_匯入.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_LCD114_索引表_匯入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯入.GUID = "";
+            this.plC_RJ_Button_LCD114_索引表_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_LCD114_索引表_匯入.Location = new System.Drawing.Point(832, 20);
+            this.plC_RJ_Button_LCD114_索引表_匯入.Name = "plC_RJ_Button_LCD114_索引表_匯入";
+            this.plC_RJ_Button_LCD114_索引表_匯入.OFF_文字內容 = "匯入";
+            this.plC_RJ_Button_LCD114_索引表_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_LCD114_索引表_匯入.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ON_BorderSize = 5;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ON_文字內容 = "匯入";
+            this.plC_RJ_Button_LCD114_索引表_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯入.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ShadowSize = 3;
+            this.plC_RJ_Button_LCD114_索引表_匯入.ShowLoadingForm = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Size = new System.Drawing.Size(171, 106);
+            this.plC_RJ_Button_LCD114_索引表_匯入.State = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.TabIndex = 129;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Text = "匯入";
+            this.plC_RJ_Button_LCD114_索引表_匯入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_LCD114_索引表_匯入.TextHeight = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯入.Texts = "匯入";
+            this.plC_RJ_Button_LCD114_索引表_匯入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.字型鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_LCD114_索引表_匯入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_LCD114_索引表_匯入.文字鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.背景圖片 = null;
+            this.plC_RJ_Button_LCD114_索引表_匯入.讀取位元反向 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.讀寫鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.音效 = true;
+            this.plC_RJ_Button_LCD114_索引表_匯入.顯示 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯入.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_LCD114_索引表_匯出
+            // 
+            this.plC_RJ_Button_LCD114_索引表_匯出.AutoResetState = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Bool = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_LCD114_索引表_匯出.BorderRadius = 20;
+            this.plC_RJ_Button_LCD114_索引表_匯出.BorderSize = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯出.but_press = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_LCD114_索引表_匯出.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_LCD114_索引表_匯出.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯出.GUID = "";
+            this.plC_RJ_Button_LCD114_索引表_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_LCD114_索引表_匯出.Location = new System.Drawing.Point(832, 132);
+            this.plC_RJ_Button_LCD114_索引表_匯出.Name = "plC_RJ_Button_LCD114_索引表_匯出";
+            this.plC_RJ_Button_LCD114_索引表_匯出.OFF_文字內容 = "匯出";
+            this.plC_RJ_Button_LCD114_索引表_匯出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯出.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_LCD114_索引表_匯出.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ON_BorderSize = 5;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ON_文字內容 = "匯出";
+            this.plC_RJ_Button_LCD114_索引表_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_LCD114_索引表_匯出.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ShadowSize = 3;
+            this.plC_RJ_Button_LCD114_索引表_匯出.ShowLoadingForm = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Size = new System.Drawing.Size(171, 106);
+            this.plC_RJ_Button_LCD114_索引表_匯出.State = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.TabIndex = 130;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Text = "匯出";
+            this.plC_RJ_Button_LCD114_索引表_匯出.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_LCD114_索引表_匯出.TextHeight = 0;
+            this.plC_RJ_Button_LCD114_索引表_匯出.Texts = "匯出";
+            this.plC_RJ_Button_LCD114_索引表_匯出.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.字型鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_LCD114_索引表_匯出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_LCD114_索引表_匯出.文字鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.背景圖片 = null;
+            this.plC_RJ_Button_LCD114_索引表_匯出.讀取位元反向 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.讀寫鎖住 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.音效 = true;
+            this.plC_RJ_Button_LCD114_索引表_匯出.顯示 = false;
+            this.plC_RJ_Button_LCD114_索引表_匯出.顯示狀態 = false;
             // 
             // Main_Form
             // 
@@ -46609,6 +46719,8 @@
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton27;
         private System.Windows.Forms.TabPage tabPage38;
         private SQLUI.SQL_DataGridView sqL_DataGridView_LCD114_索引表;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_LCD114_索引表_匯出;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_LCD114_索引表_匯入;
     }
 }
 
