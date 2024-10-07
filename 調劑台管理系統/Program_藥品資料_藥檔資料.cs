@@ -419,6 +419,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 DataTable datatable_buf = dataTable.ReorderTable(new enum_藥品資料_藥檔資料_匯入());
+                //datatable_buf = dataTable.ReorderTable(new enum_藥品資料_藥檔資料());
                 if (datatable_buf == null)
                 {
                     MyMessageBox.ShowDialog("匯入檔案,資料錯誤!");
@@ -436,8 +437,21 @@ namespace 調劑台管理系統
 
                 for (int i = 0; i < list_LoadValue.Count; i++)
                 {
-                    object[] value_load = list_LoadValue[i];
-                    value_load = value_load.CopyRow(new enum_藥品資料_藥檔資料_匯入(), new enum_藥品資料_藥檔資料());
+                    object[] value_load = new object[new enum_藥品資料_藥檔資料().GetLength()];
+                    value_load[(int)enum_藥品資料_藥檔資料.藥品碼] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.藥碼].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.藥名].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.藥品學名] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.藥品學名].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.管制級別] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.管制級別].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.廠牌] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.廠牌].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.中文名稱] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.中文名].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.健保碼] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.健保碼].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.包裝單位] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.包裝單位].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.藥品許可證號] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.藥品許可證號].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.高價藥品] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.高價藥品].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.警訊藥品] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.警訊藥品].ObjectToString();
+                    value_load[(int)enum_藥品資料_藥檔資料.類別] = list_LoadValue[i][(int)enum_藥品資料_藥檔資料_匯入.類別].ObjectToString();
+                    medClass medClass = new medClass();
+
                     if (!Function_藥品資料_藥檔資料_檢查內容(value_load).StringIsEmpty()) continue;
                     list_SQL_Value_buf = list_SQL_Value.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, value_load[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString());
                     if (list_SQL_Value_buf.Count > 0)
@@ -768,7 +782,7 @@ namespace 調劑台管理系統
                         {
                             string 藥品碼 = list_value_upload[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                             list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
-                          
+                            list_value_upload[i][(int)enum_雲端藥檔.中西藥] = "西藥";
                             if (list_雲端藥檔_buf.Count == 0)
                             {
                                 list_value_upload[i][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
