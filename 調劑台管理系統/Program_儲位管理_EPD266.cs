@@ -84,8 +84,12 @@ namespace 調劑台管理系統
             this.storagePanel.SureClick += StoragePanel_SureClick;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
-            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位);
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱);
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
 
+            //this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
+            //this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnText("藥品名稱", enum_藥品資料_藥檔資料.藥品名稱);
             SQLUI.Table table = new SQLUI.Table(new enum_儲位管理_EPD266_儲位資料());
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowsHeight = 40;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Init(table);
@@ -116,22 +120,13 @@ namespace 調劑台管理系統
 
             this.rJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品碼.KeyPress += RJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品碼_KeyPress;
             this.rJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品名稱_KeyPress;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱_KeyPress;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼_KeyPress;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress;
 
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動_MouseDownEvent;
+         
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號_MouseDownEvent;
@@ -145,14 +140,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_複製格式_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位初始化_MouseDownEvent;
 
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品名稱顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品名稱顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品學名顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品學名顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_中文名稱顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_中文名稱顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示_CheckStateChanged;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示_CheckStateChanged;
+        
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測_CheckStateChanged;
             this.plC_RJ_Button_儲位管理_EPD266_警報.CheckStateChanged += PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged;
@@ -162,11 +150,15 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD266_匯入.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_匯入_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱_MouseDownEvent;
 
-
+            this.storagePanel.SizeChanged += StoragePanel_SizeChanged;
             this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.SelectedIndex = 0;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
+        private void StoragePanel_SizeChanged(object sender, EventArgs e)
+        {
+            this.storagePanel.Location = new Point((this.storagePanel.Parent.Width - this.storagePanel.Width) / 2, (this.storagePanel.Parent.Height - this.storagePanel.Height) / 2);
+        }
         private void StoragePanel_SureClick(Storage storage)
         {
             _storageUI_EPD_266.SQL_ReplaceStorage(storage);
@@ -179,6 +171,11 @@ namespace 調劑台管理系統
             {
                 if (flag_Program_儲位管理_EPD266_Init == false)
                 {
+                    this.Invoke(new Action(delegate 
+                    {
+                        this.storagePanel.Location = new Point((this.storagePanel.Parent.Width - this.storagePanel.Width) / 2, (this.storagePanel.Parent.Height - this.storagePanel.Height) / 2);
+                    }));
+                   
                     PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
                     flag_Program_儲位管理_EPD266_Init = true;
                 }
@@ -411,17 +408,7 @@ namespace 調劑台管理系統
             string 庫存 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.庫存].ObjectToString();
             string 警訊藥品 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品].ObjectToString();
 
-            this.Invoke(new Action(delegate 
-            {
-                rJ_TextBox_儲位管理_EPD266_儲位內容_藥品名稱.Texts = 藥品名稱;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Texts = 藥品碼;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_藥品學名.Texts = 藥品學名;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_中文名稱.Texts = 中文名稱;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Texts = 包裝單位;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Texts = 藥品條碼;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Texts = 儲位名稱;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Texts = 庫存;
-            }));
+ 
 
             Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
 
@@ -431,19 +418,7 @@ namespace 調劑台管理系統
                 rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Texts = storage.Speaker;
                 this.storagePanel.DrawToPictureBox(storage);
             }
-            this.Invoke(new Action(delegate
-            {
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Checked = (bool)storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品名稱顯示.Checked = (bool)storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品學名顯示.Checked = (bool)storage.GetValue(Device.ValueName.藥品學名, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_中文名稱顯示.Checked = (bool)storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Checked = (bool)storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Checked = (bool)storage.GetValue(Device.ValueName.庫存, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Checked = (bool)storage.GetValue(Device.ValueName.效期, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Checked = (bool)storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Visable);
-                this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Checked = storage.TOFON;
-                this.plC_RJ_Button_儲位管理_EPD266_警報.Checked = storage.AlarmEnable;
-            }));
+          
             sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.ClearGrid();
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < storage.List_Validity_period.Count; i++)
@@ -479,19 +454,7 @@ namespace 調劑台管理系統
                 PlC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋_MouseDownEvent(null);
             }
         }
-        private void RJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (this.storagePanel.CurrentStorage == null) return;
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                storage.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Text);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                List_EPD266_本地資料.Add_NewStorage(storage);
-                PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
-                this.Function_設定雲端資料更新();
-            }
-        }
+   
         private void RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (this.storagePanel.CurrentStorage == null) return;
@@ -1339,95 +1302,7 @@ namespace 調劑台管理系統
                 }
             }));
         }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品名稱顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品名稱顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品學名顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品學名顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_中文名稱顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_中文名稱顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.效期, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.庫存, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
-        private void PlC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.storagePanel.CurrentStorage;
-                if (storage == null) return;
-                storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Visable, this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Checked);
-                this.storagePanel.DrawToPictureBox(this.storagePanel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            }));
-        }
+      
         private void PlC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位_CheckStateChanged(object sender, EventArgs e)
         {
             PLC_Device_儲位管理_EPD266_資料更新.Bool = true;

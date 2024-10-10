@@ -1,4 +1,1 @@
-{
-  "Name": "¤fªA¥x",
-  "Api_Server": "http://172.26.5.198:4433"
-}
+null

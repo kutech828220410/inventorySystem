@@ -692,12 +692,10 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料錯誤";
                     return returnData.JsonSerializationt();
                 }
-                //returnData.ServerName = "Main";
-                //returnData.ServerType = "網頁";
-                //returnData.TableName = "medicine_page_cloud";
-                //POST_init(returnData);
+  
                 List<object[]> list_value_add = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
                 List<object[]> list_value_add_buf = new List<object[]>();
+                List<object[]> list_value_update_buf = new List<object[]>();
 
                 string Server = serverSettingClasses_buf[0].Server;
                 string DB = serverSettingClasses_buf[0].DBName;
@@ -718,13 +716,27 @@ namespace HIS_WebApi
                     {
                         list_value_add_buf.Add(list_value_add[i]);
                     }
+                    else
+                    {
+                        medClass medClass_update = list_value_buf[0].SQLToClass<medClass, enum_雲端藥檔>();
+                        medClass_update.藥品碼 = list_value_add[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                        medClass_update.料號 = list_value_add[i][(int)enum_雲端藥檔.料號].ObjectToString();
+                        medClass_update.藥品名稱 = list_value_add[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
+                        medClass_update.藥品學名 = list_value_add[i][(int)enum_雲端藥檔.藥品學名].ObjectToString();
+                        medClass_update.管制級別 = list_value_add[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
+                        medClass_update.包裝單位 = list_value_add[i][(int)enum_雲端藥檔.包裝單位].ObjectToString();
+                        medClass_update.圖片網址 = list_value_add[i][(int)enum_雲端藥檔.圖片網址].ObjectToString();
+
+                        list_value_update_buf.Add(medClass_update.ClassToSQL<medClass, enum_雲端藥檔>());
+
+                    }
                 }
 
 
-                sQLControl.AddRows(null, list_value_add);
-
+                sQLControl.AddRows(null, list_value_add_buf);
+                sQLControl.UpdateByDefulteExtra(null, list_value_update_buf);
                 returnData.Code = 200;
-                returnData.Result = $"新增雲端藥檔成功,共<{list_value_add.Count}>筆資料";
+                returnData.Result = $"更新雲端藥檔成功,共新增<{list_value_add_buf.Count}>筆資料,共修改<{list_value_update_buf.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
 
                 return returnData.JsonSerializationt(false);
