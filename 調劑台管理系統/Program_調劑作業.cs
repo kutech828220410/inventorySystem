@@ -272,6 +272,7 @@ namespace 調劑台管理系統
 
         private void SqL_DataGridView_領藥台_領藥內容_MouseDown(object sender, MouseEventArgs e)
         {
+            return;
             if (e.Button == MouseButtons.Right)
             {
                 Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new enum_ContextMenuStrip_Main_領藥內容().GetEnumNames());
