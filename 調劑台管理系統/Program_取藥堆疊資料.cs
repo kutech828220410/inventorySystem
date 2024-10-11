@@ -440,7 +440,8 @@ namespace 調劑台管理系統
 
             if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName()
                 || device_Type == DeviceType.EPD290.GetEnumName() || device_Type == DeviceType.EPD290_lock.GetEnumName()
-                || device_Type == DeviceType.EPD420.GetEnumName() || device_Type == DeviceType.EPD420_lock.GetEnumName())
+                || device_Type == DeviceType.EPD420.GetEnumName() || device_Type == DeviceType.EPD420_lock.GetEnumName()
+                || device_Type == DeviceType.EPD213.GetEnumName() || device_Type == DeviceType.EPD213_lock.GetEnumName())
             {
                 Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null && storage.Speaker.StringIsEmpty() == false)
@@ -888,7 +889,8 @@ namespace 調劑台管理系統
             }
             else if (str_TYPE == DeviceType.EPD266.GetEnumName() || str_TYPE == DeviceType.EPD266_lock.GetEnumName()
                   || str_TYPE == DeviceType.EPD290.GetEnumName() || str_TYPE == DeviceType.EPD290_lock.GetEnumName()
-                  || str_TYPE == DeviceType.EPD420.GetEnumName() || str_TYPE == DeviceType.EPD420_lock.GetEnumName())
+                  || str_TYPE == DeviceType.EPD420.GetEnumName() || str_TYPE == DeviceType.EPD420_lock.GetEnumName()
+                  || str_TYPE == DeviceType.EPD213.GetEnumName() || str_TYPE == DeviceType.EPD213_lock.GetEnumName())
             {
                 Storage storage = List_EPD266_入賬資料.SortByIP(IP);
                 storage = this.storageUI_EPD_266.SQL_GetStorage(storage);
@@ -1082,6 +1084,20 @@ namespace 調劑台管理系統
                     }
                 }
                 else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420_lock.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213_lock.GetEnumName())
                 {
                     if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
                     {
@@ -1720,7 +1736,8 @@ namespace 調劑台管理系統
                 {
                     if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
                         || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
-                        || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
+                        || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock
+                        || device.DeviceType == DeviceType.EPD213 || device.DeviceType == DeviceType.EPD213_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -2118,7 +2135,8 @@ namespace 調劑台管理系統
                     {
                         if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName()
                             || TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName()
-                            || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName())
+                            || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName()
+                            || TYPE[k] == DeviceType.EPD213_lock.GetEnumName() || TYPE[k] == DeviceType.EPD213.GetEnumName())
                         {
 
                             Storage storage = (Storage)values[k];
@@ -2353,7 +2371,8 @@ namespace 調劑台管理系統
                     {
                         if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName()
                             || TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName()
-                            || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName())
+                            || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName()
+                            || TYPE[k] == DeviceType.EPD213_lock.GetEnumName() || TYPE[k] == DeviceType.EPD213.GetEnumName())
                         {
 
                             Storage storage = (Storage)values[k];
@@ -2750,7 +2769,9 @@ namespace 調劑台管理系統
                         || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290_lock.GetEnumName()
                         || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName()
                         || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420_lock.GetEnumName()
-                        || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName())
+                        || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName()
+                        || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213_lock.GetEnumName()
+                        || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213.GetEnumName())
                     {
                         Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                         if (!plC_CheckBox_測試模式.Checked)
@@ -3129,7 +3150,7 @@ namespace 調劑台管理系統
                     IP = list_取藥子堆疊資料[i][(int)enum_取藥堆疊子資料.IP].ObjectToString();
 
                     Storage storage = List_EPD266_雲端資料.SortByIP(IP);
-                    if (storage != null && (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD420))
+                    if (storage != null && (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD420 || storage.DeviceType == DeviceType.EPD213))
                     {
                         if (!storage.TOFON)
                         {
@@ -3202,13 +3223,15 @@ namespace 調劑台管理系統
                                          where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == false.ToString()
                                          where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
-                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName()
+                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName()
+                                         || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213.GetEnumName()
                                          select value).ToList();
             list_取藥子堆疊資料_2_66層架_作業已完成 = (from value in list_取藥子堆疊資料
                                          where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
-                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName()
+                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName() 
+                                         || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD420.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD213.GetEnumName()
                                          select value).ToList();
             list_取藥子堆疊資料_LED層架_作業未完成 = (from value in list_取藥子堆疊資料
                                         where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()

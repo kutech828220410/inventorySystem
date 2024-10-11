@@ -816,22 +816,24 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
         }
 
-        static public void add_med_clouds(string API_Server, medClass medClass)
+        static public returnData add_med_clouds(string API_Server, medClass medClass)
         {
             List<medClass> medClasses = new List<medClass>();
             medClasses.Add(medClass);
-            add_med_clouds(API_Server, medClasses);
+            return add_med_clouds(API_Server, medClasses);
         }
-        static public void add_med_clouds(string API_Server, List<medClass> medClasses)
+        static public returnData add_med_clouds(string API_Server, List<medClass> medClasses)
         {
             string url = $"{API_Server}/api/MED_page/add_med_clouds";
 
             returnData returnData = new returnData();
             returnData.Data = medClasses;
-            if (medClasses.Count == 0) return;
+            if (medClasses.Count == 0) return null;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
         }
         
         static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)

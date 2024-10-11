@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.15")]
-[assembly: AssemblyFileVersion("1.2.2.15")]
+[assembly: AssemblyVersion("1.2.2.20")]
+[assembly: AssemblyFileVersion("1.2.2.20")]
 namespace 調劑台管理系統
 {
 
@@ -526,6 +526,7 @@ namespace 調劑台管理系統
             this.Program_儲位管理_Pannel35_Init();
             this.Program_共用區_Init();
 
+            this.Program_LCD114_索引表_Init();
             this.Program_取藥堆疊資料_Init();
             if (!this.ControlMode) this.Program_調劑作業_Init();
 
@@ -1066,9 +1067,8 @@ namespace 調劑台管理系統
 
 
 
-        #endregion
 
- 
+        #endregion
     }
 
 

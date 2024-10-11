@@ -80,29 +80,37 @@ namespace 調劑台管理系統
         {
             if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "全部顯示")
             {
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = false;
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = false;
             }
             else if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "管制級別")
             {
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDown;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = new string[] { "1", "2", "3", "4", "N" };
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Clear();
+                string[] strs = new string[] { "1", "2", "3", "4", "N" };
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Add(strs[i]);
+                }
                 if (comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Count > 0) comboBox_藥品資料_儲位總庫存表_搜尋內容.SelectedIndex = 0;
             }
             else if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "藥品群組")
             {
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDown;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = medGroupClass.get_all_group_name(API_Server).ToArray();
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Clear();
+                string[] strs = medGroupClass.get_all_group_name(API_Server).ToArray();
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Add(strs[i]);
+                }
                 if (comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Count > 0) comboBox_藥品資料_儲位總庫存表_搜尋內容.SelectedIndex = 0;
             }
             else
             {
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDownList;
-                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                //comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Clear();
                 comboBox_藥品資料_儲位總庫存表_搜尋內容.Text = "";
             }
         }

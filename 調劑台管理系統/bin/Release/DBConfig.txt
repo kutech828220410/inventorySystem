@@ -1,4 +1,1 @@
-{
-  "Name": "A6",
-  "Api_Server": "http://127.0.0.1:4433"
-}
+null
