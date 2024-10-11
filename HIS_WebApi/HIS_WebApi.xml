@@ -5816,6 +5816,28 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.order.POST_delete_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除西藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  [OrderClass(陣列)]
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.order.POST_add(HIS_DB_Lib.returnData)">
             <summary>
             新增西藥醫令

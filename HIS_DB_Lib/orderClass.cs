@@ -474,6 +474,35 @@ namespace HIS_DB_Lib
             OrderClass OrderClass = returnData_out.Data.ObjToClass<OrderClass>();
 
         }
+        static public void delete_by_guid(string API_Server, OrderClass OrderClass)
+        {
+            List<OrderClass> OrderClasse = new List<OrderClass>();
+            OrderClasse.Add(OrderClass);
+            delete_by_guid(API_Server, OrderClasse);
+        }
+        static public void delete_by_guid(string API_Server, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/delete_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+
+            }
+            if (returnData_out.Data == null)
+            {
+
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderClass OrderClass = returnData_out.Data.ObjToClass<OrderClass>();
+
+        }
 
         static public List<OrderClass> add(string API_Server, OrderClass OrderClass)
         {
