@@ -49,7 +49,10 @@ namespace HIS_DB_Lib
         [Description("更新時間,DATETIME,10,NONE")]
         更新時間,
         [Description("仿單,VARCHAR,200,NONE")]
-        仿單
+        仿單,
+        [Description("健保規範,TEXT,10,NONE")]
+        健保規範
+
     }
     public class medInfoClass
     {
@@ -148,6 +151,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("med_packeage")]
         public string 仿單 { get; set; }
+        /// <summary>
+        /// 健保規範
+        /// </summary>
+        [JsonPropertyName("spec")]
+        public string 健保規範 { get; set; }
         static public List<medInfoClass> update_med_info(string API_Server, List<medInfoClass> medInfoClass)
         {
             string url = $"{API_Server}/api/med_cart/update_med_info";

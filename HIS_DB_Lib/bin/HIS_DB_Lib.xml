@@ -1911,6 +1911,11 @@
             仿單
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.健保規範">
+            <summary>
+            健保規範
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInterClass">
             <summary>
             medInterClass 資料
