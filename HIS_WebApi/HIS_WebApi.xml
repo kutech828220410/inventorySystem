@@ -909,7 +909,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory_log(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.CheckCreatTable(HIS_DB_Lib.ServerSettingClass,System.Enum)">
              <summary>
             初始化dbvm.med_inventory資料庫
              </summary>
@@ -926,7 +926,7 @@
         </member>
         <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.add_med_inventory_log(HIS_DB_Lib.returnData)">
              <summary>
-            新增藥品調劑LOG
+            新增藥品調劑/覆核LOG
              </summary>
              <remarks>
              以下為JSON範例
@@ -937,6 +937,7 @@
                      "op_id":"",
                      "op_name":""
                      }]
+                     "Value":"調劑"or"覆核"
                      "ValueAry":["處方GUID;處方GUID"]
                  }
              </code>
@@ -1199,6 +1200,23 @@
         <member name="M:HIS_WebApi.med_cart.check_dispense(HIS_DB_Lib.returnData)">
              <summary>
             確認藥品調劑
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Value":"病床GUID"
+                         
+                     "ValueAry":["藥品GUID;藥品GUID;藥品GUID"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.double_check(HIS_DB_Lib.returnData)">
+             <summary>
+            覆核藥品調劑
              </summary>
              <remarks>
              以下為JSON範例

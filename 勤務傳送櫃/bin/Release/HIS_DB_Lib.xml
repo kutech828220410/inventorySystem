@@ -876,6 +876,11 @@
             檢驗數值異常
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.覆核狀態">
+            <summary>
+            覆核狀態
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.診斷病名">
             <summary>
             診斷病名
@@ -1911,6 +1916,11 @@
             仿單
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.健保規範">
+            <summary>
+            健保規範
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInterClass">
             <summary>
             medInterClass 資料
@@ -2034,6 +2044,11 @@
         <member name="P:HIS_DB_Lib.medInventoryLogClass.Master_GUID">
             <summary>
             Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作行為">
+            <summary>
+            操作行為
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryLogClass.藥局">
@@ -2999,11 +3014,6 @@
         <member name="P:HIS_DB_Lib.textVisionClass.Log">
             <summary>
             Log
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
-            <summary>
-            keyword
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批號">

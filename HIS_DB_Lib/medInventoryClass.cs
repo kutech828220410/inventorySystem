@@ -16,6 +16,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("操作行為,VARCHAR,10,INDEX")]
+        操作行為,
         [Description("藥局,VARCHAR,10,INDEX")]
         藥局,
         [Description("護理站,VARCHAR,10,INDEX")]
@@ -74,6 +76,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
+        /// <summary>
+        /// 操作行為
+        /// </summary>
+        [JsonPropertyName("op_act")]
+        public string 操作行為 { get; set; }
         /// <summary>
         /// 藥局
         /// </summary>

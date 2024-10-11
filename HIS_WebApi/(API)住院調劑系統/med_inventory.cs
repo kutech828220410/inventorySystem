@@ -70,6 +70,18 @@ namespace HIS_WebApi._API_住院調劑系統
         /// <returns></returns>
         [HttpPost("init_med_inventory")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medInventoryClass物件", typeof(medInventoryClass))]
+        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            return table.JsonSerializationt(true);
+        }
+
         public string init_med_inventory_log([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -92,19 +104,8 @@ namespace HIS_WebApi._API_住院調劑系統
                 return returnData.JsonSerializationt(true);
             }
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
-        {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
-            return table.JsonSerializationt(true);
-        }
         /// <summary>
-        ///新增藥品調劑LOG
+        ///新增藥品調劑/覆核LOG
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -115,6 +116,7 @@ namespace HIS_WebApi._API_住院調劑系統
         ///         "op_id":"",
         ///         "op_name":""
         ///         }]
+        ///         "Value":"調劑"or"覆核"
         ///         "ValueAry":["處方GUID;處方GUID"]
         ///     }
         /// </code>
@@ -151,6 +153,12 @@ namespace HIS_WebApi._API_住院調劑系統
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[處方GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.Value == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 內容應為\"調劑\" OR \"覆核\"";
                     return returnData.JsonSerializationt(true);
                 }
                 List<medInventoryLogClass> input_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
@@ -193,6 +201,7 @@ namespace HIS_WebApi._API_住院調劑系統
                         {
                             GUID = Guid.NewGuid().ToString(),
                             Master_GUID = medCpoeClass.GUID,
+                            操作行為 = returnData.Value,
                             藥局 = medCpoeClass.藥局,
                             護理站 = medCpoeClass.護理站,
                             床號 = medCpoeClass.床號,
@@ -226,7 +235,7 @@ namespace HIS_WebApi._API_住院調劑系統
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"新增藥品處方調劑LOG共{add_medInventoryLogClass.Count}筆 更新藥品處方調劑LOG共{update_medInventoryLogClass.Count}筆";
+                returnData.Result = $"新增藥品處方{returnData.Value}LOG共{add_medInventoryLogClass.Count}筆 更新藥品處方{returnData.Value}LOG共{update_medInventoryLogClass.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

@@ -105,6 +105,8 @@ namespace HIS_DB_Lib
         DC確認,
         [Description("調劑異動,VARCHAR,10,NONE")]
         調劑異動,
+        [Description("覆核狀態,VARCHAR,10,NONE")]
+        覆核狀態,
     }
     /// <summary>
     /// medCpoeClass資料
@@ -336,6 +338,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispens_change")]
         public string 調劑異動 { get; set; }
+        [JsonPropertyName("check_status")]
+        public string 覆核狀態 { get; set; }
         /// <summary>
         /// 雲端藥檔
         /// </summary>

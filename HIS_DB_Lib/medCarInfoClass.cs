@@ -97,7 +97,9 @@ namespace HIS_DB_Lib
         [Description("國際標準化比率,VARCHAR,10,NONE")]
         國際標準化比率,
         [Description("檢驗數值異常,VARCHAR,150,NONE")]
-        檢驗數值異常
+        檢驗數值異常,
+        [Description("覆核狀態,VARCHAR,10,NONE")]
+        覆核狀態
 
     }
     /// <summary>
@@ -320,6 +322,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("abnormal")]
         public string 檢驗數值異常 { get; set; }
+        /// <summary>
+        /// 覆核狀態
+        /// </summary>
+        [JsonPropertyName("check_status")]
+        public string 覆核狀態 { get; set; }
         /// <summary>
         /// 診斷病名
         /// </summary>

@@ -24,8 +24,6 @@ namespace HIS_DB_Lib
         操作時間,
         [Description("Log,LONGTEXT,10,NONE")]
         Log,
-        [Description("op_keyword,VARCHAR,100,NONE")]
-        op_keyword,
         [Description("批號,VARCHAR,50,NONE")]
         批號,
         [Description("單號,VARCHAR,50,NONE")]
@@ -108,11 +106,6 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("logs")]
         public object Log { get; set; }
-        /// <summary>
-        /// keyword
-        /// </summary>
-        [JsonPropertyName("op_keywords")]
-        public string op_keyword { get; set; }
         /// <summary>
         /// 批號
         /// </summary>
