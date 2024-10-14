@@ -476,6 +476,10 @@ namespace HIS_DB_Lib
     }
     public class bedListClass
     {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
         [JsonPropertyName("bednum")]
         public string 床號 { get; set; }
         [JsonPropertyName("lqnty")]

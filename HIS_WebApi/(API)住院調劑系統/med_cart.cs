@@ -161,21 +161,23 @@ namespace HIS_WebApi
             returnData.Method = "update_med_carinfo";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
+                //List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                //serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                //if (serverSettingClasses.Count == 0)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"找無Server資料";
+                //    return returnData.JsonSerializationt();
+                //}
 
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-              
+                //string Server = serverSettingClasses[0].Server;
+                //string DB = serverSettingClasses[0].DBName;
+                //string UserName = serverSettingClasses[0].User;
+                //string Password = serverSettingClasses[0].Password;
+                //uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                var (Server, DB, UserName, Password, Port) = GetServerInfo("Main", "網頁", "VM端");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
                 List<medCarInfoClass> medCart_sql_add = new List<medCarInfoClass>();
                 List<medCarInfoClass> medCart_sql_replace = new List<medCarInfoClass>();
                 List<medCarInfoClass> medCart_sql_delete = new List<medCarInfoClass>();
@@ -230,7 +232,9 @@ namespace HIS_WebApi
                         {
                             medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                             medCarInfoClass.GUID = targetPatient.GUID;
-                            if(string.IsNullOrWhiteSpace(medCarInfoClass.調劑狀態)) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                            medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                            //if ((medCarInfoClass.調劑狀態).StringIsEmpty() == false) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                            //if (string.IsNullOrWhiteSpace(medCarInfoClass.調劑狀態)) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
                             medCart_sql_replace.Add(medCarInfoClass);
                         }
                     }
@@ -773,7 +777,8 @@ namespace HIS_WebApi
             returnData.Method = "update_order_list";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -1505,6 +1510,8 @@ namespace HIS_WebApi
                         調劑台 = "",
                         病床清單 = grouped.Select(value => new bedListClass
                         {
+                            GUID = value.GUID,
+                            Master_GUID = value.Master_GUID,
                             床號 = value.床號,
                             數量 = value.數量,
                             劑量 = value.劑量,
