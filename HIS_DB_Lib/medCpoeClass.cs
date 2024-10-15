@@ -488,6 +488,9 @@ namespace HIS_DB_Lib
         public string 劑量 { get; set; }
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        [JsonPropertyName("check_status")]
+        public string 覆核狀態 { get; set; }
+
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
         public class ICP_By_bedNum : IComparer<bedListClass>

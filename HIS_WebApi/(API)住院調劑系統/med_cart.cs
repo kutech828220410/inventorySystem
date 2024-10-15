@@ -1533,18 +1533,12 @@ namespace HIS_WebApi
             returnData.Method = "double_check_by_GUID";
             try
             {
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 3)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"病人GUID\",\"藥品GUID\", \"Y/ \"]";
                     return returnData.JsonSerializationt(true);
-                }
-                if (returnData.Value == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"請指定GUID";
-                    return returnData.JsonSerializationt(true);
-                }
+                }            
                 var (Server, DB, UserName, Password, Port) = GetServerInfo("Main", "網頁", "VM端");
                 string API = GetServerAPI("Main", "網頁", "API01");
                 string Master_GUID = returnData.ValueAry[0];
@@ -1681,7 +1675,8 @@ namespace HIS_WebApi
                             數量 = value.數量,
                             劑量 = value.劑量,
                             大瓶點滴 = value.大瓶點滴,
-                            調劑狀態 = value.調劑狀態
+                            調劑狀態 = value.調劑狀態,
+                            覆核狀態 = value.覆核狀態
                         }).ToList()
                     })
                     .ToList();

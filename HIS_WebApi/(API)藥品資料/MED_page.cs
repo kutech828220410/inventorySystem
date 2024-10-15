@@ -714,6 +714,7 @@ namespace HIS_WebApi
                     list_value_buf = list_value.GetRows((int)enum_雲端藥檔.藥品碼, 藥碼);
                     if(list_value_buf.Count == 0)
                     {
+                        list_value_add[i][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
                         list_value_add_buf.Add(list_value_add[i]);
                     }
                     else
