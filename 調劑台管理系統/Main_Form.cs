@@ -518,7 +518,7 @@ namespace 調劑台管理系統
 
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();
-
+            this.Program_藥品區域_Init();
             this.Program_儲位管理_EPD583_Init();
             this.Program_儲位管理_EPD266_Init();
             this.Program_儲位管理_EPD1020_Init();

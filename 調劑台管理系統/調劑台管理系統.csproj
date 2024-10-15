@@ -528,6 +528,9 @@
     <Compile Include="Program_管制抽屜.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥品區域.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥品設定表.cs">
       <SubType>Form</SubType>
     </Compile>
