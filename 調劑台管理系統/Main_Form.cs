@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.20")]
-[assembly: AssemblyFileVersion("1.2.2.20")]
+[assembly: AssemblyVersion("1.2.2.23")]
+[assembly: AssemblyFileVersion("1.2.2.23")]
 namespace 調劑台管理系統
 {
 
@@ -340,6 +340,7 @@ namespace 調劑台管理系統
         }
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            Net.DebugLog = false;
             if (this.DesignMode == false)
             {
                 MyDialog.form = this.FindForm();

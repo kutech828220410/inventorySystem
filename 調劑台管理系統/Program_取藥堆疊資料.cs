@@ -1396,6 +1396,9 @@ namespace 調劑台管理系統
                     {
                         bool flag_common_device = false;
                         Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
+                        int numOfLED = 400;
+                        if (drawer.DrawerType == Drawer.Enum_DrawerType._4X8 || drawer.DrawerType == Drawer.Enum_DrawerType._3X8) numOfLED = 400;
+                        if (drawer.DrawerType == Drawer.Enum_DrawerType._4X8_A || drawer.DrawerType == Drawer.Enum_DrawerType._5X8_A) numOfLED = 365;
                         if (drawer == null)
                         {
                             drawer = CommonSapceClass.GetEPD583(IP, ref commonSapceClasses);
@@ -1417,7 +1420,7 @@ namespace 調劑台管理系統
                             List<MyColor> myColors = new List<MyColor>();
                             if (color != Color.Black)
                             {
-                                for (int k = 0; k < 400; k++)
+                                for (int k = 0; k < numOfLED; k++)
                                 {
                                     int R = LED_Bytes[k * 3 + 0];
                                     int G = LED_Bytes[k * 3 + 1];
@@ -1443,7 +1446,7 @@ namespace 調劑台管理系統
                                 else
                                 {
                                     bool flag_led_black_enable = true;
-                                    for (int k = 0; k < 400; k++)
+                                    for (int k = 0; k < numOfLED; k++)
                                     {
                                         int R = drawer.LED_Bytes[k * 3 + 0];
                                         int G = drawer.LED_Bytes[k * 3 + 1];

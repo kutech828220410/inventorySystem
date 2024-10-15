@@ -600,8 +600,8 @@ namespace 調劑台管理系統
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < orderClasses.Count; i++)
             {
-                string pri_key = orderClasses[i].PRI_KEY;
-                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
+                string GUID = orderClasses[i].GUID;
+                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.GUID, GUID, false);
                 list_value.LockAdd(list_value_buf);
             }
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");

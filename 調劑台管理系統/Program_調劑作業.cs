@@ -20,6 +20,12 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        public enum enum_ContextMenuStrip_Main_領藥內容
+        {
+            修改數量,
+            
+        }
+
         static public SQL_DataGridView _sqL_DataGridView_領藥台_01_領藥內容;
         static public SQL_DataGridView _sqL_DataGridView_領藥台_02_領藥內容;
         static public SQL_DataGridView _sqL_DataGridView_領藥台_03_領藥內容;
@@ -256,6 +262,44 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_04.AutoStop(false);
             this.MyThread_領藥台_04.SetSleepTime(20);
             this.MyThread_領藥台_04.Trigger();
+
+
+            sqL_DataGridView_領藥台_01_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
+            sqL_DataGridView_領藥台_02_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
+            sqL_DataGridView_領藥台_03_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
+            sqL_DataGridView_領藥台_04_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
+        }
+
+        private void SqL_DataGridView_領藥台_領藥內容_MouseDown(object sender, MouseEventArgs e)
+        {
+            return;
+            if (e.Button == MouseButtons.Right)
+            {
+                Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new enum_ContextMenuStrip_Main_領藥內容().GetEnumNames());
+                dialog_ContextMenuStrip.TitleText = "功能列表";
+                if (dialog_ContextMenuStrip.ShowDialog() != DialogResult.Yes) return;
+                if (dialog_ContextMenuStrip.Value == enum_ContextMenuStrip_Main_領藥內容.修改數量.GetEnumName())
+                {
+                    List<object[]> list_value = new List<object[]>();
+                    SQL_DataGridView sQL_DataGridView = (SQL_DataGridView)sender;
+                    if (sQL_DataGridView.Name == "sqL_DataGridView_領藥台_01_領藥內容") list_value = sqL_DataGridView_領藥台_01_領藥內容.Get_All_Select_RowsValues();
+                    if (sQL_DataGridView.Name == "sqL_DataGridView_領藥台_02_領藥內容") list_value = sqL_DataGridView_領藥台_02_領藥內容.Get_All_Select_RowsValues();
+                    if (sQL_DataGridView.Name == "sqL_DataGridView_領藥台_03_領藥內容") list_value = sqL_DataGridView_領藥台_03_領藥內容.Get_All_Select_RowsValues();
+                    if (sQL_DataGridView.Name == "sqL_DataGridView_領藥台_04_領藥內容") list_value = sqL_DataGridView_領藥台_04_領藥內容.Get_All_Select_RowsValues();
+                    if (list_value.Count == 0)
+                    {
+                        MyMessageBox.ShowDialog("未選取資料");
+                        return;
+                    }
+                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
+                    if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+                    int 數量 = dialog_NumPannel.Value;
+
+
+
+                }
+
+            }
         }
 
         private void Program_調劑作業_Init()
