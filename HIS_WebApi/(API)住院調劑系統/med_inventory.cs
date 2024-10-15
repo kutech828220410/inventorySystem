@@ -32,8 +32,7 @@ namespace HIS_WebApi._API_住院調劑系統
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("init_med_inventory_log")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medInventoryClass物件", typeof(medInventoryClass))]
-        public string init_med_inventory([FromBody] returnData returnData)
+        public string init_med_inventory_log([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -69,20 +68,7 @@ namespace HIS_WebApi._API_住院調劑系統
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("init_med_inventory")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medInventoryClass物件", typeof(medInventoryClass))]
-        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
-        {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
-            return table.JsonSerializationt(true);
-        }
-
-        public string init_med_inventory_log([FromBody] returnData returnData)
+        public string init_med_inventory([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -616,6 +602,18 @@ namespace HIS_WebApi._API_住院調劑系統
                 return returnData.JsonSerializationt(true);
             }
         }
+        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            return table.JsonSerializationt(true);
+        }
+
 
     }
 }

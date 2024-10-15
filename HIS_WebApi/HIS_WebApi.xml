@@ -894,7 +894,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory_log(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_inventory資料庫
              </summary>
@@ -909,7 +909,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.CheckCreatTable(HIS_DB_Lib.ServerSettingClass,System.Enum)">
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_inventory資料庫
              </summary>
@@ -1208,6 +1208,21 @@
                      "Value":"病床GUID"
                          
                      "ValueAry":["藥品GUID;藥品GUID;藥品GUID"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.check_dispense_by_GUID(HIS_DB_Lib.returnData)">
+             <summary>
+            以GUID確認藥品調劑
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":["病人GUID","藥品GUID", "Y/ "]";
                  }
              </code>
              </remarks>
