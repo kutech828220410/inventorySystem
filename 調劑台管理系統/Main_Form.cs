@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.23")]
-[assembly: AssemblyFileVersion("1.2.2.23")]
+[assembly: AssemblyVersion("1.2.2.26")]
+[assembly: AssemblyFileVersion("1.2.2.26")]
 namespace 調劑台管理系統
 {
 
@@ -828,6 +828,7 @@ namespace 調劑台管理系統
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_設備資料, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品管制方式設定, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品設定表, dBConfigClass.DB_Medicine_Cloud);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品區域, dBConfigClass.DB_Basic);
             SQLUI.SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
             dB_local.IP = dBConfigClass.DB_Basic.IP;
             dB_local.DataBaseName = dBConfigClass.DB_Basic.DataBaseName;
