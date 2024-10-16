@@ -747,7 +747,12 @@ namespace HIS_WebApi
                         //if (medClass.料號 != target.料號) flag_replace = true;
                         //if (medClass.料號 != target.料號) flag_replace = true;
                         bool flag_replace = AreMedClassDiff(medClass, target);
-                        if (flag_replace) update_medPageCloud.Add(medClass);
+                        if (flag_replace) 
+                        {
+                            medClass.GUID = target.GUID;
+                            update_medPageCloud.Add(medClass);
+                        }
+                        
                     }
                 }
                 List<object[]> list_add_medPageCloud = add_medPageCloud.ClassToSQL<medClass, enum_雲端藥檔>();
