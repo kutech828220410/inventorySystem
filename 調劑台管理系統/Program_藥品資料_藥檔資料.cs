@@ -1191,20 +1191,20 @@ namespace 調劑台管理系統
                     string response = Basic.Net.WEBApiGet($"{url}?Code={藥品碼}");
                     Console.WriteLine($"HIS填入 , response:{response},耗時{myTimer.ToString()}ms");
                 }
-                List<medClass> medClasses = medClass.get_med_cloud(Main_Form.API_Server);
+                medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, 藥品碼);
 
-                if (medClasses.Count == 0)
+                if (_medClass == null)
                 {
                     MyMessageBox.ShowDialog("查無資料!");
                     return;
                 }
-                this.textBox_藥品資料_藥檔資料_藥品名稱.Text = medClasses[0].藥品名稱;
-                this.textBox_藥品資料_藥檔資料_藥品學名.Text = medClasses[0].藥品學名;
-                this.textBox_藥品資料_藥檔資料_中文名稱.Text = medClasses[0].中文名稱;
-                this.textBox_藥品資料_藥檔資料_健保碼.Text = medClasses[0].健保碼;
-                this.textBox_藥品資料_藥檔資料_包裝單位.Text = medClasses[0].包裝單位;
-                this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (medClasses[0].警訊藥品.ToLower() == "true");
-                this.comboBox_藥品資料_藥檔資料_管制級別.Text = medClasses[0].管制級別;
+                this.textBox_藥品資料_藥檔資料_藥品名稱.Text = _medClass.藥品名稱;
+                this.textBox_藥品資料_藥檔資料_藥品學名.Text = _medClass.藥品學名;
+                this.textBox_藥品資料_藥檔資料_中文名稱.Text = _medClass.中文名稱;
+                this.textBox_藥品資料_藥檔資料_健保碼.Text = _medClass.健保碼;
+                this.textBox_藥品資料_藥檔資料_包裝單位.Text = _medClass.包裝單位;
+                this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (_medClass.警訊藥品.ToLower() == "true");
+                this.comboBox_藥品資料_藥檔資料_管制級別.Text = _medClass.管制級別;
 
                 PlC_RJ_Button_藥品資料_登錄_MouseDownEvent(null);
                 if (mevent == null) return;

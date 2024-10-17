@@ -15,7 +15,7 @@ using System.Text.Json.Serialization;
 using H_Pannel_lib;
 using MyOffice;
 using HIS_DB_Lib;
-
+using SQLUI;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
@@ -62,20 +62,13 @@ namespace 調劑台管理系統
             藥品碼,
             [Description("藥品名稱,VARCHAR,300,NONE")]
             藥品名稱,
-            [Description("藥品學名,VARCHAR,300,NONE")]
-            藥品學名,
-            [Description("中文名稱,VARCHAR,300,NONE")]
-            中文名稱,
             [Description("包裝單位,VARCHAR,300,NONE")]
             包裝單位,
-            [Description("藥品條碼,VARCHAR,300,NONE")]
-            藥品條碼,
             [Description("庫存,VARCHAR,300,NONE")]
             庫存,
-            [Description("警訊藥品,VARCHAR,300,NONE")]
-            警訊藥品,
-            [Description("鎖控,VARCHAR,300,NONE")]
-            鎖控,
+            [Description("區域,VARCHAR,15,NONE")]
+            區域,
+
         }
       
         private bool flag_Program_儲位管理_EPD266_Init = false;
@@ -88,30 +81,26 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
 
-            //this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
-            //this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnText("藥品名稱", enum_藥品資料_藥檔資料.藥品名稱);
-            SQLUI.Table table = new SQLUI.Table(new enum_儲位管理_EPD266_儲位資料());
+            Table table_儲架電子紙列表 = new Table(new enum_儲位管理_EPD266_儲位資料());
+            table_儲架電子紙列表[enum_儲位管理_EPD266_儲位資料.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
+
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowsHeight = 40;
-            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Init(table);
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Init(table_儲架電子紙列表);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnVisible(false, new enum_儲位管理_EPD266_儲位資料().GetEnumNames());
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.IP);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.儲位名稱);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.藥品碼);
-            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(900, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.藥品名稱);
-            //this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnWidth(280, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.藥品學名);
-            //this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnWidth(280, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.中文名稱);
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(750, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_儲位資料.藥品名稱);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.包裝單位);
-            //this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.藥品條碼);
-            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.庫存);
-            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.警訊藥品);
-            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.鎖控);
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.庫存);
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD266_儲位資料.區域);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnText("藥碼", enum_儲位管理_EPD266_儲位資料.藥品碼);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnText("藥名", enum_儲位管理_EPD266_儲位資料.藥品名稱);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Set_ColumnText("單位", enum_儲位管理_EPD266_儲位資料.包裝單位);
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowEnterEvent += SqL_DataGridView_儲位管理_EPD266_儲位資料_RowEnterEvent;
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_儲位管理_EPD266_儲位資料_ComboBoxSelectedIndexChangedEvent;
 
-
-            table = new SQLUI.Table(new enum_儲位管理_EPD266_效期及庫存());
+            Table table = new SQLUI.Table(new enum_儲位管理_EPD266_效期及庫存());
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.Init(table);
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.Set_ColumnVisible(false, new enum_儲位管理_EPD266_效期及庫存().GetEnumNames());
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD266_效期及庫存.效期);
@@ -155,6 +144,8 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
+     
+
         private void StoragePanel_SizeChanged(object sender, EventArgs e)
         {
             this.storagePanel.Location = new Point((this.storagePanel.Parent.Width - this.storagePanel.Width) / 2, (this.storagePanel.Parent.Height - this.storagePanel.Height) / 2);
@@ -190,7 +181,7 @@ namespace 調劑台管理系統
         }
 
         #region PLC_儲位管理_EPD266_資料更新
-        PLC_Device PLC_Device_儲位管理_EPD266_資料更新 = new PLC_Device("S9025");
+        PLC_Device PLC_Device_儲位管理_EPD266_資料更新 = new PLC_Device("");
         int cnt_Program_儲位管理_EPD266_資料更新 = 65534;
         void sub_Program_儲位管理_EPD266_資料更新()
         {
@@ -378,13 +369,11 @@ namespace 調劑台管理系統
                 value[(int)enum_儲位管理_EPD266_儲位資料.儲位名稱] = List_EPD266_本地資料[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); 
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品碼] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.藥品學名] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.中文名稱] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = List_EPD266_本地資料[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = List_EPD266_本地資料[i].IsWarning.ToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (List_EPD266_本地資料[i].DeviceType == DeviceType.EPD266_lock || List_EPD266_本地資料[i].DeviceType == DeviceType.EPD290_lock || List_EPD266_本地資料[i].DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
+                value[(int)enum_儲位管理_EPD266_儲位資料.區域] = List_EPD266_本地資料[i].Area;
+
+                //value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (List_EPD266_本地資料[i].DeviceType == DeviceType.EPD266_lock || List_EPD266_本地資料[i].DeviceType == DeviceType.EPD290_lock || List_EPD266_本地資料[i].DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
                 list_value.Add(value);
             }
             list_value.Sort(new ICP_儲位管理_EPD266_抽屜列表());
@@ -395,24 +384,35 @@ namespace 調劑台管理系統
 
         #endregion
         #region Event
+        private void SqL_DataGridView_儲位管理_EPD266_儲位資料_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+            string 區域 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.區域].ObjectToString();
+
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+            if (storage == null)
+            {
+                MyMessageBox.ShowDialog("查無儲位資料");
+                return;
+            }
+            storage.Area = 區域;
+            Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
+        }
         private void SqL_DataGridView_儲位管理_EPD266_儲位資料_RowEnterEvent(object[] RowValue)
         {
             string IP = RowValue[(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
             string 儲位名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.儲位名稱].ObjectToString();
             string 藥品碼 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品碼].ObjectToString();
             string 藥品名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱].ObjectToString();
-            string 藥品學名 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品學名].ObjectToString();
-            string 中文名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.中文名稱].ObjectToString();
             string 包裝單位 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.包裝單位].ObjectToString();
-            string 藥品條碼 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼].ObjectToString();
             string 庫存 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.庫存].ObjectToString();
-            string 警訊藥品 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品].ObjectToString();
 
  
 
             Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
 
-            storage.IsWarning = (警訊藥品 == "True");
+            //storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {
                 rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Texts = storage.Speaker;
@@ -521,13 +521,9 @@ namespace 調劑台管理系統
             value[(int)enum_儲位管理_EPD266_儲位資料.儲位名稱] = storage.GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品碼] = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱] = storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.藥品學名] = storage.GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.中文名稱] = storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] = storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = storage.GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = storage.IsWarning.ToString();
+            //value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
             List_EPD266_本地資料.Add_NewStorage(storage);
             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
             this.storagePanel.DrawToPictureBox(storage);
@@ -1064,8 +1060,8 @@ namespace 調劑台管理系統
                     if (list_value_buf.Count == 0) continue;
                     list_value_buf[0] = new object[new enum_儲位管理_EPD266_儲位資料().GetLength()];
                     list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.IP] = storage.IP;
-                    list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = false.ToString();
-                    list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
+                    //list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = false.ToString();
+                    //list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
 
                     this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Replace((int)enum_儲位管理_EPD266_儲位資料.IP, storage.IP, list_value_buf[0], true);
            
