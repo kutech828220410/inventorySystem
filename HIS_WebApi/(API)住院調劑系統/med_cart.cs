@@ -819,7 +819,7 @@ namespace HIS_WebApi
                         }
                         else
                         {
-                            result_order_list.Add(orderClass);
+                            result_order_list.Add(orderClass_add);
                         }
                     }
                 }
