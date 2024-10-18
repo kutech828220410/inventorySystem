@@ -829,8 +829,8 @@ namespace HIS_WebApi
                             orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.狀態 = "未過帳";
+                            add_order_list.Add(orderClass);
                         }
-                        add_order_list.Add(orderClass);
                     }
                 }
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
