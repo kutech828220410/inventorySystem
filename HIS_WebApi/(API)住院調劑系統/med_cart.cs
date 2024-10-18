@@ -161,20 +161,6 @@ namespace HIS_WebApi
             returnData.Method = "update_med_carinfo";
             try
             {
-                //List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                //serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                //if (serverSettingClasses.Count == 0)
-                //{
-                //    returnData.Code = -200;
-                //    returnData.Result = $"找無Server資料";
-                //    return returnData.JsonSerializationt();
-                //}
-
-                //string Server = serverSettingClasses[0].Server;
-                //string DB = serverSettingClasses[0].DBName;
-                //string UserName = serverSettingClasses[0].User;
-                //string Password = serverSettingClasses[0].Password;
-                //uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 var (Server, DB, UserName, Password, Port) = GetServerInfo("Main", "網頁", "VM端");
                 string API = GetServerAPI("Main", "網頁", "API01");
 
@@ -783,7 +769,6 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -810,6 +795,7 @@ namespace HIS_WebApi
                 List<object[]> list_order_list = sQLControl_order_list.GetRowsByDefult(null,(int)enum_醫囑資料.PRI_KEY, priKey);
                 List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
                 List<OrderClass> add_order_list = new List<OrderClass>();
+                List<OrderClass> result_order_list = new List<OrderClass>();
                 List<OrderClass> delete_order_list = new List<OrderClass>();
 
                 foreach (var orderClass in input_orderClass)
@@ -829,8 +815,12 @@ namespace HIS_WebApi
                             orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.狀態 = "未過帳";
+                            add_order_list.Add(orderClass);
                         }
-                        add_order_list.Add(orderClass);
+                        else
+                        {
+                            result_order_list.Add(orderClass);
+                        }
                     }
                 }
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
@@ -838,10 +828,10 @@ namespace HIS_WebApi
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
                 if (list_delete_order_list.Count > 0) sQLControl_order_list.DeleteExtra(null, list_delete_order_list);
-
+                result_order_list.AddRange(add_order_list);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = input_orderClass;
+                returnData.Data = result_order_list;
                 returnData.Result = $"取得醫令成功,共<{input_orderClass.Count}>筆,新增<{list_add_order_list.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
@@ -980,7 +970,7 @@ namespace HIS_WebApi
                 List<string> Codes = sql_medCpoe.Select(temp => temp.藥碼).Distinct().ToList();
                 if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
 
-                if (!string.IsNullOrWhiteSpace(returnData.Value) && returnData.Value != "all")
+                if ((returnData.Value).StringIsEmpty() == false && returnData.Value != "all")
                 {                 
                     List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
             

@@ -180,6 +180,11 @@ namespace HIS_DB_Lib
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
+            if (json_out.StringIsEmpty() == true)
+            {
+                url = "http://127.0.0.1:3000/PO_Vision";
+                json_out = Net.WEBApiPostJson(url, json_in);
+            }
             returnData returnData_AI = json_out.JsonDeserializet<returnData>();
             if (returnData_AI == null) return null;
             if (returnData_AI.Code != 200) return null;
