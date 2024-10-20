@@ -1305,25 +1305,21 @@ namespace 調劑台管理系統
         }
 
 
-        static public void Function_儲位亮燈(string 藥品碼, Color color)
+        static public void Function_儲位亮燈(LightOn lightOn)
         {
             if (PLC_Device_主機輸出模式.Bool == false)
             {
                 return;
             }
             List<string> list_lock_IP = new List<string>();
-            Function_儲位亮燈(藥品碼, color ,ref list_lock_IP);
+            Function_儲位亮燈(lightOn, ref list_lock_IP);
         }
-        static public void Function_儲位亮燈(string 藥品碼, Color color, ref List<string> list_lock_IP)
+        static public void Function_儲位亮燈(LightOn lightOn, ref List<string> list_lock_IP)
         {
-
+            string 藥品碼 = lightOn.藥品碼;
+            Color color = lightOn.顏色;
             if (藥品碼.StringIsEmpty()) return;
 
-            //if (myConfigClass.系統取藥模式)
-            //{
-            //    Function_儲位亮燈_Ex(藥品碼, color);
-            //    return;
-            //}
             if (color == Color.Black)
             {
                 List<object[]> list_取藥堆疊母資料 = _sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼, false);
@@ -1334,11 +1330,12 @@ namespace 調劑台管理系統
                                 select temp).ToList();
                 if (list_取藥堆疊母資料.Count != 0) return;
             }
-
-            LightOn lightOn = new LightOn();
-            lightOn.藥品碼 = 藥品碼;
-            lightOn.顏色 = color;
-            lightOns.Add(lightOn);
+            List<LightOn> lightOns_buf = (from temp in lightOns
+                                          where temp.藥品碼 == lightOn.藥品碼
+                                          where temp.顏色 == lightOn.顏色
+                                          where temp.flag_Refresh == lightOn.flag_Refresh
+                                          select temp).ToList();
+            if (lightOns_buf.Count == 0) lightOns.Add(lightOn);
 
             List<object> list_Device = new List<object>();
             list_Device.LockAdd(Function_從雲端資料取得儲位(藥品碼));
@@ -1360,9 +1357,7 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
-                     || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
-                     || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
+                    if (device.DeviceIsStorage())
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)

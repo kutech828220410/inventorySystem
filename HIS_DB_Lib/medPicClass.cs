@@ -123,7 +123,7 @@ namespace HIS_DB_Lib
             {
                 return null;
             }
-            Console.WriteLine($"{returnData_out}");
+            Console.WriteLine($"url:[{url}],{returnData_out}");
 
             medPicClass medPicClass = returnData_out.Data.ObjToClass<medPicClass>();
             return medPicClass;

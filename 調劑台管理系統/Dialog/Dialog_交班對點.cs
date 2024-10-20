@@ -398,7 +398,7 @@ namespace 調劑台管理系統
             if(list_value.Count > 0)
             {
                 string 藥碼 = list_value[0][(int)enum_交班藥品.藥碼].ObjectToString();
-                Main_Form.Function_儲位亮燈(藥碼, Color.Black);
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
             }
             
             if (selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
@@ -471,10 +471,10 @@ namespace 調劑台管理系統
         {
             if(CodeLast.StringIsEmpty() == false)
             {
-                Main_Form.Function_儲位亮燈(CodeLast, Color.Black);
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(CodeLast, Color.Black));
             }
             string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
-            Main_Form.Function_儲位亮燈(藥碼, Color.Blue);
+            Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
             CodeLast = 藥碼;
         }
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)

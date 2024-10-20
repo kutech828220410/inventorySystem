@@ -49,10 +49,10 @@ namespace 調劑台管理系統
                     }
                     if (藥碼.StringIsEmpty() == false)
                     {
-                        Main_Form.Function_儲位亮燈(藥碼, Color.Black);
+                        Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
                     }
                     藥碼 = medClasses[0].藥品碼;
-                    Main_Form.Function_儲位亮燈(medClasses[0].藥品碼, Color.Blue);
+                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(medClasses[0].藥品碼, Color.Blue));
                     this.Invoke(new Action(delegate 
                     {
                         rJ_Lable_藥品搜尋_藥名.Text = $"({藥碼}){medClasses[0].藥品名稱}";
@@ -92,7 +92,7 @@ namespace 調劑台管理系統
             myThread = null;
             if (藥碼.StringIsEmpty() == false)
             {
-                Main_Form.Function_儲位亮燈(藥碼, Color.Black);
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
             }
         }
 
