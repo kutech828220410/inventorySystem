@@ -1256,7 +1256,7 @@ namespace 調劑台管理系統
                             {
                                 Function_儲位亮燈_EPD1020亮燈(list_EPD1020亮燈_IP);
                             }));
-                            Task.WhenAll(taskList_抽屜層架).Wait();
+                           
                             List<Task> taskList = new List<Task>();
                             for (int i = 0; i < lightOns_buf.Count; i++)
                             {
@@ -1269,6 +1269,7 @@ namespace 調劑台管理系統
                                 }));
                             }
                             Task.WhenAll(taskList).Wait();
+                            Task.WhenAll(taskList_抽屜層架).Wait();
                             cnt_儲位亮燈++;
                         }
                         if (cnt_儲位亮燈 == 3)
@@ -3080,9 +3081,9 @@ namespace 調劑台管理系統
                     }
                     else
                     {
-                        list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
-                        list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
-                        list_取藥子堆疊資料_Replace.Add(list_取藥子堆疊資料_buf[i]);
+                        //list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
+                        //list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
+                        //list_取藥子堆疊資料_Replace.Add(list_取藥子堆疊資料_buf[i]);
                     }
 
 
