@@ -1330,6 +1330,11 @@ namespace 調劑台管理系統
                                 select temp).ToList();
                 if (list_取藥堆疊母資料.Count != 0) return;
             }
+            if (color == Color.DarkGray)
+            {
+                color = Color.Black;
+                lightOn.顏色 = color;
+            }
             List<LightOn> lightOns_buf = (from temp in lightOns
                                           where temp.藥品碼 == lightOn.藥品碼
                                           where temp.顏色 == lightOn.顏色

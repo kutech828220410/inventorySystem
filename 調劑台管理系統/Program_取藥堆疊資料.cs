@@ -1358,7 +1358,7 @@ namespace 調劑台管理系統
                                 }
                             }
 
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color, true);
                             if (!flag_commonlight)
                             {
                                 if (color != Color.Black)
@@ -1685,14 +1685,14 @@ namespace 調劑台管理系統
                             }
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) return;
-                            if (color == Color.Black) storageUI_LCD_114.DrawImage(index_IP, 29008, "", new Font("標楷體", 70, FontStyle.Bold), Color.White, Color.FromArgb(15, 15, 15));
+                            if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
                             if (lightOn.flag_Refresh) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, color);
 
                         }));
 
                         list_IP.Add(IP);
                     }
-                    else if (device.DeviceType == DeviceType.Pannel35)
+                    else if (device.DeviceType == DeviceType.Pannel35 || device.DeviceType == DeviceType.Pannel35_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -2611,6 +2611,7 @@ namespace 調劑台管理系統
 
             List<string> list_已亮燈藥碼 = new List<string>();
             List<string> list_已亮燈藥碼_buf = new List<string>();
+
             list_取藥堆疊子資料 = list_取藥堆疊子資料.GetRows((int)enum_取藥堆疊子資料.致能, false.ToString());
 
             foreach (object[] 取藥堆疊資料 in list_取藥堆疊子資料)
@@ -2638,120 +2639,128 @@ namespace 調劑台管理系統
                                   select temp).ToList();
                 if (list_已亮燈藥碼_buf.Count != 0) continue;
 
-                if (!plC_CheckBox_同藥品全部亮燈.Bool || myConfigClass.系統取藥模式)
-                {
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
-                    if (Type == DeviceType.EPD583_lock.GetEnumName())
-                    {
-                        if (藥品碼.StringIsEmpty()) return;
+                Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
+                list_已亮燈藥碼.Add(藥品碼);
+             
 
-                        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                //if (!plC_CheckBox_同藥品全部亮燈.Bool || myConfigClass.系統取藥模式)
+                //{
+                //    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                //    if (Type == DeviceType.EPD583_lock.GetEnumName())
+                //    {
+                //        if (藥品碼.StringIsEmpty()) return;
 
-                        List<Box> boxes = drawer.SortByCode(藥品碼);
-                        if (drawer.IsAllLight)
-                        {
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
-                        }
-                        else
-                        {
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
-                        }
-                        if (!plC_CheckBox_測試模式.Checked)
-                        {
-                            this.drawerUI_EPD_583.Set_LED_UDP(drawer);
-                            list_已亮燈藥碼.Add(藥品碼);
-                        }
+                //        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
 
-              
-                    }
-                    if (Type == DeviceType.EPD1020_lock.GetEnumName()
-                        || Type == DeviceType.EPD1020.GetEnumName())
-                    {
-                        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
-                        List<Box> boxes = drawer.SortByCode(藥品碼);
-                        if (!plC_CheckBox_測試模式.Checked)
-                        {
-                            this.drawerUI_EPD_1020.Set_Pannel_LED_UDP(drawer, color);
-                            list_已亮燈藥碼.Add(藥品碼);
-                        }
-                        //Function_儲位亮燈(藥品碼, color, ref list_lock_IP);
-                    }
-                    if (Type == DeviceType.EPD266_lock.GetEnumName()
-                        || Type == DeviceType.EPD266.GetEnumName()
-                        || Type == DeviceType.EPD290_lock.GetEnumName()
-                        || Type == DeviceType.EPD290.GetEnumName()
-                        || Type == DeviceType.EPD420_lock.GetEnumName()
-                        || Type == DeviceType.EPD420.GetEnumName()
-                        || Type == DeviceType.EPD213_lock.GetEnumName()
-                        || Type == DeviceType.EPD213.GetEnumName()
-                        || Type == DeviceType.Pannel35.GetEnumName()
-                        || Type == DeviceType.Pannel35_lock.GetEnumName())
-                    {
-                        //Storage storage = List_EPD266_雲端資料.SortByIP(IP);
-                        //if (!plC_CheckBox_測試模式.Checked)
-                        //{
-                        //    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
-                        //    list_已亮燈藥碼.Add(藥品碼);
-                        //}
-                        Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
-                    }
+                //        List<Box> boxes = drawer.SortByCode(藥品碼);
+                //        if (drawer.IsAllLight)
+                //        {
+                //            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
+                //            drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                //        }
+                //        else
+                //        {
+                //            drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                //        }
+                //        if (!plC_CheckBox_測試模式.Checked)
+                //        {
+                //            this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                //            list_已亮燈藥碼.Add(藥品碼);
+                //        }
 
-                }
-                else if (plC_CheckBox_同藥品全部亮燈.Bool)
-                {
 
-                    Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
-                    list_已亮燈藥碼.Add(藥品碼);
-                    for (int k = 0; k < list_lock_IP.Count; k++)
-                    {
-                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, list_lock_IP[k]);
-                        if (list_locker_table_value_buf.Count > 0)
-                        {
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
-                            list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
-                        }
-                    }
+                //    }
+                //    if (Type == DeviceType.EPD1020_lock.GetEnumName()
+                //        || Type == DeviceType.EPD1020.GetEnumName())
+                //    {
+                //        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
+                //        List<Box> boxes = drawer.SortByCode(藥品碼);
+                //        if (!plC_CheckBox_測試模式.Checked)
+                //        {
+                //            this.drawerUI_EPD_1020.Set_Pannel_LED_UDP(drawer, color);
+                //            list_已亮燈藥碼.Add(藥品碼);
+                //        }
+                //        //Function_儲位亮燈(藥品碼, color, ref list_lock_IP);
+                //    }
+                //    if (Type == DeviceType.EPD266_lock.GetEnumName()
+                //        || Type == DeviceType.EPD266.GetEnumName()
+                //        || Type == DeviceType.EPD290_lock.GetEnumName()
+                //        || Type == DeviceType.EPD290.GetEnumName()
+                //        || Type == DeviceType.EPD420_lock.GetEnumName()
+                //        || Type == DeviceType.EPD420.GetEnumName()
+                //        || Type == DeviceType.EPD213_lock.GetEnumName()
+                //        || Type == DeviceType.EPD213.GetEnumName()
+                //        || Type == DeviceType.Pannel35.GetEnumName()
+                //        || Type == DeviceType.Pannel35_lock.GetEnumName())
+                //    {
+                //        //Storage storage = List_EPD266_雲端資料.SortByIP(IP);
+                //        //if (!plC_CheckBox_測試模式.Checked)
+                //        //{
+                //        //    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                //        //    list_已亮燈藥碼.Add(藥品碼);
+                //        //}
+                //        Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
+                //    }
 
-                }
+                //}
+                //else if (plC_CheckBox_同藥品全部亮燈.Bool)
+                //{
+
+
+
+                //}
 
 
 
 
-                if (Type == DeviceType.Pannel35_lock.GetEnumName())
-                {
-                    Storage storage = List_Pannel35_雲端資料.SortByIP(IP);
-                    if (!plC_CheckBox_測試模式.Checked)
-                    {
-                        this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
-                        list_已亮燈藥碼.Add(藥品碼);
+                //if (Type == DeviceType.Pannel35_lock.GetEnumName())
+                //{
+                //    Storage storage = List_Pannel35_雲端資料.SortByIP(IP);
+                //    if (!plC_CheckBox_測試模式.Checked)
+                //    {
+                //        this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
+                //        list_已亮燈藥碼.Add(藥品碼);
 
-                    }
+                //    }
 
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
-                }
+                //    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                //}
 
-                if (Type == DeviceType.RFID_Device.GetEnumName())
-                {
-                    RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
-                    RFIDDevice rFIDDevice = rFIDClass.SortByGUID(Device_GUID);
-                    Num = rFIDDevice.MasterIndex.ToString();
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
-                    list_locker_table_value_buf = list_locker_table_value_buf.GetRows((int)enum_Locker_Index_Table.Num, Num.ToString());
-                }
+                //if (Type == DeviceType.RFID_Device.GetEnumName())
+                //{
+                //    RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
+                //    RFIDDevice rFIDDevice = rFIDClass.SortByGUID(Device_GUID);
+                //    Num = rFIDDevice.MasterIndex.ToString();
+                //    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                //    list_locker_table_value_buf = list_locker_table_value_buf.GetRows((int)enum_Locker_Index_Table.Num, Num.ToString());
+                //}
 
-                if (list_locker_table_value_buf.Count == 0) continue;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
-                list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
-                Console.WriteLine($"開啟抽屜致能,藥品碼:{藥品碼} {DateTime.Now.ToDateTimeString()}");
+                //if (list_locker_table_value_buf.Count == 0) continue;
+                //list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
+                //list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
+                //list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
+                //list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                //list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
+                //Console.WriteLine($"開啟抽屜致能,藥品碼:{藥品碼} {DateTime.Now.ToDateTimeString()}");
             }
 
+            list_lock_IP = (from temp in list_lock_IP
+                            select temp).Distinct().ToList();
+            for (int k = 0; k < list_lock_IP.Count; k++)
+            {
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, list_lock_IP[k]);
+                if (list_locker_table_value_buf.Count > 0)
+                {
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
+                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
+
+                    Console.WriteLine($"開啟抽屜致能,IP:{list_lock_IP[k]} {DateTime.Now.ToDateTimeString()}");
+
+                }
+            }
             if (list_locker_table_value_ReplaceValue.Count > 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_ReplaceValue, false);
             if (list_取藥堆疊資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊資料_ReplaceValue, false);
 
@@ -3047,7 +3056,7 @@ namespace 調劑台管理系統
             bool flag_TOFON = false;
             Color color = Color.Black;
    
-            List<object[]> list_取藥子堆疊資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
+            List<object[]> list_取藥子堆疊資料 = list_流程作業檢查_取藥子堆疊資料;
             List<object[]> list_取藥子堆疊資料_buf = new List<object[]>();
 
             if (plC_CheckBox_同藥品全部亮燈.Bool)
@@ -3081,9 +3090,9 @@ namespace 調劑台管理系統
                     }
                     else
                     {
-                        //list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
-                        //list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
-                        //list_取藥子堆疊資料_Replace.Add(list_取藥子堆疊資料_buf[i]);
+                        list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
+                        list_取藥子堆疊資料_buf[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
+                        list_取藥子堆疊資料_Replace.Add(list_取藥子堆疊資料_buf[i]);
                     }
 
 
@@ -3241,6 +3250,9 @@ namespace 調劑台管理系統
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
+
+                                Function_儲位亮燈(new Main_Form.LightOn(藥品碼, Color.DarkGray));
+
                             }
                         }
                     }
