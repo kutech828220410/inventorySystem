@@ -763,78 +763,6 @@ namespace HIS_WebApi
 
             }
         }
-        [HttpPost("update_medpic")]
-        public string update_medpic([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_medpic";
-            try
-            {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-
-                List<medPicClass> input_medPicClass = returnData.Data.ObjToClass<List<medPicClass>>();
-                if (input_medPicClass == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料異常";
-                    return returnData.JsonSerializationt();
-                }
-                SQLControl sQLControl_medpic = new SQLControl(Server, DB, "medpic", UserName, Password, Port, SSLMode);
-                List<object[]> list_medpic = sQLControl_medpic.GetAllRows(null);
-                List<medPicClass> sql_medpic = list_medpic.SQLToClass<medPicClass, enum_medPic>();
-                List<medPicClass> add_medpic = new List<medPicClass>();
-                List<medPicClass> update_medpic = new List<medPicClass>();
-
-                foreach (var medPicClass in input_medPicClass)
-                {
-                    medPicClass target = sql_medpic.Where(temp => temp.藥名 == medPicClass.藥名 && temp.藥碼 == medPicClass.藥碼).FirstOrDefault();
-                    if (target == null)
-                    {
-                        medPicClass.GUID = Guid.NewGuid().ToString();
-                        add_medpic.Add(medPicClass);
-                    }
-                    else
-                    {
-                        medPicClass.GUID = target.GUID;
-                        update_medpic.Add(medPicClass);
-                    }
-                }
-                List<object[]> list_add_medpic = add_medpic.ClassToSQL<medPicClass, enum_medPic>();
-                List<object[]> list_update_medpic = update_medpic.ClassToSQL<medPicClass, enum_medPic>();
-
-                if (list_add_medpic.Count > 0) sQLControl_medpic.AddRows(null, list_add_medpic);
-                if (list_update_medpic.Count > 0) sQLControl_medpic.UpdateByDefulteExtra(null, list_update_medpic);
-                List<medPicClass> result = new List<medPicClass>();
-                result.AddRange(add_medpic);
-                result.AddRange(update_medpic);
-
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = result;
-                returnData.Result = $"取得藥品圖片成功，新增{add_medpic.Count}筆，更新{update_medpic.Count}筆";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = ex.Message;
-                return returnData.JsonSerializationt(true);
-
-            }
-        }
         [HttpPost("update_order_list")]
         public string update_order_list([FromBody] returnData returnData)
         {
@@ -982,6 +910,48 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("get_patient_by_GUID_brief")]
+        public string get_patient_by_GUID_brief([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_patient_by_GUID_brief";
+            try
+            {
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+
+                var (Server, DB, UserName, Password, Port) = GetServerInfo("Main", "網頁", "VM端");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, GUID);
+                List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+
+                if (sql_medCarInfo == null)
+                {
+                    returnData.Code = 200;
+                    returnData.Result = "無對應的病人資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCarInfo[0];
+                returnData.Result = $"取得{sql_medCarInfo[0].藥局} {sql_medCarInfo[0].護理站} 第{sql_medCarInfo[0].床號}床的資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
         /// <summary>
         ///以GUID取得病人詳細資料
         /// </summary>
@@ -1000,6 +970,7 @@ namespace HIS_WebApi
         public string get_patient_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_patient_by_GUID";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
@@ -1028,8 +999,8 @@ namespace HIS_WebApi
                     returnData.Result = "無對應的病人資料";
                     return returnData.JsonSerializationt(true);
                 }
-                
 
+                Logger.Log("get_patient_by_GUID", $"{myTimerBasic}");
                 sql_medCpoe.Sort(new medCpoeClass.ICP_By_Rank());
 
                 string 藥局 = sql_medCarInfo[0].藥局;
@@ -1042,14 +1013,20 @@ namespace HIS_WebApi
                 if ((returnData.Value).StringIsEmpty() == false && returnData.Value != "all")
                 {                 
                     List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
-            
-                    foreach (var medCpoeClass in sql_medCpoe)
+                    Dictionary<string, medClass> medClassDict = medClasses.ToDictionary(m => m.藥品碼);
+                    foreach (medCpoeClass medCpoeClass in sql_medCpoe)
                     {
-                        if (medClasses.Any(@new => @new.藥品碼 == medCpoeClass.藥碼))
-                        {
-                            medCpoeClass.調劑台 = "Y";
-                        }
+                        if (medClassDict.TryGetValue(medCpoeClass.藥碼, out medClass matchedMedClass)) medCpoeClass.調劑台 = "Y";
+
                     }
+
+                    //foreach (var medCpoeClass in sql_medCpoe)
+                    //{
+                    //    if (medClasses.Any(@new => @new.藥品碼 == medCpoeClass.藥碼))
+                    //    {
+                    //        medCpoeClass.調劑台 = "Y";
+                    //    }
+                    //}
                 }
                 if(returnData.Value == "all")
                 {
@@ -1058,7 +1035,12 @@ namespace HIS_WebApi
             
                 List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);            
                 List<medInfoClass> med_Info = medInfoClass.get_medInfo_by_codes(API, Codes);
-                          
+                Dictionary<string, medClass> medCloudDict = med_cloud.ToDictionary(m => m.藥品碼);
+                //Dictionary<string, medInfoClass> medCloudDict = med_cloud.ToDictionary(m => m.藥品碼);
+
+
+
+
                 foreach (var cpoe in sql_medCpoe)
                 {
                     List<medClass> targetMedCloud = med_cloud.Where(temp => temp.藥品碼 == cpoe.藥碼).ToList();
@@ -1070,12 +1052,12 @@ namespace HIS_WebApi
                 }
 
                 sql_medCarInfo[0].處方 = sql_medCpoe;
-                var medCarInfoClass = new medCarInfoClass();
+                medCarInfoClass medCarInfoClass = new medCarInfoClass();
                 medCarInfoClass = sql_medCarInfo[0];
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCarInfoClass;
+                returnData.Data = sql_medCarInfo[0];
                 returnData.Result = $"取得{藥局} {護理站} 第{床號}病床的資訊";
                 return returnData.JsonSerializationt(true);
             }

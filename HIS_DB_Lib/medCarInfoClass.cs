@@ -397,24 +397,7 @@ namespace HIS_DB_Lib
             List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
             Console.WriteLine($"{returnData}");
             return out_OrderClass;
-        }
-        static public List<medPicClass> update_medpic(string API_Server, List<medPicClass> medPicClasses)
-        {
-            string url = $"{API_Server}/api/med_cart/update_medpic";
-
-            returnData returnData = new returnData();
-            returnData.Data = medPicClasses;
-
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
-            List<medPicClass> out_medPicClass = returnData.Data.ObjToClass<List<medPicClass>>();
-            Console.WriteLine($"{returnData}");
-            return out_medPicClass;
-        }
-
+        }        
         static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
@@ -461,6 +444,21 @@ namespace HIS_DB_Lib
             return out_medCarInfoClass;
 
         }
+        static public medCarInfoClass get_patient_by_GUID_brief(string API_Server, List<string> Info)
+        {
+            string url = $"{API_Server}/api/med_cart/get_patient_by_GUID_brief";
+            returnData returnData = new returnData();
+            returnData.ValueAry = Info;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medCarInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<medCarInfoClass>();
+            return out_medCarInfoClass;
+
+        }
+
         static public List<medCarInfoClass> get_all(string API_Server)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
