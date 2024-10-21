@@ -398,6 +398,22 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_OrderClass;
         }
+        static public List<medPicClass> update_medpic(string API_Server, List<medPicClass> medPicClasses)
+        {
+            string url = $"{API_Server}/api/med_cart/update_medpic";
+
+            returnData returnData = new returnData();
+            returnData.Data = medPicClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medPicClass> out_medPicClass = returnData.Data.ObjToClass<List<medPicClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medPicClass;
+        }
 
         static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
