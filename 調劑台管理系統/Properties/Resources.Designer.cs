@@ -103,6 +103,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap a_padlock_unlocked__showing_an_open_lock_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("a-padlock-unlocked--showing-an-open-lock-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap add_new_medicine__removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("add-new-medicine--removebg-preview", resourceCulture);

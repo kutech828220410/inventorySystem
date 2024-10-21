@@ -28,7 +28,7 @@ namespace 調劑台管理系統
 
     public partial class Main_Form : Form
     {
-
+        public static bool StorageAlarm = true;
         public bool ControlMode = false;
         private bool flag_Init = false;
         public static string ServerName = "";

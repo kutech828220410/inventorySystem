@@ -1604,7 +1604,37 @@ namespace 調劑台管理系統
             if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
 
         }
+        public static void Function_外門片解鎖(List<string> list_IP)
+        {
+            List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+            List<object[]> list_locker_table_value_buf = new List<object[]>();
+            List<object[]> list_locker_table_value_外門片_buf = new List<object[]>();
+            List<object[]> list_locker_table_value_replace = new List<object[]>();
+            for (int i = 0; i < list_IP.Count; i++)
+            {
+                string IP = list_IP[i];
 
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                if (list_locker_table_value_buf.Count > 0)
+                {
+                    string 同步輸出 = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
+                    if (同步輸出.StringIsEmpty()) continue;
+                    list_locker_table_value_外門片_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
+                    if(list_locker_table_value_外門片_buf.Count > 0)
+                    {
+                        list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
+                        list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+
+                        list_locker_table_value_replace.Add(list_locker_table_value_外門片_buf[0]);
+                    }
+
+                 
+
+                }
+            }
+            if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
+
+        }
 
 
         public static string Function_ReadBacodeScanner01()

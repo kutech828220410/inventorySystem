@@ -59,6 +59,7 @@ namespace 調劑台管理系統
             this.LoadFinishedEvent += Dialog_交班對點_LoadFinishedEvent;
             this.FormClosing += Dialog_交班對點_FormClosing;
             this.rJ_Button_藥品群組_選擇.MouseDownEvent += RJ_Button_藥品群組_選擇_MouseDownEvent;
+            this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
             this.plC_RJ_Button_盤點登入.MouseDownEvent += PlC_RJ_Button_盤點登入_MouseDownEvent;
             this.plC_RJ_Button_覆盤登入.MouseDownEvent += PlC_RJ_Button_覆盤登入_MouseDownEvent;
             this.rJ_Button_確認輸入.MouseDownEvent += RJ_Button_確認輸入_MouseDownEvent;
@@ -77,6 +78,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認送出.MouseDownEvent += PlC_RJ_Button_確認送出_MouseDownEvent;
 
         }
+
+   
 
         private void RJ_Button_CE_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -609,6 +612,17 @@ namespace 調劑台管理系統
             this.DialogResult = DialogResult.Yes;
             this.Close();
 
+        }
+        private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
+            if (list_交班對點.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選擇交班藥品");
+                return;
+            }
+            string Code = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
+            Main_Form.Function_抽屜以藥品碼解鎖(Code);
         }
         #endregion
     }

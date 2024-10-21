@@ -867,6 +867,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\a-padlock-unlocked--showing-an-open-lock-removebg-preview.png" />
     <None Include="Resources\excell-file-upload-to-server-removebg-preview.png" />
     <None Include="Resources\exsample-excell-file-download-removebg-preview.png" />
     <None Include="Resources\匯入資料.png" />

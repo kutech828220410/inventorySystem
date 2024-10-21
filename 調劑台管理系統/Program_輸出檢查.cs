@@ -669,6 +669,7 @@ namespace 調劑台管理系統
 
         #endregion
         #region PLC_輸出入檢查_蜂鳴器輸出
+    
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出 = new PLC_Device("S5205");
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出_OK = new PLC_Device("S5206");
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間 = new PLC_Device("D110");
@@ -733,6 +734,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
         {
+            if (StorageAlarm == false) return;
             bool flag_Alarm = true;
             for (int i = 0; i < List_Locker.Count; i++)
             {
