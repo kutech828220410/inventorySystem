@@ -2965,9 +2965,10 @@ namespace 調劑台管理系統
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 2) cnt_Program_取藥堆疊資料_流程作業檢查_初始化(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 3) cnt_Program_取藥堆疊資料_流程作業檢查_檢查盲盤複盤(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 4) cnt_Program_取藥堆疊資料_流程作業檢查_檢查同藥碼全亮(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 5) cnt_Program_取藥堆疊資料_流程作業檢查_檢查手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 6) cnt_Program_取藥堆疊資料_流程作業檢查_檢查手勢感測離開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 7) cnt_Program_取藥堆疊資料_流程作業檢查 = 65500;
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 5) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 6) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測離開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 7) cnt_Program_取藥堆疊資料_流程作業檢查_檢查抽屜手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);          
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 8) cnt_Program_取藥堆疊資料_流程作業檢查 = 65500;
             if (cnt_Program_取藥堆疊資料_流程作業檢查 > 1) cnt_Program_取藥堆疊資料_流程作業檢查_檢查放開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 65500)
             {
@@ -3108,7 +3109,7 @@ namespace 調劑台管理系統
             }
             cnt++;
         }
-        void cnt_Program_取藥堆疊資料_流程作業檢查_檢查手勢感測感應到(ref int cnt)
+        void cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測感應到(ref int cnt)
         {
             List<Task> taskList = new List<Task>();
             string IP = "";
@@ -3187,7 +3188,7 @@ namespace 調劑台管理系統
 
             cnt++;
         }
-        void cnt_Program_取藥堆疊資料_流程作業檢查_檢查手勢感測離開(ref int cnt)
+        void cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測離開(ref int cnt)
         {
             List<Task> taskList = new List<Task>();
             string IP = "";
@@ -3268,7 +3269,93 @@ namespace 調劑台管理系統
 
             cnt++;
         }
+        void cnt_Program_取藥堆疊資料_流程作業檢查_檢查抽屜手勢感測感應到(ref int cnt)
+        {
+            List<Task> taskList = new List<Task>();
+            string IP = "";
+            string 藥品碼 = "";
+            string 調劑台名稱 = "";
+            string GUID = "";
+            string Master_GUID = "";
+            string Device_GUID = "";
+            bool flag_TOFON = false;
+            Color color = Color.Black;
+            List<object[]> list_取藥母堆疊資料 = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            List<object[]> list_取藥母堆疊資料_buf = new List<object[]>();
+            List<object[]> list_取藥子堆疊資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
+            List<object[]> list_取藥子堆疊資料_buf = new List<object[]>();
+            List<object[]> list_取藥子堆疊資料_replace = new List<object[]>();
 
+
+
+            Task allTask;
+            List<string[]> list_需更新資料;
+            List<object[]> list_取藥子堆疊資料_手勢感測作業檢查 = new List<object[]>();
+
+            list_取藥子堆疊資料_手勢感測作業檢查 = (from value in list_取藥子堆疊資料
+                                     where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
+                                     where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == true.ToString()
+                                     where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
+                                     where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583_lock.GetEnumName()
+                                     select value).ToList();
+            taskList = new List<Task>();
+            list_需更新資料 = new List<string[]>();
+            List<string[]> list_手勢檢查資料 = new List<string[]>();
+            for (int i = 0; i < list_取藥子堆疊資料_手勢感測作業檢查.Count; i++)
+            {
+                IP = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.IP].ObjectToString();
+                藥品碼 = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
+                調劑台名稱 = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.調劑台名稱].ObjectToString();
+                Master_GUID = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.Master_GUID].ObjectToString();
+                list_取藥母堆疊資料_buf = list_取藥母堆疊資料.GetRows((int)enum_取藥堆疊母資料.GUID, Master_GUID);
+
+                list_取藥子堆疊資料_buf = (from temp in list_取藥子堆疊資料_replace
+                                    where temp[(int)enum_取藥堆疊母資料.IP].ObjectToString() == IP
+                                    select temp).ToList();
+                if (list_取藥母堆疊資料_buf.Count > 0)
+                {
+                    color = list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.顏色].ObjectToString().ToColor();
+                    if (list_取藥子堆疊資料_buf.Count == 0)
+                    {
+                        List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
+                        for (int k = 0; k < boxes.Count; k++)
+                        {
+                            Drawer drawer = List_EPD583_本地資料.SortByIP(boxes[k].IP);
+                            if (drawer == null) continue;
+                       
+
+                            string index_IP = Funcion_取得LCD114索引表_index_IP(boxes[k].IP);
+                            if (index_IP.StringIsEmpty()) continue;
+                            Rectangle rectangle = DrawerUI_EPD_583.Get_Box_rect(drawer, boxes[k]);
+                            DrawerUI_EPD_583.LightSensorClass lightSensorClass = DrawerUI_EPD_583.Get_LightSensorClass(rectangle);
+                            Console.WriteLine($"lightSensorClass : {lightSensorClass}");
+                            StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+                            if (uDP_READ == null) continue;
+                            bool Sensor_ON = uDP_READ.IsSensorOn(lightSensorClass);
+                            if (Sensor_ON)
+                            {
+                                Console.WriteLine($"IP : {boxes[k].IP} , index_IP : {index_IP}, Sensor_ON : {Sensor_ON}");
+
+                                list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
+                                list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
+                                list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
+                                break;
+                            }
+                        }
+                    
+                    }
+                }
+            }
+
+            allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            if (list_取藥子堆疊資料_replace.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥子堆疊資料_replace, false);
+            }
+
+            cnt++;
+        }
         #endregion      
         #region PLC_取藥堆疊資料_入賬檢查
         PLC_Device PLC_Device_取藥堆疊資料_入賬檢查 = new PLC_Device("");
