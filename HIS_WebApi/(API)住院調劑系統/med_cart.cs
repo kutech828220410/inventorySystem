@@ -815,11 +815,6 @@ namespace HIS_WebApi
                             orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.狀態 = "未過帳";
-                            add_order_list.Add(orderClass);
-                        }
-                        else
-                        {
-                            result_order_list.Add(orderClass_add);
                         }
                     }
                 }
