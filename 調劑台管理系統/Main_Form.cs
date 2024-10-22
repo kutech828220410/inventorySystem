@@ -21,14 +21,14 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.26")]
-[assembly: AssemblyFileVersion("1.2.2.26")]
+[assembly: AssemblyVersion("1.2.2.28")]
+[assembly: AssemblyFileVersion("1.2.2.28")]
 namespace 調劑台管理系統
 {
 
     public partial class Main_Form : Form
     {
-
+        public static bool StorageAlarm = true;
         public bool ControlMode = false;
         private bool flag_Init = false;
         public static string ServerName = "";

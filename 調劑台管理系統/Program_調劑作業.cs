@@ -9251,8 +9251,21 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_交班對點_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_交班對點 dialog_交班對點 = new Dialog_交班對點();
-            dialog_交班對點.ShowDialog();
+            StorageAlarm = false;
+            try
+            {
+                Dialog_交班對點 dialog_交班對點 = new Dialog_交班對點();
+                dialog_交班對點.ShowDialog();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                StorageAlarm = true;
+            }
+     
         }
         private void PlC_RJ_Button_藥品搜索_MouseDownEvent(MouseEventArgs mevent)
         {

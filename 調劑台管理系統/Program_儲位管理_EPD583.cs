@@ -1276,6 +1276,15 @@ namespace 調劑台管理系統
             epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(epD_583_Pannel.CurrentDrawer, color);
             this.drawerUI_EPD_583.Set_LED_UDP(epD_583_Pannel.CurrentDrawer);
 
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            Rectangle rectangle = DrawerUI_EPD_583.Get_Box_rect(epD_583_Pannel.CurrentDrawer, boxes[0]);
+            Console.WriteLine($"rectangle : {rectangle}");
+            DrawerUI_EPD_583.LightSensorClass lightSensorClass = DrawerUI_EPD_583.Get_LightSensorClass(rectangle);
+            Console.WriteLine($"lightSensorClass : {lightSensorClass}");
+            string index_IP = Funcion_取得LCD114索引表_index_IP(epD_583_Pannel.CurrentDrawer.IP);
+            if (index_IP.StringIsEmpty()) return;
+            StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+            uDP_READ.IsSensorOn(lightSensorClass);
 
         }
         private void PlC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)

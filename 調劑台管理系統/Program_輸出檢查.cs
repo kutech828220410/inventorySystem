@@ -121,34 +121,44 @@ namespace 調劑台管理系統
                 else if (value_device is Drawer)
                 {
                     Drawer drawer = value_device as Drawer;
-                    List<Box> boxes = drawer.GetAllBoxes();
-                    if (boxes.Count > 0)
+                    if (drawer.DeviceType == DeviceType.EPD583 || drawer.DeviceType == DeviceType.EPD583_lock)
                     {
-                        if(boxes[0].DeviceType == DeviceType.EPD583 || boxes[0].DeviceType == DeviceType.EPD583_lock)
+                        drawer = List_EPD583_本地資料.SortByIP(IP);
+                        if (drawer == null) return;
+                        if (this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
                         {
-                            if(this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
-                            {
-                                drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
-                                drawer.ActionDone = true;
-                                this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
-                            }
-                         
-                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
-                         
-                            //List_EPD583_雲端資料.Add_NewDrawer(drawer);
-                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                        }
-                        if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
-                        {
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
                             drawer.ActionDone = true;
-                            this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
-                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
-                          
-                            //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
-                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                        
+                            this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                            drawer.SetAllBoxes_LightOff();
+                            List_EPD583_本地資料.Add_NewDrawer(drawer);
                         }
-                             
+
+                        //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+
+                        //List_EPD583_雲端資料.Add_NewDrawer(drawer);
+                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
+                    else
+                    {
+                        List<Box> boxes = drawer.GetAllBoxes();
+                        if (boxes.Count > 0)
+                        {
+
+                            if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
+                            {
+                                drawer.ActionDone = true;
+                                this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
+                                //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+
+                                //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                                this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                            }
+
+                        }
+                    }
+                   
     
                   
                 }
@@ -659,6 +669,7 @@ namespace 調劑台管理系統
 
         #endregion
         #region PLC_輸出入檢查_蜂鳴器輸出
+    
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出 = new PLC_Device("S5205");
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出_OK = new PLC_Device("S5206");
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間 = new PLC_Device("D110");
@@ -723,6 +734,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
         {
+            if (StorageAlarm == false) return;
             bool flag_Alarm = true;
             for (int i = 0; i < List_Locker.Count; i++)
             {

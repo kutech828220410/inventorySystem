@@ -798,7 +798,7 @@
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD266_匯出 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_儲位管理_EPD266_匯入 = new MyUI.PLC_RJ_Button();
@@ -22186,7 +22186,7 @@
             this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_刪除儲位);
             this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_貼上格式);
             this.panel140.Controls.Add(this.panel3);
-            this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_警報);
+            this.panel140.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_警報);
             this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯出);
             this.panel140.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音);
             this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯入);
@@ -22588,23 +22588,23 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.顯示 = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.顯示狀態 = false;
             // 
-            // plC_RJ_Button_儲位管理_EPD266_警報
+            // plC_CheckBox_儲位管理_EPD266_警報
             // 
-            this.plC_RJ_Button_儲位管理_EPD266_警報.AutoSize = true;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(321, 242);
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(155, 20);
-            this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Text = "未關抽屜警報開啟";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.UseVisualStyleBackColor = true;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字內容 = "未關抽屜警報開啟";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.音效 = true;
+            this.plC_CheckBox_儲位管理_EPD266_警報.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD266_警報.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_警報.Location = new System.Drawing.Point(321, 242);
+            this.plC_CheckBox_儲位管理_EPD266_警報.Name = "plC_CheckBox_儲位管理_EPD266_警報";
+            this.plC_CheckBox_儲位管理_EPD266_警報.Size = new System.Drawing.Size(155, 20);
+            this.plC_CheckBox_儲位管理_EPD266_警報.TabIndex = 154;
+            this.plC_CheckBox_儲位管理_EPD266_警報.Text = "未關抽屜警報開啟";
+            this.plC_CheckBox_儲位管理_EPD266_警報.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD266_警報.文字內容 = "未關抽屜警報開啟";
+            this.plC_CheckBox_儲位管理_EPD266_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD266_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_警報.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD266_警報.音效 = true;
             // 
             // plC_RJ_Button_儲位管理_EPD266_匯出
             // 
@@ -45860,7 +45860,7 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期;
-        private MyUI.PLC_CheckBox plC_RJ_Button_儲位管理_EPD266_警報;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_警報;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD266_儲位內容_語音;
         private System.Windows.Forms.ComboBox comboBox_儲位管理_EPD266_儲位內容_儲位搜尋;
         private MyUI.RJ_Lable rJ_Lable132;
