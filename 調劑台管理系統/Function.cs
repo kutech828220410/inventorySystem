@@ -410,7 +410,7 @@ namespace 調劑台管理系統
         {
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.調劑台名稱 = "更新資料";
-            takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
+            takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None.GetEnumName();
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
         }
         public void Function_從SQL取得儲位到雲端資料()
@@ -1338,7 +1338,7 @@ namespace 調劑台管理系統
             List<LightOn> lightOns_buf = (from temp in lightOns
                                           where temp.藥品碼 == lightOn.藥品碼
                                           where temp.顏色 == lightOn.顏色
-                                          where temp.flag_Refresh == lightOn.flag_Refresh
+                                          where temp.flag_Refresh_LCD == lightOn.flag_Refresh_LCD
                                           select temp).ToList();
             if (lightOns_buf.Count == 0) lightOns.Add(lightOn);
 

@@ -33,6 +33,7 @@ namespace HIS_DB_Lib
         取消作業,
         刪除資料,
         已領用過,
+        新增資料,
 
     }
     public enum enum_取藥堆疊母資料_作業模式
@@ -277,7 +278,7 @@ namespace HIS_DB_Lib
         /// 交易記錄查詢動作
         /// </summary>
         [JsonPropertyName("action")]
-        public enum_交易記錄查詢動作 動作 { get; set; }
+        public string 動作 { get; set; }
         /// <summary>
         /// 作業模式
         /// </summary>
@@ -357,7 +358,7 @@ namespace HIS_DB_Lib
         /// 狀態
         /// </summary>
         [JsonPropertyName("status")]
-        public enum_取藥堆疊母資料_狀態 狀態 { get; set; }
+        public string 狀態 { get; set; }
         /// <summary>
         /// 庫存量
         /// </summary>
