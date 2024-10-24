@@ -1152,21 +1152,6 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.med_cart.get_med_carInfo_by_cart(HIS_DB_Lib.returnData)">
-             <summary>
-            取得藥局護理站的所有病人資料
-             </summary>
-             <remarks>
-             以下為JSON範例
-             <code>
-                 {
-                     "valueAry":["藥局","護理站"]
-                 }
-             </code>
-             </remarks>
-             <param name="returnData">共用傳遞資料結構</param>
-             <returns></returns>
-        </member>
         <member name="M:HIS_WebApi.med_cart.get_medChange_by_GUID(HIS_DB_Lib.returnData)">
              <summary>
             以GUID取得藥品更動紀錄

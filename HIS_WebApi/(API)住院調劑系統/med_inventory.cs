@@ -556,20 +556,14 @@ namespace HIS_WebApi._API_住院調劑系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                if (returnData.ValueAry == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 無傳入資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                if (returnData.ValueAry.Count != 1)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 應為[\"處方GUID\"]";
-                    return returnData.JsonSerializationt(true);
-                }
 
-                string Master_GUID = returnData.ValueAry[0];
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 應為[\"處方1GUID;處方2GUID;處方3GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] Master_GUIDs = returnData.ValueAry[0].Split(";");
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -585,12 +579,18 @@ namespace HIS_WebApi._API_住院調劑系統
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inventoryLog = new SQLControl(Server, DB, "med_inventory_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_medInventoryLog = sQLControl_med_inventoryLog.GetRowsByDefult(null, (int)enum_med_inventory_log.Master_GUID, Master_GUID);
+                List<object[]> list_medInventoryLog = sQLControl_med_inventoryLog.GetAllRows(null);
                 List<medInventoryLogClass> sql_medInventoryLog = list_medInventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();
-                
+                Dictionary<string, List<medInventoryLogClass>> medInvenDict = sql_medInventoryLog.GroupBy(m => m.Master_GUID)
+                    .ToDictionary(g => g.Key, g => g.ToList());
+                List<medInventoryLogClass> result = new List<medInventoryLogClass>();
+                foreach (var master_GUID in Master_GUIDs)
+                {
+                    if (medInvenDict.TryGetValue(master_GUID, out List<medInventoryLogClass> logs)) result.AddRange(logs);
+                }
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = sql_medInventoryLog;
+                returnData.Data = result;
                 //if(sql_medInventoryLog.Count == 0)
                 //returnData.Result = $"取得處方調劑紀錄共{sql_medInventoryLog.Count}筆";
                 return returnData.JsonSerializationt(true);

@@ -186,6 +186,32 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medInfoClass;
         }
-
+        static public Dictionary<string, List<medInfoClass>> CoverToDictionaryByCode(List<medInfoClass> medInfoClasses)
+        {
+            Dictionary<string, List<medInfoClass>> dictionary = new Dictionary<string, List<medInfoClass>>();
+            foreach (var item in medInfoClasses)
+            {
+                if (dictionary.TryGetValue(item.藥碼, out List<medInfoClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.藥碼] = new List<medInfoClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medInfoClass> SortDictByCode(Dictionary<string, List<medInfoClass>> dict, string code)
+        {
+            if (dict.TryGetValue(code, out List<medInfoClass> medInfoClasses))
+            {
+                return medInfoClasses;
+            }
+            else
+            {
+                return new List<medInfoClass>();
+            }
+        }
     }
 }

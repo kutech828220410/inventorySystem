@@ -458,7 +458,6 @@ namespace HIS_DB_Lib
             return out_medCarInfoClass;
 
         }
-
         static public List<medCarInfoClass> get_all(string API_Server)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();

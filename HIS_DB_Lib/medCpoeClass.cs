@@ -458,7 +458,33 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medClass;
         }
-
+        static public Dictionary<string, List<medCpoeClass>> CoverToDictByMasterGUID(List<medCpoeClass> medCpoeClasses)
+        {
+            Dictionary<string, List<medCpoeClass>> dictionary = new Dictionary<string, List<medCpoeClass>>();
+            foreach( var item in medCpoeClasses)
+            {
+                if(dictionary.TryGetValue(item.Master_GUID, out List<medCpoeClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<medCpoeClass> { item };
+                }          
+            }
+            return dictionary;
+        }
+        static public List<medCpoeClass> SortDictByMasterGUID (Dictionary<string, List<medCpoeClass>> dict, string master_GUID)
+        {
+            if (dict.TryGetValue(master_GUID, out List<medCpoeClass> medCpoeClasses))
+            {
+                return medCpoeClasses;
+            }
+            else
+            {
+                return new List<medCpoeClass>();
+            }
+        }
 
     }
     public class medQtyClass

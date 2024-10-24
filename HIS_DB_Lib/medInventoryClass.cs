@@ -156,6 +156,35 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medInventoryLogClass;
         }
+        static public Dictionary<string, List<medInventoryLogClass>> CoverToDictionaryMasterGUID(List<medInventoryLogClass> medInventoryLogClasses)
+        {
+            Dictionary<string, List<medInventoryLogClass>> dictionary = new Dictionary<string, List<medInventoryLogClass>>();
+            foreach (var item in medInventoryLogClasses)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<medInventoryLogClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<medInventoryLogClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medInventoryLogClass> SortDictByMasterGUID(Dictionary<string, List<medInventoryLogClass>> dict, string MasterGUID)
+        {
+            if (dict.TryGetValue(MasterGUID, out List<medInventoryLogClass> medInventoryLogClasses))
+            {
+                return medInventoryLogClasses;
+            }
+            else
+            {
+                return new List<medInventoryLogClass>();
+            }
+        }
+
+
     }
     /// <summary>
     ///  medInventoryClass資料
