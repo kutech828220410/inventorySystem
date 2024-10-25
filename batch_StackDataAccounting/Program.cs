@@ -497,18 +497,22 @@ namespace batch_StackDataAccounting
         static MyThread MyThread_取藥堆疊資料_儲位亮燈;
         static public void Main(string[] args)
         {
-            mutex = new System.Threading.Mutex(true, "OnlyRun");
+       
+            LoadDBConfig();
+            LoadMyConfig();
+
+            Console.Title = dBConfigClass.Name;
+
+            mutex = new System.Threading.Mutex(true, dBConfigClass.Name);
             if (mutex.WaitOne(0, false))
             {
-                
+
             }
             else
             {
-                
+
                 return;
             }
-            LoadDBConfig();
-            LoadMyConfig();
             API_Server = dBConfigClass.Api_Server;
             ServerName = dBConfigClass.Name;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");

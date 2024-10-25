@@ -21,7 +21,7 @@
   "EPD1020_Enable": true,
   "全螢幕顯示": true,
   "鍵盤掃碼模式": false,
-  "EPD583_Port": 29005,
+  "EPD583_Port": 28905,
   "EPD266_Port": 29000,
   "EPD1020_Port": 29012,
   "RowsLED_Port": 29001,
