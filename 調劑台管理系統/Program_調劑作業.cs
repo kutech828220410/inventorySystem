@@ -2089,7 +2089,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID = Order_GUID;
-                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
                     takeMedicineStackClass.領藥號 = 領藥號;
@@ -2132,7 +2132,7 @@ namespace 調劑台管理系統
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
-                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                         }
 
                     }
@@ -2236,7 +2236,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.領藥號 = 領藥號;
@@ -2338,7 +2338,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -2441,7 +2441,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -2529,7 +2529,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -4082,7 +4082,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID = Order_GUID;
-                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
                     takeMedicineStackClass.領藥號 = 領藥號;
@@ -4125,7 +4125,7 @@ namespace 調劑台管理系統
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
-                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                         }
 
                     }
@@ -4221,7 +4221,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.領藥號 = 領藥號;
@@ -4322,7 +4322,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -4424,7 +4424,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -4513,7 +4513,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -6076,7 +6076,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID = Order_GUID;
-                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
                     takeMedicineStackClass.領藥號 = 領藥號;
@@ -6118,7 +6118,7 @@ namespace 調劑台管理系統
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
-                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                         }
 
                     }
@@ -6215,7 +6215,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.領藥號 = 領藥號;
@@ -6316,7 +6316,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -6418,7 +6418,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -6507,7 +6507,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -8053,7 +8053,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID = Order_GUID;
-                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
                     takeMedicineStackClass.領藥號 = 領藥號;
@@ -8095,7 +8095,7 @@ namespace 調劑台管理系統
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
-                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                         }
 
                     }
@@ -8191,7 +8191,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.領藥號 = 領藥號;
@@ -8291,7 +8291,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -8393,7 +8393,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -8482,7 +8482,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.動作 = 動作.GetEnumName();
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -8912,7 +8912,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -9018,7 +9018,7 @@ namespace 調劑台管理系統
 
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
-                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.動作 = 動作.GetEnumName();
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
                 takeMedicineStackClass.診別 = 診別;
@@ -9054,7 +9054,7 @@ namespace 調劑台管理系統
                 {
                     if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                     {
-                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                     }
                 }
                 if (flag_雙人覆核)
@@ -9144,7 +9144,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;

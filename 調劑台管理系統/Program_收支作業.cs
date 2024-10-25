@@ -734,7 +734,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;         
+            takeMedicineStackClass.動作 = 動作.GetEnumName();         
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
             takeMedicineStackClass.藥袋序號 = 藥袋序號;
@@ -850,7 +850,7 @@ namespace 調劑台管理系統
                 string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.入庫作業;
+                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
                 takeMedicineStackClass.藥品碼 = batch_Inventory_ImportClass.藥碼;
                 takeMedicineStackClass.藥品名稱 = batch_Inventory_ImportClass.藥名;
                 takeMedicineStackClass.單位 = batch_Inventory_ImportClass.單位;

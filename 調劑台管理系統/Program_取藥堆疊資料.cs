@@ -206,16 +206,18 @@ namespace 調劑台管理系統
                 }
                 takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
-                if (takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料 && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.已領用過) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
+                if (takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料.GetEnumName() && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
 
-                if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業) takeMedicineStackClasses[i].IP = "";
+                if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].效期.Check_Date_String())
                 {
-                    if (takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.入庫作業 || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.調入作業 || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.掃碼退藥 || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.手輸退藥)
+                    if (takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.入庫作業.GetEnumName() || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.調入作業.GetEnumName() 
+                        || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.掃碼退藥.GetEnumName() || takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.手輸退藥.GetEnumName())
                     {
-                        takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增效期;
+                        takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增效期.GetEnumName();
                     }
                 }
+                if (PLC_Device_主機扣賬模式.Bool == false) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增資料.GetEnumName();
                 takeMedicineStackClasses[i].庫存量 = "0";
                 takeMedicineStackClasses[i].結存量 = "0";
                 takeMedicineStackClasses[i].作業模式 = "0";
@@ -224,38 +226,42 @@ namespace 調劑台管理系統
                 value[(int)enum_取藥堆疊母資料.狀態] = takeMedicineStackClasses[i].狀態.GetEnumName();
                 List<object[]> list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
 
-                if (list_藥品資料_buf.Count > 0)
+                if (PLC_Device_主機扣賬模式.Bool == true)
                 {
-                    if (Function_藥品設定表_取得是否自訂義(list_藥品設定表, 藥品碼))
+                    if (list_藥品資料_buf.Count > 0)
                     {
-                        flag_複盤 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.複盤, 藥品碼);
-                        flag_盲盤 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.盲盤, 藥品碼);
-                        flag_效期管理 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.效期管理, 藥品碼);
-                        flag_雙人覆核 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.雙人覆核, 藥品碼);
-                    }
-                    else
-                    {
-                        string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
-                        string 警訊藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
-                        string 高價藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString() == true.ToString()) ? "高價" : "";
-                        string 生物製劑 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString() == true.ToString()) ? "生物製劑" : "";
-                        flag_複盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 生物製劑));
-                        flag_盲盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 生物製劑));
-                        flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 生物製劑));
-                        flag_雙人覆核 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 生物製劑));
-                    }
-                    if (flag_複盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.複盤);
-                    if (flag_盲盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.盲盤);
-                    if (flag_效期管理) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.效期管控);
-                    if (flag_雙人覆核)
-                    {
-                        Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.雙人覆核);
-                        //value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName();
-                    }
-                    if (flag_複盤 || flag_盲盤 || flag_雙人覆核) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.獨立作業);
+                        if (Function_藥品設定表_取得是否自訂義(list_藥品設定表, 藥品碼))
+                        {
+                            flag_複盤 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.複盤, 藥品碼);
+                            flag_盲盤 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.盲盤, 藥品碼);
+                            flag_效期管理 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.效期管理, 藥品碼);
+                            flag_雙人覆核 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.雙人覆核, 藥品碼);
+                        }
+                        else
+                        {
+                            string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
+                            string 警訊藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
+                            string 高價藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString() == true.ToString()) ? "高價" : "";
+                            string 生物製劑 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString() == true.ToString()) ? "生物製劑" : "";
+                            flag_複盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.複盤, 生物製劑));
+                            flag_盲盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.盲盤, 生物製劑));
+                            flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.效期管理, 生物製劑));
+                            flag_雙人覆核 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_medGeneralConfig.雙人覆核, 生物製劑));
+                        }
+                        if (flag_複盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.複盤);
+                        if (flag_盲盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.盲盤);
+                        if (flag_效期管理) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.效期管控);
+                        if (flag_雙人覆核)
+                        {
+                            Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.雙人覆核);
+                            //value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName();
+                        }
+                        if (flag_複盤 || flag_盲盤 || flag_雙人覆核) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.獨立作業);
 
+                    }
+                    takeMedicineStackClasses[i].作業模式 = value[(int)enum_取藥堆疊母資料.作業模式].ObjectToString();
                 }
-                takeMedicineStackClasses[i].作業模式 = value[(int)enum_取藥堆疊母資料.作業模式].ObjectToString();
+              
                 list_堆疊母資料_add.Add(value);
 
                 Console.WriteLine($"----------------------------------------------");
@@ -280,94 +286,101 @@ namespace 調劑台管理系統
 
             List<string> list_藥品碼 = (from temp in takeMedicineStackClasses
                                      select temp.藥品碼).Distinct().ToList();
-
-            if (PLC_Device_刷藥袋有相同藥品需警示.Bool)
+            if (PLC_Device_主機扣賬模式.Bool == true)
             {
-                string msg = "";
+                if (PLC_Device_刷藥袋有相同藥品需警示.Bool)
+                {
+                    string msg = "";
+                    for (int i = 0; i < list_藥品碼.Count; i++)
+                    {
+
+                        takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
+                                                        where temp.藥品碼 == list_藥品碼[i]
+                                                        where temp.動作 == enum_交易記錄查詢動作.掃碼領藥.GetEnumName()
+                                                        select temp).ToList();
+                        if (takeMedicineStackClasses_buf.Count >= 2)
+                        {
+                            msg += $"{takeMedicineStackClasses_buf[0].藥品名稱}\n";
+                        }
+
+                    }
+                    if (msg.StringIsEmpty() == false)
+                    {
+                        msg += "請注意,有相同藥品";
+
+                        Task.Run(new Action(delegate
+                        {
+                            Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
+                            this.Invoke(new Action(delegate
+                            {
+                                MyMessageBox.ShowDialog(msg);
+                            }));
+                        }));
+
+
+                    }
+                }
+                List<string> list_lock_IP = new List<string>();
                 for (int i = 0; i < list_藥品碼.Count; i++)
                 {
-
+                    string 藥品碼 = list_藥品碼[i];
+                    if (藥品碼.StringIsEmpty()) continue;
                     takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
-                                                    where temp.藥品碼 == list_藥品碼[i]
-                                                    where temp.動作 == enum_交易記錄查詢動作.掃碼領藥
+                                                    where temp.藥品碼 == 藥品碼
                                                     select temp).ToList();
-                    if (takeMedicineStackClasses_buf.Count >= 2)
+                    if (takeMedicineStackClasses_buf.Count > 0)
                     {
-                        msg += $"{takeMedicineStackClasses_buf[0].藥品名稱}\n";
+                        顏色 = takeMedicineStackClasses_buf[0].顏色;
+                        if (Function_取藥堆疊資料_取得作業模式(takeMedicineStackClasses_buf[0], enum_取藥堆疊母資料_作業模式.雙人覆核)) continue;
+                        Function_儲位亮燈(new Main_Form.LightOn(藥品碼, 顏色.ToColor()), ref list_lock_IP);
                     }
 
                 }
-                if (msg.StringIsEmpty() == false)
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
+                for (int i = 0; i < list_堆疊母資料_add.Count; i++)
                 {
-                    msg += "請注意,有相同藥品";
+                    if (Function_取藥堆疊資料_取得作業模式(list_堆疊母資料_add[i], enum_取藥堆疊母資料_作業模式.雙人覆核)) Function_外門片解鎖(list_lock_IP);
+                    else
+                    {
+                        Function_抽屜解鎖(list_lock_IP);
+                    }
+                }
+
+                Console.WriteLine($"#1 commonSapceClasses : {commonSapceClasses.Count}");
+                if (list_堆疊母資料_add.Count > 0)
+                {
 
                     Task.Run(new Action(delegate
                     {
-                        Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
-                        this.Invoke(new Action(delegate
-                        {
-                            MyMessageBox.ShowDialog(msg);
-                        }));
+                        commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
                     }));
 
+                    this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
+                }
 
-                }
-            }
-            List<string> list_lock_IP = new List<string>();
-            for (int i = 0; i < list_藥品碼.Count; i++)
-            {
-                string 藥品碼 = list_藥品碼[i];
-                if (藥品碼.StringIsEmpty()) continue;
-                takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
-                                                where temp.藥品碼 == 藥品碼
-                                                select temp).ToList();
-                if (takeMedicineStackClasses_buf.Count > 0)
+                List<object[]> list_value_delete = new List<object[]>();
+                for (int i = 0; i < takeMedicineStackClasses.Count; i++)
                 {
-                    顏色 = takeMedicineStackClasses_buf[0].顏色;
-                    if (Function_取藥堆疊資料_取得作業模式(takeMedicineStackClasses_buf[0], enum_取藥堆疊母資料_作業模式.雙人覆核)) continue;
-                    Function_儲位亮燈(new Main_Form.LightOn(藥品碼, 顏色.ToColor()), ref list_lock_IP);
-                }
-              
-            }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
-            for(int i = 0; i < list_堆疊母資料_add.Count; i++)
-            {
-                if (Function_取藥堆疊資料_取得作業模式(list_堆疊母資料_add[i], enum_取藥堆疊母資料_作業模式.雙人覆核)) Function_外門片解鎖(list_lock_IP);
-                else
-                {
-                    Function_抽屜解鎖(list_lock_IP);
-                }
-            }
-      
-            Console.WriteLine($"#1 commonSapceClasses : {commonSapceClasses.Count}");
-            if (list_堆疊母資料_add.Count > 0)
-            {
+                    string 藥品碼 = takeMedicineStackClasses[i].藥品碼;
+                    List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+                    List<object[]> list_value_buf = new List<object[]>();
 
-                Task.Run(new Action(delegate 
-                {
-                    commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
-                }));
-          
+                    list_value_buf = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
+                    list_value_buf = list_value_buf.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
+                    if (list_value_buf.Count > 0)
+                    {
+                        list_value_delete.Add(list_value_buf[0]);
+                    }
+                }
+                if (list_value_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
+                Console.WriteLine($" 新增取藥資料 (耗時){myTimer_total.ToString()} ");
+            }
+            else
+            {
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
             }
-
-            List<object[]> list_value_delete = new List<object[]>();
-            for (int i = 0; i < takeMedicineStackClasses.Count; i++)
-            {
-                string 藥品碼 = takeMedicineStackClasses[i].藥品碼;
-                List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
-                List<object[]> list_value_buf = new List<object[]>();
-
-                list_value_buf = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
-                list_value_buf = list_value_buf.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
-                if (list_value_buf.Count > 0)
-                {
-                    list_value_delete.Add(list_value_buf[0]);
-                }
-            }
-            if (list_value_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
-            Console.WriteLine($" 新增取藥資料 (耗時){myTimer_total.ToString()} ");
+          
 
         }
         private object[] Function_取藥堆疊資料_新增子資料(string Master_GUID, string Device_GUID, string 調劑台名稱, string 藥品碼, string IP, string Num, string _enum_取藥堆疊_TYPE, string 效期, string 批號, string 異動量)
@@ -527,8 +540,8 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = Guid.NewGuid().ToString();
                 takeMedicineStackClass.藥品碼 = 藥品碼;
-                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
-                takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.None;
+                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None.GetEnumName();
+                takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.None.GetEnumName();
                 takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.調劑台名稱 = "刷新面板";
@@ -1170,7 +1183,7 @@ namespace 調劑台管理系統
                 藥品碼 = 藥碼;
                 顏色 = color;
                 數量 = qty;
-                flag_Refresh = true;
+                flag_Refresh_LCD = true;
             }
             public LightOn(string 藥碼, Color color)
             {
@@ -1193,15 +1206,19 @@ namespace 調劑台管理系統
                 lightOn_buf.藥品碼 = lightOn.藥品碼;
                 lightOn_buf.顏色 = lightOn.顏色;
                 lightOn_buf.數量 = lightOn.數量;
-                lightOn_buf.flag_Refresh = lightOn.flag_Refresh;
+                lightOn_buf.LCD_Color = lightOn.LCD_Color;
+                lightOn_buf.flag_Refresh_LCD = lightOn.flag_Refresh_LCD;
+                lightOn_buf.flag_Refresh_Light = lightOn.flag_Refresh_Light;
 
                 return lightOn_buf;
             }
             public string IP { get; set; }
             public string 藥品碼 { get; set; }
             public Color 顏色 { get; set; }
+            public Color LCD_Color { get; set; }
             public double 數量 { get; set; }
-            public bool flag_Refresh = false;
+            public bool flag_Refresh_LCD = false;
+            public bool flag_Refresh_Light = false;
         }
         static private List<LightOn> lightOns = new List<LightOn>();
         private int cnt_儲位亮燈 = 0;
@@ -1257,7 +1274,7 @@ namespace 調劑台管理系統
                             {
                                 string 藥品碼 = lightOns_buf[i].藥品碼;
                                 Color 顏色 = lightOns_buf[i].顏色;
-                                list_抽屜亮燈_IP.LockAdd(Function_儲位亮燈_取得抽屜亮燈IP(藥品碼, 顏色));
+                                list_抽屜亮燈_IP.LockAdd(Function_儲位亮燈_取得抽屜亮燈IP(lightOns_buf[i]));
                                 list_層架亮燈_IP.LockAdd(Function_儲位亮燈_取得層架亮燈IP(藥品碼, 顏色));
                                 list_EPD1020亮燈_IP.LockAdd(Function_儲位亮燈_取得EPD1020亮燈IP(藥品碼, 顏色));
                             }
@@ -1311,8 +1328,10 @@ namespace 調劑台管理系統
             }
 
         }
-        public List<string> Function_儲位亮燈_取得抽屜亮燈IP(string 藥品碼, Color color)
+        public List<string> Function_儲位亮燈_取得抽屜亮燈IP(LightOn lightOn)
         {
+            string 藥品碼 = lightOn.藥品碼;
+            Color color = lightOn.顏色;
             if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
             //List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
@@ -1376,12 +1395,12 @@ namespace 調劑台管理系統
                                 }
                             }
 
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color, true);
-                            if (!flag_commonlight)
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color, !lightOn.flag_Refresh_Light);
+                            if (!flag_commonlight || lightOn.flag_Refresh_Light)
                             {
                                 if (color != Color.Black)
                                 {
-                                    drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                                    if(lightOn.flag_Refresh_Light == false) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
                                 }
                                 else
                                 {
@@ -1695,7 +1714,7 @@ namespace 調劑台管理系統
                             else
                             {
                                 if (color == Color.Black) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
-                                else if (lightOn.flag_Refresh)
+                                else if (lightOn.flag_Refresh_LCD)
                                 {
                                     this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                                 }
@@ -1704,7 +1723,7 @@ namespace 調劑台管理系統
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) return;
                             if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
-                            if (lightOn.flag_Refresh) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, color);
+                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, color);
 
                         }));
 
@@ -1726,6 +1745,18 @@ namespace 調劑台管理系統
 
                             list_IP.Add(IP);
                         }
+                    }
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                          
+                            string index_IP = Funcion_取得LCD114索引表_index_IP(device.IP);
+                            if (index_IP.StringIsEmpty()) return;
+                            if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
+                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, color);
+
+                        }));
                     }
                     else if (device.DeviceType == DeviceType.RowsLED)
                     {
@@ -1763,17 +1794,18 @@ namespace 調劑台管理系統
             if (cnt_Program_取藥堆疊資料_檢查資料 == 65535) cnt_Program_取藥堆疊資料_檢查資料 = 1;
             if (cnt_Program_取藥堆疊資料_檢查資料 == 1) cnt_Program_取藥堆疊資料_檢查資料_檢查按下(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 2) cnt_Program_取藥堆疊資料_檢查資料_初始化(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 3) cnt_Program_取藥堆疊資料_檢查資料_檢查儲位刷新(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 4) cnt_Program_取藥堆疊資料_檢查資料_檢查儲位亮燈(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 5) cnt_Program_取藥堆疊資料_檢查資料_檢查處方存在時間到達(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 6) cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 7) cnt_Program_取藥堆疊資料_檢查資料_堆疊資料整理(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 8) cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 9) cnt_Program_取藥堆疊資料_檢查資料_刷新無庫存(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 10) cnt_Program_取藥堆疊資料_檢查資料_刷新資料(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 11) cnt_Program_取藥堆疊資料_檢查資料_設定致能(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 12) cnt_Program_取藥堆疊資料_檢查資料_等待刷新時間到達(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 13) cnt_Program_取藥堆疊資料_檢查資料 = 65500;
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 3) cnt_Program_取藥堆疊資料_檢查資料_檢查新增資料(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 4) cnt_Program_取藥堆疊資料_檢查資料_檢查儲位刷新(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 5) cnt_Program_取藥堆疊資料_檢查資料_檢查儲位亮燈(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 6) cnt_Program_取藥堆疊資料_檢查資料_檢查處方存在時間到達(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 7) cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 8) cnt_Program_取藥堆疊資料_檢查資料_堆疊資料整理(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 9) cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 10) cnt_Program_取藥堆疊資料_檢查資料_刷新無庫存(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 11) cnt_Program_取藥堆疊資料_檢查資料_刷新資料(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 12) cnt_Program_取藥堆疊資料_檢查資料_設定致能(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 13) cnt_Program_取藥堆疊資料_檢查資料_等待刷新時間到達(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 14) cnt_Program_取藥堆疊資料_檢查資料 = 65500;
             if (cnt_Program_取藥堆疊資料_檢查資料 > 1) cnt_Program_取藥堆疊資料_檢查資料_檢查放開(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 65500)
             {
@@ -1802,6 +1834,19 @@ namespace 調劑台管理系統
                     //PlC_RJ_Button_醫囑資料_自動過帳_MouseDownEvent(null);
                 }
                 MyTimer_取藥堆疊資料_自動過帳時間.TickStop();
+            }
+
+            cnt++;
+        }
+        void cnt_Program_取藥堆疊資料_檢查資料_檢查新增資料(ref int cnt)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.狀態, "新增資料", false);
+
+            if (list_value.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value, false);
+                List<takeMedicineStackClass> takeMedicineStackClasses = list_value.SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
             }
 
             cnt++;
@@ -2657,7 +2702,8 @@ namespace 調劑台管理系統
                                   select temp).ToList();
                 if (list_已亮燈藥碼_buf.Count != 0) continue;
 
-                Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
+                if (Type.Contains("EPD583")) Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color), ref list_lock_IP);
+                else  Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color , 數量), ref list_lock_IP);
                 list_已亮燈藥碼.Add(藥品碼);
              
 
@@ -2985,7 +3031,7 @@ namespace 調劑台管理系統
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 4) cnt_Program_取藥堆疊資料_流程作業檢查_檢查同藥碼全亮(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 5) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 6) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架手勢感測離開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 7) cnt_Program_取藥堆疊資料_流程作業檢查_檢查抽屜手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);          
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 7) cnt_Program_取藥堆疊資料_流程作業檢查_檢查抽屜手勢感測感應到(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 8) cnt_Program_取藥堆疊資料_流程作業檢查 = 65500;
             if (cnt_Program_取藥堆疊資料_流程作業檢查 > 1) cnt_Program_取藥堆疊資料_流程作業檢查_檢查放開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 65500)
@@ -3312,7 +3358,7 @@ namespace 調劑台管理系統
 
             list_取藥子堆疊資料_手勢感測作業檢查 = (from value in list_取藥子堆疊資料
                                      where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
-                                     where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == true.ToString()
+                                     where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == false.ToString()
                                      where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
                                      where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583_lock.GetEnumName()
                                      select value).ToList();
@@ -3335,13 +3381,15 @@ namespace 調劑台管理系統
                 調劑台名稱 = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.調劑台名稱].ObjectToString();
                 Master_GUID = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.Master_GUID].ObjectToString();
                 list_取藥母堆疊資料_buf = list_取藥母堆疊資料.GetRows((int)enum_取藥堆疊母資料.GUID, Master_GUID);
-
+          
                 list_取藥子堆疊資料_buf = (from temp in list_取藥子堆疊資料_replace
                                     where temp[(int)enum_取藥堆疊母資料.IP].ObjectToString() == IP
                                     select temp).ToList();
                 if (list_取藥母堆疊資料_buf.Count > 0)
                 {
                     color = list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.顏色].ObjectToString().ToColor();
+                    int 數量 = list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                    if (數量 < 0) 數量 = 數量 * -1;
                     if (list_取藥子堆疊資料_buf.Count == 0)
                     {
                         List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
@@ -3365,8 +3413,13 @@ namespace 調劑台管理系統
                                 Console.WriteLine($"IP : {boxes[k].IP} , index_IP : {index_IP}, Sensor_ON : {Sensor_ON}");
                             
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
-                                list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
+                                LightOn lightOn = new Main_Form.LightOn(藥品碼, color, 數量);
+                                lightOn.顏色 = Color.FromArgb((int)(color.R * 0.1), (int)(color.G * 0.1), (int)(color.B * 0.1));
+                                lightOn.flag_Refresh_Light = true;
+                                Function_儲位亮燈(lightOn);
+
+
                                 break;
                             }
                         }

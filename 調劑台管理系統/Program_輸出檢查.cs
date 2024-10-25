@@ -551,7 +551,7 @@ namespace 調劑台管理系統
                         if (list_locker_table_value_同步輸出_buf.Count > 0) this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
 
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
-                        this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString());
+                        //this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString());
                         list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[i]);
 
 
