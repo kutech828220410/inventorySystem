@@ -472,7 +472,33 @@ namespace HIS_DB_Lib
             out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
-
+        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByGUID(List<medCarInfoClass> medCarInfoClasses)
+        {
+            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
+            foreach(var item in medCarInfoClasses)
+            {
+                if(dictionary.TryGetValue(item.GUID, out List<medCarInfoClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.GUID] = new List<medCarInfoClass>();
+                }
+            }
+            return dictionary;
+        }
+        static public List<medCarInfoClass> SortDictByGUID (Dictionary<string, List<medCarInfoClass>> dict, string GUID)
+        {
+            if (dict.TryGetValue(GUID, out List<medCarInfoClass> medCarInfoClasses))
+            {
+                return medCarInfoClasses;
+            }
+            else
+            {
+                return new List<medCarInfoClass>();
+            }
+        }
     }
     public class diseaseOut
     {
