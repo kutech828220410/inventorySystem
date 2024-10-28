@@ -1378,6 +1378,7 @@ namespace 調劑台管理系統
             string 單位 = "";
             string 狀態 = "";
             string 床號 = "";
+            string 盤點量 = "";
             list_取藥堆疊資料.Sort(new Icp_取藥堆疊母資料_index排序());
       
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
@@ -1403,6 +1404,7 @@ namespace 調劑台管理系統
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
+                盤點量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
                 if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
                 {
                     庫存量 = "無";
@@ -1424,6 +1426,7 @@ namespace 調劑台管理系統
                 value[(int)enum_取藥堆疊母資料.單位] = 單位;
                 value[(int)enum_取藥堆疊母資料.狀態] = 狀態;
                 value[(int)enum_取藥堆疊母資料.床號] = 床號;
+                value[(int)enum_取藥堆疊母資料.盤點量] = 盤點量;
 
                 list_value.Add(value);
 
