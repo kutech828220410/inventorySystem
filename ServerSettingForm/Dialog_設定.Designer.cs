@@ -34,10 +34,9 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass3 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass4 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass5 = new HIS_DB_Lib.ServerSettingClass();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass8 = new HIS_DB_Lib.ServerSettingClass();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass10 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass11 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass12 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass13 = new HIS_DB_Lib.ServerSettingClass();
@@ -47,7 +46,10 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass17 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass18 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass19 = new HIS_DB_Lib.ServerSettingClass();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass20 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass21 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass10 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_上傳 = new System.Windows.Forms.Button();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -64,6 +66,7 @@ namespace ServerSettingForm
             this.panel_CheckBox12 = new ServerSettingForm.Panel_CheckBox();
             this.panel_CheckBox13 = new ServerSettingForm.Panel_CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.panel_CheckBox19 = new ServerSettingForm.Panel_CheckBox();
             this.panel_CheckBox14 = new ServerSettingForm.Panel_CheckBox();
             this.panel_CheckBox15 = new ServerSettingForm.Panel_CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -76,7 +79,8 @@ namespace ServerSettingForm
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel_CheckBox17 = new ServerSettingForm.Panel_CheckBox();
             this.panel_CheckBox18 = new ServerSettingForm.Panel_CheckBox();
-            this.panel_CheckBox19 = new ServerSettingForm.Panel_CheckBox();
+            this.panel_CheckBox20 = new ServerSettingForm.Panel_CheckBox();
+            this.panel_CheckBox21 = new ServerSettingForm.Panel_CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -281,12 +285,13 @@ namespace ServerSettingForm
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.panel_CheckBox20);
             this.groupBox2.Controls.Add(this.panel_CheckBox11);
             this.groupBox2.Controls.Add(this.panel_CheckBox12);
             this.groupBox2.Controls.Add(this.panel_CheckBox13);
             this.groupBox2.Location = new System.Drawing.Point(290, 349);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(245, 217);
+            this.groupBox2.Size = new System.Drawing.Size(464, 217);
             this.groupBox2.TabIndex = 111;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "藥庫";
@@ -297,20 +302,20 @@ namespace ServerSettingForm
             this.panel_CheckBox11.Content = "驗收單管理模組不啟用";
             this.panel_CheckBox11.Location = new System.Drawing.Point(11, 21);
             this.panel_CheckBox11.Name = "panel_CheckBox11";
-            serverSettingClass6.DBName = null;
-            serverSettingClass6.GUID = null;
-            serverSettingClass6.Password = null;
-            serverSettingClass6.Port = null;
-            serverSettingClass6.Server = null;
-            serverSettingClass6.TableName = null;
-            serverSettingClass6.User = null;
-            serverSettingClass6.Value = "False";
-            serverSettingClass6.內容 = "驗收單管理模組不啟用";
-            serverSettingClass6.單位 = null;
-            serverSettingClass6.程式類別 = "peremeter";
-            serverSettingClass6.設備名稱 = "";
-            serverSettingClass6.類別 = "網頁";
-            this.panel_CheckBox11.ServerSetting = serverSettingClass6;
+            serverSettingClass7.DBName = null;
+            serverSettingClass7.GUID = null;
+            serverSettingClass7.Password = null;
+            serverSettingClass7.Port = null;
+            serverSettingClass7.Server = null;
+            serverSettingClass7.TableName = null;
+            serverSettingClass7.User = null;
+            serverSettingClass7.Value = "False";
+            serverSettingClass7.內容 = "驗收單管理模組不啟用";
+            serverSettingClass7.單位 = null;
+            serverSettingClass7.程式類別 = "peremeter";
+            serverSettingClass7.設備名稱 = "";
+            serverSettingClass7.類別 = "網頁";
+            this.panel_CheckBox11.ServerSetting = serverSettingClass7;
             this.panel_CheckBox11.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox11.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox11.TabIndex = 105;
@@ -321,20 +326,20 @@ namespace ServerSettingForm
             this.panel_CheckBox12.Content = "藥品申領模組不啟用";
             this.panel_CheckBox12.Location = new System.Drawing.Point(11, 81);
             this.panel_CheckBox12.Name = "panel_CheckBox12";
-            serverSettingClass7.DBName = null;
-            serverSettingClass7.GUID = null;
-            serverSettingClass7.Password = null;
-            serverSettingClass7.Port = null;
-            serverSettingClass7.Server = null;
-            serverSettingClass7.TableName = null;
-            serverSettingClass7.User = null;
-            serverSettingClass7.Value = "False";
-            serverSettingClass7.內容 = "藥品申領模組不啟用";
-            serverSettingClass7.單位 = null;
-            serverSettingClass7.程式類別 = "peremeter";
-            serverSettingClass7.設備名稱 = "";
-            serverSettingClass7.類別 = "網頁";
-            this.panel_CheckBox12.ServerSetting = serverSettingClass7;
+            serverSettingClass8.DBName = null;
+            serverSettingClass8.GUID = null;
+            serverSettingClass8.Password = null;
+            serverSettingClass8.Port = null;
+            serverSettingClass8.Server = null;
+            serverSettingClass8.TableName = null;
+            serverSettingClass8.User = null;
+            serverSettingClass8.Value = "False";
+            serverSettingClass8.內容 = "藥品申領模組不啟用";
+            serverSettingClass8.單位 = null;
+            serverSettingClass8.程式類別 = "peremeter";
+            serverSettingClass8.設備名稱 = "";
+            serverSettingClass8.類別 = "網頁";
+            this.panel_CheckBox12.ServerSetting = serverSettingClass8;
             this.panel_CheckBox12.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox12.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox12.TabIndex = 106;
@@ -345,35 +350,60 @@ namespace ServerSettingForm
             this.panel_CheckBox13.Content = "揀貨模組不啟用";
             this.panel_CheckBox13.Location = new System.Drawing.Point(11, 141);
             this.panel_CheckBox13.Name = "panel_CheckBox13";
-            serverSettingClass8.DBName = null;
-            serverSettingClass8.GUID = null;
-            serverSettingClass8.Password = null;
-            serverSettingClass8.Port = null;
-            serverSettingClass8.Server = null;
-            serverSettingClass8.TableName = null;
-            serverSettingClass8.User = null;
-            serverSettingClass8.Value = "False";
-            serverSettingClass8.內容 = "揀貨模組不啟用";
-            serverSettingClass8.單位 = null;
-            serverSettingClass8.程式類別 = "peremeter";
-            serverSettingClass8.設備名稱 = "";
-            serverSettingClass8.類別 = "網頁";
-            this.panel_CheckBox13.ServerSetting = serverSettingClass8;
+            serverSettingClass9.DBName = null;
+            serverSettingClass9.GUID = null;
+            serverSettingClass9.Password = null;
+            serverSettingClass9.Port = null;
+            serverSettingClass9.Server = null;
+            serverSettingClass9.TableName = null;
+            serverSettingClass9.User = null;
+            serverSettingClass9.Value = "False";
+            serverSettingClass9.內容 = "揀貨模組不啟用";
+            serverSettingClass9.單位 = null;
+            serverSettingClass9.程式類別 = "peremeter";
+            serverSettingClass9.設備名稱 = "";
+            serverSettingClass9.類別 = "網頁";
+            this.panel_CheckBox13.ServerSetting = serverSettingClass9;
             this.panel_CheckBox13.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox13.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox13.TabIndex = 107;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.panel_CheckBox21);
             this.groupBox3.Controls.Add(this.panel_CheckBox19);
             this.groupBox3.Controls.Add(this.panel_CheckBox14);
             this.groupBox3.Controls.Add(this.panel_CheckBox15);
             this.groupBox3.Location = new System.Drawing.Point(760, 80);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 201);
+            this.groupBox3.Size = new System.Drawing.Size(233, 263);
             this.groupBox3.TabIndex = 112;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "西藥局";
+            // 
+            // panel_CheckBox19
+            // 
+            this.panel_CheckBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox19.Content = "批次入庫模組不啟用";
+            this.panel_CheckBox19.Location = new System.Drawing.Point(6, 139);
+            this.panel_CheckBox19.Name = "panel_CheckBox19";
+            serverSettingClass11.DBName = null;
+            serverSettingClass11.GUID = null;
+            serverSettingClass11.Password = null;
+            serverSettingClass11.Port = null;
+            serverSettingClass11.Server = null;
+            serverSettingClass11.TableName = null;
+            serverSettingClass11.User = null;
+            serverSettingClass11.Value = "False";
+            serverSettingClass11.內容 = "批次入庫模組不啟用";
+            serverSettingClass11.單位 = null;
+            serverSettingClass11.程式類別 = "peremeter";
+            serverSettingClass11.設備名稱 = "";
+            serverSettingClass11.類別 = "網頁";
+            this.panel_CheckBox19.ServerSetting = serverSettingClass11;
+            this.panel_CheckBox19.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_CheckBox19.Size = new System.Drawing.Size(220, 54);
+            this.panel_CheckBox19.TabIndex = 110;
             // 
             // panel_CheckBox14
             // 
@@ -381,20 +411,20 @@ namespace ServerSettingForm
             this.panel_CheckBox14.Content = "管制結存模組不啟用";
             this.panel_CheckBox14.Location = new System.Drawing.Point(6, 21);
             this.panel_CheckBox14.Name = "panel_CheckBox14";
-            serverSettingClass10.DBName = null;
-            serverSettingClass10.GUID = null;
-            serverSettingClass10.Password = null;
-            serverSettingClass10.Port = null;
-            serverSettingClass10.Server = null;
-            serverSettingClass10.TableName = null;
-            serverSettingClass10.User = null;
-            serverSettingClass10.Value = "False";
-            serverSettingClass10.內容 = "管制結存模組不啟用";
-            serverSettingClass10.單位 = null;
-            serverSettingClass10.程式類別 = "peremeter";
-            serverSettingClass10.設備名稱 = "";
-            serverSettingClass10.類別 = "網頁";
-            this.panel_CheckBox14.ServerSetting = serverSettingClass10;
+            serverSettingClass12.DBName = null;
+            serverSettingClass12.GUID = null;
+            serverSettingClass12.Password = null;
+            serverSettingClass12.Port = null;
+            serverSettingClass12.Server = null;
+            serverSettingClass12.TableName = null;
+            serverSettingClass12.User = null;
+            serverSettingClass12.Value = "False";
+            serverSettingClass12.內容 = "管制結存模組不啟用";
+            serverSettingClass12.單位 = null;
+            serverSettingClass12.程式類別 = "peremeter";
+            serverSettingClass12.設備名稱 = "";
+            serverSettingClass12.類別 = "網頁";
+            this.panel_CheckBox14.ServerSetting = serverSettingClass12;
             this.panel_CheckBox14.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox14.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox14.TabIndex = 108;
@@ -405,20 +435,20 @@ namespace ServerSettingForm
             this.panel_CheckBox15.Content = "交易紀錄模組不啟用";
             this.panel_CheckBox15.Location = new System.Drawing.Point(6, 81);
             this.panel_CheckBox15.Name = "panel_CheckBox15";
-            serverSettingClass11.DBName = null;
-            serverSettingClass11.GUID = null;
-            serverSettingClass11.Password = null;
-            serverSettingClass11.Port = null;
-            serverSettingClass11.Server = null;
-            serverSettingClass11.TableName = null;
-            serverSettingClass11.User = null;
-            serverSettingClass11.Value = "False";
-            serverSettingClass11.內容 = "交易紀錄模組不啟用";
-            serverSettingClass11.單位 = null;
-            serverSettingClass11.程式類別 = "peremeter";
-            serverSettingClass11.設備名稱 = "";
-            serverSettingClass11.類別 = "網頁";
-            this.panel_CheckBox15.ServerSetting = serverSettingClass11;
+            serverSettingClass13.DBName = null;
+            serverSettingClass13.GUID = null;
+            serverSettingClass13.Password = null;
+            serverSettingClass13.Port = null;
+            serverSettingClass13.Server = null;
+            serverSettingClass13.TableName = null;
+            serverSettingClass13.User = null;
+            serverSettingClass13.Value = "False";
+            serverSettingClass13.內容 = "交易紀錄模組不啟用";
+            serverSettingClass13.單位 = null;
+            serverSettingClass13.程式類別 = "peremeter";
+            serverSettingClass13.設備名稱 = "";
+            serverSettingClass13.類別 = "網頁";
+            this.panel_CheckBox15.ServerSetting = serverSettingClass13;
             this.panel_CheckBox15.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox15.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox15.TabIndex = 109;
@@ -444,54 +474,6 @@ namespace ServerSettingForm
             this.panel_CheckBox1.Content = "智慧藥局整合平台不顯示";
             this.panel_CheckBox1.Location = new System.Drawing.Point(12, 19);
             this.panel_CheckBox1.Name = "panel_CheckBox1";
-            serverSettingClass12.DBName = null;
-            serverSettingClass12.GUID = null;
-            serverSettingClass12.Password = null;
-            serverSettingClass12.Port = null;
-            serverSettingClass12.Server = null;
-            serverSettingClass12.TableName = null;
-            serverSettingClass12.User = null;
-            serverSettingClass12.Value = "False";
-            serverSettingClass12.內容 = "智慧藥局整合平台不顯示";
-            serverSettingClass12.單位 = null;
-            serverSettingClass12.程式類別 = "peremeter";
-            serverSettingClass12.設備名稱 = "";
-            serverSettingClass12.類別 = "調劑台";
-            this.panel_CheckBox1.ServerSetting = serverSettingClass12;
-            this.panel_CheckBox1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.調劑台;
-            this.panel_CheckBox1.Size = new System.Drawing.Size(246, 54);
-            this.panel_CheckBox1.TabIndex = 92;
-            // 
-            // panel_CheckBox2
-            // 
-            this.panel_CheckBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox2.Content = "智慧藥局整合平台不顯示";
-            this.panel_CheckBox2.Location = new System.Drawing.Point(12, 79);
-            this.panel_CheckBox2.Name = "panel_CheckBox2";
-            serverSettingClass13.DBName = null;
-            serverSettingClass13.GUID = null;
-            serverSettingClass13.Password = null;
-            serverSettingClass13.Port = null;
-            serverSettingClass13.Server = null;
-            serverSettingClass13.TableName = null;
-            serverSettingClass13.User = null;
-            serverSettingClass13.Value = "False";
-            serverSettingClass13.內容 = "智慧藥局整合平台不顯示";
-            serverSettingClass13.單位 = null;
-            serverSettingClass13.程式類別 = "peremeter";
-            serverSettingClass13.設備名稱 = "";
-            serverSettingClass13.類別 = "藥庫";
-            this.panel_CheckBox2.ServerSetting = serverSettingClass13;
-            this.panel_CheckBox2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.藥庫;
-            this.panel_CheckBox2.Size = new System.Drawing.Size(246, 54);
-            this.panel_CheckBox2.TabIndex = 93;
-            // 
-            // panel_CheckBox3
-            // 
-            this.panel_CheckBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox3.Content = "智慧藥局整合平台不顯示";
-            this.panel_CheckBox3.Location = new System.Drawing.Point(12, 139);
-            this.panel_CheckBox3.Name = "panel_CheckBox3";
             serverSettingClass14.DBName = null;
             serverSettingClass14.GUID = null;
             serverSettingClass14.Password = null;
@@ -504,18 +486,18 @@ namespace ServerSettingForm
             serverSettingClass14.單位 = null;
             serverSettingClass14.程式類別 = "peremeter";
             serverSettingClass14.設備名稱 = "";
-            serverSettingClass14.類別 = "傳送櫃";
-            this.panel_CheckBox3.ServerSetting = serverSettingClass14;
-            this.panel_CheckBox3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
-            this.panel_CheckBox3.Size = new System.Drawing.Size(246, 54);
-            this.panel_CheckBox3.TabIndex = 94;
+            serverSettingClass14.類別 = "調劑台";
+            this.panel_CheckBox1.ServerSetting = serverSettingClass14;
+            this.panel_CheckBox1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.調劑台;
+            this.panel_CheckBox1.Size = new System.Drawing.Size(246, 54);
+            this.panel_CheckBox1.TabIndex = 92;
             // 
-            // panel_CheckBox4
+            // panel_CheckBox2
             // 
-            this.panel_CheckBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox4.Content = "智慧藥局整合平台不顯示";
-            this.panel_CheckBox4.Location = new System.Drawing.Point(12, 199);
-            this.panel_CheckBox4.Name = "panel_CheckBox4";
+            this.panel_CheckBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox2.Content = "智慧藥局整合平台不顯示";
+            this.panel_CheckBox2.Location = new System.Drawing.Point(12, 79);
+            this.panel_CheckBox2.Name = "panel_CheckBox2";
             serverSettingClass15.DBName = null;
             serverSettingClass15.GUID = null;
             serverSettingClass15.Password = null;
@@ -528,18 +510,18 @@ namespace ServerSettingForm
             serverSettingClass15.單位 = null;
             serverSettingClass15.程式類別 = "peremeter";
             serverSettingClass15.設備名稱 = "";
-            serverSettingClass15.類別 = "癌症備藥機";
-            this.panel_CheckBox4.ServerSetting = serverSettingClass15;
-            this.panel_CheckBox4.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_CheckBox4.Size = new System.Drawing.Size(246, 54);
-            this.panel_CheckBox4.TabIndex = 95;
+            serverSettingClass15.類別 = "藥庫";
+            this.panel_CheckBox2.ServerSetting = serverSettingClass15;
+            this.panel_CheckBox2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.藥庫;
+            this.panel_CheckBox2.Size = new System.Drawing.Size(246, 54);
+            this.panel_CheckBox2.TabIndex = 93;
             // 
-            // panel_CheckBox5
+            // panel_CheckBox3
             // 
-            this.panel_CheckBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox5.Content = "智慧藥局整合平台不顯示";
-            this.panel_CheckBox5.Location = new System.Drawing.Point(12, 259);
-            this.panel_CheckBox5.Name = "panel_CheckBox5";
+            this.panel_CheckBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox3.Content = "智慧藥局整合平台不顯示";
+            this.panel_CheckBox3.Location = new System.Drawing.Point(12, 139);
+            this.panel_CheckBox3.Name = "panel_CheckBox3";
             serverSettingClass16.DBName = null;
             serverSettingClass16.GUID = null;
             serverSettingClass16.Password = null;
@@ -552,18 +534,18 @@ namespace ServerSettingForm
             serverSettingClass16.單位 = null;
             serverSettingClass16.程式類別 = "peremeter";
             serverSettingClass16.設備名稱 = "";
-            serverSettingClass16.類別 = "中心叫號系統";
-            this.panel_CheckBox5.ServerSetting = serverSettingClass16;
-            this.panel_CheckBox5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.中心叫號系統;
-            this.panel_CheckBox5.Size = new System.Drawing.Size(246, 54);
-            this.panel_CheckBox5.TabIndex = 96;
+            serverSettingClass16.類別 = "傳送櫃";
+            this.panel_CheckBox3.ServerSetting = serverSettingClass16;
+            this.panel_CheckBox3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_CheckBox3.Size = new System.Drawing.Size(246, 54);
+            this.panel_CheckBox3.TabIndex = 94;
             // 
-            // panel_CheckBox6
+            // panel_CheckBox4
             // 
-            this.panel_CheckBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox6.Content = "智慧藥局整合平台不顯示";
-            this.panel_CheckBox6.Location = new System.Drawing.Point(12, 319);
-            this.panel_CheckBox6.Name = "panel_CheckBox6";
+            this.panel_CheckBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox4.Content = "智慧藥局整合平台不顯示";
+            this.panel_CheckBox4.Location = new System.Drawing.Point(12, 199);
+            this.panel_CheckBox4.Name = "panel_CheckBox4";
             serverSettingClass17.DBName = null;
             serverSettingClass17.GUID = null;
             serverSettingClass17.Password = null;
@@ -576,8 +558,56 @@ namespace ServerSettingForm
             serverSettingClass17.單位 = null;
             serverSettingClass17.程式類別 = "peremeter";
             serverSettingClass17.設備名稱 = "";
-            serverSettingClass17.類別 = "中藥調劑系統";
-            this.panel_CheckBox6.ServerSetting = serverSettingClass17;
+            serverSettingClass17.類別 = "癌症備藥機";
+            this.panel_CheckBox4.ServerSetting = serverSettingClass17;
+            this.panel_CheckBox4.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_CheckBox4.Size = new System.Drawing.Size(246, 54);
+            this.panel_CheckBox4.TabIndex = 95;
+            // 
+            // panel_CheckBox5
+            // 
+            this.panel_CheckBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox5.Content = "智慧藥局整合平台不顯示";
+            this.panel_CheckBox5.Location = new System.Drawing.Point(12, 259);
+            this.panel_CheckBox5.Name = "panel_CheckBox5";
+            serverSettingClass18.DBName = null;
+            serverSettingClass18.GUID = null;
+            serverSettingClass18.Password = null;
+            serverSettingClass18.Port = null;
+            serverSettingClass18.Server = null;
+            serverSettingClass18.TableName = null;
+            serverSettingClass18.User = null;
+            serverSettingClass18.Value = "False";
+            serverSettingClass18.內容 = "智慧藥局整合平台不顯示";
+            serverSettingClass18.單位 = null;
+            serverSettingClass18.程式類別 = "peremeter";
+            serverSettingClass18.設備名稱 = "";
+            serverSettingClass18.類別 = "中心叫號系統";
+            this.panel_CheckBox5.ServerSetting = serverSettingClass18;
+            this.panel_CheckBox5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.中心叫號系統;
+            this.panel_CheckBox5.Size = new System.Drawing.Size(246, 54);
+            this.panel_CheckBox5.TabIndex = 96;
+            // 
+            // panel_CheckBox6
+            // 
+            this.panel_CheckBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox6.Content = "智慧藥局整合平台不顯示";
+            this.panel_CheckBox6.Location = new System.Drawing.Point(12, 319);
+            this.panel_CheckBox6.Name = "panel_CheckBox6";
+            serverSettingClass19.DBName = null;
+            serverSettingClass19.GUID = null;
+            serverSettingClass19.Password = null;
+            serverSettingClass19.Port = null;
+            serverSettingClass19.Server = null;
+            serverSettingClass19.TableName = null;
+            serverSettingClass19.User = null;
+            serverSettingClass19.Value = "False";
+            serverSettingClass19.內容 = "智慧藥局整合平台不顯示";
+            serverSettingClass19.單位 = null;
+            serverSettingClass19.程式類別 = "peremeter";
+            serverSettingClass19.設備名稱 = "";
+            serverSettingClass19.類別 = "中藥調劑系統";
+            this.panel_CheckBox6.ServerSetting = serverSettingClass19;
             this.panel_CheckBox6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.中藥調劑系統;
             this.panel_CheckBox6.Size = new System.Drawing.Size(246, 54);
             this.panel_CheckBox6.TabIndex = 97;
@@ -599,20 +629,20 @@ namespace ServerSettingForm
             this.panel_CheckBox17.Content = "中藥醫令模組不啟用";
             this.panel_CheckBox17.Location = new System.Drawing.Point(6, 21);
             this.panel_CheckBox17.Name = "panel_CheckBox17";
-            serverSettingClass18.DBName = null;
-            serverSettingClass18.GUID = null;
-            serverSettingClass18.Password = null;
-            serverSettingClass18.Port = null;
-            serverSettingClass18.Server = null;
-            serverSettingClass18.TableName = null;
-            serverSettingClass18.User = null;
-            serverSettingClass18.Value = "False";
-            serverSettingClass18.內容 = "中藥醫令模組不啟用";
-            serverSettingClass18.單位 = null;
-            serverSettingClass18.程式類別 = "peremeter";
-            serverSettingClass18.設備名稱 = "";
-            serverSettingClass18.類別 = "網頁";
-            this.panel_CheckBox17.ServerSetting = serverSettingClass18;
+            serverSettingClass20.DBName = null;
+            serverSettingClass20.GUID = null;
+            serverSettingClass20.Password = null;
+            serverSettingClass20.Port = null;
+            serverSettingClass20.Server = null;
+            serverSettingClass20.TableName = null;
+            serverSettingClass20.User = null;
+            serverSettingClass20.Value = "False";
+            serverSettingClass20.內容 = "中藥醫令模組不啟用";
+            serverSettingClass20.單位 = null;
+            serverSettingClass20.程式類別 = "peremeter";
+            serverSettingClass20.設備名稱 = "";
+            serverSettingClass20.類別 = "網頁";
+            this.panel_CheckBox17.ServerSetting = serverSettingClass20;
             this.panel_CheckBox17.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox17.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox17.TabIndex = 108;
@@ -623,47 +653,71 @@ namespace ServerSettingForm
             this.panel_CheckBox18.Content = "中藥交易紀錄模組不啟用";
             this.panel_CheckBox18.Location = new System.Drawing.Point(6, 81);
             this.panel_CheckBox18.Name = "panel_CheckBox18";
-            serverSettingClass19.DBName = null;
-            serverSettingClass19.GUID = null;
-            serverSettingClass19.Password = null;
-            serverSettingClass19.Port = null;
-            serverSettingClass19.Server = null;
-            serverSettingClass19.TableName = null;
-            serverSettingClass19.User = null;
-            serverSettingClass19.Value = "False";
-            serverSettingClass19.內容 = "中藥交易紀錄模組不啟用";
-            serverSettingClass19.單位 = null;
-            serverSettingClass19.程式類別 = "peremeter";
-            serverSettingClass19.設備名稱 = "";
-            serverSettingClass19.類別 = "網頁";
-            this.panel_CheckBox18.ServerSetting = serverSettingClass19;
+            serverSettingClass21.DBName = null;
+            serverSettingClass21.GUID = null;
+            serverSettingClass21.Password = null;
+            serverSettingClass21.Port = null;
+            serverSettingClass21.Server = null;
+            serverSettingClass21.TableName = null;
+            serverSettingClass21.User = null;
+            serverSettingClass21.Value = "False";
+            serverSettingClass21.內容 = "中藥交易紀錄模組不啟用";
+            serverSettingClass21.單位 = null;
+            serverSettingClass21.程式類別 = "peremeter";
+            serverSettingClass21.設備名稱 = "";
+            serverSettingClass21.類別 = "網頁";
+            this.panel_CheckBox18.ServerSetting = serverSettingClass21;
             this.panel_CheckBox18.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
             this.panel_CheckBox18.Size = new System.Drawing.Size(220, 54);
             this.panel_CheckBox18.TabIndex = 109;
             // 
-            // panel_CheckBox19
+            // panel_CheckBox20
             // 
-            this.panel_CheckBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_CheckBox19.Content = "批次入庫模組不啟用";
-            this.panel_CheckBox19.Location = new System.Drawing.Point(6, 139);
-            this.panel_CheckBox19.Name = "panel_CheckBox19";
-            serverSettingClass9.DBName = null;
-            serverSettingClass9.GUID = null;
-            serverSettingClass9.Password = null;
-            serverSettingClass9.Port = null;
-            serverSettingClass9.Server = null;
-            serverSettingClass9.TableName = null;
-            serverSettingClass9.User = null;
-            serverSettingClass9.Value = "False";
-            serverSettingClass9.內容 = "批次入庫模組不啟用";
-            serverSettingClass9.單位 = null;
-            serverSettingClass9.程式類別 = "peremeter";
-            serverSettingClass9.設備名稱 = "";
-            serverSettingClass9.類別 = "網頁";
-            this.panel_CheckBox19.ServerSetting = serverSettingClass9;
-            this.panel_CheckBox19.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_CheckBox19.Size = new System.Drawing.Size(220, 54);
-            this.panel_CheckBox19.TabIndex = 110;
+            this.panel_CheckBox20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox20.Content = "藥品撥補模組不啟用";
+            this.panel_CheckBox20.Location = new System.Drawing.Point(238, 21);
+            this.panel_CheckBox20.Name = "panel_CheckBox20";
+            serverSettingClass6.DBName = null;
+            serverSettingClass6.GUID = null;
+            serverSettingClass6.Password = null;
+            serverSettingClass6.Port = null;
+            serverSettingClass6.Server = null;
+            serverSettingClass6.TableName = null;
+            serverSettingClass6.User = null;
+            serverSettingClass6.Value = "False";
+            serverSettingClass6.內容 = "藥品撥補模組不啟用";
+            serverSettingClass6.單位 = null;
+            serverSettingClass6.程式類別 = "peremeter";
+            serverSettingClass6.設備名稱 = "";
+            serverSettingClass6.類別 = "網頁";
+            this.panel_CheckBox20.ServerSetting = serverSettingClass6;
+            this.panel_CheckBox20.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_CheckBox20.Size = new System.Drawing.Size(220, 54);
+            this.panel_CheckBox20.TabIndex = 108;
+            // 
+            // panel_CheckBox21
+            // 
+            this.panel_CheckBox21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CheckBox21.Content = "住院調劑模組不啟用";
+            this.panel_CheckBox21.Location = new System.Drawing.Point(7, 199);
+            this.panel_CheckBox21.Name = "panel_CheckBox21";
+            serverSettingClass10.DBName = null;
+            serverSettingClass10.GUID = null;
+            serverSettingClass10.Password = null;
+            serverSettingClass10.Port = null;
+            serverSettingClass10.Server = null;
+            serverSettingClass10.TableName = null;
+            serverSettingClass10.User = null;
+            serverSettingClass10.Value = "False";
+            serverSettingClass10.內容 = "住院調劑模組不啟用";
+            serverSettingClass10.單位 = null;
+            serverSettingClass10.程式類別 = "peremeter";
+            serverSettingClass10.設備名稱 = "";
+            serverSettingClass10.類別 = "網頁";
+            this.panel_CheckBox21.ServerSetting = serverSettingClass10;
+            this.panel_CheckBox21.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_CheckBox21.Size = new System.Drawing.Size(220, 54);
+            this.panel_CheckBox21.TabIndex = 111;
             // 
             // Dialog_設定
             // 
@@ -724,5 +778,7 @@ namespace ServerSettingForm
         private Panel_CheckBox panel_CheckBox17;
         private Panel_CheckBox panel_CheckBox18;
         private Panel_CheckBox panel_CheckBox19;
+        private Panel_CheckBox panel_CheckBox20;
+        private Panel_CheckBox panel_CheckBox21;
     }
 }

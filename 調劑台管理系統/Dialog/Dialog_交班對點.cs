@@ -27,6 +27,8 @@ namespace 調劑台管理系統
         {
             [Description("GUID,VARCHAR,200,NONE")]
             GUID,
+            [Description("排列號,VARCHAR,200,NONE")]
+            排列號,
             [Description("藥碼,VARCHAR,200,NONE")]
             藥碼,
             [Description("藥名,VARCHAR,200,NONE")]
@@ -455,6 +457,7 @@ namespace 調劑台管理系統
                 Table table_交班藥品 = new Table(new enum_交班藥品());
                 this.sqL_DataGridView_交班藥品.Init(table_交班藥品);
                 this.sqL_DataGridView_交班藥品.Set_ColumnVisible(false, new enum_交班藥品().GetEnumNames());
+                //this.sqL_DataGridView_交班藥品.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.排列號);
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.藥碼);
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_交班藥品.藥名);
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.單位);
@@ -495,12 +498,14 @@ namespace 調劑台管理系統
             if (medGroupClasses_buf.Count > 0)
             {
                 List<object[]> list_value = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
                 for (int i = 0; i < medGroupClasses_buf[0].MedClasses.Count; i++)
                 {
                  
                     medClass medClass = medGroupClasses_buf[0].MedClasses[i];
                     object[] value = new object[new enum_交班藥品().GetLength()];
                     value[(int)enum_交班藥品.GUID] = medClass.GUID;
+                    value[(int)enum_交班藥品.排列號] = Main_Form.Function_從SQL取得排列號(medClass.藥品碼).ToString();
                     value[(int)enum_交班藥品.藥碼] = medClass.藥品碼;
                     value[(int)enum_交班藥品.藥名] = medClass.藥品名稱;
                     value[(int)enum_交班藥品.單位] = medClass.包裝單位;
@@ -508,6 +513,7 @@ namespace 調劑台管理系統
                     Main_Form.Function_抽屜以藥品碼解鎖(medClass.藥品碼);
                     list_value.Add(value);
                 }
+                list_value.Sort(new ICP_交班藥品());
                 this.sqL_DataGridView_交班藥品.RefreshGrid(list_value);
                 this.Invoke(new Action(delegate 
                 {
@@ -625,5 +631,19 @@ namespace 調劑台管理系統
             Main_Form.Function_抽屜以藥品碼解鎖(Code);
         }
         #endregion
+
+
+        public class ICP_交班藥品 : IComparer<object[]>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(object[] x, object[] y)
+            {
+
+                int 排列號0 = x[(int)enum_交班藥品.排列號].StringToInt32();
+                int 排列號1 = y[(int)enum_交班藥品.排列號].StringToInt32();
+                return 排列號0.CompareTo(排列號1);
+            }
+        }
     }
 }

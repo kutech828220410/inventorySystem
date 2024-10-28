@@ -81,22 +81,28 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.BorderRadius = 5;
             this.rJ_Button_確認.BorderSize = 0;
             this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_確認.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_確認.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
             this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_確認.GUID = "";
+            this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_確認.Location = new System.Drawing.Point(4, 683);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_確認.ProhibitionLineWidth = 4;
+            this.rJ_Button_確認.ProhibitionSymbolSize = 30;
             this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_確認.ShadowSize = 3;
             this.rJ_Button_確認.ShowLoadingForm = false;
             this.rJ_Button_確認.Size = new System.Drawing.Size(779, 86);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 32;
-            this.rJ_Button_確認.Text = "確認";
+            this.rJ_Button_確認.Text = "確  認";
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
             // 
             // panel1
@@ -119,14 +125,19 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.BorderRadius = 20;
             this.rJ_Button_輸入.BorderSize = 0;
             this.rJ_Button_輸入.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_輸入.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_輸入.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Button_輸入.FlatAppearance.BorderSize = 0;
             this.rJ_Button_輸入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_輸入.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_輸入.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_輸入.GUID = "";
+            this.rJ_Button_輸入.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_輸入.Location = new System.Drawing.Point(656, 5);
             this.rJ_Button_輸入.Name = "rJ_Button_輸入";
+            this.rJ_Button_輸入.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_輸入.ProhibitionLineWidth = 4;
+            this.rJ_Button_輸入.ProhibitionSymbolSize = 30;
             this.rJ_Button_輸入.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_輸入.ShadowSize = 3;
             this.rJ_Button_輸入.ShowLoadingForm = false;
@@ -135,6 +146,7 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.TabIndex = 33;
             this.rJ_Button_輸入.Text = "輸入";
             this.rJ_Button_輸入.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_輸入.TextHeight = 0;
             this.rJ_Button_輸入.UseVisualStyleBackColor = false;
             // 
             // rJ_TextBox_BarCode
@@ -144,10 +156,10 @@ namespace 調劑台管理系統
             this.rJ_TextBox_BarCode.BorderFocusColor = System.Drawing.Color.HotPink;
             this.rJ_TextBox_BarCode.BorderRadius = 0;
             this.rJ_TextBox_BarCode.BorderSize = 2;
-            this.rJ_TextBox_BarCode.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_BarCode.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_BarCode.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_BarCode.GUID = "";
-            this.rJ_TextBox_BarCode.Location = new System.Drawing.Point(12, 17);
+            this.rJ_TextBox_BarCode.Location = new System.Drawing.Point(21, 14);
             this.rJ_TextBox_BarCode.Multiline = false;
             this.rJ_TextBox_BarCode.Name = "rJ_TextBox_BarCode";
             this.rJ_TextBox_BarCode.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -155,7 +167,7 @@ namespace 調劑台管理系統
             this.rJ_TextBox_BarCode.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_BarCode.PlaceholderText = "請輸入國際條碼...";
             this.rJ_TextBox_BarCode.ShowTouchPannel = false;
-            this.rJ_TextBox_BarCode.Size = new System.Drawing.Size(374, 36);
+            this.rJ_TextBox_BarCode.Size = new System.Drawing.Size(422, 42);
             this.rJ_TextBox_BarCode.TabIndex = 0;
             this.rJ_TextBox_BarCode.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_BarCode.Texts = "";
@@ -265,12 +277,14 @@ namespace 調劑台管理系統
             this.plC_RJ_Button2.BorderSize = 0;
             this.plC_RJ_Button2.but_press = false;
             this.plC_RJ_Button2.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button2.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_Button2.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button2.GUID = "";
             this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button2.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.plC_RJ_Button2.Location = new System.Drawing.Point(535, 1);
             this.plC_RJ_Button2.Name = "plC_RJ_Button2";
             this.plC_RJ_Button2.OFF_文字內容 = "刪除";
@@ -282,6 +296,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button2.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button2.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button2.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button2.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button2.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button2.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button2.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button2.ShadowSize = 0;
             this.plC_RJ_Button2.ShowLoadingForm = false;
@@ -290,12 +307,14 @@ namespace 調劑台管理系統
             this.plC_RJ_Button2.TabIndex = 4;
             this.plC_RJ_Button2.Text = "刪除";
             this.plC_RJ_Button2.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button2.TextHeight = 0;
             this.plC_RJ_Button2.Texts = "刪除";
             this.plC_RJ_Button2.UseVisualStyleBackColor = false;
             this.plC_RJ_Button2.字型鎖住 = false;
             this.plC_RJ_Button2.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button2.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button2.文字鎖住 = false;
+            this.plC_RJ_Button2.背景圖片 = null;
             this.plC_RJ_Button2.讀取位元反向 = false;
             this.plC_RJ_Button2.讀寫鎖住 = false;
             this.plC_RJ_Button2.音效 = true;
@@ -344,7 +363,6 @@ namespace 調劑台管理系統
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.rJ_Button_確認);
             this.Controls.Add(this.rJ_Lable_Title);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_條碼管理";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panel1.ResumeLayout(false);

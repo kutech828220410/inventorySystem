@@ -2562,32 +2562,25 @@ namespace 調劑台管理系統
         #region Event
         private void SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-            if (this.Capture)
+            try
             {
-                try
-                {
-                    RowsList = Function_領藥內容_重新排序(RowsList);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent1 : {e.Message}");
-                }
+                RowsList = Function_領藥內容_重新排序(RowsList);
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine($"SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent1 : {e.Message}");
+            }
         }
         private void SqL_DataGridView_領藥台_01_領藥內容_DataGridClearGridEvent()
         {
 
-            if (this.Capture)
+            try
             {
-                try
-                {
-                    Function_調劑作業_醫令資訊更新(1);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"SqL_DataGridView_領藥台_01_領藥內容_DataGridClearGridEvent : {e.Message}");
-                }
+                Function_調劑作業_醫令資訊更新(1);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"SqL_DataGridView_領藥台_01_領藥內容_DataGridClearGridEvent : {e.Message}");
             }
         }
         private void PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(MouseEventArgs mevent)

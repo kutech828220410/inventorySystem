@@ -1284,6 +1284,49 @@ namespace 調劑台管理系統
           
             return 庫存;
         }
+        static public long Function_從SQL取得排列號(string 藥品碼)
+        {
+            long index = 0;
+            List<object> list_value = new List<object>();
+            List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
+            List<Box> boxes_1020 = List_EPD1020_本地資料.SortByCode(藥品碼);
+
+            List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
+            List<RFIDDevice> rFIDDevices = List_RFID_本地資料.SortByCode(藥品碼);
+            List<Storage> pannels = List_Pannel35_本地資料.SortByCode(藥品碼);
+
+            for (int i = 0; i < boxes.Count; i++)
+            {
+                Box box = boxes[i];
+                string[] IPs = box.IP.Split('.');
+                if (IPs.Length == 4)
+                {
+                    index += (IPs[2].StringToInt32() * 1000 + IPs[3].StringToInt32() * 100 + box.Column * 10 + box.Row * 1);
+                }
+            }
+
+            for (int i = 0; i < storages.Count; i++)
+            {
+                Storage storage = storages[i];
+                string[] IPs = storage.IP.Split('.');
+                if (IPs.Length == 4)
+                {
+                    index += (IPs[2].StringToInt32() * 10000000 + IPs[2].StringToInt32() * 100000);
+                }
+            }
+            for (int i = 0; i < pannels.Count; i++)
+            {
+                Storage storage = pannels[i];
+                string[] IPs = storage.IP.Split('.');
+                if (IPs.Length == 4)
+                {
+                    index += (IPs[2].StringToInt32() * 10000000 + IPs[2].StringToInt32() * 100000);
+                }
+            }
+    
+            return index;
+        }
         public int Function_從本地資料取得庫存(string 藥品碼)
         {
             int 庫存 = 0;
@@ -1639,15 +1682,14 @@ namespace 調劑台管理系統
 
         public static string Function_ReadBacodeScanner01()
         {
-            if (MySerialPort_Scanner01.IsConnected == false) return null;
-
+            if (MySerialPort_Scanner01.IsConnected == false && myConfigClass.鍵盤掃碼模式 == false) return null;
             string text = MySerialPort_Scanner01.ReadString();
             if (text == null) return null;
             System.Threading.Thread.Sleep(20);
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
             MySerialPort_Scanner01.ClearReadByte();
             text = text.Replace("\r\n", "");
             return text;
@@ -1662,7 +1704,7 @@ namespace 調劑台管理系統
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
             MySerialPort_Scanner02.ClearReadByte();
             text = text.Replace("\r\n", "");
             return text;
@@ -1677,7 +1719,7 @@ namespace 調劑台管理系統
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
             MySerialPort_Scanner03.ClearReadByte();
             text = text.Replace("\r\n", "");
             return text;
@@ -1692,7 +1734,7 @@ namespace 調劑台管理系統
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
             MySerialPort_Scanner04.ClearReadByte();
             text = text.Replace("\r\n", "");
             return text;
@@ -1725,7 +1767,7 @@ namespace 調劑台管理系統
         public static string RemoveParenthesesContent(string input)
         {
             // 使用正則表達式替換括號及其內部的內容
-            return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\([^)]*\)", "");
+            return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\(.*\)", ""); ;
         }
     }
 

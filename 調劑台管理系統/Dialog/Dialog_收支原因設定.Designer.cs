@@ -138,7 +138,8 @@ namespace 調劑台管理系統
             this.rJ_TextBox_收支原因.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_收支原因.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_收支原因.GUID = "";
-            this.rJ_TextBox_收支原因.Location = new System.Drawing.Point(14, 13);
+            this.rJ_TextBox_收支原因.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.rJ_TextBox_收支原因.Location = new System.Drawing.Point(14, 11);
             this.rJ_TextBox_收支原因.Multiline = false;
             this.rJ_TextBox_收支原因.Name = "rJ_TextBox_收支原因";
             this.rJ_TextBox_收支原因.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);

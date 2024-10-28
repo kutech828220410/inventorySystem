@@ -1208,7 +1208,7 @@ namespace 調劑台管理系統
 
                 PlC_RJ_Button_藥品資料_登錄_MouseDownEvent(null);
                 if (mevent == null) return;
-                MyMessageBox.ShowDialog("建置完成!");
+                MyMessageBox.ShowDialog($"藥碼:{_medClass.藥品碼}\n藥名:{_medClass.藥品名稱}\n建置完成!");
             }
             catch
             {
