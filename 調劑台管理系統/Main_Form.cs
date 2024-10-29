@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.34")]
-[assembly: AssemblyFileVersion("1.2.2.34")]
+[assembly: AssemblyVersion("1.2.2.35")]
+[assembly: AssemblyFileVersion("1.2.2.35")]
 namespace 調劑台管理系統
 {
 
@@ -340,6 +340,9 @@ namespace 調劑台管理系統
         }
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            CloseProcessByName("batch_StackDataAccounting");
+
+
             Net.DebugLog = false;
             if (this.DesignMode == false)
             {
@@ -856,6 +859,15 @@ namespace 調劑台管理系統
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_WT32.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_LCD_114.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            //else
+            //{
+            //    this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_LCD_114.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //}
             if (flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
@@ -1071,6 +1083,33 @@ namespace 調劑台管理系統
 
 
         #endregion
+
+
+        public static void CloseProcessByName(string processName)
+        {
+            // 取得所有與指定名稱相符的進程
+            Process[] processes = Process.GetProcessesByName(processName);
+
+            if (processes.Length == 0)
+            {
+                Console.WriteLine($"{processName} 未在執行中。");
+            }
+            else
+            {
+                foreach (Process process in processes)
+                {
+                    try
+                    {
+                        process.Kill(); // 終止進程
+                        Console.WriteLine($"{processName} 已關閉 (PID: {process.Id})。");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"無法關閉 {processName} (PID: {process.Id})：{ex.Message}");
+                    }
+                }
+            }
+        }
     }
 
 
