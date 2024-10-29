@@ -134,7 +134,12 @@ namespace 調劑台管理系統
                             drawer.SetAllBoxes_LightOff();
                             List_EPD583_本地資料.Add_NewDrawer(drawer);
                         }
-
+                        string index_IP = Funcion_取得LCD114索引表_index_IP(IP);
+                        if (index_IP.StringIsEmpty() == false)
+                        {
+                            Task.Run(new Action(delegate { storageUI_LCD_114.ClearCanvas(index_IP, 29008); }));
+                   
+                        }
                         //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
 
                         //List_EPD583_雲端資料.Add_NewDrawer(drawer);

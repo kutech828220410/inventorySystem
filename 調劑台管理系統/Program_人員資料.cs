@@ -864,10 +864,12 @@ namespace 調劑台管理系統
         {
             this.Invoke(new Action(delegate
             {
-                DialogResult Result = MyMessageBox.ShowDialog("是否刪除選取欄位資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel);
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Checked_RowsValues();
+
+                DialogResult Result = MyMessageBox.ShowDialog($"是否刪除選取欄位資料,共<{list_value.Count}>筆?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel);
                 if (Result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Select_RowsValues();
+               
                     this.sqL_DataGridView_人員資料.SQL_DeleteExtra(list_value, true);
                 }
             }));

@@ -50,7 +50,11 @@ namespace 調劑台管理系統
             sqL_DataGridView_批次入庫.DataGridRefreshEvent += SqL_DataGridView_批次入庫_DataGridRefreshEvent;
             sqL_DataGridView_批次入庫.RowDoubleClickEvent += SqL_DataGridView_批次入庫_RowDoubleClickEvent;
             sqL_DataGridView_批次入庫.DataGridRowsChangeRefEvent += SqL_DataGridView_批次入庫_DataGridRowsChangeRefEvent;
-            comboBox_搜尋條件.SelectedIndex = 0;
+            this.Invoke(new Action(delegate 
+            {
+                comboBox_搜尋條件.SelectedIndex = 0;
+            }));
+      
 
             LoadingForm.ShowLoadingForm();
 

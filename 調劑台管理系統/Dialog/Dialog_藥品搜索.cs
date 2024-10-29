@@ -52,7 +52,10 @@ namespace 調劑台管理系統
                         Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
                     }
                     藥碼 = medClasses[0].藥品碼;
-                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(medClasses[0].藥品碼, Color.Blue));
+
+                    Main_Form.LightOn lightOn = new Main_Form.LightOn(medClasses[0].藥品碼, Color.Blue);
+                    lightOn.flag_Refresh_Light = true;
+                    Main_Form.Function_儲位亮燈(lightOn);
                     this.Invoke(new Action(delegate 
                     {
                         rJ_Lable_藥品搜尋_藥名.Text = $"({藥碼}){medClasses[0].藥品名稱}";

@@ -143,6 +143,8 @@ namespace HIS_DB_Lib
         Num,
         [Description("TYPE,VARCHAR,50,None")]
         TYPE,
+        [Description("Check_IP,VARCHAR,50,None")]
+        Check_IP,
         [Description("效期,VARCHAR,50,None")]
         效期,
         [Description("批號,VARCHAR,50,None")]

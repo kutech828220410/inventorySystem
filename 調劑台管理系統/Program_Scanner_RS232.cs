@@ -96,13 +96,13 @@ namespace 調劑台管理系統
         {
             AddClipboardFormatListener(this.Handle);
 
-
+            MySerialPort_Scanner01.ConsoleWrite = true;
+            MySerialPort_Scanner02.ConsoleWrite = true;
+            MySerialPort_Scanner03.ConsoleWrite = true;
+            MySerialPort_Scanner04.ConsoleWrite = true;
             if (PLC_Device_掃碼槍COM通訊.Bool)
             {
-                MySerialPort_Scanner01.ConsoleWrite = true;
-                MySerialPort_Scanner02.ConsoleWrite = true;
-                MySerialPort_Scanner03.ConsoleWrite = true;
-                MySerialPort_Scanner04.ConsoleWrite = true;
+           
                 if(myConfigClass.鍵盤掃碼模式 == false)
                 {
                     if (!myConfigClass.Scanner01_COMPort.StringIsEmpty())
