@@ -1739,8 +1739,19 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_檢查作業完成(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
-            List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊母資料 = new List<object[]>();
+
+            if (myConfigClass.系統取藥模式)
+            {
+                list_取藥堆疊母資料 = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+                list_取藥堆疊子資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
+            }
+            else
+            {
+                list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+                list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.領藥台_01名稱);
+            }
+          
             List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
             List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
@@ -9329,6 +9340,7 @@ namespace 調劑台管理系統
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {
             List<object[]> list_value_buf = new List<object[]>();
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.新增資料.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName()));

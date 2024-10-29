@@ -1846,7 +1846,16 @@ namespace 調劑台管理系統
 
             if (list_value.Count > 0)
             {
+                List<string> names = (from temp in list_value
+                                      select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).Distinct().ToList();
+
+                for (int i = 0; i < names.Count; i++)
+                {
+                    Function_取藥堆疊資料_刪除指定調劑台名稱母資料(names[i]);
+                }
+
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value, false);
+                Console.WriteLine($"刪除[新增資料]共<{list_value.Count}>筆");
                 List<takeMedicineStackClass> takeMedicineStackClasses = list_value.SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
                 Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
             }
@@ -2223,6 +2232,9 @@ namespace 調劑台管理系統
         void cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
         {
             this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            this.list_取藥堆疊母資料 = (from temp in this.list_取藥堆疊母資料
+                                 where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != "新增資料"
+                                 select temp).ToList();
             if (this.list_取藥堆疊母資料.Count > 0)
             {
                 var Code_LINQ = (from value in list_取藥堆疊母資料
@@ -2465,6 +2477,7 @@ namespace 調劑台管理系統
 
                 this.list_取藥堆疊母資料 = (from value in this.list_取藥堆疊母資料
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.None.GetEnumName()
+                                     where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.新增資料.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()

@@ -618,6 +618,7 @@ namespace 調劑台管理系統
                 transactionsClass.盤點量 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
                 transactionsClass.操作人 = personPageClass_盤點人員.姓名;
                 transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
+                transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClasses.Add(transactionsClass);
             }
 
