@@ -3327,7 +3327,12 @@ namespace 調劑台管理系統
                        
 
                             string index_IP = Funcion_取得LCD114索引表_index_IP(boxes[k].IP);
-                            if (index_IP.StringIsEmpty()) continue;
+                            if (index_IP.StringIsEmpty())
+                            {
+                                list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
+                                list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
+                                continue;
+                            }
                             Rectangle rectangle = DrawerUI_EPD_583.Get_Box_rect(drawer, boxes[k]);
                             DrawerUI_EPD_583.LightSensorClass lightSensorClass = DrawerUI_EPD_583.Get_LightSensorClass(rectangle);
                      

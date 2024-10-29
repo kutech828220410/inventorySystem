@@ -475,13 +475,17 @@ namespace 調劑台管理系統
         string CodeLast = "";
         private void SqL_DataGridView_交班藥品_RowEnterEvent1(object[] RowValue)
         {
-            if(CodeLast.StringIsEmpty() == false)
+            if(RowValue != null)
             {
-                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(CodeLast, Color.Black));
+                if (CodeLast.StringIsEmpty() == false)
+                {
+                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(CodeLast, Color.Black));
+                }
+                string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
+                CodeLast = 藥碼;
             }
-            string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
-            Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
-            CodeLast = 藥碼;
+            
         }
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -526,21 +530,25 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_交班藥品_RowEnterEvent(object[] RowValue)
         {
-            this.Invoke(new Action(delegate
+            if(RowValue != null)
             {
-                string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
-                string 藥名 = RowValue[(int)enum_交班藥品.藥名].ObjectToString();
-                string 庫存 = RowValue[(int)enum_交班藥品.庫存].ObjectToString();
-                List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
-                if (images == null)
+                this.Invoke(new Action(delegate
                 {
-                    pictureBox_藥品資訊.Image = null;
-                    return;
-                }
-                pictureBox_藥品資訊.Image = images[0];
-                this.rJ_Lable_藥品資訊.Text = $"({藥碼}){藥名}";
-                this.rJ_Lable_現有庫存.Text = $"{庫存}";
-            }));
+                    string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
+                    string 藥名 = RowValue[(int)enum_交班藥品.藥名].ObjectToString();
+                    string 庫存 = RowValue[(int)enum_交班藥品.庫存].ObjectToString();
+                    List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
+                    if (images == null)
+                    {
+                        pictureBox_藥品資訊.Image = null;
+                        return;
+                    }
+                    pictureBox_藥品資訊.Image = images[0];
+                    this.rJ_Lable_藥品資訊.Text = $"({藥碼}){藥名}";
+                    this.rJ_Lable_現有庫存.Text = $"{庫存}";
+                }));
+            }
+            
        
         }
         private void PlC_RJ_Button_盤點登入_MouseDownEvent(MouseEventArgs mevent)
