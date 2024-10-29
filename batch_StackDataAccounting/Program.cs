@@ -861,13 +861,22 @@ namespace batch_StackDataAccounting
                 Function_儲位亮燈(new LightOn(藥品碼, Color.Black));
 
             }
+            Task.Run(new Action(delegate
+            {
+                while (true)
+                {
+                    sub_Program_取藥堆疊資料_檢查資料();
+                    sub_Program_取藥堆疊資料_狀態更新();
+                    sub_Program_取藥堆疊資料_流程作業檢查();
+                    sub_Program_取藥堆疊資料_入賬檢查();
+                    System.Threading.Thread.Sleep(1);
+                }
+
+            }));
             while (true)
             {
 
-                sub_Program_取藥堆疊資料_檢查資料();
-                sub_Program_取藥堆疊資料_狀態更新();
-                sub_Program_取藥堆疊資料_流程作業檢查();
-                sub_Program_取藥堆疊資料_入賬檢查();
+   
 
                 for (int i = 0; i < List_EPD583_本地資料.Count; i++)
                 {
