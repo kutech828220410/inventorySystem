@@ -956,6 +956,10 @@ namespace HIS_WebApi
                     }
                     sql_medCarInfo[0].處方 = sql_medCpoe;    
                 }
+                else
+                {
+                    sql_medCarInfo[0].處方 = new List<medCpoeClass>();
+                }
                 medCarInfoClass medCarInfoClasses = new medCarInfoClass();
                 medCarInfoClasses = sql_medCarInfo[0];
 
@@ -1267,12 +1271,12 @@ namespace HIS_WebApi
                 list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);             
 
-                List<string> ValueAry = new List<string> { Master_GUID };
-                medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
+                //List<string> ValueAry = new List<string> { Master_GUID };
+                //medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = targetPatient;
+                returnData.Data = sql_medCarinfo;
                 returnData.Result = $"更新處方紀錄";
                 return returnData.JsonSerializationt(true);
             }
@@ -1442,12 +1446,12 @@ namespace HIS_WebApi
                 list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);
 
-                List<string> ValueAry = new List<string> { Master_GUID };
-                medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
+                //List<string> ValueAry = new List<string> { Master_GUID };
+                //medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = targetPatient;
+                returnData.Data = sql_medCarinfo;
                 returnData.Result = $"更新覆核紀錄";
 
                 return returnData.JsonSerializationt(true);

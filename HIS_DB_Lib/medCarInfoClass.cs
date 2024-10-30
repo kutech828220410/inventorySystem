@@ -429,12 +429,13 @@ namespace HIS_DB_Lib
             return out_medCarInfoClass;
 
         }
-        static public medCarInfoClass get_patient_by_GUID(string API_Server, List<string> Info)
+        static public medCarInfoClass get_patient_by_GUID(string API_Server, string value,List<string> Info)
         {
             //List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_patient_by_GUID";
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
+            returnData.Value = value;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
