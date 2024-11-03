@@ -239,11 +239,14 @@ namespace 中藥調劑系統
                         {
                             list_value.Add(value);
                         }
-                        if (rJ_RatioButton_調劑種類_飲片.Checked && 處方類型 == "飲片")
+                        else if (rJ_RatioButton_調劑種類_飲片.Checked && 處方類型 == "飲片")
                         {
                             list_value.Add(value);
                         }
-
+                        else 
+                        {
+                            list_value.Add(value);
+                        }
                     }
 
 
