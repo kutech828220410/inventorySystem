@@ -111,6 +111,11 @@ namespace 調劑台管理系統
                         }
 
                         medClass _medClass = medClasses[0];
+                        if (_medClass.開檔狀態.StringIsEmpty() == false && _medClass.開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
+                        {
+                            MyMessageBox.ShowDialog($"{_medClass.藥品名稱} , 未開檔 ");
+                            continue;
+                        }
                         int 申領量 = 0;
                         if (Main_Form.PLC_Device_申領_不需輸入申領量.Bool == false)
                         {
@@ -136,6 +141,13 @@ namespace 調劑台管理系統
             Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
             if (dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
             medClass medClass = dialog_藥品搜尋.Value;
+
+            if (medClass.開檔狀態.StringIsEmpty() == false && medClass.開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
+            {
+                MyMessageBox.ShowDialog($"{medClass.藥品名稱} , 未開檔 ");
+                return;
+            }
+
             int 申領量 = 0;
             if(Main_Form.PLC_Device_申領_不需輸入申領量.Bool == false)
             {

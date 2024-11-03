@@ -1301,6 +1301,7 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_全滅_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否將燈號【全滅】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_處方內容.GetAllRows();
             if (list_value.Count == 0)
             {
@@ -1323,6 +1324,7 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_單滅_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否將選取燈號【單滅】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_處方內容.Get_All_Select_RowsValues();
             if (list_value.Count == 0)
             {
@@ -1346,6 +1348,7 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_單亮_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否將選取燈號【單亮】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_處方內容.Get_All_Select_RowsValues();
             if (list_value.Count == 0)
             {
@@ -1358,6 +1361,8 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_全亮_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否將燈號【全亮】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
             List<object[]> list_value = sqL_DataGridView_處方內容.GetAllRows();
             if (list_value.Count == 0)
             {

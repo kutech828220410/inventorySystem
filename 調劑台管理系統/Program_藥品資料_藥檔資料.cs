@@ -35,8 +35,7 @@ namespace 調劑台管理系統
         [Description("S4077")]
         更新至線上藥檔,
     }
-
-   
+  
     public enum enum_藥品資料_藥檔資料_匯入
     {
         藥碼,
@@ -110,7 +109,9 @@ namespace 調劑台管理系統
         private void Program_藥品資料_藥檔資料_Init()
         {
             Table table = medClass.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.StoreType.調劑台);
-       
+            
+            table[enum_藥品資料_藥檔資料.開檔狀態.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, new enum_開檔狀態().GetEnumNames());
+
             if (table == null)
             {
                 MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
@@ -128,14 +129,14 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.安全庫存);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.基準量);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.警訊藥品);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
-            //this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品許可證號);
-            //this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.廠牌);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);  
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.開檔狀態);
 
-            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
-            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥名", enum_藥品資料_藥檔資料.藥品名稱);
-            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("中文名", enum_藥品資料_藥檔資料.中文名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_藥品資料_藥檔資料_ComboBoxSelectedIndexChangedEvent;
+
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥名", enum_藥品資料_藥檔資料.藥品名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("中文名", enum_藥品資料_藥檔資料.中文名稱);
 
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent;
@@ -160,7 +161,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.MouseDownEvent += PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent;
             this.plC_RJ_Button_藥檔資料_藥品群組.MouseDownEvent += PlC_RJ_Button_藥檔資料_藥品群組_MouseDownEvent;
-
 
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_自定義設定_CheckedChanged;
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_效期管理_CheckedChanged;
@@ -225,16 +225,6 @@ namespace 調劑台管理系統
 
         #region Function
     
-        public string Function_藥品資料_藥檔資料_從藥品條碼取得藥品碼(string 藥品條碼)
-        {
-            string str = null;
-            List<object[]> list_obj = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetRows(enum_藥品資料_藥檔資料.藥品條碼.GetEnumName(), 藥品條碼, false);
-            if (list_obj.Count > 0)
-            {
-                str = list_obj[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-            }
-            return str;
-        }
         private bool Function_藥品資料_藥檔資料_確認欄位正確(object[] SQL_Data, bool IsMyMessageBoxShow)
         {
             bool flag_OK = false;
@@ -244,19 +234,7 @@ namespace 調劑台管理系統
             {
                 List_error_msg.Add("'藥品碼'欄位空白");
             }
-            //if (SQL_Data[(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString().StringIsEmpty())
-            //{
-            //    List_error_msg.Add("'藥品條碼'欄位空白");
-            //}
-            //if (SQL_Data[(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString().StringIsEmpty())
-            //{
-            //    List_error_msg.Add("'藥品名稱'欄位空白");
-            //}
-            //if (SQL_Data[(int)enum_藥品資料_藥檔資料.健保碼].ObjectToString().StringIsEmpty())
-            //{
-            //    List_error_msg.Add("'健保碼'欄位空白");
-            //}
-
+          
             if (SQL_Data[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToInt32() < 0 )
             {
                 SQL_Data[(int)enum_藥品資料_藥檔資料.庫存] = "0";
@@ -747,6 +725,22 @@ namespace 調劑台管理系統
             Dialog_條碼管理 dialog_條碼管理 = new Dialog_條碼管理(藥品碼);
             dialog_條碼管理.ShowDialog();
         }
+        private void SqL_DataGridView_藥品資料_藥檔資料_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            if (colName == enum_藥品資料_藥檔資料.開檔狀態.GetEnumName())
+            {
+                string Code = RowValue[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+                string 開檔狀態 = RowValue[(int)enum_藥品資料_藥檔資料.開檔狀態].ObjectToString();
+            
+                this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(RowValue, false);
+                this.sqL_DataGridView_藥品資料_藥檔資料.ReplaceExtra(RowValue, true);
+
+                medClass _medclass = medClass.get_med_clouds_by_code(API_Server, Code);
+                if (_medclass == null) return;
+                _medclass.開檔狀態 = 開檔狀態;
+                medClass.add_med_clouds(API_Server, _medclass);
+            }
+        }
         private void SqL_DataGridView_藥品資料_藥檔資料_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -797,7 +791,7 @@ namespace 調劑台管理系統
                         }
                         sqL_DataGridView_雲端藥檔.SQL_AddRows(list_雲端藥檔_Add, false);
                         sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_雲端藥檔_Replaced, false);
-                        MyMessageBox.ShowDialog($"新增<{list_雲端藥檔_Add.Count}>筆資料,修改<{list_雲端藥檔_Replaced.Count}>筆資料!");
+                        MyMessageBox.ShowDialog($"新增<{list_雲端藥檔_Add.Count}>筆資料,修改<{list_雲端藥檔_Replaced.Count}>筆資料");
 
                     }
                     else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.下載未建置條碼藥品.GetEnumName())
@@ -1085,14 +1079,6 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent(MouseEventArgs mevent)
         {
-            //if (MyMessageBox.ShowDialog("是否更新勾選的藥品資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-            //List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.Get_All_Checked_RowsValues();
-            //List<object[]> list_本地藥檔_replace = new List<object[]>();
-            //if (list_本地藥檔.Count == 0)
-            //{
-            //    MyMessageBox.ShowDialog("未勾選藥品,請勾選要更新藥品!");
-            //    return;
-            //}
 
             List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_本地藥檔_replace = new List<object[]>();
@@ -1148,8 +1134,8 @@ namespace 調劑台管理系統
 
                 }
             }
-            this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_本地藥檔_replace, true);
-            MyMessageBox.ShowDialog("更新完成!");
+            this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_本地藥檔_replace, false);
+            MyMessageBox.ShowDialog("更新完成...");
         }
         private void PlC_RJ_Button_藥品資料_HIS填入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1223,6 +1209,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否下載全部藥檔?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
             Dialog_中西藥選擇 dialog_中西藥選擇 = new Dialog_中西藥選擇();
             if (dialog_中西藥選擇.ShowDialog() != DialogResult.Yes) return;
 
@@ -1245,6 +1232,7 @@ namespace 調劑台管理系統
             Dialog_Prcessbar dialog_Prcessbar = new Dialog_Prcessbar(list_雲端藥檔.Count);
             dialog_Prcessbar.State = $"開始比對線上藥檔...";
             string url = dBConfigClass.MedApiURL;
+
             if (!url.StringIsEmpty())
             {
                 MyTimer myTimer = new MyTimer();
@@ -1252,10 +1240,7 @@ namespace 調劑台管理系統
                 string response = Basic.Net.WEBApiGet($"{url}");
                 Console.WriteLine($"HIS下載全部藥檔 , response:{response},耗時{myTimer.ToString()}ms");
             }
-
-      
-
-         
+            
             for (int i = 0; i < list_雲端藥檔.Count; i++)
             {
                 dialog_Prcessbar.Value = i;
@@ -1263,6 +1248,7 @@ namespace 調劑台管理系統
                 if(list_藥品資料_buf.Count == 0)
                 {
                     object[] value = new object[new enum_藥品資料_藥檔資料().GetLength()];
+
                     value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
@@ -1276,12 +1262,14 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔[i][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.類別] = list_雲端藥檔[i][(int)enum_雲端藥檔.類別].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.開檔狀態] = list_雲端藥檔[i][(int)enum_雲端藥檔.開檔狀態].ObjectToString();
 
                     list_藥品資料_add.Add(value);
                 }
                 else
                 {
                     object[] value = list_藥品資料_buf[0];
+
                     value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
@@ -1293,11 +1281,12 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔[i][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.類別] = list_雲端藥檔[i][(int)enum_雲端藥檔.類別].ObjectToString();
-
+                    value[(int)enum_藥品資料_藥檔資料.開檔狀態] = list_雲端藥檔[i][(int)enum_雲端藥檔.開檔狀態].ObjectToString();
 
                     list_藥品資料_replace.Add(value);
                 }
             }
+
             dialog_Prcessbar.State = $"寫入資料庫...";
             if (list_藥品資料_add.Count > 0) this.sqL_DataGridView_藥品資料_藥檔資料.SQL_AddRows(list_藥品資料_add, false);
             if (list_藥品資料_replace.Count > 0) this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_藥品資料_replace, false);

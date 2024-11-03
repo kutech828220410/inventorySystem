@@ -532,6 +532,10 @@ namespace 調劑台管理系統
         }
         private void Function_取藥堆疊資料_刷新面板(string 藥品碼)
         {
+            Function_取藥堆疊資料_刷新面板(藥品碼, -1);
+        }
+        private void Function_取藥堆疊資料_刷新面板(string 藥品碼 , int 庫存)
+        {
             List<object[]> list_value = sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼, false);
             list_value = list_value.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
             List<object[]> list_value_add = new List<object[]>();
@@ -545,6 +549,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.調劑台名稱 = "刷新面板";
+                if (庫存 != -1) takeMedicineStackClass.庫存量 = 庫存.ToString();
                 object[] value = takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
                 value[(int)enum_取藥堆疊母資料.動作] = enum_交易記錄查詢動作.None.GetEnumName();
                 value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.None.GetEnumName();

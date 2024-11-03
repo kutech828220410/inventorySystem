@@ -402,12 +402,12 @@ namespace 調劑台管理系統
                 Basic.Keyboard.Hook.MouseUp += Hook_MouseUp;
                 this.button_調劑台切換.Click += Button_調劑台切換_Click;
                 Basic.MyMessageBox.音效 = false;
-                string ProcessName = "WINWORD";//換成想要結束的進程名字
-                System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
-                for (int i = 0; i < MyProcess.Length; i++)
-                {
-                    MyProcess[i].Kill();
-                }
+                //string ProcessName = "WINWORD";//換成想要結束的進程名字
+                //System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
+                //for (int i = 0; i < MyProcess.Length; i++)
+                //{
+                //    MyProcess[i].Kill();
+                //}
                 printerClass.Init();
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
