@@ -22,21 +22,24 @@ namespace 癌症備藥機
         private SQL_DataGridView _sQL_DataGridView_藥品資料;
         public Dialog_手動選擇備藥品(SQL_DataGridView sQL_DataGridView_藥品資料)
         {
-            InitializeComponent();
+            form.Invoke(new Action(delegate
+            {
+                InitializeComponent();
 
-            this._sQL_DataGridView_藥品資料 = sQL_DataGridView_藥品資料;
-      
-            this.Load += Dialog_手動選擇備藥_Load;
-            this.LoadFinishedEvent += Dialog_手動選擇備藥_LoadFinishedEvent;
+                this._sQL_DataGridView_藥品資料 = sQL_DataGridView_藥品資料;
+
+                this.Load += Dialog_手動選擇備藥_Load;
+                this.LoadFinishedEvent += Dialog_手動選擇備藥_LoadFinishedEvent;
 
 
-            this.rJ_Button_藥品選擇_顯示全部.MouseDownEvent += RJ_Button_藥品選擇_顯示全部_MouseDownEvent;
-            this.rJ_Button_藥名搜尋.MouseDownEvent += RJ_Button_藥名搜尋_MouseDownEvent;
-            this.rJ_Button_藥碼搜尋.MouseDownEvent += RJ_Button_藥碼搜尋_MouseDownEvent;
+                this.rJ_Button_藥品選擇_顯示全部.MouseDownEvent += RJ_Button_藥品選擇_顯示全部_MouseDownEvent;
+                this.rJ_Button_藥名搜尋.MouseDownEvent += RJ_Button_藥名搜尋_MouseDownEvent;
+                this.rJ_Button_藥碼搜尋.MouseDownEvent += RJ_Button_藥碼搜尋_MouseDownEvent;
 
-            this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
-            this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
-            this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
+                this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
+                this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
+                this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
+            }));
 
         }
         #region Event

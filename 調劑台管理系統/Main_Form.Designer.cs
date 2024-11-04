@@ -1588,6 +1588,8 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.label37 = new System.Windows.Forms.Label();
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點 = new MyUI.PLC_RJ_ChechBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -9484,6 +9486,8 @@
             this.rJ_GroupBox6.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox6.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox6.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label37);
+            this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label28);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label4);
@@ -43806,6 +43810,41 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label37.ForeColor = System.Drawing.Color.Black;
+            this.label37.Location = new System.Drawing.Point(268, 122);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(72, 16);
+            this.label37.TabIndex = 21;
+            this.label37.Text = "交班盤點";
+            // 
+            // plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點
+            // 
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.Bool = false;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.GUID = "";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.Location = new System.Drawing.Point(200, 116);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.MinimumSize = new System.Drawing.Size(45, 22);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.Name = "plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.OffBackColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.Size = new System.Drawing.Size(62, 29);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.SolidStyle = true;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.TabIndex = 20;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.UseVisualStyleBackColor = true;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.寫入元件位置 = "S4118";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.讀取元件位置 = "S4118";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.讀寫鎖住 = false;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點.音效 = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -45910,6 +45949,8 @@
         private System.Windows.Forms.Panel panel145;
         private System.Windows.Forms.Label label36;
         private MyUI.RJ_TextBox rJ_TextBox_藥品區域_IP;
+        private System.Windows.Forms.Label label37;
+        private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點;
     }
 }
 
