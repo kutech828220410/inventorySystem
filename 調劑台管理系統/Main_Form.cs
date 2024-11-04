@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.37")]
-[assembly: AssemblyFileVersion("1.2.2.37")]
+[assembly: AssemblyVersion("1.2.2.42")]
+[assembly: AssemblyFileVersion("1.2.2.42")]
 namespace 調劑台管理系統
 {
 
@@ -342,7 +342,7 @@ namespace 調劑台管理系統
         {
             CloseProcessByName("batch_StackDataAccounting");
 
-
+            H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
             if (this.DesignMode == false)
             {

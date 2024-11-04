@@ -763,7 +763,7 @@ namespace 調劑台管理系統
         {
             Function_取藥堆疊子資料_設定配藥完成ByIP(調劑台名稱, IP, "-1");
         }
-        private void Function_取藥堆疊子資料_設定配藥完成ByIP(string 調劑台名稱, string IP, string Num)
+        private bool Function_取藥堆疊子資料_設定配藥完成ByIP(string 調劑台名稱, string IP, string Num)
         {
             List<object[]> list_堆疊子資料 = new List<object[]>();
             List<object[]> serch_values = new List<object[]>();
@@ -771,7 +771,7 @@ namespace 調劑台管理系統
             {
                 list_堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(調劑台名稱);
                 list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.IP, IP);
-                list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
+                //list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
                 for (int i = 0; i < list_堆疊子資料.Count; i++)
                 {
                     list_堆疊子資料[i][(int)enum_取藥堆疊子資料.致能] = true.ToString();
@@ -781,6 +781,7 @@ namespace 調劑台管理系統
 
                 }
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(serch_values, false);
+                return　(list_堆疊子資料.Count > 0);
             }
             else
             {
@@ -796,6 +797,7 @@ namespace 調劑台管理系統
                     serch_values.Add(list_堆疊子資料[i]);
                 }
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(serch_values, false);
+                return (list_堆疊子資料.Count > 0);
             }
         }
         private void Function_取藥堆疊子資料_設定調劑結束(string 調劑台名稱, string 藥品碼)
@@ -2677,6 +2679,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_取藥堆疊資料_檢查資料_設定致能(ref int cnt)
         {
+            this.list_取藥堆疊子資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
             List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊子資料_取得可致能(ref this.list_取藥堆疊子資料);
             List<object[]> list_取藥堆疊母資料_buf;
             List<object[]> list_取藥堆疊資料_ReplaceValue = new List<object[]>();
@@ -3176,7 +3179,7 @@ namespace 調劑台管理系統
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.配藥完成] = false.ToString();
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
 
-                                LightOn lightOn = new Main_Form.LightOn(藥品碼, color, 數量);
+                                LightOn lightOn = new Main_Form.LightOn(藥品碼, color);
                                 lightOn.顏色 = Color.FromArgb((int)(color.R * 0.1), (int)(color.G * 0.1), (int)(color.B * 0.1));
                                 lightOn.LCD_Color = Color.Black;
                                 lightOn.flag_Refresh_Light = true;
