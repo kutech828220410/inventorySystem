@@ -458,7 +458,7 @@ namespace 調劑台管理系統
 
                 Console.WriteLine($"{DateTime.Now.ToDateTimeString()}-刪除子資料 藥品碼: {藥品碼}");
 
-                Function_儲位亮燈(new Main_Form.LightOn(藥品碼, Color.Black));
+                if (color_off) Function_儲位亮燈(new Main_Form.LightOn(藥品碼, Color.Black));
 
             }
         }
