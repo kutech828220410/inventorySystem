@@ -9266,6 +9266,18 @@ namespace 調劑台管理系統
                         rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
                     })));
                 }
+
+                List<object[]> list_value = sqL_DataGridView_LCD114_索引表.SQL_GetAllRows(false);
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    string IP = list_value[i][(int)enum_LCD114_索引表.IP].ObjectToString();
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        storageUI_LCD_114.ClearCanvas(IP, 29008);
+                    })));
+               
+
+                }
                 Task.WhenAll(tasks).Wait();
             }
             catch
