@@ -2463,6 +2463,8 @@ namespace 調劑台管理系統
         {
             if (this.list_取藥堆疊母資料.Count > 0)
             {
+
+                //list_取藥堆疊子資料 = sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
                 string 藥品碼 = "";
                 string 調劑台名稱 = "";
                 string GUID = "";
@@ -2551,7 +2553,7 @@ namespace 調劑台管理系統
                             string 儲位資訊_庫存 = "";
                             string 儲位資訊_異動量 = "";
                             string 儲位資訊_GUID = "";
-                            list_取藥堆疊子資料_buf = list_取藥堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, GUID);
+                            list_取藥堆疊子資料_buf = sqL_DataGridView_取藥堆疊子資料.SQL_GetRows((int)enum_取藥堆疊子資料.Master_GUID, GUID , false);
 
 
                             if (效期.StringIsEmpty())
