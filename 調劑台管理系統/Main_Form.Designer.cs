@@ -122,6 +122,7 @@
             this.plC_RJ_Button_領藥台_04_取消作業 = new MyUI.PLC_RJ_Button();
             this.調劑樣式2 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel24 = new MyUI.RJ_Pannel();
+            this.panel146 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_異常通知 = new MyUI.PLC_RJ_Button();
             this.panel118 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_申領 = new MyUI.PLC_RJ_Button();
@@ -4174,6 +4175,17 @@
             this.rJ_Pannel24.Size = new System.Drawing.Size(1643, 125);
             this.rJ_Pannel24.TabIndex = 10;
             // 
+            // panel146
+            // 
+            this.panel146.BackColor = System.Drawing.Color.Transparent;
+            this.panel146.BackgroundImage = global::調劑台管理系統.Properties.Resources.LOGO_浮水印;
+            this.panel146.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel146.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel146.Location = new System.Drawing.Point(0, 55);
+            this.panel146.Name = "panel146";
+            this.panel146.Size = new System.Drawing.Size(250, 47);
+            this.panel146.TabIndex = 140;
+            // 
             // plC_RJ_Button_異常通知
             // 
             this.plC_RJ_Button_異常通知.AutoResetState = true;
@@ -4810,6 +4822,7 @@
             // 
             // panel112
             // 
+            this.panel112.Controls.Add(this.panel146);
             this.panel112.Controls.Add(this.plC_Date1);
             this.panel112.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel112.Location = new System.Drawing.Point(1383, 10);
@@ -45975,6 +45988,7 @@
         private System.Windows.Forms.Label label37;
         private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_交班盤點;
         private MyUI.PLC_CheckBox plC_CheckBox_需等待手勢感測_關閉抽屜才可入帳;
+        private System.Windows.Forms.Panel panel146;
     }
 }
 
