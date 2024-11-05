@@ -1363,6 +1363,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_取得資料(ref int cnt)
         {
+        
             List<object[]> list_value = new List<object[]>();
             List<object[]> list_取藥堆疊資料 = new List<object[]>();
             List<object[]> list_取藥堆疊資料_buf = new List<object[]>();
@@ -1520,23 +1521,31 @@ namespace 調劑台管理系統
                 }
                 list_value = list_value_new;
             }
-            for (int i = 0; i < list_取藥堆疊資料.Count; i++)
+            try
             {
-                list_取藥堆疊資料_buf = this.sqL_DataGridView_領藥台_01_領藥內容.GetRows("GUID", list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
-                if (list_取藥堆疊資料_buf.Count == 0)
+                for (int i = 0; i < list_取藥堆疊資料.Count; i++)
                 {
-                    list_取藥堆疊資料_add.Add(list_取藥堆疊資料[i]);
+                    list_取藥堆疊資料_buf = this.sqL_DataGridView_領藥台_01_領藥內容.GetRows("GUID", list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
+                    if (list_取藥堆疊資料_buf.Count == 0)
+                    {
+                        list_取藥堆疊資料_add.Add(list_取藥堆疊資料[i]);
+                    }
+                }
+                if (list_取藥堆疊資料_add.Count > 0)
+                {
+                    string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                    string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+                    病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+                    開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+                    Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 1);
                 }
             }
-            if (list_取藥堆疊資料_add.Count > 0)
+            catch
             {
-                string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
-                病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
-                開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
-                Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 1);
+
             }
+           
             this.sqL_DataGridView_領藥台_01_領藥內容.RefreshGrid(list_value);
             Application.DoEvents();
             if (list_取藥堆疊資料_replace.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊資料_replace, false);
@@ -2117,7 +2126,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = 病房號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0)
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -3539,23 +3548,31 @@ namespace 調劑台管理系統
                 }
                 list_value = list_value_new;
             }
-            for (int i = 0; i < list_取藥堆疊資料.Count; i++)
+            try
             {
-                list_取藥堆疊資料_buf = this.sqL_DataGridView_領藥台_02_領藥內容.GetRows("GUID", list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
-                if (list_取藥堆疊資料_buf.Count == 0)
+                for (int i = 0; i < list_取藥堆疊資料.Count; i++)
                 {
-                    list_取藥堆疊資料_add.Add(list_取藥堆疊資料[i]);
+                    list_取藥堆疊資料_buf = this.sqL_DataGridView_領藥台_02_領藥內容.GetRows("GUID", list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
+                    if (list_取藥堆疊資料_buf.Count == 0)
+                    {
+                        list_取藥堆疊資料_add.Add(list_取藥堆疊資料[i]);
+                    }
+                }
+                if (list_取藥堆疊資料_add.Count > 0)
+                {
+                    string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                    string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+                    病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+                    開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+                    Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 2);
                 }
             }
-            if (list_取藥堆疊資料_add.Count > 0)
+            catch
             {
-                string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
-                病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
-                開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
-                Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 2);
+
             }
+       
             this.sqL_DataGridView_領藥台_02_領藥內容.RefreshGrid(list_value);
             Application.DoEvents();
             if (list_取藥堆疊資料_replace.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊資料_replace, false);
@@ -4127,7 +4144,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = 病房號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0)
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -6121,7 +6138,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = 病房號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0)
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -8098,7 +8115,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = 病房號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0)
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -9309,10 +9326,18 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     string IP = list_value[i][(int)enum_LCD114_索引表.index_IP].ObjectToString();
-                    tasks.Add(Task.Run(new Action(delegate
+                    try
                     {
-                        storageUI_LCD_114.ClearCanvas(IP, 29008);
-                    })));
+                        tasks.Add(Task.Run(new Action(delegate
+                        {
+                            storageUI_LCD_114.ClearCanvas(IP, 29008);
+                        })));
+
+                    }
+                    catch
+                    {
+
+                    }
                
 
                 }

@@ -131,7 +131,6 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\System.Text.Enco
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\System.ValueTuple.xml
-C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CoreCompileInputs.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
@@ -890,3 +889,4 @@ C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CoreCompileInputs.ca
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
+C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csprojAssemblyReference.cache

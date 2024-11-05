@@ -112,7 +112,7 @@ namespace 調劑台管理系統
 
                 sQL_DataGridView.RowsHeight = numTextBox_每格高度.Text.StringToInt32();
                 sQL_DataGridView.CustomEnable = this.plC_CheckBox_圖文辨識樣式.Checked;
-                panel.Height = numTextBox_藥物辨識圖片大小.Text.StringToInt32();
+               if(panel!=null) panel.Height = numTextBox_藥物辨識圖片大小.Text.StringToInt32();
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }));   
