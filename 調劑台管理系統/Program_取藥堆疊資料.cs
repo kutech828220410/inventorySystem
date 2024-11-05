@@ -3655,7 +3655,8 @@ namespace 調劑台管理系統
                     list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
                     list_value[m][(int)enum_醫囑資料.藥師ID] = ID;
                     list_value[m][(int)enum_醫囑資料.藥師姓名] = 操作人;
-                    list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
+                    list_value[m][(int)enum_醫囑資料.實際調劑量] = list_value[m][(int)enum_醫囑資料.交易量];
+                    //list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                     list_醫囑資料_ReplaceValue.Add(list_value[m]);
                 }
 
