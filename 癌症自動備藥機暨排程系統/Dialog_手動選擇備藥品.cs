@@ -88,6 +88,8 @@ namespace 癌症備藥機
                     e.Graphics.FillRectangle(brush, e.RowBounds);
                     DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
 
+               
+
                     Size size = new Size();
                     PointF pointF = new PointF();
 
@@ -105,7 +107,7 @@ namespace 癌症備藥機
                     size = 庫存.MeasureText(new Font("標楷體", 14, FontStyle.Bold));
                     DrawingClass.Draw.文字左上繪製(庫存, new PointF(e.RowBounds.Width - 150 - 10, y + 10), new Font("標楷體", 14), Color.Black, e.Graphics);
 
-
+                    
                 }
             }
         }

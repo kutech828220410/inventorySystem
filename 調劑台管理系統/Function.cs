@@ -34,6 +34,36 @@ namespace 調劑台管理系統
         public static StorageUI_WT32 _storageUI_WT32 = null;
         public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
 
+        public static List<medPicClass> medPicClasses = new List<medPicClass>();
+
+        public static List<Image> Function_取得藥品圖片(string Code)
+        {
+            List<medPicClass> medPicClasse_buf = (from temp in medPicClasses
+                                                  where temp.藥碼 == Code
+                                                  select temp).ToList();
+            List<Image> images = new List<Image>();
+            if (medPicClasse_buf.Count == 0)
+            {
+                medPicClass medPicClass = new medPicClass();
+                images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
+                medPicClass.藥碼 = Code;
+                if (images.Count == null) return null;
+                for (int i = 0; i < images.Count; i++)
+                {
+                    if (i == 0) medPicClass.Image_0 = images[0];
+                    if (i == 1) medPicClass.Image_1 = images[1];
+                }
+                medPicClasses.Add(medPicClass);
+                return images;
+            }
+            else
+            {
+                if (medPicClasse_buf[0].Image_0 != null) images.Add(medPicClasse_buf[0].Image_0);
+                if (medPicClasse_buf[0].Image_1 != null) images.Add(medPicClasse_buf[0].Image_1);
+                return images;
+            }
+        }
+
         public void Function_調劑作業_醫令資訊更新(int 台號)
         {
             this.Invoke(new Action(delegate 

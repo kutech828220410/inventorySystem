@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.43")]
-[assembly: AssemblyFileVersion("1.2.2.43")]
+[assembly: AssemblyVersion("1.2.2.46")]
+[assembly: AssemblyFileVersion("1.2.2.46")]
 namespace 調劑台管理系統
 {
 
@@ -115,6 +115,8 @@ namespace 調劑台管理系統
             private string api_Server = "";
 
             private string orderApiURL = "";
+            private string order_mrn_ApiURL = "";
+            private string order_bag_num_ApiURL = "";
             private string order_upload_ApiURL = "";
             private string orderByCodeApiURL = "";
             private string medApiURL = "";
@@ -149,6 +151,10 @@ namespace 調劑台管理系統
             public string OrderByCodeApiURL { get => orderByCodeApiURL; set => orderByCodeApiURL = value; }
             [JsonIgnore]
             public string Order_upload_ApiURL { get => order_upload_ApiURL; set => order_upload_ApiURL = value; }
+            [JsonIgnore]
+            public string Order_mrn_ApiURL { get => order_mrn_ApiURL; set => order_mrn_ApiURL = value; }
+            [JsonIgnore]
+            public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -578,7 +584,8 @@ namespace 調劑台管理系統
 
             this.drawerUI_EPD_1020.Set_UDP_WriteTime(10);
             this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
-
+            this.storageUI_EPD_266.Set_UDP_WriteTime(1);
+            this.storageUI_LCD_114.Set_UDP_WriteTime(1);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
@@ -652,10 +659,10 @@ namespace 調劑台管理系統
 
             if (NumOfConnectedScanner > 1)
             {
-                if (flag_Init) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_01_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_02_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_03_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_04_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             }
             if (NumOfConnectedScanner == 4)
             {
@@ -966,13 +973,17 @@ namespace 調劑台管理系統
                 dBConfigClass.Api_URL = serverSettingClass.Server;
                 API_Server = serverSettingClass.Server;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_API");
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_Code_API");
             if (serverSettingClass != null) dBConfigClass.OrderByCodeApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_upload_API");
             if (serverSettingClass != null) dBConfigClass.Order_upload_ApiURL = serverSettingClass.Server;
 
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_MRN_API");
+            if (serverSettingClass != null) dBConfigClass.Order_mrn_ApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_BAG_NUM_API");
+            if (serverSettingClass != null) dBConfigClass.Order_bag_num_ApiURL = serverSettingClass.Server;
 
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;

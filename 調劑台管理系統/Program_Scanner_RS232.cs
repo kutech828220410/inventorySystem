@@ -34,29 +34,34 @@ namespace 調劑台管理系統
             if (m.Msg == WM_CLIPBOARDUPDATE)
             {
                 // 當剪貼簿更新時處理
-                IDataObject data = Clipboard.GetDataObject();
-                if (data != null && data.GetDataPresent(DataFormats.Text))
+                if (myConfigClass.鍵盤掃碼模式)
                 {
-                    if(data.GetData(DataFormats.Text).ToString() != keyDataString)
+                    IDataObject data = Clipboard.GetDataObject();
+                    if (data != null && data.GetDataPresent(DataFormats.Text))
                     {
-                        keyDataString = data.GetData(DataFormats.Text).ToString();
-
-                        if (keyDataString.Length > 2)
+                        if (data.GetData(DataFormats.Text).ToString() != keyDataString)
                         {
-                            string temp = keyDataString;
-                            //temp = temp.Replace("\n", "");
-                            //temp = temp.Replace("\r", "");
-                            byte[] byteArray = Encoding.UTF8.GetBytes(temp);
-                            Console.WriteLine($"keyDataString : {temp}");
-                            MySerialPort_Scanner01.SetReadByte(byteArray);
+                            keyDataString = data.GetData(DataFormats.Text).ToString();
 
-                            MyTimerBasic_Keyboard.TickStop();
-                            MyTimerBasic_Keyboard.StartTickTime(200);
+                            if (keyDataString.Length > 2)
+                            {
+                                string temp = keyDataString;
+                                //temp = temp.Replace("\n", "");
+                                //temp = temp.Replace("\r", "");
+                                byte[] byteArray = Encoding.UTF8.GetBytes(temp);
 
+                                Console.WriteLine($"keyDataString : {temp}");
+                                MySerialPort_Scanner01.SetReadByte(byteArray);
+
+                                MyTimerBasic_Keyboard.TickStop();
+                                MyTimerBasic_Keyboard.StartTickTime(200);
+
+                            }
                         }
+
                     }
-              
                 }
+              
             }
             base.WndProc(ref m);
         }

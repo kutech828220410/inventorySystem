@@ -73,11 +73,14 @@ namespace 調劑台管理系統
             this.label9 = new System.Windows.Forms.Label();
             this.numTextBox_數量欄位寬度 = new MyUI.NumTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numTextBox_藥物辨識圖片大小 = new MyUI.NumTextBox();
             this.plC_RJ_Button_確認送出 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable_標題 = new MyUI.RJ_Lable();
             this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.numTextBox_藥物辨識圖片大小 = new MyUI.NumTextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.plC_CheckBox_圖文辨識樣式 = new MyUI.PLC_CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numTextBox_每格高度 = new MyUI.NumTextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -630,6 +633,9 @@ namespace 調劑台管理系統
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.numTextBox_每格高度);
+            this.panel1.Controls.Add(this.plC_CheckBox_圖文辨識樣式);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.numTextBox_藥物辨識圖片大小);
             this.panel1.Controls.Add(this.plC_RJ_Button_確認送出);
@@ -639,6 +645,29 @@ namespace 調劑台管理系統
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1346, 105);
             this.panel1.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label10.Location = new System.Drawing.Point(437, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(178, 21);
+            this.label10.TabIndex = 148;
+            this.label10.Text = "藥物辨識圖片大小";
+            // 
+            // numTextBox_藥物辨識圖片大小
+            // 
+            this.numTextBox_藥物辨識圖片大小.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numTextBox_藥物辨識圖片大小.Location = new System.Drawing.Point(443, 48);
+            this.numTextBox_藥物辨識圖片大小.Name = "numTextBox_藥物辨識圖片大小";
+            this.numTextBox_藥物辨識圖片大小.Size = new System.Drawing.Size(167, 46);
+            this.numTextBox_藥物辨識圖片大小.TabIndex = 147;
+            this.numTextBox_藥物辨識圖片大小.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_藥物辨識圖片大小.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_藥物辨識圖片大小.小數點位置 = 0;
+            this.numTextBox_藥物辨識圖片大小.音效 = false;
+            this.numTextBox_藥物辨識圖片大小.顯示螢幕小鍵盤 = false;
             // 
             // plC_RJ_Button_確認送出
             // 
@@ -716,28 +745,46 @@ namespace 調劑台管理系統
             this.rJ_Lable_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable_標題.TextColor = System.Drawing.Color.White;
             // 
-            // numTextBox_藥物辨識圖片大小
+            // plC_CheckBox_圖文辨識樣式
             // 
-            this.numTextBox_藥物辨識圖片大小.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numTextBox_藥物辨識圖片大小.Location = new System.Drawing.Point(443, 48);
-            this.numTextBox_藥物辨識圖片大小.Name = "numTextBox_藥物辨識圖片大小";
-            this.numTextBox_藥物辨識圖片大小.Size = new System.Drawing.Size(167, 46);
-            this.numTextBox_藥物辨識圖片大小.TabIndex = 147;
-            this.numTextBox_藥物辨識圖片大小.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox_藥物辨識圖片大小.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox_藥物辨識圖片大小.小數點位置 = 0;
-            this.numTextBox_藥物辨識圖片大小.音效 = false;
-            this.numTextBox_藥物辨識圖片大小.顯示螢幕小鍵盤 = false;
+            this.plC_CheckBox_圖文辨識樣式.AutoSize = true;
+            this.plC_CheckBox_圖文辨識樣式.Bool = false;
+            this.plC_CheckBox_圖文辨識樣式.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_圖文辨識樣式.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_圖文辨識樣式.Location = new System.Drawing.Point(1109, 74);
+            this.plC_CheckBox_圖文辨識樣式.Name = "plC_CheckBox_圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.Size = new System.Drawing.Size(123, 20);
+            this.plC_CheckBox_圖文辨識樣式.TabIndex = 149;
+            this.plC_CheckBox_圖文辨識樣式.Text = "圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_圖文辨識樣式.文字內容 = "圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_圖文辨識樣式.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_圖文辨識樣式.讀寫鎖住 = false;
+            this.plC_CheckBox_圖文辨識樣式.音效 = false;
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(437, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(178, 21);
-            this.label10.TabIndex = 148;
-            this.label10.Text = "藥物辨識圖片大小";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(630, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(94, 21);
+            this.label11.TabIndex = 151;
+            this.label11.Text = "每格高度";
+            // 
+            // numTextBox_每格高度
+            // 
+            this.numTextBox_每格高度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numTextBox_每格高度.Location = new System.Drawing.Point(634, 48);
+            this.numTextBox_每格高度.Name = "numTextBox_每格高度";
+            this.numTextBox_每格高度.Size = new System.Drawing.Size(167, 46);
+            this.numTextBox_每格高度.TabIndex = 150;
+            this.numTextBox_每格高度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_每格高度.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_每格高度.小數點位置 = 0;
+            this.numTextBox_每格高度.音效 = false;
+            this.numTextBox_每格高度.顯示螢幕小鍵盤 = false;
             // 
             // Dialog_調劑畫面顯示調整
             // 
@@ -838,5 +885,8 @@ namespace 調劑台管理系統
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.Label label10;
         private MyUI.NumTextBox numTextBox_藥物辨識圖片大小;
+        private MyUI.PLC_CheckBox plC_CheckBox_圖文辨識樣式;
+        private System.Windows.Forms.Label label11;
+        private MyUI.NumTextBox numTextBox_每格高度;
     }
 }

@@ -20,73 +20,15 @@ namespace 調劑台管理系統
     {
         public List<OrderClass> Value = new List<OrderClass>();
    
-        private SQLUI.SQL_DataGridView sQL_DataGridView_藥檔資料 = null;
-        public Dialog_病歷號輸入(SQL_DataGridView _sQL_DataGridView_藥檔資料)
+        public Dialog_病歷號輸入()
         {
-            InitializeComponent();
-            this.Load += Dialog_病歷號輸入_Load;
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+            this.LoadFinishedEvent += Dialog_病歷號輸入_LoadFinishedEvent;
             this.rJ_Button_輸入.MouseDownEvent += RJ_Button_輸入_MouseDownEvent;
-            this.sQL_DataGridView_藥檔資料 = _sQL_DataGridView_藥檔資料;
+            this.rJ_TextBox_病歷號.KeyPress += RJ_TextBox_病歷號_KeyPress;
         }
 
-        private void RJ_Button_輸入_MouseDownEvent(MouseEventArgs mevent)
-        {
-            string MRN = rJ_TextBox_病歷號.Text;
-            if (MRN.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog("病歷號空白!");
-                return;
-            }
-            string order_url = Main_Form.Order_URL.ToLower().Replace("?barcode=", "");
-            if (order_url.Substring(order_url.Length - 1, 1) == "/")
-            {
-                order_url = order_url.Substring(0, order_url.Length - 1);
-            }
-
-            string url = $"{order_url}?MRN={MRN}";
-            string json = Net.WEBApiGet(url);
-            returnData returnData = json.JsonDeserializet<returnData>();
-            if (returnData == null)
-            {
-                MyMessageBox.ShowDialog("未搜尋到醫令!");
-                return;
-            }
-            if(returnData.Code != 200)
-            {
-                MyMessageBox.ShowDialog($"{returnData.Result}");
-                return;
-            }
-            List<OrderClass> orderClasses = returnData.Data.ObjToListClass<OrderClass>();
-    
-      
-            List<object[]> list_order = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
-            List<object[]> list_order_buf = new List<object[]>();
-            List<object[]> list_藥檔資料 = this.sQL_DataGridView_藥檔資料.SQL_GetAllRows(false);
-            List<object[]> list_藥檔資料_buf = new List<object[]>();
-            list_order.Sort(new ICP_醫令資料());
-
-         
-            for (int i = 0; i < list_order.Count; i++)
-            {
-                string 藥碼 = list_order[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                list_藥檔資料_buf = list_藥檔資料.GetRows((int)enum_雲端藥檔.藥品碼, 藥碼);
-                if (list_藥檔資料_buf.Count > 0)
-                {
-                    bool flag_add = false;
-                    string 管制級別 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString();
-                    string 高價藥品 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.高價藥品].ObjectToString();
-                    string 警訊藥品 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
-                    if (管制級別 != "N") flag_add = true;
-                    if (高價藥品.StringToBool()) flag_add = true;
-                    if (警訊藥品.StringToBool()) flag_add = true;
-                    if (flag_add == true) list_order_buf.Add(list_order[i]);
-                }
-            }
-
-            this.sqL_DataGridView_醫令資料.RefreshGrid(list_order_buf);
-
-        }
-        private void Dialog_病歷號輸入_Load(object sender, EventArgs e)
+        private void Dialog_病歷號輸入_LoadFinishedEvent(EventArgs e)
         {
             string url = $"{Main_Form.API_Server}/api/order/init";
             returnData returnData = new returnData();
@@ -130,13 +72,102 @@ namespace 調劑台管理系統
             this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
             this.rJ_Button_選取處方.MouseDownEvent += RJ_Button_選取處方_MouseDownEvent;
             this.rJ_Button_刪除.MouseDownEvent += RJ_Button_刪除_MouseDownEvent;
-            this.Invoke(new Action(delegate
+        }
+
+        private void RJ_Button_輸入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string MRN = rJ_TextBox_病歷號.Text;
+            if (MRN.StringIsEmpty())
             {
-            }));
+                MyMessageBox.ShowDialog("病歷號空白!");
+                return;
+            }
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            LoadingForm.ShowLoadingForm();
+            if (Main_Form.dBConfigClass.Order_mrn_ApiURL.StringIsEmpty())
+            {
+                string order_url = Main_Form.Order_URL.ToLower().Replace("?barcode=", "");
+                if (order_url.Substring(order_url.Length - 1, 1) == "/")
+                {
+                    order_url = order_url.Substring(0, order_url.Length - 1);
+                }
+
+                string url = $"{order_url}?MRN={MRN}";
+                string json = Net.WEBApiGet(url);
+                returnData returnData = json.JsonDeserializet<returnData>();
+                if (returnData == null)
+                {
+                    MyMessageBox.ShowDialog("未搜尋到醫令!");
+                    return;
+                }
+                if (returnData.Code != 200)
+                {
+                    MyMessageBox.ShowDialog($"{returnData.Result}");
+                    return;
+                }
+                orderClasses = returnData.Data.ObjToListClass<OrderClass>();
+            }
+            else
+            {
+                orderClasses = OrderClass.get_API_by_MRN(Main_Form.dBConfigClass.Order_mrn_ApiURL, MRN);
+            }
+            LoadingForm.CloseLoadingForm();
+            if (orderClasses == null)
+            {
+                MyMessageBox.ShowDialog("輸入資訊錯誤");
+                return;
+            }
+            if (orderClasses.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+                return;
+            }
+            List<object[]> list_order = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
+            List<object[]> list_order_buf = new List<object[]>();
+            List<string> Codes = (from temp in list_order
+                                  select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+            List<medClass> medClasses = medClass.get_med_clouds_by_codes(Main_Form.API_Server, Codes);
+            List<medClass> medClasses_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs  = medClasses.CoverToDictionaryByCode();
+            list_order.Sort(new ICP_醫令資料());
+
+         
+            for (int i = 0; i < list_order.Count; i++)
+            {
+                string 藥碼 = list_order[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                medClasses_buf = keyValuePairs.SortDictionaryByCode(藥碼);
+                if (medClasses_buf.Count > 0)
+                {
+                    bool flag_add = false;
+                    string 管制級別 = medClasses_buf[0].管制級別;
+                    string 高價藥品 = medClasses_buf[0].高價藥品;
+                    string 警訊藥品 = medClasses_buf[0].警訊藥品;
+                    if (checkBox_管1_3.Checked) if (管制級別 == "1") flag_add = true;
+                    if (checkBox_管1_3.Checked) if (管制級別 == "2") flag_add = true;
+                    if (checkBox_管1_3.Checked) if (管制級別 == "3") flag_add = true;
+                    if (checkBox_管4.Checked) if (管制級別 == "4") flag_add = true;
+                    if (checkBox_高價藥.Checked) if (高價藥品.StringToBool()) flag_add = true;
+                    if (checkBox_高警訊.Checked) if (警訊藥品.StringToBool()) flag_add = true;
+                    if (checkBox_其餘品項.Checked) if (管制級別 == "N") flag_add = true;
+                    if (flag_add == true) list_order_buf.Add(list_order[i]);
+                }
+            }
+            if(list_order_buf.Count == 0)
+            {
+                MyMessageBox.ShowDialog("無可顯示醫令,請檢查勾選條件");
+            }
+            this.sqL_DataGridView_醫令資料.RefreshGrid(list_order_buf);
+
         }
 
    
-
+        private void RJ_TextBox_病歷號_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                RJ_Button_輸入_MouseDownEvent(null);
+            }
+        }
         private void RJ_Button_選取處方_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_已選取處方 = sqL_DataGridView_醫令資料_已選取處方.GetAllRows();
