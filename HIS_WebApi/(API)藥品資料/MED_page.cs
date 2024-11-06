@@ -727,6 +727,13 @@ namespace HIS_WebApi
                         medClass_update.管制級別 = list_value_add[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
                         medClass_update.包裝單位 = list_value_add[i][(int)enum_雲端藥檔.包裝單位].ObjectToString();
                         medClass_update.圖片網址 = list_value_add[i][(int)enum_雲端藥檔.圖片網址].ObjectToString();
+                        medClass_update.警訊藥品 = list_value_add[i][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
+                        medClass_update.高價藥品 = list_value_add[i][(int)enum_雲端藥檔.高價藥品].ObjectToString();
+                        medClass_update.開檔狀態 = list_value_add[i][(int)enum_雲端藥檔.開檔狀態].ObjectToString();
+                        medClass_update.ATC = list_value_add[i][(int)enum_雲端藥檔.ATC].ObjectToString();
+                        medClass_update.中文名稱 = list_value_add[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+                        medClass_update.儲位描述 = list_value_add[i][(int)enum_雲端藥檔.儲位描述].ObjectToString();
+                        medClass_update.類別 = list_value_add[i][(int)enum_雲端藥檔.類別].ObjectToString();
 
                         list_value_update_buf.Add(medClass_update.ClassToSQL<medClass, enum_雲端藥檔>());
 

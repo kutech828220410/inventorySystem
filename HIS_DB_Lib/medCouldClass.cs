@@ -10,6 +10,14 @@ using System.Reflection;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_開檔狀態
+    {
+        開檔中,
+        關檔中,
+        已取消,
+        停用中,
+    }
+
     [EnumDescription("medicine_page_cloud")]
     public enum enum_雲端藥檔
     {

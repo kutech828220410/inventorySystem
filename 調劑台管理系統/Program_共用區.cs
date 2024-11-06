@@ -41,7 +41,10 @@ namespace 調劑台管理系統
                     Console.WriteLine($"刪除共用台資料,名稱 : {list_str[k]}");
                     sQLControl.DeleteByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, list_str[k]);
                 }            
-                
+                for(int k = 0; k < list_堆疊母資料_add.Count; k++)
+                {
+                    if (list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.動作].ObjectToString() == "系統領藥") list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.動作] = "掃碼領藥";
+                }
                 sQLControl.AddRows(null, list_堆疊母資料_add);
                 Console.WriteLine($"新增共用台資料,共<{list_堆疊母資料_add.Count}>筆");
             }

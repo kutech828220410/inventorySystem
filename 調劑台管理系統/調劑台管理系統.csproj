@@ -471,6 +471,12 @@
     <Compile Include="Dialog\Dialog_調劑畫面顯示調整.Designer.cs">
       <DependentUpon>Dialog_調劑畫面顯示調整.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_領藥號輸入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_領藥號輸入.Designer.cs">
+      <DependentUpon>Dialog_領藥號輸入.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -767,6 +773,9 @@
     <EmbeddedResource Include="Dialog\Dialog_調劑畫面顯示調整.resx">
       <DependentUpon>Dialog_調劑畫面顯示調整.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_領藥號輸入.resx">
+      <DependentUpon>Dialog_領藥號輸入.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -867,6 +876,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\LOGO-浮水印.png" />
     <None Include="Resources\a-padlock-unlocked--showing-an-open-lock-removebg-preview.png" />
     <None Include="Resources\excell-file-upload-to-server-removebg-preview.png" />
     <None Include="Resources\exsample-excell-file-download-removebg-preview.png" />

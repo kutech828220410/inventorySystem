@@ -88,18 +88,22 @@ namespace 調劑台管理系統
             string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
             string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
             string 調劑台名稱 = "";
-            Console.WriteLine($"{IP},{Num},<抽屜關閉> {DateTime.Now.ToDateTimeString()}");
+         
             if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
             {
                 object value_device = this.Fucnction_從雲端資料取得儲位(IP);
                 if (value_device == null) return;
                 if (value_device is Storage)
                 {
+
                     Storage storage = value_device as Storage;
                     if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock
                         || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock
                         || storage.DeviceType == DeviceType.EPD420 || storage.DeviceType == DeviceType.EPD420_lock)
                     {
+
+                        Console.WriteLine($"{IP},{Num},<抽屜關閉> {storage.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
+
                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                         storage.ActionDone = true;
                         if (plC_CheckBox_同藥品全部亮燈.Bool) return;
@@ -123,6 +127,12 @@ namespace 調劑台管理系統
                     Drawer drawer = value_device as Drawer;
                     if (drawer.DeviceType == DeviceType.EPD583 || drawer.DeviceType == DeviceType.EPD583_lock)
                     {
+                        Console.WriteLine($"{IP},{Num},<抽屜關閉> {drawer.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
+                        if(plC_CheckBox_同藥品全部亮燈.Bool == false)
+                        {
+                            if (this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num) == false) return;
+                        }
+                     
                         drawer = List_EPD583_本地資料.SortByIP(IP);
                         if (drawer == null) return;
                         if (this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
@@ -143,7 +153,7 @@ namespace 調劑台管理系統
                         //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
 
                         //List_EPD583_雲端資料.Add_NewDrawer(drawer);
-                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                
                     }
                     else
                     {

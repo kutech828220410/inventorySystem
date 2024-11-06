@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.32")]
-[assembly: AssemblyFileVersion("1.2.2.32")]
+[assembly: AssemblyVersion("1.2.2.50")]
+[assembly: AssemblyFileVersion("1.2.2.50")]
 namespace 調劑台管理系統
 {
 
@@ -115,6 +115,8 @@ namespace 調劑台管理系統
             private string api_Server = "";
 
             private string orderApiURL = "";
+            private string order_mrn_ApiURL = "";
+            private string order_bag_num_ApiURL = "";
             private string order_upload_ApiURL = "";
             private string orderByCodeApiURL = "";
             private string medApiURL = "";
@@ -149,6 +151,10 @@ namespace 調劑台管理系統
             public string OrderByCodeApiURL { get => orderByCodeApiURL; set => orderByCodeApiURL = value; }
             [JsonIgnore]
             public string Order_upload_ApiURL { get => order_upload_ApiURL; set => order_upload_ApiURL = value; }
+            [JsonIgnore]
+            public string Order_mrn_ApiURL { get => order_mrn_ApiURL; set => order_mrn_ApiURL = value; }
+            [JsonIgnore]
+            public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -340,6 +346,9 @@ namespace 調劑台管理系統
         }
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            CloseProcessByName("batch_StackDataAccounting");
+
+            H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
             if (this.DesignMode == false)
             {
@@ -399,12 +408,12 @@ namespace 調劑台管理系統
                 Basic.Keyboard.Hook.MouseUp += Hook_MouseUp;
                 this.button_調劑台切換.Click += Button_調劑台切換_Click;
                 Basic.MyMessageBox.音效 = false;
-                string ProcessName = "WINWORD";//換成想要結束的進程名字
-                System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
-                for (int i = 0; i < MyProcess.Length; i++)
-                {
-                    MyProcess[i].Kill();
-                }
+                //string ProcessName = "WINWORD";//換成想要結束的進程名字
+                //System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
+                //for (int i = 0; i < MyProcess.Length; i++)
+                //{
+                //    MyProcess[i].Kill();
+                //}
                 printerClass.Init();
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
@@ -575,7 +584,8 @@ namespace 調劑台管理系統
 
             this.drawerUI_EPD_1020.Set_UDP_WriteTime(10);
             this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
-
+            this.storageUI_EPD_266.Set_UDP_WriteTime(1);
+            this.storageUI_LCD_114.Set_UDP_WriteTime(1);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
@@ -649,10 +659,10 @@ namespace 調劑台管理系統
 
             if (NumOfConnectedScanner > 1)
             {
-                if (flag_Init) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_01_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_02_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_03_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && this.sqL_DataGridView_領藥台_04_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             }
             if (NumOfConnectedScanner == 4)
             {
@@ -856,6 +866,15 @@ namespace 調劑台管理系統
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_WT32.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_LCD_114.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            //else
+            //{
+            //    this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //    this.storageUI_LCD_114.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
+            //}
             if (flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
@@ -954,13 +973,17 @@ namespace 調劑台管理系統
                 dBConfigClass.Api_URL = serverSettingClass.Server;
                 API_Server = serverSettingClass.Server;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_API");
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_Code_API");
             if (serverSettingClass != null) dBConfigClass.OrderByCodeApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_upload_API");
             if (serverSettingClass != null) dBConfigClass.Order_upload_ApiURL = serverSettingClass.Server;
 
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_MRN_API");
+            if (serverSettingClass != null) dBConfigClass.Order_mrn_ApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_BAG_NUM_API");
+            if (serverSettingClass != null) dBConfigClass.Order_bag_num_ApiURL = serverSettingClass.Server;
 
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
@@ -1071,6 +1094,33 @@ namespace 調劑台管理系統
 
 
         #endregion
+
+
+        public static void CloseProcessByName(string processName)
+        {
+            // 取得所有與指定名稱相符的進程
+            Process[] processes = Process.GetProcessesByName(processName);
+
+            if (processes.Length == 0)
+            {
+                Console.WriteLine($"{processName} 未在執行中。");
+            }
+            else
+            {
+                foreach (Process process in processes)
+                {
+                    try
+                    {
+                        process.Kill(); // 終止進程
+                        Console.WriteLine($"{processName} 已關閉 (PID: {process.Id})。");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"無法關閉 {processName} (PID: {process.Id})：{ex.Message}");
+                    }
+                }
+            }
+        }
     }
 
 

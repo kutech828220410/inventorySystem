@@ -66,6 +66,10 @@ namespace HIS_DB_Lib
         [JsonPropertyName("pic1_base64")]
         public string pic1_base64 { get; set; }
 
+        [JsonIgnore]
+        public System.Drawing.Image Image_0;
+        [JsonIgnore]
+        public System.Drawing.Image Image_1;
         static public SQLUI.Table init(string API_Server)
         {
             string url = $"{API_Server}/api/medPic/init";

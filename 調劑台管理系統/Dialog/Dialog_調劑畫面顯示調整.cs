@@ -18,6 +18,7 @@ namespace 調劑台管理系統
         private SQL_DataGridView sQL_DataGridView;
         private Panel panel;
         private int index = -1;
+        public bool flag_圖文辨識樣式;
         public Dialog_調劑畫面顯示調整(int index)
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace 調劑台管理系統
             this.button_盤點量字型.Click += Button_盤點量字型_Click;
             this.button_狀態字型.Click += Button_狀態字型_Click;
             this.index = index;
+
+            plC_CheckBox_圖文辨識樣式.Checked = flag_圖文辨識樣式;
         }
    
         private void Dialog_調劑畫面顯示調整_LoadFinishedEvent(EventArgs e)
@@ -77,6 +80,8 @@ namespace 調劑台管理系統
                 numTextBox_結存量欄位寬度.Text = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.結存量.GetEnumName()).ToString();
                 numTextBox_盤點量欄位寬度.Text = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.盤點量.GetEnumName()).ToString();
                 numTextBox_狀態欄位寬度.Text = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.狀態.GetEnumName()).ToString();
+                numTextBox_每格高度.Text = sQL_DataGridView.RowsHeight.ToString();
+                plC_CheckBox_圖文辨識樣式.Checked = sQL_DataGridView.CustomEnable;
             }
             if (panel != null)
             {
@@ -105,7 +110,9 @@ namespace 調劑台管理系統
                 sQL_DataGridView.Set_ColumnVisible(plC_CheckBox_盤點量顯示.Checked, enum_取藥堆疊母資料.盤點量.GetEnumName());
                 sQL_DataGridView.Set_ColumnVisible(plC_CheckBox_狀態顯示.Checked, enum_取藥堆疊母資料.狀態.GetEnumName());
 
-                panel.Height = numTextBox_藥物辨識圖片大小.Text.StringToInt32();
+                sQL_DataGridView.RowsHeight = numTextBox_每格高度.Text.StringToInt32();
+                sQL_DataGridView.CustomEnable = this.plC_CheckBox_圖文辨識樣式.Checked;
+               if(panel!=null) panel.Height = numTextBox_藥物辨識圖片大小.Text.StringToInt32();
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }));   

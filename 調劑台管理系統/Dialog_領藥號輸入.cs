@@ -16,19 +16,17 @@ using SQLUI;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_病歷號輸入 : MyDialog
+    public partial class Dialog_領藥號輸入 : MyDialog
     {
         public List<OrderClass> Value = new List<OrderClass>();
-   
-        public Dialog_病歷號輸入()
+        public Dialog_領藥號輸入()
         {
             form.Invoke(new Action(delegate { InitializeComponent(); }));
-            this.LoadFinishedEvent += Dialog_病歷號輸入_LoadFinishedEvent;
+           this.LoadFinishedEvent += Dialog_領藥號輸入_LoadFinishedEvent;
             this.rJ_Button_輸入.MouseDownEvent += RJ_Button_輸入_MouseDownEvent;
-            this.rJ_TextBox_病歷號.KeyPress += RJ_TextBox_病歷號_KeyPress;
         }
 
-        private void Dialog_病歷號輸入_LoadFinishedEvent(EventArgs e)
+        private void Dialog_領藥號輸入_LoadFinishedEvent(EventArgs e)
         {
             string url = $"{Main_Form.API_Server}/api/order/init";
             returnData returnData = new returnData();
@@ -72,45 +70,20 @@ namespace 調劑台管理系統
             this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
             this.rJ_Button_選取處方.MouseDownEvent += RJ_Button_選取處方_MouseDownEvent;
             this.rJ_Button_刪除.MouseDownEvent += RJ_Button_刪除_MouseDownEvent;
+            this.Refresh();
         }
 
         private void RJ_Button_輸入_MouseDownEvent(MouseEventArgs mevent)
         {
-            string MRN = rJ_TextBox_病歷號.Text;
-            if (MRN.StringIsEmpty())
+            string BAG_NUM = rJ_TextBox_領藥號.Text;
+            if (BAG_NUM.StringIsEmpty())
             {
-                MyMessageBox.ShowDialog("病歷號空白!");
+                MyMessageBox.ShowDialog("領藥號空白!");
                 return;
             }
             List<OrderClass> orderClasses = new List<OrderClass>();
             LoadingForm.ShowLoadingForm();
-            if (Main_Form.dBConfigClass.Order_mrn_ApiURL.StringIsEmpty())
-            {
-                string order_url = Main_Form.Order_URL.ToLower().Replace("?barcode=", "");
-                if (order_url.Substring(order_url.Length - 1, 1) == "/")
-                {
-                    order_url = order_url.Substring(0, order_url.Length - 1);
-                }
-
-                string url = $"{order_url}?MRN={MRN}";
-                string json = Net.WEBApiGet(url);
-                returnData returnData = json.JsonDeserializet<returnData>();
-                if (returnData == null)
-                {
-                    MyMessageBox.ShowDialog("未搜尋到醫令!");
-                    return;
-                }
-                if (returnData.Code != 200)
-                {
-                    MyMessageBox.ShowDialog($"{returnData.Result}");
-                    return;
-                }
-                orderClasses = returnData.Data.ObjToListClass<OrderClass>();
-            }
-            else
-            {
-                orderClasses = OrderClass.get_API_by_MRN(Main_Form.dBConfigClass.Order_mrn_ApiURL, MRN);
-            }
+            orderClasses = OrderClass.get_API_by_BAG_NUM(Main_Form.dBConfigClass.Order_bag_num_ApiURL, BAG_NUM, rJ_DatePicker_日期.Value);
             LoadingForm.CloseLoadingForm();
             if (orderClasses == null)
             {
@@ -128,10 +101,10 @@ namespace 調劑台管理系統
                                   select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
             List<medClass> medClasses = medClass.get_med_clouds_by_codes(Main_Form.API_Server, Codes);
             List<medClass> medClasses_buf = new List<medClass>();
-            Dictionary<string, List<medClass>> keyValuePairs  = medClasses.CoverToDictionaryByCode();
+            Dictionary<string, List<medClass>> keyValuePairs = medClasses.CoverToDictionaryByCode();
             list_order.Sort(new ICP_醫令資料());
 
-         
+
             for (int i = 0; i < list_order.Count; i++)
             {
                 string 藥碼 = list_order[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
@@ -152,7 +125,7 @@ namespace 調劑台管理系統
                     if (flag_add == true) list_order_buf.Add(list_order[i]);
                 }
             }
-            if(list_order_buf.Count == 0)
+            if (list_order_buf.Count == 0)
             {
                 MyMessageBox.ShowDialog("無可顯示醫令,請檢查勾選條件");
             }
@@ -161,19 +134,12 @@ namespace 調劑台管理系統
         }
 
    
-        private void RJ_TextBox_病歷號_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                RJ_Button_輸入_MouseDownEvent(null);
-            }
-        }
         private void RJ_Button_選取處方_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_已選取處方 = sqL_DataGridView_醫令資料_已選取處方.GetAllRows();
             List<object[]> list_已選取處方_buf = new List<object[]>();
             List<object[]> list_醫令資料 = this.sqL_DataGridView_醫令資料.Get_All_Select_RowsValues();
-            if(list_醫令資料.Count == 0)
+            if (list_醫令資料.Count == 0)
             {
                 MyMessageBox.ShowDialog("未選取處方資料!");
                 return;
@@ -210,7 +176,7 @@ namespace 調劑台管理系統
                     this.Close();
                     return;
                 }
-                Value = list_已選處方.SQLToClass<OrderClass , enum_醫囑資料>();
+                Value = list_已選處方.SQLToClass<OrderClass, enum_醫囑資料>();
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }));
@@ -223,7 +189,6 @@ namespace 調劑台管理系統
                 this.Close();
             }));
         }
-
         public class ICP_醫令資料 : IComparer<object[]>
         {
             //實作Compare方法
@@ -234,7 +199,7 @@ namespace 調劑台管理系統
                 DateTime datetime2 = y[(int)enum_醫囑資料.開方日期].ToString().StringToDateTime();
                 int compare = DateTime.Compare(datetime2, datetime1);
                 return compare;
- 
+
 
             }
         }

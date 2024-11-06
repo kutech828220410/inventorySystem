@@ -42,127 +42,151 @@ namespace batch_dps_medUpdate
                 System.Threading.Thread.Sleep(3000);
                 return;
             }
+            Logger.LogAddLine();
             for (int i = 0; i < serverSettingClasses_buf.Count; i++)
             {
-                ServerSettingClass serverSettingClass = serverSettingClasses_buf[i];
-                string 設備名稱 = serverSettingClass.設備名稱;
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
-                string TableName_medicine_page = "medicine_page";
-                SQLControl sQLControl_med_dps = new SQLControl(Server, DB, TableName_medicine_page, UserName, Password, Port,MySql.Data.MySqlClient.MySqlSslMode.None);
-
-                List<object[]> list_medcine_page = sQLControl_med_dps.GetAllRows(null);
-
-                List<medClass> med_cloud_buf = new List<medClass>();
-                List<medClass> medClasses = list_medcine_page.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
-                List<medClass> medClasses_buf = new List<medClass>();
-                List<medClass> medClasses_add = new List<medClass>();
-                List<medClass> medClasses_replace = new List<medClass>();
-                List<object[]> list_med_add = new List<object[]>();
-                List<object[]> list_med_replace = new List<object[]>();
-                for (int k = 0; k < med_cloud.Count; k++)
+                try
                 {
-                    medClasses_buf = (from temp in medClasses
-                                      where temp.藥品碼 == med_cloud[k].藥品碼
-                                      select temp).ToList();
-                    if(medClasses_buf.Count == 0)
+                    ServerSettingClass serverSettingClass = serverSettingClasses_buf[i];
+                    string 設備名稱 = serverSettingClass.設備名稱;
+                    string Server = serverSettingClass.Server;
+                    string DB = serverSettingClass.DBName;
+                    string UserName = serverSettingClass.User;
+                    string Password = serverSettingClass.Password;
+                    uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                    string TableName_medicine_page = "medicine_page";
+                    SQLControl sQLControl_med_dps = new SQLControl(Server, DB, TableName_medicine_page, UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
+
+                    List<object[]> list_medcine_page = sQLControl_med_dps.GetAllRows(null);
+
+                    List<medClass> med_cloud_buf = new List<medClass>();
+                    List<medClass> medClasses = list_medcine_page.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    List<medClass> medClasses_buf = new List<medClass>();
+                    List<medClass> medClasses_add = new List<medClass>();
+                    List<medClass> medClasses_replace = new List<medClass>();
+                    List<object[]> list_med_add = new List<object[]>();
+                    List<object[]> list_med_replace = new List<object[]>();
+                    for (int k = 0; k < med_cloud.Count; k++)
                     {
-                        medClass medClass = new medClass();
-                        medClass = med_cloud[k];
-                        medClass.GUID = Guid.NewGuid().ToString();
-                        medClasses_add.Add(medClass);
-                    }
-                    else
-                    {
-                        medClass medClass = new medClass();
-                        medClass = medClasses_buf[0];
-                        bool flag_replace = false;
-                        if (medClass.中文名稱 == null) medClass.中文名稱 = "";
-                        if (medClass.健保碼 == null) medClass.健保碼 = "";
-                        if (medClass.包裝單位 == null) medClass.包裝單位 = "";
-                        if (medClass.包裝數量 == null) medClass.包裝數量 = "";
-                        if (medClass.廠牌 == null) medClass.廠牌 = "";
-                        if (medClass.料號 == null) medClass.料號 = "";
-                        if (medClass.最小包裝單位 == null) medClass.最小包裝單位 = "";
-                        if (medClass.最小包裝數量 == null) medClass.最小包裝數量 = "";
-                        if (medClass.生物製劑 == null) medClass.生物製劑 = "";
-                        if (medClass.管制級別 == null) medClass.管制級別 = "";
-                        if (medClass.藥品名稱 == null) medClass.藥品名稱 = "";
-                        if (medClass.藥品學名 == null) medClass.藥品學名 = "";
-                        if (medClass.藥品許可證號 == null) medClass.藥品許可證號 = "";
-                        if (medClass.警訊藥品 == null) medClass.警訊藥品 = "";
-                        if (medClass.開檔狀態 == null) medClass.開檔狀態 = "";
-                        if (medClass.高價藥品 == null) medClass.高價藥品 = "";
-
-                        if (med_cloud[k].中文名稱 == null) med_cloud[k].中文名稱 = "";
-                        if (med_cloud[k].健保碼 == null) med_cloud[k].健保碼 = "";
-                        if (med_cloud[k].包裝單位 == null) med_cloud[k].包裝單位 = "";
-                        if (med_cloud[k].包裝數量 == null) med_cloud[k].包裝數量 = "";
-                        if (med_cloud[k].廠牌 == null) med_cloud[k].廠牌 = "";
-                        if (med_cloud[k].料號 == null) med_cloud[k].料號 = "";
-                        if (med_cloud[k].最小包裝單位 == null) med_cloud[k].最小包裝單位 = "";
-                        if (med_cloud[k].最小包裝數量 == null) med_cloud[k].最小包裝數量 = "";
-                        if (med_cloud[k].生物製劑 == null) med_cloud[k].生物製劑 = "";
-                        if (med_cloud[k].管制級別 == null) med_cloud[k].管制級別 = "";
-                        if (med_cloud[k].藥品名稱 == null) med_cloud[k].藥品名稱 = "";
-                        if (med_cloud[k].藥品學名 == null) med_cloud[k].藥品學名 = "";
-                        if (med_cloud[k].藥品許可證號 == null) med_cloud[k].藥品許可證號 = "";
-                        if (med_cloud[k].警訊藥品 == null) med_cloud[k].警訊藥品 = "";
-                        if (med_cloud[k].開檔狀態 == null) med_cloud[k].開檔狀態 = "";
-                        if (med_cloud[k].高價藥品 == null) med_cloud[k].高價藥品 = "";
-
-                        if (medClass.中文名稱 != med_cloud[k].中文名稱) flag_replace = true;
-                        if (medClass.健保碼 != med_cloud[k].健保碼) flag_replace = true;
-                        if (medClass.包裝單位 != med_cloud[k].包裝單位) flag_replace = true;
-                        if (medClass.包裝數量 != med_cloud[k].包裝數量) flag_replace = true;
-                        if (medClass.廠牌 != med_cloud[k].廠牌) flag_replace = true;
-                        if (medClass.料號 != med_cloud[k].料號) flag_replace = true;
-                        if (medClass.最小包裝單位 != med_cloud[k].最小包裝單位) flag_replace = true;
-                        if (medClass.最小包裝數量 != med_cloud[k].最小包裝數量) flag_replace = true;
-                        if (medClass.生物製劑 != med_cloud[k].生物製劑) flag_replace = true;
-                        if (medClass.管制級別 != med_cloud[k].管制級別) flag_replace = true;
-                        if (medClass.藥品名稱 != med_cloud[k].藥品名稱) flag_replace = true;
-                        if (medClass.藥品學名 != med_cloud[k].藥品學名) flag_replace = true;
-                        if (medClass.藥品許可證號 != med_cloud[k].藥品許可證號) flag_replace = true;
-                        if (medClass.警訊藥品 != med_cloud[k].警訊藥品) flag_replace = true;
-                        if (medClass.開檔狀態 != med_cloud[k].開檔狀態) flag_replace = true;
-                        if (medClass.高價藥品 != med_cloud[k].高價藥品) flag_replace = true;
-
-                        if(flag_replace)
+               
+                        medClasses_buf = (from temp in medClasses
+                                          where temp.藥品碼 == med_cloud[k].藥品碼
+                                          select temp).ToList();
+                        if (medClasses_buf.Count == 0)
                         {
-                            medClass.中文名稱 = med_cloud[k].中文名稱;
-                            medClass.健保碼 = med_cloud[k].健保碼;
-                            medClass.包裝單位 = med_cloud[k].包裝單位;
-                            medClass.包裝數量 = med_cloud[k].包裝數量;
-                            medClass.廠牌 = med_cloud[k].廠牌;
-                            medClass.料號 = med_cloud[k].料號;
-                            medClass.最小包裝單位 = med_cloud[k].最小包裝單位;
-                            medClass.最小包裝數量 = med_cloud[k].最小包裝數量;
-                            medClass.生物製劑 = med_cloud[k].生物製劑;
-                            medClass.管制級別 = med_cloud[k].管制級別;
-                            medClass.藥品名稱 = med_cloud[k].藥品名稱;
-                            medClass.藥品學名 = med_cloud[k].藥品學名;
-                            medClass.藥品許可證號 = med_cloud[k].藥品許可證號;
-                            medClass.警訊藥品 = med_cloud[k].警訊藥品;
-                            medClass.開檔狀態 = med_cloud[k].開檔狀態;
-                            medClass.高價藥品 = med_cloud[k].高價藥品;
-                            medClasses_replace.Add(medClass);
+                            medClass medClass = new medClass();
+                            medClass = med_cloud[k];
+                            medClass.GUID = Guid.NewGuid().ToString();
+                            medClasses_add.Add(medClass);
                         }
+                        else
+                        {
+                            medClass medClass = new medClass();
+                            medClass = medClasses_buf[0];
+                            bool flag_replace = false;
+                            if (medClass.中文名稱 == null) medClass.中文名稱 = "";
+                            if (medClass.健保碼 == null) medClass.健保碼 = "";
+                            if (medClass.包裝單位 == null) medClass.包裝單位 = "";
+                            if (medClass.包裝數量 == null) medClass.包裝數量 = "";
+                            if (medClass.廠牌 == null) medClass.廠牌 = "";
+                            if (medClass.料號 == null) medClass.料號 = "";
+                            if (medClass.最小包裝單位 == null) medClass.最小包裝單位 = "";
+                            if (medClass.最小包裝數量 == null) medClass.最小包裝數量 = "";
+                            if (medClass.生物製劑 == null) medClass.生物製劑 = "";
+                            if (medClass.管制級別 == null) medClass.管制級別 = "";
+                            if (medClass.藥品名稱 == null) medClass.藥品名稱 = "";
+                            if (medClass.藥品學名 == null) medClass.藥品學名 = "";
+                            if (medClass.藥品許可證號 == null) medClass.藥品許可證號 = "";
+                            if (medClass.警訊藥品 == null) medClass.警訊藥品 = "";
+                            if (medClass.開檔狀態 == null) medClass.開檔狀態 = "";
+                            if (medClass.高價藥品 == null) medClass.高價藥品 = "";
 
+                            if (med_cloud[k].中文名稱 == null) med_cloud[k].中文名稱 = "";
+                            if (med_cloud[k].健保碼 == null) med_cloud[k].健保碼 = "";
+                            if (med_cloud[k].包裝單位 == null) med_cloud[k].包裝單位 = "";
+                            if (med_cloud[k].包裝數量 == null) med_cloud[k].包裝數量 = "";
+                            if (med_cloud[k].廠牌 == null) med_cloud[k].廠牌 = "";
+                            if (med_cloud[k].料號 == null) med_cloud[k].料號 = "";
+                            if (med_cloud[k].最小包裝單位 == null) med_cloud[k].最小包裝單位 = "";
+                            if (med_cloud[k].最小包裝數量 == null) med_cloud[k].最小包裝數量 = "";
+                            if (med_cloud[k].生物製劑 == null) med_cloud[k].生物製劑 = "";
+                            if (med_cloud[k].管制級別 == null) med_cloud[k].管制級別 = "";
+                            if (med_cloud[k].藥品名稱 == null) med_cloud[k].藥品名稱 = "";
+                            if (med_cloud[k].藥品學名 == null) med_cloud[k].藥品學名 = "";
+                            if (med_cloud[k].藥品許可證號 == null) med_cloud[k].藥品許可證號 = "";
+                            if (med_cloud[k].警訊藥品 == null) med_cloud[k].警訊藥品 = "";
+                            if (med_cloud[k].開檔狀態 == null) med_cloud[k].開檔狀態 = "";
+                            if (med_cloud[k].高價藥品 == null) med_cloud[k].高價藥品 = "";
+
+                            if (medClass.中文名稱 != med_cloud[k].中文名稱) flag_replace = true;
+                            if (medClass.健保碼 != med_cloud[k].健保碼) flag_replace = true;
+                            if (medClass.包裝單位 != med_cloud[k].包裝單位) flag_replace = true;
+                            //if (medClass.包裝數量 != med_cloud[k].包裝數量) flag_replace = true;
+                            if (medClass.廠牌 != med_cloud[k].廠牌) flag_replace = true;
+                            if (medClass.料號 != med_cloud[k].料號) flag_replace = true;
+                            //if (medClass.最小包裝單位 != med_cloud[k].最小包裝單位) flag_replace = true;
+                            //if (medClass.最小包裝數量 != med_cloud[k].最小包裝數量) flag_replace = true;
+                            if (medClass.生物製劑 != med_cloud[k].生物製劑) flag_replace = true;
+                            if (medClass.管制級別 != med_cloud[k].管制級別) flag_replace = true;
+                            if (medClass.藥品名稱 != med_cloud[k].藥品名稱) flag_replace = true;
+                            if (medClass.藥品學名 != med_cloud[k].藥品學名) flag_replace = true;
+                            if (medClass.藥品許可證號 != med_cloud[k].藥品許可證號) flag_replace = true;
+                            if (medClass.警訊藥品 != med_cloud[k].警訊藥品) flag_replace = true;
+                            if (medClass.開檔狀態 != med_cloud[k].開檔狀態 && med_cloud[k].開檔狀態.StringIsEmpty() == false) flag_replace = true;
+                            if (medClass.高價藥品 != med_cloud[k].高價藥品) flag_replace = true;
+
+                            if (flag_replace)
+                            {
+                                medClass.中文名稱 = med_cloud[k].中文名稱;
+                                medClass.健保碼 = med_cloud[k].健保碼;
+                                medClass.包裝單位 = med_cloud[k].包裝單位;
+                                medClass.包裝數量 = med_cloud[k].包裝數量;
+                                medClass.廠牌 = med_cloud[k].廠牌;
+                                medClass.料號 = med_cloud[k].料號;
+                                medClass.最小包裝單位 = med_cloud[k].最小包裝單位;
+                                medClass.最小包裝數量 = med_cloud[k].最小包裝數量;
+                                medClass.生物製劑 = med_cloud[k].生物製劑;
+                                medClass.管制級別 = med_cloud[k].管制級別;
+                                medClass.藥品名稱 = med_cloud[k].藥品名稱;
+                                medClass.藥品學名 = med_cloud[k].藥品學名;
+                                medClass.藥品許可證號 = med_cloud[k].藥品許可證號;
+                                medClass.警訊藥品 = med_cloud[k].警訊藥品;
+                                if(med_cloud[k].開檔狀態.StringIsEmpty())
+                                {
+                                    if (medClass.開檔狀態.StringIsEmpty()) med_cloud[k].開檔狀態 = enum_開檔狀態.開檔中.GetEnumName();
+                                }
+                                else
+                                {
+                                    medClass.開檔狀態 = med_cloud[k].開檔狀態;
+                                }
+                      
+              
+                                medClass.高價藥品 = med_cloud[k].高價藥品;
+                                medClasses_replace.Add(medClass);
+                            }
+
+                        }
                     }
+
+                    list_med_add = medClasses_add.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                    list_med_replace = medClasses_replace.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                    if (list_med_add.Count > 0) sQLControl_med_dps.AddRows(null, list_med_add);
+                    if (list_med_replace.Count > 0) sQLControl_med_dps.UpdateByDefulteExtra(null, list_med_replace);
+               
+                    Logger.Log($"{DateTime.Now.ToDateTimeString()} 設備名稱 : {設備名稱} , 新增<{list_med_add.Count}>筆 , 修改<{list_med_replace.Count}>筆");
+
                 }
-
-                list_med_add = medClasses_add.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
-                list_med_replace = medClasses_replace.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
-                if (list_med_add.Count > 0) sQLControl_med_dps.AddRows(null, list_med_add);
-                if (list_med_replace.Count > 0) sQLControl_med_dps.UpdateByDefulteExtra(null, list_med_replace);
-
-                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} 設備名稱 : {設備名稱} , 新增<{list_med_add.Count}>筆 , 修改<{list_med_replace.Count}>筆");
-
+                catch(Exception e)
+                {
+                    Logger.Log($"Exception : {e.Message}");
+                }
+                finally
+                {
+                 
+                }
+              
             }
+            Logger.LogAddLine();
             System.Threading.Thread.Sleep(5000);
         }
     }

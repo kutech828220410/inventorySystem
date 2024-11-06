@@ -14,6 +14,7 @@ using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using SQLUI;
+using DrawingClass;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
@@ -271,6 +272,11 @@ namespace 調劑台管理系統
             public Color 領藥台_03_Color = Color.Black;
             public Color 領藥台_04_Color = Color.Black;
 
+            public int 領藥台_01_RowsHeight = 80;
+            public int 領藥台_02_RowsHeight = 80;
+            public int 領藥台_03_RowsHeight = 80;
+            public int 領藥台_04_RowsHeight = 80;
+
             public string 領藥台_01_columns_jsonStr;
             public string 領藥台_02_columns_jsonStr;
             public string 領藥台_03_columns_jsonStr;
@@ -279,6 +285,10 @@ namespace 調劑台管理系統
             public int 領藥台_01_藥品資訊_Height = 275;
             public int 領藥台_02_藥品資訊_Height = 275;
 
+            public bool flah_圖文辨識樣式01 = false;
+            public bool flah_圖文辨識樣式02 = false;
+            public bool flah_圖文辨識樣式03 = false;
+            public bool flah_圖文辨識樣式04 = false;
         }
         public void SaveConfig工程模式()
         {
@@ -298,6 +308,17 @@ namespace 調劑台管理系統
 
             saveConfig.領藥台_01_藥品資訊_Height = _panel_領藥台_01_藥品資訊.Height;
             saveConfig.領藥台_02_藥品資訊_Height = _panel_領藥台_02_藥品資訊.Height;
+
+            saveConfig.flah_圖文辨識樣式01 = _sqL_DataGridView_領藥台_01_領藥內容.CustomEnable;
+            saveConfig.flah_圖文辨識樣式02 = _sqL_DataGridView_領藥台_02_領藥內容.CustomEnable;
+            saveConfig.flah_圖文辨識樣式03 = _sqL_DataGridView_領藥台_03_領藥內容.CustomEnable;
+            saveConfig.flah_圖文辨識樣式04 = _sqL_DataGridView_領藥台_04_領藥內容.CustomEnable;
+
+            saveConfig.領藥台_01_RowsHeight = _sqL_DataGridView_領藥台_01_領藥內容.RowsHeight;
+            saveConfig.領藥台_02_RowsHeight = _sqL_DataGridView_領藥台_02_領藥內容.RowsHeight;
+            saveConfig.領藥台_03_RowsHeight = _sqL_DataGridView_領藥台_03_領藥內容.RowsHeight;
+            saveConfig.領藥台_04_RowsHeight = _sqL_DataGridView_領藥台_04_領藥內容.RowsHeight;
+
             Basic.FileIO.SaveProperties(saveConfig, StreamName);
         }
         public void LoadConfig工程模式()
@@ -317,15 +338,52 @@ namespace 調劑台管理系統
                     this.panel_工程模式_領藥台_04_顏色.BackColor = saveConfig.領藥台_04_Color;
                     if(ControlMode == false)
                     {
+                        _sqL_DataGridView_領藥台_01_領藥內容.CustomEnable = saveConfig.flah_圖文辨識樣式01;
+                        _sqL_DataGridView_領藥台_02_領藥內容.CustomEnable = saveConfig.flah_圖文辨識樣式02;
+                        _sqL_DataGridView_領藥台_03_領藥內容.CustomEnable = saveConfig.flah_圖文辨識樣式03;
+                        _sqL_DataGridView_領藥台_04_領藥內容.CustomEnable = saveConfig.flah_圖文辨識樣式04;
                         if (saveConfig.領藥台_01_columns_jsonStr.StringIsEmpty() == false) _sqL_DataGridView_領藥台_01_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_01_columns_jsonStr);
                         if (saveConfig.領藥台_02_columns_jsonStr.StringIsEmpty() == false) _sqL_DataGridView_領藥台_02_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_02_columns_jsonStr);
                         if (saveConfig.領藥台_03_columns_jsonStr.StringIsEmpty() == false) _sqL_DataGridView_領藥台_03_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_03_columns_jsonStr);
                         if (saveConfig.領藥台_04_columns_jsonStr.StringIsEmpty() == false) _sqL_DataGridView_領藥台_04_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_04_columns_jsonStr);
 
+                        if (_sqL_DataGridView_領藥台_01_領藥內容.CustomEnable) { _sqL_DataGridView_領藥台_01_領藥內容.顯示首列 = false; _sqL_DataGridView_領藥台_01_領藥內容.顯示首行 = false; }
+                        if (_sqL_DataGridView_領藥台_02_領藥內容.CustomEnable) { _sqL_DataGridView_領藥台_02_領藥內容.顯示首列 = false; _sqL_DataGridView_領藥台_02_領藥內容.顯示首行 = false; }
+                        if (_sqL_DataGridView_領藥台_03_領藥內容.CustomEnable) { _sqL_DataGridView_領藥台_03_領藥內容.顯示首列 = false; _sqL_DataGridView_領藥台_03_領藥內容.顯示首行 = false; }
+                        if (_sqL_DataGridView_領藥台_04_領藥內容.CustomEnable) { _sqL_DataGridView_領藥台_04_領藥內容.顯示首列 = false; _sqL_DataGridView_領藥台_04_領藥內容.顯示首行 = false; }
+
+                        if (saveConfig.領藥台_01_RowsHeight == 0) saveConfig.領藥台_01_RowsHeight = 80;
+                        if (saveConfig.領藥台_02_RowsHeight == 0) saveConfig.領藥台_02_RowsHeight = 80;
+                        if (saveConfig.領藥台_03_RowsHeight == 0) saveConfig.領藥台_03_RowsHeight = 80;
+                        if (saveConfig.領藥台_04_RowsHeight == 0) saveConfig.領藥台_04_RowsHeight = 80;
+
+                        _sqL_DataGridView_領藥台_01_領藥內容.RowsHeight = saveConfig.領藥台_01_RowsHeight;
+                        _sqL_DataGridView_領藥台_02_領藥內容.RowsHeight = saveConfig.領藥台_02_RowsHeight;
+                        _sqL_DataGridView_領藥台_03_領藥內容.RowsHeight = saveConfig.領藥台_03_RowsHeight;
+                        _sqL_DataGridView_領藥台_04_領藥內容.RowsHeight = saveConfig.領藥台_04_RowsHeight;
+
+
                         _sqL_DataGridView_領藥台_01_領藥內容.Init();
                         _sqL_DataGridView_領藥台_02_領藥內容.Init();
                         _sqL_DataGridView_領藥台_03_領藥內容.Init();
                         _sqL_DataGridView_領藥台_04_領藥內容.Init();
+
+
+
+
+                        if (_sqL_DataGridView_領藥台_01_領藥內容.CustomEnable)
+                        {
+                            this.sqL_DataGridView_領藥台_01_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                            panel_領藥台_01_藥品資訊.Visible = false;
+                        }
+                        if (_sqL_DataGridView_領藥台_02_領藥內容.CustomEnable)
+                        {
+                            this.sqL_DataGridView_領藥台_02_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                            panel_領藥台_02_藥品資訊.Visible = false;
+                        }
+                        if (_sqL_DataGridView_領藥台_03_領藥內容.CustomEnable) this.sqL_DataGridView_領藥台_03_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                        if (_sqL_DataGridView_領藥台_04_領藥內容.CustomEnable) this.sqL_DataGridView_領藥台_04_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+
                         if (saveConfig.領藥台_01_藥品資訊_Height == 0) saveConfig.領藥台_01_藥品資訊_Height = 275;
                         if (saveConfig.領藥台_02_藥品資訊_Height == 0) saveConfig.領藥台_02_藥品資訊_Height = 275;
                         _panel_領藥台_01_藥品資訊.Height = saveConfig.領藥台_01_藥品資訊_Height;
@@ -337,6 +395,120 @@ namespace 調劑台管理系統
             }
 
         }
+
+        private void SqL_DataGridView_領藥內容_RowPostPaintingEventEx(SQL_DataGridView sQL_DataGridView, DataGridViewRowPostPaintEventArgs e)
+        {
+            object[] value = sQL_DataGridView.GetRowValues(e.RowIndex);
+            if (value != null)
+            {
+
+                Color row_Backcolor = Color.White;
+                Color row_Forecolor = Color.Black;
+
+                string 狀態 = value[(int)enum_取藥堆疊母資料.狀態].ObjectToString();
+                if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
+                {
+                   row_Backcolor = Color.Yellow;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
+                {
+                   row_Backcolor = Color.Lime;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())
+                {
+                   row_Backcolor = Color.Red;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName())
+                {
+                   row_Backcolor = Color.Pink;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName())
+                {
+                   row_Backcolor = Color.Pink;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                   row_Backcolor = Color.White;
+                }
+
+
+              
+
+                using (Brush brush = new SolidBrush(row_Backcolor))
+                {
+                    int x = e.RowBounds.Left;
+                    int y = e.RowBounds.Top;
+                    int width = e.RowBounds.Width;
+                    int height = e.RowBounds.Height;
+                    int image_width = 250;
+                    e.Graphics.FillRectangle(brush, e.RowBounds);
+                    DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
+                    Size size = new Size();
+                    PointF pointF = new PointF();
+                    float temp_x = 0;
+                    Font font;
+                    string Code = value[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    int col_width = 0;
+                    List<Image> images = Main_Form.Function_取得藥品圖片(Code);
+                    if (images.Count > 0)
+                    {
+                        if (images[0] != null) e.Graphics.DrawImage(images[0], x + 2, y + 2, image_width - 2, height - 2);
+                    }
+
+
+                    //font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.藥品碼.GetEnumName());
+                    //string 藥碼 = $"({Code})";
+                    //DrawingClass.Draw.文字左上繪製(藥碼, new PointF(10, y + 10), font, Color.Black, e.Graphics);
+                    //size = 藥碼.MeasureText(font);
+
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.藥品名稱.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.藥品名稱.GetEnumName());
+                    string 藥名 = $"{value[(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString()}";
+                    size = 藥名.MeasureText(font);
+                    pointF = new PointF(10 + image_width, y);
+                    DrawingClass.Draw.DrawString(e.Graphics, 藥名, font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+                    //string 單位 = $"[{value[(int)enum_取藥堆疊母資料.單位].ObjectToString()}]";
+                    //DrawingClass.Draw.文字左上繪製(單位, new PointF(10 + 650, y + 10), new Font("標楷體", 14), row_Forecolor, e.Graphics);
+
+                    pointF = new PointF(temp_x + 10, y);
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.總異動量.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.總異動量.GetEnumName());
+                    string 總異動量 = $"{value[(int)enum_取藥堆疊母資料.總異動量].ObjectToString()}";
+                    size = 總異動量.MeasureText(font);
+                    DrawingClass.Draw.DrawString(e.Graphics, 總異動量, font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+                    pointF = new PointF(temp_x + 10, y);
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.結存量.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.結存量.GetEnumName());
+                    string 結存量 = $"{value[(int)enum_取藥堆疊母資料.結存量].ObjectToString()}";
+                    size = 結存量.MeasureText(font);
+                    DrawingClass.Draw.DrawString(e.Graphics, $"({結存量})", font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+
+                    font = new Font("標楷體", 14, FontStyle.Bold);
+                    size = 狀態.MeasureText(font);
+                    pointF = new PointF(e.RowBounds.Right - size.Width, e.RowBounds.Bottom - size.Height - 10);
+                    DrawingClass.Draw.文字左上繪製($"{狀態}", pointF, font, row_Forecolor, e.Graphics);
+                    temp_x = pointF.X + col_width;
+
+            
+                    if (sQL_DataGridView.dataGridView.Rows[e.RowIndex].Selected)
+                    {
+                        DrawingClass.Draw.方框繪製(new Point(x, y), new Size(width, height), Color.Blue, 2, false, e.Graphics, 1, 1);
+                    }
+                    else
+                    {
+                        DrawingClass.Draw.方框繪製(new Point(x, y), new Size(width, height), Color.Black, 1, false, e.Graphics, 1, 1);
+                    }
+                }
+            }
+        }
+
+   
         #endregion
     }
 }

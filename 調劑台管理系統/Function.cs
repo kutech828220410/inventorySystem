@@ -34,6 +34,36 @@ namespace 調劑台管理系統
         public static StorageUI_WT32 _storageUI_WT32 = null;
         public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
 
+        public static List<medPicClass> medPicClasses = new List<medPicClass>();
+
+        public static List<Image> Function_取得藥品圖片(string Code)
+        {
+            List<medPicClass> medPicClasse_buf = (from temp in medPicClasses
+                                                  where temp.藥碼 == Code
+                                                  select temp).ToList();
+            List<Image> images = new List<Image>();
+            if (medPicClasse_buf.Count == 0)
+            {
+                medPicClass medPicClass = new medPicClass();
+                images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
+                medPicClass.藥碼 = Code;
+                if (images.Count == null) return null;
+                for (int i = 0; i < images.Count; i++)
+                {
+                    if (i == 0) medPicClass.Image_0 = images[0];
+                    if (i == 1) medPicClass.Image_1 = images[1];
+                }
+                medPicClasses.Add(medPicClass);
+                return images;
+            }
+            else
+            {
+                if (medPicClasse_buf[0].Image_0 != null) images.Add(medPicClasse_buf[0].Image_0);
+                if (medPicClasse_buf[0].Image_1 != null) images.Add(medPicClasse_buf[0].Image_1);
+                return images;
+            }
+        }
+
         public void Function_調劑作業_醫令資訊更新(int 台號)
         {
             this.Invoke(new Action(delegate 
@@ -1462,6 +1492,71 @@ namespace 調劑台管理系統
 
         }
 
+
+        public void Function_儲位刷新(string 藥品碼, int 庫存)
+        {
+            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            List<Task> taskList = new List<Task>();
+            List<string> list_IP = new List<string>();
+            List<string> list_IP_buf = new List<string>();
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+                Device device = list_Device[i] as Device;
+                string IP = device.IP;
+
+                list_IP_buf = (from value in list_IP
+                               where value == IP
+                               select value).ToList();
+                if (list_IP_buf.Count > 0) continue;
+
+                if (device != null)
+                {
+                    if (device.DeviceType == DeviceType.EPD213 || device.DeviceType == DeviceType.EPD213_lock
+                     || device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
+                     || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
+                     || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
+                    {
+                        Storage storage = list_Device[i] as Storage;
+                        if (storage != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                storage.清除所有庫存資料();
+                                storage.新增效期("2050/12/31", 庫存.ToString());
+                                this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                            }));
+
+                            list_IP.Add(IP);
+                        }
+                    }
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    {
+                        Box box = list_Device[i] as Box;
+                        if (box != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                                List<Box> boxes = drawer.SortByCode(藥品碼);
+                                for (int k = 0; k < boxes.Count; k++)
+                                {
+                                    boxes[k].清除所有庫存資料();
+                                    boxes[k].新增效期("2050/12/31", 庫存.ToString());
+                                }
+                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);
+                            }));
+
+                            list_IP.Add(IP);
+                        }
+                    }
+                 
+                  
+
+                    Task.WhenAll(taskList).Wait();
+                }
+            }
+
+        }
         public void Function_儲位刷新(string 藥品碼)
         {
             List<string> list_lock_IP = new List<string>();
@@ -1485,7 +1580,8 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
+                    if (device.DeviceType == DeviceType.EPD213 || device.DeviceType == DeviceType.EPD213_lock
+                     || device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock
                      || device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock
                      || device.DeviceType == DeviceType.EPD420 || device.DeviceType == DeviceType.EPD420_lock)
                     {
@@ -1494,11 +1590,7 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                if (!plC_CheckBox_測試模式.Checked)
-                                {
-                                    this.storageUI_EPD_266.DrawToEpd_UDP(storage);
-                                    //this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                                }                        
+                                this.storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
                      
                             list_IP.Add(IP);

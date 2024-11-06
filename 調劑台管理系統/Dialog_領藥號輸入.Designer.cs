@@ -1,7 +1,7 @@
 ﻿
 namespace 調劑台管理系統
 {
-    partial class Dialog_病歷號輸入
+    partial class Dialog_領藥號輸入
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace 調劑台管理系統
             this.rJ_Button_確認 = new MyUI.RJ_Button();
             this.rJ_Button_取消 = new MyUI.RJ_Button();
             this.rJ_Button_輸入 = new MyUI.RJ_Button();
-            this.rJ_TextBox_病歷號 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_領藥號 = new MyUI.RJ_TextBox();
             this.rJ_Lable26 = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rJ_Button_選取處方 = new MyUI.RJ_Button();
@@ -47,6 +47,7 @@ namespace 調劑台管理系統
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Button_刪除 = new MyUI.RJ_Button();
             this.sqL_DataGridView_醫令資料_已選取處方 = new SQLUI.SQL_DataGridView();
+            this.rJ_DatePicker_日期 = new MyUI.RJ_DatePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.plC_RJ_GroupBox1.ContentsPanel.SuspendLayout();
@@ -56,6 +57,7 @@ namespace 調劑台管理系統
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.rJ_DatePicker_日期);
             this.panel1.Controls.Add(this.checkBox_高價藥);
             this.panel1.Controls.Add(this.checkBox_其餘品項);
             this.panel1.Controls.Add(this.checkBox_高警訊);
@@ -64,13 +66,13 @@ namespace 調劑台管理系統
             this.panel1.Controls.Add(this.rJ_Button_確認);
             this.panel1.Controls.Add(this.rJ_Button_取消);
             this.panel1.Controls.Add(this.rJ_Button_輸入);
-            this.panel1.Controls.Add(this.rJ_TextBox_病歷號);
+            this.panel1.Controls.Add(this.rJ_TextBox_領藥號);
             this.panel1.Controls.Add(this.rJ_Lable26);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1676, 81);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // checkBox_高價藥
             // 
@@ -78,7 +80,7 @@ namespace 調劑台管理系統
             this.checkBox_高價藥.Checked = true;
             this.checkBox_高價藥.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_高價藥.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_高價藥.Location = new System.Drawing.Point(969, 26);
+            this.checkBox_高價藥.Location = new System.Drawing.Point(1168, 25);
             this.checkBox_高價藥.Name = "checkBox_高價藥";
             this.checkBox_高價藥.Size = new System.Drawing.Size(86, 28);
             this.checkBox_高價藥.TabIndex = 62;
@@ -89,7 +91,7 @@ namespace 調劑台管理系統
             // 
             this.checkBox_其餘品項.AutoSize = true;
             this.checkBox_其餘品項.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_其餘品項.Location = new System.Drawing.Point(1061, 26);
+            this.checkBox_其餘品項.Location = new System.Drawing.Point(1260, 25);
             this.checkBox_其餘品項.Name = "checkBox_其餘品項";
             this.checkBox_其餘品項.Size = new System.Drawing.Size(105, 28);
             this.checkBox_其餘品項.TabIndex = 61;
@@ -102,7 +104,7 @@ namespace 調劑台管理系統
             this.checkBox_高警訊.Checked = true;
             this.checkBox_高警訊.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_高警訊.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_高警訊.Location = new System.Drawing.Point(877, 26);
+            this.checkBox_高警訊.Location = new System.Drawing.Point(1076, 25);
             this.checkBox_高警訊.Name = "checkBox_高警訊";
             this.checkBox_高警訊.Size = new System.Drawing.Size(86, 28);
             this.checkBox_高警訊.TabIndex = 60;
@@ -115,7 +117,7 @@ namespace 調劑台管理系統
             this.checkBox_管4.Checked = true;
             this.checkBox_管4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_管4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_管4.Location = new System.Drawing.Point(812, 26);
+            this.checkBox_管4.Location = new System.Drawing.Point(1011, 25);
             this.checkBox_管4.Name = "checkBox_管4";
             this.checkBox_管4.Size = new System.Drawing.Size(59, 28);
             this.checkBox_管4.TabIndex = 59;
@@ -128,7 +130,7 @@ namespace 調劑台管理系統
             this.checkBox_管1_3.Checked = true;
             this.checkBox_管1_3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_管1_3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_管1_3.Location = new System.Drawing.Point(722, 26);
+            this.checkBox_管1_3.Location = new System.Drawing.Point(921, 25);
             this.checkBox_管1_3.Name = "checkBox_管1_3";
             this.checkBox_管1_3.Size = new System.Drawing.Size(84, 28);
             this.checkBox_管1_3.TabIndex = 58;
@@ -217,7 +219,7 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_輸入.GUID = "";
             this.rJ_Button_輸入.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_輸入.Location = new System.Drawing.Point(582, 8);
+            this.rJ_Button_輸入.Location = new System.Drawing.Point(784, 7);
             this.rJ_Button_輸入.Name = "rJ_Button_輸入";
             this.rJ_Button_輸入.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_輸入.ProhibitionLineWidth = 4;
@@ -233,29 +235,29 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.TextHeight = 0;
             this.rJ_Button_輸入.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_病歷號
+            // rJ_TextBox_領藥號
             // 
-            this.rJ_TextBox_病歷號.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_病歷號.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_病歷號.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_病歷號.BorderRadius = 0;
-            this.rJ_TextBox_病歷號.BorderSize = 2;
-            this.rJ_TextBox_病歷號.Font = new System.Drawing.Font("微軟正黑體", 20F);
-            this.rJ_TextBox_病歷號.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_病歷號.GUID = "";
-            this.rJ_TextBox_病歷號.Location = new System.Drawing.Point(169, 15);
-            this.rJ_TextBox_病歷號.Multiline = false;
-            this.rJ_TextBox_病歷號.Name = "rJ_TextBox_病歷號";
-            this.rJ_TextBox_病歷號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_病歷號.PassWordChar = false;
-            this.rJ_TextBox_病歷號.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_病歷號.PlaceholderText = "";
-            this.rJ_TextBox_病歷號.ShowTouchPannel = false;
-            this.rJ_TextBox_病歷號.Size = new System.Drawing.Size(407, 50);
-            this.rJ_TextBox_病歷號.TabIndex = 54;
-            this.rJ_TextBox_病歷號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_病歷號.Texts = "";
-            this.rJ_TextBox_病歷號.UnderlineStyle = false;
+            this.rJ_TextBox_領藥號.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_領藥號.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_領藥號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_領藥號.BorderRadius = 0;
+            this.rJ_TextBox_領藥號.BorderSize = 2;
+            this.rJ_TextBox_領藥號.Font = new System.Drawing.Font("微軟正黑體", 20F);
+            this.rJ_TextBox_領藥號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_領藥號.GUID = "";
+            this.rJ_TextBox_領藥號.Location = new System.Drawing.Point(510, 15);
+            this.rJ_TextBox_領藥號.Multiline = false;
+            this.rJ_TextBox_領藥號.Name = "rJ_TextBox_領藥號";
+            this.rJ_TextBox_領藥號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_領藥號.PassWordChar = false;
+            this.rJ_TextBox_領藥號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_領藥號.PlaceholderText = "";
+            this.rJ_TextBox_領藥號.ShowTouchPannel = false;
+            this.rJ_TextBox_領藥號.Size = new System.Drawing.Size(270, 50);
+            this.rJ_TextBox_領藥號.TabIndex = 54;
+            this.rJ_TextBox_領藥號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_領藥號.Texts = "";
+            this.rJ_TextBox_領藥號.UnderlineStyle = false;
             // 
             // rJ_Lable26
             // 
@@ -268,13 +270,13 @@ namespace 調劑台管理系統
             this.rJ_Lable26.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable26.ForeColor = System.Drawing.Color.Black;
             this.rJ_Lable26.GUID = "";
-            this.rJ_Lable26.Location = new System.Drawing.Point(12, 9);
+            this.rJ_Lable26.Location = new System.Drawing.Point(353, 9);
             this.rJ_Lable26.Name = "rJ_Lable26";
             this.rJ_Lable26.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable26.ShadowSize = 0;
             this.rJ_Lable26.Size = new System.Drawing.Size(147, 63);
             this.rJ_Lable26.TabIndex = 53;
-            this.rJ_Lable26.Text = "病歷號";
+            this.rJ_Lable26.Text = "領藥號";
             this.rJ_Lable26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable26.TextColor = System.Drawing.Color.Black;
             // 
@@ -286,7 +288,7 @@ namespace 調劑台管理系統
             this.panel2.Location = new System.Drawing.Point(4, 109);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(950, 871);
-            this.panel2.TabIndex = 8;
+            this.panel2.TabIndex = 9;
             // 
             // rJ_Button_選取處方
             // 
@@ -384,7 +386,7 @@ namespace 調劑台管理系統
             // 
             this.plC_RJ_GroupBox1.ContentsPanel.BackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox1.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_GroupBox1.ContentsPanel.BorderColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_GroupBox1.ContentsPanel.BorderColor = System.Drawing.Color.Gray;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderRadius = 2;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderSize = 2;
             this.plC_RJ_GroupBox1.ContentsPanel.Controls.Add(this.panel3);
@@ -392,30 +394,30 @@ namespace 調劑台管理系統
             this.plC_RJ_GroupBox1.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox1.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox1.ContentsPanel.IsSelected = false;
-            this.plC_RJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 50);
+            this.plC_RJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 70);
             this.plC_RJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(10);
             this.plC_RJ_GroupBox1.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_GroupBox1.ContentsPanel.ShadowSize = 0;
-            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(726, 821);
+            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(726, 801);
             this.plC_RJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox1.GUID = "";
             this.plC_RJ_GroupBox1.Location = new System.Drawing.Point(954, 109);
             this.plC_RJ_GroupBox1.Name = "plC_RJ_GroupBox1";
             this.plC_RJ_GroupBox1.PannelBackColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox1.PannelBorderColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_GroupBox1.PannelBorderColor = System.Drawing.Color.Gray;
             this.plC_RJ_GroupBox1.PannelBorderRadius = 2;
             this.plC_RJ_GroupBox1.PannelBorderSize = 2;
             this.plC_RJ_GroupBox1.Size = new System.Drawing.Size(726, 871);
-            this.plC_RJ_GroupBox1.TabIndex = 9;
-            this.plC_RJ_GroupBox1.TitleBackColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_GroupBox1.TabIndex = 11;
+            this.plC_RJ_GroupBox1.TitleBackColor = System.Drawing.Color.Gray;
             this.plC_RJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_GroupBox1.TitleBorderRadius = 5;
             this.plC_RJ_GroupBox1.TitleBorderSize = 0;
-            this.plC_RJ_GroupBox1.TitleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_GroupBox1.TitleFont = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_GroupBox1.TitleForeColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox1.TitleHeight = 50;
+            this.plC_RJ_GroupBox1.TitleHeight = 70;
             this.plC_RJ_GroupBox1.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox1.TitleTexts = "已選取處方";
             // 
@@ -423,7 +425,7 @@ namespace 調劑台管理系統
             // 
             this.panel3.Controls.Add(this.rJ_Button_刪除);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(10, 724);
+            this.panel3.Location = new System.Drawing.Point(10, 704);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(706, 87);
@@ -501,7 +503,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料_已選取處方.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_醫令資料_已選取處方.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_醫令資料_已選取處方.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫令資料_已選取處方.Size = new System.Drawing.Size(706, 801);
+            this.sqL_DataGridView_醫令資料_已選取處方.Size = new System.Drawing.Size(706, 781);
             this.sqL_DataGridView_醫令資料_已選取處方.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_醫令資料_已選取處方.TabIndex = 9;
             this.sqL_DataGridView_醫令資料_已選取處方.TableName = "order_list";
@@ -518,7 +520,23 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料_已選取處方.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫令資料_已選取處方.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // Dialog_病歷號輸入
+            // rJ_DatePicker_日期
+            // 
+            this.rJ_DatePicker_日期.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_DatePicker_日期.BorderSize = 0;
+            this.rJ_DatePicker_日期.CalendarFont = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_DatePicker_日期.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_DatePicker_日期.Location = new System.Drawing.Point(22, 19);
+            this.rJ_DatePicker_日期.MinimumSize = new System.Drawing.Size(250, 35);
+            this.rJ_DatePicker_日期.Name = "rJ_DatePicker_日期";
+            this.rJ_DatePicker_日期.PickerFont = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_DatePicker_日期.PickerFore = System.Drawing.SystemColors.ControlText;
+            this.rJ_DatePicker_日期.Size = new System.Drawing.Size(308, 46);
+            this.rJ_DatePicker_日期.SkinColor = System.Drawing.Color.DimGray;
+            this.rJ_DatePicker_日期.TabIndex = 63;
+            this.rJ_DatePicker_日期.TextColor = System.Drawing.Color.White;
+            // 
+            // Dialog_領藥號輸入
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -527,8 +545,7 @@ namespace 調劑台管理系統
             this.Controls.Add(this.plC_RJ_GroupBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Dialog_病歷號輸入";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Name = "Dialog_領藥號輸入";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -542,22 +559,23 @@ namespace 調劑台管理系統
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private MyUI.RJ_TextBox rJ_TextBox_病歷號;
-        private MyUI.RJ_Lable rJ_Lable26;
-        private MyUI.RJ_Button rJ_Button_輸入;
-        private MyUI.RJ_Button rJ_Button_確認;
-        private MyUI.RJ_Button rJ_Button_取消;
-        private System.Windows.Forms.Panel panel2;
-        private MyUI.RJ_Button rJ_Button_選取處方;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料;
-        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox1;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料_已選取處方;
-        private MyUI.RJ_Button rJ_Button_刪除;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox checkBox_高價藥;
         private System.Windows.Forms.CheckBox checkBox_其餘品項;
         private System.Windows.Forms.CheckBox checkBox_高警訊;
         private System.Windows.Forms.CheckBox checkBox_管4;
         private System.Windows.Forms.CheckBox checkBox_管1_3;
-        private System.Windows.Forms.CheckBox checkBox_高價藥;
+        private MyUI.RJ_Button rJ_Button_確認;
+        private MyUI.RJ_Button rJ_Button_取消;
+        private MyUI.RJ_Button rJ_Button_輸入;
+        private MyUI.RJ_TextBox rJ_TextBox_領藥號;
+        private MyUI.RJ_Lable rJ_Lable26;
+        private System.Windows.Forms.Panel panel2;
+        private MyUI.RJ_Button rJ_Button_選取處方;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料;
+        private MyUI.RJ_DatePicker rJ_DatePicker_日期;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox1;
+        private System.Windows.Forms.Panel panel3;
+        private MyUI.RJ_Button rJ_Button_刪除;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料_已選取處方;
     }
 }

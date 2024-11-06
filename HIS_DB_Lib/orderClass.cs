@@ -347,6 +347,14 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
         }
+        static public List<OrderClass> get_by_PATCODE(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderClass> OrderClasses = get_by_PATCODE(API_Server, value);
+            OrderClasses = (from temp in OrderClasses
+                            where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                            select temp).ToList();
+            return OrderClasses;
+        }
         static public List<OrderClass> get_by_PATNAME(string API_Server, string value)
         {
             string url = $"{API_Server}/api/order/get_by_PATNAME";
@@ -370,6 +378,15 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
         }
+        static public List<OrderClass> get_by_PATNAME(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderClass> OrderClasses = get_by_PATNAME(API_Server, value);
+            OrderClasses = (from temp in OrderClasses
+                            where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                            select temp).ToList();
+            return OrderClasses;
+        }
+
 
         static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime dateTime)
         {
@@ -427,6 +444,78 @@ namespace HIS_DB_Lib
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+
+        static public List<OrderClass> get_API_by_MRN(string url, string mrn , DateTime dt_st, DateTime dt_end)
+        {
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(mrn);
+            returnData.ValueAry.Add(dt_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dt_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_API_by_MRN(string url, string mrn)
+        {
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(mrn);
+
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_API_by_BAG_NUM(string url, string BAG_NUM ,DateTime dateTime)
+        {
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(BAG_NUM);
+            returnData.ValueAry.Add(dateTime.ToDateTimeString());
+
 
 
             string json_in = returnData.JsonSerializationt();
@@ -510,7 +599,6 @@ namespace HIS_DB_Lib
             OrderClasse.Add(OrderClass);
             return add(API_Server, OrderClasse);
         }
-
         static public List<OrderClass> add(string API_Server, List<OrderClass> OrderClasses)
         {
             string url = $"{API_Server}/api/order/add";
