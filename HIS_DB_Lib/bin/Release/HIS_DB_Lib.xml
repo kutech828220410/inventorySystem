@@ -3415,7 +3415,7 @@
             </code>
             </example>
         </member>
-        <!-- 已忽略成員 "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" -->
         <member name="M:HIS_DB_Lib.udnoectc.update_udnoectc_confirm_ph(System.String,System.String,System.String,System.String,HIS_DB_Lib.udnoectc)">
             <summary>
              更新指定操作員的化療配藥通知子項目為醫令確認狀態。
