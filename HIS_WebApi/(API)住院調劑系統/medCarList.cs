@@ -295,8 +295,9 @@ namespace HIS_WebApi._API_住院調劑系統
                     return returnData.JsonSerializationt(true);
                 }
                 string 藥局 = returnData.ValueAry[0];
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {

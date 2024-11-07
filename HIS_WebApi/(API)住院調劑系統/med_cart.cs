@@ -1669,14 +1669,14 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medCarListClass> sql_medCarList = list_med_carlist.SQLToClass<medCarListClass, enum_med_carList>();
 
-                List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.調劑狀態 == "").ToList();
+                List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.覆核狀態 == "").ToList();
                 medCarListClass medCarList = sql_medCarList.FirstOrDefault(temp => temp.護理站 == 護理站);
                 if (medCpoeClasses.Count != 0)
                 {
                     int groupCount = medCpoeClasses
                         .GroupBy(temp => temp.Master_GUID)
                         .Count();
-                    medCarList.備註 = $"{藥局} {護理站} 尚有{groupCount}床調劑未完成";
+                    medCarList.備註 = $"{藥局} {護理站} 尚有{groupCount}床覆核未完成";
                     returnData.Code = 200;
                     returnData.Data = medCarList;
                     returnData.Result = $"未交車";
