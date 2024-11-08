@@ -484,7 +484,7 @@ namespace HIS_DB_Lib
                 }
                 else
                 {
-                    dictionary[item.GUID] = new List<medCarInfoClass>();
+                    dictionary[item.GUID] = new List<medCarInfoClass>() { item };
                 }
             }
             return dictionary;
@@ -492,6 +492,60 @@ namespace HIS_DB_Lib
         static public List<medCarInfoClass> SortDictByGUID (Dictionary<string, List<medCarInfoClass>> dict, string GUID)
         {
             if (dict.TryGetValue(GUID, out List<medCarInfoClass> medCarInfoClasses))
+            {
+                return medCarInfoClasses;
+            }
+            else
+            {
+                return new List<medCarInfoClass>();
+            }
+        }
+        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByMedCart(List<medCarInfoClass> medCarInfoClasses)
+        {
+            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
+            foreach (var item in medCarInfoClasses)
+            {
+                if (dictionary.TryGetValue(item.護理站, out List<medCarInfoClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.護理站] = new List<medCarInfoClass>() { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medCarInfoClass> SortDictByMedCart(Dictionary<string, List<medCarInfoClass>> dict, string 護理站)
+        {
+            if (dict.TryGetValue(護理站, out List<medCarInfoClass> medCarInfoClasses))
+            {
+                return medCarInfoClasses;
+            }
+            else
+            {
+                return new List<medCarInfoClass>();
+            }
+        }
+        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByBedNum(List<medCarInfoClass> medCarInfoClasses)
+        {
+            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
+            foreach (var item in medCarInfoClasses)
+            {
+                if (dictionary.TryGetValue(item.床號, out List<medCarInfoClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.床號] = new List<medCarInfoClass>() { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medCarInfoClass> SortDictByBedNum(Dictionary<string, List<medCarInfoClass>> dict, string 床號)
+        {
+            if (dict.TryGetValue(床號, out List<medCarInfoClass> medCarInfoClasses))
             {
                 return medCarInfoClasses;
             }
