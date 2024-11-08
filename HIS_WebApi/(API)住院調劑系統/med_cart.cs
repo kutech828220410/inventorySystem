@@ -203,9 +203,15 @@ namespace HIS_WebApi
 
                 Parallel.ForEach(input_medCarInfo, new ParallelOptions { MaxDegreeOfParallelism = 10 }, medCarInfoClass =>
                 {
+                    medCarInfoClass targetPatient = new medCarInfoClass();
+
                     string 床號 = medCarInfoClass.床號;
-                    medCarInfoClass targetPatient = medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號)[0];
-                    if(targetPatient == null)
+                    if(medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號).Count != 0)
+                    {
+                        targetPatient = medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號)[0];
+                    }
+
+                    if (targetPatient.GUID.StringIsEmpty() == true)
                     {
                         medCarInfoClass.GUID = Guid.NewGuid().ToString();
                         localList_add.Add(medCarInfoClass);
