@@ -174,7 +174,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
                 DateTime lestweek = DateTime.Now.AddDays(-30);
-                DateTime yesterday = DateTime.Now.AddDays(-1);
+                DateTime yesterday = DateTime.Now.AddDays(-0);
                 string starttime = lestweek.GetStartDate().ToDateString();
                 string endtime = yesterday.GetEndDate().ToDateString();
                 sQLControl_med_carInfo.DeleteByBetween(null, (int)enum_med_carInfo.更新時間, starttime, endtime);
@@ -192,13 +192,47 @@ namespace HIS_WebApi
                 
                 List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
                 List<medCarInfoClass> sql_medCar = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                Dictionary<string, List<medCarInfoClass>> medCarInfoDict = medCarInfoClass.CoverToDictByMedCart(sql_medCar);
-                List<medCarInfoClass> medCarInfo = medCarInfoClass.SortDictByMedCart(medCarInfoDict, 護理站);
-                Dictionary<string, List<medCarInfoClass>> medCarInfoDictBedNum = medCarInfoClass.CoverToDictByBedNum(sql_medCar);
+                List<medCarInfoClass> medCarInfo = sql_medCar.Where(temp => temp.護理站 == 護理站).ToList();
+                Dictionary<string, List<medCarInfoClass>> medCarInfoDictBedNum = medCarInfoClass.CoverToDictByBedNum(medCarInfo);
 
                 ConcurrentBag<medCarInfoClass> localList_add = new ConcurrentBag<medCarInfoClass>();
                 ConcurrentBag<medCarInfoClass> localList_delete = new ConcurrentBag<medCarInfoClass>();
                 ConcurrentBag<medCarInfoClass> localList_replace = new ConcurrentBag<medCarInfoClass>();
+                //foreach (medCarInfoClass medCarInfoClass in input_medCarInfo)
+                //{
+                //    medCarInfoClass targetPatient = new medCarInfoClass();
+
+                //    string 床號 = medCarInfoClass.床號;
+                //    if (medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號).Count != 0)
+                //    {
+                //        targetPatient = medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號)[0];
+                //    }
+
+                //    if (targetPatient.GUID.StringIsEmpty() == true)
+                //    {
+                //        medCarInfoClass.GUID = Guid.NewGuid().ToString();
+                //        medCart_sql_add.Add(medCarInfoClass);
+                //    }
+                //    else
+                //    {
+                //        if (medCarInfoClass.病歷號 != targetPatient.病歷號)
+                //        {
+                //            medCarInfoClass.GUID = Guid.NewGuid().ToString();
+                //            medCarInfoClass.異動 = "Y";
+                //            medCart_sql_add.Add(medCarInfoClass);
+                //            medCart_sql_delete.Add(targetPatient);
+                //        }
+                //        else
+                //        {
+                //            medCarInfoClass.GUID = targetPatient.GUID;
+                //            medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                //            //if ((medCarInfoClass.調劑狀態).StringIsEmpty() == false) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                //            //if (string.IsNullOrWhiteSpace(medCarInfoClass.調劑狀態)) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
+                //            medCart_sql_replace.Add(medCarInfoClass);
+                //        }
+                //    }
+                //}
+
 
 
                 Parallel.ForEach(input_medCarInfo, new ParallelOptions { MaxDegreeOfParallelism = 10 }, medCarInfoClass =>
@@ -206,7 +240,7 @@ namespace HIS_WebApi
                     medCarInfoClass targetPatient = new medCarInfoClass();
 
                     string 床號 = medCarInfoClass.床號;
-                    if(medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號).Count != 0)
+                    if (medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號).Count != 0)
                     {
                         targetPatient = medCarInfoClass.SortDictByBedNum(medCarInfoDictBedNum, 床號)[0];
                     }
@@ -229,48 +263,13 @@ namespace HIS_WebApi
                         {
                             medCarInfoClass.GUID = targetPatient.GUID;
                             medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
-                            //if ((medCarInfoClass.調劑狀態).StringIsEmpty() == false) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
-                            //if (string.IsNullOrWhiteSpace(medCarInfoClass.調劑狀態)) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
                             localList_replace.Add(medCarInfoClass);
                         }
                     }
                 });
                 lock (medCart_sql_add) medCart_sql_add.AddRange(localList_add);
                 lock (medCart_sql_replace) medCart_sql_replace.AddRange(localList_replace);
-                lock (medCart_sql_delete) medCart_sql_delete.AddRange(localList_delete);
-
-                //for (int i = 0; i< input_medCarInfo.Count; i++)
-                //{
-                //    string 床號 = input_medCarInfo[i].床號;
-
-                //    medCarInfoClass targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
-
-                //    if (targetPatient == null)
-                //    {
-                //        input_medCarInfo[i].GUID = Guid.NewGuid().ToString();
-                //        medCart_sql_add.Add(input_medCarInfo[i]);
-                //    }
-                //    else
-                //    {                       
-                //        if (input_medCarInfo[i].病歷號 != targetPatient.病歷號)
-                //        {
-                //            medCarInfoClass medCarInfoClass = input_medCarInfo[i];
-                //            medCarInfoClass.GUID = Guid.NewGuid().ToString();
-                //            medCarInfoClass.異動 = "Y";
-                //            medCart_sql_add.Add(medCarInfoClass);
-                //            medCart_sql_delete.Add(targetPatient);
-                //        }
-                //        else
-                //        {
-                //            medCarInfoClass medCarInfoClass = input_medCarInfo[i];
-                //            medCarInfoClass.GUID = targetPatient.GUID;
-                //            medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
-                //            //if ((medCarInfoClass.調劑狀態).StringIsEmpty() == false) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
-                //            //if (string.IsNullOrWhiteSpace(medCarInfoClass.調劑狀態)) medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
-                //            medCart_sql_replace.Add(medCarInfoClass);
-                //        }
-                //    }
-                //}
+                lock (medCart_sql_delete) medCart_sql_delete.AddRange(localList_delete);                
 
                 List<object[]> list_medCart_add = new List<object[]>();
                 List<object[]> list_medCart_replace = new List<object[]>();
