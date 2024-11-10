@@ -108,7 +108,7 @@ namespace ServerSettingForm
             // 
             // button_上傳
             // 
-            this.button_上傳.Location = new System.Drawing.Point(2027, 15);
+            this.button_上傳.Location = new System.Drawing.Point(858, 15);
             this.button_上傳.Name = "button_上傳";
             this.button_上傳.Size = new System.Drawing.Size(89, 44);
             this.button_上傳.TabIndex = 8;
@@ -117,7 +117,7 @@ namespace ServerSettingForm
             // 
             // button_讀取
             // 
-            this.button_讀取.Location = new System.Drawing.Point(2122, 15);
+            this.button_讀取.Location = new System.Drawing.Point(763, 15);
             this.button_讀取.Name = "button_讀取";
             this.button_讀取.Size = new System.Drawing.Size(89, 44);
             this.button_讀取.TabIndex = 23;
@@ -126,7 +126,7 @@ namespace ServerSettingForm
             // 
             // button_重置
             // 
-            this.button_重置.Location = new System.Drawing.Point(1932, 15);
+            this.button_重置.Location = new System.Drawing.Point(668, 15);
             this.button_重置.Name = "button_重置";
             this.button_重置.Size = new System.Drawing.Size(89, 44);
             this.button_重置.TabIndex = 32;
@@ -175,7 +175,7 @@ namespace ServerSettingForm
             serverSettingClass1.類別 = "網頁";
             this.panel_API_URL9.ServerSetting = serverSettingClass1;
             this.panel_API_URL9.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL9.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL9.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL9.TabIndex = 84;
             // 
             // panel_API_URL8
@@ -200,7 +200,7 @@ namespace ServerSettingForm
             serverSettingClass2.類別 = "網頁";
             this.panel_API_URL8.ServerSetting = serverSettingClass2;
             this.panel_API_URL8.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL8.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL8.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL8.TabIndex = 73;
             // 
             // panel_API_URL7
@@ -225,7 +225,7 @@ namespace ServerSettingForm
             serverSettingClass3.類別 = "網頁";
             this.panel_API_URL7.ServerSetting = serverSettingClass3;
             this.panel_API_URL7.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL7.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL7.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL7.TabIndex = 72;
             // 
             // panel_API_URL6
@@ -250,7 +250,7 @@ namespace ServerSettingForm
             serverSettingClass4.類別 = "網頁";
             this.panel_API_URL6.ServerSetting = serverSettingClass4;
             this.panel_API_URL6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL6.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL6.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL6.TabIndex = 71;
             // 
             // panel_SQLContent3
@@ -323,7 +323,7 @@ namespace ServerSettingForm
             serverSettingClass7.類別 = "網頁";
             this.panel_API_URL5.ServerSetting = serverSettingClass7;
             this.panel_API_URL5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL5.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL5.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL5.TabIndex = 68;
             // 
             // panel_API_URL4
@@ -348,7 +348,7 @@ namespace ServerSettingForm
             serverSettingClass8.類別 = "網頁";
             this.panel_API_URL4.ServerSetting = serverSettingClass8;
             this.panel_API_URL4.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
-            this.panel_API_URL4.Size = new System.Drawing.Size(662, 60);
+            this.panel_API_URL4.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL4.TabIndex = 67;
             // 
             // panel_API_URL3

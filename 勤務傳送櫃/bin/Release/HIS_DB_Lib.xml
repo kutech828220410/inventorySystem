@@ -1446,6 +1446,16 @@
             參考單價
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedNotes">
+            <summary>
+            參考單價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedReviews">
+            <summary>
+            參考單價
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
             <summary>
             合併單明細
@@ -1546,6 +1556,41 @@
             加入時間
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_review_Class">
+            <summary>
+            合併單覆盤量明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.inv_combinelist_price_Class">
             <summary>
             合併單藥品單價
@@ -1577,6 +1622,41 @@
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_note_Class">
+            <summary>
+            合併單藥品備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.備註">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.加入時間">
             <summary>
             加入時間
             </summary>
