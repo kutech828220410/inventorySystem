@@ -257,7 +257,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent3.Content = "藥檔資料";
-            this.panel_SQLContent3.Location = new System.Drawing.Point(385, 701);
+            this.panel_SQLContent3.Location = new System.Drawing.Point(390, 640);
             this.panel_SQLContent3.Name = "panel_SQLContent3";
             serverSettingClass5.DBName = "";
             serverSettingClass5.GUID = null;
@@ -281,7 +281,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent2.Content = "VM端";
-            this.panel_SQLContent2.Location = new System.Drawing.Point(205, 701);
+            this.panel_SQLContent2.Location = new System.Drawing.Point(210, 640);
             this.panel_SQLContent2.Name = "panel_SQLContent2";
             serverSettingClass6.DBName = "";
             serverSettingClass6.GUID = null;
@@ -427,7 +427,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent1.Content = "人員資料";
-            this.panel_SQLContent1.Location = new System.Drawing.Point(24, 701);
+            this.panel_SQLContent1.Location = new System.Drawing.Point(29, 640);
             this.panel_SQLContent1.Name = "panel_SQLContent1";
             serverSettingClass12.DBName = "";
             serverSettingClass12.GUID = null;
@@ -452,7 +452,7 @@ namespace ServerSettingForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(2224, 805);
+            this.ClientSize = new System.Drawing.Size(1784, 961);
             this.Controls.Add(this.panel_API_URL9);
             this.Controls.Add(this.panel_API_URL8);
             this.Controls.Add(this.panel_API_URL7);
