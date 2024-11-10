@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 using Basic;
 using System.Text.Json;
 using H_Pannel_lib;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 namespace HIS_DB_Lib
 {
 
@@ -797,7 +800,7 @@ namespace HIS_DB_Lib
 
 
 
-        
+
         static public void update_med_clouds_by_guid(string API_Server, medClass medClass)
         {
             List<medClass> medClasses = new List<medClass>();
