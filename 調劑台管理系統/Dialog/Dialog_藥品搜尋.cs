@@ -139,6 +139,11 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
+
+                medClasses = (from temp in medClasses
+                              where temp.開檔狀態 == enum_開檔狀態.開檔中.GetEnumName() || temp.開檔狀態.StringIsEmpty()
+                              select temp).ToList();
+
                 List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
 
 

@@ -28,6 +28,7 @@ namespace 調劑台管理系統
 
     public partial class Main_Form : Form
     {
+
         public static bool StorageAlarm = true;
         public bool ControlMode = false;
         private bool flag_Init = false;
@@ -80,12 +81,10 @@ namespace 調劑台管理系統
         List<Pannel_Locker> List_Locker = new List<Pannel_Locker>();
         Basic.MyConvert myConvert = new Basic.MyConvert();
 
-
         static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
         static public PLC_Device PLC_Device_面板於調劑結束更新 = new PLC_Device("S5030");
         static public PLC_Device PLC_Device_面板於過帳後更新 = new PLC_Device("S5031");
-
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
@@ -586,6 +585,8 @@ namespace 調劑台管理系統
             this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
             this.storageUI_EPD_266.Set_UDP_WriteTime(1);
             this.storageUI_LCD_114.Set_UDP_WriteTime(1);
+            this.storageUI_WT32.Set_UDP_WriteTime(5);
+
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
@@ -1095,7 +1096,6 @@ namespace 調劑台管理系統
 
         #endregion
 
-
         public static void CloseProcessByName(string processName)
         {
             // 取得所有與指定名稱相符的進程
@@ -1121,6 +1121,7 @@ namespace 調劑台管理系統
                 }
             }
         }
+
     }
 
 

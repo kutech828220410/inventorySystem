@@ -489,6 +489,66 @@ namespace HIS_WebApi
             }
         }
 
+        /// <summary>
+        /// 以請領時間範圍下載請領單
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "起始時間",
+        ///        "結束時間"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>Excel</returns>
+        [Route("download_excel_by_addedTime")]
+        [HttpPost]
+        public async Task<ActionResult> Post_download_excel_by_requestTime([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "download_excel_by_addedTime";
+            try
+            {
+                string json_result = get_by_addedTime(returnData);
+
+                if (json_result.StringIsEmpty()) return null;
+
+                returnData returnData_result = json_result.JsonDeserializet<returnData>();
+
+                List<drugStotreDistributionClass> drugStotreDistributionClasses = returnData_result.Data.ObjToClass<List<drugStotreDistributionClass>>();
+                if (drugStotreDistributionClasses == null) return null;
+
+                List<object[]> list_drugStotreDistributionClasses = drugStotreDistributionClasses.ClassToSQL<drugStotreDistributionClass, enum_drugStotreDistribution>();
+                System.Data.DataTable dataTable = list_drugStotreDistributionClasses.ToDataTable(new enum_drugStotreDistribution());
+                dataTable = dataTable.ReorderTable(new enum_materialRequisition_Excel_Export());
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+
+                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_撥補明細.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+
+            }
+
+        }
+
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             List<Table> tables = new List<Table>();

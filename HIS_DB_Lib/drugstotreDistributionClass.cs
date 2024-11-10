@@ -358,6 +358,16 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             return;
         }
+        static public byte[] download_excel_by_addedTime(string API_Server, DateTime st_datetime, DateTime end_datetime)
+        {
+            string url = $"{API_Server}/api/drugStotreDistribution/download_excel_by_addedTime";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToDateTimeString());
+            returnData.ValueAry.Add(end_datetime.ToDateTimeString());
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
 
 
         public class ICP_By_Code : IComparer<drugStotreDistributionClass>

@@ -2139,6 +2139,29 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.drugStotreDistribution.Post_download_excel_by_requestTime(HIS_DB_Lib.returnData)">
+            <summary>
+            以請領時間範圍下載請領單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                   "起始時間",
+                   "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>Excel</returns>
+        </member>
         <member name="M:HIS_WebApi.incomeReasonsController.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫

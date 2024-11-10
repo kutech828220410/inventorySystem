@@ -180,7 +180,7 @@ namespace 調劑台管理系統
                 return;
             }
             if (MyMessageBox.ShowDialog($"是否送出資料共<{list_value.Count}>筆", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-
+            string str = "";
             LoadingForm.ShowLoadingForm();
             List<materialRequisitionClass> materialRequisitionClasses = list_value.SQLToClass<materialRequisitionClass, enum_materialRequisition>();
             materialRequisitionClass.add(Main_Form.API_Server, materialRequisitionClasses);
