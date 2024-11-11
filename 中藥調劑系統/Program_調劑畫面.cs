@@ -169,6 +169,10 @@ namespace 中藥調劑系統
                         調劑完成 = "N";
                     }
                 }
+                if(orderTClasses_buf[0].領藥號 == "6020")
+                {
+
+                }
                 if (packages.Count > 1)
                 {
 
@@ -235,15 +239,21 @@ namespace 中藥調劑系統
                         value[(int)enum_病患資訊.調劑完成] = 調劑完成;
                         value[(int)enum_病患資訊.處方類型] = 處方類型;
 
-                        if (rJ_RatioButton_調劑種類_科中.Checked && 處方類型 == "科中")
+                        if (處方類型 == "科中")
                         {
-                            list_value.Add(value);
+                            if (rJ_RatioButton_調劑種類_科中.Checked)
+                            {
+                                list_value.Add(value);
+                            }
                         }
-                        else if (rJ_RatioButton_調劑種類_飲片.Checked && 處方類型 == "飲片")
+                        else if (處方類型 == "飲片")
                         {
-                            list_value.Add(value);
+                            if (rJ_RatioButton_調劑種類_飲片.Checked)
+                            {
+                                list_value.Add(value);
+                            }
                         }
-                        else 
+                        else
                         {
                             list_value.Add(value);
                         }
