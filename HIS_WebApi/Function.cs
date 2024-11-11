@@ -6,12 +6,23 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Concurrent;
 using System.Threading;
+using HIS_DB_Lib;
+using Basic;
 namespace HIS_WebApi
 {
 
-    static class Method
+    public static class Method
     {
-
+        static public (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return (serverSettingClass.Server, serverSettingClass.DBName, serverSettingClass.User, serverSettingClass.Password, (uint)serverSettingClass.Port.StringToInt32());
+        }
 
     }
 

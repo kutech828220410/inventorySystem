@@ -800,6 +800,76 @@ namespace HIS_WebApi
 
         }
 
+        [HttpPost("update_order_list")]
+        public string update_order_list([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_order_list";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+
+                List<OrderClass> input_orderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+                string priKey = input_orderClass[0].PRI_KEY;
+                if (input_orderClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
+                List<object[]> list_order_list = sQLControl_order_list.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, priKey);
+                List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
+                List<OrderClass> add_order_list = new List<OrderClass>();
+                List<OrderClass> result_order_list = new List<OrderClass>();
+                List<OrderClass> delete_order_list = new List<OrderClass>();
+
+                foreach (var orderClass in input_orderClass)
+                {
+                    if (orderClass.藥袋類型 != "New")
+                    {
+                        OrderClass orderClass_delete = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
+                        if (orderClass_delete != null) delete_order_list.Add(orderClass_delete);
+                    }
+                    else if (orderClass.藥袋類型 == "New")
+                    {
+                        OrderClass orderClass_add = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
+                        if (orderClass_add == null)
+                        {
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
+                            orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.狀態 = "未過帳";
+                            add_order_list.Add(orderClass);
+                        }
+                        else
+                        {
+                            result_order_list.Add(orderClass_add);
+                        }
+
+                    }
+                }
+                List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
+                List<object[]> list_delete_order_list = delete_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
+
+                if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
+                if (list_delete_order_list.Count > 0) sQLControl_order_list.DeleteExtra(null, list_delete_order_list);
+                result_order_list.AddRange(add_order_list);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = result_order_list;
+                returnData.Result = $"取得醫令成功,共<{input_orderClass.Count}>筆,新增<{list_add_order_list.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+
+            }
+        }
         /// <summary>
         /// 新增西藥醫令
         /// </summary>
@@ -1157,5 +1227,6 @@ namespace HIS_WebApi
             Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_醫囑資料());               
             return table.JsonSerializationt(true);
         }
+      
     }
 }
