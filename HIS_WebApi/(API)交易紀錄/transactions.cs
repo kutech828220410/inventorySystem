@@ -123,7 +123,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 transactionsClass.GUID = Guid.NewGuid().ToString();
-                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                if (transactionsClass.操作時間.Check_Date_String()) transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 object[] value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
