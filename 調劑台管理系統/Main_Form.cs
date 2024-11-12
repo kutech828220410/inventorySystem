@@ -425,10 +425,14 @@ namespace 調劑台管理系統
 
                 this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
                 this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
+
             }
         }
 
+
+
         #region Event
+   
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")
