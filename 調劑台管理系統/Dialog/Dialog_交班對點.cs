@@ -45,6 +45,8 @@ namespace 調劑台管理系統
             差異值,
             [Description("收支原因,VARCHAR,200,NONE")]
             收支原因,
+            [Description("確認時間,VARCHAR,200,NONE")]
+            確認時間,
             [Description("備註,VARCHAR,200,NONE")]
             備註,
         }
@@ -330,6 +332,7 @@ namespace 調劑台管理系統
                 }
                 int 差異值 = 盤點量 - 庫存;
                 list_交班對點[0][(int)enum_交班藥品.差異值] = 差異值;
+                list_交班對點[0][(int)enum_交班藥品.確認時間] = DateTime.Now.ToDateTimeString_6();
 
                 this.Invoke(new Action(delegate
                 {
@@ -464,7 +467,7 @@ namespace 調劑台管理系統
                 transactionsClass.盤點量 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
                 transactionsClass.操作人 = personPageClass_盤點人員.姓名;
                 transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
-                transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
                 transactionsClass.備註 = 備註;
                 if (transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
 
@@ -480,6 +483,12 @@ namespace 調劑台管理系統
             if (DialogResult != DialogResult.Yes)
             {
                 Function_寫入交易紀錄("盤點中斷");
+                List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
+                for (int i = 0; i < list_交班對點.Count; i++)
+                {
+                    string 藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
+                }
             }
         }
         private void Dialog_交班對點_LoadFinishedEvent(EventArgs e)
