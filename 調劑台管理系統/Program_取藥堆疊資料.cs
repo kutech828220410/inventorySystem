@@ -1156,6 +1156,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"取藥堆疊表單建立失敗!! Api_URL:{url}");
                 return;
             }
+      
 
             for (int i = 0; i < tables.Count; i++)
             {
@@ -1168,6 +1169,13 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_取藥堆疊子資料.Init(tables[i]);
                 }
             }
+            if(PLC_Device_主機扣賬模式.Bool)
+            {
+                sqL_DataGridView_取藥堆疊母資料.Server = "127.0.0.1";
+                sqL_DataGridView_取藥堆疊子資料.Server = "127.0.0.1";
+            }
+ 
+
             _sqL_DataGridView_取藥堆疊母資料 = this.sqL_DataGridView_取藥堆疊母資料;
 
             this.MyThread_取藥堆疊資料_檢查資料 = new MyThread();
@@ -3158,8 +3166,7 @@ namespace 調劑台管理系統
                         Storage storage = null;
                         List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
                         if (storages.Count != 0)
-                        {
-                       
+                        {                     
                             for (int k = 0; k < storages.Count; k++)
                             {
                                 string index_IP = Funcion_取得LCD114索引表_index_IP(storages[k].IP);
@@ -3172,8 +3179,6 @@ namespace 調劑台管理系統
                                     storage = storages[k];
                                 }
                             }
-
-
                             if (LCD_Laser_ON_IP.StringIsEmpty() == false)
                             {
                                 Console.WriteLine($"IP : {storage.IP} , index_IP : {LCD_Laser_ON_IP}, Laser_ON : {true}");
@@ -3256,8 +3261,7 @@ namespace 調劑台管理系統
                     {
                         Storage storage = List_EPD266_雲端資料.SortByIP(Check_IP);
                         if (storage != null)
-                        {
-                    
+                        {                  
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) continue;
                             StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
@@ -3272,7 +3276,6 @@ namespace 調劑台管理系統
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
 
                                 Function_儲位亮燈(new Main_Form.LightOn(藥品碼, Color.DarkGray));
-
                             }
                         }
                     }
