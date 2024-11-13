@@ -209,6 +209,56 @@
             燈號更新旗標
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.formularyClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.名稱">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.批序">
+            <summary>
+            批序
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.中西藥">
+            <summary>
+            中西藥
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.新增時間">
+            <summary>
+            新增時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.formularyClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.loggerClass.GUID">
             <summary>
             唯一KEY
@@ -666,6 +716,11 @@
             調劑狀態
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.處方異動狀態">
+            <summary>
+            處方異動狀態
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.性別">
             <summary>
             性別
@@ -1066,6 +1121,31 @@
             交互作用等級
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.DC確認">
+            <summary>
+            DC確認
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.調劑異動">
+            <summary>
+            調劑異動
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.雲端藥檔">
+            <summary>
+            雲端藥檔
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥品資訊">
+            <summary>
+            藥品資訊
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.調劑紀錄">
+            <summary>
+            調劑紀錄
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
             <summary>
             medCpoeClass資料
@@ -1159,6 +1239,16 @@
         <member name="P:HIS_DB_Lib.medCpoeRecClass.單位">
             <summary>
             單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.頻次代碼">
+            <summary>
+            頻次代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.頻次屬性">
+            <summary>
+            頻次屬性
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeRecClass.處方醫師">
@@ -1286,6 +1376,51 @@
             消耗量起始時間
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額上限">
+            <summary>
+            誤差總金額上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額下限">
+            <summary>
+            誤差總金額下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差總金額致能">
+            <summary>
+            誤差總金額致能
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率上限">
+            <summary>
+            誤差百分率上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率下限">
+            <summary>
+            誤差百分率下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差百分率致能">
+            <summary>
+            誤差百分率致能
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量上限">
+            <summary>
+            誤差數量上限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量下限">
+            <summary>
+            誤差數量下限
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.誤差數量致能">
+            <summary>
+            誤差數量致能
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Records_Ary">
             <summary>
             合併單明細
@@ -1294,6 +1429,31 @@
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Contents">
             <summary>
             盤點藥品總表
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Stocks">
+            <summary>
+            參考庫存
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Consumptions">
+            <summary>
+            參考消耗
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedPrices">
+            <summary>
+            參考單價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedNotes">
+            <summary>
+            參考單價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.MedReviews">
+            <summary>
+            參考單價
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
@@ -1324,6 +1484,181 @@
         <member name="P:HIS_DB_Lib.inv_records_Class.Creat">
             <summary>
             盤點表(完整)
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_stock_Class">
+            <summary>
+            合併單庫存明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_stock_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_consumption_Class">
+            <summary>
+            合併單消耗明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_consumption_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_review_Class">
+            <summary>
+            合併單覆盤量明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_review_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_price_Class">
+            <summary>
+            合併單藥品單價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.單價">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_price_Class.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_combinelist_note_Class">
+            <summary>
+            合併單藥品備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.備註">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelist_note_Class.加入時間">
+            <summary>
+            加入時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClassBasic.GUID">
@@ -1649,6 +1984,121 @@
         <member name="P:HIS_DB_Lib.medInfoClass.更新時間">
             <summary>
             更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.仿單">
+            <summary>
+            仿單
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.medInterClass">
+            <summary>
+            medInterClass 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.ATC">
+            <summary>
+            ATC
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.非專利藥品名">
+            <summary>
+            非專利藥品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.植入">
+            <summary>
+            植入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.吸入">
+            <summary>
+            吸入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.滴入">
+            <summary>
+            滴入
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.鼻用">
+            <summary>
+            鼻用
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.口服">
+            <summary>
+            口服
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.非經消化道">
+            <summary>
+            非經消化道
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.直腸用">
+            <summary>
+            直腸用
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.舌下口腔口腔黏膜">
+            <summary>
+            舌下口腔口腔黏膜
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.經皮膚">
+            <summary>
+            經皮膚
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.陰道用">
+            <summary>
+            陰道用
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.medInterDtlClass">
+            <summary>
+            medInterDtlClass 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.藥名1">
+            <summary>
+            藥名1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.ATC1">
+            <summary>
+            ATC_1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.藥名2">
+            <summary>
+            藥名2
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.ATC2">
+            <summary>
+            ATC_2
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.網址1">
+            <summary>
+            網址1
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterDtlClass.網址2">
+            <summary>
+            網址2
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medInventoryLogClass">
@@ -2631,19 +3081,9 @@
             Log
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.座標">
-            <summary>
-            座標
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
             <summary>
             keyword
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.UI結果">
-            <summary>
-            UI結果
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批號">
@@ -2679,6 +3119,76 @@
         <member name="P:HIS_DB_Lib.textVisionClass.藥品碼">
             <summary>
             藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號信心分數">
+            <summary>
+            批號信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期信心分數">
+            <summary>
+            效期信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號信心分數">
+            <summary>
+            單號信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥名信心分數">
+            <summary>
+            藥名信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名信心分數">
+            <summary>
+            中文名信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量信心分數">
+            <summary>
+            數量信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.Master_GUID">
+            <summary>
+            辨識單GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.辨識中文名">
+            <summary>
+            辨識中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.辨識藥名">
+            <summary>
+            辨識藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCodeSrchClass.操作時間">
+            <summary>
+            操作時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">

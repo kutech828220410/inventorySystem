@@ -39,6 +39,8 @@ namespace 調劑台管理系統
             if (plC_NumBox_亮燈亮度.Value <= 0) plC_NumBox_亮燈亮度.Value = 80;
             DrawerUI_EPD_583.Lightness = plC_NumBox_亮燈亮度.Value / 100D;
             RowsLEDUI.Lightness = plC_NumBox_亮燈亮度.Value / 100D;
+            StorageUI_EPD_266.Lightness = plC_NumBox_亮燈亮度.Value / 100D;
+
             if (this.plC_ScreenPage_Main.PageText == "工程模式")
             {
                 if (!this.flag_工程模式_頁面更新)

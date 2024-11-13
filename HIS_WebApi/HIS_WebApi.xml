@@ -2157,6 +2157,29 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.drugStotreDistribution.Post_download_excel_by_requestTime(HIS_DB_Lib.returnData)">
+            <summary>
+            以請領時間範圍下載請領單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                   "起始時間",
+                   "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>Excel</returns>
+        </member>
         <member name="M:HIS_WebApi.incomeReasonsController.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫
@@ -3992,6 +4015,94 @@
         <member name="M:HIS_WebApi.inv_combinelist.POST_get_medPrices_by_SN(HIS_DB_Lib.returnData)">
             <summary>
             以合併單號取得藥品單價
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                 
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_add_medNote_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號新增藥品備註
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                  [inv_combinelist_price_Class]
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_medNote_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號取得藥品備註
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                 
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_add_medReview_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號新增藥品覆盤量
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Value" : "I20240103-14",
+               "Data": 
+               {                 
+                  inv_combinelist_price_Class
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_medReview_by_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以合併單號取得藥品覆盤量
             </summary>
             <remarks>
             [必要輸入參數說明]<br/> 

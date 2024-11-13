@@ -623,6 +623,23 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses_out = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses_out;
         }
+
+        static public List<OrderClass> update_order_list(string API_Server, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/update_order_list";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_OrderClass;
+        }
     }
 
     static public class OrderClassMethod

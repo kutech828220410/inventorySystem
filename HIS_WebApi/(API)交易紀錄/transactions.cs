@@ -123,7 +123,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 transactionsClass.GUID = Guid.NewGuid().ToString();
-                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                if (transactionsClass.操作時間.Check_Date_String() == false) transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 object[] value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
@@ -197,7 +197,7 @@ namespace HIS_WebApi
                 for (int i = 0; i < transactionsClasses.Count; i++)
                 {
                     transactionsClasses[i].GUID = Guid.NewGuid().ToString();
-                    transactionsClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
+                    if (transactionsClasses[i].操作時間.Check_Date_String() == false) transactionsClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
                 }
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);

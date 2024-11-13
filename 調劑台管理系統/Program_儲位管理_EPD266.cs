@@ -128,8 +128,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_貼上格式_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_複製格式_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位初始化_MouseDownEvent;
+            this.rJ_TextBox_儲位管理_EPD266_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位名稱_KeyPress;
 
-        
+
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_警報.CheckStateChanged += PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged;
@@ -144,7 +145,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
-     
+  
 
         private void StoragePanel_SizeChanged(object sender, EventArgs e)
         {
@@ -411,7 +412,7 @@ namespace 調劑台管理系統
  
 
             Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
-
+            rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts = storage.StorageName;
             //storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {
@@ -462,7 +463,19 @@ namespace 調劑台管理系統
                 PlC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋_MouseDownEvent(null);
             }
         }
-   
+        private void RJ_TextBox_儲位管理_EPD266_儲位名稱_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Storage storage = this.storagePanel.CurrentStorage;
+                if (storage == null) return;
+                storage.StorageName = this.rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts;
+                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                this.storagePanel.DrawToPictureBox(storage);
+                this.Function_設定雲端資料更新();
+                PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
+            }
+        }
         private void RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (this.storagePanel.CurrentStorage == null) return;

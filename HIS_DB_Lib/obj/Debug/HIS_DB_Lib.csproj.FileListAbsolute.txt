@@ -346,3 +346,9 @@ C:\Users\sis87\source\repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.cspr
 C:\Users\sis87\source\repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.csproj.CopyComplete
 C:\Users\sis87\source\repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.dll
 C:\Users\sis87\source\repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.pdb
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\CSkin.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\AxOvkBase.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\AxAltairUDrvAsm4.5.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\AxOvkBaseAsm4.5.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\AxOvkMsr.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\AxAltairUDrv.dll

@@ -221,7 +221,7 @@ namespace 勤務傳送櫃
                     rJ_Lable_配藥核對_病房.Text = $"{orderClasses[0].病房}-{orderClasses[0].床號}";
                     //Application.DoEvents();
                 }));
-                if (orderClasses[0].狀態 == "已調劑")
+                if (orderClasses[0].狀態 == "已過帳")
                 {
                     this.Invoke(new Action(delegate
                     {
@@ -300,9 +300,10 @@ namespace 勤務傳送櫃
                 value[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
 
                 object[] value_醫令資料 = orderClasses[0].ClassToSQL<OrderClass, enum_醫囑資料>();
-                value_醫令資料[(int)enum_醫囑資料.狀態] = "已調劑";
+                value_醫令資料[(int)enum_醫囑資料.狀態] = "已過帳";
                 value_醫令資料[(int)enum_醫囑資料.結方日期] = DateTime.MinValue.ToDateTimeString();
                 value_醫令資料[(int)enum_醫囑資料.展藥時間] = DateTime.MinValue.ToDateTimeString();
+                value_醫令資料[(int)enum_醫囑資料.就醫時間] = DateTime.MinValue.ToDateTimeString_6();
                 value_醫令資料[(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
                 this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(value_醫令資料, false);

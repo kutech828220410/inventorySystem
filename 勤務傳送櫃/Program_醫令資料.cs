@@ -38,7 +38,7 @@ namespace 勤務傳送櫃
                 return;
             }
 
-            this.sqL_DataGridView_醫令資料.Init(table);
+            this.sqL_DataGridView_醫令資料.InitEx(table);
             this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥局代碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋類型);
@@ -57,13 +57,14 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.狀態);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
 
+
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_醫令資料.DataGridRefreshEvent += SqL_DataGridView_醫令資料_DataGridRefreshEvent;
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeEvent;
             this.sqL_DataGridView_醫令資料.RowDoubleClickEvent += SqL_DataGridView_醫令資料_RowDoubleClickEvent;
 
             this.plC_RJ_Button_醫令資料_顯示全部.MouseDownEvent += PlC_RJ_Button_醫令資料_顯示全部_MouseDownEvent;
-            this.plC_RJ_Button_醫令資料_設為未調劑.MouseDownEvent += PlC_RJ_Button_醫令資料_設為未調劑_MouseDownEvent;
+            this.plC_RJ_Button_醫令資料_設為未過帳.MouseDownEvent += PlC_RJ_Button_醫令資料_設為未過帳_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(Program_醫令資料);
         }
@@ -92,7 +93,7 @@ namespace 勤務傳送櫃
             for (int i = 0; i < this.sqL_DataGridView_醫令資料.dataGridView.Rows.Count; i++)
             {
                 狀態 = this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].Cells[(int)enum_醫囑資料.狀態].Value.ToString();
-                if (狀態 == "已調劑")
+                if (狀態 == "已過帳")
                 {
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Lime;
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -132,12 +133,12 @@ namespace 勤務傳送櫃
             Console.Write($"取得醫令資料 , 耗時 : {myTimer.ToString()} ms\n");
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
         }
-        private void PlC_RJ_Button_醫令資料_設為未調劑_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_醫令資料_設為未過帳_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.Get_All_Select_RowsValues();
             for (int i = 0; i < list_value.Count; i++)
             {
-                list_value[i][(int)enum_醫囑資料.狀態] = "未調劑";
+                list_value[i][(int)enum_醫囑資料.狀態] = "未過帳";
             }
             this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
             this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);

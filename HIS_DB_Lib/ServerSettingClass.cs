@@ -280,6 +280,7 @@ namespace HIS_DB_Lib
             return department_types;
         }
 
+     
     }
     public class ServerSettingClass
     {

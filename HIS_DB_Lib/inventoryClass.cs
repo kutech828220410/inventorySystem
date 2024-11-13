@@ -17,6 +17,8 @@ namespace HIS_DB_Lib
         料號,
         [Description("藥名,VARCHAR,50,NONE")]
         藥名,
+        [Description("別名,VARCHAR,50,NONE")]
+        別名,
         [Description("單價,VARCHAR,50,NONE")]
         單價,
         [Description("庫存量,VARCHAR,50,NONE")]

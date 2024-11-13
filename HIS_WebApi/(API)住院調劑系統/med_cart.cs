@@ -342,8 +342,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
-                DateTime lestweek = DateTime.Now.AddDays(-30);
-                DateTime yesterday = DateTime.Now.AddDays(-0);
+                DateTime lestweek = DateTime.Now.AddDays(-7);
+                DateTime yesterday = DateTime.Now.AddDays(-1);
                 string starttime = lestweek.GetStartDate().ToDateString();
                 string endtime = yesterday.GetEndDate().ToDateString();
                 sQLControl_med_cpoe.DeleteByBetween(null, (int)enum_med_cpoe.更新時間, starttime, endtime);

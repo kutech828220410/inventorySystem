@@ -260,7 +260,7 @@ namespace 勤務傳送櫃
                 //}
 
                 //object[] value_醫令資料 = orderClasses[0].ClassToSQL<OrderClass, enum_醫囑資料>();
-                //value_醫令資料[(int)enum_醫囑資料.狀態] = "已調劑";
+                //value_醫令資料[(int)enum_醫囑資料.狀態] = "已過帳";
                 //value_醫令資料[(int)enum_醫囑資料.結方日期] = DateTime.MinValue.ToDateTimeString();
                 //value_醫令資料[(int)enum_醫囑資料.展藥時間] = DateTime.MinValue.ToDateTimeString();
                 //value_醫令資料[(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();

@@ -42,10 +42,14 @@ namespace 智能藥庫系統
             this.panel2 = new System.Windows.Forms.Panel();
             this.plC_CheckBox_誤差百分率計算 = new MyUI.PLC_CheckBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.numTextBox_誤差百分率上限 = new System.Windows.Forms.TextBox();
+            this.numTextBox_誤差百分率下限 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.numTextBox_誤差數量上限 = new System.Windows.Forms.TextBox();
+            this.numTextBox_誤差數量下限 = new System.Windows.Forms.TextBox();
             this.plC_CheckBox_誤差數量計算 = new MyUI.PLC_CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,10 +59,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.numTextBox_誤差總金額下限 = new System.Windows.Forms.TextBox();
             this.numTextBox_誤差總金額上限 = new System.Windows.Forms.TextBox();
-            this.numTextBox_誤差百分率下限 = new System.Windows.Forms.TextBox();
-            this.numTextBox_誤差百分率上限 = new System.Windows.Forms.TextBox();
-            this.numTextBox_誤差數量下限 = new System.Windows.Forms.TextBox();
-            this.numTextBox_誤差數量上限 = new System.Windows.Forms.TextBox();
             this.rJ_Pannel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -161,11 +161,11 @@ namespace 智能藥庫系統
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.numTextBox_誤差總金額上限);
             this.panel1.Controls.Add(this.numTextBox_誤差總金額下限);
             this.panel1.Controls.Add(this.plC_CheckBox_誤差總金額計算);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.numTextBox_誤差總金額上限);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -269,6 +269,22 @@ namespace 智能藥庫系統
             this.label8.TabIndex = 9;
             this.label8.Text = "%";
             // 
+            // numTextBox_誤差百分率上限
+            // 
+            this.numTextBox_誤差百分率上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差百分率上限.Location = new System.Drawing.Point(555, 21);
+            this.numTextBox_誤差百分率上限.Name = "numTextBox_誤差百分率上限";
+            this.numTextBox_誤差百分率上限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差百分率上限.TabIndex = 22;
+            // 
+            // numTextBox_誤差百分率下限
+            // 
+            this.numTextBox_誤差百分率下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差百分率下限.Location = new System.Drawing.Point(243, 20);
+            this.numTextBox_誤差百分率下限.Name = "numTextBox_誤差百分率下限";
+            this.numTextBox_誤差百分率下限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差百分率下限.TabIndex = 21;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -313,6 +329,22 @@ namespace 智能藥庫系統
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(794, 67);
             this.panel3.TabIndex = 4;
+            // 
+            // numTextBox_誤差數量上限
+            // 
+            this.numTextBox_誤差數量上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差數量上限.Location = new System.Drawing.Point(588, 20);
+            this.numTextBox_誤差數量上限.Name = "numTextBox_誤差數量上限";
+            this.numTextBox_誤差數量上限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差數量上限.TabIndex = 24;
+            // 
+            // numTextBox_誤差數量下限
+            // 
+            this.numTextBox_誤差數量下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.numTextBox_誤差數量下限.Location = new System.Drawing.Point(243, 20);
+            this.numTextBox_誤差數量下限.Name = "numTextBox_誤差數量下限";
+            this.numTextBox_誤差數量下限.Size = new System.Drawing.Size(112, 33);
+            this.numTextBox_誤差數量下限.TabIndex = 23;
             // 
             // plC_CheckBox_誤差數量計算
             // 
@@ -444,7 +476,7 @@ namespace 智能藥庫系統
             this.numTextBox_誤差總金額下限.Location = new System.Drawing.Point(243, 20);
             this.numTextBox_誤差總金額下限.Name = "numTextBox_誤差總金額下限";
             this.numTextBox_誤差總金額下限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差總金額下限.TabIndex = 19;
+            this.numTextBox_誤差總金額下限.TabIndex = 21;
             // 
             // numTextBox_誤差總金額上限
             // 
@@ -452,39 +484,7 @@ namespace 智能藥庫系統
             this.numTextBox_誤差總金額上限.Location = new System.Drawing.Point(555, 20);
             this.numTextBox_誤差總金額上限.Name = "numTextBox_誤差總金額上限";
             this.numTextBox_誤差總金額上限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差總金額上限.TabIndex = 20;
-            // 
-            // numTextBox_誤差百分率下限
-            // 
-            this.numTextBox_誤差百分率下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox_誤差百分率下限.Location = new System.Drawing.Point(243, 20);
-            this.numTextBox_誤差百分率下限.Name = "numTextBox_誤差百分率下限";
-            this.numTextBox_誤差百分率下限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差百分率下限.TabIndex = 21;
-            // 
-            // numTextBox_誤差百分率上限
-            // 
-            this.numTextBox_誤差百分率上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox_誤差百分率上限.Location = new System.Drawing.Point(555, 21);
-            this.numTextBox_誤差百分率上限.Name = "numTextBox_誤差百分率上限";
-            this.numTextBox_誤差百分率上限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差百分率上限.TabIndex = 22;
-            // 
-            // numTextBox_誤差數量下限
-            // 
-            this.numTextBox_誤差數量下限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox_誤差數量下限.Location = new System.Drawing.Point(243, 20);
-            this.numTextBox_誤差數量下限.Name = "numTextBox_誤差數量下限";
-            this.numTextBox_誤差數量下限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差數量下限.TabIndex = 23;
-            // 
-            // numTextBox_誤差數量上限
-            // 
-            this.numTextBox_誤差數量上限.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.numTextBox_誤差數量上限.Location = new System.Drawing.Point(588, 20);
-            this.numTextBox_誤差數量上限.Name = "numTextBox_誤差數量上限";
-            this.numTextBox_誤差數量上限.Size = new System.Drawing.Size(112, 33);
-            this.numTextBox_誤差數量上限.TabIndex = 24;
+            this.numTextBox_誤差總金額上限.TabIndex = 22;
             // 
             // Dialog_盤點單覆盤建議設定
             // 
@@ -543,11 +543,11 @@ namespace 智能藥庫系統
         private MyUI.PLC_CheckBox plC_CheckBox_誤差數量計算;
         private System.Windows.Forms.Panel panel4;
         private MyUI.PLC_RJ_Button plC_RJ_Button_確認;
-        private System.Windows.Forms.TextBox numTextBox_誤差總金額下限;
-        private System.Windows.Forms.TextBox numTextBox_誤差總金額上限;
         private System.Windows.Forms.TextBox numTextBox_誤差百分率上限;
         private System.Windows.Forms.TextBox numTextBox_誤差百分率下限;
         private System.Windows.Forms.TextBox numTextBox_誤差數量上限;
         private System.Windows.Forms.TextBox numTextBox_誤差數量下限;
+        private System.Windows.Forms.TextBox numTextBox_誤差總金額上限;
+        private System.Windows.Forms.TextBox numTextBox_誤差總金額下限;
     }
 }

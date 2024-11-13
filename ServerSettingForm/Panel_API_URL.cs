@@ -61,6 +61,18 @@ namespace ServerSettingForm
                 this.label_標題.Text = value;
             }
         }
+        private string description = "-----";
+        [ReadOnly(false), Browsable(true), Category("config"), Description(""), DefaultValue("")]
+        public string Description
+        {
+            get => description;
+            set
+            {
+                description = value;
+                this.label_中文標題.Text = value;
+            }
+        }
+
 
         public Panel_API_URL()
         {
