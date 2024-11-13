@@ -968,99 +968,125 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD266_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-            if (list_value.Count == 0) return;
-            Color color = Color.Black;
+            try
+            {
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
+                Color color = Color.Black;
 
-            if (this.radioButton_儲位管理_EPD266_面板亮燈_白.Checked)
-            {
-                color = Color.White;
-            }
-            else if (this.radioButton_儲位管理_EPD266_面板亮燈_紅.Checked)
-            {
-                color = Color.Red;
-            }
-            else if (this.radioButton_儲位管理_EPD266_面板亮燈_藍.Checked)
-            {
-                color = Color.Blue;
-            }
-            else if (this.radioButton_儲位管理_EPD266_面板亮燈_綠.Checked)
-            {
-                color = Color.Green;
-            }
-            List<Task> taskList = new List<Task>();
-            string Error_msg = "";
-            for (int i = 0; i < list_value.Count; i++)
-            {
-                string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
-             
-                taskList.Add(Task.Run(() =>
+                if (this.radioButton_儲位管理_EPD266_面板亮燈_白.Checked)
                 {
-                    if (storage != null)
+                    color = Color.White;
+                }
+                else if (this.radioButton_儲位管理_EPD266_面板亮燈_紅.Checked)
+                {
+                    color = Color.Red;
+                }
+                else if (this.radioButton_儲位管理_EPD266_面板亮燈_藍.Checked)
+                {
+                    color = Color.Blue;
+                }
+                else if (this.radioButton_儲位管理_EPD266_面板亮燈_綠.Checked)
+                {
+                    color = Color.Green;
+                }
+                List<Task> taskList = new List<Task>();
+                string Error_msg = "";
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+                    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+
+                    taskList.Add(Task.Run(() =>
                     {
-                        if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color))
+                        if (storage != null)
                         {
-                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板亮燈失敗!");
+                            if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color))
+                            {
+                                Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板亮燈失敗!");
+                            }
                         }
-                    }
-                }));                        
+                    }));
+                }
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
+            catch
+            {
+
+            }
+            
 
         }
         private void PlC_RJ_Button_儲位管理_EPD266_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-            if (list_value.Count == 0) return;
-
-            List<Task> taskList = new List<Task>();
-            for (int i = 0; i < list_value.Count; i++)
+            try
             {
-                string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
 
-                taskList.Add(Task.Run(() =>
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < list_value.Count; i++)
                 {
-                    if (storage != null)
-                    {
-                      
-                        if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black))
-                        {
-                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
+                    string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+                    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
 
+                    taskList.Add(Task.Run(() =>
+                    {
+                        if (storage != null)
+                        {
+
+                            if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black))
+                            {
+                                Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
+
+                            }
                         }
-                    }
-                }));
+                    }));
+                }
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
+            catch
+            {
+
+            }
+          
         }
         private void PlC_RJ_Button_儲位管理_EPD266_上傳至面板_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-            if (list_value.Count == 0) return;
+          
 
-            List<Task> taskList = new List<Task>();
-            for (int i = 0; i < list_value.Count; i++)
+            try
             {
-                string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
 
-                taskList.Add(Task.Run(() =>
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < list_value.Count; i++)
                 {
-                    if (storage != null)
+                    string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+                    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+
+                    taskList.Add(Task.Run(() =>
                     {
-                        if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
+                        if (storage != null)
                         {
-                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
+                            if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
+                            {
+                                Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
+                            }
                         }
-                    }
-                }));
+                    }));
+                }
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
+            catch
+            {
+
+            }
+         
         }
         private void PlC_RJ_Button_儲位管理_EPD266_刪除儲位_MouseDownEvent(MouseEventArgs mevent)
         {
