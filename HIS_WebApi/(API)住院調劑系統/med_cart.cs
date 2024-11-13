@@ -285,15 +285,15 @@ namespace HIS_WebApi
                     sQLControl_med_carInfo.DeleteExtra(null, list_medCart_delete);
                     List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                     List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                    Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.CoverToDictByMasterGUID(sql_medCpoe);
-                    List<medCpoeClass> filterCpoe = new List<medCpoeClass>();
-                    for (int i = 0; medCart_sql_delete.Count > 0; i++)
-                    {
-                        List<medCpoeClass> result = medCpoeClass.SortDictByMasterGUID(medCpoeDict, medCart_sql_delete[i].GUID);
-                        filterCpoe.AddRange(result);
-                    }
-                    //List<medCpoeClass> filterCpoe = sql_medCpoe
-                    //    .Where(cpoe => medCart_sql_delete.Any(medCart => medCart.GUID == cpoe.Master_GUID)).ToList();
+                    //Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.CoverToDictByMasterGUID(sql_medCpoe);
+                    //List<medCpoeClass> filterCpoe = new List<medCpoeClass>();
+                    //for (int i = 0; medCart_sql_delete.Count > 0; i++)
+                    //{
+                    //    List<medCpoeClass> result = medCpoeClass.SortDictByMasterGUID(medCpoeDict, medCart_sql_delete[i].GUID);
+                    //    filterCpoe.AddRange(result);
+                    //}
+                    List<medCpoeClass> filterCpoe = sql_medCpoe
+                        .Where(cpoe => medCart_sql_delete.Any(medCart => medCart.GUID == cpoe.Master_GUID)).ToList();
                     List<object[]> list_medCpoe_delete = filterCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_delete.Count > 0) sQLControl_med_cpoe.DeleteExtra(null, list_medCpoe_delete);
                 }
