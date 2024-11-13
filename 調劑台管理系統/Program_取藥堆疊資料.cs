@@ -46,7 +46,7 @@ namespace 調劑台管理系統
         private MyThread MyThread_取藥堆疊資料_檢查資料;
         private MyThread MyThread_取藥堆疊資料_儲位亮燈;
         static public SQL_DataGridView _sqL_DataGridView_取藥堆疊母資料 = null;
-
+  
         #region Function
         public class Icp_取藥堆疊母資料_index排序 : IComparer<object[]>
         {
@@ -3220,6 +3220,7 @@ namespace 調劑台管理系統
             List<object[]> list_取藥子堆疊資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
             List<object[]> list_取藥子堆疊資料_buf = new List<object[]>();
             List<object[]> list_取藥子堆疊資料_replace = new List<object[]>();
+        
 
 
             Task allTask;
@@ -3256,6 +3257,7 @@ namespace 調劑台管理系統
                         Storage storage = List_EPD266_雲端資料.SortByIP(Check_IP);
                         if (storage != null)
                         {
+                    
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) continue;
                             StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
