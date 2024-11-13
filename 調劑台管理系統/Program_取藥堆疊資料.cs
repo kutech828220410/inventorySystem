@@ -1229,6 +1229,7 @@ namespace 調劑台管理系統
                 lightOn_buf.LCD_Color = lightOn.LCD_Color;
                 lightOn_buf.flag_Refresh_LCD = lightOn.flag_Refresh_LCD;
                 lightOn_buf.flag_Refresh_Light = lightOn.flag_Refresh_Light;
+                lightOn_buf.flag_Refresh_breathing = lightOn.flag_Refresh_breathing;
 
                 return lightOn_buf;
             }
@@ -1239,6 +1240,7 @@ namespace 調劑台管理系統
             public double 數量 { get; set; }
             public bool flag_Refresh_LCD = false;
             public bool flag_Refresh_Light = false;
+            public bool flag_Refresh_breathing = false;
         }
         static private List<LightOn> lightOns = new List<LightOn>();
         private int cnt_儲位亮燈 = 0;
@@ -1729,16 +1731,26 @@ namespace 調劑台管理系統
                             if (plC_CheckBox_測試模式.Checked) return;
                             if(storage.TOFON == false)
                             {
-                                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                if (color == Color.Black)
+                                {
+                                    this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                }
                             }
                             else
                             {
-                                if (color == Color.Black) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                if (color == Color.Black)
+                                {
+                                    this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                }
                                 else if (lightOn.flag_Refresh_LCD || lightOn.flag_Refresh_Light)
                                 {
-                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                    if(lightOn.flag_Refresh_breathing)
+                                    {
+                                        this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                    }
+                                    else this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                                 }
-                          
+
                             }
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) return;
@@ -3191,6 +3203,7 @@ namespace 調劑台管理系統
                                 lightOn.顏色 = Color.FromArgb((int)(color.R * 0.1), (int)(color.G * 0.1), (int)(color.B * 0.1));
                                 lightOn.LCD_Color = Color.Black;
                                 lightOn.flag_Refresh_Light = true;
+                                lightOn.flag_Refresh_breathing = true;
                                 Function_儲位亮燈(lightOn);
 
                             }
