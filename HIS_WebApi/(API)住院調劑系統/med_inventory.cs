@@ -71,6 +71,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string init_med_inventory([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/init_med_inventory";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -113,6 +114,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string add_med_inventory_log([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/add_med_inventory_log";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -249,6 +251,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string add_med_inventory([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/add_med_inventory";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -309,6 +312,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_opid_by_time([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/get_opid_by_time";
             try
             {
                 if (returnData.ValueAry == null)
@@ -386,6 +390,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_time_by_op_id([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/get_time_by_op_id";
             try
             {
                 if (returnData.Data == null)
@@ -464,6 +469,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_logtime_by_opid([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/get_logtime_by_opid";
             try
             {
                 if (returnData.Data == null)
@@ -554,6 +560,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_logtime_by_master_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_inventory/get_logtime_by_master_GUID";
             try
             {
 

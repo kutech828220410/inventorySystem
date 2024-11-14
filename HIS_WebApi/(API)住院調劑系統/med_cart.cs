@@ -38,8 +38,8 @@ namespace HIS_WebApi
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarInfoClass物件", typeof(medCarInfoClass))]
         public string init_med_carinfo([FromBody] returnData returnData)
         {
-
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/init_med_carinfo";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -62,8 +62,8 @@ namespace HIS_WebApi
         [HttpPost("init_med_cpoe")]
         public string init_med_cpoe([FromBody] returnData returnData)
         {
-
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/init_med_cpoe";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -86,7 +86,7 @@ namespace HIS_WebApi
         [HttpPost("init_med_cpoe_rec")]
         public string init_med_cpoe_rec([FromBody] returnData returnData)
         {
-
+            returnData.Method = "med_cart/init_med_cpoe_rec";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
@@ -110,8 +110,8 @@ namespace HIS_WebApi
         [HttpPost("init_med_info")]
         public string init_med_info([FromBody] returnData returnData)
         {
-
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/init_med_info";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -130,17 +130,6 @@ namespace HIS_WebApi
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-        }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
-        {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
-            return table.JsonSerializationt(true);
         }
         /// <summary>
         ///更新病床資料
@@ -763,7 +752,7 @@ namespace HIS_WebApi
         public string update_order_list([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_order_list";
+            returnData.Method = "med_Cart/update_order_list";
             try
             {              
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
@@ -846,7 +835,7 @@ namespace HIS_WebApi
         public string get_bed_list_by_cart([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_bed_list_by_cart";
+            returnData.Method = "med_cart/get_bed_list_by_cart";
             try
             {
                 if (returnData.ValueAry == null)
@@ -890,7 +879,7 @@ namespace HIS_WebApi
         public string get_patient_by_GUID_brief([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_patient_by_GUID_brief";
+            returnData.Method = "med_cart/get_patient_by_GUID_brief";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
@@ -1033,7 +1022,7 @@ namespace HIS_WebApi
         public string get_patient_with_NOdispense([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_patient_with_NOdispense";
+            returnData.Method = "med_Cart/get_patient_with_NOdispense";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
@@ -1096,6 +1085,7 @@ namespace HIS_WebApi
         public string get_medChange_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_medChange_by_GUID";
             try
             {
                 if (returnData.ValueAry == null)
@@ -1317,11 +1307,12 @@ namespace HIS_WebApi
                     sql_medCarinfo[0].調劑狀態 = "Y";
                     sql_medCarinfo[0].處方異動狀態 = "";
                 }
-
-                if (!allDispensed) sql_medCarinfo[0].調劑狀態 = "";
+                else
+                {
+                    sql_medCarinfo[0].調劑狀態 = "";
+                }
                     
-                List<object[]> list_medCarInfo_replace = new List<object[]>();
-                list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
+                List<object[]> list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);             
 
                 //List<string> ValueAry = new List<string> { Master_GUID };
@@ -1603,6 +1594,7 @@ namespace HIS_WebApi
         public string get_med_qty([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_med_qty";
             try
             {                
                
@@ -1703,6 +1695,7 @@ namespace HIS_WebApi
         public string handover([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/handover";
             try
             {             
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
@@ -1772,6 +1765,7 @@ namespace HIS_WebApi
         public string get_dispens_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_dispens_by_code";
             try
             {               
                 string API = GetServerAPI("Main", "網頁", "API01");              
@@ -1892,6 +1886,18 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            return table.JsonSerializationt(true);
+        }
+
         private (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
         {
             List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();

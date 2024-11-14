@@ -35,8 +35,8 @@ namespace HIS_WebApi._API_住院調劑系統
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarListClass物件", typeof(medCarListClass))]
         public string init_med_carinfo([FromBody] returnData returnData)
         {
-
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "medCarList/init_med_carList";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -84,7 +84,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string add([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "add";
+            returnData.Method = "medCarList/add";
             try
             {
                 if (returnData.ValueAry == null)
@@ -189,7 +189,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string delete([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "add";
+            returnData.Method = "medCarList/delete";
             try
             {
                 if (returnData.ValueAry == null)
@@ -279,7 +279,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_medcar_by_phar([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_medcar_by_phar";
+            returnData.Method = "medCarList/get_medcar_by_phar";
             try
             {
                 if (returnData.ValueAry == null)
@@ -365,7 +365,7 @@ namespace HIS_WebApi._API_住院調劑系統
         public string get_phar([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_phar";
+            returnData.Method = "medCarList/get_phar";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
