@@ -31,9 +31,11 @@ namespace HIS_DB_Lib
         床號,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
+        [Description("病歷號,VARCHAR,100,NONE")]
+        病歷號,
         [Description("調劑台,VARCHAR,30,NONE")]
         調劑台,
-        [Description("序號,VARCHAR,10,NONE")]
+        [Description("序號,VARCHAR,100,NONE")]
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
         狀態,
@@ -153,6 +155,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
+        /// <summary>
+        /// 病歷號
+        /// </summary>
+        [JsonPropertyName("histno")]
+        public string 病歷號 { get; set; }
         /// <summary>
         /// 調劑台
         /// </summary>

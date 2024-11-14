@@ -22,7 +22,7 @@ namespace HIS_DB_Lib
         姓名,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
-        [Description("病歷號,VARCHAR,50,NONE")]
+        [Description("病歷號,VARCHAR,100,NONE")]
         病歷號,
         [Description("藥局,VARCHAR,10,INDEX")]
         藥局,

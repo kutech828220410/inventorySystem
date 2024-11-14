@@ -951,6 +951,11 @@
             住院號
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.病歷號">
+            <summary>
+            病歷號
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑台">
             <summary>
             調劑台

@@ -1456,7 +1456,6 @@ namespace HIS_WebApi
             try
             {                
                
-
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
