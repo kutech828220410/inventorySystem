@@ -734,6 +734,8 @@ namespace HIS_WebApi
                         medClass_update.中文名稱 = list_value_add[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
                         medClass_update.儲位描述 = list_value_add[i][(int)enum_雲端藥檔.儲位描述].ObjectToString();
                         medClass_update.類別 = list_value_add[i][(int)enum_雲端藥檔.類別].ObjectToString();
+                        medClass_update.中西藥 = list_value_add[i][(int)enum_雲端藥檔.中西藥].ObjectToString();
+                        medClass_update.最小包裝單位 = list_value_add[i][(int)enum_雲端藥檔.最小包裝單位].ObjectToString();
 
                         list_value_update_buf.Add(medClass_update.ClassToSQL<medClass, enum_雲端藥檔>());
 
