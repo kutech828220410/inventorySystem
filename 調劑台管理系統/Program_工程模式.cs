@@ -105,7 +105,7 @@ namespace 調劑台管理系統
                 }
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_雲端資料;
             try
             {
                 for (int i = 0; i < list_refresh_ip.Count; i++)
