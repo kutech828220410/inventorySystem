@@ -27,6 +27,8 @@ namespace HIS_DB_Lib
         藥局,
         [Description("護理站,VARCHAR,10,INDEX")]
         護理站,
+        [Description("姓名,VARCHAR,50,NONE")]
+        姓名,
         [Description("床號,VARCHAR,10,NONE")]
         床號,
         [Description("住院號,VARCHAR,50,INDEX")]
@@ -145,6 +147,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
+        /// <summary>
+        /// 姓名
+        /// </summary>
+        [JsonPropertyName("pnamec")]
+        public string 姓名 { get; set; }
         /// <summary>
         /// 床號
         /// </summary>

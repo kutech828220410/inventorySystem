@@ -93,20 +93,16 @@ namespace HIS_WebApi._API_住院調劑系統
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.ValueAry.Count != 2)
+                if (returnData.ValueAry.Count != 3)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
                     return returnData.JsonSerializationt(true);
                 }
-                string 藥局 = returnData.ValueAry[0];
-                string 護理站 = returnData.ValueAry[1];
-                if (!PharmacyData.PharmacyDictionary.TryGetValue(藥局, out string 藥局名))
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "找不到對應的藥局名稱";
-                    return returnData.JsonSerializationt(true);
-                }
+                string 藥局代號 = returnData.ValueAry[0];
+                string 藥局 = returnData.ValueAry[1];
+                string 護理站 = returnData.ValueAry[2];
+
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -147,8 +143,8 @@ namespace HIS_WebApi._API_住院調劑系統
                     medCarListClass medCarListClass = new medCarListClass
                     {
                         GUID = GUID,
-                        藥局 = 藥局,
-                        藥局名 = 藥局名,
+                        藥局 = 藥局代號,
+                        藥局名 = 藥局,
                         護理站 = 護理站
                     };
                     medCart_sql_add.Add(medCarListClass);

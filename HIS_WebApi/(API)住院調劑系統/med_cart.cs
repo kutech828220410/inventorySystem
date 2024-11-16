@@ -236,14 +236,14 @@ namespace HIS_WebApi
 
                     if (targetPatient.GUID.StringIsEmpty() == true)
                     {
-                        medCarInfoClass.GUID = Guid.NewGuid().ToString();
+                        //medCarInfoClass.GUID = Guid.NewGuid().ToString();
                         localList_add.Add(medCarInfoClass);
                     }
                     else
                     {
                         if (medCarInfoClass.病歷號 != targetPatient.病歷號)
                         {
-                            medCarInfoClass.GUID = Guid.NewGuid().ToString();
+                            //medCarInfoClass.GUID = Guid.NewGuid().ToString();
                             medCarInfoClass.異動 = "Y";
                             localList_add.Add(medCarInfoClass);
                             localList_delete.Add(targetPatient);

@@ -941,6 +941,11 @@
             護理站
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.姓名">
+            <summary>
+            姓名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.床號">
             <summary>
             床號
@@ -949,6 +954,11 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.住院號">
             <summary>
             住院號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.病歷號">
+            <summary>
+            病歷號
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑台">
