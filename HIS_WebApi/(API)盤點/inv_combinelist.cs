@@ -1840,6 +1840,7 @@ namespace HIS_WebApi
                 string 藥碼 = contents[i].藥品碼;
 
                 object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                value[(int)enum_盤點定盤_Excel.GUID] = Guid.NewGuid().ToString();
                 value[(int)enum_盤點定盤_Excel.藥碼] = contents[i].藥品碼;
                 value[(int)enum_盤點定盤_Excel.料號] = contents[i].料號;
                 value[(int)enum_盤點定盤_Excel.藥名] = contents[i].藥品名稱;

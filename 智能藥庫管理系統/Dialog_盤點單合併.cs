@@ -160,6 +160,7 @@ namespace 智能藥庫系統
         {
             sqL_DataGridView_盤點總表.RowsHeight = 50;
             sqL_DataGridView_盤點總表.Init(new Table(new enum_盤點定盤_Excel()));
+            sqL_DataGridView_盤點總表.Set_ColumnVisible(false, enum_盤點定盤_Excel.GUID);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.藥碼);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.料號);
             sqL_DataGridView_盤點總表.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_盤點定盤_Excel.藥名);
