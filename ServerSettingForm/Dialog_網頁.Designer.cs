@@ -41,6 +41,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass10 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass11 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass12 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass13 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@ namespace ServerSettingForm
             this.panel_API_URL2 = new ServerSettingForm.Panel_API_URL();
             this.panel_API_URL1 = new ServerSettingForm.Panel_API_URL();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_API_URL10 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // label1
@@ -447,12 +449,38 @@ namespace ServerSettingForm
             this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent1.TabIndex = 57;
             // 
+            // panel_API_URL10
+            // 
+            this.panel_API_URL10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_API_URL10.Content = "get_full_inv_cmb_DataTable_by_SN";
+            this.panel_API_URL10.Description = "取得合併盤點單DataTable";
+            this.panel_API_URL10.Location = new System.Drawing.Point(792, 219);
+            this.panel_API_URL10.Name = "panel_API_URL10";
+            serverSettingClass13.DBName = null;
+            serverSettingClass13.GUID = null;
+            serverSettingClass13.Password = null;
+            serverSettingClass13.Port = null;
+            serverSettingClass13.Server = "";
+            serverSettingClass13.TableName = null;
+            serverSettingClass13.User = null;
+            serverSettingClass13.Value = null;
+            serverSettingClass13.內容 = "get_full_inv_cmb_DataTable_by_SN";
+            serverSettingClass13.單位 = null;
+            serverSettingClass13.程式類別 = null;
+            serverSettingClass13.設備名稱 = "";
+            serverSettingClass13.類別 = "網頁";
+            this.panel_API_URL10.ServerSetting = serverSettingClass13;
+            this.panel_API_URL10.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_API_URL10.Size = new System.Drawing.Size(746, 60);
+            this.panel_API_URL10.TabIndex = 85;
+            // 
             // Dialog_網頁
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1784, 961);
+            this.Controls.Add(this.panel_API_URL10);
             this.Controls.Add(this.panel_API_URL9);
             this.Controls.Add(this.panel_API_URL8);
             this.Controls.Add(this.panel_API_URL7);
@@ -506,5 +534,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL7;
         private Panel_API_URL panel_API_URL8;
         private Panel_API_URL panel_API_URL9;
+        private Panel_API_URL panel_API_URL10;
     }
 }

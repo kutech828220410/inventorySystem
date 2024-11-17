@@ -52,6 +52,7 @@ namespace 智能藥庫系統
             private string name = "";
             private string api_Server = "";
             private string orderApiURL = "";
+            private string api_get_full_inv_cmb_DataTable_by_SN = "";
 
             public string Name { get => name; set => name = value; }
             public string Api_Server { get => api_Server; set => api_Server = value; }
@@ -64,7 +65,8 @@ namespace 智能藥庫系統
             public SQL_DataGridView.ConnentionClass DB_儲位資料 { get => dB_儲位資料; set => dB_儲位資料 = value; }
             [JsonIgnore]
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
-
+            [JsonIgnore]
+            public string Api_get_full_inv_cmb_DataTable_by_SN { get => api_get_full_inv_cmb_DataTable_by_SN; set => api_get_full_inv_cmb_DataTable_by_SN = value; }
         }
         private void LoadDBConfig()
         {
@@ -317,6 +319,9 @@ namespace 智能藥庫系統
                 dBConfigClass.DB_儲位資料.UserName = serverSettingClass_儲位資料.User;
                 dBConfigClass.DB_儲位資料.Password = serverSettingClass_儲位資料.Password;
             }
+
+            ServerSettingClass serverSettingClass = serverSettingClasses.myFind("Main", "網頁", "get_full_inv_cmb_DataTable_by_SN");
+            if (serverSettingClass != null) dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN = serverSettingClass.Server;
         }
     }
 }

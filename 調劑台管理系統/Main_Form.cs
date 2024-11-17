@@ -428,9 +428,6 @@ namespace 調劑台管理系統
 
             }
         }
-
-
-
         #region Event
    
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)

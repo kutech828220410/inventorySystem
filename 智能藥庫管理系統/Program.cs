@@ -14,17 +14,10 @@ namespace 智能藥庫系統
         [STAThread]
         static void Main()
         {
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Main_Form());
-            }
-            catch(Exception ex)
-            {
-                Logger.Log($"Exception : {ex.Message}");
-            }
-          
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main_Form());
+
         }
     }
 }

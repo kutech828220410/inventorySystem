@@ -22,7 +22,7 @@ namespace 智能藥庫系統
         public inv_combinelistClass Inv_CombinelistClass = new inv_combinelistClass();
         public DateTime DateTime_st = new DateTime();
         public DateTime DateTime_end = new DateTime();
-        public DataTable dataTable = new DataTable();
+        public DataTable dataTable = null;
         static public Dialog_盤點單合併 myDialog;
         static public Dialog_盤點單合併 GetForm()
         {
@@ -67,13 +67,6 @@ namespace 智能藥庫系統
         }
 
 
-
-        private void Function_RereshUI(inv_combinelistClass Inv_CombinelistClass, stockRecord stockRecord)
-        {
-            this.Inv_CombinelistClass = Inv_CombinelistClass;
-
-        }
-
         #region Event
 
         private void ComboBox_inv_Combinelist_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,8 +87,27 @@ namespace 智能藥庫系統
                     LoadingForm.ShowLoadingForm();
                     LoadingForm.Set_Description("下載報表...");
 
-                    List<DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN(Main_Form.API_Server, SN);
-                    dataTables[0].RemoveColumn(enum_盤點定盤_Excel.覆盤量);
+                    List<DataTable> dataTables = new List<DataTable>();
+                    if (Main_Form.dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN.StringIsEmpty())
+                    {
+                        dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN(Main_Form.API_Server, SN);
+                    }
+                    else
+                    {
+                        dataTables = inv_combinelistClass.get_dbvm_full_inv_DataTable_by_SN(Main_Form.dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN, SN);
+                    }
+                    List<object[]> list_value = dataTables[0].DataTableToRowList();
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+                        string 覆盤量 = list_value[i][(int)enum_盤點定盤_Excel.覆盤量].ObjectToString();
+                        if (覆盤量.StringIsDouble())
+                        {
+                            list_value[i][(int)enum_盤點定盤_Excel.盤點量] = 覆盤量;
+                        }
+                    }
+                    DataTable dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
+                    dataTable.RemoveColumn(enum_盤點定盤_Excel.覆盤量);
+                    dataTables[0] = dataTable;
                     byte[] bytes = MyOffice.ExcelClass.NPOI_GetBytes(dataTables , Excel_Type.xlsx);
                     LoadingForm.Set_Description($"儲存檔案...");
                     bytes.SaveFileStream(saveFileDialog_SaveExcel.FileName);
@@ -174,13 +186,21 @@ namespace 智能藥庫系統
 
             sqL_DataGridView_盤點總表.RowEndEditEvent += SqL_DataGridView_盤點總表_RowEndEditEvent;
             sqL_DataGridView_盤點總表.CellValidatingEvent += SqL_DataGridView_盤點總表_CellValidatingEvent;
+            sqL_DataGridView_盤點總表.DataGridRowsChangeRefEvent += SqL_DataGridView_盤點總表_DataGridRowsChangeRefEvent;
 
             dateTimeIntervelPicker_建表日期.StartTime = DateTime.Now.GetStartDate().AddMonths(-1);
             dateTimeIntervelPicker_建表日期.EndTime = DateTime.Now.GetEndDate().AddMonths(0);
             dateTimeIntervelPicker_建表日期.OnSureClick();
+
+            rJ_Button_搜尋.MouseDownEvent += RJ_Button_搜尋_MouseDownEvent;
+
+            comboBox_搜尋條件.SelectedIndex = 0;
+
             IsShown = true;
 
         }
+
+      
 
         private void SqL_DataGridView_盤點總表_CellValidatingEvent(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)
         {
@@ -194,7 +214,6 @@ namespace 智能藥庫系統
                 return;
             }
         }
-
         private void SqL_DataGridView_盤點總表_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             string text = "";
@@ -207,9 +226,30 @@ namespace 智能藥庫系統
             inv_Combinelist_Review_Class.藥碼 = 藥碼;
             inv_Combinelist_Review_Class.數量 = 覆盤量;
             inv_combinelistClass.add_medReview_by_SN(Main_Form.API_Server, SN, inv_Combinelist_Review_Class);
+            dataTable.Rows[rowIndex][colIndex] = value;
+            //List<object[]> list_replace = new List<object[]>();
+            //list_replace.Add(RowValue);
             sqL_DataGridView_盤點總表.ClearSelection();
-        }
+            //sqL_DataGridView_盤點總表.ReplaceExtra(list_replace, true);
 
+        }
+        private void SqL_DataGridView_盤點總表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            for (int i = 0; i < RowsList.Count; i++)
+            {
+                object[] value = RowsList[i];
+                if (value[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty())
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+                else
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+            }
+        }
         private void DateTimeIntervelPicker_建表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
             DateTime dateTime_st = dateTimeIntervelPicker_建表日期.StartTime;
@@ -314,7 +354,15 @@ namespace 智能藥庫系統
                 string text = this.comboBox_inv_Combinelist.GetComboBoxText();
                 if (text.StringIsEmpty()) return;
                 string SN = RemoveParentheses(text);
-                List<DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN(Main_Form.API_Server, SN);
+                List<DataTable> dataTables = new List<DataTable>();
+                if (Main_Form.dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN.StringIsEmpty())
+                {
+                    dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN(Main_Form.API_Server, SN);
+                }
+                else
+                {
+                    dataTables = inv_combinelistClass.get_dbvm_full_inv_DataTable_by_SN(Main_Form.dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN, SN);
+                }
                 if (dataTables == null)
                 {
                     MyMessageBox.ShowDialog("取得總表失敗");
@@ -339,7 +387,71 @@ namespace 智能藥庫系統
             }
 
         }
+        private void RJ_Button_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if(dataTable == null)
+            {
+                MyMessageBox.ShowDialog("請生成總表後再進行搜尋");
+                return;
+            }
+        
+            List<object[]> list_value = dataTable.DataTableToRowList();
+            string cmb_serchType = comboBox_搜尋條件.GetComboBoxText();
+            if (cmb_serchType == "全部顯示")
+            {
+                this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
+                return;
+            }
 
+            string serchValue = comboBox_搜尋內容.GetComboBoxText();
+            serchValue = serchValue.ToUpper();
+            
+            if (serchValue.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋內容空白");
+                return;
+            }          
+       
+            if (cmb_serchType == "藥碼(料號)")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.藥碼].ObjectToString().ToUpper() == serchValue
+                              || temp[(int)enum_盤點定盤_Excel.料號].ObjectToString().ToUpper() == serchValue
+                              select temp).ToList();
+            }
+            if (cmb_serchType == "藥名")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.藥名].ObjectToString().ToUpper().StartsWith(serchValue)
+                              select temp).ToList();
+            }
+            if (cmb_serchType == "別名")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.別名].ObjectToString().ToUpper().StartsWith(serchValue)
+                              select temp).ToList();
+            }
+            if (cmb_serchType == "未覆盤")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.註記].ObjectToString().Contains("覆盤") 
+                              && temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == true
+                              select temp).ToList();
+            }
+            if (cmb_serchType == "已覆盤")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.註記].ObjectToString().Contains("覆盤")
+                              && temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == false
+                              select temp).ToList();
+            }
+
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+            }
+            this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
+        }
         #endregion
         static string RemoveParentheses(string input)
         {
