@@ -67,6 +67,7 @@ namespace 中藥調劑系統
             調劑完成,
         }
         public static sessionClass sessionClass = new sessionClass();
+
         private void Program_調劑畫面_Init()
         {
             Table table_處方內容 = new Table(new enum_處方內容());
@@ -121,8 +122,6 @@ namespace 中藥調劑系統
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
-
-     
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -1038,6 +1037,7 @@ namespace 中藥調劑系統
 
         #endregion
         #region Event
+        
         private void SqL_DataGridView_處方內容_DataGridClearGridEvent()
         {
             this.Invoke(new Action(delegate
