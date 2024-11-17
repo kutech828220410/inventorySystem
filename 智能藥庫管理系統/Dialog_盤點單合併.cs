@@ -76,8 +76,6 @@ namespace 智能藥庫系統
         {
             this.Invoke(new Action(delegate
             {
-
-
                 string text = "";
                 text = this.comboBox_inv_Combinelist.Text;
                 string SN = RemoveParentheses(text);
@@ -203,7 +201,6 @@ namespace 智能藥庫系統
         }
 
       
-
         private void SqL_DataGridView_盤點總表_CellValidatingEvent(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)
         {
             string 藥碼 = RowValue[(int)enum_盤點定盤_Excel.藥碼].ObjectToString();
@@ -228,7 +225,7 @@ namespace 智能藥庫系統
             inv_Combinelist_Review_Class.藥碼 = 藥碼;
             inv_Combinelist_Review_Class.數量 = 覆盤量;
             inv_combinelistClass.add_medReview_by_SN(Main_Form.API_Server, SN, inv_Combinelist_Review_Class);
-            dataTable.Rows[rowIndex][colIndex] = value;
+            dataTable.Rows[rowIndex][enum_盤點定盤_Excel.覆盤量.GetEnumName()] = value;
             //List<object[]> list_replace = new List<object[]>();
             //list_replace.Add(RowValue);
             sqL_DataGridView_盤點總表.ClearSelection();
@@ -253,6 +250,7 @@ namespace 智能藥庫系統
                 }
             }
         }
+
         private void DateTimeIntervelPicker_建表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
             DateTime dateTime_st = dateTimeIntervelPicker_建表日期.StartTime;
@@ -405,7 +403,23 @@ namespace 智能藥庫系統
                 this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
                 return;
             }
-
+            if (cmb_serchType == "未覆盤")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.註記].ObjectToString().Contains("覆盤")
+                              && temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == true
+                              select temp).ToList();
+                this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
+                return;
+            }
+            if (cmb_serchType == "已覆盤")
+            {
+                list_value = (from temp in list_value
+                              where temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == false
+                              select temp).ToList();
+                this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
+                return;
+            }
             string serchValue = comboBox_搜尋內容.GetComboBoxText();
             serchValue = serchValue.ToUpper();
             
@@ -434,20 +448,7 @@ namespace 智能藥庫系統
                               where temp[(int)enum_盤點定盤_Excel.別名].ObjectToString().ToUpper().StartsWith(serchValue)
                               select temp).ToList();
             }
-            if (cmb_serchType == "未覆盤")
-            {
-                list_value = (from temp in list_value
-                              where temp[(int)enum_盤點定盤_Excel.註記].ObjectToString().Contains("覆盤") 
-                              && temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == true
-                              select temp).ToList();
-            }
-            if (cmb_serchType == "已覆盤")
-            {
-                list_value = (from temp in list_value
-                              where temp[(int)enum_盤點定盤_Excel.註記].ObjectToString().Contains("覆盤")
-                              && temp[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty() == false
-                              select temp).ToList();
-            }
+          
 
             if (list_value.Count == 0)
             {
