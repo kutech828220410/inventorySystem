@@ -324,7 +324,7 @@ namespace HIS_DB_Lib
         private List<inv_combinelist_note_Class> medNotes = new List<inv_combinelist_note_Class>();
 
         /// <summary>
-        /// 參考單價
+        /// 覆盤品項
         /// </summary>
         [JsonPropertyName("medReviews")]
         public List<inv_combinelist_review_Class> MedReviews { get => medReviews; set => medReviews = value; }

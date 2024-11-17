@@ -22,7 +22,7 @@ namespace 智能藥庫系統
         public inv_combinelistClass Inv_CombinelistClass = new inv_combinelistClass();
         public DateTime DateTime_st = new DateTime();
         public DateTime DateTime_end = new DateTime();
-
+        public DataTable dataTable = new DataTable();
         static public Dialog_盤點單合併 myDialog;
         static public Dialog_盤點單合併 GetForm()
         {
@@ -189,9 +189,8 @@ namespace 智能藥庫系統
             if (覆盤量.StringIsInt32() == false && 覆盤量.StringIsEmpty() == false)
             {
                 RowValue[(int)enum_盤點定盤_Excel.覆盤量] = "";
-                value = "";
+                MyMessageBox.ShowDialog("請輸入數字或空白");
                 e.Cancel = true;
-                sqL_DataGridView_盤點總表.ClearSelection();
                 return;
             }
         }
@@ -326,8 +325,8 @@ namespace 智能藥庫系統
                     MyMessageBox.ShowDialog("取得總表失敗");
                     return;
                 }
-
-                List<object[]> list_value = dataTables[0].DataTableToRowList();
+                dataTable = dataTables[0];
+                List<object[]> list_value = dataTable.DataTableToRowList();
                 this.sqL_DataGridView_盤點總表.RefreshGrid(list_value);
             }
             catch
