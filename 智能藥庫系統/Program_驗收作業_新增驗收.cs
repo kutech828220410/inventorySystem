@@ -80,9 +80,10 @@ namespace 智能藥庫系統
         {
             RowsList.Sort(new ICP_驗收作業_驗收藥品清單());
         }
-        private void SqL_DataGridView_驗收作業_驗收藥品清單_RowEndEditEvent1(object[] RowValue, int rowIndex, int colIndex, string value)
+        private bool SqL_DataGridView_驗收作業_驗收藥品清單_RowEndEditEvent1(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             this.sqL_DataGridView_驗收作業_驗收藥品清單.ReplaceExtra(RowValue, true);
+            return false;
         }
 
         private void SqL_DataGridView_驗收作業_驗收藥品清單_CellValidatingEvent1(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)

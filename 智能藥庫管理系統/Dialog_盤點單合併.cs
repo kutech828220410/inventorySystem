@@ -107,6 +107,7 @@ namespace 智能藥庫系統
                     }
                     DataTable dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
                     dataTable.RemoveColumn(enum_盤點定盤_Excel.覆盤量);
+                    dataTable.RemoveColumn(enum_盤點定盤_Excel.GUID);
                     dataTables[0] = dataTable;
                     byte[] bytes = MyOffice.ExcelClass.NPOI_GetBytes(dataTables , Excel_Type.xlsx);
                     LoadingForm.Set_Description($"儲存檔案...");
@@ -214,11 +215,11 @@ namespace 智能藥庫系統
                 return;
             }
         }
-        private void SqL_DataGridView_盤點總表_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
+        private bool SqL_DataGridView_盤點總表_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             string text = "";
             this.Invoke(new Action(delegate { text = this.comboBox_inv_Combinelist.Text; }));
-            if (text.StringIsEmpty()) return;
+            if (text.StringIsEmpty()) return false;
             string SN = RemoveParentheses(text);
             string 藥碼 = RowValue[(int)enum_盤點定盤_Excel.藥碼].ObjectToString();
             string 覆盤量 = RowValue[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString();
@@ -231,6 +232,7 @@ namespace 智能藥庫系統
             //list_replace.Add(RowValue);
             sqL_DataGridView_盤點總表.ClearSelection();
             //sqL_DataGridView_盤點總表.ReplaceExtra(list_replace, true);
+            return true;
 
         }
         private void SqL_DataGridView_盤點總表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)

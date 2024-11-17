@@ -222,9 +222,10 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
-        private void SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
+        private bool SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             this.sqL_DataGridView_選擇藥品.ReplaceExtra(RowValue , true);
+            return false;
         }
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
