@@ -623,40 +623,6 @@ namespace 調劑台管理系統
             list_value.AddRange(taskRFIDDevices.Result); // rFIDDevices
 
             return list_value;
-
-            //List<object> list_value = new List<object>();
-            //List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
-            //List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
-            //List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
-            //List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
-            //List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
-            //List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
-            //for (int i = 0; i < storages.Count; i++)
-            //{
-            //    list_value.Add(storages[i]);
-            //}
-            //for (int i = 0; i < boxes.Count; i++)
-            //{
-            //    list_value.Add(boxes[i]);
-            //}
-            //for (int i = 0; i < boxes_1020.Count; i++)
-            //{
-            //    list_value.Add(boxes_1020[i]);
-            //}
-
-            //for (int i = 0; i < pannels.Count; i++)
-            //{
-            //    list_value.Add(pannels[i]);
-            //}
-            //for (int i = 0; i < rowsDevices.Count; i++)
-            //{
-            //    list_value.Add(rowsDevices[i]);
-            //}
-            //for (int i = 0; i < rFIDDevices.Count; i++)
-            //{
-            //    list_value.Add(rFIDDevices[i]);
-            //}
-            //return list_value;
         }
         public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
         {
@@ -1458,19 +1424,25 @@ namespace 調劑台管理系統
                 list_取藥堆疊母資料 = (from temp in list_取藥堆疊母資料
                                 where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼
                                 where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
+                                where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != "入賬完成"
                                 select temp).ToList();
                 if (list_取藥堆疊母資料.Count != 0) return;
             }
+
             if (color == Color.DarkGray)
             {
                 color = Color.Black;
                 lightOn.顏色 = color;
             }
+
             List<LightOn> lightOns_buf = (from temp in lightOns
                                           where temp.藥品碼 == lightOn.藥品碼
                                           where temp.顏色 == lightOn.顏色
                                           where temp.flag_Refresh_LCD == lightOn.flag_Refresh_LCD
+                                          where temp.flag_Refresh_Light == lightOn.flag_Refresh_Light
+                                          where temp.flag_Refresh_breathing == lightOn.flag_Refresh_breathing
                                           select temp).ToList();
+
             if (lightOns_buf.Count == 0) lightOns.Add(lightOn);
 
             List<object> list_Device = new List<object>();
