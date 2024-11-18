@@ -1963,8 +1963,14 @@ namespace 調劑台管理系統
                     for (int i = 0; i < list_取藥堆疊母資料_delete.Count; i++)
                     {
                         string 藥品碼 = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                        this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete((int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
-                        Console.WriteLine($"儲位亮燈-刪除資料 藥品碼 : {藥品碼}");
+                        string Master_GUID = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                        List<object[]> list_value_delete = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID, false);
+
+                        if (list_value_delete.Count > 0)
+                        {
+                            this.sqL_DataGridView_取藥堆疊子資料.SQL_DeleteExtra(list_value_delete, false);
+                            Console.WriteLine($"{DateTime.Now.ToDateTimeString()}-儲位亮燈-刪除資料 藥品碼 : {藥品碼} ,共刪除<{list_value_delete.Count}>筆資料");
+                        }
 
                     }
 
@@ -1999,8 +2005,15 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_取藥堆疊母資料_delete.Count; i++)
                 {
                     string 藥品碼 = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete((int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString(), false);
-                    Console.WriteLine($"儲位亮燈-刪除資料 藥品碼 : {藥品碼}");
+                    string Master_GUID = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                    List<object[]> list_value_delete = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID, false);
+
+                    if (list_value_delete.Count > 0)
+                    {
+                        this.sqL_DataGridView_取藥堆疊子資料.SQL_DeleteExtra(list_value_delete, false);
+                        Console.WriteLine($"{DateTime.Now.ToDateTimeString()}-儲位亮燈-刪除資料 藥品碼 : {藥品碼} ,共刪除<{list_value_delete.Count}>筆資料");
+                    }
+       
 
                 }
                 return;
