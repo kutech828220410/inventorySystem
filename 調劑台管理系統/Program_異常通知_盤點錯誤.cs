@@ -69,6 +69,11 @@ namespace 調劑台管理系統
                 string 藥名 = list_value[0][(int)enum_medRecheckLog.藥名].ObjectToString();
                 string 庫存 = Function_從SQL取得庫存(藥碼).ToString();
                 int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入現在庫存值", 藥名);
+                if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+                int 現在庫存值 = dialog_NumPannel.Value;
+                差異值 = 現在庫存值 - 庫存.StringToInt32();
+
                 msg = $"藥碼:{藥碼}\n" +
                     $"藥名:{藥名}\n" +
                     $"庫存:{庫存} , 差異值:{差異值}\n" +
