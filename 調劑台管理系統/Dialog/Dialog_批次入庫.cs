@@ -149,6 +149,11 @@ namespace 調劑台管理系統
                 batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
                                                  where temp.庫別 == Main_Form.ServerName
                                                  select temp).ToList();
+                batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
+                                                 where Main_Form.Function_從本地資料取得儲位(temp.藥碼).Count > 0
+                                                 select temp).ToList();
+              
+
 
                 if (list_value.Count == 0)
                 {
@@ -169,6 +174,7 @@ namespace 調劑台管理系統
                 LoadingForm.CloseLoadingForm();
             }
         }
+
         private void PlC_RJ_Button_範例下載_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate 

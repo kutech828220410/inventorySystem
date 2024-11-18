@@ -2316,7 +2316,7 @@ namespace 調劑台管理系統
                 //for (int i = 0; i < list_醫令資料.Count; i++)
                 //{
                 //    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                //    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                //    if (Function_從本地資料取得儲位(藥品碼).Count == 0)
                 //    {
                 //        list_醫令資料_remove.Add(list_醫令資料[i]);
                 //    }
@@ -2457,7 +2457,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -2545,7 +2545,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -4326,7 +4326,7 @@ namespace 調劑台管理系統
                 //for (int i = 0; i < list_醫令資料.Count; i++)
                 //{
                 //    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                //    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                //    if (Function_從本地資料取得儲位(藥品碼).Count == 0)
                 //    {
                 //        list_醫令資料_remove.Add(list_醫令資料[i]);
                 //    }
@@ -4465,7 +4465,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -4554,7 +4554,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -6320,7 +6320,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
                     藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                    if (Function_從本地資料取得儲位(藥品碼).Count == 0)
                     {
                         list_醫令資料_remove.Add(list_醫令資料[i]);
                     }
@@ -6459,7 +6459,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -6548,7 +6548,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -8295,7 +8295,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
                     藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                    if (Function_從本地資料取得儲位(藥品碼).Count == 0)
                     {
                         list_醫令資料_remove.Add(list_醫令資料[i]);
                     }
@@ -8434,7 +8434,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
@@ -8523,7 +8523,7 @@ namespace 調劑台管理系統
                 this.voice.SpeakOnTask("此藥單正在領取中");
                 return;
             }
-            if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+            if (Function_從本地資料取得儲位(藥品碼).Count == 0)
             {
                 this.voice.SpeakOnTask("未搜尋到儲位");
                 return;
