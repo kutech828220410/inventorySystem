@@ -2219,6 +2219,7 @@ namespace HIS_WebApi
                     value[(int)enum_取藥堆疊母資料.調劑台名稱] = "儲位亮燈";
                     value[(int)enum_取藥堆疊母資料.狀態] = "None";
                     value[(int)enum_取藥堆疊母資料.總異動量] = str_time;
+                    value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
                     list_add.Add(value);
                 }
                 SQLControl sQLControl_take_medicine_stack_new = new SQLControl(serverSettingClass_堆疊資料.Server, serverSettingClass_堆疊資料.DBName, "take_medicine_stack_new", 
