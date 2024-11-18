@@ -1213,7 +1213,7 @@ namespace 調劑台管理系統
    
             Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
         }
-        public List<object> Function_從本地資料取得儲位(string 藥品碼)
+        static public List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
@@ -1418,7 +1418,7 @@ namespace 調劑台管理系統
         public int Function_從本地資料取得庫存(string 藥品碼)
         {
             int 庫存 = 0;
-            List<object> list_value = this.Function_從本地資料取得儲位(藥品碼);
+            List<object> list_value = Function_從本地資料取得儲位(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
             {
                 if (list_value[i] is Device)
@@ -1553,7 +1553,7 @@ namespace 調劑台管理系統
 
         public void Function_儲位刷新(string 藥品碼, int 庫存)
         {
-            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();
@@ -1622,7 +1622,7 @@ namespace 調劑台管理系統
         }
         public void Function_儲位刷新(string 藥品碼, ref List<string> list_lock_IP)
         {
-            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();
