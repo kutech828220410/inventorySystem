@@ -46,6 +46,7 @@ namespace 調劑台管理系統
             [Description("index_IP,VARCHAR,50,INDEX")]
             index_IP,
         }
+        static List<object[]> list_LCD114_索引表 = new List<object[]>();
         private void Program_LCD114_索引表_Init()
         {
             Table table = new Table(new enum_LCD114_索引表());
@@ -58,7 +59,7 @@ namespace 調劑台管理系統
             _sqL_DataGridView_LCD114_索引表 = this.sqL_DataGridView_LCD114_索引表;
             this.sqL_DataGridView_LCD114_索引表.AutoSelectToDeep = false;
             this.sqL_DataGridView_LCD114_索引表.Init(table);
-
+            list_LCD114_索引表 = _sqL_DataGridView_LCD114_索引表.SQL_GetAllRows(false);
             if (this.sqL_DataGridView_LCD114_索引表.SQL_IsTableCreat() == false) this.sqL_DataGridView_LCD114_索引表.SQL_CreateTable();
             else this.sqL_DataGridView_LCD114_索引表.SQL_CheckAllColumnName(true);
             this.sqL_DataGridView_LCD114_索引表.MouseDown += SqL_DataGridView_LCD114_索引表_MouseDown;
@@ -70,9 +71,11 @@ namespace 調劑台管理系統
 
         public static string Funcion_取得LCD114索引表_index_IP(string IP)
         {
-            List<object[]> list_value = _sqL_DataGridView_LCD114_索引表.SQL_GetRows((int)enum_LCD114_索引表.IP, IP, false);
-            if (list_value.Count == 0) return "";
-            return list_value[0][(int)enum_LCD114_索引表.index_IP].ObjectToString();
+            List<object[]> list_LCD114_索引表_buf = list_LCD114_索引表.GetRows((int)enum_LCD114_索引表.IP, IP);
+
+            //List<object[]> list_value = _sqL_DataGridView_LCD114_索引表.SQL_GetRows((int)enum_LCD114_索引表.IP, IP, false);
+            if (list_LCD114_索引表_buf.Count == 0) return "";
+            return list_LCD114_索引表_buf[0][(int)enum_LCD114_索引表.index_IP].ObjectToString();
         }
 
         private void Program_LCD114_索引表()

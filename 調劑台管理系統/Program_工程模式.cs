@@ -30,8 +30,6 @@ namespace 調劑台管理系統
             panel_工程模式_領藥台_04_顏色.Click += Panel_工程模式_領藥台_04_顏色_Click;
         }
 
-
-
         bool flag_工程模式_頁面更新 = false;
         private void sub_Program_工程模式()
         {
@@ -105,7 +103,7 @@ namespace 調劑台管理系統
                 }
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_雲端資料;
             try
             {
                 for (int i = 0; i < list_refresh_ip.Count; i++)

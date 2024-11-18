@@ -857,7 +857,7 @@ namespace HIS_WebApi
 
                 if (inv_Combinelist_review_Classes_buf.Count > 0)
                 {
-                    contents[i].盤點量 = inv_Combinelist_review_Classes_buf[0].數量;
+                    //contents[i].盤點量 = inv_Combinelist_review_Classes_buf[0].數量;
                     inv_CombinelistClass.MedReviews.Add(inv_Combinelist_review_Classes_buf[0]);
                 }
 
@@ -1768,7 +1768,6 @@ namespace HIS_WebApi
             inv_combinelistClass inv_CombinelistClass = inv_combinelistClass.get_full_inv_by_SN("http://127.0.0.1:4433", returnData.Value);
             //inv_CombinelistClass.get_all_full_creat("http://127.0.0.1:4433");
             List<inventoryClass.creat> creats = inv_CombinelistClass.Creats;
-
             List<inventoryClass.content> contents = new List<inventoryClass.content>();
             List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
             List<System.Data.DataTable> dataTables_creat = new List<System.Data.DataTable>();
@@ -1841,6 +1840,7 @@ namespace HIS_WebApi
                 string 藥碼 = contents[i].藥品碼;
 
                 object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                value[(int)enum_盤點定盤_Excel.GUID] = Guid.NewGuid().ToString();
                 value[(int)enum_盤點定盤_Excel.藥碼] = contents[i].藥品碼;
                 value[(int)enum_盤點定盤_Excel.料號] = contents[i].料號;
                 value[(int)enum_盤點定盤_Excel.藥名] = contents[i].藥品名稱;
@@ -1863,7 +1863,7 @@ namespace HIS_WebApi
 
                 if (inv_Combinelist_Review_Class != null)
                 {
-                    value[(int)enum_盤點定盤_Excel.盤點量] = inv_Combinelist_Review_Class.數量;
+                    value[(int)enum_盤點定盤_Excel.覆盤量] = inv_Combinelist_Review_Class.數量;
                 }
 
                 if (inv_Combinelist_Price_Class != null)
@@ -1871,10 +1871,18 @@ namespace HIS_WebApi
                     if(inv_Combinelist_Price_Class.單價.StringIsDouble()) value[(int)enum_盤點定盤_Excel.單價] = inv_Combinelist_Price_Class.單價;
                 }
                 value[(int)enum_盤點定盤_Excel.庫存金額] = value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
-                value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
 
-               
-                value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                if (value[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty())
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+                else
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+
                 value[(int)enum_盤點定盤_Excel.誤差金額] = value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
 
                 value[(int)enum_盤點定盤_Excel.庫存金額] = value[(int)enum_盤點定盤_Excel.庫存金額].StringToDouble().ToString("0.00");

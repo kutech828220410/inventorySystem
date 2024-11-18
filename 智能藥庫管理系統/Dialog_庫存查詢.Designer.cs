@@ -57,7 +57,6 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥庫_效期及批號_刪除 = new MyUI.PLC_RJ_Button();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.rJ_DatePicker1 = new MyUI.RJ_DatePicker();
             this.panel2.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.panel_效期及批號.SuspendLayout();
@@ -69,7 +68,6 @@ namespace 智能藥庫系統
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.rJ_DatePicker1);
             this.panel2.Controls.Add(this.sqL_DataGridView_庫存查詢);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -884,21 +882,6 @@ namespace 智能藥庫系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // rJ_DatePicker1
-            // 
-            this.rJ_DatePicker1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_DatePicker1.BorderSize = 0;
-            this.rJ_DatePicker1.Font = new System.Drawing.Font("新細明體", 15.75F);
-            this.rJ_DatePicker1.Location = new System.Drawing.Point(372, 194);
-            this.rJ_DatePicker1.MinimumSize = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker1.Name = "rJ_DatePicker1";
-            this.rJ_DatePicker1.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
-            this.rJ_DatePicker1.PickerFore = System.Drawing.SystemColors.ControlText;
-            this.rJ_DatePicker1.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker1.SkinColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_DatePicker1.TabIndex = 25;
-            this.rJ_DatePicker1.TextColor = System.Drawing.Color.White;
-            // 
             // Dialog_庫存查詢
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -963,6 +946,5 @@ namespace 智能藥庫系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥局_效期及批號_刪除;
         private System.Windows.Forms.OpenFileDialog openFileDialog_LoadExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveExcel;
-        private MyUI.RJ_DatePicker rJ_DatePicker1;
     }
 }

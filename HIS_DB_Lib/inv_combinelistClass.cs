@@ -324,7 +324,7 @@ namespace HIS_DB_Lib
         private List<inv_combinelist_note_Class> medNotes = new List<inv_combinelist_note_Class>();
 
         /// <summary>
-        /// 參考單價
+        /// 覆盤品項
         /// </summary>
         [JsonPropertyName("medReviews")]
         public List<inv_combinelist_review_Class> MedReviews { get => medReviews; set => medReviews = value; }
@@ -537,6 +537,27 @@ namespace HIS_DB_Lib
             List<System.Data.DataTable> dataTables = dts_xml.JsonDeserializeToDataTables();
             return dataTables;
         }
+        static public List<System.Data.DataTable> get_dbvm_full_inv_DataTable_by_SN(string url, string SN)
+        {
+            returnData returnData = new returnData();
+            returnData.Value = SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            string dts_xml = returnData.Data.ObjToClass<string>();
+            List<System.Data.DataTable> dataTables = dts_xml.JsonDeserializeToDataTables();
+            return dataTables;
+        }
+        
         static public byte[] get_full_inv_Excel_by_SN(string API_Server, string SN , params string[] remove_col_name)
         {
             string url = $"{API_Server}/api/inv_combinelist/get_full_inv_Excel_by_SN";

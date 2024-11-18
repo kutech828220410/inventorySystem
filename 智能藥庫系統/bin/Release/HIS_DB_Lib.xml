@@ -1468,7 +1468,7 @@
         </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.MedReviews">
             <summary>
-            參考單價
+            覆盤品項
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">

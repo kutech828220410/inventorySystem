@@ -11,6 +11,8 @@ namespace HIS_DB_Lib
 {
     public enum enum_盤點定盤_Excel
     {
+        [Description("GUID,VARCHAR,50,NONE")]
+        GUID,
         [Description("藥碼,VARCHAR,50,NONE")]
         藥碼,
         [Description("料號,VARCHAR,50,NONE")]

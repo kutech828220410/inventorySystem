@@ -152,9 +152,10 @@ namespace 智能藥庫系統
                 e.Cancel = true;
             }
         }
-        private void SqL_DataGridView_藥局_緊急申領_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
+        private bool SqL_DataGridView_藥局_緊急申領_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             this.sqL_DataGridView_藥局_緊急申領.ReplaceExtra(RowValue, true);
+            return false;
        
         }
         private void SqL_DataGridView_藥局_緊急申領_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)

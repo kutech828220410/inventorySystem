@@ -84,9 +84,10 @@ namespace 調劑台管理系統
         {
             RowsList.Sort(new ICP_盤點作業_盤點藥品清單());
         }
-        private void SqL_DataGridView_盤點作業_盤點藥品清單_RowEndEditEvent1(object[] RowValue, int rowIndex, int colIndex, string value)
+        private bool SqL_DataGridView_盤點作業_盤點藥品清單_RowEndEditEvent1(object[] RowValue, int rowIndex, int colIndex, string value)
         {
             this.sqL_DataGridView_盤點作業_盤點藥品清單.ReplaceExtra(RowValue, true);
+            return false;
         }
 
         private void SqL_DataGridView_盤點作業_盤點藥品清單_CellValidatingEvent1(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)

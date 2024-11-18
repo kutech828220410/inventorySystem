@@ -67,6 +67,7 @@ namespace 中藥調劑系統
             調劑完成,
         }
         public static sessionClass sessionClass = new sessionClass();
+
         private void Program_調劑畫面_Init()
         {
             Table table_處方內容 = new Table(new enum_處方內容());
@@ -121,8 +122,6 @@ namespace 中藥調劑系統
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
-
-     
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -484,6 +483,13 @@ namespace 中藥調劑系統
 
                                 else
                                 {
+                                    Task.Run(new Action(delegate
+                                    {
+                                        //Function_儲位亮燈(藥碼_current_row, Color.Black);
+                                        Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
+                                        Voice voice = new Voice();
+                                        voice.SpeakOnTask(RemoveParenthesesContent(藥名));
+                                    }));
                                     this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                                     ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
                                     return;
@@ -492,6 +498,13 @@ namespace 中藥調劑系統
                                 {
                                     EXCELL_set_sub_current_weight();
                                 }
+                                Task.Run(new Action(delegate
+                                {
+                                    //Function_儲位亮燈(藥碼_current_row, Color.Black);
+                                    Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
+                                    Voice voice = new Voice();
+                                    voice.SpeakOnTask(RemoveParenthesesContent(藥名));
+                                }));
                                 this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                             }
                             else if (list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
@@ -592,12 +605,34 @@ namespace 中藥調劑系統
                                 else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
                                 else
                                 {
+                                    Task.Run(new Action(delegate
+                                    {
+                                        //Function_儲位亮燈(藥碼_current_row, Color.Black);
+                                        Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
+                                        Voice voice = new Voice();
+                                        voice.SpeakOnTask(RemoveParenthesesContent(藥名));
+                                    }));
+
                                     this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                                     ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
                                     return;
                                 }
                                 if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
+
+
+                                List<string> Codes = (from temp in OrderTClass_現在調劑處方
+                                                      select temp.藥品碼).Distinct().ToList();
+
+                                Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+                                Task.Run(new Action(delegate
+                                {
+                                    //Function_儲位亮燈(藥碼_current_row, Color.Black);
+                                    Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
+                                    Voice voice = new Voice();
+                                    voice.SpeakOnTask(RemoveParenthesesContent(藥名));
+                                }));
                                 this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
+
                             }
 
                         }
@@ -1002,6 +1037,7 @@ namespace 中藥調劑系統
 
         #endregion
         #region Event
+        
         private void SqL_DataGridView_處方內容_DataGridClearGridEvent()
         {
             this.Invoke(new Action(delegate
@@ -1090,10 +1126,7 @@ namespace 中藥調劑系統
             }
             Function_更新處方內容(PRI_KEY);
 
-            List<string> Codes = (from temp in OrderTClass_現在調劑處方
-                                  select temp.藥品碼).Distinct().ToList();
-
-            Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+        
 
         }
         private void SqL_DataGridView_處方內容_DataGridRefreshEvent()
@@ -1156,13 +1189,7 @@ namespace 中藥調劑系統
             }
 
 
-            Task.Run(new Action(delegate
-            {
-                //Function_儲位亮燈(藥碼_current_row, Color.Black);
-                Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
-                Voice voice = new Voice();
-                voice.SpeakOnTask(RemoveParenthesesContent(藥名));
-            }));
+         
 
             Function_更新處方UI(GUID);
             order_current_row = RowValue;

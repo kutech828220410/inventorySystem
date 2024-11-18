@@ -518,87 +518,145 @@ namespace 調劑台管理系統
         public List<object> Function_從SQL取得儲位到雲端資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
-            List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
-            List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
-            List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
-            List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
-            List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
-            List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
-            for (int i = 0; i < boxes.Count; i++)
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(Task.Run(new Action(delegate 
             {
-                Box box = this.drawerUI_EPD_583.SQL_GetBox(boxes[i]);
-                List_EPD583_雲端資料.Add_NewDrawer(box);
-                list_value.Add(box);
-            }
-            for (int i = 0; i < boxes_1020.Count; i++)
+                List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < boxes.Count; i++)
+                {
+                    Box box = this.drawerUI_EPD_583.SQL_GetBox(boxes[i]);
+                    List_EPD583_雲端資料.Add_NewDrawer(box);
+                    list_value.LockAdd(box);
+                }
+            })));
+            tasks.Add(Task.Run(new Action(delegate
             {
-                Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
-                List_EPD1020_雲端資料.Add_NewDrawer(drawer);
-                Box box = drawer.GetByGUID(boxes_1020[i].GUID);
-                list_value.Add(box);
-            }
-            for (int i = 0; i < storages.Count; i++)
+                List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < boxes_1020.Count; i++)
+                {
+                    Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
+                    List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                    Box box = drawer.GetByGUID(boxes_1020[i].GUID);
+                    list_value.LockAdd(box);
+                }
+            })));
+            tasks.Add(Task.Run(new Action(delegate
             {
-                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(storages[i]);
-                List_EPD266_雲端資料.Add_NewStorage(storage);
-                list_value.Add(storage);
-            }
-            for (int i = 0; i < pannels.Count; i++)
+                List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < storages.Count; i++)
+                {
+                    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(storages[i]);
+                    List_EPD266_雲端資料.Add_NewStorage(storage);
+                    list_value.LockAdd(storage);
+                }
+            })));
+            tasks.Add(Task.Run(new Action(delegate
             {
-                Storage pannel = this.storageUI_WT32.SQL_GetStorage(pannels[i]);
-                List_Pannel35_雲端資料.Add_NewStorage(pannel);
-                list_value.Add(pannel);
-            }
-            for (int i = 0; i < rowsDevices.Count; i++)
+                List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < pannels.Count; i++)
+                {
+                    Storage pannel = this.storageUI_WT32.SQL_GetStorage(pannels[i]);
+                    List_Pannel35_雲端資料.Add_NewStorage(pannel);
+                    list_value.LockAdd(pannel);
+                }
+            })));
+            tasks.Add(Task.Run(new Action(delegate
             {
-                RowsLED rowsLED = this.rowsLEDUI.SQL_GetRowsLED(rowsDevices[i].IP);
-                RowsDevice rowsDevice = rowsLED.GetRowsDevice(rowsDevices[i].GUID);
-                if (rowsDevice != null) list_value.Add(rowsDevice);
-                List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
-            }
-            for (int i = 0; i < rFIDDevices.Count; i++)
+                List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < rowsDevices.Count; i++)
+                {
+                    RowsLED rowsLED = this.rowsLEDUI.SQL_GetRowsLED(rowsDevices[i].IP);
+                    RowsDevice rowsDevice = rowsLED.GetRowsDevice(rowsDevices[i].GUID);
+                    if (rowsDevice != null) list_value.LockAdd(rowsDevice);
+                    List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
+                }
+            })));
+            tasks.Add(Task.Run(new Action(delegate
             {
-                RFIDDevice rFIDDevice = this.rfiD_UI.SQL_GetDevice(rFIDDevices[i]);
-                List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
-                list_value.Add(rFIDDevices);
-            }
+                List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
+                for (int i = 0; i < rFIDDevices.Count; i++)
+                {
+                    RFIDDevice rFIDDevice = this.rfiD_UI.SQL_GetDevice(rFIDDevices[i]);
+                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+                    list_value.LockAdd(rFIDDevices);
+                }
+            })));
+
+            Task.WhenAll(tasks).Wait();
+            
+
+        
+
+
+       
+
+          
+
+
+
+
+
             return list_value;
         }
         static public List<object> Function_從雲端資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
-            List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
-            List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
-            List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
-            List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
-            List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
-            List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
-            for (int i = 0; i < storages.Count; i++)
-            {
-                list_value.Add(storages[i]);
-            }
-            for (int i = 0; i < boxes.Count; i++)
-            {
-                list_value.Add(boxes[i]);
-            }
-            for (int i = 0; i < boxes_1020.Count; i++)
-            {
-                list_value.Add(boxes_1020[i]);
-            }
-          
-            for (int i = 0; i < pannels.Count; i++)
-            {
-                list_value.Add(pannels[i]);
-            }
-            for (int i = 0; i < rowsDevices.Count; i++)
-            {
-                list_value.Add(rowsDevices[i]);
-            }
-            for (int i = 0; i < rFIDDevices.Count; i++)
-            {
-                list_value.Add(rFIDDevices[i]);
-            }
+
+            // 使用 Task 執行每個集合的 SortByCode 操作
+            var taskBoxes = Task.Run(() => List_EPD583_雲端資料.SortByCode(藥品碼));
+            var taskBoxes1020 = Task.Run(() => List_EPD1020_雲端資料.SortByCode(藥品碼));
+            var taskStorages = Task.Run(() => List_EPD266_雲端資料.SortByCode(藥品碼));
+            var taskPannels = Task.Run(() => List_Pannel35_雲端資料.SortByCode(藥品碼));
+            var taskRowsDevices = Task.Run(() => List_RowsLED_雲端資料.SortByCode(藥品碼));
+            var taskRFIDDevices = Task.Run(() => List_RFID_雲端資料.SortByCode(藥品碼));
+
+            // 使用 Task.WaitAll 同步等待所有任務完成
+            Task.WaitAll(taskBoxes, taskBoxes1020, taskStorages, taskPannels, taskRowsDevices, taskRFIDDevices);
+
+            // 將所有結果加入 list_value
+            list_value.AddRange(taskStorages.Result); // storages
+            list_value.AddRange(taskBoxes.Result); // boxes
+            list_value.AddRange(taskBoxes1020.Result); // boxes_1020
+            list_value.AddRange(taskPannels.Result); // pannels
+            list_value.AddRange(taskRowsDevices.Result); // rowsDevices
+            list_value.AddRange(taskRFIDDevices.Result); // rFIDDevices
+
             return list_value;
+
+            //List<object> list_value = new List<object>();
+            //List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
+            //List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
+            //List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
+            //List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
+            //List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
+            //List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
+            //for (int i = 0; i < storages.Count; i++)
+            //{
+            //    list_value.Add(storages[i]);
+            //}
+            //for (int i = 0; i < boxes.Count; i++)
+            //{
+            //    list_value.Add(boxes[i]);
+            //}
+            //for (int i = 0; i < boxes_1020.Count; i++)
+            //{
+            //    list_value.Add(boxes_1020[i]);
+            //}
+
+            //for (int i = 0; i < pannels.Count; i++)
+            //{
+            //    list_value.Add(pannels[i]);
+            //}
+            //for (int i = 0; i < rowsDevices.Count; i++)
+            //{
+            //    list_value.Add(rowsDevices[i]);
+            //}
+            //for (int i = 0; i < rFIDDevices.Count; i++)
+            //{
+            //    list_value.Add(rFIDDevices[i]);
+            //}
+            //return list_value;
         }
         public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
         {
