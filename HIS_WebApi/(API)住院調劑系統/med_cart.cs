@@ -792,8 +792,10 @@ namespace HIS_WebApi
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_patient_by_GUID";
+            string str_result_temp = "";
             try
             {
+                List<Task> tasks = new List<Task>();
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
@@ -806,12 +808,26 @@ namespace HIS_WebApi
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<medCarInfoClass> sql_medCarInfo = new List<medCarInfoClass>();
+                List<medCpoeClass> sql_medCpoe = new List<medCpoeClass>();
 
-                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, GUID);
-                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, GUID);
 
-                List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();              
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    //取得配車病人資料
+                    List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, GUID);
+                    sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+                    str_result_temp += $"取得配車病人資料 , {myTimerBasic}ms \n";
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    //取得處方資料
+                    List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, GUID);
+                    sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                    str_result_temp += $"取得處方資料 , {myTimerBasic}ms \n";
+                })));
+                Task.WhenAll(tasks).Wait();
+              
 
                 if (sql_medCarInfo == null)
                 {
@@ -828,6 +844,7 @@ namespace HIS_WebApi
 
                     if ((returnData.Value).StringIsEmpty() == false && returnData.Value != "all")
                     {
+                        //取得調劑台內藥品資訊
                         List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
                         Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
                         foreach (medCpoeClass medCpoeClass in sql_medCpoe)
@@ -835,38 +852,63 @@ namespace HIS_WebApi
                             if (medClassDict.ContainsKey(medCpoeClass.藥碼)) medCpoeClass.調劑台 = "Y";
                         }
                     }
+                    str_result_temp += $"取得調劑台內藥品資訊 , {myTimerBasic}ms \n";
+
                     if (returnData.Value == "all")
                     {
                         foreach (var medCpoeClass in sql_medCpoe) medCpoeClass.調劑台 = "Y";
                     }
                     List<string> GUIDs = sql_medCpoe.Select(temp => temp.GUID).ToList();
                     string valueAry = string.Join(";",GUIDs);
-                    List<medClass> med_cloud = medClass.get_med_clouds_by_codes(API, Codes);
-                    List<medInfoClass> med_Info = medInfoClass.get_medInfo_by_codes(API, Codes);
-                    List<medInventoryLogClass> med_InvenLog = medInventoryLogClass.get_logtime_by_master_GUID(API, valueAry);
+                    //取得線上藥檔資料
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                    List<medClass> med_cloud = new List<medClass>();
+                    List<medInfoClass> med_Info = new List<medInfoClass>();
+                    List<medInventoryLogClass> med_InvenLog = new List<medInventoryLogClass>();
+                    tasks.Clear();
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        med_cloud = medClass.get_med_clouds_by_codes(API, Codes);
+                        str_result_temp += $"取得線上藥檔資料 , {myTimerBasic}ms \n";
+                    })));
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        //取得仿單、說明書等等資訊
+                        med_Info = medInfoClass.get_medInfo_by_codes(API, Codes);
+                        str_result_temp += $"取得仿單、說明書等等資訊 , {myTimerBasic}ms \n";
+                    })));
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        //取得調劑紀錄
+                        med_InvenLog = medInventoryLogClass.get_logtime_by_master_GUID(API, valueAry);
+                        str_result_temp += $"取得調劑紀錄 , {myTimerBasic}ms \n";
+                    })));
+                    Task.WhenAll(tasks).Wait();
+                    //轉換字典搜尋
                     Dictionary<string, List<medClass>> medCloudDict = medClass.CoverToDictionaryByCode(med_cloud);
                     Dictionary<string, List<medInfoClass>> medInfoDict = medInfoClass.CoverToDictionaryByCode(med_Info);
                     Dictionary<string, List<medInventoryLogClass>> medInvenDict = medInventoryLogClass.CoverToDictionaryMasterGUID(med_InvenLog);      
                     foreach (var cpoe in sql_medCpoe)
                     {          
-
                         cpoe.雲端藥檔 = medClass.SortDictionaryByCode(medCloudDict, cpoe.藥碼);
                         cpoe.藥品資訊 = medInfoClass.SortDictByCode(medInfoDict, cpoe.藥碼);
                         cpoe.調劑紀錄 = medInventoryLogClass.SortDictByMasterGUID(medInvenDict, cpoe.GUID);
                     }
-                    sql_medCarInfo[0].處方 = sql_medCpoe;    
+                    sql_medCarInfo[0].處方 = sql_medCpoe;
+                    str_result_temp += $"轉換字典搜尋 , {myTimerBasic}ms \n";
+
                 }
                 else
                 {
                     sql_medCarInfo[0].處方 = new List<medCpoeClass>();
                 }
-                medCarInfoClass medCarInfoClasses = new medCarInfoClass();
-                medCarInfoClasses = sql_medCarInfo[0];
+                //medCarInfoClass medCarInfoClasses = new medCarInfoClass();
+                //medCarInfoClasses = sql_medCarInfo[0];
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCarInfoClasses;
-                returnData.Result = $"取得{sql_medCarInfo[0].藥局} {sql_medCarInfo[0].護理站} 第{sql_medCarInfo[0].床號}病床的資訊";
+                returnData.Data = sql_medCarInfo[0];
+                returnData.Result = $"取得{sql_medCarInfo[0].藥局} {sql_medCarInfo[0].護理站} 第{sql_medCarInfo[0].床號}病床的資訊\n{str_result_temp}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -1040,7 +1082,19 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_info", UserName, Password, Port, SSLMode);
-                List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
+                List<object[]> list_med_info = new List<object[]>();
+                //List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
+                List<Task> tasks = new List<Task>();
+                for (int i = 0; i < codes.Length; i++)
+                {
+                    string code = codes[i];
+                    tasks.Add(Task.Run(new Action(delegate 
+                    {
+                        List<object[]> list_value_buf = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_info.藥碼, code);
+                        list_med_info.LockAdd(list_value_buf);
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
                 List<medInfoClass> sql_med_info = list_med_info.SQLToClass<medInfoClass, enum_med_info>();
                 List<medInfoClass> result = new List<medInfoClass>();
                 Dictionary<string, medInfoClass> medInfoDict = sql_med_info.ToDictionary(m => m.藥碼);
@@ -1169,7 +1223,8 @@ namespace HIS_WebApi
                 {
                     sql_medCarinfo[0].調劑狀態 = "";
                 }
-                    
+                if(sql_medCarinfo[0].入院日期.StringIsEmpty()) sql_medCarinfo[0].入院日期 = DateTime.MinValue.ToDateTimeString_6();
+
                 List<object[]> list_medCarInfo_replace = sql_medCarinfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_medCarInfo_replace);             
 

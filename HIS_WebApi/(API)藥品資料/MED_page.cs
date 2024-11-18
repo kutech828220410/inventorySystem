@@ -3248,18 +3248,34 @@ namespace HIS_WebApi
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
-                List<object[]> list_med = sQLControl_med.GetAllRows(null);
-                List<object[]> list_med_buf = new List<object[]>();
-                List<object[]> list_med_temp = new List<object[]>();
+
+                List<object[]> list_med = new List<object[]>();
+                //List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
+                List<Task> tasks = new List<Task>();
                 for (int i = 0; i < Codes.Length; i++)
                 {
-                    list_med_temp = list_med.GetRows((int)enum_雲端藥檔.藥品碼, Codes[i]);
-                    if(list_med_temp.Count > 0)
+                    string code = Codes[i];
+                    tasks.Add(Task.Run(new Action(delegate
                     {
-                        list_med_buf.Add(list_med_temp[0]);
-                    }
+                        List<object[]> list_value_buf = sQLControl_med.GetRowsByDefult(null, (int)enum_雲端藥檔.藥品碼, code);
+                        list_med.LockAdd(list_value_buf);
+                    })));
                 }
-                List<medClass> medClasses = list_med_buf.SQLToClass<medClass, enum_雲端藥檔>();
+                Task.WhenAll(tasks).Wait();
+                //List<object[]> list_med = sQLControl_med.GetAllRows(null);
+                //List<object[]> list_med_buf = new List<object[]>();
+                //List<object[]> list_med_temp = new List<object[]>();
+                //for (int i = 0; i < Codes.Length; i++)
+                //{
+                //    list_med_temp = list_med.GetRows((int)enum_雲端藥檔.藥品碼, Codes[i]);
+                //    if(list_med_temp.Count > 0)
+                //    {
+                //        list_med_buf.Add(list_med_temp[0]);
+                //    }
+                //}
+                //List<medClass> medClasses = list_med_buf.SQLToClass<medClass, enum_雲端藥檔>();
+                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+
                 return medClasses;
             }
             catch
