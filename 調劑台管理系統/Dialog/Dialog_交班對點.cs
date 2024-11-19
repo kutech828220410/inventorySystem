@@ -211,6 +211,7 @@ namespace 調劑台管理系統
                         }
                         this.sqL_DataGridView_交班藥品.SetSelectRow(index);
                         this.stepViewer.Next();
+                        PLC_Device_交班對點.Bool = true;
                     }
                     this.Invoke(new Action(delegate
                     {
