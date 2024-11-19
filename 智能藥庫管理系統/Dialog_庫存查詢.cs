@@ -728,7 +728,7 @@ namespace 智能藥庫系統
 
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
                 if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-                int Value = dialog_NumPannel.Value;
+                double Value = dialog_NumPannel.Value;
                 if (Value <= 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("數量不得小於\"1\"", 1500);
@@ -855,7 +855,7 @@ namespace 智能藥庫系統
 
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
                 if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-                int Value = dialog_NumPannel.Value;
+                double Value = dialog_NumPannel.Value;
                 if (Value <= 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("數量不得小於\"1\"", 1500);

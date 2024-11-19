@@ -721,7 +721,7 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            int num = 0;
+            double num = 0;
             DialogResult dialogResult = DialogResult.None;
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             this.Invoke(new Action(delegate
@@ -746,7 +746,7 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            int num = 0;
+            double num = 0;
             DialogResult dialogResult = DialogResult.None;
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             this.Invoke(new Action(delegate

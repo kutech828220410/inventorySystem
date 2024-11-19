@@ -59,7 +59,7 @@ namespace 癌症備藥機
 
             return devices;
         }
-        static public int Function_從SQL取得庫存(string 藥品碼)
+        static public double Function_從SQL取得庫存(string 藥品碼)
         {
             int 庫存 = 0;
             List<object> list_value = Function_從SQL取得儲位到本地資料(藥品碼);

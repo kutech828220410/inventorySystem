@@ -68,11 +68,11 @@ namespace 調劑台管理系統
                 string 藥碼 = list_value[0][(int)enum_medRecheckLog.藥碼].ObjectToString();
                 string 藥名 = list_value[0][(int)enum_medRecheckLog.藥名].ObjectToString();
                 string 庫存 = Function_從SQL取得庫存(藥碼).ToString();
-                int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入現在庫存值", 藥名);
                 if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-                int 現在庫存值 = dialog_NumPannel.Value;
-                差異值 = 現在庫存值 - 庫存.StringToInt32();
+                double 現在庫存值 = dialog_NumPannel.Value;
+                差異值 = 現在庫存值 - 庫存.StringToDouble();
 
                 msg = $"藥碼:{藥碼}\n" +
                     $"藥名:{藥名}\n" +
@@ -127,7 +127,7 @@ namespace 調劑台管理系統
 
 
     
-        private void Function_異常通知_盤點錯誤_庫存異動(string 藥碼, string 藥名 ,int 差異值)
+        private void Function_異常通知_盤點錯誤_庫存異動(string 藥碼, string 藥名 , double 差異值)
         {
             List<string> list_效期 = new List<string>();
             List<string> list_批號 = new List<string>();
@@ -136,9 +136,9 @@ namespace 調劑台管理系統
 
             string 備註 = "";
             Function_從SQL取得儲位到雲端資料(藥碼);
-            int 庫存量 = Function_從雲端資料取得庫存(藥碼);
-            int 異動量 = 差異值;
-            int 結存量 = 庫存量 + 異動量;
+            double 庫存量 = Function_從雲端資料取得庫存(藥碼);
+            double 異動量 = 差異值;
+            double 結存量 = 庫存量 + 異動量;
 
             if (庫存量 == 0 || 異動量 > 0)
             {

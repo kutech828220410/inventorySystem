@@ -300,8 +300,8 @@ namespace 調劑台管理系統
                 int retry = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
-                int 結存量 = 0;
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 結存量 = 0;
 
                 voice.SpeakOnTask("請輸入盲盤數量");
                 while (true)
@@ -339,7 +339,7 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    int 庫存量 = Function_從SQL取得庫存(藥碼);
+                    double 庫存量 = Function_從SQL取得庫存(藥碼);
                     結存量 = 庫存量 + 總異動量;
                     if (結存量.ToString() == dialog_NumPannel.Value.ToString()) break;
                     voice.SpeakOnTask("盲盤數量錯誤");
@@ -728,7 +728,7 @@ namespace 調劑台管理系統
             string ID = 登入者ID;
             string 顏色 = 登入者顏色;
             string 藥師證字號 = 登入者藥師證字號;
-            int 總異動量 = 輸入數量.StringToInt32();
+            double 總異動量 = 輸入數量.StringToDouble();
             string 效期 = 輸入效期;
             string 批號 = 輸入批號;
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();

@@ -116,7 +116,7 @@ namespace 調劑台管理系統
             string 調入庫存量 = "";
             string 調入庫別 = cmb_text;
             string 調出庫別 = Main_Form.ServerName;
-            int 調出數量 = 0;
+            double 調出數量 = 0;
             List<medClass> medClasses = medClass.get_dps_medClass_by_code(Main_Form.API_Server, cmb_text, 藥碼);
         
             if (medClasses.Count == 0)
@@ -137,7 +137,7 @@ namespace 調劑台管理系統
             {
                 dialog_NumPannel = new Dialog_NumPannel($"({medClasses[0].藥品碼}) {medClasses[0].藥品名稱}", $"可出庫庫存 : {調出庫存量} , 目的庫存量 : {medClasses[0].庫存}");
                 dialog_NumPannel.ShowDialog();
-                if (dialog_NumPannel.Value > 調出庫存量.StringToInt32())
+                if (dialog_NumPannel.Value > 調出庫存量.StringToDouble())
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調出數量不足",1500);
                     dialog_AlarmForm.ShowDialog();
@@ -218,7 +218,7 @@ namespace 調劑台管理系統
                 return;
             }
             medClasses = (from temp in medClasses
-                          where temp.庫存.StringToInt32() > 0
+                          where temp.庫存.StringToDouble() > 0
                           select temp).ToList();
 
 

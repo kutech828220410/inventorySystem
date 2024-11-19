@@ -291,7 +291,7 @@ namespace 調劑台管理系統
             {
 
             }
-            int 總消耗量 = 0;
+            double 總消耗量 = 0;
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < transactionsClasses.Count; i++)
             {
@@ -308,9 +308,9 @@ namespace 調劑台管理系統
                 value[(int)enum_交班對點_管制結存_紀錄顯示.領藥號] = transactionsClasses[i].領藥號;
                 value[(int)enum_交班對點_管制結存_紀錄顯示.備註] = transactionsClasses[i].備註;
 
-                if (transactionsClasses[i].交易量.StringIsInt32())
+                if (transactionsClasses[i].交易量.StringIsDouble())
                 {
-                    總消耗量 += transactionsClasses[i].交易量.StringToInt32();
+                    總消耗量 += transactionsClasses[i].交易量.StringToDouble();
                 }
                 list_value.Add(value);
             }

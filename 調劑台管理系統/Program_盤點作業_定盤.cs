@@ -123,16 +123,16 @@ namespace 調劑台管理系統
                 {
                     dialog_Prcessbar.Value = i;
                     string 藥碼 = list_value[i][(int)盤點作業_定盤.藥碼].ObjectToString();
-                    int 庫存量 = Function_從雲端資料取得庫存(藥碼);
-                    int 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToInt32() : 0;
-                    int 庫存差異量 = list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringToInt32() : 0;
+                    double 庫存量 = Function_從雲端資料取得庫存(藥碼);
+                    double 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToDouble() : 0;
+                    double 庫存差異量 = list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringToDouble() : 0;
 
                     if (list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsInt32() == false)
                     {
                         list_value[i][(int)盤點作業_定盤.庫存差異量] = "0";
                     }
                     if (庫存量 < 0) 庫存量 = 0;
-                    int 異動量 = (盤點量 + 庫存差異量) - 庫存量;
+                    double 異動量 = (盤點量 + 庫存差異量) - 庫存量;
                     list_value[i][(int)盤點作業_定盤.異動量] = 異動量;
                     list_value[i][(int)盤點作業_定盤.庫存量] = 庫存量;
                     list_value[i][(int)盤點作業_定盤.異動後結存量] = 盤點量 + 庫存差異量;
@@ -165,10 +165,10 @@ namespace 調劑台管理系統
                     List<string> list_異動量 = new List<string>();
                     string 備註 = "";
                     string 藥碼 = list_value[i][(int)盤點作業_定盤.藥碼].ObjectToString();
-                    int 庫存量 = Function_從雲端資料取得庫存(藥碼);
-                    int 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToInt32() : 0;
-                    int 異動後結存量 = list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringToInt32() : 0;
-                    int 異動量 = 異動後結存量 - 庫存量;
+                    double 庫存量 = Function_從雲端資料取得庫存(藥碼);
+                    double 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToDouble() : 0;
+                    double 異動後結存量 = list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringToDouble() : 0;
+                    double 異動量 = 異動後結存量 - 庫存量;
                    
                     if (異動量 == 0)
                     {
@@ -244,10 +244,10 @@ namespace 調劑台管理系統
                     string 備註 = "";
                     string 藥碼 = list_value[i][(int)盤點作業_定盤.藥碼].ObjectToString();
                     string 藥名 = list_value[i][(int)盤點作業_定盤.藥名].ObjectToString();
-                    int 庫存量 = list_value[i][(int)盤點作業_定盤.庫存量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.庫存量].ObjectToString().StringToInt32() : 0;
-                    int 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToInt32() : 0;
-                    int 異動後結存量 = list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringIsInt32() ? list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringToInt32() : 0;
-                    int 異動量 = 異動後結存量 - 庫存量;
+                    double 庫存量 = list_value[i][(int)盤點作業_定盤.庫存量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.庫存量].ObjectToString().StringToDouble() : 0;
+                    double 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToDouble() : 0;
+                    double 異動後結存量 = list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.異動後結存量].ObjectToString().StringToDouble() : 0;
+                    double 異動量 = 異動後結存量 - 庫存量;
 
                     if (異動量 == 0)
                     {

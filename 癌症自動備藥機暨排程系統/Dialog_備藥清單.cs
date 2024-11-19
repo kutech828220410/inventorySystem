@@ -130,8 +130,8 @@ namespace 癌症備藥機
                 {
                     string 藥碼 = stockClasses[i].Code;
                     string 藥名 = stockClasses[i].Name;
-                    int 數量 = stockClasses[i].Qty.StringToInt32();
-                    int 庫存 = Main_Form.Function_從SQL取得庫存(藥碼);
+                    double 數量 = stockClasses[i].Qty.StringToInt32();
+                    double 庫存 = Main_Form.Function_從SQL取得庫存(藥碼);
                     Logger.Log($"[備藥清單] 領用,({藥碼}){藥名} ,數量:{數量},庫存{庫存}");
                     if (數量 > 庫存)
                     {

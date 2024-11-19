@@ -22,7 +22,7 @@ namespace 癌症備藥機
             入庫,
             出庫,
         }
-        public int 數量 = 0;
+        public double 數量 = 0;
         public string 效期 = "";
         public string 批號 = "";
         public Device device;
@@ -166,7 +166,7 @@ namespace 癌症備藥機
             {
                 if (_enum_type == enum_type.入庫)
                 {
-                    int 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
+                    double 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
                     string url = $"{Main_Form.API_Server}/api/transactions/add";
                     returnData returnData = new returnData();
                     returnData.ServerName = "cheom";
@@ -207,7 +207,7 @@ namespace 癌症備藥機
                     if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
                         || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
                     {
-                        int 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
+                        double 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
                         Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(device.IP);
                         List<string> List_效期 = new List<string>();
                         List<string> List_批號 = new List<string>();

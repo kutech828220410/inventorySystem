@@ -213,9 +213,9 @@ namespace 調劑台管理系統
                 List_RFID_入賬資料.Add_NewRFIDClass(rFIDClass);
             }
         }
-        public int Function_從入賬資料取得庫存(string 藥品碼)
+        public double Function_從入賬資料取得庫存(string 藥品碼)
         {
-            int 庫存 = 0;
+            double 庫存 = 0;
             List<object> list_value = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             this.Function_從入賬資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
@@ -224,7 +224,7 @@ namespace 調劑台管理系統
             {
                 if (list_value[i] is Device)
                 {
-                    庫存 += ((Device)list_value[i]).Inventory.StringToInt32();
+                    庫存 += ((Device)list_value[i]).Inventory.StringToDouble();
                 }
             }
             if (list_value.Count == 0) return -999;
@@ -320,12 +320,12 @@ namespace 調劑台管理系統
             儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
 
             if (異動量 == 0) return 儲位資訊;
-            int 使用數量 = 異動量;
-            int 庫存數量 = 0;
-            int 剩餘庫存數量 = 0;
+            double 使用數量 = 異動量;
+            double 庫存數量 = 0;
+            double 剩餘庫存數量 = 0;
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
-                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToInt32();
+                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToDouble();
                 if ((使用數量 < 0 && 庫存數量 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
                 {
                     剩餘庫存數量 = 庫存數量 + 使用數量;
@@ -640,9 +640,9 @@ namespace 調劑台管理系統
 
             }
         }
-        public int Function_從雲端資料取得庫存(string 藥品碼)
+        public double Function_從雲端資料取得庫存(string 藥品碼)
         {
-            int 庫存 = 0;
+            double 庫存 = 0;
             List<object> list_value = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
@@ -651,13 +651,13 @@ namespace 調劑台管理系統
             {
                 if (list_value[i] is Device)
                 {
-                    庫存 += ((Device)list_value[i]).Inventory.StringToInt32();
+                    庫存 += ((Device)list_value[i]).Inventory.StringToDouble();
                 }
             }
             if (list_value.Count == 0) return -999;
             return 庫存;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量, string 效期 ,string IP)
+        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期 ,string IP)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -690,7 +690,7 @@ namespace 調劑台管理系統
             }
             return 儲位資訊;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量, string 效期)
+        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -723,7 +723,7 @@ namespace 調劑台管理系統
             }
             return 儲位資訊;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量)
+        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -756,12 +756,12 @@ namespace 調劑台管理系統
             儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
 
             if (異動量 == 0) return 儲位資訊;
-            int 使用數量 = 異動量;
-            int 庫存數量 = 0;
-            int 剩餘庫存數量 = 0;
+            double 使用數量 = 異動量;
+            double 庫存數量 = 0;
+            double 剩餘庫存數量 = 0;
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
-                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToInt32();
+                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToDouble();
                 if ((使用數量 < 0 && 庫存數量 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
                 {
                     剩餘庫存數量 = 庫存數量 + 使用數量;
@@ -783,7 +783,7 @@ namespace 調劑台管理系統
             return 儲位資訊_buf;
         }
 
-        public List<object[]> Function_新增效期至雲端資料(string 藥品碼, int 異動量, string 效期, string 批號)
+        public List<object[]> Function_新增效期至雲端資料(string 藥品碼, double 異動量, string 效期, string 批號)
         {
             object value_device = new object();
             List<object[]> 儲位資訊 = new List<object[]>();
@@ -1318,24 +1318,21 @@ namespace 調劑台管理系統
             }
             return list_value;
         }
-        static public int Function_從SQL取得庫存(string 藥品碼)
+        static public double Function_從SQL取得庫存(string 藥品碼)
         {
-            int 庫存 = 0;
+            double 庫存 = 0;
             List<object> list_value = Function_從SQL取得儲位到本地資料(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
             {
-
                 if (list_value[i] is Device)
                 {
                     Device device = list_value[i] as Device;
                     if (device != null)
                     {
-                        庫存 += device.Inventory.StringToInt32();
+                        庫存 += device.Inventory.StringToDouble();
                     }
-                }
-             
-            }
-          
+                }           
+            }         
             return 庫存;
         }
         static public long Function_從SQL取得排列號(string 藥品碼)
@@ -1381,9 +1378,9 @@ namespace 調劑台管理系統
     
             return index;
         }
-        public int Function_從本地資料取得庫存(string 藥品碼)
+        public double Function_從本地資料取得庫存(string 藥品碼)
         {
-            int 庫存 = 0;
+            double 庫存 = 0;
             List<object> list_value = Function_從本地資料取得儲位(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
             {
@@ -1392,7 +1389,7 @@ namespace 調劑台管理系統
                     Device device = (Device)list_value[i];
                     if (device != null)
                     {
-                        庫存 += device.Inventory.StringToInt32();
+                        庫存 += device.Inventory.StringToDouble();
                     }
                 }
             }

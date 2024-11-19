@@ -93,7 +93,7 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_盤點作業_盤點藥品清單_CellValidatingEvent1(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)
         {
             string 異動量 = value;
-            if (異動量.StringToInt32() < 0)
+            if (異動量.StringToDouble() < 0)
             {
                 MyMessageBox.ShowDialog("請輸入正確數字(大於'0')!");
                 e.Cancel = true;
@@ -177,7 +177,7 @@ namespace 調劑台管理系統
         {
             List<object[]> list_盤點藥品清單 = this.sqL_DataGridView_盤點作業_盤點藥品清單.GetAllRows();
             list_盤點藥品清單 = (from value in list_盤點藥品清單
-                           where value[(int)enum_盤點作業_盤點藥品清單.理論值].StringToInt32() > 0
+                           where value[(int)enum_盤點作業_盤點藥品清單.理論值].StringToDouble() > 0
                            select value).ToList();
             if (list_盤點藥品清單.Count == 0)
             {

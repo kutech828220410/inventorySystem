@@ -190,9 +190,9 @@ namespace 調劑台管理系統
 
             return list_value;
         }
-        static public int Function_從共用區取得庫存(string 藥品碼)
+        static public double Function_從共用區取得庫存(string 藥品碼)
         {
-            int 庫存 = 0;
+            double 庫存 = 0;
             List<object> list_value = Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
             {
@@ -201,7 +201,7 @@ namespace 調劑台管理系統
                     Device device = (Device)list_value[i];
                     if (device != null)
                     {
-                        庫存 += device.Inventory.StringToInt32();
+                        庫存 += device.Inventory.StringToDouble();
                     }
                 }
             }

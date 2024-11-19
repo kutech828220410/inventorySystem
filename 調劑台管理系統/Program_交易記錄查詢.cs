@@ -394,8 +394,8 @@ namespace 調劑台管理系統
                 DateTime datetime2 = y[(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString_6().StringToDateTime();
                 int compare = DateTime.Compare(datetime1, datetime2);
                 if (compare != 0) return compare;
-                int 結存量1 = x[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
-                int 結存量2 = y[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
+                double 結存量1 = x[(int)enum_交易記錄查詢資料.結存量].StringToDouble();
+                double 結存量2 = y[(int)enum_交易記錄查詢資料.結存量].StringToDouble();
                 if (結存量1 > 結存量2)
                 {
                     return -1;

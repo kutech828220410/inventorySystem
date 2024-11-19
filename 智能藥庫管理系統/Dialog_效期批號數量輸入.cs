@@ -20,7 +20,7 @@ namespace 智能藥庫系統
     {
         public string 效期 = "";
         public string 批號 = "";
-        public int 數量 = 0;
+        public double 數量 = 0;
         public Dialog_效期批號數量輸入()
         {
             InitializeComponent();

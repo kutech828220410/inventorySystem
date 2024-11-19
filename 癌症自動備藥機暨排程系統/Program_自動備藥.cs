@@ -260,8 +260,8 @@ namespace 癌症備藥機
                 string 批號 = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.批號].ObjectToString();
                 int 數量 = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量].StringToInt32();
                 Storage storage = (Storage)list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.Value];
-                int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                int temp = 數量;
+                double 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
+                double temp = 數量;
                 if (temp < 0) temp = temp * -1;
                 for (int k = 0; k < temp; k++)
                 {
@@ -359,8 +359,8 @@ namespace 癌症備藥機
                 string 批號 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.批號].ObjectToString();
                 int 數量 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.異動量].StringToInt32();
                 Storage storage = (Storage)list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.Value];
-                int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                int temp = 數量;
+                double 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
+                double temp = 數量;
                 if (temp < 0) temp = temp * -1;
                 for (int k = 0; k < temp; k++)
                 {

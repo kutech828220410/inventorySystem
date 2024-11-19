@@ -203,7 +203,7 @@ namespace 調劑台管理系統
             {
                 return false;
             }
-            int 交易量 = dialog_NumPannel.Value;
+            double 交易量 = dialog_NumPannel.Value;
             if (交易量 == 0)
             {
                 if (MyMessageBox.ShowDialog("交易量為（0） ,確定選擇此藥品?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
@@ -236,8 +236,8 @@ namespace 調劑台管理系統
             Parallel.ForEach(RowsList, value =>
             {
                 string 藥品碼 = value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                int 本台庫存 = this.Main_Form_buf.Function_從本地資料取得庫存(藥品碼);
-                int 共用區庫存 = Main_Form.Function_從共用區取得庫存(藥品碼);
+                double 本台庫存 = this.Main_Form_buf.Function_從本地資料取得庫存(藥品碼);
+                double 共用區庫存 = Main_Form.Function_從共用區取得庫存(藥品碼);
        
             
                 if (本台庫存 != -999 || 共用區庫存 != -999)
@@ -375,8 +375,8 @@ namespace 調劑台管理系統
             //依Speed由小排到大。
             public int Compare(object[] x, object[] y)
             {
-                int 庫存_0 = x[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToInt32();
-                int 庫存_1 = y[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToInt32();
+                double 庫存_0 = x[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToDouble();
+                double 庫存_1 = y[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToDouble();
                 return 庫存_1.CompareTo(庫存_0);
 
             }

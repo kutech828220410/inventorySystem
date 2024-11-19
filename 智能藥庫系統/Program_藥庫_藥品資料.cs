@@ -452,7 +452,7 @@ namespace 智能藥庫系統
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
                 if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
                 {
-                    int num = dialog_NumPannel.Value;
+                    double num = dialog_NumPannel.Value;
                     List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.Get_All_Select_RowsValues();
                     List<string> list_Replace_SerchValue = new List<string>();
                     List<object[]> list_Replace_Value = new List<object[]>();
@@ -476,7 +476,7 @@ namespace 智能藥庫系統
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
                 if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
                 {
-                    int num = dialog_NumPannel.Value;
+                    double num = dialog_NumPannel.Value;
                     List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.Get_All_Select_RowsValues();
                     List<string> list_Replace_SerchValue = new List<string>();
                     List<object[]> list_Replace_Value = new List<object[]>();
@@ -500,7 +500,7 @@ namespace 智能藥庫系統
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
                 if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
                 {
-                    int num = dialog_NumPannel.Value;
+                    double num = dialog_NumPannel.Value;
                     List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.Get_All_Select_RowsValues();
                     List<string> list_Replace_SerchValue = new List<string>();
                     List<object[]> list_Replace_Value = new List<object[]>();

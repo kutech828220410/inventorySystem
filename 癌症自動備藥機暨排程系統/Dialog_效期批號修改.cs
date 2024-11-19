@@ -51,8 +51,8 @@ namespace 癌症備藥機
             _device.效期庫存覆蓋(stockClass.Validity_period, dialog_NumPannel.Value.ToString());
 
 
-            int 原有庫存 = Main_Form.Function_從SQL取得庫存(_device.Code);
-            int 數量 = dialog_NumPannel.Value - stockClass.Qty.StringToInt32();
+            double 原有庫存 = Main_Form.Function_從SQL取得庫存(_device.Code);
+            double 數量 = dialog_NumPannel.Value - stockClass.Qty.StringToInt32();
             string 效期 = stockClass.Validity_period;
             string 批號 = stockClass.Lot_number;
 

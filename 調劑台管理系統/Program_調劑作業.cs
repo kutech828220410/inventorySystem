@@ -298,7 +298,7 @@ namespace 調劑台管理系統
                     }
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-                    int 數量 = dialog_NumPannel.Value;
+                    double 數量 = dialog_NumPannel.Value;
 
 
 
@@ -1468,7 +1468,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = "";
                     value_領藥內容[(int)enum_取藥堆疊母資料.單位] = list_value_buf[0][(int)enum_取藥堆疊母資料.單位];
                     value_領藥內容[(int)enum_取藥堆疊母資料.床號] = list_value_buf[0][(int)enum_取藥堆疊母資料.床號];
-                    int 總異動量_temp = 0;
+                    double 總異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
                     bool flag_庫存不足 = false;
@@ -1486,7 +1486,7 @@ namespace 調劑台管理系統
                         {
                             flag_庫存不足 = true;
                         }
-                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     }
                     value_領藥內容[(int)enum_取藥堆疊母資料.總異動量] = 總異動量_temp;
                     if (flag_入賬完成)
@@ -1512,8 +1512,8 @@ namespace 調劑台管理系統
                 {
                     list_value_new[i][(int)enum_取藥堆疊母資料.序號] = (i + 1).ToString();
                     藥品碼 = list_value_new[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    int 庫存量_temp = Function_從SQL取得庫存(藥品碼);
-                    int 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                    double 庫存量_temp = Function_從SQL取得庫存(藥品碼);
+                    double 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
 
                     list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
                     list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
@@ -1611,8 +1611,8 @@ namespace 調劑台管理系統
                 int retry = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
-                int 結存量 = 0;
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 結存量 = 0;
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
@@ -1627,8 +1627,8 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    int 庫存量 = Function_從SQL取得庫存(藥碼);
-                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                    double 庫存量 = Function_從SQL取得庫存(藥碼);
+                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                     結存量 = 庫存量 + 總異動量 + 差異值;
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量] = 結存量;
                     if (結存量 == dialog_NumPannel.Value)
@@ -1680,7 +1680,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
 
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
@@ -1840,7 +1840,7 @@ namespace 調劑台管理系統
             {
                 string 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
@@ -2101,7 +2101,7 @@ namespace 調劑台管理系統
                     string 操作人 = 領藥台_01_登入者姓名;
                     string 藥師證字號 = 領藥台_01_藥師證字號;
                     string 顏色 = 領藥台_01_顏色;
-                    int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                    double 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                     string 效期 = "";
                     string 收支原因 = "";
 
@@ -2210,7 +2210,7 @@ namespace 調劑台管理系統
 
             if (plC_Button_手輸數量.Bool)
             {
-                int 手輸數量 = 0;
+                double 手輸數量 = 0;
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
                 DialogResult dialogResult = dialog_NumPannel.ShowDialog();
                 if (dialogResult != DialogResult.Yes) return;
@@ -2261,7 +2261,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_01_登入者姓名;
                 string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -2363,7 +2363,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_01_登入者姓名;
                 string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -2418,7 +2418,7 @@ namespace 調劑台管理系統
             string 操作人 = 領藥台_01_登入者姓名;
             string 顏色 = 領藥台_01_顏色;
             string 床號 = "";
-            int 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
 
             string 藥品碼 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -2435,7 +2435,7 @@ namespace 調劑台管理系統
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
-                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
+                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToDouble() < 0
                          select value).ToList();
 
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
@@ -2515,7 +2515,7 @@ namespace 調劑台管理系統
             string ID = 領藥台_01_ID;
             string 操作人 = 領藥台_01_登入者姓名;
             string 顏色 = 領藥台_01_顏色;
-            int 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
             string 床號 = "";
             string 藥品碼 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -3495,7 +3495,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = "";
                     value_領藥內容[(int)enum_取藥堆疊母資料.單位] = list_value_buf[0][(int)enum_取藥堆疊母資料.單位];
                     value_領藥內容[(int)enum_取藥堆疊母資料.床號] = list_value_buf[0][(int)enum_取藥堆疊母資料.床號];
-                    int 總異動量_temp = 0;
+                    double 總異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
                     bool flag_庫存不足 = false;
@@ -3513,7 +3513,7 @@ namespace 調劑台管理系統
                         {
                             flag_庫存不足 = true;
                         }
-                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     }
                     value_領藥內容[(int)enum_取藥堆疊母資料.總異動量] = 總異動量_temp;
                     if (flag_入賬完成)
@@ -3539,8 +3539,8 @@ namespace 調劑台管理系統
                 {
                     list_value_new[i][(int)enum_取藥堆疊母資料.序號] = (i + 1).ToString();
                     藥品碼 = list_value_new[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    int 庫存量_temp = Function_從SQL取得庫存(藥品碼);
-                    int 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                    double 庫存量_temp = Function_從SQL取得庫存(藥品碼);
+                    double 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
 
                     list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
                     list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
@@ -3637,8 +3637,8 @@ namespace 調劑台管理系統
                 int retry = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
-                int 結存量 = 0;
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 結存量 = 0;
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
@@ -3658,8 +3658,8 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    int 庫存量 = Function_從SQL取得庫存(藥碼);
-                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                    double 庫存量 = Function_從SQL取得庫存(藥碼);
+                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                     結存量 = 庫存量 + 總異動量 + 差異值;
 
                     if (結存量 == dialog_NumPannel.Value)
@@ -3710,7 +3710,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
                 {
@@ -3858,7 +3858,7 @@ namespace 調劑台管理系統
             {
                 string 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
@@ -4119,7 +4119,7 @@ namespace 調劑台管理系統
                     string 操作人 = 領藥台_02_登入者姓名;
                     string 藥師證字號 = 領藥台_02_藥師證字號;
                     string 顏色 = 領藥台_02_顏色;
-                    int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                    double 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                     string 效期 = "";
                     string 收支原因 = "";
 
@@ -4221,7 +4221,7 @@ namespace 調劑台管理系統
 
             if (plC_Button_手輸數量.Bool)
             {
-                int 手輸數量 = 0;
+                double 手輸數量 = 0;
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
                 DialogResult dialogResult = dialog_NumPannel.ShowDialog();
                 if (dialogResult != DialogResult.Yes) return;
@@ -4271,7 +4271,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_02_登入者姓名;
                 string 藥師證字號 = 領藥台_02_藥師證字號;
                 string 顏色 = 領藥台_02_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -4372,7 +4372,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_02_登入者姓名;
                 string 藥師證字號 = 領藥台_02_藥師證字號;
                 string 顏色 = 領藥台_02_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -4427,7 +4427,7 @@ namespace 調劑台管理系統
             string 操作人 = 領藥台_02_登入者姓名;
             string 顏色 = 領藥台_02_顏色;
             string 床號 = "";
-            int 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
 
             string 藥品碼 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -4444,7 +4444,7 @@ namespace 調劑台管理系統
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
-                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
+                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToDouble() < 0
                          select value).ToList();
 
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
@@ -4524,7 +4524,7 @@ namespace 調劑台管理系統
             string ID = 領藥台_02_ID;
             string 操作人 = 領藥台_02_登入者姓名;
             string 顏色 = 領藥台_02_顏色;
-            int 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
             string 床號 = "";
             string 藥品碼 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -5488,7 +5488,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = "";
                     value_領藥內容[(int)enum_取藥堆疊母資料.單位] = list_value_buf[0][(int)enum_取藥堆疊母資料.單位];
                     value_領藥內容[(int)enum_取藥堆疊母資料.床號] = list_value_buf[0][(int)enum_取藥堆疊母資料.床號];
-                    int 總異動量_temp = 0;
+                    double 總異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
                     bool flag_庫存不足 = false;
@@ -5506,7 +5506,7 @@ namespace 調劑台管理系統
                         {
                             flag_庫存不足 = true;
                         }
-                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     }
                     value_領藥內容[(int)enum_取藥堆疊母資料.總異動量] = 總異動量_temp;
                     if (flag_入賬完成)
@@ -5532,8 +5532,8 @@ namespace 調劑台管理系統
                 {
                     list_value_new[i][(int)enum_取藥堆疊母資料.序號] = (i + 1).ToString();
                     藥品碼 = list_value_new[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    int 庫存量_temp = Function_從SQL取得庫存(藥品碼);
-                    int 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                    double 庫存量_temp = Function_從SQL取得庫存(藥品碼);
+                    double 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
 
                     list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
                     list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
@@ -5605,8 +5605,8 @@ namespace 調劑台管理系統
                 int retry = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
-                int 結存量 = 0;
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 結存量 = 0;
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
@@ -5653,8 +5653,8 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    int 庫存量 = Function_從SQL取得庫存(藥碼);
-                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                    double 庫存量 = Function_從SQL取得庫存(藥碼);
+                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                     結存量 = 庫存量 + 總異動量 + 差異值;
                     if (結存量 == dialog_NumPannel.Value)
                     {
@@ -5851,7 +5851,7 @@ namespace 調劑台管理系統
             {
                 string 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
@@ -6113,7 +6113,7 @@ namespace 調劑台管理系統
                     string 操作人 = 領藥台_03_登入者姓名;
                     string 藥師證字號 = 領藥台_03_藥師證字號;
                     string 顏色 = 領藥台_03_顏色;
-                    int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                    double 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                     string 效期 = "";
                     string 收支原因 = "";
 
@@ -6214,7 +6214,7 @@ namespace 調劑台管理系統
 
             if (plC_Button_手輸數量.Bool)
             {
-                int 手輸數量 = 0;
+                double 手輸數量 = 0;
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
                 DialogResult dialogResult = dialog_NumPannel.ShowDialog();
                 if (dialogResult != DialogResult.Yes) return;
@@ -6265,7 +6265,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_03_登入者姓名;
                 string 藥師證字號 = 領藥台_03_藥師證字號;
                 string 顏色 = 領藥台_03_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -6366,7 +6366,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_03_登入者姓名;
                 string 藥師證字號 = 領藥台_03_藥師證字號;
                 string 顏色 = 領藥台_03_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -6421,7 +6421,7 @@ namespace 調劑台管理系統
             string 操作人 = 領藥台_03_登入者姓名;
             string 顏色 = 領藥台_03_顏色;
             string 床號 = "";
-            int 總異動量 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
 
             string 藥品碼 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -6438,7 +6438,7 @@ namespace 調劑台管理系統
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
-                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
+                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToDouble() < 0
                          select value).ToList();
 
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
@@ -6518,7 +6518,7 @@ namespace 調劑台管理系統
             string ID = 領藥台_03_ID;
             string 操作人 = 領藥台_03_登入者姓名;
             string 顏色 = 領藥台_03_顏色;
-            int 總異動量 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
             string 床號 = "";
             string 藥品碼 = Scanner03_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -7466,7 +7466,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = "";
                     value_領藥內容[(int)enum_取藥堆疊母資料.單位] = list_value_buf[0][(int)enum_取藥堆疊母資料.單位];
                     value_領藥內容[(int)enum_取藥堆疊母資料.床號] = list_value_buf[0][(int)enum_取藥堆疊母資料.床號];
-                    int 總異動量_temp = 0;
+                    double 總異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
                     bool flag_庫存不足 = false;
@@ -7484,7 +7484,7 @@ namespace 調劑台管理系統
                         {
                             flag_庫存不足 = true;
                         }
-                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                        總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     }
                     value_領藥內容[(int)enum_取藥堆疊母資料.總異動量] = 總異動量_temp;
                     if (flag_入賬完成)
@@ -7510,8 +7510,8 @@ namespace 調劑台管理系統
                 {
                     list_value_new[i][(int)enum_取藥堆疊母資料.序號] = (i + 1).ToString();
                     藥品碼 = list_value_new[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    int 庫存量_temp = Function_從SQL取得庫存(藥品碼);
-                    int 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                    double 庫存量_temp = Function_從SQL取得庫存(藥品碼);
+                    double 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
 
                     list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
                     list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
@@ -7583,8 +7583,8 @@ namespace 調劑台管理系統
                 int retry = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
-                int 結存量 = 0;
+                double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 結存量 = 0;
                 Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
@@ -7631,8 +7631,8 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    int 庫存量 = Function_從SQL取得庫存(藥碼);
-                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                    double 庫存量 = Function_從SQL取得庫存(藥碼);
+                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                     結存量 = 庫存量 + 總異動量 + 差異值;
                     if (結存量 == dialog_NumPannel.Value)
                     {
@@ -7829,7 +7829,7 @@ namespace 調劑台管理系統
             {
                 string 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                int 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                double 交易量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
@@ -8090,7 +8090,7 @@ namespace 調劑台管理系統
                     string 操作人 = 領藥台_04_登入者姓名;
                     string 藥師證字號 = 領藥台_04_藥師證字號;
                     string 顏色 = 領藥台_04_顏色;
-                    int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                    double 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                     string 效期 = "";
                     string 收支原因 = "";
 
@@ -8191,7 +8191,7 @@ namespace 調劑台管理系統
 
             if (plC_Button_手輸數量.Bool)
             {
-                int 手輸數量 = 0;
+                double 手輸數量 = 0;
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
                 DialogResult dialogResult = dialog_NumPannel.ShowDialog();
                 if (dialogResult != DialogResult.Yes) return;
@@ -8241,7 +8241,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_04_登入者姓名;
                 string 藥師證字號 = 領藥台_04_藥師證字號;
                 string 顏色 = 領藥台_04_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -8341,7 +8341,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_04_登入者姓名;
                 string 藥師證字號 = 領藥台_04_藥師證字號;
                 string 顏色 = 領藥台_04_顏色;
-                int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.GUID = GUID;
@@ -8396,7 +8396,7 @@ namespace 調劑台管理系統
             string 操作人 = 領藥台_04_登入者姓名;
             string 顏色 = 領藥台_04_顏色;
             string 床號 = "";
-            int 總異動量 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
 
             string 藥品碼 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -8413,7 +8413,7 @@ namespace 調劑台管理系統
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
-                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
+                         where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToDouble() < 0
                          select value).ToList();
 
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
@@ -8493,7 +8493,7 @@ namespace 調劑台管理系統
             string ID = 領藥台_04_ID;
             string 操作人 = 領藥台_04_登入者姓名;
             string 顏色 = 領藥台_04_顏色;
-            int 總異動量 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
+            double 總異動量 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToDouble();
             string 效期 = "";
             string 床號 = "";
             string 藥品碼 = Scanner04_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
@@ -8933,7 +8933,7 @@ namespace 調劑台管理系統
             string ID = "";
             string 操作人 = "";
             string 顏色 = "";
-            int 總異動量 = 0;
+            double 總異動量 = 0;
             string 效期 = "";
             string 床號 = "";
             List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
@@ -8952,7 +8952,7 @@ namespace 調劑台管理系統
                 ID = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.ID].ObjectToString();
                 操作人 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.操作人].ObjectToString();
                 顏色 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.顏色].ObjectToString();
-                總異動量 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.總異動量].ObjectToString().StringToInt32();
+                總異動量 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.總異動量].ObjectToString().StringToDouble();
                 效期 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.效期].ObjectToString();
                 string str_動作 = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.動作].ObjectToString();
                 if (str_動作 == enum_交易記錄查詢動作.手輸領藥.GetEnumName())
@@ -9095,7 +9095,7 @@ namespace 調劑台管理系統
                 string 操作人 = 領藥台_01_登入者姓名;
                 string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
-                int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                double 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 string 效期 = "";
                 string 收支原因 = "";
 
@@ -9212,7 +9212,7 @@ namespace 調劑台管理系統
                     string 藥師證字號 = 領藥台_01_藥師證字號;
                     string 顏色 = 領藥台_01_顏色;
                     string 收支原因 = "";
-                    int 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToInt32();
+                    double 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToDouble();
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                     if (總異動量 <= 0)
                     {
