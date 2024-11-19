@@ -41,8 +41,14 @@ namespace HIS_DB_Lib
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
+            if(json_out.StringIsEmpty())
+            {
+                url = "http://127.0.0.1:3200/Pill_recognition";
+                json_out = Net.WEBApiPostJson(url, json_in);
+            }
             returnData = json_out.JsonDeserializet<returnData>();
             if(returnData == null) return null;
+            if (returnData.Result == "false") return null;
             //if (returnData.Code != 200) return null;
             List<medCountClass> out_medCountClass = returnData.Data.ObjToClass<List<medCountClass>>();
             return out_medCountClass;

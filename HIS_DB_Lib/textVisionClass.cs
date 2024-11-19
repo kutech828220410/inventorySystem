@@ -171,6 +171,31 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("qty_conf")]
         public string 數量信心分數 { get; set; }
+        /// <summary>
+        /// 批號位置
+        /// </summary>
+        [JsonPropertyName("batch_num_coord")]
+        public string 批號位置 { get; set; }
+        /// <summary>
+        /// 中文名位置
+        /// </summary>
+        [JsonPropertyName("cht_name_coord")]
+        public string 中文名位置 { get; set; }
+        /// <summary>
+        /// 效期位置
+        /// </summary>
+        [JsonPropertyName("expirydate_coord")]
+        public string 效期位置 { get; set; }
+        /// <summary>
+        /// 單號位置
+        /// </summary>
+        [JsonPropertyName("po_num_coord")]
+        public string 單號位置 { get; set; }
+        /// <summary>
+        /// 數量位置
+        /// </summary>
+        [JsonPropertyName("qty_coord")]
+        public string 數量位置 { get; set; }
         static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
             string url = $"{API}/PO_Vision";
@@ -187,7 +212,7 @@ namespace HIS_DB_Lib
             }
             returnData returnData_AI = json_out.JsonDeserializet<returnData>();
             if (returnData_AI == null) return null;
-            if (returnData_AI.Code != 200) return null;
+            if (returnData_AI.Result == "false") return null;
             //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             Console.WriteLine($"{returnData}");
             return returnData_AI;

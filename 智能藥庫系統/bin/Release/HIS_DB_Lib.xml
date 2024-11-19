@@ -3171,6 +3171,31 @@
             數量信心分數
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號位置">
+            <summary>
+            批號位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名位置">
+            <summary>
+            中文名位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期位置">
+            <summary>
+            效期位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號位置">
+            <summary>
+            單號位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量位置">
+            <summary>
+            數量位置
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.GUID">
             <summary>
             唯一KEY

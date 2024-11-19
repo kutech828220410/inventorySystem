@@ -20,10 +20,17 @@ namespace HIS_WebApi._API_AI
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                string API = "http://192.168.43.249:3000";
+                string API = "http://220.135.128.247:3200";
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
                 //List<medCountClass> medCountClasses = returnData.Data.ObjToClass<List<medCountClass>>();
                 List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
+                if (medCountClasses == null) 
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "AI辨識失敗";
+                    return returnData.JsonSerializationt(true);
+                }
+                    
                 List<medCountClass> out_medCountClass = new List<medCountClass>();
                 for (int i = 0; i < medCountClasses.Count; i++)
                 {

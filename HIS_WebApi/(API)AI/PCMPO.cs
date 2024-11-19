@@ -124,7 +124,8 @@ namespace HIS_WebApi._API_TextVision
 
                 List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
                 string API = serverSettingClass_API[0].Server;
-                string API_AI = API.Substring(0, API.Length - 4) + "3000";
+                //string API_AI = API.Substring(0, API.Length - 4) + "3000";
+                string API_AI = "http://192.168.43.249:3100";
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
                 input_textVision[0].GUID = Guid.NewGuid().ToString();
