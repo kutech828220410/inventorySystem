@@ -515,7 +515,7 @@ namespace 智能藥庫系統
                 }
             }
         }   
-        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, int 異動量, string 效期, string IP)
+        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, double 異動量, string 效期, string IP)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -567,7 +567,7 @@ namespace 智能藥庫系統
             }
             return 儲位資訊;
         }
-        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, int 異動量, string 效期)
+        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, double 異動量, string 效期)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -599,7 +599,7 @@ namespace 智能藥庫系統
             }
             return 儲位資訊;
         }
-        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, int 異動量)
+        private List<object[]> Function_取得異動儲位資訊從本地資料(string 藥品碼, double 異動量)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -650,9 +650,9 @@ namespace 智能藥庫系統
             儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
 
             if (異動量 == 0) return 儲位資訊;
-            int 使用數量 = 異動量;
-            int 庫存數量 = 0;
-            int 剩餘庫存數量 = 0;
+            double 使用數量 = 異動量;
+            double 庫存數量 = 0;
+            double 剩餘庫存數量 = 0;
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
                 庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToInt32();

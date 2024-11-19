@@ -417,6 +417,8 @@
             this.系統頁面 = new System.Windows.Forms.TabPage();
             this.plC_ScreenPage_系統頁面 = new MyUI.PLC_ScreenPage();
             this.tabPage22 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間 = new MyUI.PLC_NumBox();
             this.plC_CheckBox_不檢查處方亮燈 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_氣送作業 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_配藥核對 = new MyUI.PLC_CheckBox();
@@ -568,6 +570,7 @@
             this.系統頁面.SuspendLayout();
             this.plC_ScreenPage_系統頁面.SuspendLayout();
             this.tabPage22.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -2272,7 +2275,7 @@
             this.tabPage16.Controls.Add(this.flowLayoutPanel_PannelBox02);
             this.tabPage16.Location = new System.Drawing.Point(4, 25);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(475, 264);
+            this.tabPage16.Size = new System.Drawing.Size(960, 709);
             this.tabPage16.TabIndex = 1;
             this.tabPage16.Text = "02";
             // 
@@ -2282,7 +2285,7 @@
             this.flowLayoutPanel_PannelBox02.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_PannelBox02.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_PannelBox02.Name = "flowLayoutPanel_PannelBox02";
-            this.flowLayoutPanel_PannelBox02.Size = new System.Drawing.Size(475, 264);
+            this.flowLayoutPanel_PannelBox02.Size = new System.Drawing.Size(960, 709);
             this.flowLayoutPanel_PannelBox02.TabIndex = 1;
             // 
             // tabPage17
@@ -2291,7 +2294,7 @@
             this.tabPage17.Controls.Add(this.flowLayoutPanel_PannelBox03);
             this.tabPage17.Location = new System.Drawing.Point(4, 25);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(475, 264);
+            this.tabPage17.Size = new System.Drawing.Size(960, 709);
             this.tabPage17.TabIndex = 2;
             this.tabPage17.Text = "03";
             // 
@@ -2301,7 +2304,7 @@
             this.flowLayoutPanel_PannelBox03.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_PannelBox03.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_PannelBox03.Name = "flowLayoutPanel_PannelBox03";
-            this.flowLayoutPanel_PannelBox03.Size = new System.Drawing.Size(475, 264);
+            this.flowLayoutPanel_PannelBox03.Size = new System.Drawing.Size(960, 709);
             this.flowLayoutPanel_PannelBox03.TabIndex = 1;
             // 
             // tabPage18
@@ -2310,7 +2313,7 @@
             this.tabPage18.Controls.Add(this.flowLayoutPanel_PannelBox04);
             this.tabPage18.Location = new System.Drawing.Point(4, 25);
             this.tabPage18.Name = "tabPage18";
-            this.tabPage18.Size = new System.Drawing.Size(475, 264);
+            this.tabPage18.Size = new System.Drawing.Size(960, 709);
             this.tabPage18.TabIndex = 3;
             this.tabPage18.Text = "04";
             // 
@@ -2320,7 +2323,7 @@
             this.flowLayoutPanel_PannelBox04.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_PannelBox04.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_PannelBox04.Name = "flowLayoutPanel_PannelBox04";
-            this.flowLayoutPanel_PannelBox04.Size = new System.Drawing.Size(475, 264);
+            this.flowLayoutPanel_PannelBox04.Size = new System.Drawing.Size(960, 709);
             this.flowLayoutPanel_PannelBox04.TabIndex = 1;
             // 
             // panel_櫃體狀態_PannelBox
@@ -3244,6 +3247,7 @@
             // 
             this.dateTimePicke_醫令資料_開方日期_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicke_醫令資料_開方日期_起始.BorderSize = 0;
+            this.dateTimePicke_醫令資料_開方日期_起始.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicke_醫令資料_開方日期_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicke_醫令資料_開方日期_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicke_醫令資料_開方日期_起始.Location = new System.Drawing.Point(562, 773);
@@ -3270,6 +3274,7 @@
             // 
             this.dateTimePicke_醫令資料_開方日期_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicke_醫令資料_開方日期_結束.BorderSize = 0;
+            this.dateTimePicke_醫令資料_開方日期_結束.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicke_醫令資料_開方日期_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicke_醫令資料_開方日期_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicke_醫令資料_開方日期_結束.Location = new System.Drawing.Point(717, 773);
@@ -4046,6 +4051,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_領用時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_領用時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_領用時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_領用時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_領用時間_結束.Location = new System.Drawing.Point(757, 918);
@@ -4072,6 +4078,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_領用時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_領用時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_領用時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_領用時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_領用時間_起始.Location = new System.Drawing.Point(593, 918);
@@ -4162,6 +4169,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_開方時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_開方時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_開方時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_開方時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_開方時間_結束.Location = new System.Drawing.Point(757, 866);
@@ -4188,6 +4196,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_開方時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_開方時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_開方時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_開方時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_開方時間_起始.Location = new System.Drawing.Point(593, 866);
@@ -4278,6 +4287,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_操作時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_操作時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_操作時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_操作時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_操作時間_結束.Location = new System.Drawing.Point(757, 813);
@@ -4304,6 +4314,7 @@
             // 
             this.dateTimePicker_交易記錄查詢_操作時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.dateTimePicker_交易記錄查詢_操作時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_操作時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.dateTimePicker_交易記錄查詢_操作時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_交易記錄查詢_操作時間_起始.Location = new System.Drawing.Point(593, 813);
@@ -7836,7 +7847,7 @@
             this.tabPage8.Controls.Add(this.flowLayoutPanel_開門權限_02);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage8.Size = new System.Drawing.Size(1100, 128);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "02";
             // 
@@ -7855,7 +7866,7 @@
             this.tabPage9.Controls.Add(this.flowLayoutPanel_開門權限_03);
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage9.Size = new System.Drawing.Size(1100, 128);
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "03";
             // 
@@ -7874,7 +7885,7 @@
             this.tabPage10.Controls.Add(this.flowLayoutPanel_開門權限_04);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage10.Size = new System.Drawing.Size(1100, 128);
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "04";
             // 
@@ -7893,7 +7904,7 @@
             this.tabPage11.Controls.Add(this.flowLayoutPanel_開門權限_05);
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage11.Size = new System.Drawing.Size(1100, 128);
             this.tabPage11.TabIndex = 4;
             this.tabPage11.Text = "05";
             // 
@@ -7912,7 +7923,7 @@
             this.tabPage12.Controls.Add(this.flowLayoutPanel_開門權限_06);
             this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage12.Size = new System.Drawing.Size(1100, 128);
             this.tabPage12.TabIndex = 5;
             this.tabPage12.Text = "06";
             // 
@@ -7931,7 +7942,7 @@
             this.tabPage13.Controls.Add(this.flowLayoutPanel_開門權限_07);
             this.tabPage13.Location = new System.Drawing.Point(4, 25);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage13.Size = new System.Drawing.Size(1100, 128);
             this.tabPage13.TabIndex = 6;
             this.tabPage13.Text = "07";
             // 
@@ -7950,7 +7961,7 @@
             this.tabPage14.Controls.Add(this.flowLayoutPanel_開門權限_08);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(1100, 0);
+            this.tabPage14.Size = new System.Drawing.Size(1100, 128);
             this.tabPage14.TabIndex = 7;
             this.tabPage14.Text = "08";
             // 
@@ -8298,7 +8309,7 @@
             this.tabPage3.Controls.Add(this.panel29);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1108, 0);
+            this.tabPage3.Size = new System.Drawing.Size(1108, 222);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "一般權限";
             // 
@@ -9401,6 +9412,7 @@
             // tabPage22
             // 
             this.tabPage22.BackColor = System.Drawing.Color.White;
+            this.tabPage22.Controls.Add(this.groupBox6);
             this.tabPage22.Controls.Add(this.plC_CheckBox_不檢查處方亮燈);
             this.tabPage22.Controls.Add(this.plC_CheckBox_氣送作業);
             this.tabPage22.Controls.Add(this.plC_CheckBox_配藥核對);
@@ -9416,6 +9428,37 @@
             this.tabPage22.Size = new System.Drawing.Size(960, 745);
             this.tabPage22.TabIndex = 6;
             this.tabPage22.Text = "設定";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.plC_NumBox_配藥完成藥籃亮燈延遲時間);
+            this.groupBox6.Location = new System.Drawing.Point(15, 277);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(167, 60);
+            this.groupBox6.TabIndex = 199;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "配藥完成藥籃亮燈延遲時間";
+            // 
+            // plC_NumBox_配藥完成藥籃亮燈延遲時間
+            // 
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.Location = new System.Drawing.Point(6, 21);
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.Name = "plC_NumBox_配藥完成藥籃亮燈延遲時間";
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.ReadOnly = false;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.Size = new System.Drawing.Size(112, 33);
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.TabIndex = 0;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.Value = 0;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.密碼欄位 = false;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.寫入元件位置 = "D3004";
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.小數點位置 = 3;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.微調數值 = 0;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.讀取元件位置 = "D3004";
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.音效 = true;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.顯示微調按鈕 = false;
+            this.plC_NumBox_配藥完成藥籃亮燈延遲時間.顯示螢幕小鍵盤 = true;
             // 
             // plC_CheckBox_不檢查處方亮燈
             // 
@@ -9574,9 +9617,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.plC_NumBox_病房提示亮燈);
-            this.groupBox4.Location = new System.Drawing.Point(164, 13);
+            this.groupBox4.Location = new System.Drawing.Point(15, 211);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(136, 60);
+            this.groupBox4.Size = new System.Drawing.Size(167, 60);
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "病房提示亮燈";
@@ -9607,7 +9650,7 @@
             this.groupBox3.Controls.Add(this.plC_NumBox2);
             this.groupBox3.Location = new System.Drawing.Point(15, 145);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(136, 60);
+            this.groupBox3.Size = new System.Drawing.Size(167, 60);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "蜂鳴持續時間";
@@ -9638,7 +9681,7 @@
             this.groupBox2.Controls.Add(this.plC_NumBox1);
             this.groupBox2.Location = new System.Drawing.Point(15, 79);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(136, 60);
+            this.groupBox2.Size = new System.Drawing.Size(167, 60);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "單層格數";
@@ -9669,7 +9712,7 @@
             this.groupBox1.Controls.Add(this.plC_NumBox_開門異常時間);
             this.groupBox1.Location = new System.Drawing.Point(15, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 60);
+            this.groupBox1.Size = new System.Drawing.Size(167, 60);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "開門異常時間設定";
@@ -9703,7 +9746,7 @@
             this.tabPage1.Controls.Add(this.plC_UI_Init);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(475, 300);
+            this.tabPage1.Size = new System.Drawing.Size(960, 745);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PLC";
             // 
@@ -9760,7 +9803,7 @@
             this.tabPage4.Controls.Add(this.rfiD_UI);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(475, 300);
+            this.tabPage4.Size = new System.Drawing.Size(960, 745);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "RFID";
             // 
@@ -9782,7 +9825,7 @@
             this.rfiD_UI.RFID_Enable = "0";
             this.rfiD_UI.Server_IP_Adress = "0.0.0.0";
             this.rfiD_UI.Server_Port = "0";
-            this.rfiD_UI.Size = new System.Drawing.Size(475, 300);
+            this.rfiD_UI.Size = new System.Drawing.Size(960, 745);
             this.rfiD_UI.SSID = "";
             this.rfiD_UI.Station = "0";
             this.rfiD_UI.Subnet = "0.0.0.0";
@@ -9802,7 +9845,7 @@
             this.tabPage6.Controls.Add(this.plC_RJ_GroupBox9);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(475, 300);
+            this.tabPage6.Size = new System.Drawing.Size(960, 745);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "BoxIndex";
             // 
@@ -10036,7 +10079,7 @@
             this.plC_RJ_GroupBox9.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox9.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_GroupBox9.ContentsPanel.ShadowSize = 0;
-            this.plC_RJ_GroupBox9.ContentsPanel.Size = new System.Drawing.Size(475, 503);
+            this.plC_RJ_GroupBox9.ContentsPanel.Size = new System.Drawing.Size(960, 503);
             this.plC_RJ_GroupBox9.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox9.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_GroupBox9.GUID = "";
@@ -10046,7 +10089,7 @@
             this.plC_RJ_GroupBox9.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox9.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox9.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox9.Size = new System.Drawing.Size(475, 540);
+            this.plC_RJ_GroupBox9.Size = new System.Drawing.Size(960, 540);
             this.plC_RJ_GroupBox9.TabIndex = 48;
             this.plC_RJ_GroupBox9.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox9.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -10098,7 +10141,7 @@
             this.sqL_DataGridView_Box_Index_Table.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_Box_Index_Table.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_Box_Index_Table.Server = "127.0.0.0";
-            this.sqL_DataGridView_Box_Index_Table.Size = new System.Drawing.Size(475, 503);
+            this.sqL_DataGridView_Box_Index_Table.Size = new System.Drawing.Size(960, 503);
             this.sqL_DataGridView_Box_Index_Table.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_Box_Index_Table.TabIndex = 28;
             this.sqL_DataGridView_Box_Index_Table.TableName = "box_index_table";
@@ -10121,7 +10164,7 @@
             this.tabPage2.Controls.Add(this.loginUI);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(475, 300);
+            this.tabPage2.Size = new System.Drawing.Size(960, 745);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "權限設定";
             // 
@@ -10149,7 +10192,7 @@
             this.tabPage19.Controls.Add(this.tabControl1);
             this.tabPage19.Location = new System.Drawing.Point(4, 25);
             this.tabPage19.Name = "tabPage19";
-            this.tabPage19.Size = new System.Drawing.Size(475, 300);
+            this.tabPage19.Size = new System.Drawing.Size(960, 745);
             this.tabPage19.TabIndex = 4;
             this.tabPage19.Text = "資料庫";
             // 
@@ -10160,7 +10203,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(475, 300);
+            this.tabControl1.Size = new System.Drawing.Size(960, 745);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage20
@@ -10168,7 +10211,7 @@
             this.tabPage20.Controls.Add(this.sqL_DataGridView_雲端藥檔);
             this.tabPage20.Location = new System.Drawing.Point(4, 22);
             this.tabPage20.Name = "tabPage20";
-            this.tabPage20.Size = new System.Drawing.Size(467, 274);
+            this.tabPage20.Size = new System.Drawing.Size(952, 719);
             this.tabPage20.TabIndex = 0;
             this.tabPage20.Text = "雲端藥檔";
             this.tabPage20.UseVisualStyleBackColor = true;
@@ -10190,7 +10233,7 @@
             this.sqL_DataGridView_雲端藥檔.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_雲端藥檔.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_雲端藥檔.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 15;
+            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 18;
             this.sqL_DataGridView_雲端藥檔.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_雲端藥檔.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_雲端藥檔.DataKeyEnable = false;
@@ -10213,7 +10256,7 @@
             this.sqL_DataGridView_雲端藥檔.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_雲端藥檔.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_雲端藥檔.Server = "localhost";
-            this.sqL_DataGridView_雲端藥檔.Size = new System.Drawing.Size(467, 560);
+            this.sqL_DataGridView_雲端藥檔.Size = new System.Drawing.Size(952, 560);
             this.sqL_DataGridView_雲端藥檔.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_雲端藥檔.TabIndex = 147;
             this.sqL_DataGridView_雲端藥檔.UserName = "root";
@@ -10235,7 +10278,7 @@
             this.tabPage21.Controls.Add(this.storageUI_EPD_266);
             this.tabPage21.Location = new System.Drawing.Point(4, 25);
             this.tabPage21.Name = "tabPage21";
-            this.tabPage21.Size = new System.Drawing.Size(475, 300);
+            this.tabPage21.Size = new System.Drawing.Size(960, 745);
             this.tabPage21.TabIndex = 5;
             this.tabPage21.Text = "EPD290";
             // 
@@ -10255,7 +10298,7 @@
             this.storageUI_EPD_266.Port = ((uint)(3306u));
             this.storageUI_EPD_266.Server_IP_Adress = "0.0.0.0";
             this.storageUI_EPD_266.Server_Port = "0";
-            this.storageUI_EPD_266.Size = new System.Drawing.Size(475, 300);
+            this.storageUI_EPD_266.Size = new System.Drawing.Size(960, 745);
             this.storageUI_EPD_266.SSID = "";
             this.storageUI_EPD_266.Station = "0";
             this.storageUI_EPD_266.Subnet = "0.0.0.0";
@@ -10697,6 +10740,7 @@
             this.plC_ScreenPage_系統頁面.ResumeLayout(false);
             this.tabPage22.ResumeLayout(false);
             this.tabPage22.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -11155,6 +11199,8 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_櫃體狀態_重置設備;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_匯出;
         private MyUI.PLC_CheckBox plC_CheckBox_不檢查處方亮燈;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private MyUI.PLC_NumBox plC_NumBox_配藥完成藥籃亮燈延遲時間;
     }
 }
 

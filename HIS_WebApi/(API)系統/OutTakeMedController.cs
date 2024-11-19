@@ -346,9 +346,9 @@ namespace HIS_WebApi
 
                 string GUID = "";
                 string Master_GUID = "";
-                int 庫存量 = 0;
-                int 結存量 = 0;
-                int 總異動量 = 0;
+                double 庫存量 = 0;
+                double 結存量 = 0;
+                double 總異動量 = 0;
                 string 盤點量 = "";
                 string 動作 = "";
                 string 藥品碼 = "";

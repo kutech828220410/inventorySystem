@@ -718,12 +718,12 @@ namespace 調劑台管理系統
                 }
 
 
-                int 原有庫存 = rFIDDevice.取得庫存();
+                double 原有庫存 = rFIDDevice.取得庫存();
                 string 藥品碼 = rFIDDevice.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 rFIDDevice.效期庫存覆蓋(效期, 批號 ,數量);
-                int 修正庫存 = rFIDDevice.取得庫存();
+                double 修正庫存 = rFIDDevice.取得庫存();
                 this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -828,12 +828,12 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                int 原有庫存 = rFIDDevice.取得庫存();
+                double 原有庫存 = rFIDDevice.取得庫存();
                 string 藥品碼 = rFIDDevice.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 rFIDDevice.效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = rFIDDevice.取得庫存();
+                double 修正庫存 = rFIDDevice.取得庫存();
                 this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
                 List_RFID_本地資料.Add_NewRFIDClass(rFIDClass);
 

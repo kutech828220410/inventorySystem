@@ -719,12 +719,12 @@ namespace 調劑台管理系統
                 }
 
 
-                int 原有庫存 = storage.取得庫存();
+                double 原有庫存 = storage.取得庫存();
                 string 藥品碼 = storage.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 storage.效期庫存覆蓋(效期, 數量);
-                int 修正庫存 = storage.取得庫存();
+                double 修正庫存 = storage.取得庫存();
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 List_EPD266_本地資料.Add_NewStorage(storage);
 
@@ -821,12 +821,12 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                int 原有庫存 = storage.取得庫存();
+                double 原有庫存 = storage.取得庫存();
                 string 藥品碼 = storage.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 storage.效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = storage.取得庫存();
+                double 修正庫存 = storage.取得庫存();
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
 
                 string GUID = Guid.NewGuid().ToString();

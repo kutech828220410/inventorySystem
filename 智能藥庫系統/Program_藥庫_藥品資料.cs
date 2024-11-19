@@ -666,12 +666,12 @@ namespace 智能藥庫系統
                     return;
                 }
 
-                int 原有庫存 = deviceBasic_buf[0].取得庫存();
+                double 原有庫存 = deviceBasic_buf[0].取得庫存();
 
 
                 string 庫存量 = deviceBasic_buf[0].取得庫存().ToString();
                 deviceBasic_buf[0].效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = deviceBasic_buf[0].取得庫存();
+                double 修正庫存 = deviceBasic_buf[0].取得庫存();
                 this.DeviceBasicClass_藥庫.SQL_ReplaceDeviceBasic(deviceBasic_buf[0]);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -853,11 +853,11 @@ namespace 智能藥庫系統
                 }
 
 
-                int 原有庫存 = deviceBasic_buf[0].取得庫存();
+                double 原有庫存 = deviceBasic_buf[0].取得庫存();
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = deviceBasic_buf[0].Inventory;
                 deviceBasic_buf[0].效期庫存覆蓋(效期, 數量);
-                int 修正庫存 = deviceBasic_buf[0].取得庫存();
+                double 修正庫存 = deviceBasic_buf[0].取得庫存();
                 this.DeviceBasicClass_藥庫.SQL_ReplaceDeviceBasic(deviceBasic_buf[0]);
 
                 string GUID = Guid.NewGuid().ToString();

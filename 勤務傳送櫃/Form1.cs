@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.40")]
-[assembly: AssemblyFileVersion("1.0.0.40")]
+[assembly: AssemblyVersion("1.0.0.41")]
+[assembly: AssemblyFileVersion("1.0.0.41")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -212,6 +212,7 @@ namespace 勤務傳送櫃
                 this.textBox_登入畫面_密碼.PassWordChar = true;
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
                 StorageUI_EPD_266.Get_Storage_bmpChangeEvent += StorageUI_EPD_266_Get_Storage_bmpChangeEvent;
+              
             }
         }
         private Bitmap StorageUI_EPD_266_Get_Storage_bmpChangeEvent(Storage storage)
@@ -326,7 +327,7 @@ namespace 勤務傳送櫃
 
             if (PLC_Device_開門異常時間.Value <= 5000) PLC_Device_開門異常時間.Value = 5000;
             Pannel_Box.AlarmTime = PLC_Device_開門異常時間.Value;
-
+       
             this.WindowState = FormWindowState.Maximized;
         }
         private void ApiServerSetting()

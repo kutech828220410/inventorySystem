@@ -543,6 +543,7 @@ namespace 勤務傳送櫃
             this.rFID_UI = rFID_UI;
             this.storageUI_EPD_266 = _storageUI_EPD_266;
         }
+        public static int input_time = 3000;
         bool flag_alarm_is_active = true;
         bool flag_Init = false;
         bool flag_LED_State = false;
@@ -550,7 +551,8 @@ namespace 勤務傳送櫃
         bool flag_lockinput_State = false;
         bool flag_lock_input = false;
         bool flag_lock_output = false;
-        MyTimerBasic MyTimerBasic_lock_input = new MyTimerBasic(200); 
+        MyTimerBasic MyTimerBasic_lock_input = new MyTimerBasic(200);
+        MyTimerBasic MyTimerBasic_input = new MyTimerBasic(input_time);
         public void Run()
         {
             if (!flag_Run) return;
@@ -609,8 +611,22 @@ namespace 勤務傳送櫃
 
             this.pLC_Device_LED_State.Bool = this.rFID_UI.GetOutput(this.IP, this.led_output_num);
             flag_lock_input = this.rFID_UI.GetInput(this.IP, this.lock_input_num);
-            this.pLC_Device_sensor_input.Bool = this.rFID_UI.GetInput(this.IP, this.sensor_input_num);
+            bool flag_input = this.rFID_UI.GetInput(this.IP, this.sensor_input_num);
+ 
+            if(flag_input)
+            {
+                if(MyTimerBasic_input.IsTimeOut())
+                {
+                    this.pLC_Device_sensor_input.Bool = true;
+                }               
+            }
+            else
+            {
+                this.pLC_Device_sensor_input.Bool = false;
+                MyTimerBasic_input.TickStop();
+                MyTimerBasic_input.StartTickTime(input_time);
 
+            }
             if (this.pLC_Device_LED_State.Bool != this.flag_LED_State)
             {
                 this.flag_LED_State = this.pLC_Device_LED_State.Bool;
