@@ -3284,7 +3284,11 @@ namespace 調劑台管理系統
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
 
-                                Function_儲位亮燈(new Main_Form.LightOn(藥品碼, Color.DarkGray));
+                                LightOn lightOn = new Main_Form.LightOn(藥品碼, Color.DarkGray);
+                                lightOn.flag_Refresh_Light = true;
+                                lightOn.flag_Refresh_breathing = true;
+
+                                Function_儲位亮燈(lightOn);
                             }
                         }
                     }

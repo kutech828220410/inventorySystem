@@ -50,6 +50,7 @@ namespace 調劑台管理系統
             [Description("備註,VARCHAR,200,NONE")]
             備註,
         }
+        static public List<object[]> list_交班對點 = null;
         private bool flag_確認輸入 = false;
         private MyThread myThread_program;
         private personPageClass personPageClass_盤點人員 = null;
@@ -80,10 +81,12 @@ namespace 調劑台管理系統
             this.rJ_Button_CE.MouseDownEvent += RJ_Button_CE_MouseDownEvent;
 
             this.plC_RJ_Button_確認送出.MouseDownEvent += PlC_RJ_Button_確認送出_MouseDownEvent;
+            this.plC_RJ_Button_重新盤點.MouseDownEvent += PlC_RJ_Button_重新盤點_MouseDownEvent;
+          
 
         }
 
-   
+       
 
         private void RJ_Button_CE_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -190,9 +193,26 @@ namespace 調劑台管理系統
                         panel_藥品選擇.Enabled = false;
                         panel_交班內容.Enabled = false;
                     }));
+
+
                 }
                 if (this.stepViewer.CurrentStep == 3)
                 {
+                    if (list_交班對點 != null)
+                    {
+                        int index = 0;
+                        for (int i = 0; i < list_交班對點.Count; i++)
+                        {
+                            if (list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString().StringIsEmpty())
+                            {
+                                index = i;
+                                break;
+                            }
+                        }
+                        this.sqL_DataGridView_交班藥品.SetSelectRow(index);
+                        this.stepViewer.Next();
+                        PLC_Device_交班對點.Bool = true;
+                    }
                     this.Invoke(new Action(delegate
                     {
                         plC_RJ_Button_盤點登入.Enabled = false;
@@ -479,17 +499,53 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
+        private void SqL_DataGridView_交班藥品_RowEnterEvent(object[] RowValue)
+        {
+            if (RowValue != null)
+            {
+                string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
+                string 藥名 = RowValue[(int)enum_交班藥品.藥名].ObjectToString();
+                string 庫存 = RowValue[(int)enum_交班藥品.庫存].ObjectToString();
+                this.Invoke(new Action(delegate
+                {
+
+                    List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
+                    if (images == null)
+                    {
+                        pictureBox_藥品資訊.Image = null;
+                        return;
+                    }
+                    pictureBox_藥品資訊.Image = images[0];
+                    this.rJ_Lable_藥品資訊.Text = $"({藥碼}){藥名}";
+                    this.rJ_Lable_現有庫存.Text = $"{庫存}";
+                }));
+
+                if (CodeLast.StringIsEmpty() == false)
+                {
+                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(CodeLast, Color.Black));
+                }
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
+                CodeLast = 藥碼;
+            }
+
+
+        }
         private void Dialog_交班對點_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult != DialogResult.Yes)
             {
                 Function_寫入交易紀錄("盤點中斷");
-                List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
+                list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
                 for (int i = 0; i < list_交班對點.Count; i++)
                 {
                     string 藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
                     Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
                 }
+              
+            }
+            else
+            {
+                list_交班對點 = null;
             }
         }
         private void Dialog_交班對點_LoadFinishedEvent(EventArgs e)
@@ -528,6 +584,19 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.差異值);
                 this.sqL_DataGridView_交班藥品.ClearGrid();
             }));
+
+            if (list_交班對點 != null)
+            {
+                if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                {
+                    this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點);
+                }
+                else
+                {
+                    list_交班對點 = null;
+                }
+            }
+
             myThread_program = new MyThread();
             myThread_program.Add_Method(sub_program);
             myThread_program.AutoRun(true);
@@ -538,6 +607,7 @@ namespace 調劑台管理系統
  
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
+           
             string text = "";
             this.Invoke(new Action(delegate 
             {
@@ -574,42 +644,13 @@ namespace 調劑台管理系統
                 {
                     this.sqL_DataGridView_交班藥品.SetSelectRow(0);
                 }));
+                list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
                 PLC_Device_交班對點.Bool = true;
                 this.stepViewer.Next();
             }
       
         }
-        private void SqL_DataGridView_交班藥品_RowEnterEvent(object[] RowValue)
-        {
-            if(RowValue != null)
-            {
-                string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
-                string 藥名 = RowValue[(int)enum_交班藥品.藥名].ObjectToString();
-                string 庫存 = RowValue[(int)enum_交班藥品.庫存].ObjectToString();
-                this.Invoke(new Action(delegate
-                {
-      
-                    List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
-                    if (images == null)
-                    {
-                        pictureBox_藥品資訊.Image = null;
-                        return;
-                    }
-                    pictureBox_藥品資訊.Image = images[0];
-                    this.rJ_Lable_藥品資訊.Text = $"({藥碼}){藥名}";
-                    this.rJ_Lable_現有庫存.Text = $"{庫存}";
-                }));
 
-                if (CodeLast.StringIsEmpty() == false)
-                {
-                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(CodeLast, Color.Black));
-                }
-                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
-                CodeLast = 藥碼;
-            }
-            
-       
-        }
         private void PlC_RJ_Button_盤點登入_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
@@ -643,7 +684,7 @@ namespace 調劑台管理系統
             if (MyMessageBox.ShowDialog("確認送出交班表?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
 
             Function_寫入交易紀錄("");
-
+          
             this.DialogResult = DialogResult.Yes;
             this.Close();
 
@@ -658,6 +699,14 @@ namespace 調劑台管理系統
             }
             string Code = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
             Main_Form.Function_抽屜以藥品碼解鎖(Code);
+        }
+        private void PlC_RJ_Button_重新盤點_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否重新開始盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
+            this.stepViewer.CurrentStep = 1;
+            this.sqL_DataGridView_交班藥品.ClearGrid();
+            list_交班對點 = null;
         }
         #endregion
 
