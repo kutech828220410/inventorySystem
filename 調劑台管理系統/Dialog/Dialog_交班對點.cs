@@ -428,7 +428,7 @@ namespace 調劑台管理系統
         private void Function_寫入交易紀錄(string 備註)
         {
             List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
-            if (備註.StringIsEmpty())
+            if (備註.StringIsEmpty() || 備註 == "盤點中斷")
             {
                 List<medRecheckLogClass> medRecheckLogClasses = new List<medRecheckLogClass>();
                 for (int i = 0; i < list_交班對點.Count; i++)
