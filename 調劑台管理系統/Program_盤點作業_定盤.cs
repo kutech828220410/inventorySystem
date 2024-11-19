@@ -127,7 +127,7 @@ namespace 調劑台管理系統
                     double 盤點量 = list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.盤點量].ObjectToString().StringToDouble() : 0;
                     double 庫存差異量 = list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsDouble() ? list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringToDouble() : 0;
 
-                    if (list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsInt32() == false)
+                    if (list_value[i][(int)盤點作業_定盤.庫存差異量].ObjectToString().StringIsDouble() == false)
                     {
                         list_value[i][(int)盤點作業_定盤.庫存差異量] = "0";
                     }

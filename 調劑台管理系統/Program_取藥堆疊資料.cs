@@ -1120,7 +1120,7 @@ namespace 調劑台管理系統
             string Master_GUID = list_母資料[(int)enum_取藥堆疊母資料.GUID].ObjectToString();
             if (list_母資料[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == "系統領藥") return;
             double 總異動量 = list_母資料[(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
-            if (list_母資料[(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringIsInt32() == false)
+            if (list_母資料[(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringIsDouble() == false)
             {
                 總異動量 = -99999;
             }
@@ -2044,6 +2044,7 @@ namespace 調劑台管理系統
                 {
                     Console.WriteLine($"藥碼:{code} 處方時間到達 $ ({ts.TotalSeconds} >= {處方存在時間})");
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
+                    Function_取藥堆疊資料_刷新面板(code);
 
                 }
             }
@@ -2528,12 +2529,12 @@ namespace 調劑台管理系統
                     效期 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
                     批號 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.批號].ObjectToString();
                     IP = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.IP].ObjectToString();
-                    if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.庫存量].ObjectToString() != 庫存量.ToString())
+                    if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.庫存量].StringToDouble() != 庫存量)
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量.ToString();
                         flag_取藥堆疊母資料_Update = true;
                     }
-                    if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString() != 結存量.ToString())
+                    if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].StringToDouble() != 結存量)
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量] = 結存量.ToString();
                         flag_取藥堆疊母資料_Update = true;

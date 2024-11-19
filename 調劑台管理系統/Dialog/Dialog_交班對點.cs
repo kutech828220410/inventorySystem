@@ -453,7 +453,7 @@ namespace 調劑台管理系統
                 List<medRecheckLogClass> medRecheckLogClasses = new List<medRecheckLogClass>();
                 for (int i = 0; i < list_交班對點.Count; i++)
                 {
-                    if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsInt32() == false) continue;
+                    if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsDouble() == false) continue;
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToInt32() != 0)
                     {
                         medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
