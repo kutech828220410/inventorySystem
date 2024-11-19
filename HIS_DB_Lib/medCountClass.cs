@@ -43,7 +43,7 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
             if(returnData == null) return null;
-            if (returnData.Code != 200) return null;
+            //if (returnData.Code != 200) return null;
             List<medCountClass> out_medCountClass = returnData.Data.ObjToClass<List<medCountClass>>();
             return out_medCountClass;
         }

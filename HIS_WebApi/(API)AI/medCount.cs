@@ -20,10 +20,10 @@ namespace HIS_WebApi._API_AI
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                string API = "http://192.168.15.113:3000";
+                string API = "http://192.168.43.249:3000";
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
-                List<medCountClass> medCountClasses = returnData.Data.ObjToClass<List<medCountClass>>();
-                //List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
+                //List<medCountClass> medCountClasses = returnData.Data.ObjToClass<List<medCountClass>>();
+                List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
                 List<medCountClass> out_medCountClass = new List<medCountClass>();
                 for (int i = 0; i < medCountClasses.Count; i++)
                 {
