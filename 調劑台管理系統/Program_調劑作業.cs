@@ -128,9 +128,6 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_01.SetSleepTime(20);
             this.MyThread_領藥台_01.Trigger();
         }
-
-     
-
         private void Program_調劑作業_領藥台_02_Init()
         {
             Table table = new Table(new enum_取藥堆疊母資料());
@@ -275,6 +272,117 @@ namespace 調劑台管理系統
             sqL_DataGridView_領藥台_04_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
         }
 
+        private void SqL_DataGridView_領藥內容_RowPostPaintingEventEx(SQL_DataGridView sQL_DataGridView, DataGridViewRowPostPaintEventArgs e)
+        {
+            object[] value = sQL_DataGridView.GetRowValues(e.RowIndex);
+            if (value != null)
+            {
+
+                Color row_Backcolor = Color.White;
+                Color row_Forecolor = Color.Black;
+
+                string 狀態 = value[(int)enum_取藥堆疊母資料.狀態].ObjectToString();
+                if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
+                {
+                    row_Backcolor = Color.Yellow;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
+                {
+                    row_Backcolor = Color.Lime;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())
+                {
+                    row_Backcolor = Color.Red;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName())
+                {
+                    row_Backcolor = Color.Pink;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName())
+                {
+                    row_Backcolor = Color.Pink;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                    row_Backcolor = Color.White;
+                }
+
+
+
+
+                using (Brush brush = new SolidBrush(row_Backcolor))
+                {
+                    int x = e.RowBounds.Left;
+                    int y = e.RowBounds.Top;
+                    int width = e.RowBounds.Width;
+                    int height = e.RowBounds.Height;
+                    int image_width = 250;
+                    e.Graphics.FillRectangle(brush, e.RowBounds);
+                    DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
+                    Size size = new Size();
+                    PointF pointF = new PointF();
+                    float temp_x = 0;
+                    Font font;
+                    string Code = value[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    int col_width = 0;
+                    List<Image> images = Main_Form.Function_取得藥品圖片(Code);
+                    if (images.Count > 0)
+                    {
+                        if (images[0] != null) e.Graphics.DrawImage(images[0], x + 2, y + 2, image_width - 2, height - 2);
+                    }
+
+
+                    //font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.藥品碼.GetEnumName());
+                    //string 藥碼 = $"({Code})";
+                    //DrawingClass.Draw.文字左上繪製(藥碼, new PointF(10, y + 10), font, Color.Black, e.Graphics);
+                    //size = 藥碼.MeasureText(font);
+
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.藥品名稱.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.藥品名稱.GetEnumName());
+                    string 藥名 = $"{value[(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString()}";
+                    size = 藥名.MeasureText(font);
+                    pointF = new PointF(10 + image_width, y);
+                    DrawingClass.Draw.DrawString(e.Graphics, 藥名, font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+                    //string 單位 = $"[{value[(int)enum_取藥堆疊母資料.單位].ObjectToString()}]";
+                    //DrawingClass.Draw.文字左上繪製(單位, new PointF(10 + 650, y + 10), new Font("標楷體", 14), row_Forecolor, e.Graphics);
+
+                    pointF = new PointF(temp_x + 10, y);
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.總異動量.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.總異動量.GetEnumName());
+                    string 總異動量 = $"{value[(int)enum_取藥堆疊母資料.總異動量].ObjectToString()}";
+                    size = 總異動量.MeasureText(font);
+                    DrawingClass.Draw.DrawString(e.Graphics, 總異動量, font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+                    pointF = new PointF(temp_x + 10, y);
+                    col_width = sQL_DataGridView.Get_ColumnWidth(enum_取藥堆疊母資料.結存量.GetEnumName());
+                    font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.結存量.GetEnumName());
+                    string 結存量 = $"{value[(int)enum_取藥堆疊母資料.結存量].ObjectToString()}";
+                    size = 結存量.MeasureText(font);
+                    DrawingClass.Draw.DrawString(e.Graphics, $"({結存量})", font, new Rectangle((int)pointF.X, (int)pointF.Y, col_width, height), row_Forecolor, DataGridViewContentAlignment.MiddleLeft);
+                    temp_x = pointF.X + col_width;
+
+
+                    font = new Font("標楷體", 14, FontStyle.Bold);
+                    size = 狀態.MeasureText(font);
+                    pointF = new PointF(e.RowBounds.Right - size.Width, e.RowBounds.Bottom - size.Height - 10);
+                    DrawingClass.Draw.文字左上繪製($"{狀態}", pointF, font, row_Forecolor, e.Graphics);
+                    temp_x = pointF.X + col_width;
+
+
+                    if (sQL_DataGridView.dataGridView.Rows[e.RowIndex].Selected)
+                    {
+                        DrawingClass.Draw.方框繪製(new Point(x, y), new Size(width, height), Color.Blue, 2, false, e.Graphics, 1, 1);
+                    }
+                    else
+                    {
+                        DrawingClass.Draw.方框繪製(new Point(x, y), new Size(width, height), Color.Black, 1, false, e.Graphics, 1, 1);
+                    }
+                }
+            }
+        }
         private void SqL_DataGridView_領藥台_領藥內容_MouseDown(object sender, MouseEventArgs e)
         {
             return;
@@ -353,8 +461,6 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
-
-   
 
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
@@ -1472,6 +1578,7 @@ namespace 調劑台管理系統
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
                     bool flag_庫存不足 = false;
+                    bool flag_已領用過 = false;
                     for (int k = 0; k < list_value_buf.Count; k++)
                     {
                         if (list_value_buf[k][(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
@@ -1485,6 +1592,10 @@ namespace 調劑台管理系統
                         if (list_value_buf[k][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())
                         {
                             flag_庫存不足 = true;
+                        }
+                        if (list_value_buf[k][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                        {
+                            flag_已領用過 = true;
                         }
                         總異動量_temp += list_value_buf[k][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     }
@@ -1500,6 +1611,10 @@ namespace 調劑台管理系統
                     else if (flag_庫存不足)
                     {
                         value_領藥內容[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
+                    }
+                    else if (flag_已領用過)
+                    {
+                        value_領藥內容[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                     }
                     else
                     {
@@ -2058,6 +2173,29 @@ namespace 調劑台管理系統
                     flag_OK = false;
                     return;
                 }
+                if(plC_CheckBox_領藥處方選取.Checked)
+                {
+                    List<object[]> list_醫令資料_buf = new List<object[]>();
+                    for (int i = 0; i < list_醫令資料.Count; i++)
+                    {
+                        string 藥碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                        string 狀態 = list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString();
+                        if (Main_Form.Function_從本地資料取得儲位(藥碼).Count > 0)
+                        {
+                           if(狀態 == "未過帳") list_醫令資料_buf.Add(list_醫令資料[i]);
+                        }
+                    }
+                    if (list_醫令資料_buf.Count > 1)
+                    {
+                        Dialog_醫令選擇 dialog_醫令選擇 = new Dialog_醫令選擇(list_醫令資料_buf);
+                        dialog_醫令選擇.ShowDialog();
+                        if (dialog_醫令選擇.DialogResult != DialogResult.Yes) return;
+                        list_醫令資料 = dialog_醫令選擇.Value;
+                    }
+                }
+           
+              
+
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 bool flag_雙人覆核 = false;

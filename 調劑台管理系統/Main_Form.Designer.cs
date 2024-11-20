@@ -1151,11 +1151,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.plC_RJ_Pannel7 = new MyUI.PLC_RJ_Pannel();
+            this.plC_CheckBox_取藥錯誤語音 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_取藥正確語音 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_同藥碼同時取藥亮紫色 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_面板於過帳後更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_面板於調劑結束更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_申領_不需輸入申領量 = new MyUI.PLC_CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_領藥處方選取 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox4 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_掃碼顏色固定 = new MyUI.PLC_CheckBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -1595,8 +1598,6 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.plC_CheckBox_取藥正確語音 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox_取藥錯誤語音 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -4827,7 +4828,7 @@
             // panel146
             // 
             this.panel146.BackColor = System.Drawing.Color.Transparent;
-            this.panel146.BackgroundImage = global::調劑台管理系統.Properties.Resources.LOGO_浮水印;
+            this.panel146.BackgroundImage = global::調劑台管理系統.Properties.Resources.LOGO;
             this.panel146.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel146.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel146.Location = new System.Drawing.Point(0, 55);
@@ -33025,6 +33026,46 @@
             this.plC_RJ_Pannel7.Size = new System.Drawing.Size(1639, 355);
             this.plC_RJ_Pannel7.TabIndex = 216;
             // 
+            // plC_CheckBox_取藥錯誤語音
+            // 
+            this.plC_CheckBox_取藥錯誤語音.AutoSize = true;
+            this.plC_CheckBox_取藥錯誤語音.Bool = false;
+            this.plC_CheckBox_取藥錯誤語音.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_取藥錯誤語音.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_取藥錯誤語音.Location = new System.Drawing.Point(22, 199);
+            this.plC_CheckBox_取藥錯誤語音.Name = "plC_CheckBox_取藥錯誤語音";
+            this.plC_CheckBox_取藥錯誤語音.Size = new System.Drawing.Size(123, 20);
+            this.plC_CheckBox_取藥錯誤語音.TabIndex = 224;
+            this.plC_CheckBox_取藥錯誤語音.Text = "取藥錯誤語音";
+            this.plC_CheckBox_取藥錯誤語音.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_取藥錯誤語音.寫入元件位置 = "S5035";
+            this.plC_CheckBox_取藥錯誤語音.文字內容 = "取藥錯誤語音";
+            this.plC_CheckBox_取藥錯誤語音.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_取藥錯誤語音.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_取藥錯誤語音.讀取元件位置 = "S5035";
+            this.plC_CheckBox_取藥錯誤語音.讀寫鎖住 = false;
+            this.plC_CheckBox_取藥錯誤語音.音效 = false;
+            // 
+            // plC_CheckBox_取藥正確語音
+            // 
+            this.plC_CheckBox_取藥正確語音.AutoSize = true;
+            this.plC_CheckBox_取藥正確語音.Bool = false;
+            this.plC_CheckBox_取藥正確語音.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_取藥正確語音.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_取藥正確語音.Location = new System.Drawing.Point(22, 173);
+            this.plC_CheckBox_取藥正確語音.Name = "plC_CheckBox_取藥正確語音";
+            this.plC_CheckBox_取藥正確語音.Size = new System.Drawing.Size(123, 20);
+            this.plC_CheckBox_取藥正確語音.TabIndex = 223;
+            this.plC_CheckBox_取藥正確語音.Text = "取藥正確語音";
+            this.plC_CheckBox_取藥正確語音.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_取藥正確語音.寫入元件位置 = "S5034";
+            this.plC_CheckBox_取藥正確語音.文字內容 = "取藥正確語音";
+            this.plC_CheckBox_取藥正確語音.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_取藥正確語音.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_取藥正確語音.讀取元件位置 = "S5034";
+            this.plC_CheckBox_取藥正確語音.讀寫鎖住 = false;
+            this.plC_CheckBox_取藥正確語音.音效 = false;
+            // 
             // plC_CheckBox_同藥碼同時取藥亮紫色
             // 
             this.plC_CheckBox_同藥碼同時取藥亮紫色.AutoSize = true;
@@ -33107,6 +33148,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.plC_CheckBox_領藥處方選取);
             this.groupBox7.Controls.Add(this.plC_CheckBox4);
             this.groupBox7.Controls.Add(this.plC_CheckBox_掃碼顏色固定);
             this.groupBox7.Controls.Add(this.label34);
@@ -33137,6 +33179,26 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "調劑設定";
             // 
+            // plC_CheckBox_領藥處方選取
+            // 
+            this.plC_CheckBox_領藥處方選取.AutoSize = true;
+            this.plC_CheckBox_領藥處方選取.Bool = false;
+            this.plC_CheckBox_領藥處方選取.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_領藥處方選取.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥處方選取.Location = new System.Drawing.Point(13, 230);
+            this.plC_CheckBox_領藥處方選取.Name = "plC_CheckBox_領藥處方選取";
+            this.plC_CheckBox_領藥處方選取.Size = new System.Drawing.Size(133, 20);
+            this.plC_CheckBox_領藥處方選取.TabIndex = 217;
+            this.plC_CheckBox_領藥處方選取.Text = "[領藥]處方選取";
+            this.plC_CheckBox_領藥處方選取.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_領藥處方選取.寫入元件位置 = "S5027";
+            this.plC_CheckBox_領藥處方選取.文字內容 = "[領藥]處方選取";
+            this.plC_CheckBox_領藥處方選取.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_領藥處方選取.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥處方選取.讀取元件位置 = "S5027";
+            this.plC_CheckBox_領藥處方選取.讀寫鎖住 = false;
+            this.plC_CheckBox_領藥處方選取.音效 = false;
+            // 
             // plC_CheckBox4
             // 
             this.plC_CheckBox4.AutoSize = true;
@@ -33163,7 +33225,7 @@
             this.plC_CheckBox_掃碼顏色固定.Bool = false;
             this.plC_CheckBox_掃碼顏色固定.Font = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_掃碼顏色固定.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_掃碼顏色固定.Location = new System.Drawing.Point(13, 253);
+            this.plC_CheckBox_掃碼顏色固定.Location = new System.Drawing.Point(13, 256);
             this.plC_CheckBox_掃碼顏色固定.Name = "plC_CheckBox_掃碼顏色固定";
             this.plC_CheckBox_掃碼顏色固定.Size = new System.Drawing.Size(123, 20);
             this.plC_CheckBox_掃碼顏色固定.TabIndex = 135;
@@ -43956,46 +44018,6 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
-            // plC_CheckBox_取藥正確語音
-            // 
-            this.plC_CheckBox_取藥正確語音.AutoSize = true;
-            this.plC_CheckBox_取藥正確語音.Bool = false;
-            this.plC_CheckBox_取藥正確語音.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_取藥正確語音.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_取藥正確語音.Location = new System.Drawing.Point(22, 173);
-            this.plC_CheckBox_取藥正確語音.Name = "plC_CheckBox_取藥正確語音";
-            this.plC_CheckBox_取藥正確語音.Size = new System.Drawing.Size(123, 20);
-            this.plC_CheckBox_取藥正確語音.TabIndex = 223;
-            this.plC_CheckBox_取藥正確語音.Text = "取藥正確語音";
-            this.plC_CheckBox_取藥正確語音.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_取藥正確語音.寫入元件位置 = "S5034";
-            this.plC_CheckBox_取藥正確語音.文字內容 = "取藥正確語音";
-            this.plC_CheckBox_取藥正確語音.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_取藥正確語音.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_取藥正確語音.讀取元件位置 = "S5034";
-            this.plC_CheckBox_取藥正確語音.讀寫鎖住 = false;
-            this.plC_CheckBox_取藥正確語音.音效 = false;
-            // 
-            // plC_CheckBox_取藥錯誤語音
-            // 
-            this.plC_CheckBox_取藥錯誤語音.AutoSize = true;
-            this.plC_CheckBox_取藥錯誤語音.Bool = false;
-            this.plC_CheckBox_取藥錯誤語音.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_取藥錯誤語音.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_取藥錯誤語音.Location = new System.Drawing.Point(22, 199);
-            this.plC_CheckBox_取藥錯誤語音.Name = "plC_CheckBox_取藥錯誤語音";
-            this.plC_CheckBox_取藥錯誤語音.Size = new System.Drawing.Size(123, 20);
-            this.plC_CheckBox_取藥錯誤語音.TabIndex = 224;
-            this.plC_CheckBox_取藥錯誤語音.Text = "取藥錯誤語音";
-            this.plC_CheckBox_取藥錯誤語音.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_取藥錯誤語音.寫入元件位置 = "S5035";
-            this.plC_CheckBox_取藥錯誤語音.文字內容 = "取藥錯誤語音";
-            this.plC_CheckBox_取藥錯誤語音.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_取藥錯誤語音.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_取藥錯誤語音.讀取元件位置 = "S5035";
-            this.plC_CheckBox_取藥錯誤語音.讀寫鎖住 = false;
-            this.plC_CheckBox_取藥錯誤語音.音效 = false;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -46109,6 +46131,7 @@
         private MyUI.RJ_Lable rJ_Lable5;
         private MyUI.PLC_CheckBox plC_CheckBox_取藥錯誤語音;
         private MyUI.PLC_CheckBox plC_CheckBox_取藥正確語音;
+        private MyUI.PLC_CheckBox plC_CheckBox_領藥處方選取;
     }
 }
 

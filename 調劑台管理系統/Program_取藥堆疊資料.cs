@@ -3202,16 +3202,20 @@ namespace 調劑台管理系統
                                 lightOn.flag_Refresh_Light = true;
                                 lightOn.flag_Refresh_breathing = true;
                                 Function_儲位亮燈(lightOn);
-                                Task.Run(new Action(delegate
+                                if (plC_CheckBox_取藥正確語音.Checked)
                                 {
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                    Task.Run(new Action(delegate
                                     {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
+                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                        {
+                                            sp.Stop();
+                                            sp.Play();
+                                            sp.PlaySync();
+                                        }
 
-                                }));
+                                    }));
+                                    break;
+                                }
                             }
                         }
                     }
@@ -3395,25 +3399,54 @@ namespace 調劑台管理系統
                             {
                                 Console.WriteLine($"lightSensorClass : {lightSensorClass}");
                                 Console.WriteLine($"IP : {boxes[k].IP} , index_IP : {index_IP}, Sensor_ON : {Sensor_ON}");
-                            
+
                                 list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
                                 list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
                                 LightOn lightOn = new Main_Form.LightOn(藥品碼, color, 數量);
                                 lightOn.顏色 = Color.FromArgb((int)(color.R * 0.1), (int)(color.G * 0.1), (int)(color.B * 0.1));
                                 lightOn.flag_Refresh_Light = true;
                                 Function_儲位亮燈(lightOn);
-
-                                Task.Run(new Action(delegate
+                                if(plC_CheckBox_取藥正確語音.Checked)
                                 {
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                    Task.Run(new Action(delegate
                                     {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
+                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                        {
+                                            sp.Stop();
+                                            sp.Play();
+                                            sp.PlaySync();
+                                        }
 
-                                }));
-                                break;
+                                    }));
+                                    break;
+                                }
+                             
+                            }
+                            else if(uDP_READ.Input > 0)
+                            {
+                                int temp = list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.暫存參數].StringToInt32();
+                                list_取藥子堆疊資料_replace.Add(list_取藥子堆疊資料_手勢感測作業檢查[i]);
+
+                                if (plC_CheckBox_取藥錯誤語音.Checked)
+                                {
+                                    if (temp != uDP_READ.Input)
+                                    {
+                                        Task.Run(new Action(delegate
+                                        {
+                                            using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥錯誤_1.wav"))
+                                            {
+                                                sp.Stop();
+                                                sp.Play();
+                                                sp.PlaySync();
+                                            }
+
+                                        }));
+                                        list_取藥子堆疊資料_手勢感測作業檢查[i][(int)enum_取藥堆疊子資料.暫存參數] = uDP_READ.Input.ToString();
+                                        Console.WriteLine($"{DateTime.Now.ToDateTimeString()}-[取藥錯誤] ({index_IP}),暫存參數 : {temp}");
+                                    }
+                                }
+                              
+                               
                             }
                         }
                     
