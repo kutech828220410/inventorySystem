@@ -2044,7 +2044,7 @@ namespace 調劑台管理系統
                 {
                     Console.WriteLine($"藥碼:{code} 處方時間到達 $ ({ts.TotalSeconds} >= {處方存在時間})");
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
-                    Function_取藥堆疊資料_刷新面板(code);
+                    if (plC_CheckBox_面板於調劑結束更新.Checked) Function_取藥堆疊資料_刷新面板(code);
 
                 }
             }
@@ -3202,7 +3202,16 @@ namespace 調劑台管理系統
                                 lightOn.flag_Refresh_Light = true;
                                 lightOn.flag_Refresh_breathing = true;
                                 Function_儲位亮燈(lightOn);
+                                Task.Run(new Action(delegate
+                                {
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
 
+                                }));
                             }
                         }
                     }
@@ -3236,8 +3245,6 @@ namespace 調劑台管理系統
             List<object[]> list_取藥子堆疊資料_buf = new List<object[]>();
             List<object[]> list_取藥子堆疊資料_replace = new List<object[]>();
         
-
-
             Task allTask;
             List<string[]> list_需更新資料;
             List<object[]> list_取藥子堆疊資料_手勢感測作業檢查 = new List<object[]>();
@@ -3396,7 +3403,16 @@ namespace 調劑台管理系統
                                 lightOn.flag_Refresh_Light = true;
                                 Function_儲位亮燈(lightOn);
 
+                                Task.Run(new Action(delegate
+                                {
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\取藥正確.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
 
+                                }));
                                 break;
                             }
                         }
