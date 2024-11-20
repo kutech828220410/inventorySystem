@@ -61,10 +61,10 @@ namespace 調劑台管理系統
             List<batch_inventory_importClass> batch_Inventory_ImportClasses = batch_inventory_importClass.get_by_CT_TIME(Main_Form.API_Server, DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
                                              where temp.庫別 == Main_Form.ServerName
-                                             select temp).ToList();
-            batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
+                                             where temp.數量.StringToDouble() > 0
                                              where Main_Form.Function_從本地資料取得儲位(temp.藥碼).Count > 0
                                              select temp).ToList();
+     
             List<object[]> list_value = batch_Inventory_ImportClasses.ClassToSQL<batch_inventory_importClass, enum_batch_inventory_import>();
             sqL_DataGridView_批次入庫.RefreshGrid(list_value);
             LoadingForm.CloseLoadingForm();
@@ -151,10 +151,10 @@ namespace 調劑台管理系統
 
                 batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
                                                  where temp.庫別 == Main_Form.ServerName
-                                                 select temp).ToList();
-                batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
                                                  where Main_Form.Function_從本地資料取得儲位(temp.藥碼).Count > 0
+                                                 where temp.數量.StringToDouble() > 0
                                                  select temp).ToList();
+        
                 list_value = batch_Inventory_ImportClasses.ClassToSQL<batch_inventory_importClass, enum_batch_inventory_import>();
 
                 if (list_value.Count == 0)

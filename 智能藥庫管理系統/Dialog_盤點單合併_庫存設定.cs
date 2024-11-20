@@ -83,6 +83,17 @@ namespace 智能藥庫系統
                 dataTable = dataTable.ReorderTable(new enum_inv_combinelist_stock().GetEnumNames());
                 List<object[]> list_value = dataTable.DataTableToRowList();
                 List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = list_value.SQLToClass<inv_combinelist_stock_Class, enum_inv_combinelist_stock>();
+                List<medClass> medClasses = medClass.get_med_cloud(Main_Form.API_Server);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>>  keyValuePairs = medClasses.CoverToDictionaryByCode();
+                for (int i = 0; i < inv_Combinelist_Stock_Classes.Count; i++)
+                {
+                    medClass medClass = medClasses.SerchByBarcode(inv_Combinelist_Stock_Classes[i].藥碼);
+                    if (medClass != null)
+                    {
+                        inv_Combinelist_Stock_Classes[i].藥碼 = medClass.料號;
+                    }
+                }
                 inv_combinelistClass.add_stocks_by_SN(Main_Form.API_Server, inv_CombinelistClass.合併單號, inv_Combinelist_Stock_Classes);
                 RefreshUI();
                 MyMessageBox.ShowDialog("匯入完成");

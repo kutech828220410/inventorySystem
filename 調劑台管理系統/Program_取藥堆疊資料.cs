@@ -3663,9 +3663,14 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
-                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
+                
+                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
+                List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.GUID, Order_GUID, false);
+                //小心!
+                //string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
+                //List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, Order_GUID, false);
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, Order_GUID, false);
+         
                 if (list_value.Count == 0) continue;
                 for (int m = 0; m < list_value.Count; m++)
                 {

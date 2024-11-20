@@ -821,6 +821,7 @@ namespace HIS_WebApi
                 List<object[]> list_order_list = sQLControl_order_list.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, priKey);
                 List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
                 List<OrderClass> add_order_list = new List<OrderClass>();
+                List<OrderClass> update_order_list = new List<OrderClass>();
                 List<OrderClass> result_order_list = new List<OrderClass>();
                 List<OrderClass> delete_order_list = new List<OrderClass>();
 
@@ -845,15 +846,22 @@ namespace HIS_WebApi
                         }
                         else
                         {
+                            if(orderClass_add.藥品碼 != orderClass.藥品碼)
+                            {
+                                orderClass_add.藥品碼 = orderClass.藥品碼;
+                                update_order_list.Add(orderClass_add);
+                            }
                             result_order_list.Add(orderClass_add);
                         }
 
                     }
                 }
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
+                List<object[]> list_update_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
                 List<object[]> list_delete_order_list = delete_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
+                if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_add_order_list);
                 if (list_delete_order_list.Count > 0) sQLControl_order_list.DeleteExtra(null, list_delete_order_list);
                 result_order_list.AddRange(add_order_list);
                 returnData.Code = 200;
