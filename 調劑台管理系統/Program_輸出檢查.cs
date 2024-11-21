@@ -204,7 +204,7 @@ namespace 調劑台管理系統
         private bool Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
             if (this.plC_ScreenPage_Main.PageText != "調劑作業" && this.plC_ScreenPage_Main.PageText != "收支作業") return true;
-            if (!plC_CheckBox_要檢查抽屜開啟異常.Checked) return true;
+            if (!plC_CheckBox_不檢查抽屜開啟異常.Checked) return true;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_replace = new List<object[]>();
             list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
@@ -424,9 +424,8 @@ namespace 調劑台管理系統
                     {
                         flag_state = this.storageUI_EPD_266.GetInput(storage.IP);
                         this.PLC.properties.device_system.Set_Device(Input, flag_state);
-           
                         AlarmEnable = storage.AlarmEnable;
-                        if (storage.DeviceType != DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) AlarmEnable = false;
+                        if (storage.DeviceType != DeviceType.EPD266_lock && storage.DeviceType != DeviceType.EPD290_lock && storage.DeviceType != DeviceType.EPD420_lock) AlarmEnable = false;
                     }
                
                 }
@@ -757,10 +756,7 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            if(flag_Alarm)
-            {
-                Console.WriteLine($"----抽屜未關閉警報 需要警示----");
-            }
+      
             if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
@@ -770,7 +766,6 @@ namespace 調劑台管理系統
             {
                 if (MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.IsTimeOut() == false || PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0)
                 {
-                    Console.WriteLine($"----抽屜未關閉警報----");
                     using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\alarm.wav"))
                     {
                         sp.Stop();
