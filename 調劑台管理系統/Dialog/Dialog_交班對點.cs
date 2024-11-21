@@ -453,7 +453,7 @@ namespace 調劑台管理系統
                 List<medRecheckLogClass> medRecheckLogClasses = new List<medRecheckLogClass>();
                 for (int i = 0; i < list_交班對點.Count; i++)
                 {
-                    if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsInt32() == false) continue;
+                    if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsDouble() == false) continue;
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToInt32() != 0)
                     {
                         medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
@@ -632,8 +632,8 @@ namespace 調劑台管理系統
                     value[(int)enum_交班藥品.藥碼] = medClass.藥品碼;
                     value[(int)enum_交班藥品.藥名] = medClass.藥品名稱;
                     value[(int)enum_交班藥品.單位] = medClass.包裝單位;
-                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
-                    int 庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼);
+                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
+                    double 庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼);
                     value[(int)enum_交班藥品.庫存] = 差異值 + 庫存;
                     Main_Form.Function_抽屜以藥品碼解鎖(medClass.藥品碼);
                     list_value.Add(value);

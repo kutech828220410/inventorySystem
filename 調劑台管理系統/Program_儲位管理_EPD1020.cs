@@ -671,12 +671,12 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                int 原有庫存 = box.取得庫存();
+                double 原有庫存 = box.取得庫存();
                 string 藥品碼 = box.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 box.效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = box.取得庫存();
+                double 修正庫存 = box.取得庫存();
                 epD_1020_Pannel.CurrentDrawer.ReplaceByGUID(box);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
                 List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
@@ -751,12 +751,12 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                int 原有庫存 = box.取得庫存();
+                double 原有庫存 = box.取得庫存();
                 string 藥品碼 = box.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 box.效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = box.取得庫存();
+                double 修正庫存 = box.取得庫存();
                 epD_1020_Pannel.CurrentDrawer.ReplaceByGUID(box);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
 

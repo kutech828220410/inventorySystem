@@ -117,7 +117,7 @@ namespace 調劑台管理系統
             RefreshUI(serverNames ,medClasses_Ary);
  
         }
-        public int Function_取得選取台號庫存(RJ_Lable rJ_Lable)
+        public double Function_取得選取台號庫存(RJ_Lable rJ_Lable)
         {
             object sender = rJ_Lable.Parent;
             if(sender is RJ_Pannel)
@@ -130,7 +130,7 @@ namespace 調劑台管理系統
                         RJ_Lable temp = (RJ_Lable)rJ_Pannel.Controls[i];
                         if (temp.GUID == "庫存")
                         {
-                            return temp.Text.StringToInt32();
+                            return temp.Text.StringToDouble();
                         }
                     }
                 }
@@ -286,9 +286,9 @@ namespace 調劑台管理系統
                                 rJ_Lable.BackgroundColor = color;
                                 if (rJ_Pannels[i].IsSelected)
                                 {
-                         
-                                    int 庫存 = Function_取得選取台號庫存(rJ_Lable);
-                                    int 調出量 = 0;
+
+                                    double 庫存 = Function_取得選取台號庫存(rJ_Lable);
+                                    double 調出量 = 0;
                                     if (庫存 <= 0)
                                     {
                                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("無庫存可調入", 1000);

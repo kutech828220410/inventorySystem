@@ -37,12 +37,12 @@ namespace 調劑台管理系統
         private List<PLC_RJ_Button> pLC_RJ_Buttons = new List<PLC_RJ_Button>();
         private string 藥品碼_buf = "";
         private string 藥品名稱_buf = "";
-        private int 交易量_buf = 0;
+        private double 交易量_buf = 0;
         private List<string> list_效期_buf = new List<string>();
         private List<string> list_批號_buf = new List<string>();
         private List<string> list_數量_buf = new List<string>();
 
-        public Dialog_選擇效期(string 藥品碼, string 藥品名稱, int 交易量, List<string> list_效期, List<string> list_批號, List<string> list_數量)
+        public Dialog_選擇效期(string 藥品碼, string 藥品名稱, double 交易量, List<string> list_效期, List<string> list_批號, List<string> list_數量)
         {
             InitializeComponent();
             藥品碼_buf = 藥品碼;
@@ -158,7 +158,7 @@ namespace 調劑台管理系統
                 {
                     if (pLC_RJ_Buttons[i].Bool)
                     {
-                        int 數量 = list_數量_buf[i].StringToInt32();
+                        double 數量 = list_數量_buf[i].StringToDouble();
                         if (數量 < 交易量_buf * -1)
                         {
                             MyMessageBox.ShowDialog("此效期數量不足!");

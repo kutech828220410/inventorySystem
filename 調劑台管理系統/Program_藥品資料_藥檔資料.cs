@@ -235,12 +235,12 @@ namespace 調劑台管理系統
                 List_error_msg.Add("'藥品碼'欄位空白");
             }
           
-            if (SQL_Data[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToInt32() < 0 )
+            if (SQL_Data[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString().StringToDouble() < 0 )
             {
                 SQL_Data[(int)enum_藥品資料_藥檔資料.庫存] = "0";
             }
 
-            if (SQL_Data[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString().StringToInt32() < 0)
+            if (SQL_Data[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString().StringToDouble() < 0)
             {
                 SQL_Data[(int)enum_藥品資料_藥檔資料.安全庫存] = "0";
             }      
@@ -873,9 +873,9 @@ namespace 調劑台管理系統
         {
             for (int i = 0; i < this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows.Count; i++)
             {
-                if (this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.安全庫存.GetEnumName()].Value.ToString().StringToInt32() != 0)
+                if (this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.安全庫存.GetEnumName()].Value.ToString().StringToDouble() != 0)
                 {
-                    if (this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.庫存.GetEnumName()].Value.ToString().StringToInt32() < this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.安全庫存.GetEnumName()].Value.ToString().StringToInt32())
+                    if (this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.庫存.GetEnumName()].Value.ToString().StringToDouble() < this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].Cells[enum_藥品資料_藥檔資料.安全庫存.GetEnumName()].Value.ToString().StringToDouble())
                     {
                         this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                         this.sqL_DataGridView_藥品資料_藥檔資料.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;

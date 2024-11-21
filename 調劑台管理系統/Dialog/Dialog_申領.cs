@@ -50,7 +50,7 @@ namespace 調劑台管理系統
             }
             return "緊急申領";
         }
-        private void Function_新增申領藥品(medClass medClass , int 申領量)
+        private void Function_新增申領藥品(medClass medClass , double 申領量)
         {
             List<object[]> list_value = this.sqL_DataGridView_申領.GetRows((int)enum_materialRequisition.藥碼, medClass.藥品碼, false);
             if(list_value.Count == 0)
@@ -116,7 +116,7 @@ namespace 調劑台管理系統
                             MyMessageBox.ShowDialog($"{_medClass.藥品名稱} , 未開檔 ");
                             continue;
                         }
-                        int 申領量 = 0;
+                        double 申領量 = 0;
                         if (Main_Form.PLC_Device_申領_不需輸入申領量.Bool == false)
                         {
                             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入申領量", _medClass.藥品名稱);
@@ -148,7 +148,7 @@ namespace 調劑台管理系統
                 return;
             }
 
-            int 申領量 = 0;
+            double 申領量 = 0;
             if(Main_Form.PLC_Device_申領_不需輸入申領量.Bool == false)
             {
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入申領量", medClass.藥品名稱);

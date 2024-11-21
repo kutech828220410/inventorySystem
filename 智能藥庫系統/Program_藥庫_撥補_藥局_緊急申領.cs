@@ -169,14 +169,14 @@ namespace 智能藥庫系統
                 List<Storage> storages_藥庫_buf = new List<Storage>();
                 string 藥品碼 = "";
                 string 藥品名稱 = "";
-                int 來源庫存量 = 0;
-                int 來源異動量 = 0;
-                int 來源結存量 = 0;
+                double 來源庫存量 = 0;
+                double 來源異動量 = 0;
+                double 來源結存量 = 0;
                 string 來源備註 = "";
 
-                int 輸出庫存量 = 0;
-                int 輸出異動量 = 0;
-                int 輸出結存量 = 0;
+                double 輸出庫存量 = 0;
+                double 輸出異動量 = 0;
+                double 輸出結存量 = 0;
                 string 輸出備註 = "";
                 string 儲位資訊_GUID = "";
                 string 儲位資訊_IP = "";

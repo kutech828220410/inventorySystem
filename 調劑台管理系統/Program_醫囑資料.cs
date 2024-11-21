@@ -283,7 +283,7 @@ namespace 調劑台管理系統
         #endregion
 
         #region Function
-        private List<object[]> Function_醫令資料_API呼叫(string barcode , int value)
+        private List<object[]> Function_醫令資料_API呼叫(string barcode , double value)
         {
             List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
             List<object[]> list_value = new List<object[]>();
@@ -316,7 +316,7 @@ namespace 調劑台管理系統
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, int num)
+        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, double num)
         {
             barcode = barcode.Replace("\r\n", "");
             barcode = Uri.EscapeDataString(barcode);
@@ -494,9 +494,9 @@ namespace 調劑台管理系統
             string 病歷號 = "";
             string 開方時間 = "";
             string 備註 = "";
-            int 交易量 = 0;
-            int 庫存量 = 0;
-            int 結存量 = 0;
+            double 交易量 = 0;
+            double 庫存量 = 0;
+            double 結存量 = 0;
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
 
@@ -511,7 +511,7 @@ namespace 調劑台管理系統
                 藥袋序號 = list_value[i][(int)enum_醫囑資料.藥袋條碼].ObjectToString();
                 病歷號 = list_value[i][(int)enum_醫囑資料.病歷號].ObjectToString();
                 開方時間 = list_value[i][(int)enum_醫囑資料.開方日期].ToDateTimeString();
-                交易量 = list_value[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                交易量 = list_value[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
                 庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
                 結存量 = 交易量 + 庫存量;
                 備註 = "";

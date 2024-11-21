@@ -77,9 +77,7 @@ namespace 勤務傳送櫃
                 cnt++;
             }
         }
-        #endregion
-        
-
+        #endregion      
         #region Event
 
         #endregion

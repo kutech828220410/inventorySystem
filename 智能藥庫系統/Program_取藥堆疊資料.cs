@@ -372,8 +372,8 @@ namespace 智能藥庫系統
             string 藥品碼 = 堆疊子資料[(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
             string str_TYPE = 堆疊子資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString();
             string 效期 = 堆疊子資料[(int)enum_取藥堆疊子資料.效期].ObjectToString();
-            int 異動量 = 堆疊子資料[(int)enum_取藥堆疊子資料.異動量].StringToInt32();
-            int 儲位庫存 = 0;
+            double 異動量 = 堆疊子資料[(int)enum_取藥堆疊子資料.異動量].StringToDouble();
+            double 儲位庫存 = 0;
             string 批號 = "";
             if (str_TYPE == DeviceType.Pannel35.GetEnumName() || str_TYPE == DeviceType.Pannel35_lock.GetEnumName())
             {

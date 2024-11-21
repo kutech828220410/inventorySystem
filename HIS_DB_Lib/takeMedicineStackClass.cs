@@ -161,6 +161,8 @@ namespace HIS_DB_Lib
         調劑結束,
         [Description("已入帳,VARCHAR,10,None")]
         已入帳,
+        [Description("暫存參數,VARCHAR,20,None")]
+        暫存參數,
     }
     public class class_OutTakeMed_data
     {

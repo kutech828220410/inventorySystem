@@ -419,12 +419,12 @@ namespace 智能藥庫系統
                     return;
                 }
 
-                int 原有庫存 = deviceBasic_buf[0].取得庫存();
+                double 原有庫存 = deviceBasic_buf[0].取得庫存();
 
             
                 string 庫存量 = deviceBasic_buf[0].取得庫存().ToString();
                 deviceBasic_buf[0].效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = deviceBasic_buf[0].取得庫存();
+                double 修正庫存 = deviceBasic_buf[0].取得庫存();
                 this.DeviceBasicClass_藥局.SQL_ReplaceDeviceBasic(deviceBasic_buf[0]);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -606,11 +606,11 @@ namespace 智能藥庫系統
                 }
 
 
-                int 原有庫存 = deviceBasic_buf[0].取得庫存();
+                double 原有庫存 = deviceBasic_buf[0].取得庫存();
                 藥品碼 = Function_藥品碼檢查(藥品碼);
                 string 庫存量 = deviceBasic_buf[0].Inventory;
                 deviceBasic_buf[0].效期庫存覆蓋(效期, 數量);
-                int 修正庫存 = deviceBasic_buf[0].取得庫存();
+                double 修正庫存 = deviceBasic_buf[0].取得庫存();
                 this.DeviceBasicClass_藥局.SQL_ReplaceDeviceBasic(deviceBasic_buf[0]);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -721,7 +721,7 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            int num = 0;
+            double num = 0;
             DialogResult dialogResult = DialogResult.None;
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             this.Invoke(new Action(delegate
@@ -746,7 +746,7 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            int num = 0;
+            double num = 0;
             DialogResult dialogResult = DialogResult.None;
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             this.Invoke(new Action(delegate

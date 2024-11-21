@@ -73,7 +73,7 @@ namespace 調劑台管理系統
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-            int num = dialog_NumPannel.Value;
+            double num = dialog_NumPannel.Value;
             if (num == 0)
             {
                 if (MyMessageBox.ShowDialog("退藥數量為（0）,確認進行作業?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;

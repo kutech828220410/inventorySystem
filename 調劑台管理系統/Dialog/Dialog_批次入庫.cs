@@ -99,7 +99,7 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_批次入庫_RowDoubleClickEvent(object[] RowValue)
         {
             if (RowValue[(int)enum_batch_inventory_import.狀態].ObjectToString() == "過帳完成") return;
-            int 數量 = RowValue[(int)enum_batch_inventory_import.數量].StringToInt32();
+            double 數量 = RowValue[(int)enum_batch_inventory_import.數量].StringToDouble();
 
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入入庫數量");
 

@@ -38,13 +38,13 @@ namespace 調劑台管理系統
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.checkBox_只顯示調劑台品項 = new System.Windows.Forms.CheckBox();
             this.comboBox_藥品資料_搜尋內容 = new System.Windows.Forms.ComboBox();
             this.rJ_Button_藥品搜尋 = new MyUI.PLC_RJ_Button();
             this.comboBox_藥品資料_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥品資料 = new SQLUI.SQL_DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.checkBox_只顯示調劑台品項 = new System.Windows.Forms.CheckBox();
             this.panel_藥品選擇.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -272,6 +272,19 @@ namespace 調劑台管理系統
             this.panel4.Size = new System.Drawing.Size(715, 110);
             this.panel4.TabIndex = 142;
             // 
+            // checkBox_只顯示調劑台品項
+            // 
+            this.checkBox_只顯示調劑台品項.AutoSize = true;
+            this.checkBox_只顯示調劑台品項.Checked = true;
+            this.checkBox_只顯示調劑台品項.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_只顯示調劑台品項.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_只顯示調劑台品項.Location = new System.Drawing.Point(18, 75);
+            this.checkBox_只顯示調劑台品項.Name = "checkBox_只顯示調劑台品項";
+            this.checkBox_只顯示調劑台品項.Size = new System.Drawing.Size(181, 28);
+            this.checkBox_只顯示調劑台品項.TabIndex = 153;
+            this.checkBox_只顯示調劑台品項.Text = "只顯示調劑台品項";
+            this.checkBox_只顯示調劑台品項.UseVisualStyleBackColor = true;
+            // 
             // comboBox_藥品資料_搜尋內容
             // 
             this.comboBox_藥品資料_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -425,19 +438,6 @@ namespace 調劑台管理系統
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1520, 22);
             this.panel3.TabIndex = 144;
-            // 
-            // checkBox_只顯示調劑台品項
-            // 
-            this.checkBox_只顯示調劑台品項.AutoSize = true;
-            this.checkBox_只顯示調劑台品項.Checked = true;
-            this.checkBox_只顯示調劑台品項.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_只顯示調劑台品項.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_只顯示調劑台品項.Location = new System.Drawing.Point(18, 75);
-            this.checkBox_只顯示調劑台品項.Name = "checkBox_只顯示調劑台品項";
-            this.checkBox_只顯示調劑台品項.Size = new System.Drawing.Size(181, 28);
-            this.checkBox_只顯示調劑台品項.TabIndex = 153;
-            this.checkBox_只顯示調劑台品項.Text = "只顯示調劑台品項";
-            this.checkBox_只顯示調劑台品項.UseVisualStyleBackColor = true;
             // 
             // Dialog_藥品群組
             // 

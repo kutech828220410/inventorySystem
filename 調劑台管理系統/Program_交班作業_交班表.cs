@@ -273,15 +273,15 @@ namespace 調劑台管理系統
                             list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
                             list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次過帳.GetEnumName()));
 
-                            int 處方支出 = 0;
+                            double 處方支出 = 0;
                             int 處方數量 = list_交易紀錄_buf_buf.Count;
-                            int 現有庫存 = 0;
+                            double 現有庫存 = 0;
                             List<medClass> medClasses = medClass.get_datas_dps_medClass_by_code(API_Server, serverNames, 藥碼);
                             if (medClasses.Count > 0)
                             {
                                 for (int m = 0; m < medClasses.Count; m++)
                                 {
-                                    現有庫存 += medClasses[m].庫存.StringToInt32();
+                                    現有庫存 += medClasses[m].庫存.StringToDouble();
                                 }
                      
                             }
@@ -291,7 +291,7 @@ namespace 調劑台管理系統
                                 if (現有庫存 == -999) 現有庫存 = 0;
                                 for (int k = 0; k < list_交易紀錄_buf_buf.Count; k++)
                                 {
-                                    int 交易量 = list_交易紀錄_buf_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
+                                    double 交易量 = list_交易紀錄_buf_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToDouble();
                                     處方支出 += 交易量;
                                 }
                             }

@@ -272,12 +272,12 @@ namespace HIS_WebApi
             string 藥碼 = "";
             string 入庫庫別 = "";
             string 出庫庫別 = "";
-            int 入庫庫存 = 0;
-            int 出庫庫存 = 0;
-            int 入庫結存;
-            int 出庫結存;
-            int 調出量 = 0;
-            int 調入量 = 0;
+            double 入庫庫存 = 0;
+            double 出庫庫存 = 0;
+            double 入庫結存;
+            double 出庫結存;
+            double 調出量 = 0;
+            double 調入量 = 0;
 
             List<Task> tasks = new List<Task>();
             List<DeviceBasic> deviceBasics_Inbound = new List<DeviceBasic>();
@@ -427,7 +427,7 @@ namespace HIS_WebApi
             }
             return 儲位資訊;
         }
-        private List<object[]> Function_取得出庫儲位資訊(List<DeviceBasic> deviceBasics, int 異動量)
+        private List<object[]> Function_取得出庫儲位資訊(List<DeviceBasic> deviceBasics, double 異動量)
         {
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
@@ -449,9 +449,9 @@ namespace HIS_WebApi
             儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
 
             if (異動量 == 0) return 儲位資訊;
-            int 使用數量 = 異動量;
-            int 庫存數量 = 0;
-            int 剩餘庫存數量 = 0;
+            double 使用數量 = 異動量;
+            double 庫存數量 = 0;
+            double 剩餘庫存數量 = 0;
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
                 庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToInt32();

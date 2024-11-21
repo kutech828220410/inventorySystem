@@ -93,10 +93,9 @@ namespace 勤務傳送櫃
             this.plC_UI_Init.Add_Method(Program_系統頁面);
         }
 
-   
-
         private void Program_系統頁面()
         {
+            Pannel_Box.input_time = plC_NumBox_配藥完成藥籃亮燈延遲時間.Value;
             if (plC_NumBox_病房提示亮燈.Value < 5000) plC_NumBox_病房提示亮燈.Value = 5000;
             Pannel_Box.PharLightOnTime = plC_NumBox_病房提示亮燈.Value;
             if(plC_CheckBox_主機模式.Checked)
