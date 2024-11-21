@@ -42,6 +42,16 @@ namespace HIS_WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // 添加分布式內存緩存以支持 Session
+            services.AddDistributedMemoryCache();
+            // 配置 Session
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5); // Session 過期時間
+                options.Cookie.HttpOnly = true; // 只允許 HTTP 訪問（提高安全性）
+                options.Cookie.IsEssential = true; // 確保 Session Cookie 對於 GDPR 是必需的
+            });
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -105,7 +115,8 @@ namespace HIS_WebApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseWebSockets();
-
+            // 啟用 Session 中間件
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
