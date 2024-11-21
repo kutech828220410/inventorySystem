@@ -69,7 +69,6 @@ C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\o
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.Common.dll
@@ -348,3 +347,8 @@ C:\Users\sis87\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug
 C:\Users\sis87\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\sis87\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe
 C:\Users\sis87\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AxOvkBase.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AxAltairUDrvAsm4.5.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AxOvkBaseAsm4.5.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AxOvkMsr.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AxAltairUDrv.dll

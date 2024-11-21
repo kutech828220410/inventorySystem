@@ -32,8 +32,6 @@ namespace HIS_WebApi._API_AI
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string API = GetServerAPI("Main", "網頁", "med_cart_vm_api");
-                    //string API = "http://220.135.128.247:3200";
-                    //List<medCountClass> medCountClasses = returnData.Data.ObjToClass<List<medCountClass>>();
                     List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
                     if (medCountClasses != null)
                     {
@@ -82,10 +80,20 @@ namespace HIS_WebApi._API_AI
                         byte[] imageBytes = Convert.FromBase64String(base64);
                         SKMemoryStream stream = new SKMemoryStream(imageBytes);
                         SKBitmap bitmap = SKBitmap.Decode(stream);
-                        SKImage image = SKImage.FromBitmap(bitmap);
-                        SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100);
-                        System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath);
-                        data.SaveTo(fileStream);
+                        //SKImage image = SKImage.FromBitmap(bitmap);
+                        //SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100);
+                        //System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath);
+                        //data.SaveTo(fileStream);
+                        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                        {
+                            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                            {
+                                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
+                                {
+                                    data.SaveTo(fileStream);
+                                }
+                            }
+                        }
                     }
                 })));
                 Task.WhenAll(tasks).Wait();

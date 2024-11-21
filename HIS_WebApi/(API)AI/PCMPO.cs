@@ -106,102 +106,187 @@ namespace HIS_WebApi._API_TextVision
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "analyze";
             try 
-            {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = serverSettingClass_main[0].Server;
-                string DB = serverSettingClass_main[0].DBName;
-                string UserName = serverSettingClass_main[0].User;
-                string Password = serverSettingClass_main[0].Password;
-                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
-
-                List<ServerSettingClass> serverSettingClass_API = serverSettingClasses.MyFind("Main", "網頁", "API01");
-                string API = serverSettingClass_API[0].Server;
-                //string API_AI = API.Substring(0, API.Length - 4) + "3000";
+            {              
                 string API_AI = "http://192.168.43.249:3100";
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                //SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
-                input_textVision[0].GUID = Guid.NewGuid().ToString();
-                input_textVision[0].操作時間 = DateTime.Now.ToDateTimeString();
+                //input_textVision[0].GUID = Guid.NewGuid().ToString();
+                //input_textVision[0].操作時間 = DateTime.Now.ToDateTimeString();
 
-                List<object[]> sql_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
-                sQLControl_textVision.AddRows(null, sql_textVision);
-                returnData returnData_AI = textVisionClass.ai_analyze(API_AI,input_textVision);
-                if(returnData_AI == null)
-                {
-                    returnData.Code = 200;
-                    returnData.Result = $"AI辨識未啟動";
-                    return returnData.JsonSerializationt(true);
-                }
-                List<textVisionClass> textVisionClass_AI = returnData_AI.Data.ObjToClass<List<textVisionClass>>();
-                if (returnData_AI.Result == "False" )
+                returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, input_textVision);
+                List<textVisionClass> textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
+
+                if (textVisionClass_AI == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"辨識失敗";
                     return returnData.JsonSerializationt(true);
                 }
-                if(textVisionClass_AI[0].中文名 != null)
-                {
-                    string pattern1 = @"^[A-Za-z0-9]+";
-                    textVisionClass_AI[0].中文名 = Regex.Replace(textVisionClass_AI[0].中文名, pattern1, "");
-                }
-                if (textVisionClass_AI[0].藥名 != null)
-                {
-                    string pattern2 = @"^\d+";
-                    textVisionClass_AI[0].藥名 = Regex.Replace(textVisionClass_AI[0].藥名, pattern2, "");
-                }
-                    
+                textVisionClass textVision = textVisionClass_AI[0];
 
-                string 藥名 = textVisionClass_AI[0].藥名;
-                string 中文名 = textVisionClass_AI[0].中文名;
-                List<medClass> medClasses = medClass.get_med_clouds_by_name(API, 藥名);
-                if (medClasses.Count == 0)
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
                 {
-                    SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
-                    List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
-                    List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
-                    List < medCodeSrchClass > buff_medCodeSrch = medCodeSrchClasses
-                    .Where(temp => temp.辨識中文名 == 中文名 || temp.辨識藥名 == 藥名).ToList();
-                    if (buff_medCodeSrch.Count == 1)
-                    {            
-                        textVisionClass_AI[0].藥品碼 = buff_medCodeSrch[0].藥品碼;
-                        textVisionClass_AI[0].藥名 = buff_medCodeSrch[0].藥名;
-                        textVisionClass_AI[0].中文名 = buff_medCodeSrch[0].中文名;
+                    if (textVision.中文名 != null)
+                    {
+                        string pattern1 = @"^[A-Za-z0-9]+";
+                        textVision.中文名 = Regex.Replace(textVision.中文名, pattern1, "");
+                    }
+                    if (textVision.藥名 != null)
+                    {
+                        string pattern2 = @"^\d+";
+                        textVision.藥名 = Regex.Replace(textVision.藥名, pattern2, "");
+                    }
+
+
+                    string 藥名 = textVision.藥名;
+                    string 中文名 = textVision.中文名;
+                    string API = GetServerAPI("Main", "網頁", "API01");
+                    List<medClass> medClasses = medClass.get_med_clouds_by_name(API, 藥名);
+                    if (medClasses.Count == 0)
+                    {
+                        (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                        SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
+                        List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
+                        List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
+                        List<medCodeSrchClass> buff_medCodeSrch = medCodeSrchClasses
+                        .Where(temp => temp.辨識中文名 == 中文名 || temp.辨識藥名 == 藥名).ToList();
+                        if (buff_medCodeSrch.Count == 1)
+                        {
+                            textVision.藥品碼 = buff_medCodeSrch[0].藥品碼;
+                            textVision.藥名 = buff_medCodeSrch[0].藥名;
+                            textVision.中文名 = buff_medCodeSrch[0].中文名;
+                        }
+                        else
+                        {
+                            textVisionClass_AI[0].藥品碼 = "";
+                        }
                     }
                     else
                     {
-                        textVisionClass_AI[0].藥品碼 = "";
+                        textVision.藥品碼 = medClasses[0].藥品碼;
+                        textVision.藥名 = medClasses[0].藥品學名;
+                        textVisionClass_AI[0].中文名 = medClasses[0].中文名稱;
                     }
-                }
-                else
+
+                    textVision.操作者ID = input_textVision[0].操作者ID;
+                    textVision.操作者姓名 = input_textVision[0].操作者姓名;
+                    textVision.操作時間 = input_textVision[0].操作時間;
+                    textVision.圖片 = input_textVision[0].圖片;
+                })));
+                
+                
+                List<positionClass> positionClasses = new List<positionClass>();
+                tasks.Add(Task.Run(new Action(delegate
                 {
-                    textVisionClass_AI[0].藥品碼 = medClasses[0].藥品碼;
-                    textVisionClass_AI[0].藥名 = medClasses[0].藥品學名;
-                    textVisionClass_AI[0].中文名 = medClasses[0].中文名稱;
-                }
+                    if (textVision.批號位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.批號位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.批號信心分數,
+                            keyWord = "batch_num",
+                        };
+                        positionClasses.LockAdd(positionClass);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    if (textVision.中文名位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.中文名位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.中文名信心分數,
+                            keyWord = "cht_name",
+                        };
+                        positionClasses.LockAdd(positionClass);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    if (textVision.效期位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.效期位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.效期信心分數,
+                            keyWord = "expirydate",
+                        };
+                        positionClasses.LockAdd(positionClass);
 
-                textVisionClass_AI[0].操作者ID = input_textVision[0].操作者ID;
-                textVisionClass_AI[0].操作者姓名 = input_textVision[0].操作者姓名;
-                textVisionClass_AI[0].操作時間 = input_textVision[0].操作時間;
-                textVisionClass_AI[0].圖片 = input_textVision[0].圖片;
-                //textVisionClass_AI[0].批號信心分數 = textVisionClass_AI[0].批號信心分數.Substring(0, 5);
-                //textVisionClass_AI[0].效期信心分數 = textVisionClass_AI[0].效期信心分數.Substring(0, 5);
-                //textVisionClass_AI[0].單號信心分數 = textVisionClass_AI[0].單號信心分數.Substring(0, 5);
-                //textVisionClass_AI[0].藥名信心分數 = textVisionClass_AI[0].藥名信心分數.Substring(0, 5);
-                //textVisionClass_AI[0].中文名信心分數 = textVisionClass_AI[0].中文名信心分數.Substring(0, 5);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    if (textVision.藥名位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.藥名位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.藥名信心分數,
+                            keyWord = "name",
+                        };
+                        positionClasses.LockAdd(positionClass);
 
-                List<object[]> obj_textVisionClass = textVisionClass_AI.ClassToSQL<textVisionClass, enum_textVision>();
-                sQLControl_textVision.UpdateByDefulteExtra(null, obj_textVisionClass);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.單號位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.單號位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.單號信心分數,
+                            keyWord = "po",
+                        };
+                        positionClasses.LockAdd(positionClass);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.數量位置.StringIsEmpty() == false)
+                    {
+                        string[] position = textVision.數量位置.Split(";");
+                        (string width, string height, string center) = GetSquare(position);
+                        positionClass positionClass = new positionClass
+                        {
+                            高 = height,
+                            寬 = width,
+                            中心 = center,
+                            信心分數 = textVision.數量信心分數,
+                            keyWord = "qty",
+                        };
+                        positionClasses.LockAdd(positionClass);
+                    }
+                })));
+                Task.WhenAll(tasks).Wait();
+                textVision.識別位置 = positionClasses;
+                textVision.圖片 = "";
+                textVision.Log = "";
+                textVisionClass_AI[0] = textVision;
 
-                obj_textVisionClass = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, textVisionClass_AI[0].GUID);
-                textVisionClass_AI = obj_textVisionClass.SQLToClass<textVisionClass, enum_textVision>();
 
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
@@ -487,8 +572,43 @@ namespace HIS_WebApi._API_TextVision
                 return returnData.JsonSerializationt(true);
             }
         }
-        
-        
+
+        private (string width, string height, string center) GetSquare(string[] position)
+        {
+            int xMax = position[2].Split(",")[0].StringToInt32();
+            int yMax = position[2].Split(",")[1].StringToInt32();
+
+            int xMin = position[0].Split(",")[0].StringToInt32();
+            int yMin = position[0].Split(",")[1].StringToInt32();
+
+            string width = (xMax - xMin).ToString();
+            string height = (yMax - yMin).ToString();
+
+            double centerX = (xMax + xMin) / 2.0;
+            double centerY = (yMax + yMin) / 2.0;
+
+            return (width, height, $"{centerX},{centerY}");
+        }
+        private (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return (serverSettingClass.Server, serverSettingClass.DBName, serverSettingClass.User, serverSettingClass.Password, (uint)serverSettingClass.Port.StringToInt32());
+        }
+        private string GetServerAPI(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return serverSettingClass.Server;
+        }
 
 
 

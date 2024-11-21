@@ -105,7 +105,7 @@ namespace HIS_DB_Lib
         /// Log
         /// </summary>
         [JsonPropertyName("logs")]
-        public object Log { get; set; }
+        public string Log { get; set; }
         /// <summary>
         /// 批號
         /// </summary>
@@ -196,6 +196,17 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("qty_coord")]
         public string 數量位置 { get; set; }
+        /// <summary>
+        /// 藥名位置
+        /// </summary>
+        [JsonPropertyName("name_coord")]
+        public string 藥名位置 { get; set; }
+        /// <summary>
+        /// 識別位置
+        /// </summary>
+        [JsonPropertyName("value")]
+        public List<positionClass> 識別位置 { get; set; }
+
         static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
             string url = $"{API}/PO_Vision";
@@ -212,7 +223,7 @@ namespace HIS_DB_Lib
             }
             returnData returnData_AI = json_out.JsonDeserializet<returnData>();
             if (returnData_AI == null) return null;
-            if (returnData_AI.Result == "false") return null;
+            if (returnData_AI.Result == "False") return null;
             //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             Console.WriteLine($"{returnData}");
             return returnData_AI;

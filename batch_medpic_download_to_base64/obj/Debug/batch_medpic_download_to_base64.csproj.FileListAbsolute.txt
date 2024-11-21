@@ -62,7 +62,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_bas
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.pdb
-C:\Users\Administrator\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\batch_medpic_download_to_base64.exe.config
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\batch_medpic_download_to_base64.exe
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\batch_medpic_download_to_base64.pdb
@@ -128,3 +127,10 @@ C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\CSkin.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxOvkBase.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxAltairUDrvAsm4.5.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxOvkBaseAsm4.5.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxOvkMsr.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxAltairUDrv.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache

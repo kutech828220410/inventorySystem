@@ -63,6 +63,8 @@ namespace HIS_DB_Lib
     }
     public class positionClass
     {
+        [JsonPropertyName("key_word")]
+        public string keyWord { get; set; }
         [JsonPropertyName("height")]
         public string 高 { get; set; }
         [JsonPropertyName("width")]

@@ -876,6 +876,11 @@
             檢驗數值異常
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.覆核狀態">
+            <summary>
+            覆核狀態
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.診斷病名">
             <summary>
             診斷病名
@@ -936,6 +941,11 @@
             護理站
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.姓名">
+            <summary>
+            姓名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.床號">
             <summary>
             床號
@@ -944,6 +954,11 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.住院號">
             <summary>
             住院號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.病歷號">
+            <summary>
+            病歷號
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑台">
@@ -1453,7 +1468,7 @@
         </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.MedReviews">
             <summary>
-            參考單價
+            覆盤品項
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
@@ -1991,6 +2006,11 @@
             仿單
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.健保規範">
+            <summary>
+            健保規範
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInterClass">
             <summary>
             medInterClass 資料
@@ -2114,6 +2134,11 @@
         <member name="P:HIS_DB_Lib.medInventoryLogClass.Master_GUID">
             <summary>
             Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作行為">
+            <summary>
+            操作行為
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryLogClass.藥局">
@@ -3081,11 +3106,6 @@
             Log
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
-            <summary>
-            keyword
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批號">
             <summary>
             批號
@@ -3149,6 +3169,31 @@
         <member name="P:HIS_DB_Lib.textVisionClass.數量信心分數">
             <summary>
             數量信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號位置">
+            <summary>
+            批號位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名位置">
+            <summary>
+            中文名位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期位置">
+            <summary>
+            效期位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號位置">
+            <summary>
+            單號位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量位置">
+            <summary>
+            數量位置
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.GUID">
