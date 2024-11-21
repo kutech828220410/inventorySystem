@@ -221,11 +221,6 @@ namespace 調劑台管理系統
             if (MyMessageBox.ShowDialog("抽屜開啟異常,是否強制入帳?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return true;
             Loker_LockClosingEvent(sender, PLC_Device_Input, PLC_Device_Output, GUID);
             return true;
-            //MyMessageBox.ShowDialog("抽屜開啟異常,按下確認重新開啟一次!");    
-            //list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
-            //list_locker_table_value_replace.Add(list_locker_table_value[0]);
-            //if (list_locker_table_value_replace.Count != 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
-
         }
         #region Function
         private void Function_輸出入檢查_搜尋輸出(object[] value)
