@@ -745,27 +745,32 @@ namespace 調劑台管理系統
         void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
         {
             if (StorageAlarm == false) return;
-            bool flag_Alarm = true;
+            bool flag_Alarm = false;
             for (int i = 0; i < List_Locker.Count; i++)
             {
                 if (List_Locker[i].AlarmEnable)
                 {
                     if (List_Locker[i].Alarm)
                     {
-                        flag_Alarm = false;
+                        flag_Alarm = true;
                         break;
                     }
                 }
+            }
+            if(flag_Alarm)
+            {
+                Console.WriteLine($"----抽屜未關閉警報 需要警示----");
             }
             if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.StartTickTime(1000);
             }
-            if (!flag_Alarm && !PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
+            if (flag_Alarm && !PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
                 if (MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.IsTimeOut() == false || PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0)
                 {
+                    Console.WriteLine($"----抽屜未關閉警報----");
                     using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\alarm.wav"))
                     {
                         sp.Stop();
@@ -805,7 +810,7 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
-            if (!flag_Alarm)
+            if (flag_Alarm)
             {
                 if (!MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.IsTimeOut() || (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0))
                 {
