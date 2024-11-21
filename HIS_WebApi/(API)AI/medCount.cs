@@ -31,7 +31,8 @@ namespace HIS_WebApi._API_AI
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    string API = "http://220.135.128.247:3200";
+                    string API = GetServerAPI("Main", "網頁", "med_cart_vm_api");
+                    //string API = "http://220.135.128.247:3200";
                     //List<medCountClass> medCountClasses = returnData.Data.ObjToClass<List<medCountClass>>();
                     List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
                     if (medCountClasses != null)
@@ -124,6 +125,17 @@ namespace HIS_WebApi._API_AI
 
             return (width, height, $"{centerX},{centerY}");
         }
+        private string GetServerAPI(string Name, string Type, string Content)
+        {
+            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return serverSettingClass.Server;
+        }
+
 
     }
 }
