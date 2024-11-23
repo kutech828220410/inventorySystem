@@ -1201,7 +1201,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.plC_NumBox7 = new MyUI.PLC_NumBox();
             this.plC_CheckBox_關閉抽屜不滅燈 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox_要檢查抽屜開啟異常 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_不檢查抽屜開啟異常 = new MyUI.PLC_CheckBox();
             this.button_工程模式_調劑台名稱儲存 = new System.Windows.Forms.Button();
             this.plC_CheckBox_後台閒置要自動登出 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_單人交班 = new MyUI.PLC_CheckBox();
@@ -33703,7 +33703,7 @@
             this.groupBox9.Controls.Add(this.groupBox1);
             this.groupBox9.Controls.Add(this.groupBox2);
             this.groupBox9.Controls.Add(this.plC_CheckBox_關閉抽屜不滅燈);
-            this.groupBox9.Controls.Add(this.plC_CheckBox_要檢查抽屜開啟異常);
+            this.groupBox9.Controls.Add(this.plC_CheckBox_不檢查抽屜開啟異常);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox9.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox9.Location = new System.Drawing.Point(1126, 5);
@@ -33886,25 +33886,25 @@
             this.plC_CheckBox_關閉抽屜不滅燈.讀寫鎖住 = false;
             this.plC_CheckBox_關閉抽屜不滅燈.音效 = false;
             // 
-            // plC_CheckBox_要檢查抽屜開啟異常
+            // plC_CheckBox_不檢查抽屜開啟異常
             // 
-            this.plC_CheckBox_要檢查抽屜開啟異常.AutoSize = true;
-            this.plC_CheckBox_要檢查抽屜開啟異常.Bool = false;
-            this.plC_CheckBox_要檢查抽屜開啟異常.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_要檢查抽屜開啟異常.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_要檢查抽屜開啟異常.Location = new System.Drawing.Point(180, 20);
-            this.plC_CheckBox_要檢查抽屜開啟異常.Name = "plC_CheckBox_要檢查抽屜開啟異常";
-            this.plC_CheckBox_要檢查抽屜開啟異常.Size = new System.Drawing.Size(171, 20);
-            this.plC_CheckBox_要檢查抽屜開啟異常.TabIndex = 131;
-            this.plC_CheckBox_要檢查抽屜開啟異常.Text = "抽屜未關閉聲音警示";
-            this.plC_CheckBox_要檢查抽屜開啟異常.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_要檢查抽屜開啟異常.寫入元件位置 = "S4060";
-            this.plC_CheckBox_要檢查抽屜開啟異常.文字內容 = "抽屜未關閉聲音警示";
-            this.plC_CheckBox_要檢查抽屜開啟異常.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_要檢查抽屜開啟異常.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_要檢查抽屜開啟異常.讀取元件位置 = "S4060";
-            this.plC_CheckBox_要檢查抽屜開啟異常.讀寫鎖住 = false;
-            this.plC_CheckBox_要檢查抽屜開啟異常.音效 = false;
+            this.plC_CheckBox_不檢查抽屜開啟異常.AutoSize = true;
+            this.plC_CheckBox_不檢查抽屜開啟異常.Bool = false;
+            this.plC_CheckBox_不檢查抽屜開啟異常.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_不檢查抽屜開啟異常.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_不檢查抽屜開啟異常.Location = new System.Drawing.Point(180, 20);
+            this.plC_CheckBox_不檢查抽屜開啟異常.Name = "plC_CheckBox_不檢查抽屜開啟異常";
+            this.plC_CheckBox_不檢查抽屜開啟異常.Size = new System.Drawing.Size(187, 20);
+            this.plC_CheckBox_不檢查抽屜開啟異常.TabIndex = 131;
+            this.plC_CheckBox_不檢查抽屜開啟異常.Text = "抽屜未關閉聲音不警示";
+            this.plC_CheckBox_不檢查抽屜開啟異常.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_不檢查抽屜開啟異常.寫入元件位置 = "S4060";
+            this.plC_CheckBox_不檢查抽屜開啟異常.文字內容 = "抽屜未關閉聲音不警示";
+            this.plC_CheckBox_不檢查抽屜開啟異常.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_不檢查抽屜開啟異常.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_不檢查抽屜開啟異常.讀取元件位置 = "S4060";
+            this.plC_CheckBox_不檢查抽屜開啟異常.讀寫鎖住 = false;
+            this.plC_CheckBox_不檢查抽屜開啟異常.音效 = false;
             // 
             // button_工程模式_調劑台名稱儲存
             // 
@@ -45978,7 +45978,7 @@
         private System.Windows.Forms.Label label6;
         private MyUI.PLC_NumBox plC_NumBox7;
         private MyUI.PLC_CheckBox plC_CheckBox_關閉抽屜不滅燈;
-        private MyUI.PLC_CheckBox plC_CheckBox_要檢查抽屜開啟異常;
+        private MyUI.PLC_CheckBox plC_CheckBox_不檢查抽屜開啟異常;
         private System.Windows.Forms.Button button_工程模式_調劑台名稱儲存;
         private MyUI.PLC_RJ_Button plC_RJ_Button_申領;
         private MyUI.PLC_CheckBox plC_CheckBox_申領_不需輸入申領量;
