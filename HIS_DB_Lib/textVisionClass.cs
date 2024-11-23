@@ -222,8 +222,8 @@ namespace HIS_DB_Lib
                 json_out = Net.WEBApiPostJson(url, json_in);
             }
             returnData returnData_AI = json_out.JsonDeserializet<returnData>();
-            if (returnData_AI == null) return null;
-            if (returnData_AI.Result == "False") return null;
+            //if (returnData_AI == null) return null;
+            //if (returnData_AI.Result == "False") return null;
             //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             Console.WriteLine($"{returnData}");
             return returnData_AI;

@@ -68,7 +68,7 @@ namespace HIS_WebApi._API_AI
                     if (returnData.Value == "True")
                     {
                         string today = DateTime.Now.ToString("yyyyMMdd");
-                        string time = DateTime.Now.ToString("hhmmss");
+                        string time = DateTime.Now.ToString("HHmmss");
                         string base64 = json_in[0].圖片;
                         string pre = "data:image/jpeg;base64,";
                         base64 = base64.Replace(pre, "");

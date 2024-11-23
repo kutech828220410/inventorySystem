@@ -3196,6 +3196,16 @@
             數量位置
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥名位置">
+            <summary>
+            藥名位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.識別位置">
+            <summary>
+            識別位置
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCodeSrchClass.GUID">
             <summary>
             唯一KEY
