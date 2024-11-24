@@ -374,6 +374,7 @@ namespace 中藥調劑系統
         }
         private bool flag_MySerialPort_Scanner01_enable = true;
         private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();
+        private string barcode_buf = "";
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
@@ -421,8 +422,20 @@ namespace 中藥調劑系統
                         }
                         if (orderClasses.Count > 0)
                         {
+                            if(barcode_buf.StringIsEmpty() == false)
+                            {
+                                if(barcode_buf == orderClasses[0].PRI_KEY)
+                                {
+                                    Voice voice = new Voice();
+                                    voice.SpeakOnTask(RemoveParenthesesContent($"此處方正在調劑中"));
+                                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此處方正在調劑中", 1000);
+                                    dialog_AlarmForm.ShowDialog();
+                                    return;
+                                }
+                            }
                             string PRI_KEY = orderClasses[0].PRI_KEY;
                             this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
+                            barcode_buf = PRI_KEY;
                         }
                     }
                     else
