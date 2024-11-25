@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Call_Light_System", "Hospital_Call_Light_System\Hospital_Call_Light_System.csproj", "{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "batch", "batch", "{A26FB20E-1042-41C8-BA46-0CB7E82757E8}"
+	ProjectSection(SolutionItems) = preProject
+		HIS_WebApi\lockerAccess.cs = HIS_WebApi\lockerAccess.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "藥庫", "藥庫", "{178BB82E-8C58-4627-B537-1E5457A7AB7C}"
 EndProject

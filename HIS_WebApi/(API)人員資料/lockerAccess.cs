@@ -20,6 +20,8 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace HIS_WebApi
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class lockerAccess : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
@@ -139,15 +141,16 @@ namespace HIS_WebApi
                         lockerAccessClass.GUID = Guid.NewGuid().ToString();
                         lockerAccessClass.ID = ID;
                         lockerAccessClass.鎖控名稱 = lock_name;
-                        lockerAccessClass.鎖控可開啟時段 = lock_name;
+                        lockerAccessClass.鎖控可開啟時段 = lock_period;
 
                         lockerAccessClasses_add.Add(lockerAccessClass);
                     }
                     else
                     {
+                        lockerAccessClass.GUID = list_value[i][(int)enum_lockerAccess.GUID].ObjectToString();
                         lockerAccessClass.ID = ID;
                         lockerAccessClass.鎖控名稱 = lock_name;
-                        lockerAccessClass.鎖控可開啟時段 = lock_name;
+                        lockerAccessClass.鎖控可開啟時段 = lock_period;
 
                         lockerAccessClasses_update.Add(lockerAccessClass);
 

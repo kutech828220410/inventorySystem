@@ -77,9 +77,25 @@ namespace 勤務傳送櫃
             {
                 dialog_時段設定.Value = lockerAccessClass.鎖控可開啟時段;
             }
+            else
+            {
+                lockerAccessClass = new lockerAccessClass();         
+            }
+            lockerAccessClass.ID = LoginID;
+            lockerAccessClass.鎖控名稱 = wardName;
             if (dialog_時段設定.ShowDialog() != DialogResult.Yes) return;
 
             lockerAccessClass.鎖控可開啟時段 = dialog_時段設定.Value;
+
+            if (lockerAccessClass.IsTimeInPeriod(new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 00), lockerAccessClass.鎖控可開啟時段) == false)
+            {
+             
+            }
+            else
+            {
+               
+            }
+
             lockerAccessClass.add(Main_Form.API_Server, lockerAccessClass);
 
 

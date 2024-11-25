@@ -229,15 +229,30 @@ namespace 勤務傳送櫃
                 if (list_人員資料_buf.Count == 0) continue;
                 Pannel_Box pannel_Box = Pannel_Box.Panels.SortByRFID(IP, RFID_Num);
                 if (pannel_Box == null) continue;
+                string ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                 string 姓名 = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
                 string 藥櫃編號 = pannel_Box.Number.ToString();
                 List<string> 病房名稱 = pannel_Box.List_serchName;
-                string ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                 string opendoor_value = list_人員資料_buf[0][(int)enum_人員資料.開門權限].ObjectToString();
                 if (opendoor_value.StringIsEmpty() == true) continue;
                 //long.TryParse(list_人員資料_buf[0][(int)enum_人員資料.開門權限].ObjectToString(), out 權限);
                 if (OpenDoorPermissionMethod.GetOpenDoorPermission(opendoor_value, 病房名稱))
                 {
+                    lockerAccessClass _lockerAccessClass = lockerAccessClass.get_by_id_and_lcname(Main_Form.API_Server, ID, pannel_Box.WardName);
+                    if (_lockerAccessClass != null)
+                    {
+                        if (lockerAccessClass.IsValidTimePeriodString(_lockerAccessClass.鎖控可開啟時段))
+                        {
+                            if (lockerAccessClass.IsTimeInPeriod(new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 00), _lockerAccessClass.鎖控可開啟時段) == false)
+                            {
+                                Voice voice = new Voice();
+                                voice.SpeakOnTask("非可開啟時段");
+                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"非可開啟時段[{_lockerAccessClass.鎖控可開啟時段}]", 2500);
+                                dialog_AlarmForm.ShowDialog();
+                                continue;
+                            }
+                        }
+                    }
                     if (!pannel_Box.IsOpen())
                     {
                         pannel_Box.CT_Name = 姓名;

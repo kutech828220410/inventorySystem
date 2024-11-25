@@ -1,6 +1,6 @@
 {
-  "RFID_COMPort": "COM1",
-  "Scanner01_COMPort": "COM2",
+  "RFID_COMPort": "",
+  "Scanner01_COMPort": "",
   "Scanner02_COMPort": "",
   "Show_login": true
 }

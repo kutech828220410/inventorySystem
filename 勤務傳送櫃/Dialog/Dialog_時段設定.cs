@@ -40,6 +40,10 @@ namespace 勤務傳送櫃
 
         private void Dialog_時段設定_LoadFinishedEvent(EventArgs e)
         {
+            numTextBox_st_HH.Text = TimeSpan_st.Hours.ToString();
+            numTextBox_st_MM.Text = TimeSpan_st.Minutes.ToString();
+            numTextBox_end_HH.Text = TimeSpan_end.Hours.ToString();
+            numTextBox_end_MM.Text = TimeSpan_end.Minutes.ToString();
             this.Refresh();
         }
 
