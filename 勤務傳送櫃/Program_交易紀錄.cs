@@ -21,7 +21,7 @@ using MyOffice;
 using HIS_DB_Lib;
 namespace 勤務傳送櫃
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public enum enum_交易記錄查詢資料_匯出
         {

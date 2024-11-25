@@ -26,7 +26,7 @@ using System.Drawing.Text;
 [assembly: AssemblyFileVersion("1.0.0.41")]
 namespace 勤務傳送櫃
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static MySerialPort MySerialPort_Scanner01 = new MySerialPort();
@@ -37,7 +37,7 @@ namespace 勤務傳送櫃
         MyTimer MyTimer_TickTime = new MyTimer();
         private Stopwatch stopwatch = new Stopwatch();
         Basic.MyConvert myConvert = new Basic.MyConvert();
-
+        static public string API_Server = "http://127.0.0.1:4433";
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -172,7 +172,7 @@ namespace 勤務傳送櫃
         PLC_Device PLC_Device_開門異常時間 = new PLC_Device("D3000");
         PLC_Device PLC_Device_單層格數 = new PLC_Device("D3001");
 
-        public Form1()
+        public Main_Form()
         {
             InitializeComponent();
         }
@@ -404,6 +404,8 @@ namespace 勤務傳送櫃
             if (serverSettingClass != null) dBConfigClass.OrderCheckinApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "OrderTakeOut_API");
             if (serverSettingClass != null) dBConfigClass.OrderTakeOutApiURL = serverSettingClass.Server;
+
+            API_Server = dBConfigClass.Api_URL;
 
         }
         private void LoadcommandLineArgs()

@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Basic;
+using HIS_DB_Lib;
 namespace 勤務傳送櫃
 {
     public partial class OpenDoorPermission_UI : UserControl
     {
-   
+        public static string LoginID = "";
         private string wardName = "病房名稱";
         public string WardName
         {
@@ -57,18 +58,40 @@ namespace 勤務傳送櫃
         public OpenDoorPermission_UI()
         {
             InitializeComponent();
+            
             this.Click += OpenDoorPermission_UI_Click;
             this.label_wardname.Click += OpenDoorPermission_UI_Click;
+            this.button_setting.Click += Button_setting_Click;
         }
 
+        private void Button_setting_Click(object sender, EventArgs e)
+        {
+            if (LoginID.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未選取資料");
+                return;
+            }
+            Dialog_時段設定 dialog_時段設定 = new Dialog_時段設定();
+            lockerAccessClass lockerAccessClass = lockerAccessClass.get_by_id_and_lcname(Main_Form.API_Server, LoginID, wardName);
+            if(lockerAccessClass != null)
+            {
+                dialog_時段設定.Value = lockerAccessClass.鎖控可開啟時段;
+            }
+            if (dialog_時段設定.ShowDialog() != DialogResult.Yes) return;
+
+            lockerAccessClass.鎖控可開啟時段 = dialog_時段設定.Value;
+            lockerAccessClass.add(Main_Form.API_Server, lockerAccessClass);
+
+
+        }
         private void OpenDoorPermission_UI_Click(object sender, EventArgs e)
         {
-            Permission = !Permission;
+            Permission = !Permission; // 切換 Permission 狀態
         }
 
         private void OpenDoorPermission_UI_Load(object sender, EventArgs e)
         {
-
+            this.Refresh();
         }
 
 

@@ -18,7 +18,7 @@ using System.Text.Json.Serialization;
 using HIS_DB_Lib;
 namespace 勤務傳送櫃
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         #region Box_Index_Table
         enum enum_Box_Index_Table

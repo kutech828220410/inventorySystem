@@ -259,6 +259,67 @@
             備註
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.lockerAccessClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.lockerAccessClass.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.lockerAccessClass.鎖控名稱">
+            <summary>
+            鎖控名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.lockerAccessClass.鎖控可開啟時段">
+            <summary>
+            鎖控可開啟時段
+            </summary>
+        </member>
+        <member name="M:HIS_DB_Lib.lockerAccessClass.TimePeriodToString(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            將時間時段轉成字串
+            </summary>
+            <param name="startTime">開始時間</param>
+            <param name="endTime">結束時間</param>
+            <returns>格式化的時段字串 (HH:mm:ss-HH:mm:ss)</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.lockerAccessClass.StringToTimePeriod(System.String,System.TimeSpan@,System.TimeSpan@)">
+            <summary>
+            將字串轉為時間時段
+            </summary>
+            <param name="timePeriodStr">時段字串 (HH:mm:ss-HH:mm:ss)</param>
+            <param name="startTime">輸出的開始時間</param>
+            <param name="endTime">輸出的結束時間</param>
+            <returns>成功解析則返回 true，否則返回 false</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.lockerAccessClass.IsTimeInPeriod(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            檢查指定時間是否在時間時段內
+            </summary>
+            <param name="time">要檢查的時間</param>
+            <param name="startTime">開始時間</param>
+            <param name="endTime">結束時間</param>
+            <returns>若時間在範圍內則返回 true，否則返回 false</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.lockerAccessClass.IsTimeInPeriod(System.TimeSpan,System.String)">
+            <summary>
+            檢查指定時間是否在時間時段內（以時間區段字串為參數）
+            </summary>
+            <param name="time">要檢查的時間</param>
+            <param name="timePeriodStr">時間區段字串 (HH:mm:ss-HH:mm:ss)</param>
+            <returns>若時間在範圍內則返回 true，否則返回 false</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.lockerAccessClass.IsValidTimePeriodString(System.String)">
+            <summary>
+            檢查時間區段字串是否合法
+            </summary>
+            <param name="timePeriodStr">時間區段字串 (HH:mm:ss-HH:mm:ss)</param>
+            <returns>合法返回 true，不合法返回 false</returns>
+        </member>
         <member name="P:HIS_DB_Lib.loggerClass.GUID">
             <summary>
             唯一KEY

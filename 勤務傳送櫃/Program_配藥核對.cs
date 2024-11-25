@@ -23,7 +23,7 @@ using System.Drawing.Text;
 
 namespace 勤務傳送櫃
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         MyThread myThread_配藥核對;
         private void Program_配藥核對_Init()

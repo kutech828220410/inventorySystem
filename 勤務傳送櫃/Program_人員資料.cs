@@ -18,7 +18,7 @@ using SQLUI;
 using MyOffice;
 namespace 勤務傳送櫃
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
      
         public enum enum_人員資料_匯出
@@ -480,7 +480,7 @@ namespace 勤務傳送櫃
                 OpenDoorPermission_UI openDoorPermission_UI = new OpenDoorPermission_UI();
                 flowLayoutPanels[i / 20].Controls.Add(openDoorPermission_UI);
                 //openDoorPermission_UI.Index = (i);
-                openDoorPermission_UI.Size = new Size(200, 55);
+                openDoorPermission_UI.Size = new Size(250, 55);
                 openDoorPermission_UI.TabIndex = i + 5;
                 openDoorPermission_UI.Visible = false;
                 this.openDoorPermission_UIs.Add(openDoorPermission_UI);
@@ -552,7 +552,7 @@ namespace 勤務傳送櫃
             comboBox_人員資料_權限等級.Text = RowValue[(int)enum_人員資料.權限等級].ObjectToString();
             rJ_TextBox_人員資料_卡號.Text = RowValue[(int)enum_人員資料.卡號].ObjectToString();
             this.openDoorPermission_UIs.SetOpenDoorPermission(RowValue[(int)enum_人員資料.開門權限].ObjectToString());
-
+            OpenDoorPermission_UI.LoginID = rJ_TextBox_人員資料_ID.Text;
             string 性別 = RowValue[(int)enum_人員資料.性別].ObjectToString();
             if (性別 == "男") rJ_RatioButton_人員資料_男.Checked = true;
             else rJ_RatioButton_人員資料_女.Checked = true;
