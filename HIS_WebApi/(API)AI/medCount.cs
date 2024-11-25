@@ -29,6 +29,10 @@ namespace HIS_WebApi._API_AI
                 List<Task> tasks = new List<Task>();
                 List<medCountClass> out_medCountClass = new List<medCountClass>();
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
+                string project = "Pill_recognition";
+                string today = DateTime.Now.ToString("yyyyMMdd");
+                string time = DateTime.Now.ToString("HHmmss");
+                string file = $"{today}{time}.jpg";
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string API = GetServerAPI("Main", "網頁", "med_cart_vm_api");
@@ -66,17 +70,13 @@ namespace HIS_WebApi._API_AI
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     if (returnData.Value == "True")
-                    {
-                        string project = "Pill_recognition";
-                        string today = DateTime.Now.ToString("yyyyMMdd");
-                        string time = DateTime.Now.ToString("HHmmss");
+                    { 
                         string base64 = json_in[0].圖片;
                         string pre = "data:image/jpeg;base64,";
                         base64 = base64.Replace(pre, "");
-
                         string folderPath = Path.Combine(fileDirectory, project);
                         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                        string file = $"{today}{time}.jpg";
+                        
                         string filePath = Path.Combine(folderPath, file);
                         byte[] imageBytes = Convert.FromBase64String(base64);
                         SKMemoryStream stream = new SKMemoryStream(imageBytes);
@@ -93,7 +93,17 @@ namespace HIS_WebApi._API_AI
                         }
                     }
                 })));
+                
                 Task.WhenAll(tasks).Wait();
+                //string txtfile = $"{today}{time}.txt";
+                //string folderPath = Path.Combine(fileDirectory, project);
+                //if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                //string filePath = Path.Combine(folderPath, txtfile);
+                //using (StreamWriter sw = File.AppendText(filePath))
+                //{
+                //    sw.WriteLine($"");
+                //}
+                
                 if (out_medCountClass.Count == 0)
                 {
                     returnData.Code = -200;
@@ -104,7 +114,8 @@ namespace HIS_WebApi._API_AI
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = out_medCountClass;
                 returnData.Result = $"藥物數粒辨識成功";
-                return returnData.JsonSerializationt(true);
+                Logger.Log(file, project, returnData.JsonSerializationt());
+;               return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {

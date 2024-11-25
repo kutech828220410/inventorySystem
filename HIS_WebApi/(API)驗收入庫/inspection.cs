@@ -483,6 +483,79 @@ namespace HIS_WebApi
             }
 
         }
+        [Route("content_get_by_PON")]
+        [HttpPost]
+        public string POST_content_get_by_PON([FromBody] returnData returnData)
+        {
+            try
+            {
+                GET_init(returnData);
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
+                string PON = "";
+                if (creat != null)
+                {
+                    PON = creat.請購單號;
+                }
+                if (PON.StringIsEmpty())
+                {
+                    PON = returnData.Value;
+                }
+                if (PON.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"請購單號空白";
+                    return returnData.JsonSerializationt();
+                }
+
+                List<object[]> list_inspection_content = sQLControl_inspection_content.GetRowsByDefult(null, (int)enum_驗收單號.請購單號, PON);
+                List<inspectionClass.content> contents = list_inspection_content.SQLToClass<inspectionClass.content, enum_驗收內容>();
+                if(contents.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無此單號資料[{returnData.Value}]!";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = contents[0].GUID;
+                List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetRowsByDefult(null, (int)enum_驗收明細.Master_GUID, GUID);
+                List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+                contents[0].Sub_content.Add(sub_Contents[0]);
+                
+                returnData.Data = contents[0];
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"取得驗收資料成功!";
+                returnData.Method = "content_get_by_PON";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
         /// <summary>
         /// 創建驗收單(驗收單號自訂)
         /// </summary>
@@ -2119,7 +2192,7 @@ namespace HIS_WebApi
                 string Code1 = y.建表時間;
                 return Code1.CompareTo(Code0);
             }
-        }
+        } 
         private class ICP_Contents : IComparer<inspectionClass.content>
         {
             public int Compare(inspectionClass.content x, inspectionClass.content y)

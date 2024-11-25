@@ -114,36 +114,29 @@ namespace HIS_WebApi._API_TextVision
             try 
             {              
                 string API_AI = "http://220.135.128.247:3100";
-                //SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
-                //input_textVision[0].GUID = Guid.NewGuid().ToString();
-                //input_textVision[0].操作時間 = DateTime.Now.ToDateTimeString();
+                string API = GetServerAPI("Main", "網頁", "API01");
+                string time = DateTime.Now.ToString("HHmmss");
+                string project = "PO_Vision";
+                string today = $"{DateTime.Now.ToString("yyyyMMdd")}";
+                string file = $"{today}{time}";
 
+                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
+                List<Task> tasks = new List<Task>();           
                 returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, input_textVision);
 
-                
-
-                List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    string project = "PO_Vision";
-                    string today = $"{DateTime.Now.ToString("yyyyMMdd")}";
-                    string time = "";
-                    if(return_textVisionClass.Result == "False")
+                    if (return_textVisionClass.Result == "False")
                     {
-                        time = $"NG{DateTime.Now.ToString("HHmmss")}";
+                        file = $"NG{today}{time}.jpg";
                     }
-                    else
-                    {
-                        time = DateTime.Now.ToString("HHmmss");
-                    }
+
                     string base64 = input_textVision[0].圖片;
                     string pre = "data:image/jpeg;base64,";
                     base64 = base64.Replace(pre, "");
 
                     string folderPath = Path.Combine(fileDirectory, project);
                     if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                    string file = $"{today}{time}.jpg";
                     string filePath = Path.Combine(folderPath, file);
                     byte[] imageBytes = Convert.FromBase64String(base64);
                     SKMemoryStream stream = new SKMemoryStream(imageBytes);
@@ -160,69 +153,54 @@ namespace HIS_WebApi._API_TextVision
                     }
                 })));
                 List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
+                List<positionClass> positionClasses = new List<positionClass>();
                 if (return_textVisionClass.Result == "False")
                 {
                     Task.WhenAll(tasks).Wait();
+                    file = $"NG{file}";
                     returnData.Code = -200;
-                    returnData.Result = $"辨識失敗";
+                    returnData.Result = $"辨識失敗 檔案名稱{file}";
+                    Logger.Log(file, project, returnData.JsonSerializationt());
                     return returnData.JsonSerializationt(true);
                 }
                 else
                 {
                     textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
                     textVisionClass textVision = textVisionClass_AI[0];
-                    tasks.Add(Task.Run(new Action(delegate
+                    inspectionClass.content content = new inspectionClass.content();
+                    if (textVision.單號.StringIsEmpty() == false)
                     {
-                        if (textVision.中文名 != null)
+                        content = inspectionClass.content_get_by_PON(API, textVision.單號);
+                        if (content == null)
                         {
-                            string pattern1 = @"^[A-Za-z0-9]+";
-                            textVision.中文名 = Regex.Replace(textVision.中文名, pattern1, "");
+                            file = $"NG{file}";
+                            returnData.Code = -200;
+                            returnData.Result = $"查無對應單號資料 檔案名稱{file}";
+                            Logger.Log(file, project, returnData.JsonSerializationt());
+                            return returnData.JsonSerializationt(true);
                         }
-                        if (textVision.藥名 != null)
-                        {
-                            string pattern2 = @"^\d+";
-                            textVision.藥名 = Regex.Replace(textVision.藥名, pattern2, "");
-                        }
+                    }
 
-
-                        string 藥名 = textVision.藥名;
-                        string 中文名 = textVision.中文名;
-                        string API = GetServerAPI("Main", "網頁", "API01");
-                        List<medClass> medClasses = medClass.get_med_clouds_by_name(API, 藥名);
-                        if (medClasses.Count == 0)
+                    tasks.Add(Task.Run(new Action(delegate
+                    {                                                                                 
+                        if (content.藥品名稱.StringIsEmpty())
                         {
-                            (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
-                            SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
-                            List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
-                            List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
-                            List<medCodeSrchClass> buff_medCodeSrch = medCodeSrchClasses
-                            .Where(temp => temp.辨識中文名 == 中文名 || temp.辨識藥名 == 藥名).ToList();
-                            if (buff_medCodeSrch.Count == 1)
-                            {
-                                textVision.藥品碼 = buff_medCodeSrch[0].藥品碼;
-                                textVision.藥名 = buff_medCodeSrch[0].藥名;
-                                textVision.中文名 = buff_medCodeSrch[0].中文名;
-                            }
-                            else
-                            {
-                                textVisionClass_AI[0].藥品碼 = "";
-                            }
+                            textVision.藥名 = content.Sub_content[0].藥品名稱;
                         }
                         else
                         {
-                            textVision.藥品碼 = medClasses[0].藥品碼;
-                            textVision.藥名 = medClasses[0].藥品學名;
-                            textVisionClass_AI[0].中文名 = medClasses[0].中文名稱;
+                            textVision.藥名 = content.藥品名稱;
                         }
-
-                        textVision.操作者ID = input_textVision[0].操作者ID;
-                        textVision.操作者姓名 = input_textVision[0].操作者姓名;
-                        textVision.操作時間 = input_textVision[0].操作時間;
-                        textVision.圖片 = input_textVision[0].圖片;
+                        textVision.藥品碼 = content.藥品碼;
+                        textVision.批號 = content.Sub_content[0].批號;
+                        textVision.效期 = content.Sub_content[0].效期;
+                        textVision.數量 = content.應收數量;
+                        List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                        if(medClasses.Count > 0)
+                        {
+                            textVision.中文名 = medClasses[0].中文名稱;
+                        }                                                   
                     })));
-
-
-                    List<positionClass> positionClasses = new List<positionClass>();
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         if (textVision.批號位置.StringIsEmpty() == false)
@@ -329,16 +307,15 @@ namespace HIS_WebApi._API_TextVision
                     })));
                     Task.WhenAll(tasks).Wait();
                     textVision.識別位置 = positionClasses;
-                    textVision.圖片 = "";
-                    textVision.Log = "";
+                    textVision.圖片 = input_textVision[0].圖片;
                     textVisionClass_AI[0] = textVision;
                 }
                 
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Method = "";
-                returnData.Result = $"";
+                returnData.Method = "PCMPO/analyze";
+                Logger.Log(file, project, returnData.JsonSerializationt());
                 return returnData.JsonSerializationt(true);
             }
             catch(Exception ex)
