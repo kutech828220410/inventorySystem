@@ -149,6 +149,7 @@ namespace 勤務傳送櫃
                     {
       
                         this.Invoke(new Action(delegate
+
                         {
                             openDoorPermission_UIs[i].WardName = list_wardName[i];
                             openDoorPermission_UIs[i].Visible = true;
