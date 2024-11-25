@@ -435,6 +435,10 @@ namespace 中藥調劑系統
                             }
                             string PRI_KEY = orderClasses[0].PRI_KEY;
                             this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
+                            List<string> Codes = (from temp in orderClasses
+                                                  select temp.藥品碼).Distinct().ToList();
+                            Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+
                             barcode_buf = PRI_KEY;
                         }
                     }
