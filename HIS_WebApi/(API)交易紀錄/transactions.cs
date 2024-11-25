@@ -1130,7 +1130,7 @@ namespace HIS_WebApi
 
                 byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_收支結存簿冊.xlsx"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_收支結存簿冊.xls"));
             }
             catch
             {
@@ -1237,6 +1237,8 @@ namespace HIS_WebApi
 
                 List<SheetClass> sheetClasses = new List<SheetClass>();
                 List<List<transactionsClass>> list_transactionsClasses = new List<List<transactionsClass>>();
+                藥碼Ary = 藥碼Ary.Distinct().ToArray();
+
                 for (int k = 0; k < 藥碼Ary.Length; k++)
                 {
                     string 藥碼 = 藥碼Ary[k];
