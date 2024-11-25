@@ -25,48 +25,48 @@ namespace TestForm
 
         private void Button_call_api_Click(object sender, EventArgs e)
         {
-            Graphics g = Graphics.FromImage(image);
-            string Base64 = image.ImageToBase64();
-            List<textVisionClass> textVisionClasses = new List<textVisionClass>();
-            textVisionClass textVisionClass = new textVisionClass();
-            textVisionClass.圖片 = $"data:image/jpeg;base64,{Base64}";
-            textVisionClass.操作者ID = "";
-            textVisionClass.操作者姓名 = "";
-            textVisionClasses.Add(textVisionClass);
+            //Graphics g = Graphics.FromImage(image);
+            //string Base64 = image.ImageToBase64();
+            //List<textVisionClass> textVisionClasses = new List<textVisionClass>();
+            //textVisionClass textVisionClass = new textVisionClass();
+            //textVisionClass.圖片 = $"data:image/jpeg;base64,{Base64}";
+            //textVisionClass.操作者ID = "";
+            //textVisionClass.操作者姓名 = "";
+            //textVisionClasses.Add(textVisionClass);
 
-            returnData returnData = new returnData();
-            returnData.Data = textVisionClasses;
+            //returnData returnData = new returnData();
+            //returnData.Data = textVisionClasses;
 
-            string json_in = returnData.JsonSerializationt(true);
+            //string json_in = returnData.JsonSerializationt(true);
 
 
-            string url = "https://www.kutech.tw:4443/api/PCMPO/analyze";
+            //string url = "https://www.kutech.tw:4443/api/PCMPO/analyze";
 
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            //string json_out = Basic.Net.WEBApiPostJson(url, json_in);
 
-            returnData returnData_out = json_out.JsonDeserializet<returnData>();
-            List<textVisionClass> textVisionClasses_out = returnData_out.Data.ObjToClass<List<textVisionClass>>();
-            string[] strs_temp = new textVisionClass.enum_point_type().GetEnumNames();
-            for (int i = 0; i < strs_temp.Length; i++)
-            {
-                List<Point> points = textVisionClasses_out[0].GetPoints(strs_temp[i]);
+            //returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            //List<textVisionClass> textVisionClasses_out = returnData_out.Data.ObjToClass<List<textVisionClass>>();
+            //string[] strs_temp = new textVisionClass.enum_point_type().GetEnumNames();
+            //for (int i = 0; i < strs_temp.Length; i++)
+            //{
+            //    List<Point> points = textVisionClasses_out[0].GetPoints(strs_temp[i]);
      
-                Point p1 = points[0];
-                Point p2 = points[1];
-                Point p3 = points[2];
-                Point p4 = points[3];
-                g.DrawLine(new Pen(new SolidBrush(Color.Red)), p1, p2);
-                g.DrawLine(new Pen(new SolidBrush(Color.Red)), p2, p3);
-                g.DrawLine(new Pen(new SolidBrush(Color.Red)), p3, p4);
-                g.DrawLine(new Pen(new SolidBrush(Color.Red)), p4, p1);
-            }
+            //    Point p1 = points[0];
+            //    Point p2 = points[1];
+            //    Point p3 = points[2];
+            //    Point p4 = points[3];
+            //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p1, p2);
+            //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p2, p3);
+            //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p3, p4);
+            //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p4, p1);
+            //}
        
 
 
 
-            pictureBox1.Image = image;
+            //pictureBox1.Image = image;
 
-            g.Dispose();
+            //g.Dispose();
 
         }
         private void Button_LoadImage_Click(object sender, EventArgs e)
