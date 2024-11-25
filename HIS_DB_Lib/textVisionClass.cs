@@ -207,6 +207,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("value")]
         public List<positionClass> 識別位置 { get; set; }
 
+
+
         static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
             string url = $"{API}/PO_Vision";
@@ -228,6 +230,81 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData_AI;
         }
+        public enum enum_point_type
+        {
+            批號位置,
+            中文名位置,
+            效期位置,
+            單號位置,
+            數量位置,
+            藥名位置,
+        }
+        public List<System.Drawing.Point> GetPoints(enum_point_type enum_Point_Type)
+        {
+            return GetPoints(enum_Point_Type.GetEnumName());
+        }
+        public List<System.Drawing.Point> GetPoints(string enum_Point_Type_temp)
+        {
+            List<System.Drawing.Point> points = new List<System.Drawing.Point>();
+            string[] strs = null;
+            if (enum_Point_Type_temp == enum_point_type.批號位置.GetEnumName())
+            {
+                strs = 批號位置.Split(';');
+            }
+            if (enum_Point_Type_temp == enum_point_type.中文名位置.GetEnumName())
+            {
+                strs = 中文名位置.Split(';');
+            }
+            if (enum_Point_Type_temp == enum_point_type.效期位置.GetEnumName())
+            {
+                strs = 效期位置.Split(';');
+            }
+            if (enum_Point_Type_temp == enum_point_type.單號位置.GetEnumName())
+            {
+                strs = 單號位置.Split(';');
+            }
+            if (enum_Point_Type_temp == enum_point_type.數量位置.GetEnumName())
+            {
+                strs = 數量位置.Split(';');
+            }
+            if (enum_Point_Type_temp == enum_point_type.藥名位置.GetEnumName())
+            {
+                strs = 藥名位置.Split(';');
+            }
+            if (strs.Length == 4)
+            {
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    string[] strs_temp = strs[i].Split(',');
+                    System.Drawing.Point point = new System.Drawing.Point(strs_temp[0].StringToInt32(), strs_temp[1].StringToInt32());
+
+                    points.Add(point);
+                }
+            }
+            return points;
+        }
+
+        //[JsonIgnore]
+        //public List<System.Drawing.Point> batch_num_coord_points
+        //{
+        //    get
+        //    {
+        //        List<System.Drawing.Point> points = new List<System.Drawing.Point>();
+        //        string[] strs = 批號位置.Split(';');
+        //        if(strs.Length == 4)
+        //        {
+        //            for (int i = 0; i < strs.Length; i++)
+        //            {
+        //                string[] strs_temp = strs[i].Split(',');
+        //                System.Drawing.Point point = new System.Drawing.Point(strs_temp[0].StringToInt32(), strs_temp[1].StringToInt32());
+
+        //                points.Add(point);
+        //            }
+        //        }
+
+        //        return points;
+        //    }
+        //}
     }
     public class medCodeSrchClass
     {

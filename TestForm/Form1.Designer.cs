@@ -29,30 +29,13 @@ namespace TestForm
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_call_api = new System.Windows.Forms.Button();
+            this.button_LoadImage = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(56, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(492, 27);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 40);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // saveFileDialog_SaveExcel
             // 
@@ -62,21 +45,44 @@ namespace TestForm
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 156);
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 69);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(734, 414);
+            this.pictureBox1.Size = new System.Drawing.Size(769, 828);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // button_call_api
+            // 
+            this.button_call_api.Location = new System.Drawing.Point(131, 12);
+            this.button_call_api.Name = "button_call_api";
+            this.button_call_api.Size = new System.Drawing.Size(113, 40);
+            this.button_call_api.TabIndex = 2;
+            this.button_call_api.Text = "CallAPI";
+            this.button_call_api.UseVisualStyleBackColor = true;
+            // 
+            // button_LoadImage
+            // 
+            this.button_LoadImage.Location = new System.Drawing.Point(12, 12);
+            this.button_LoadImage.Name = "button_LoadImage";
+            this.button_LoadImage.Size = new System.Drawing.Size(113, 40);
+            this.button_LoadImage.TabIndex = 0;
+            this.button_LoadImage.Text = "LoadImage";
+            this.button_LoadImage.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 607);
+            this.ClientSize = new System.Drawing.Size(818, 973);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_call_api);
+            this.Controls.Add(this.button_LoadImage);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -85,11 +91,11 @@ namespace TestForm
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveExcel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button_call_api;
+        private System.Windows.Forms.Button button_LoadImage;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
