@@ -67,23 +67,20 @@ namespace HIS_WebApi._API_AI
                 {
                     if (returnData.Value == "True")
                     {
+                        string project = "Pill_recognition";
                         string today = DateTime.Now.ToString("yyyyMMdd");
                         string time = DateTime.Now.ToString("HHmmss");
                         string base64 = json_in[0].圖片;
                         string pre = "data:image/jpeg;base64,";
                         base64 = base64.Replace(pre, "");
 
-                        string folderPath = Path.Combine(fileDirectory, today);
+                        string folderPath = Path.Combine(fileDirectory, project);
                         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                        string file = $"{time}.jpg";
+                        string file = $"{today}{time}.jpg";
                         string filePath = Path.Combine(folderPath, file);
                         byte[] imageBytes = Convert.FromBase64String(base64);
                         SKMemoryStream stream = new SKMemoryStream(imageBytes);
                         SKBitmap bitmap = SKBitmap.Decode(stream);
-                        //SKImage image = SKImage.FromBitmap(bitmap);
-                        //SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100);
-                        //System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath);
-                        //data.SaveTo(fileStream);
                         using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
                         {
                             using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData

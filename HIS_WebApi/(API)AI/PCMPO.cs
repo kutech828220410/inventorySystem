@@ -126,7 +126,8 @@ namespace HIS_WebApi._API_TextVision
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    string today = $"PO{DateTime.Now.ToString("yyyyMMdd")}";
+                    string project = "PO_Vision";
+                    string today = $"{DateTime.Now.ToString("yyyyMMdd")}";
                     string time = "";
                     if(return_textVisionClass.Result == "False")
                     {
@@ -140,9 +141,9 @@ namespace HIS_WebApi._API_TextVision
                     string pre = "data:image/jpeg;base64,";
                     base64 = base64.Replace(pre, "");
 
-                    string folderPath = Path.Combine(fileDirectory, today);
+                    string folderPath = Path.Combine(fileDirectory, project);
                     if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                    string file = $"{time}.jpg";
+                    string file = $"{today}{time}.jpg";
                     string filePath = Path.Combine(folderPath, file);
                     byte[] imageBytes = Convert.FromBase64String(base64);
                     SKMemoryStream stream = new SKMemoryStream(imageBytes);
