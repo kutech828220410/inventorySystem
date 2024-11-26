@@ -1558,6 +1558,7 @@ namespace 調劑台管理系統
                     list_value_buf = (from value in list_value
                                       where value[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼_array[i]
                                       select value).ToList();
+                    list_value_buf.Sort(new ICP_取藥堆疊母資料());
                     if (list_value_buf.Count == 0) continue;
                     object[] value_領藥內容 = new object[new enum_取藥堆疊母資料().GetLength()];
                     value_領藥內容[(int)enum_取藥堆疊母資料.GUID] = list_value_buf[0][(int)enum_取藥堆疊母資料.GUID];
@@ -1569,9 +1570,9 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_取藥堆疊母資料.病歷號] = list_value_buf[0][(int)enum_取藥堆疊母資料.病歷號];
                     value_領藥內容[(int)enum_取藥堆疊母資料.操作時間] = list_value_buf[0][(int)enum_取藥堆疊母資料.操作時間];
                     value_領藥內容[(int)enum_取藥堆疊母資料.開方時間] = list_value_buf[0][(int)enum_取藥堆疊母資料.開方時間];
-                    value_領藥內容[(int)enum_取藥堆疊母資料.庫存量] = "";
+                    value_領藥內容[(int)enum_取藥堆疊母資料.庫存量] = list_value_buf[list_value_buf.Count -1][(int)enum_取藥堆疊母資料.庫存量].ObjectToString();
                     value_領藥內容[(int)enum_取藥堆疊母資料.總異動量] = "";
-                    value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = "";
+                    value_領藥內容[(int)enum_取藥堆疊母資料.結存量] = list_value_buf[list_value_buf.Count - 1][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
                     value_領藥內容[(int)enum_取藥堆疊母資料.單位] = list_value_buf[0][(int)enum_取藥堆疊母資料.單位];
                     value_領藥內容[(int)enum_取藥堆疊母資料.床號] = list_value_buf[0][(int)enum_取藥堆疊母資料.床號];
                     double 總異動量_temp = 0;
@@ -1629,10 +1630,8 @@ namespace 調劑台管理系統
                     藥品碼 = list_value_new[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     double 庫存量_temp = Function_從SQL取得庫存(藥品碼);
                     double 結存量_temp = 庫存量_temp + list_value_new[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
-
-                    list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
-                    list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
-
+                    //list_value_new[i][(int)enum_取藥堆疊母資料.庫存量] = 庫存量_temp.ToString();
+                    //list_value_new[i][(int)enum_取藥堆疊母資料.結存量] = 結存量_temp.ToString();
                 }
                 list_value = list_value_new;
             }

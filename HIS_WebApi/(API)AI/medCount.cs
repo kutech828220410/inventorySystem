@@ -12,7 +12,7 @@ using System.Reflection;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace HIS_WebApi._API_AI
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,8 +21,11 @@ namespace HIS_WebApi._API_AI
         private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private static string fileDirectory = $"{currentDirectory}/log/";
         [HttpPost("medCountAnalyze")]
+        [HttpPost("Analyze")]
         public string medCountAnalyze([FromBody] returnData returnData)
         {
+            string log_task_1 = "";
+            string log_task_2 = "";
             string file = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -33,8 +36,12 @@ namespace HIS_WebApi._API_AI
                 string project = "Pill_recognition";
                 tasks.Add(Task.Run(new Action(delegate
                 {
+                    MyTimerBasic myTimerBasic_task = new MyTimerBasic();
                     string API = GetServerAPI("Main", "網頁", "med_cart_vm_api");
+                    log_task_1 += $" 取得API,{myTimerBasic_task}\n";
                     List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
+                    log_task_1 += $" ai_medCount,{myTimerBasic_task}\n";
+
                     if (medCountClasses != null)
                     {
                         for (int i = 0; i < medCountClasses.Count; i++)
@@ -64,34 +71,36 @@ namespace HIS_WebApi._API_AI
                             out_medCountClass.Add(medCountClass);
                         }
                     }
+                    log_task_1 += $" done,{myTimerBasic_task}\n";
+
                 })));
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    if (returnData.Value == "True")
-                    {
-                        string picfile = file + ".jpg";
-                        string base64 = json_in[0].圖片;
-                        string pre = "data:image/jpeg;base64,";
-                        base64 = base64.Replace(pre, "");
-                        string folderPath = Path.Combine(fileDirectory, project);
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    if (returnData.Value == "True")
+                //    {
+                //        string picfile = file + ".jpg";
+                //        string base64 = json_in[0].圖片;
+                //        string pre = "data:image/jpeg;base64,";
+                //        base64 = base64.Replace(pre, "");
+                //        string folderPath = Path.Combine(fileDirectory, project);
+                //        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
                         
-                        string filePath = Path.Combine(folderPath, picfile);
-                        byte[] imageBytes = Convert.FromBase64String(base64);
-                        SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                        SKBitmap bitmap = SKBitmap.Decode(stream);
-                        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
-                        {
-                            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
-                            {
-                                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
-                                {
-                                    data.SaveTo(fileStream);
-                                }
-                            }
-                        }
-                    }
-                })));
+                //        string filePath = Path.Combine(folderPath, picfile);
+                //        byte[] imageBytes = Convert.FromBase64String(base64);
+                //        SKMemoryStream stream = new SKMemoryStream(imageBytes);
+                //        SKBitmap bitmap = SKBitmap.Decode(stream);
+                //        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                //        {
+                //            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                //            {
+                //                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
+                //                {
+                //                    data.SaveTo(fileStream);
+                //                }
+                //            }
+                //        }
+                //    }
+                //})));
                 
                 Task.WhenAll(tasks).Wait();
                 
@@ -105,7 +114,7 @@ namespace HIS_WebApi._API_AI
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = out_medCountClass;
-                returnData.Result = $"藥物數粒辨識成功 檔案名稱{file}";
+                returnData.Result = $"藥物數粒辨識成功 檔案名稱{file},{log_task_1}";
                 Logger.Log(file, project, returnData.JsonSerializationt());
 ;               return returnData.JsonSerializationt(true);
             }

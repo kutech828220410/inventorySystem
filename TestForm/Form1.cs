@@ -82,8 +82,8 @@ namespace TestForm
 
             image = Bitmap.FromFile(this.openFileDialog.FileName);
 
-         
-
+            string base64 = image.ImageToBase64();
+            base64 = $"data:image/jpeg;base64,{base64}";
             pictureBox1.Image = image;
 
 
