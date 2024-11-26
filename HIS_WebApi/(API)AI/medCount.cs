@@ -23,6 +23,7 @@ namespace HIS_WebApi._API_AI
         [HttpPost("medCountAnalyze")]
         public string medCountAnalyze([FromBody] returnData returnData)
         {
+            string file = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
@@ -30,9 +31,6 @@ namespace HIS_WebApi._API_AI
                 List<medCountClass> out_medCountClass = new List<medCountClass>();
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
                 string project = "Pill_recognition";
-                string today = DateTime.Now.ToString("yyyyMMdd");
-                string time = DateTime.Now.ToString("HHmmss");
-                string file = $"{today}{time}.jpg";
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string API = GetServerAPI("Main", "網頁", "med_cart_vm_api");
@@ -70,14 +68,15 @@ namespace HIS_WebApi._API_AI
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     if (returnData.Value == "True")
-                    { 
+                    {
+                        string picfile = file + ".jpg";
                         string base64 = json_in[0].圖片;
                         string pre = "data:image/jpeg;base64,";
                         base64 = base64.Replace(pre, "");
                         string folderPath = Path.Combine(fileDirectory, project);
                         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
                         
-                        string filePath = Path.Combine(folderPath, file);
+                        string filePath = Path.Combine(folderPath, picfile);
                         byte[] imageBytes = Convert.FromBase64String(base64);
                         SKMemoryStream stream = new SKMemoryStream(imageBytes);
                         SKBitmap bitmap = SKBitmap.Decode(stream);
@@ -95,25 +94,18 @@ namespace HIS_WebApi._API_AI
                 })));
                 
                 Task.WhenAll(tasks).Wait();
-                //string txtfile = $"{today}{time}.txt";
-                //string folderPath = Path.Combine(fileDirectory, project);
-                //if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                //string filePath = Path.Combine(folderPath, txtfile);
-                //using (StreamWriter sw = File.AppendText(filePath))
-                //{
-                //    sw.WriteLine($"");
-                //}
                 
                 if (out_medCountClass.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "AI辨識失敗";
+                    returnData.Result = $"AI辨識失敗 檔案名稱{file}";
+                    Logger.Log(file, project, returnData.JsonSerializationt());
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = out_medCountClass;
-                returnData.Result = $"藥物數粒辨識成功";
+                returnData.Result = $"藥物數粒辨識成功 檔案名稱{file}";
                 Logger.Log(file, project, returnData.JsonSerializationt());
 ;               return returnData.JsonSerializationt(true);
             }

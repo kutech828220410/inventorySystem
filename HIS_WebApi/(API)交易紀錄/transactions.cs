@@ -1130,7 +1130,7 @@ namespace HIS_WebApi
 
                 byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_收支結存簿冊.xls"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_收支結存簿冊.xlsx"));
             }
             catch
             {

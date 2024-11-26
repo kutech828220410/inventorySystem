@@ -109,16 +109,14 @@ namespace HIS_WebApi._API_TextVision
         [HttpPost("analyze")]
         public string analyze([FromBody] returnData returnData)
         {
+            string file = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "analyze";
             try 
             {              
                 string API_AI = "http://220.135.128.247:3100";
                 string API = GetServerAPI("Main", "網頁", "API01");
-                string time = DateTime.Now.ToString("HHmmss");
                 string project = "PO_Vision";
-                string today = $"{DateTime.Now.ToString("yyyyMMdd")}";
-                string file = $"{today}{time}";
 
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
                 List<Task> tasks = new List<Task>();           
@@ -126,18 +124,22 @@ namespace HIS_WebApi._API_TextVision
 
                 tasks.Add(Task.Run(new Action(delegate
                 {
+                    string picfile = "";
                     if (return_textVisionClass.Result == "False")
                     {
-                        file = $"NG{today}{time}.jpg";
+                        picfile = "NG" + file + ".jpg";
                     }
-
+                    else
+                    {
+                        picfile = file + ".jpg";
+                    }
                     string base64 = input_textVision[0].圖片;
                     string pre = "data:image/jpeg;base64,";
                     base64 = base64.Replace(pre, "");
 
                     string folderPath = Path.Combine(fileDirectory, project);
                     if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                    string filePath = Path.Combine(folderPath, file);
+                    string filePath = Path.Combine(folderPath, picfile);
                     byte[] imageBytes = Convert.FromBase64String(base64);
                     SKMemoryStream stream = new SKMemoryStream(imageBytes);
                     SKBitmap bitmap = SKBitmap.Decode(stream);
@@ -157,9 +159,10 @@ namespace HIS_WebApi._API_TextVision
                 if (return_textVisionClass.Result == "False")
                 {
                     Task.WhenAll(tasks).Wait();
-                    file = $"NG{file}";
+                    string picfile = "";
+                    picfile = $"NG{file}";
                     returnData.Code = -200;
-                    returnData.Result = $"辨識失敗 檔案名稱{file}";
+                    returnData.Result = $"辨識失敗 檔案名稱{picfile}";
                     Logger.Log(file, project, returnData.JsonSerializationt());
                     return returnData.JsonSerializationt(true);
                 }
@@ -173,9 +176,10 @@ namespace HIS_WebApi._API_TextVision
                         content = inspectionClass.content_get_by_PON(API, textVision.單號);
                         if (content == null)
                         {
-                            file = $"NG{file}";
+                            string picfile = "";
+                            picfile = $"NG{file}";
                             returnData.Code = -200;
-                            returnData.Result = $"查無對應單號資料 檔案名稱{file}";
+                            returnData.Result = $"查無對應單號資料 檔案名稱{picfile}";
                             Logger.Log(file, project, returnData.JsonSerializationt());
                             return returnData.JsonSerializationt(true);
                         }
