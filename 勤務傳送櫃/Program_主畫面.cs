@@ -247,7 +247,7 @@ namespace 勤務傳送櫃
                             {
                                 Voice voice = new Voice();
                                 voice.SpeakOnTask("非可開啟時段");
-                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"非可開啟時段[{_lockerAccessClass.鎖控可開啟時段}]", 2500);
+                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"不可開啟[{_lockerAccessClass.鎖控可開啟時段}]", 2500);
                                 dialog_AlarmForm.ShowDialog();
                                 continue;
                             }

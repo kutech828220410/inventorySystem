@@ -59,9 +59,9 @@ namespace HIS_DB_Lib
             returnData returnData = new returnData();
             returnData.Data = lockerAccessClasses;
             string json_in = returnData.JsonSerializationt();
-            //Console.WriteLine($"[api/lockerAccess/add] json_in : {json_in}");
+            Console.WriteLine($"[api/lockerAccess/add] json_in : {json_in}");
             string json_out = Net.WEBApiPostJson(url, json_in);
-            //Console.WriteLine($"[api/lockerAccess/add] json_out : {json_out}");
+            Console.WriteLine($"[api/lockerAccess/add] json_out : {json_out}");
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
 
             if (returnData_out == null || returnData_out.Code != 200)
@@ -79,9 +79,9 @@ namespace HIS_DB_Lib
             returnData.ValueAry.Add(lc_name);
 
             string json_in = returnData.JsonSerializationt();
-            //Console.WriteLine($"[api/lockerAccess/get_by_id_and_lcname] json_in : {json_in}");
+            Console.WriteLine($"[api/lockerAccess/get_by_id_and_lcname] json_in : {json_in}");
             string json_out = Net.WEBApiPostJson(url, json_in);
-            //Console.WriteLine($"[api/lockerAccess/get_by_id_and_lcname] json_out : {json_out}");
+            Console.WriteLine($"[api/lockerAccess/get_by_id_and_lcname] json_out : {json_out}");
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
 
             if (returnData_out == null || returnData_out.Code != 200)
