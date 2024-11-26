@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.80")]
-[assembly: AssemblyFileVersion("1.2.2.80")]
+[assembly: AssemblyVersion("1.2.2.82")]
+[assembly: AssemblyFileVersion("1.2.2.82")]
 namespace 調劑台管理系統
 {
 
@@ -207,6 +207,7 @@ namespace 調劑台管理系統
             private bool rowsLED_Enable = true;
             private bool rFID_Enable = true;
             private bool pannel35_Enable = true;
+            private bool _舊版晶片 = false;
 
             private int ePD583_Port = 29005;
             private int ePD266_Port = 29000;
@@ -255,6 +256,7 @@ namespace 調劑台管理系統
             public int RowsLED_Port { get => rowsLED_Port; set => rowsLED_Port = value; }
             public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
             public bool ControlMode { get => _ControlMode; set => _ControlMode = value; }
+            public bool 舊版晶片 { get => _舊版晶片; set => _舊版晶片 = value; }
         }
         private void LoadMyConfig()
         {
