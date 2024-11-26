@@ -692,8 +692,24 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料錯誤";
                     return returnData.JsonSerializationt();
                 }
-  
-                List<object[]> list_value_add = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                List<string> codes = (from temp in medClasses
+                                     select temp.藥品碼).Distinct().ToList();
+
+                Dictionary<string, List<medClass>> keyValuePairs = medClasses.CoverToDictionaryByCode();
+                List<medClass> medClasses_buf = new List<medClass>();
+                List<medClass> medClasses_temp = new List<medClass>();
+
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    medClasses_temp = keyValuePairs[codes[i]];
+                    if(medClasses_temp.Count > 0)
+                    {
+                        medClasses_buf.Add(medClasses_temp[0]);
+                    }
+                }
+
+
+                List<object[]> list_value_add = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
                 List<object[]> list_value_add_buf = new List<object[]>();
                 List<object[]> list_value_update_buf = new List<object[]>();
 

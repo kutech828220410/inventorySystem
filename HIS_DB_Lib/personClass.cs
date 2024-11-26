@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
 namespace HIS_DB_Lib
 {
     public enum enum_人員資料
@@ -25,6 +27,8 @@ namespace HIS_DB_Lib
         指紋ID,
         開門權限
     }
+
+
     public class personPageClass
     {
         /// <summary>
@@ -206,4 +210,5 @@ namespace HIS_DB_Lib
             return table;
         }
     }
+ 
 }

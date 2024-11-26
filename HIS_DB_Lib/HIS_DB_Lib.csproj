@@ -111,6 +111,7 @@
     <Compile Include="batch_inventory_importClass.cs" />
     <Compile Include="drugStotreArea.cs" />
     <Compile Include="formularyClass.cs" />
+    <Compile Include="lockerAccessClass.cs" />
     <Compile Include="loggerClass.cs" />
     <Compile Include="CMPM_StorageConfig_Class.cs" />
     <Compile Include="commonSpaceSetup.cs" />
