@@ -1733,7 +1733,15 @@ namespace 調劑台管理系統
                             {
                                 if (color == Color.Black)
                                 {
-                                    this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                    if (myConfigClass.舊版晶片 == false)
+                                    {
+                                        this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                    }
+                                    else
+                                    {
+                                        this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+
+                                    }
                                 }
                                 else
                                 {
