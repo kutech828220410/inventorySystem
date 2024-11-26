@@ -318,6 +318,7 @@ namespace HIS_WebApi._API_TextVision
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"辨識成功 檔案名稱{file}";
                 returnData.Method = "PCMPO/analyze";
                 Logger.Log(file, project, returnData.JsonSerializationt());
                 return returnData.JsonSerializationt(true);
