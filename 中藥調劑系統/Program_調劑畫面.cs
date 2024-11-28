@@ -422,24 +422,20 @@ namespace 中藥調劑系統
                         }
                         if (orderClasses.Count > 0)
                         {
-                            if(barcode_buf.StringIsEmpty() == false)
+                            bool flag_ok = false;
+                            if(rJ_Lable_領藥號.Text == orderClasses[0].領藥號)
                             {
-                                if(barcode_buf == orderClasses[0].PRI_KEY)
-                                {
-                                    Voice voice = new Voice();
-                                    voice.SpeakOnTask(RemoveParenthesesContent($"此處方正在調劑中"));
-                                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此處方正在調劑中", 1000);
-                                    dialog_AlarmForm.ShowDialog();
-                                    return;
-                                }
+                                Voice voice = new Voice();
+                                voice.SpeakOnTask(RemoveParenthesesContent($"此處方正在調劑中"));
+                                if (MyMessageBox.ShowDialog("此處方正在調劑中,是否重新亮燈?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes) flag_ok = true;
                             }
+                       
                             string PRI_KEY = orderClasses[0].PRI_KEY;
                             this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
                             List<string> Codes = (from temp in orderClasses
                                                   select temp.藥品碼).Distinct().ToList();
-                            Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+                            if (flag_ok) Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
 
-                            barcode_buf = PRI_KEY;
                         }
                     }
                     else
@@ -811,6 +807,8 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "QDHS") 包數 = "1";
             if (orderTClass.頻次.ToUpper() == "QDPM") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "BID&HS") 包數 = "3";
+            if (orderTClass.頻次.ToUpper() == "BIDAC") 包數 = "2";
+            if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "QID") 包數 = "4";
             if (orderTClass.頻次.ToUpper() == "HS") 包數 = "1";
             if (orderTClass.頻次.ToUpper() == "TID&HS") 包數 = "4";
