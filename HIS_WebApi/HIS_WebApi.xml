@@ -7023,5 +7023,15 @@
               查詢類似 ConfigurationManager 的當地語系化字串。
             </summary>
         </member>
+        <member name="M:ModelManager.InitializeModel(System.String,System.String,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            初始化模型
+            </summary>
+        </member>
+        <member name="M:ModelManager.GetModel(System.String)">
+            <summary>
+            獲取指定名稱的模型 Session
+            </summary>
+        </member>
     </members>
 </doc>

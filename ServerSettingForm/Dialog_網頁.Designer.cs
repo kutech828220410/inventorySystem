@@ -480,7 +480,7 @@ namespace ServerSettingForm
             // 
             this.panel_API_URL11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_API_URL11.Content = "ai_medCount_api";
-            this.panel_API_URL11.Description = "住院調劑系統";
+            this.panel_API_URL11.Description = "數粒辨識系統";
             this.panel_API_URL11.Location = new System.Drawing.Point(792, 285);
             this.panel_API_URL11.Name = "panel_API_URL11";
             serverSettingClass14.DBName = null;

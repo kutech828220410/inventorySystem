@@ -15,7 +15,6 @@ using SQLUI;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-
 using System.Reflection;
 using System.Runtime.InteropServices;
 using MyPrinterlib;

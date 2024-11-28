@@ -34,7 +34,9 @@ namespace TestForm
             this.button_call_api = new System.Windows.Forms.Button();
             this.button_LoadImage = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -48,7 +50,7 @@ namespace TestForm
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(12, 69);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(769, 828);
+            this.pictureBox1.Size = new System.Drawing.Size(640, 828);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -75,17 +77,29 @@ namespace TestForm
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView.Location = new System.Drawing.Point(725, 0);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 24;
+            this.dataGridView.Size = new System.Drawing.Size(1247, 973);
+            this.dataGridView.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 973);
+            this.ClientSize = new System.Drawing.Size(1972, 973);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button_call_api);
             this.Controls.Add(this.button_LoadImage);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -96,6 +110,7 @@ namespace TestForm
         private System.Windows.Forms.Button button_call_api;
         private System.Windows.Forms.Button button_LoadImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 
