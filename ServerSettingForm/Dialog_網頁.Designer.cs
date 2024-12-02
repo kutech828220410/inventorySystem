@@ -42,6 +42,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass11 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass12 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass13 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass14 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@ namespace ServerSettingForm
             this.panel_API_URL1 = new ServerSettingForm.Panel_API_URL();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.panel_API_URL10 = new ServerSettingForm.Panel_API_URL();
+            this.panel_API_URL11 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // label1
@@ -474,12 +476,38 @@ namespace ServerSettingForm
             this.panel_API_URL10.Size = new System.Drawing.Size(746, 60);
             this.panel_API_URL10.TabIndex = 85;
             // 
+            // panel_API_URL11
+            // 
+            this.panel_API_URL11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_API_URL11.Content = "ai_medCount_api";
+            this.panel_API_URL11.Description = "數粒辨識系統";
+            this.panel_API_URL11.Location = new System.Drawing.Point(792, 285);
+            this.panel_API_URL11.Name = "panel_API_URL11";
+            serverSettingClass14.DBName = null;
+            serverSettingClass14.GUID = null;
+            serverSettingClass14.Password = null;
+            serverSettingClass14.Port = null;
+            serverSettingClass14.Server = "";
+            serverSettingClass14.TableName = null;
+            serverSettingClass14.User = null;
+            serverSettingClass14.Value = null;
+            serverSettingClass14.內容 = "ai_medCount_api";
+            serverSettingClass14.單位 = null;
+            serverSettingClass14.程式類別 = null;
+            serverSettingClass14.設備名稱 = "";
+            serverSettingClass14.類別 = "網頁";
+            this.panel_API_URL11.ServerSetting = serverSettingClass14;
+            this.panel_API_URL11.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_API_URL11.Size = new System.Drawing.Size(746, 60);
+            this.panel_API_URL11.TabIndex = 87;
+            // 
             // Dialog_網頁
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1784, 961);
+            this.Controls.Add(this.panel_API_URL11);
             this.Controls.Add(this.panel_API_URL10);
             this.Controls.Add(this.panel_API_URL9);
             this.Controls.Add(this.panel_API_URL8);
@@ -535,5 +563,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL8;
         private Panel_API_URL panel_API_URL9;
         private Panel_API_URL panel_API_URL10;
+        private Panel_API_URL panel_API_URL11;
     }
 }

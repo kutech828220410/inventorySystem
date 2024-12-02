@@ -23,6 +23,8 @@ namespace HIS_DB_Lib
         public string GUID { get; set; }
         [JsonPropertyName("base64")]
         public string 圖片 { get; set; }
+        [JsonPropertyName("img_stream")]
+        public byte[] img_stream { get; set; }
         [JsonPropertyName("name")]
         public string 藥名 { get; set; }
         [JsonPropertyName("qty")]

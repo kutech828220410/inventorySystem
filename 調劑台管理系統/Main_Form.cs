@@ -15,14 +15,13 @@ using SQLUI;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-
 using System.Reflection;
 using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.82")]
-[assembly: AssemblyFileVersion("1.2.2.82")]
+[assembly: AssemblyVersion("1.2.2.83")]
+[assembly: AssemblyFileVersion("1.2.2.83")]
 namespace 調劑台管理系統
 {
 

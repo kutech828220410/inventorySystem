@@ -3793,4 +3793,17 @@ namespace 調劑台管理系統
         #endregion
 
     }
+
+    public class ICP_取藥堆疊母資料 : IComparer<object[]>
+    {
+        //實作Compare方法
+        //依Speed由小排到大。
+        public int Compare(object[] x, object[] y)
+        {
+            DateTime datetime1 = x[(int)enum_取藥堆疊母資料.操作時間].ToDateTimeString_6().StringToDateTime();
+            DateTime datetime2 = y[(int)enum_取藥堆疊母資料.操作時間].ToDateTimeString_6().StringToDateTime();
+            int compare = DateTime.Compare(datetime1, datetime2);
+            return compare;          
+        }
+    }
 }

@@ -256,7 +256,7 @@ namespace 中藥調劑系統
             Program_交易紀錄_Init();
             Program_RS232_EXCELL_SCALE_Init();
             Program_RS232_Scanner_Init();
-            Program_RFID_Init();
+            Program_RFID_Init(); 
             Program_藥品搜尋_Init();
             Program_設定_Init();
 

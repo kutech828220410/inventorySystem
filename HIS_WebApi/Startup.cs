@@ -17,6 +17,7 @@ namespace HIS_WebApi
 {
     public class Startup
     {
+        private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private readonly IWebHostEnvironment _environment;
         public static H_Pannel_lib.UDP_Class uDP_Class;
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
@@ -138,6 +139,8 @@ namespace HIS_WebApi
                 endpoints.MapControllers();
                 endpoints.MapSwagger("{documentName}/swagger.json");
             });
+
+
         }
     }
 

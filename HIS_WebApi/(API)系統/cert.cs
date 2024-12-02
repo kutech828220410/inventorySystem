@@ -28,5 +28,20 @@ namespace HIS_WebApi
             var certBytes = System.IO.File.ReadAllBytes(certPath);
             return File(certBytes, "application/x-x509-ca-cert", "certlm.cer");
         }
+        
+        [HttpGet("ai")]
+        public IActionResult GetCertificate_ai()
+        {
+            var certPath = Path.Combine(Directory.GetCurrentDirectory(), currentDirectory, "certlm_ai.cer");
+            var certBytes = System.IO.File.ReadAllBytes(certPath);
+            return File(certBytes, "application/x-x509-ca-cert", "certlm_ai.cer");
+        }
+        [HttpGet("lan")]
+        public IActionResult GetCertificate_lan()
+        {
+            var certPath = Path.Combine(Directory.GetCurrentDirectory(), currentDirectory, "certlm_lan.cer");
+            var certBytes = System.IO.File.ReadAllBytes(certPath);
+            return File(certBytes, "application/x-x509-ca-cert", "certlm_lan.cer");
+        }
     }
 }
