@@ -26,11 +26,11 @@ namespace TestForm
         private void Button_call_api_Click(object sender, EventArgs e)
         {
             //Graphics g = Graphics.FromImage(image);
-            //string Base64 = image.ImageToBase64();
-            //List<textVisionClass> textVisionClasses = new List<textVisionClass>();
-            //textVisionClass textVisionClass = new textVisionClass();
-            //textVisionClass.圖片 = $"data:image/jpeg;base64,{Base64}";
-            //textVisionClass.操作者ID = "";
+            string Base64 = image.ImageToBase64();
+            List<textVisionClass> textVisionClasses = new List<textVisionClass>();
+            textVisionClass textVisionClass = new textVisionClass();
+            textVisionClass.圖片 = $"data:image/jpeg;base64,{Base64}";
+            textVisionClass.操作者ID = "";
             //textVisionClass.操作者姓名 = "";
             //textVisionClasses.Add(textVisionClass);
 
@@ -50,7 +50,7 @@ namespace TestForm
             //for (int i = 0; i < strs_temp.Length; i++)
             //{
             //    List<Point> points = textVisionClasses_out[0].GetPoints(strs_temp[i]);
-     
+
             //    Point p1 = points[0];
             //    Point p2 = points[1];
             //    Point p3 = points[2];
@@ -60,7 +60,7 @@ namespace TestForm
             //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p3, p4);
             //    g.DrawLine(new Pen(new SolidBrush(Color.Red)), p4, p1);
             //}
-       
+
 
 
 

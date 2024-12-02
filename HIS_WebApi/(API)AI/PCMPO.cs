@@ -114,7 +114,7 @@ namespace HIS_WebApi._API_TextVision
             returnData.Method = "analyze";
             try 
             {              
-                string API_AI = "http://220.135.128.247:3100";
+                string API_AI = "http://220.135.128.247:3010";
                 string API = GetServerAPI("Main", "網頁", "API01");
                 string project = "PO_Vision";
 

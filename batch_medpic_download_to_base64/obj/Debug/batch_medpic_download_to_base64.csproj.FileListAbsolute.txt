@@ -133,4 +133,3 @@ C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_bas
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxOvkBaseAsm4.5.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxOvkMsr.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\AxAltairUDrv.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache
