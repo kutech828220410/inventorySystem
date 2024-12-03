@@ -66,7 +66,7 @@ namespace 調劑台管理系統
 
         public void Function_調劑作業_醫令資訊更新(int 台號)
         {
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
                 if (台號 == 1)
                 {
@@ -91,15 +91,15 @@ namespace 調劑台管理系統
                     this.rJ_Lable_領藥台_02_病歷號.Text = "-----------------";
                 }
             }));
-            
+
         }
-        public void Function_調劑作業_醫令資訊更新(string 藥碼 ,string 藥名 ,string 領藥住院號, string 病歷號, string 開方時間, int 台號)
+        public void Function_調劑作業_醫令資訊更新(string 藥碼, string 藥名, string 領藥住院號, string 病歷號, string 開方時間, int 台號)
         {
 
             Task.Run(new Action(delegate
             {
                 List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
-                this.Invoke(new Action(delegate 
+                this.Invoke(new Action(delegate
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
                     if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-----------------";
@@ -109,7 +109,7 @@ namespace 調劑台管理系統
 
                     if (台號 == 1)
                     {
-                        if(images.Count >= 2)
+                        if (images.Count >= 2)
                         {
                             if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
                             if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
@@ -133,7 +133,7 @@ namespace 調劑台管理系統
                                 pictureBox_領藥台_01_藥品圖片02.Visible = false;
                             }
                         }
-                      
+
 
                         this.rJ_Lable_領藥台_01_領藥住院號.Text = 領藥住院號;
                         this.rJ_Lable_領藥台_01_病歷號.Text = 病歷號;
@@ -169,7 +169,7 @@ namespace 調劑台管理系統
                         this.rJ_Lable_領藥台_02_病歷號.Text = 病歷號;
                     }
                 }));
-      
+
             }));
         }
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
@@ -193,10 +193,10 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < boxes.Count; i++)
             {
-                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(boxes[i]);              
+                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(boxes[i]);
                 List_EPD583_入賬資料.Add_NewDrawer(drawer);
             }
-        
+
             for (int i = 0; i < pannels.Count; i++)
             {
                 Storage pannel = this.storageUI_WT32.SQL_GetStorage(pannels[i]);
@@ -502,7 +502,7 @@ namespace 調劑台管理系統
                     MyTimer myTimer2 = new MyTimer();
                     myTimer2.StartTickTime(50000);
                     commonSapceClasses = Function_取得共用區所有儲位();
-        
+
 
                 }));
                 Task allTask = Task.WhenAll(taskList);
@@ -513,14 +513,14 @@ namespace 調劑台管理系統
             {
 
             }
-        
+
         }
         public List<object> Function_從SQL取得儲位到雲端資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
             List<Task> tasks = new List<Task>();
 
-            tasks.Add(Task.Run(new Action(delegate 
+            tasks.Add(Task.Run(new Action(delegate
             {
                 List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < boxes.Count; i++)
@@ -584,14 +584,14 @@ namespace 調劑台管理系統
             })));
 
             Task.WhenAll(tasks).Wait();
-            
-
-        
 
 
-       
 
-          
+
+
+
+
+
 
 
 
@@ -657,7 +657,7 @@ namespace 調劑台管理系統
             if (list_value.Count == 0) return -999;
             return 庫存;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期 ,string IP)
+        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期, string IP)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -735,7 +735,7 @@ namespace 調劑台管理系統
 
             for (int k = 0; k < 儲位.Count; k++)
             {
-                object value_device = 儲位[k];              
+                object value_device = 儲位[k];
                 if (value_device is Device)
                 {
                     Device device = (Device)value_device;
@@ -809,7 +809,7 @@ namespace 調劑台管理系統
                         }
                         storage.新增效期(效期, 批號, 異動量.ToString());
                         List_EPD266_雲端資料.Add_NewStorage(storage);
-                   
+
                         Type_str = TYPE[k];
                         break;
                     }
@@ -828,7 +828,7 @@ namespace 調劑台管理系統
                         }
                         storage.新增效期(效期, 批號, 異動量.ToString());
                         List_Pannel35_雲端資料.Add_NewStorage(storage);
-                  
+
                         Type_str = TYPE[k];
                         break;
                     }
@@ -847,7 +847,7 @@ namespace 調劑台管理系統
                         box.新增效期(效期, 批號, "00");
                         Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
                         drawer.ReplaceBox(box);
-                        List_EPD583_雲端資料.Add_NewDrawer(drawer);               
+                        List_EPD583_雲端資料.Add_NewDrawer(drawer);
                         Type_str = TYPE[k];
                         break;
                     }
@@ -883,7 +883,7 @@ namespace 調劑台管理系統
                         rowsDevice.新增效期(效期, 批號, 異動量.ToString());
                         RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
                         rowsLED.ReplaceRowsDevice(rowsDevice);
-                        List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);      
+                        List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
                         Type_str = TYPE[k];
                         break;
                     }
@@ -901,12 +901,14 @@ namespace 調劑台管理系統
                         rFIDDevice.新增效期(效期, 批號, 異動量.ToString());
                         RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
                         rFIDClass.ReplaceRFIDDevice(rFIDDevice);
-                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);            
+                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
                         Type_str = TYPE[k];
                         break;
                     }
                 }
             }
+
+            if (value_device is Device == false) return new List<object[]>();
             Device device = (Device)value_device;
             object[] value = new object[new enum_儲位資訊().GetLength()];
             value[(int)enum_儲位資訊.IP] = device.IP;
@@ -1011,7 +1013,7 @@ namespace 調劑台管理系統
             }
             return null;
         }
-        public object Function_庫存異動至雲端資料(object[] 儲位資訊 ,bool upToSQL)
+        public object Function_庫存異動至雲端資料(object[] 儲位資訊, bool upToSQL)
         {
             object Value = 儲位資訊[(int)enum_儲位資訊.Value];
             string 效期 = 儲位資訊[(int)enum_儲位資訊.效期].ObjectToString();
@@ -1083,9 +1085,9 @@ namespace 調劑台管理系統
                     rowsLED.UpToSQL = true;
                     return rowsLED;
                 }
-                
+
             }
-            else if(Value is RFIDDevice)
+            else if (Value is RFIDDevice)
             {
                 if (TYPE == DeviceType.RFID_Device.GetEnumName())
                 {
@@ -1096,7 +1098,7 @@ namespace 調劑台管理系統
                     if (upToSQL) this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
                     rFIDClass.UpToSQL = true;
                     return rFIDClass;
-                }           
+                }
             }
             return null;
         }
@@ -1172,11 +1174,11 @@ namespace 調劑台管理系統
 
             }));
             List<Device> deviceBasics = new List<Device>();
-           
+
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
 
-   
+
             Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
         }
         static public List<object> Function_從本地資料取得儲位(string 藥品碼)
@@ -1261,7 +1263,7 @@ namespace 調劑台管理系統
 
             for (int i = 0; i < list_list_devices.Count; i++)
             {
-                foreach(Device device in list_list_devices[i])
+                foreach (Device device in list_list_devices[i])
                 {
                     device.確認效期庫存(true);
                     devices.Add(device);
@@ -1331,8 +1333,8 @@ namespace 調劑台管理系統
                     {
                         庫存 += device.Inventory.StringToDouble();
                     }
-                }           
-            }         
+                }
+            }
             return 庫存;
         }
         static public long Function_從SQL取得排列號(string 藥品碼)
@@ -1375,7 +1377,7 @@ namespace 調劑台管理系統
                     index += (IPs[2].StringToInt32() * 10000000 + IPs[2].StringToInt32() * 100000);
                 }
             }
-    
+
             return index;
         }
         public double Function_從本地資料取得庫存(string 藥品碼)
@@ -1394,7 +1396,7 @@ namespace 調劑台管理系統
                 }
             }
             if (list_value.Count == 0) return -999;
-      
+
             return 庫存;
         }
 
@@ -1450,7 +1452,7 @@ namespace 調劑台管理系統
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();
             bool flag_led_refresh = false;
-          
+
             for (int i = 0; i < list_Device.Count; i++)
             {
                 Device device = list_Device[i] as Device;
@@ -1469,7 +1471,7 @@ namespace 調劑台管理系統
                         {
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock
-                              ||device.DeviceType == DeviceType.EPD420_lock)
+                              || device.DeviceType == DeviceType.EPD420_lock)
                             {
                                 list_lock_IP.Add(IP);
                             }
@@ -1492,7 +1494,7 @@ namespace 調劑台管理系統
                         Box box = list_Device[i] as Box;
                         if (box != null)
                         {
-                          
+
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD1020_lock) list_lock_IP.Add(IP);
                         }
@@ -1576,8 +1578,8 @@ namespace 調劑台管理系統
                             list_IP.Add(IP);
                         }
                     }
-                 
-                  
+
+
 
                     Task.WhenAll(taskList).Wait();
                 }
@@ -1619,7 +1621,7 @@ namespace 調劑台管理系統
                             {
                                 this.storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
-                     
+
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD420_lock) list_lock_IP.Add(IP);
                         }
@@ -1633,9 +1635,9 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);  
+                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);
                             }));
-                    
+
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
                         }
@@ -1655,12 +1657,12 @@ namespace 調劑台管理系統
                                 //}
 
                             }));
-            
+
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD1020_lock) list_lock_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.Pannel35|| device.DeviceType == DeviceType.Pannel35_lock)
+                    else if (device.DeviceType == DeviceType.Pannel35 || device.DeviceType == DeviceType.Pannel35_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -1670,9 +1672,9 @@ namespace 調劑台管理系統
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
                                     this.storageUI_WT32.Set_DrawPannelJEPG(storage);
-                                }                   
+                                }
                             }));
-                       
+
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.Pannel35 || device.DeviceType == DeviceType.Pannel35_lock) list_lock_IP.Add(IP);
                         }
@@ -1683,7 +1685,7 @@ namespace 調劑台管理系統
                         if (rowsDevice != null)
                         {
                             RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
-                
+
                             list_IP.Add(IP);
                         }
                     }
@@ -1714,7 +1716,7 @@ namespace 調劑台管理系統
         }
         public string Function_藥品碼檢查(string Code)
         {
-     
+
             return Code;
         }
 
@@ -1754,7 +1756,7 @@ namespace 調劑台管理系統
                 string IP = list_IP[i];
 
                 list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
-                if(list_locker_table_value_buf.Count > 0)
+                if (list_locker_table_value_buf.Count > 0)
                 {
                     list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
                     list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
@@ -1782,7 +1784,7 @@ namespace 調劑台管理系統
                     string 同步輸出 = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
                     if (同步輸出.StringIsEmpty()) continue;
                     list_locker_table_value_外門片_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
-                    if(list_locker_table_value_外門片_buf.Count > 0)
+                    if (list_locker_table_value_外門片_buf.Count > 0)
                     {
                         list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
                         list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
@@ -1790,7 +1792,7 @@ namespace 調劑台管理系統
                         list_locker_table_value_replace.Add(list_locker_table_value_外門片_buf[0]);
                     }
 
-                 
+
 
                 }
             }

@@ -63,6 +63,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioProcessingLibrary">
+      <HintPath>..\..\MyUI\0.DLL\AudioProcessingLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Basic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\Basic.dll</HintPath>
@@ -541,6 +544,7 @@
     <Compile Include="Program_管制抽屜.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_聲紋辨識.cs" />
     <Compile Include="Program_藥品區域.cs">
       <SubType>Form</SubType>
     </Compile>
