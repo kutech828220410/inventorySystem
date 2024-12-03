@@ -3200,17 +3200,38 @@ namespace 調劑台管理系統
                         Storage storage = null;
                         List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
                         if (storages.Count != 0)
-                        {                     
+                        {
                             for (int k = 0; k < storages.Count; k++)
                             {
-                                string index_IP = Funcion_取得LCD114索引表_index_IP(storages[k].IP);
-                                if (index_IP.StringIsEmpty()) continue;
-                                StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
-                                if (uDP_READ == null) continue;
-                                if (uDP_READ.LASER_ON)
+
+                                object uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(storages[k].IP);
+
+                                // 若在 LCD 讀取不到，則嘗試從 EPD 讀取
+                                if (uDP_READ == null)
                                 {
-                                    LCD_Laser_ON_IP = uDP_READ.IP;
-                                    storage = storages[k];
+                                    uDP_READ = this.storageUI_EPD_266.Get_UDP_READ(storages[k].IP);
+                                }
+
+                                // 如果仍然為 null，跳過該存儲
+                                if (uDP_READ == null) continue;
+
+                                // 檢查並轉換為 StorageUI_LCD_114.UDP_READ
+                                if (uDP_READ is StorageUI_LCD_114.UDP_READ lcdUdpRead)
+                                {
+                                    if (lcdUdpRead.LASER_ON && lcdUdpRead.LaserDistance != 999)
+                                    {
+                                        LCD_Laser_ON_IP = lcdUdpRead.IP;
+                                        storage = storages[k];
+                                    }
+                                }
+                                // 檢查並轉換為 StorageUI_EPD_266.UDP_READ
+                                else if (uDP_READ is StorageUI_EPD_266.UDP_READ epdUdpRead)
+                                {
+                                    if (epdUdpRead.LASER_ON && epdUdpRead.LaserDistance != 999)
+                                    {
+                                        LCD_Laser_ON_IP = epdUdpRead.IP;
+                                        storage = storages[k];
+                                    }
                                 }
                             }
                             if (LCD_Laser_ON_IP.StringIsEmpty() == false)
@@ -3307,12 +3328,21 @@ namespace 調劑台管理系統
                     {
                         Storage storage = List_EPD266_雲端資料.SortByIP(Check_IP);
                         if (storage != null)
-                        {                  
+                        {
+                            StorageUI_LCD_114.UDP_READ uDP_READ_LCD = null;
+                            StorageUI_EPD_266.UDP_READ uDP_READ_266 = null;
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
-                            if (index_IP.StringIsEmpty()) continue;
-                            StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
-                            if (uDP_READ == null) continue;
-                            bool Laser_ON = uDP_READ.LASER_ON;
+                            if (index_IP.StringIsEmpty() == false)
+                            {
+                                uDP_READ_LCD = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+                            }
+
+                            uDP_READ_266 = this.storageUI_EPD_266.Get_UDP_READ(storage.IP);
+                            if (uDP_READ_LCD == null || uDP_READ_266 == null) continue;
+                            bool Laser_ON = false;
+                            if (uDP_READ_LCD != null) if(uDP_READ_LCD.LaserDistance != -999) Laser_ON = uDP_READ_LCD.LASER_ON;
+                            else if (uDP_READ_266 != null) if (uDP_READ_266.LaserDistance != -999) Laser_ON = uDP_READ_266.LASER_ON;
+
                             if (Laser_ON == false)
                             {
                                 Console.WriteLine($"IP : {storage.IP} , index_IP : {index_IP}, Laser_ON : {Laser_ON}");
