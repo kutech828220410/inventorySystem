@@ -19,6 +19,7 @@ namespace 調劑台管理系統
     public partial class Dialog_藥品搜索 : MyDialog
     {
         public static bool IsShown = false;
+        private List<medClass> MedClasses = new List<medClass>();
         private string 藥碼 = "";
         private MyThread myThread = null;
         public Dialog_藥品搜索()
@@ -31,6 +32,50 @@ namespace 調劑台管理系統
         #region Function
         private void sub_program()
         {
+            if (Main_Form.VoiceMed != null)
+            {
+                string voice_name = Main_Form.VoiceMed.name;
+                Main_Form.VoiceMed = null;
+                if (voice_name.StringIsEmpty()) return;
+                List<medClass> medClasses = medClass.get_med_clouds_by_name(Main_Form.API_Server, voice_name);
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 搜尋到<{medClasses.Count}>種藥品");
+                if (medClasses.Count > 0)
+                {
+                    for (int i = 0; i < MedClasses.Count; i++)
+                    {
+                        Main_Form.Function_儲位亮燈(new Main_Form.LightOn(MedClasses[i].藥品碼, Color.Black));
+                    }
+                    if (藥碼.StringIsEmpty() == false)
+                    {
+
+                    }
+                    MedClasses = medClasses;
+                    for (int i = 0; i < MedClasses.Count; i++)
+                    {
+                        Main_Form.LightOn lightOn = new Main_Form.LightOn(MedClasses[i].藥品碼, Color.Blue);
+                        lightOn.flag_Refresh_Light = true;
+                        Main_Form.Function_儲位亮燈(lightOn);
+                    }
+
+                    this.Invoke(new Action(delegate
+                    {
+                        rJ_Lable_藥品搜尋_藥名.Text = $"{medClasses[0].藥品名稱}";
+                        rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Green;
+                        rJ_Lable_藥品搜尋_狀態.Text = "聲聞辨識成功";
+
+                    }));
+                    Task.Run(new Action(delegate
+                    {
+                        System.Threading.Thread.Sleep(1500);
+                        this.Invoke(new Action(delegate
+                        {
+                            rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Red;
+                            rJ_Lable_藥品搜尋_狀態.Text = "【刷取辨識藥品條碼】";
+                        }));
+                    }));
+                }
+                return;
+            }
             string[] brcode_scanner_lines = Main_Form.Function_ReadBacodeScanner();
             for (int i = 0; i < brcode_scanner_lines.Length; i++)
             {
@@ -47,21 +92,23 @@ namespace 調劑台管理系統
                         dialog_AlarmForm.ShowDialog();
                         continue;
                     }
-                    if (藥碼.StringIsEmpty() == false)
+                    for (int k = 0; k < MedClasses.Count; k++)
                     {
-                        Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
+                        Main_Form.Function_儲位亮燈(new Main_Form.LightOn(MedClasses[k].藥品碼, Color.Black));
                     }
-                    藥碼 = medClasses[0].藥品碼;
-
-                    Main_Form.LightOn lightOn = new Main_Form.LightOn(medClasses[0].藥品碼, Color.Blue);
-                    lightOn.flag_Refresh_Light = true;
-                    Main_Form.Function_儲位亮燈(lightOn);
-                    this.Invoke(new Action(delegate 
+                    MedClasses = medClasses;
+                    for (int k = 0; k < MedClasses.Count; k++)
+                    {
+                        Main_Form.LightOn lightOn = new Main_Form.LightOn(MedClasses[k].藥品碼, Color.Blue);
+                        lightOn.flag_Refresh_Light = true;
+                        Main_Form.Function_儲位亮燈(lightOn);
+                    }
+                    this.Invoke(new Action(delegate
                     {
                         rJ_Lable_藥品搜尋_藥名.Text = $"({藥碼}){medClasses[0].藥品名稱}";
                         rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Green;
                         rJ_Lable_藥品搜尋_狀態.Text = "搜尋成功";
-                   
+
                     }));
                     Task.Run(new Action(delegate
                     {
@@ -69,7 +116,7 @@ namespace 調劑台管理系統
                         this.Invoke(new Action(delegate
                         {
                             rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Red;
-                            rJ_Lable_藥品搜尋_狀態.Text = "【刷取藥品條碼】";
+                            rJ_Lable_藥品搜尋_狀態.Text = "【刷取辨識藥品條碼】";
                         }));
                     }));
                 }
@@ -93,9 +140,9 @@ namespace 調劑台管理系統
             IsShown = false;
             myThread.Abort();
             myThread = null;
-            if (藥碼.StringIsEmpty() == false)
+            for (int k = 0; k < MedClasses.Count; k++)
             {
-                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(MedClasses[k].藥品碼, Color.Black));
             }
         }
 

@@ -26,12 +26,13 @@ namespace 調劑台管理系統
 {
     public class voice_analyze
     {
-        public string name = "";
-        public string conf = "";
+        public string name { get; set; }
+        public string conf { get; set; }
     }
     public partial class Main_Form : Form
     {
-        public voice_analyze VoiceSample = null;
+        static public voice_analyze VoiceSample = null;
+        static public voice_analyze VoiceMed = null;
         public static MicrophoneRecorder microphoneRecorder = new MicrophoneRecorder();
         private void Program_聲紋辨識_Init()
         {
@@ -79,7 +80,13 @@ namespace 調劑台管理系統
             }
             if (returnData.Method == "Pill_Name")
             {
-                Console.WriteLine($"收到聲紋語音資料: {text}");
+
+                voice_analyze voice_Analyze = returnData.Data.ObjToClass<voice_analyze>();
+                if (voice_Analyze != null)
+                {
+                    Console.WriteLine($"收到聲紋語音資料: {text}");
+                    VoiceMed = voice_Analyze;
+                }
             }
         }
     }
