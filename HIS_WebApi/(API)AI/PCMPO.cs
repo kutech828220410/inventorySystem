@@ -188,7 +188,7 @@ namespace HIS_WebApi._API_TextVision
                             string picfile = "";
                             picfile = $"NG{file}";
                             returnData.Code = -200;
-                            returnData.Result = $"查無對應單號資料 檔案名稱{picfile}";
+                            returnData.Result = $"查無對應單號{textVision.單號}資料 檔案名稱{picfile}";
                             Logger.Log(file, project, returnData.JsonSerializationt());
                             return returnData.JsonSerializationt(true);
                         }
