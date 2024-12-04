@@ -165,6 +165,7 @@
     <Compile Include="udnoectc.cs" />
     <Compile Include="udphnoph.cs" />
     <Compile Include="updateVersionClass.cs" />
+    <Compile Include="voxVerifyClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
