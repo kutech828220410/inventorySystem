@@ -114,14 +114,22 @@ namespace HIS_WebApi._API_TextVision
             returnData.Method = "analyze";
             try 
             {              
-                string API_AI = "http://220.135.128.247:3010";
+                string API_AI = "http://192.168.43.240:3010";
                 string API = GetServerAPI("Main", "網頁", "API01");
                 string project = "PO_Vision";
 
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
                 List<Task> tasks = new List<Task>();           
                 returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, input_textVision);
-
+                if (return_textVisionClass == null)
+                {
+                    string picfile = "";
+                    picfile = $"NG{file}";
+                    returnData.Code = -200;
+                    returnData.Result = $"AI未連線 檔案名稱{picfile}";
+                    Logger.Log(file, project, returnData.JsonSerializationt());
+                    return returnData.JsonSerializationt(true);
+                }
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string picfile = "";
@@ -156,6 +164,7 @@ namespace HIS_WebApi._API_TextVision
                 })));
                 List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
                 List<positionClass> positionClasses = new List<positionClass>();
+                
                 if (return_textVisionClass.Result == "False")
                 {
                     Task.WhenAll(tasks).Wait();
