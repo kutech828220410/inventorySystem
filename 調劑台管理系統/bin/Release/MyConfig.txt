@@ -27,5 +27,6 @@
   "RowsLED_Port": 29001,
   "Pannel35_Port": 29020,
   "ControlMode": false,
-  "ÂÂª©´¹¤ù": false
+  "ÂÂª©´¹¤ù": false,
+  "Án¯¾¿ëÃÑ_IP": ""
 }
