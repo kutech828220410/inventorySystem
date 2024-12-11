@@ -64,7 +64,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AudioProcessingLibrary">
-      <HintPath>..\..\MyUI\0.DLL\AudioProcessingLibrary.dll</HintPath>
+      <HintPath>..\0.DLL\AudioProcessingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Basic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

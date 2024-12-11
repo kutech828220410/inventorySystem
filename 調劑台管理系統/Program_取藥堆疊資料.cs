@@ -495,7 +495,7 @@ namespace 調劑台管理系統
 
                 }
             }
-            else if (device_Type == DeviceType.EPD583.GetEnumName() || device_Type == DeviceType.EPD583_lock.GetEnumName())
+            else if (device_Type == DeviceType.EPD583.GetEnumName() || device_Type == DeviceType.EPD583_lock.GetEnumName() || device_Type == DeviceType.EPD420_D.GetEnumName() || device_Type == DeviceType.EPD420_D_lock.GetEnumName())
             {
                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                 if (drawer != null && drawer.Speaker.StringIsEmpty() == false)
@@ -838,7 +838,8 @@ namespace 調劑台管理系統
 
 
             if (plC_CheckBox_面板於過帳後更新.Checked) Function_取藥堆疊資料_刷新面板(藥品碼);
-            if (str_TYPE == DeviceType.EPD583.GetEnumName() || str_TYPE == DeviceType.EPD583_lock.GetEnumName())
+            if (str_TYPE == DeviceType.EPD583.GetEnumName() || str_TYPE == DeviceType.EPD583_lock.GetEnumName()
+               || str_TYPE == DeviceType.EPD420_D.GetEnumName() || str_TYPE == DeviceType.EPD420_D_lock.GetEnumName())
             {
                 List<Box> boxes = List_EPD583_入賬資料.SortByCode(藥品碼);
                 for (int i = 0; i < boxes.Count; i++)
@@ -921,31 +922,74 @@ namespace 調劑台管理系統
                   || str_TYPE == DeviceType.EPD213.GetEnumName() || str_TYPE == DeviceType.EPD213_lock.GetEnumName())
             {
                 Storage storage = List_EPD266_入賬資料.SortByIP(IP);
-                storage = this.storageUI_EPD_266.SQL_GetStorage(storage);
-                儲位庫存 = storage.取得庫存(效期);
-                if (儲位庫存 + 異動量 < 0)
+                if (storage != null)
                 {
-                    List<string> list_效期 = new List<string>();
-                    List<string> list_批號 = new List<string>();
-                    List<string> list_異動量 = new List<string>();
-                    storage.庫存異動(異動量, out list_效期, out list_批號);
+                    storage = this.storageUI_EPD_266.SQL_GetStorage(storage);
+                    儲位庫存 = storage.取得庫存(效期);
+                    if (儲位庫存 + 異動量 < 0)
+                    {
+                        List<string> list_效期 = new List<string>();
+                        List<string> list_批號 = new List<string>();
+                        List<string> list_異動量 = new List<string>();
+                        storage.庫存異動(異動量, out list_效期, out list_批號);
 
-                    List_EPD266_入賬資料.Add_NewStorage(storage);
-                    this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                }
-                else if ((儲位庫存) >= 0)
-                {
-                    storage.效期庫存異動(效期, 異動量);
-                    List_EPD266_入賬資料.Add_NewStorage(storage);
-                    this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        List_EPD266_入賬資料.Add_NewStorage(storage);
+                        this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                    }
+                    else if ((儲位庫存) >= 0)
+                    {
+                        storage.效期庫存異動(效期, 異動量);
+                        List_EPD266_入賬資料.Add_NewStorage(storage);
+                        this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
 
+                    }
+                    else if ((儲位庫存) == -1)
+                    {
+                        storage.新增效期(效期, 批號, 異動量.ToString());
+                        List_EPD266_入賬資料.Add_NewStorage(storage);
+                        this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                    }
                 }
-                else if ((儲位庫存) == -1)
+                else
                 {
-                    storage.新增效期(效期, 批號, 異動量.ToString());
-                    List_EPD266_入賬資料.Add_NewStorage(storage);
-                    this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                    List<Box> boxes = List_EPD583_入賬資料.SortByCode(藥品碼);
+                    for (int i = 0; i < boxes.Count; i++)
+                    {
+                        if (boxes[i].IP != IP) continue;
+                        boxes[i] = this.drawerUI_EPD_583.SQL_GetBox(boxes[i]);
+                        儲位庫存 = boxes[i].取得庫存(效期);
+                        if (儲位庫存 + 異動量 < 0)
+                        {
+                            List<string> list_效期 = new List<string>();
+                            List<string> list_批號 = new List<string>();
+                            List<string> list_異動量 = new List<string>();
+                            boxes[i].庫存異動(異動量, out list_效期, out list_批號);
+
+                            Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                            List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                            this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                            break;
+                        }
+                        else if ((儲位庫存) >= 0)
+                        {
+                            boxes[i].效期庫存異動(效期, 異動量);
+                            批號 = boxes[i].取得批號(效期);
+                            Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                            List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                            this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                            break;
+                        }
+                        else if ((儲位庫存) == -1)
+                        {
+                            boxes[i].新增效期(效期, 批號, 異動量.ToString());
+                            Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                            List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                            this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                            break;
+                        }
+                    }
                 }
+               
             }
             else if (str_TYPE == DeviceType.Pannel35_lock.GetEnumName() || str_TYPE == DeviceType.Pannel35.GetEnumName())
             {
@@ -1370,7 +1414,7 @@ namespace 調劑台管理系統
 
                 if (device == null) continue;
 
-                if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D || device.DeviceType == DeviceType.EPD420_D_lock)
                 {
                     Box box = list_Device[i] as Box;
                     if (box != null)
@@ -1807,7 +1851,7 @@ namespace 調劑台管理系統
                             list_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D || device.DeviceType == DeviceType.EPD420_D_lock)
                     {
                         taskList.Add(Task.Run(() =>
                         {
@@ -2203,7 +2247,7 @@ namespace 調劑台管理系統
                             }
 
                         }
-                        else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName())
+                        else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName() || TYPE[k] == DeviceType.EPD420_D.GetEnumName() || TYPE[k] == DeviceType.EPD420_D_lock.GetEnumName())
                         {
                             Box box = (Box)values[k];
                             if (!IP.StringIsEmpty())
@@ -2410,17 +2454,32 @@ namespace 調劑台管理系統
                             || TYPE[k] == DeviceType.EPD420_lock.GetEnumName() || TYPE[k] == DeviceType.EPD420.GetEnumName()
                             || TYPE[k] == DeviceType.EPD213_lock.GetEnumName() || TYPE[k] == DeviceType.EPD213.GetEnumName())
                         {
-
-                            Storage storage = (Storage)values[k];
-                            if (!IP.StringIsEmpty())
+                            if (values[k] is Storage)
                             {
-                                if (storage.IP != IP) continue;
+                                Storage storage = (Storage)values[k];
+                                if (!IP.StringIsEmpty())
+                                {
+                                    if (storage.IP != IP) continue;
+                                }
+                                storage.新增效期(效期, 批號, "100000");
+                                List_EPD266_雲端資料.Add_NewStorage(storage);
+                                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                                break;
                             }
-                            storage.新增效期(效期, 批號, "100000");
-                            List_EPD266_雲端資料.Add_NewStorage(storage);
-                            this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                            break;
-
+                            if (values[k] is Box)
+                            {
+                                Box box = (Box)values[k];
+                                if (!IP.StringIsEmpty())
+                                {
+                                    if (box.IP != IP) continue;
+                                }
+                                box.新增效期(效期, 批號, "100000");
+                                Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
+                                drawer.ReplaceBox(box);
+                                List_EPD583_雲端資料.Add_NewDrawer(drawer);
+                                this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                                break;
+                            }
                         }
                         else if (TYPE[k] == DeviceType.Pannel35.GetEnumName() || TYPE[k] == DeviceType.Pannel35_lock.GetEnumName())
                         {
@@ -2436,7 +2495,7 @@ namespace 調劑台管理系統
                             break;
 
                         }
-                        else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName())
+                        else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName() || TYPE[k] == DeviceType.EPD420_D.GetEnumName() || TYPE[k] == DeviceType.EPD420_D_lock.GetEnumName())
                         {
 
                             Box box = (Box)values[k];

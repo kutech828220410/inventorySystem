@@ -385,7 +385,7 @@ namespace 調劑台管理系統
             }
             else if (Value is Box)
             {
-                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName() || TYPE == DeviceType.EPD420_D.GetEnumName() || TYPE == DeviceType.EPD420_D_lock.GetEnumName())
                 {
                     Box box = (Box)Value;
                     box.效期庫存異動(效期, 異動量, false);
@@ -834,7 +834,7 @@ namespace 調劑台管理系統
                     }
 
                 }
-                else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName())
+                else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName() || TYPE[k] == DeviceType.EPD420_D.GetEnumName() || TYPE[k] == DeviceType.EPD420_D_lock.GetEnumName())
                 {
                     Box box = (Box)values[k];
                     if (!IP.StringIsEmpty())
@@ -963,7 +963,7 @@ namespace 調劑台管理系統
             }
             else if (Value is Box)
             {
-                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName() || TYPE == DeviceType.EPD420_D.GetEnumName() || TYPE == DeviceType.EPD420_D_lock.GetEnumName())
                 {
                     Box box = (Box)Value;
                     box.效期庫存異動(效期, 批號, 異動量, false);
@@ -1052,7 +1052,7 @@ namespace 調劑台管理系統
             }
             else if (Value is Box)
             {
-                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName() || TYPE == DeviceType.EPD420_D.GetEnumName() || TYPE == DeviceType.EPD420_D_lock.GetEnumName())
                 {
                     Box box = (Box)Value;
                     box.效期庫存異動(效期, 異動量, false);
@@ -1477,16 +1477,13 @@ namespace 調劑台管理系統
                             }
                         }
                     }
-                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D || device.DeviceType == DeviceType.EPD420_D_lock)
                     {
                         Box box = list_Device[i] as Box;
                         if (box != null)
                         {
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
-                            {
-                                list_lock_IP.Add(IP);
-                            }
+                            list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
@@ -1558,7 +1555,7 @@ namespace 調劑台管理系統
                             list_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D || device.DeviceType == DeviceType.EPD420_D_lock)
                     {
                         Box box = list_Device[i] as Box;
                         if (box != null)
@@ -1626,7 +1623,7 @@ namespace 調劑台管理系統
                             if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD420_lock) list_lock_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D || device.DeviceType == DeviceType.EPD420_D_lock)
                     {
                         Box box = list_Device[i] as Box;
                         if (box != null)
@@ -1639,7 +1636,7 @@ namespace 調劑台管理系統
                             }));
 
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD583_lock || device.DeviceType == DeviceType.EPD420_D_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
