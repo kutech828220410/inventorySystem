@@ -312,26 +312,26 @@ namespace HIS_WebApi
             var tensor = new DenseTensor<float>(new[] { 1, 3, inputHeight, inputWidth });
 
             // 填充張量數據
-            unsafe
-            {
-                var pixels = (byte*)resizedImage.GetPixels().ToPointer();
-                int bytesPerPixel = 3; // RGB8888 固定為 3
+            //unsafe
+            //{
+            //    var pixels = (byte*)resizedImage.GetPixels().ToPointer();
+            //    int bytesPerPixel = 3; // RGB8888 固定為 3
 
-                fixed (float* tensorData = tensor.Buffer.Span)
-                {
-                    for (int y = 0; y < inputHeight; y++)
-                    {
-                        for (int x = 0; x < inputWidth; x++)
-                        {
-                            int offset = (y * inputWidth + x) * bytesPerPixel;
+            //    fixed (float* tensorData = tensor.Buffer.Span)
+            //    {
+            //        for (int y = 0; y < inputHeight; y++)
+            //        {
+            //            for (int x = 0; x < inputWidth; x++)
+            //            {
+            //                int offset = (y * inputWidth + x) * bytesPerPixel;
 
-                            tensorData[0 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 0] / 255.0f; // R
-                            tensorData[1 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 1] / 255.0f; // G
-                            tensorData[2 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 2] / 255.0f; // B
-                        }
-                    }
-                }
-            }
+            //                tensorData[0 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 0] / 255.0f; // R
+            //                tensorData[1 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 1] / 255.0f; // G
+            //                tensorData[2 * inputHeight * inputWidth + y * inputWidth + x] = pixels[offset + 2] / 255.0f; // B
+            //            }
+            //        }
+            //    }
+            //}
 
             string DenseTensor_time = myTimerBasic.ToString();
             return tensor;
