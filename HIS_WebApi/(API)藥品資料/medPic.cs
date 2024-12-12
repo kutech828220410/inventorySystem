@@ -255,6 +255,56 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 根據藥碼獲取藥品圖片資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        "code":"藥碼",
+        ///        "name":"藥名",
+        ///        "extension":"副檔名",
+        ///        "pic_base64":"string_base64"
+        ///     },
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [HttpPost("upload_pic")]
+        public string  upload_pic([FromBody] returnData returnData)
+        {
+            returnData.Method = "upload_pic";
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                medPicClass medPicClass = returnData.Data.ObjToClass<medPicClass>();
+                List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+                ServerSettingClass serverSettingClass = serverSetting.MyFind("Main", "網頁", "API01").FirstOrDefault();
+                if (serverSettingClass == null)
+                {
+                    throw new Exception("找無Server資料");
+                }
+                string API =  serverSettingClass.Server;
+                medPicClass.add(API, medPicClass);
+                returnData.Data = medPicClass;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"新增藥碼:{medPicClass.藥碼} 藥名:{medPicClass.藥名}圖片";
+                return returnData.JsonSerializationt(true);
+            }
+            catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{ex.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        
+                 
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
