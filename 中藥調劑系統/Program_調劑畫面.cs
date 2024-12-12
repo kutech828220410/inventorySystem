@@ -633,14 +633,10 @@ namespace 中藥調劑系統
                                 if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
 
 
-                                List<string> Codes = (from temp in OrderTClass_現在調劑處方
-                                                      select temp.藥品碼).Distinct().ToList();
-
-                                Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+                 
                                 Task.Run(new Action(delegate
                                 {
-                                    //Function_儲位亮燈(藥碼_current_row, Color.Black);
-                                    Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
+                          
                                     Voice voice = new Voice();
                                     voice.SpeakOnTask(RemoveParenthesesContent(藥名));
                                 }));
@@ -791,32 +787,7 @@ namespace 中藥調劑系統
 
             OrderTClass orderTClass = orderTClasses[0];
             string 包數 = "";
-            if (orderTClass.頻次.ToUpper() == "Q1H") 包數 = "24";
-            if (orderTClass.頻次.ToUpper() == "Q2H") 包數 = "12";
-            if (orderTClass.頻次.ToUpper() == "Q3H") 包數 = "8";
-            if (orderTClass.頻次.ToUpper() == "Q4H") 包數 = "6";
-            if (orderTClass.頻次.ToUpper() == "Q6H") 包數 = "4";
-            if (orderTClass.頻次.ToUpper() == "Q8H") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "Q12H") 包數 = "2";
-            if (orderTClass.頻次.ToUpper() == "QDAM") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QDPM") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QDHS") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QN") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "BID") 包數 = "2";
-            if (orderTClass.頻次.ToUpper() == "QN") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QDHS") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QDPM") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "BID&HS") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "BIDAC") 包數 = "2";
-            if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "QID") 包數 = "4";
-            if (orderTClass.頻次.ToUpper() == "HS") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "TID&HS") 包數 = "4";
-            if (orderTClass.頻次.ToUpper() == "TID") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
-            if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "QD") 包數 = "1";
-            if (orderTClass.頻次.ToUpper() == "PRN") 包數 = "1";
+
             if (包數.StringIsEmpty()) 包數 = "1";
             string 天數 = orderTClasses[0].天數;
 
@@ -824,6 +795,32 @@ namespace 中藥調劑系統
             {
                 if (orderTClasses[i].劑量單位 == "克" || orderTClasses[i].劑量單位 == "錢")
                 {
+                    if (orderTClasses[i].頻次.ToUpper() == "Q1H") 包數 = "24";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q2H") 包數 = "12";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q3H") 包數 = "8";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q4H") 包數 = "6";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q6H") 包數 = "4";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q8H") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "Q12H") 包數 = "2";
+                    if (orderTClasses[i].頻次.ToUpper() == "QDAM") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QDPM") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QDHS") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QN") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "BID") 包數 = "2";
+                    if (orderTClasses[i].頻次.ToUpper() == "QN") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QDHS") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QDPM") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "BID&HS") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "BIDAC") 包數 = "2";
+                    if (orderTClasses[i].頻次.ToUpper() == "TIDAC") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "QID") 包數 = "4";
+                    if (orderTClasses[i].頻次.ToUpper() == "HS") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "TID&HS") 包數 = "4";
+                    if (orderTClasses[i].頻次.ToUpper() == "TID") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "TIDAC") 包數 = "3";
+                    if (orderTClasses[i].頻次.ToUpper() == "ASORDER") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "QD") 包數 = "1";
+                    if (orderTClasses[i].頻次.ToUpper() == "PRN") 包數 = "1";
                     天數 = orderTClasses[i].天數;
                     break;
                 }
@@ -1194,10 +1191,14 @@ namespace 中藥調劑系統
                         Voice voice = new Voice();
                         voice.SpeakOnTask(RemoveParenthesesContent("未調劑完成,是否跳至其他藥品調劑?"));
                         if (MyMessageBox.ShowDialog($"{ order_current_row[(int)enum_處方內容.藥名].ObjectToString()} 未調劑完成,是否跳至其他藥品調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
-                        {
-                            //RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+                        {                    
                             this.sqL_DataGridView_處方內容.SetSelectRow(order_current_row);
                             return;
+                        }
+                        else
+                        {
+                            Function_儲位亮燈(藥碼_current_row, this.panel_調劑刷藥單顏色.BackColor);
+                            Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
                         }
                     }
                 }
