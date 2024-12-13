@@ -481,10 +481,10 @@
     <Compile Include="Dialog\Dialog_領藥號輸入.Designer.cs">
       <DependentUpon>Dialog_領藥號輸入.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog_醫令選擇.cs">
+    <Compile Include="Dialog\Dialog_醫令選擇.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog_醫令選擇.Designer.cs">
+    <Compile Include="Dialog\Dialog_醫令選擇.Designer.cs">
       <DependentUpon>Dialog_醫令選擇.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -787,7 +787,7 @@
     <EmbeddedResource Include="Dialog\Dialog_領藥號輸入.resx">
       <DependentUpon>Dialog_領藥號輸入.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_醫令選擇.resx">
+    <EmbeddedResource Include="Dialog\Dialog_醫令選擇.resx">
       <DependentUpon>Dialog_醫令選擇.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
