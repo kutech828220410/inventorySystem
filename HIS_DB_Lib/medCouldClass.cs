@@ -76,6 +76,24 @@ namespace HIS_DB_Lib
         [Description("儲位描述,VARCHAR,300,NONE")]
         儲位描述,
     }
-   
-  
+
+    public enum enum_雲端藥檔_EXCEL
+    {
+        藥碼,
+        中文名,
+        藥名,
+        藥品學名,
+        健保碼,
+        包裝單位,
+        庫存,
+        安全庫存,
+        警訊藥品,
+        高價藥品,
+        管制級別,
+        類別,
+        廠牌,
+        藥品許可證號
+    }
+
+
 }

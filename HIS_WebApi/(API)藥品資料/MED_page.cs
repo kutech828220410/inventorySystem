@@ -12,6 +12,13 @@ using System.Text.Json.Serialization;
 using System.Configuration;
 using HIS_DB_Lib;
 using H_Pannel_lib;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Text;
+using MyOffice;
+
+
+
 namespace HIS_WebApi
 {
 
@@ -3162,6 +3169,88 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
 
+        }
+        [Route("excel_upload")]
+        [HttpPost]
+        public async Task<string> excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
+        {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+              
+                returnData.Method = "excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                inventoryClass.creat creat = new inventoryClass.creat();
+                string error = "";
+                List<medClass> medClasses = new List<medClass>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+                    dt = dt.ReorderTable(new enum_雲端藥檔_EXCEL());
+                    if (dt == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = "上傳文件表頭無效!";
+                        return returnData.JsonSerializationt(true);
+                    }
+                    List<object[]> list_value = dt.DataTableToRowList();
+
+                    //if (IC_NAME.StringIsEmpty())
+                    //{
+                    //    IC_NAME = Path.GetFileNameWithoutExtension(file.FileName);
+                    //}
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+                        medClass medClass = new medClass
+                        {
+                            藥品碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥碼].ObjectToString(),
+                            中文名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.中文名].ObjectToString(),
+                            藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString(),
+                            藥品學名 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品學名].ObjectToString(),
+                            健保碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.健保碼].ObjectToString(),
+                            包裝單位 = list_value[i][(int)enum_雲端藥檔_EXCEL.包裝單位].ObjectToString(),
+                            庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.庫存].ObjectToString(),
+                            安全庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.安全庫存].ObjectToString(),
+                            警訊藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.警訊藥品].ObjectToString(),
+                            高價藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.高價藥品].ObjectToString(),
+                            管制級別 = list_value[i][(int)enum_雲端藥檔_EXCEL.管制級別].ObjectToString(),
+                            類別 = list_value[i][(int)enum_雲端藥檔_EXCEL.類別].ObjectToString(),
+                            廠牌 = list_value[i][(int)enum_雲端藥檔_EXCEL.廠牌].ObjectToString(),
+                            藥品許可證號 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品許可證號].ObjectToString(),
+                        };                       
+                        medClasses.Add(medClass);
+                    }
+                }
+                medClass.add_med_clouds("http://127.0.0.1:4433", medClasses);
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = "接收上傳文件成功";
+                return returnData.JsonSerializationt(true);
+            }
+
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
         }
 
         static public Dictionary<string, List<H_Pannel_lib.DeviceSimple>> ConvertToDictionary(List<H_Pannel_lib.DeviceSimple>  deviceSimples)
