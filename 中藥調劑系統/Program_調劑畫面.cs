@@ -105,6 +105,7 @@ namespace 中藥調劑系統
             this.plC_RJ_Button_完成調劑.MouseDownEvent += PlC_RJ_Button_完成調劑_MouseDownEvent;
             this.plC_RJ_Button_取消調劑.MouseDownEvent += PlC_RJ_Button_取消調劑_MouseDownEvent;
             this.plC_RJ_Button_移至未調劑.MouseDownEvent += PlC_RJ_Button_移至未調劑_MouseDownEvent;
+            this.plC_RJ_Button_保健食品.MouseDownEvent += PlC_RJ_Button_保健食品_MouseDownEvent;
             this.ToolStripMenuItem_處方內容_調劑完成.Click += ToolStripMenuItem_處方內容_調劑完成_Click;
             this.ToolStripMenuItem_處方內容_設為未調劑.Click += ToolStripMenuItem_處方內容_設為未調劑_Click;
 
@@ -122,6 +123,8 @@ namespace 中藥調劑系統
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+ 
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -1328,6 +1331,10 @@ namespace 中藥調劑系統
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
             RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
+        }
+        private void PlC_RJ_Button_保健食品_MouseDownEvent(MouseEventArgs mevent)
+        {
+           
         }
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)
         {

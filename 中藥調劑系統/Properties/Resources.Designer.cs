@@ -73,6 +73,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap _health_supplements_order_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("-health-supplements-order-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap add_new_plus_512 {
             get {
                 object obj = ResourceManager.GetObject("add-new-plus-512", resourceCulture);
