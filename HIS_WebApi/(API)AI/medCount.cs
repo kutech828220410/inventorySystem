@@ -75,83 +75,83 @@ namespace HIS_WebApi
                 List<medCountClass> out_medCountClass = new List<medCountClass>();
                 List<medCountClass> json_in = returnData.Data.ObjToClass<List<medCountClass>>();
                 string project = "Pill_recognition";
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    MyTimerBasic myTimerBasic_task = new MyTimerBasic();
-                    string API = GetServerAPI("Main", "網頁", "ai_medCount_api");
-                    log_task_1 += $" 取得API,{myTimerBasic_task}\n";
-                    List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
-                    log_task_1 += $" ai_medCount,{myTimerBasic_task}\n";
-
-                    if (medCountClasses != null)
-                    {
-                        for (int i = 0; i < medCountClasses.Count; i++)
-                        {
-                            List<positionClass> positionClasses = new List<positionClass>();
-                            for (int j = 0; j < medCountClasses[i].AI結果.Count; j++)
-                            {
-                                aiCountResult aiCountResult = medCountClasses[i].AI結果[j];
-                                string[] position = aiCountResult.座標.Split(";");
-                                (string width, string height, string center) = GetSquare(position);
-                                positionClass positionClass = new positionClass
-                                {
-                                    高 = height,
-                                    寬 = width,
-                                    中心 = center,
-                                    信心分數 = aiCountResult.信心分數
-                                };
-                                positionClasses.Add(positionClass);
-                            }
-                            medCountClass medCountClass = new medCountClass
-                            {
-                                藥名 = medCountClasses[i].藥名,
-                                種類 = medCountClasses[i].種類,
-                                數量 = medCountClasses[i].數量,
-                                識別位置 = positionClasses
-                            };
-                            out_medCountClass.Add(medCountClass);
-                        }
-                    }
-                    log_task_1 += $" done,{myTimerBasic_task}\n";
-
-                })));
                 //tasks.Add(Task.Run(new Action(delegate
                 //{
-                //    if (returnData.Value == "True")
+                //    MyTimerBasic myTimerBasic_task = new MyTimerBasic();
+                //    string API = GetServerAPI("Main", "網頁", "ai_medCount_api");
+                //    log_task_1 += $" 取得API,{myTimerBasic_task}\n";
+                //    List<medCountClass> medCountClasses = medCountClass.ai_medCount(API, json_in);
+                //    log_task_1 += $" ai_medCount,{myTimerBasic_task}\n";
+
+                //    if (medCountClasses != null)
                 //    {
-                //        string picfile = file + ".jpg";
-                //        string base64 = json_in[0].圖片;
-                //        string pre = "data:image/jpeg;base64,";
-                //        base64 = base64.Replace(pre, "");
-                //        string folderPath = Path.Combine(fileDirectory, project);
-                //        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                        
-                //        string filePath = Path.Combine(folderPath, picfile);
-                //        byte[] imageBytes = Convert.FromBase64String(base64);
-                //        SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                //        SKBitmap bitmap = SKBitmap.Decode(stream);
-                //        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                //        for (int i = 0; i < medCountClasses.Count; i++)
                 //        {
-                //            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                //            List<positionClass> positionClasses = new List<positionClass>();
+                //            for (int j = 0; j < medCountClasses[i].AI結果.Count; j++)
                 //            {
-                //                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
+                //                aiCountResult aiCountResult = medCountClasses[i].AI結果[j];
+                //                string[] position = aiCountResult.座標.Split(";");
+                //                (string width, string height, string center) = GetSquare(position);
+                //                positionClass positionClass = new positionClass
                 //                {
-                //                    data.SaveTo(fileStream);
-                //                }
+                //                    高 = height,
+                //                    寬 = width,
+                //                    中心 = center,
+                //                    信心分數 = aiCountResult.信心分數
+                //                };
+                //                positionClasses.Add(positionClass);
                 //            }
+                //            medCountClass medCountClass = new medCountClass
+                //            {
+                //                藥名 = medCountClasses[i].藥名,
+                //                種類 = medCountClasses[i].種類,
+                //                數量 = medCountClasses[i].數量,
+                //                識別位置 = positionClasses
+                //            };
+                //            out_medCountClass.Add(medCountClass);
                 //        }
                 //    }
+                //    log_task_1 += $" done,{myTimerBasic_task}\n";
+
                 //})));
-                
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.Value == "True")
+                    {
+                        string picfile = file + ".jpg";
+                        string base64 = json_in[0].圖片;
+                        string pre = "data:image/jpeg;base64,";
+                        base64 = base64.Replace(pre, "");
+                        string folderPath = Path.Combine(fileDirectory, project);
+                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                        string filePath = Path.Combine(folderPath, picfile);
+                        byte[] imageBytes = Convert.FromBase64String(base64);
+                        SKMemoryStream stream = new SKMemoryStream(imageBytes);
+                        SKBitmap bitmap = SKBitmap.Decode(stream);
+                        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                        {
+                            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                            {
+                                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
+                                {
+                                    data.SaveTo(fileStream);
+                                }
+                            }
+                        }
+                    }
+                })));
+
                 Task.WhenAll(tasks).Wait();
                 
-                if (out_medCountClass.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"AI辨識失敗 檔案名稱{file}";
-                    Logger.Log(file, project, returnData.JsonSerializationt());
-                    return returnData.JsonSerializationt(true);
-                }
+                //if (out_medCountClass.Count == 0)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"AI辨識失敗 檔案名稱{file}";
+                //    Logger.Log(file, project, returnData.JsonSerializationt());
+                //    return returnData.JsonSerializationt(true);
+                //}
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = out_medCountClass;

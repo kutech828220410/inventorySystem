@@ -493,9 +493,7 @@ namespace HIS_DB_Lib
             returnData.ValueAry.Add(mrn);
 
 
-
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
+            string json_out = Net.WEBApiGet($"{url}{mrn}");
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
             if (returnData_out == null)
             {

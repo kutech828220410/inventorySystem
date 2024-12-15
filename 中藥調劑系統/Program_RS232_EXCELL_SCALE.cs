@@ -64,24 +64,33 @@ namespace 中藥調劑系統
         bool flag_EXCELL_set_sub_current_weight = false;
         private void Program_RS232_EXCELL_SCALE()
         {
+            double? weight = null;
             if (flag_EXCELL_set_sub_current_weight && plC_CheckBox_自動歸零.Checked)
             {
                 System.Threading.Thread.Sleep(100);
                 int retry = 0;
-                while(true)
+                LoadingForm.ShowLoadingForm();
+                while (true)
                 {
-                    if (retry > 3) break;
+                
+                    if (retry > 5) break; 
                     if (ExcelScaleLib_Port.set_sub_current_weight() == true)
                     {
+                        weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
+                        if (weight != 0)
+                        {
+                            retry++;
+                            continue;
+                        }
                         break;
                     }
                     retry++;
                     System.Threading.Thread.Sleep(50);
                 }
-              
+                LoadingForm.CloseLoadingForm();
                 flag_EXCELL_set_sub_current_weight = false;
             }
-            double? weight = null;
+   
 
             if (rJ_RatioButton_調劑種類_科中.Checked)
             {

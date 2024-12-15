@@ -4,7 +4,7 @@
         <name>HIS_WebApi</name>
     </assembly>
     <members>
-        <member name="M:HIS_WebApi._API_TextVision.PCMPO.analyze(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.analyze(HIS_DB_Lib.returnData)">
             <summary>
             執行文字辨識
             </summary>
@@ -27,7 +27,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi._API_TextVision.PCMPO.update_textvision(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.update_textvision(HIS_DB_Lib.returnData)">
             <summary>
             更新文字辨識資料
             </summary>
@@ -55,7 +55,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi._API_TextVision.PCMPO.update_med_code_srch(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.update_med_code_srch(HIS_DB_Lib.returnData)">
             <summary>
             更新檢索表
             </summary>
@@ -78,7 +78,7 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
         </member>
-        <member name="M:HIS_WebApi._API_TextVision.PCMPO.delete_textVision(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.delete_textVision(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除textVision資料
             </summary>
@@ -92,6 +92,24 @@
                     ]
                     
                 }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.voxVerify.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                { 
+                    
+                }
+              }
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>

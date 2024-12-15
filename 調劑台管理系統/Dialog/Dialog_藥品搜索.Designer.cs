@@ -60,7 +60,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥品搜尋_狀態.ShadowSize = 3;
             this.rJ_Lable_藥品搜尋_狀態.Size = new System.Drawing.Size(1492, 149);
             this.rJ_Lable_藥品搜尋_狀態.TabIndex = 7;
-            this.rJ_Lable_藥品搜尋_狀態.Text = "【刷取藥品條碼】";
+            this.rJ_Lable_藥品搜尋_狀態.Text = "【刷取辨識藥品條碼】";
             this.rJ_Lable_藥品搜尋_狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable_藥品搜尋_狀態.TextColor = System.Drawing.Color.White;
             // 

@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.49")]
-[assembly: AssemblyFileVersion("1.0.0.49")]
+[assembly: AssemblyVersion("1.0.0.51")]
+[assembly: AssemblyFileVersion("1.0.0.51")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -176,6 +176,12 @@ namespace 中藥調劑系統
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //string ProcessName = "中藥調劑系統";//換成想要結束的進程名字
+            //System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
+            //for (int i = 0; i < MyProcess.Length; i++)
+            //{
+            //    MyProcess[i].Kill();
+            //}
             LoadingForm.form = this.FindForm();
             Dialog_AlarmForm.form = this.FindForm();
             Dialog_藥品搜尋.form = this.FindForm();

@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.83")]
-[assembly: AssemblyFileVersion("1.2.2.83")]
+[assembly: AssemblyVersion("1.2.2.84")]
+[assembly: AssemblyFileVersion("1.2.2.84")]
 namespace 調劑台管理系統
 {
 
@@ -90,7 +90,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
         PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
-        
+
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -225,6 +225,7 @@ namespace 調劑台管理系統
             private string scanner03_COMPort = "";
             private string scanner04_COMPort = "";
             private string _藥物辨識網址 = "";
+            private string _聲紋辨識_IP = "";
 
 
             public bool 主機扣帳模式 { get => _主機扣帳模式; set => _主機扣帳模式 = value; }
@@ -256,6 +257,7 @@ namespace 調劑台管理系統
             public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
             public bool ControlMode { get => _ControlMode; set => _ControlMode = value; }
             public bool 舊版晶片 { get => _舊版晶片; set => _舊版晶片 = value; }
+            public string 聲紋辨識_IP { get => _聲紋辨識_IP; set => _聲紋辨識_IP = value; }
         }
         private void LoadMyConfig()
         {
@@ -398,7 +400,7 @@ namespace 調劑台管理系統
                 this.FormText = this.Text;
                 this.plC_UI_Init.音效 = false;
                 this.plC_UI_Init.全螢幕顯示 = myConfigClass.全螢幕顯示;
-           
+
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
 
@@ -430,7 +432,7 @@ namespace 調劑台管理系統
             }
         }
         #region Event
-   
+
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")
@@ -562,7 +564,7 @@ namespace 調劑台管理系統
             this.Program_交班作業_交班表_Init();
             this.Program_藥品管制方式設定_Init();
             this.Program_藥品設定表_Init();
-      
+
 
             this.sub_Program_盤點作業_定盤_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
@@ -576,7 +578,7 @@ namespace 調劑台管理系統
 
 
             this.Program_異常通知_盤點錯誤_Init();
-
+            this.Program_聲紋辨識_Init();
             this.LoadConfig工程模式();
 
             if (!this.ControlMode) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
@@ -654,10 +656,10 @@ namespace 調劑台管理系統
             System.Environment.Exit(0);
         }
         private void PlC_ScreenPage_調劑樣式_Resize(object sender, EventArgs e)
-        {     
+        {
             Control control = sender as Control;
             int basic_width = 1660;
-            int offset_width = (control.Width -basic_width) / 2;
+            int offset_width = (control.Width - basic_width) / 2;
 
             if (NumOfConnectedScanner > 1)
             {
@@ -668,7 +670,7 @@ namespace 調劑台管理系統
             }
             if (NumOfConnectedScanner == 4)
             {
-           
+
                 int width = control.Width / 2 - 10;
                 int height = control.Height / 2 - 10;
                 rJ_Pannel_領藥台_01.Width = width;
@@ -752,7 +754,7 @@ namespace 調劑台管理系統
                 plC_CheckBox_面板於過帳後更新.Checked = false;
             }
         }
-     
+
         #endregion
         #region Function
         private void RFID_Iint()
@@ -789,9 +791,9 @@ namespace 調劑台管理系統
                             {
                                 num++;
                             }
-                        
+
                             this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
-                           
+
                         }
                         flag_rfiD_FX600_UI_Init = true;
                         break;
@@ -812,7 +814,7 @@ namespace 調劑台管理系統
                 if (commandLineArgs.Length == 4)
                 {
                     this.ControlMode = (commandLineArgs[3] == true.ToString());
-           
+
                 }
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
@@ -892,7 +894,7 @@ namespace 調劑台管理系統
         }
         private void ApiServerSetting()
         {
-            
+
             if (ControlMode)
             {
                 this.ApiServerSetting(dBConfigClass.Name, "一般資料");

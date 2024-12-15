@@ -895,6 +895,7 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvk
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkMsr.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MyOffice.dll
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NPOI.dll
@@ -916,3 +917,11 @@ C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.d
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdole.dll
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SQLUI.xml
+=======
+C:\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
+C:\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBase.dll
+C:\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrvAsm4.5.dll
+C:\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBaseAsm4.5.dll
+C:\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkMsr.dll
+C:\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.dll
+>>>>>>> master

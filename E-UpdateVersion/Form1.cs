@@ -22,8 +22,8 @@ using IWshRuntimeLibrary;
 using HIS_DB_Lib;
 using MyUI;
 
-[assembly: AssemblyVersion("1.0.17.0")]
-[assembly: AssemblyFileVersion("1.0.17.0")]
+[assembly: AssemblyVersion("1.0.18.0")]
+[assembly: AssemblyFileVersion("1.0.18.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
@@ -241,6 +241,12 @@ namespace E_UpdateVersion
         }
         private void RJ_Button_中藥調劑系統_MouseDownEvent(MouseEventArgs mevent)
         {
+            string ProcessName = "中藥調劑系統";//換成想要結束的進程名字
+            System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
+            for (int i = 0; i < MyProcess.Length; i++)
+            {
+                MyProcess[i].Kill();
+            }
             string 系統名稱 = computerConfigClass.GetValue("中藥調劑系統", "系統名稱");
             string 控制中心 = computerConfigClass.GetValue("中藥調劑系統", "控制中心");
             if (系統名稱.StringIsEmpty())
