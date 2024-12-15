@@ -14,6 +14,8 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("批次ID,VARCHAR,50,INDEX")]
+        批次ID,
         [Description("操作者姓名,VARCHAR,30,INDEX")]
         操作者姓名,
         [Description("操作者ID,VARCHAR,30,INDEX")]
@@ -81,6 +83,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// 批次ID
+        /// </summary>
+        [JsonPropertyName("batch_id")]
+        public string 批次ID { get; set; }
         /// <summary>
         /// 操作者姓名
         /// </summary>

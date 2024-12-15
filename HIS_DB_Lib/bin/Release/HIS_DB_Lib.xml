@@ -3142,6 +3142,11 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批次ID">
+            <summary>
+            批次ID
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.操作者姓名">
             <summary>
             操作者姓名
