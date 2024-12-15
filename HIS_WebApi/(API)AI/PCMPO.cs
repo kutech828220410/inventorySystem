@@ -349,9 +349,11 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "ValueAry":
+        ///         "Data":
         ///         [
-        ///             "GUID",
+        ///             {
+        ///                 "bsse64":
+        ///             }
         ///         ]
         ///         
         ///     }
@@ -362,218 +364,141 @@ namespace HIS_WebApi
         [HttpPost("analyze")]
         public string analyze([FromBody] returnData returnData)
         {
-            string file = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "analyze";
+            returnData.Method = "api/pcmpo/analyze";
             try
             {
-                string API_AI = "http://220.135.128.247:3010";
+                if (returnData.ValueAry.Count == 0)
+                {
+                    returnData.Result = "returnData.ValueAry無傳入資料";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Result = "returnData.ValueAry應為[\"GUID\"]";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API_AI = GetServerAPI("Main", "網頁", "po_vision_api");
                 string API = GetServerAPI("Main", "網頁", "API01");
-                string project = "PO_Vision";
 
-                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                List<object[]> getDateByGuid = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                List<textVisionClass> textVisionClasses = getDateByGuid.SQLToClass<textVisionClass, enum_textVision>();
+                returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, textVisionClasses);
+                if(return_textVisionClass == null)
+                {
+                    returnData.Result = "AI連線失敗";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                if(return_textVisionClass.Result == "False")
+                {
+                    returnData.Result = "AI辨識失敗";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+
+                List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
+                List<positionClass> positionClasses = new List<positionClass>();
+                textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
+                textVisionClass textVision = textVisionClass_AI[0];
+                inspectionClass.content content = new inspectionClass.content();
+                if (textVision.單號.StringIsEmpty() == false)
+                {
+                    content = inspectionClass.content_get_by_PON(API, textVision.單號);
+                    if (content == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"查無對應單號資料 單號 {textVision.單號}";
+                        return returnData.JsonSerializationt(true);
+                    }
+                }
+
                 List<Task> tasks = new List<Task>();
-                returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, input_textVision);
-
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    string picfile = "";
-                    if (return_textVisionClass.Result == "False")
+                    if (content.藥品名稱.StringIsEmpty())
                     {
-                        picfile = "NG" + file + ".jpg";
+                        textVision.藥名 = content.Sub_content[0].藥品名稱;
                     }
                     else
                     {
-                        picfile = file + ".jpg";
+                        textVision.藥名 = content.藥品名稱;
                     }
-                    string base64 = input_textVision[0].圖片;
-                    string pre = "data:image/jpeg;base64,";
-                    base64 = base64.Replace(pre, "");
-
-                    string folderPath = Path.Combine(fileDirectory, project);
-                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                    string filePath = Path.Combine(folderPath, picfile);
-                    byte[] imageBytes = Convert.FromBase64String(base64);
-                    SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                    SKBitmap bitmap = SKBitmap.Decode(stream);
-                    using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                    textVision.藥品碼 = content.藥品碼;
+                    textVision.批號 = content.Sub_content[0].批號;
+                    textVision.效期 = content.Sub_content[0].效期;
+                    textVision.數量 = content.應收數量;
+                    List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                    if (medClasses.Count > 0)
                     {
-                        using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
-                        {
-                            using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
-                            {
-                                data.SaveTo(fileStream);
-                            }
-                        }
+                        textVision.中文名 = medClasses[0].中文名稱;
                     }
                 })));
-                List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
-                List<positionClass> positionClasses = new List<positionClass>();
-                if (return_textVisionClass.Result == "False")
+                tasks.Add(Task.Run(new Action(delegate
                 {
-                    Task.WhenAll(tasks).Wait();
-                    string picfile = "";
-                    picfile = $"NG{file}";
-                    returnData.Code = -200;
-                    returnData.Result = $"辨識失敗 檔案名稱{picfile}";
-                    Logger.Log(file, project, returnData.JsonSerializationt());
-                    return returnData.JsonSerializationt(true);
-                }
-                else
-                {
-                    textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
-                    textVisionClass textVision = textVisionClass_AI[0];
-                    inspectionClass.content content = new inspectionClass.content();
-                    if (textVision.單號.StringIsEmpty() == false)
+                    if (textVision.批號位置.StringIsEmpty() == false)
                     {
-                        content = inspectionClass.content_get_by_PON(API, textVision.單號);
-                        if (content == null)
-                        {
-                            string picfile = "";
-                            picfile = $"NG{file}";
-                            returnData.Code = -200;
-                            returnData.Result = $"查無對應單號資料 檔案名稱{picfile}";
-                            Logger.Log(file, project, returnData.JsonSerializationt());
-                            return returnData.JsonSerializationt(true);
-                        }
+                        positionClass positionClass_batch = GetPosition(textVision.批號位置, textVision.批號信心分數, "batch_num");
+                        positionClasses.LockAdd(positionClass_batch);
+                    }                  
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.中文名位置.StringIsEmpty() == false) 
+                    {
+                        positionClass positionClass_cht = GetPosition(textVision.中文名位置, textVision.中文名信心分數, "cht_name");
+                        positionClasses.LockAdd(positionClass_cht);
                     }
 
-                    tasks.Add(Task.Run(new Action(delegate
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.效期位置.StringIsEmpty() == false)
                     {
-                        if (content.藥品名稱.StringIsEmpty())
-                        {
-                            textVision.藥名 = content.Sub_content[0].藥品名稱;
-                        }
-                        else
-                        {
-                            textVision.藥名 = content.藥品名稱;
-                        }
-                        textVision.藥品碼 = content.藥品碼;
-                        textVision.批號 = content.Sub_content[0].批號;
-                        textVision.效期 = content.Sub_content[0].效期;
-                        textVision.數量 = content.應收數量;
-                        List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
-                        if (medClasses.Count > 0)
-                        {
-                            textVision.中文名 = medClasses[0].中文名稱;
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
+                        positionClass positionClass_expiry = GetPosition(textVision.效期位置, textVision.效期信心分數, "expirydate");
+                        positionClasses.LockAdd(positionClass_expiry);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.藥名位置.StringIsEmpty() == false)
                     {
-                        if (textVision.批號位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.批號位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.批號信心分數,
-                                keyWord = "batch_num",
-                            };
-                            positionClasses.LockAdd(positionClass);
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
-                    {
-                        if (textVision.中文名位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.中文名位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.中文名信心分數,
-                                keyWord = "cht_name",
-                            };
-                            positionClasses.LockAdd(positionClass);
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
-                    {
-                        if (textVision.效期位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.效期位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.效期信心分數,
-                                keyWord = "expirydate",
-                            };
-                            positionClasses.LockAdd(positionClass);
+                        positionClass positionClass_name = GetPosition(textVision.藥名位置, textVision.藥名信心分數, "name");                 
+                        positionClasses.LockAdd(positionClass_name);
 
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.單號位置.StringIsEmpty() == false)
                     {
-                        if (textVision.藥名位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.藥名位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.藥名信心分數,
-                                keyWord = "name",
-                            };
-                            positionClasses.LockAdd(positionClass);
-
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
+                        positionClass positionClass_po = GetPosition(textVision.單號位置, textVision.單號信心分數, "po");
+                        positionClasses.LockAdd(positionClass_po);
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (textVision.數量位置.StringIsEmpty() == false)
                     {
-                        if (textVision.單號位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.單號位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.單號信心分數,
-                                keyWord = "po",
-                            };
-                            positionClasses.LockAdd(positionClass);
-                        }
-                    })));
-                    tasks.Add(Task.Run(new Action(delegate
-                    {
-                        if (textVision.數量位置.StringIsEmpty() == false)
-                        {
-                            string[] position = textVision.數量位置.Split(";");
-                            (string width, string height, string center) = GetSquare(position);
-                            positionClass positionClass = new positionClass
-                            {
-                                高 = height,
-                                寬 = width,
-                                中心 = center,
-                                信心分數 = textVision.數量信心分數,
-                                keyWord = "qty",
-                            };
-                            positionClasses.LockAdd(positionClass);
-                        }
-                    })));
-                    Task.WhenAll(tasks).Wait();
-                    textVision.識別位置 = positionClasses;
-                    textVision.圖片 = input_textVision[0].圖片;
-                    textVisionClass_AI[0] = textVision;
-                }
+                        positionClass positionClass_qty = GetPosition(textVision.數量位置, textVision.數量信心分數, "qty");
+                        positionClasses.LockAdd(positionClass_qty);
+                    }
+                })));
+                Task.WhenAll(tasks).Wait();
+                textVision.識別位置 = positionClasses;
+                textVision.圖片 = textVisionClasses[0].圖片;
+                textVisionClass_AI[0] = textVision;
 
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"辨識成功 檔案名稱{file}";
-                returnData.Method = "PCMPO/analyze";
-                Logger.Log(file, project, returnData.JsonSerializationt());
+                returnData.Result = $"辨識成功";
+                Logger.Log(project, returnData.JsonSerializationt());
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -959,6 +884,20 @@ namespace HIS_WebApi
                 throw new Exception("找無Server資料");
             }
             return serverSettingClass.Server;
+        }
+        private positionClass GetPosition(string 位置, string 信心分數, string keyword)
+        {
+            string[] position = 位置.Split(";");
+            (string width, string height, string center) = GetSquare(position);
+            positionClass positionClass = new positionClass
+            {
+                高 = height,
+                寬 = width,
+                中心 = center,
+                信心分數 = 信心分數,
+                keyWord = keyword,
+            };
+            return positionClass;
         }
 
 
