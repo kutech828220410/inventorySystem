@@ -1743,6 +1743,30 @@ namespace 調劑台管理系統
             Function_抽屜解鎖(list_IP);
 
         }
+        public static List<string> Function_取得抽屜以藥品碼解鎖IP(string Code)
+        {
+            List<Task> tasks = new List<Task>();
+            List<string> list_IP = new List<string>();
+            List<Storage> storages_epd266 = List_EPD266_本地資料.SortByCode(Code);
+            List<Storage> storages_WT32 = List_Pannel35_本地資料.SortByCode(Code);
+            List<Box> Boxes_EPD583 = List_EPD583_雲端資料.SortByCode(Code);
+            for (int i = 0; i < storages_epd266.Count; i++)
+            {
+                list_IP.Add(storages_epd266[i].IP);
+            }
+            for (int i = 0; i < storages_WT32.Count; i++)
+            {
+                list_IP.Add(storages_WT32[i].IP);
+            }
+            for (int i = 0; i < Boxes_EPD583.Count; i++)
+            {
+                list_IP.Add(Boxes_EPD583[i].IP);
+            }
+            list_IP = (from temp in list_IP
+                       select temp).Distinct().ToList();
+
+            return list_IP;
+        }
         public static void Function_抽屜解鎖(List<string> list_IP)
         {
             List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);

@@ -604,16 +604,16 @@ namespace 調劑台管理系統
             myThread_program.Trigger();
         }
         string CodeLast = "";
- 
+
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
-           
+
             string text = "";
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
                 text = this.comboBox_藥品群組.Text;
             }));
-            
+
             List<medGroupClass> medGroupClasses_buf = (from temp in medGroupClasses
                                                        where temp.名稱 == text
                                                        select temp).ToList();
@@ -622,9 +622,10 @@ namespace 調劑台管理系統
             {
                 List<object[]> list_value = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
+                List<string> list_IP = new List<string>();
                 for (int i = 0; i < medGroupClasses_buf[0].MedClasses.Count; i++)
                 {
-                 
+
                     medClass medClass = medGroupClasses_buf[0].MedClasses[i];
                     object[] value = new object[new enum_交班藥品().GetLength()];
                     value[(int)enum_交班藥品.GUID] = medClass.GUID;
@@ -632,15 +633,27 @@ namespace 調劑台管理系統
                     value[(int)enum_交班藥品.藥碼] = medClass.藥品碼;
                     value[(int)enum_交班藥品.藥名] = medClass.藥品名稱;
                     value[(int)enum_交班藥品.單位] = medClass.包裝單位;
-                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
+                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
                     double 庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼);
                     value[(int)enum_交班藥品.庫存] = 差異值 + 庫存;
-                    Main_Form.Function_抽屜以藥品碼解鎖(medClass.藥品碼);
+                    list_IP.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(medClass.藥品碼));
                     list_value.Add(value);
                 }
+
+                list_IP = (from temp in list_IP
+                           select temp).Distinct().ToList();
+
+                for (int i = 0; i < list_IP.Count; i++)
+                {
+                    List<string> IPs = new List<string>();
+                    IPs.LockAdd(list_IP[i]);
+                    Main_Form.Function_抽屜解鎖(IPs);
+                    System.Threading.Thread.Sleep(100);
+                }
+
                 list_value.Sort(new ICP_交班藥品());
                 this.sqL_DataGridView_交班藥品.RefreshGrid(list_value);
-                this.Invoke(new Action(delegate 
+                this.Invoke(new Action(delegate
                 {
                     this.sqL_DataGridView_交班藥品.SetSelectRow(0);
                 }));
@@ -648,7 +661,7 @@ namespace 調劑台管理系統
                 PLC_Device_交班對點.Bool = true;
                 this.stepViewer.Next();
             }
-      
+
         }
 
         private void PlC_RJ_Button_盤點登入_MouseDownEvent(MouseEventArgs mevent)
