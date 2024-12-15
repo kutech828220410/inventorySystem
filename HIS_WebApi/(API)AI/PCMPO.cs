@@ -26,6 +26,7 @@ namespace HIS_WebApi
         private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private static string fileDirectory = $"{currentDirectory}/log/";
         private static string project = "PO_vision";
+        private static string Message = "---------------------------------------------------------------------------";
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "textVisionClass物件", typeof(textVisionClass))]
         [HttpPost("init_textVision")]
         public string init_textVision([FromBody] returnData returnData)
@@ -385,26 +386,32 @@ namespace HIS_WebApi
                 string API_AI = GetServerAPI("Main", "網頁", "po_vision_api");
                 string API = GetServerAPI("Main", "網頁", "API01");
 
-                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<object[]> getDateByGuid = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                List<object[]> getDateByGuid = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
                 List<textVisionClass> textVisionClasses = getDateByGuid.SQLToClass<textVisionClass, enum_textVision>();
                 returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, textVisionClasses);
                 if(return_textVisionClass == null)
                 {
                     returnData.Result = "AI連線失敗";
                     returnData.Code = -200;
+                    Logger.Log(project, returnData.JsonSerializationt());
+                    Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
                 }
-                if(return_textVisionClass.Result == "False")
-                {
-                    returnData.Result = "AI辨識失敗";
-                    returnData.Code = -200;
-                    return returnData.JsonSerializationt(true);
-                }
+               
 
                 List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
                 List<positionClass> positionClasses = new List<positionClass>();
                 textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
+                if (return_textVisionClass.Result == "False")
+                {
+                    returnData.Result = "AI辨識失敗";
+                    returnData.Code = -1;
+                    returnData.Data = textVisionClass_AI;
+                    Logger.Log(project, returnData.JsonSerializationt());
+                    Logger.Log(project, Message);
+                    return returnData.JsonSerializationt(true);
+                }
                 textVisionClass textVision = textVisionClass_AI[0];
                 inspectionClass.content content = new inspectionClass.content();
                 if (textVision.單號.StringIsEmpty() == false)
@@ -412,8 +419,12 @@ namespace HIS_WebApi
                     content = inspectionClass.content_get_by_PON(API, textVision.單號);
                     if (content == null)
                     {
-                        returnData.Code = -200;
+                        returnData.Code = -2;
                         returnData.Result = $"查無對應單號資料 單號 {textVision.單號}";
+                        returnData.Data = textVisionClass_AI;
+                        Logger.Log(project, returnData.JsonSerializationt());
+                        Logger.Log(project, Message);
+
                         return returnData.JsonSerializationt(true);
                     }
                 }
@@ -438,6 +449,13 @@ namespace HIS_WebApi
                     {
                         textVision.中文名 = medClasses[0].中文名稱;
                     }
+                    textVisionClass_AI[0].操作者ID = textVisionClasses[0].操作者ID;
+                    textVisionClass_AI[0].操作者姓名 = textVisionClasses[0].操作者姓名;
+                    textVisionClass_AI[0].圖片 = textVisionClasses[0].圖片;
+                    textVisionClass_AI[0].批次ID = textVisionClasses[0].批次ID;
+
+                    List<object[]> update_textVisionClass = textVisionClass_AI.ClassToSQL<textVisionClass, enum_textVision>();
+                    sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
                 })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
@@ -493,22 +511,23 @@ namespace HIS_WebApi
                 textVision.識別位置 = positionClasses;
                 textVision.圖片 = textVisionClasses[0].圖片;
                 textVisionClass_AI[0] = textVision;
-
+                
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"辨識成功";
                 Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
-
-
         }
         /// <summary>
         /// 更新文字辨識資料
@@ -717,28 +736,13 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("delete_textVision")]
-        public string delete_textVision([FromBody] returnData returnData)
+        [HttpPost("delete_by_GUID")]
+        public string delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "delete_by_GUID";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = serverSettingClass_main[0].Server;
-                string DB = serverSettingClass_main[0].DBName;
-                string UserName = serverSettingClass_main[0].User;
-                string Password = serverSettingClass_main[0].Password;
-                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
-
-
                 if (returnData.ValueAry == null)
                 {
                     returnData.Data = -200;
@@ -752,6 +756,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
                 string GUID = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
 
@@ -765,19 +770,89 @@ namespace HIS_WebApi
                 sQLControl_textVision.DeleteExtra(null, list_textVision);
 
                 returnData.Code = 200;
-                returnData.Data = list_textVision;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Method = "delete";
-                returnData.Result = $"刪除<{list_textVision.Count}>筆";
+                returnData.Result = $"成功刪除<{list_textVision.Count}>筆資料";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 以GUID刪除textVision資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///             "GUID"
+        ///         ]
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_GUID")]
+        public string get_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_GUID";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string GUID = returnData.ValueAry[0];
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                if (list_textVision.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+
+                returnData.Code = 200;
+                returnData.Data = textVisionClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得GUID : {GUID} 資料";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
         /// <summary>
         /// 資料預儲存
         /// </summary>
@@ -818,7 +893,7 @@ namespace HIS_WebApi
                 }
       
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
-                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
                 string GUID = Guid.NewGuid().ToString();
                 foreach (textVisionClass textVisionClass in input_textVision)
                 {
@@ -826,7 +901,7 @@ namespace HIS_WebApi
                 }
 
                 List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
-                sQLControl_med_carInfo.AddRows(null, list_textVision);
+                sQLControl_textVision.AddRows(null, list_textVision);
                 foreach (textVisionClass textVisionClass in input_textVision)
                 {
                     textVisionClass.圖片 = "";
@@ -836,13 +911,16 @@ namespace HIS_WebApi
                 returnData.Data = input_textVision;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"請購單資料預儲存成功";
-                //Logger.Log(file, project, returnData.JsonSerializationt());
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
 

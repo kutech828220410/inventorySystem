@@ -73,6 +73,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AudioProcessingLibrary">
+      <HintPath>..\0.DLL\AudioProcessingLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Basic">
       <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
@@ -183,10 +186,6 @@
 
   <ItemGroup>
     <Folder Include="WebControllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\HIS_DB_Lib\HIS_DB_Lib.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties libman_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
