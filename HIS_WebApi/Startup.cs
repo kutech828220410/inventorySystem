@@ -43,9 +43,9 @@ namespace HIS_WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // 添加分布式內存緩存以支持 Session
+            //添加分布式內存緩存以支持 Session
             services.AddDistributedMemoryCache();
-            // 配置 Session
+            //配置 Session
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(5); // Session 過期時間

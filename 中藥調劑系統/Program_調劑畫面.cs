@@ -105,6 +105,7 @@ namespace 中藥調劑系統
             this.plC_RJ_Button_完成調劑.MouseDownEvent += PlC_RJ_Button_完成調劑_MouseDownEvent;
             this.plC_RJ_Button_取消調劑.MouseDownEvent += PlC_RJ_Button_取消調劑_MouseDownEvent;
             this.plC_RJ_Button_移至未調劑.MouseDownEvent += PlC_RJ_Button_移至未調劑_MouseDownEvent;
+            this.plC_RJ_Button_保健食品.MouseDownEvent += PlC_RJ_Button_保健食品_MouseDownEvent;
             this.ToolStripMenuItem_處方內容_調劑完成.Click += ToolStripMenuItem_處方內容_調劑完成_Click;
             this.ToolStripMenuItem_處方內容_設為未調劑.Click += ToolStripMenuItem_處方內容_設為未調劑_Click;
 
@@ -122,6 +123,8 @@ namespace 中藥調劑系統
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+ 
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -422,18 +425,20 @@ namespace 中藥調劑系統
                         }
                         if (orderClasses.Count > 0)
                         {
-                            bool flag_ok = false;
+                            bool flag_ok = true;
+
                             if(rJ_Lable_領藥號.Text == orderClasses[0].領藥號)
                             {
                                 Voice voice = new Voice();
                                 voice.SpeakOnTask(RemoveParenthesesContent($"此處方正在調劑中"));
-                                if (MyMessageBox.ShowDialog("此處方正在調劑中,是否重新亮燈?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes) flag_ok = true;
+                                if (MyMessageBox.ShowDialog("此處方正在調劑中,是否重新亮燈?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) flag_ok = false;
                             }
                        
                             string PRI_KEY = orderClasses[0].PRI_KEY;
                             this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
                             List<string> Codes = (from temp in orderClasses
                                                   select temp.藥品碼).Distinct().ToList();
+
                             if (flag_ok) Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
 
                         }
@@ -680,7 +685,7 @@ namespace 中藥調劑系統
                     rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
                     rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
                     rJ_Lable_科別.Text = $"科別 : -----";
-
+                    rJ_Lable_領藥號.Text = $"-----";
                 }));
             }));
         }
@@ -1326,6 +1331,10 @@ namespace 中藥調劑系統
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
             RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
+        }
+        private void PlC_RJ_Button_保健食品_MouseDownEvent(MouseEventArgs mevent)
+        {
+           
         }
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)
         {

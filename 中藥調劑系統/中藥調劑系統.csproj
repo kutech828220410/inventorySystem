@@ -347,6 +347,7 @@
     <None Include="Resources\check_512_sWy_icon.ico" />
     <None Include="Resources\adjusted_system-removebg-preview2.png" />
     <None Include="Resources\adjusted_checkmark-removebg-preview1.png" />
+    <None Include="Resources\-health-supplements-order-removebg-preview.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>
