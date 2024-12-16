@@ -21,7 +21,7 @@ namespace HIS_WebApi
     [ApiController]
     public class PCMPO : ControllerBase
     {
-        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        //static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private static string fileDirectory = $"{currentDirectory}/log/";
@@ -536,18 +536,10 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
+        ///         "ValueAry":
         ///         [
-        ///             {
-        ///                 "GUID":"",
-        ///                 "name":"",
-        ///                 "cht_name":"",
-        ///                 "batch_num":"",
-        ///                 "po_num":
-        ///                 "qty":"",
-        ///                 "expirydate":"",
-        ///                 "code":"" 
-        ///             }
+        ///                 "GUID",
+        ///                 "po_num"
         ///         ]
         ///         
         ///     }
@@ -555,38 +547,33 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("update_textvision")]
-        public string update_textvision([FromBody] returnData returnData)
+        [HttpPost("update_by_GUID_poNum")]
+        public string update_by_GUID_poNum([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_textvision";
+            returnData.Method = "update_by_GUID_poNum";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClass_main = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = serverSettingClass_main[0].Server;
-                string DB = serverSettingClass_main[0].DBName;
-                string UserName = serverSettingClass_main[0].User;
-                string Password = serverSettingClass_main[0].Password;
-                uint Port = (uint)serverSettingClass_main[0].Port.StringToInt32();
-
-                if (returnData.Data == null)
+                if (returnData.ValueAry == null)
                 {
                     returnData.Data = -200;
-                    returnData.Result = "returnData.Data 空白，請輸入對應欄位資料!";
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
                     return returnData.JsonSerializationt();
                 }
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\",\"單號\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                string 單號 = returnData.ValueAry[1];
 
-                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
-                string GUID = input_textVision[0].GUID;
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
+
                 List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
                 if (list_textVision.Count == 0)
                 {
@@ -595,14 +582,36 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                inspectionClass.content content = inspectionClass.content_get_by_PON(API, 單號);
+                if(content == null)
+                {
+                    returnData.Code = -2;
+                    returnData.Result = $"查無對應單號資料 單號 {單號}";
+                    Logger.Log(project, returnData.JsonSerializationt());
+                    Logger.Log(project, Message);
 
-                if (textVisionClasses[0].批號 != input_textVision[0].批號) textVisionClasses[0].批號 = input_textVision[0].批號;
-                if (textVisionClasses[0].單號 != input_textVision[0].單號) textVisionClasses[0].單號 = input_textVision[0].單號;
-                if (textVisionClasses[0].數量 != input_textVision[0].數量) textVisionClasses[0].數量 = input_textVision[0].數量;
-                if (textVisionClasses[0].效期 != input_textVision[0].效期) textVisionClasses[0].效期 = input_textVision[0].效期;
-                if (textVisionClasses[0].藥品碼 != input_textVision[0].藥品碼) textVisionClasses[0].藥品碼 = input_textVision[0].藥品碼;
-                if (textVisionClasses[0].藥名 != input_textVision[0].藥名) textVisionClasses[0].藥名 = input_textVision[0].藥名;
-                if (textVisionClasses[0].中文名 != input_textVision[0].中文名) textVisionClasses[0].中文名 = input_textVision[0].中文名;
+                    return returnData.JsonSerializationt(true);
+                }
+                textVisionClass textVision = textVisionClasses[0];
+                textVision.單號 = 單號;
+                if (content.藥品名稱.StringIsEmpty())
+                {
+                    textVision.藥名 = content.Sub_content[0].藥品名稱;
+                }
+                else
+                {
+                    textVision.藥名 = content.藥品名稱;
+                }
+                textVision.藥品碼 = content.藥品碼;
+                textVision.批號 = content.Sub_content[0].批號;
+                textVision.效期 = content.Sub_content[0].效期;
+                textVision.數量 = content.應收數量;
+                List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                if (medClasses.Count > 0)
+                {
+                    textVision.中文名 = medClasses[0].中文名稱;
+                }
+                textVisionClasses[0] = textVision;
 
                 List<object[]> Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
@@ -611,6 +620,8 @@ namespace HIS_WebApi
                 returnData.Data = textVisionClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"編輯<{Update_textVision.Count}>筆";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -852,7 +863,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-
         /// <summary>
         /// 資料預儲存
         /// </summary>
