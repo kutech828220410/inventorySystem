@@ -231,7 +231,8 @@ namespace HIS_DB_Lib
 
         static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
-            string url = $"{API}/PO_Vision";
+            //string url = $"{API}/PO_Vision";
+            string url = API;
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;
