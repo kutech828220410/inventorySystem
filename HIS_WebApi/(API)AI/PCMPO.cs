@@ -393,7 +393,7 @@ namespace HIS_WebApi
                 if(return_textVisionClass == null)
                 {
                     returnData.Result = "AI連線失敗";
-                    returnData.Code = -200;
+                    returnData.Code = -3;
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
@@ -908,6 +908,7 @@ namespace HIS_WebApi
                 foreach (textVisionClass textVisionClass in input_textVision)
                 {
                     textVisionClass.GUID = GUID;
+                    textVisionClass.操作時間 = DateTime.Now.ToDateTimeString();
                 }
 
                 List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
@@ -935,6 +936,68 @@ namespace HIS_WebApi
             }
 
 
+        }
+        [HttpPost("recover")]
+        public string recover([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "recover";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"操作者ID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API_Server = GetServerAPI("Main", "網頁", "API01");
+                string 操作者ID = returnData.ValueAry[0];
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
+                string maxBatchID = dicTextVision.Keys.Max();
+                List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
+                List<textVisionClass> result = new List<textVisionClass>();
+                for(int i = 0; i < textVisions.Count; i++)
+                {
+                    if (!textVisions[i].Log.StringIsEmpty())
+                    {
+                        returnData returnData_analyze = textVisionClass.analyze(API_Server, textVisions[i].GUID);
+                        if(returnData_analyze.Code == 200)
+                        {
+                            List<textVisionClass> textVision = returnData_analyze.Data.ObjToClass<List<textVisionClass>>();
+                            result.Add(textVision[0]);
+                        }
+                    }
+                    else
+                    {
+                        result.Add(textVisions[i]);
+                    }
+                }
+                returnData.Code = 200;
+                returnData.Data = result;
+                returnData.Result = $"操作者ID : {操作者ID}  批次ID: {maxBatchID}共{textVisions.Count}筆，辨識完成";
+                returnData.TimeTaken = $"{myTimerBasic}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+
+            }
         }
 
         private (string width, string height, string center) GetSquare(string[] position)

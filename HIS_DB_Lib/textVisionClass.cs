@@ -226,8 +226,44 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("value")]
         public List<positionClass> 識別位置 { get; set; }
+        static public returnData analyze(string API_Server, string GUID)
+        {
+            string url = $"{API_Server}/api/pcmpo/analyze";
+            returnData returnData = new returnData();
+            returnData.ValueAry[0] = GUID;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
+        static public Dictionary<string, List<textVisionClass>> ToDicByBatchID(List<textVisionClass> textVisionClasses)
+        {
+            Dictionary<string, List<textVisionClass>> dictionary = new Dictionary<string, List<textVisionClass>>();
+            foreach(textVisionClass item in textVisionClasses)
+            {
+                if(dictionary.TryGetValue(item.批次ID, out List<textVisionClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.批次ID] = new List<textVisionClass>() { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<textVisionClass> GetValueByBatchID(Dictionary<string, List<textVisionClass>> dict, string batchID)
+        {
+            if(dict.TryGetValue(batchID,out List<textVisionClass> list))
+            {
+                return list;
+            }
+            else
+            {
+                return new List<textVisionClass>();
+            }
 
-
+        }     
 
         static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
         {
