@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text;
 using MyOffice;
+using OfficeOpenXml;
 
 
 
@@ -3252,7 +3253,41 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [Route("excel_download")]
+        [HttpGet]
+        public IActionResult excel_download()
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                worksheet.Cells[1,1].Value = "藥碼" ;
+                worksheet.Cells[1,2].Value = "中文名";
+                worksheet.Cells[1,3].Value = "藥名";
+                worksheet.Cells[1,4].Value = "藥品學名";
+                worksheet.Cells[1,5].Value = "健保碼";
+                worksheet.Cells[1,6].Value = "包裝單位";
+                worksheet.Cells[1,7].Value = "庫存";
+                worksheet.Cells[1,8].Value = "安全庫存";
+                worksheet.Cells[1,9].Value = "警訊藥品";
+                worksheet.Cells[1,10].Value = "高價藥品";
+                worksheet.Cells[1,11].Value = "管制級別";
+                worksheet.Cells[1,12].Value = "類別";
+                worksheet.Cells[1,13].Value = "廠牌";
+                worksheet.Cells[1,14].Value = "藥品許可證號";
 
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                stream.Position = 0;
+
+                string fileName = "medpage.xlsx";
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                return File(stream, contentType, fileName);
+            }
+        }
         static public Dictionary<string, List<H_Pannel_lib.DeviceSimple>> ConvertToDictionary(List<H_Pannel_lib.DeviceSimple>  deviceSimples)
         {
             Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = new Dictionary<string, List<H_Pannel_lib.DeviceSimple>>();
