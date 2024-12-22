@@ -769,7 +769,8 @@ namespace HIS_DB_Lib
         static public List<string> GetPackages(this List<OrderTClass> orderTClasses)
         {
             List<string> Packages = (from temp in orderTClasses
-                                  select temp.劑量單位).Distinct().ToList();
+                                     where temp.劑量單位.StringIsEmpty() == false
+                                     select temp.劑量單位).Distinct().ToList();
 
             return Packages;
         }
