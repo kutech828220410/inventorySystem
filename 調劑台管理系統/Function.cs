@@ -1513,11 +1513,7 @@ namespace 調劑台管理系統
                             list_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.RFID_Device)
-                    {
-                        list_IP.Add(IP);
-                        list_lock_IP.Add(IP);
-                    }
+              
                 }
             }
 
