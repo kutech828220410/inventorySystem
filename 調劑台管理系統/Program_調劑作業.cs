@@ -54,16 +54,20 @@ namespace 調劑台管理系統
             }
         }
         private string QR_Code_醫令模式切換 = "%%001";
-        MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
-        MyTimer myTimer_領藥台_02_Logout = new MyTimer(5000);
-        MyTimer myTimer_領藥台_03_Logout = new MyTimer(5000);
-        MyTimer myTimer_領藥台_04_Logout = new MyTimer(5000);
-        Basic.MyThread MyThread_領藥台_01;
-        Basic.MyThread MyThread_領藥台_02;
-        Basic.MyThread MyThread_領藥台_03;
-        Basic.MyThread MyThread_領藥台_04;
-        Basic.MyThread MyThread_領藥_RFID;
-        Basic.MyThread MyThread_領藥_RFID_入出庫資料檢查;
+        private MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
+        private MyTimer myTimer_領藥台_02_Logout = new MyTimer(5000);
+        private MyTimer myTimer_領藥台_03_Logout = new MyTimer(5000);
+        private MyTimer myTimer_領藥台_04_Logout = new MyTimer(5000);
+        private Basic.MyThread MyThread_領藥台_01;
+        private Basic.MyThread MyThread_領藥台_02;
+        private Basic.MyThread MyThread_領藥台_03;
+        private Basic.MyThread MyThread_領藥台_04;
+        private Basic.MyThread MyThread_領藥_RFID;
+        private Basic.MyThread MyThread_領藥_RFID_入出庫資料檢查;
+        private Basic.MyThread MyThread_DHT;
+
+        private MyTimerBasic MyTimerBasic_dht_timeout = new MyTimerBasic();
+
         private Voice voice = new Voice();
         private bool flag_Program_領藥台_01_換頁 = false;
         private bool flag_Program_領藥台_02_換頁 = false;
@@ -447,6 +451,13 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID.AutoStop(false);
             this.MyThread_領藥_RFID.SetSleepTime(100);
             this.MyThread_領藥_RFID.Trigger();
+
+            this.MyThread_DHT = new Basic.MyThread(this.FindForm());
+            this.MyThread_DHT.Add_Method(this.sub_Program_DHT);
+            this.MyThread_DHT.AutoRun(true);
+            this.MyThread_DHT.AutoStop(false);
+            this.MyThread_DHT.SetSleepTime(500);
+            this.MyThread_DHT.Trigger();
 
             this.MyThread_領藥_RFID_入出庫資料檢查 = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID_入出庫資料檢查.Add_Method(this.sub_Program_領藥_入出庫資料檢查);
@@ -854,6 +865,36 @@ namespace 調劑台管理系統
                 flag_Program_領藥_RFID_換頁 = true;
             }
             this.sub_Program_領藥_RFID_檢查刷卡();
+        }
+
+        private void sub_Program_DHT()
+        {
+            StorageUI_EPD_266.UDP_READ uDP_READ_266 = this.storageUI_EPD_266.Get_UDP_READ("192.168.0.50");
+            bool flag_ping = Basic.Net.Ping("192.168.0.50", 2, 100);
+            if (uDP_READ_266 != null)
+            {
+                this.Invoke(new Action(delegate 
+                {
+                    if (this.panel_DHT.Visible == false)
+                    {
+                        this.panel_DHT.Visible = true;
+                    }
+                  
+
+                    label_溫度.Text = $"{uDP_READ_266.dht_t.ToString("0.00")}°C";
+                    label_濕度.Text = $"{uDP_READ_266.dht_h.ToString("0.00")} %";
+                }));
+                MyTimerBasic_dht_timeout.TickStop();
+                MyTimerBasic_dht_timeout.StartTickTime(3000);
+            }
+            if (this.panel_DHT.Visible == true)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    this.panel_DHT.BackColor = flag_ping ? Color.White : Color.Yellow;
+                }));
+            }
+
         }
 
         #region 領藥台_01
