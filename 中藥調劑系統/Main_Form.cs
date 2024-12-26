@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.51")]
-[assembly: AssemblyFileVersion("1.0.0.51")]
+[assembly: AssemblyVersion("1.0.0.52")]
+[assembly: AssemblyFileVersion("1.0.0.52")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -24,7 +24,6 @@ namespace 中藥調劑系統
         public static string ServerType = "中藥調劑系統";
         public static string ServerName = "http://127.0.0.1:4433";
         public PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
-        public static string Order_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private LadderConnection.LowerMachine PLC;
         public static RowsLEDUI _rowsLEDUI = null;
@@ -61,6 +60,7 @@ namespace 中藥調劑系統
             private string name = "";
             private string api_Server = "";
             private string orderApiURL = "";
+            private string orderTApiURL = "";
 
             public string Name { get => name; set => name = value; }
             public string Api_Server { get => api_Server; set => api_Server = value; }
@@ -72,8 +72,8 @@ namespace 中藥調劑系統
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_儲位資料 { get => dB_儲位資料; set => dB_儲位資料 = value; }
             [JsonIgnore]
+            public string OrderTApiURL { get => orderTApiURL; set => orderTApiURL = value; }
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
-
         }
         private void LoadDBConfig()
         {
@@ -297,6 +297,7 @@ namespace 中藥調劑系統
             ServerSettingClass serverSettingClass_一般資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "一般資料");
             ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "儲位資料");
             ServerSettingClass serverSettingClass_VM端 = serverSettingClasses.myFind(Name, "中藥調劑系統", "VM端");
+            ServerSettingClass serverSettingClass_OrderT_API = serverSettingClasses.myFind(Name, "中藥調劑系統", "OrderT_API");
             ServerSettingClass serverSettingClass_Order_API = serverSettingClasses.myFind(Name, "中藥調劑系統", "Order_API");
 
 
@@ -324,6 +325,7 @@ namespace 中藥調劑系統
                 dBConfigClass.DB_儲位資料.UserName = serverSettingClass_儲位資料.User;
                 dBConfigClass.DB_儲位資料.Password = serverSettingClass_儲位資料.Password;
             }
+            if (serverSettingClass_OrderT_API != null) dBConfigClass.OrderTApiURL = serverSettingClass_OrderT_API.Server;
             if (serverSettingClass_Order_API != null) dBConfigClass.OrderApiURL = serverSettingClass_Order_API.Server;
         }
     }

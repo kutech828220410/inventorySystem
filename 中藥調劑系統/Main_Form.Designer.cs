@@ -32,6 +32,7 @@ namespace 中藥調劑系統
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.panel_main = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_保健食品 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_其它處方 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_強制滅燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButtonEx3 = new MyUI.PLC_RJ_ScreenButtonEx();
@@ -241,7 +242,6 @@ namespace 中藥調劑系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.plC_RJ_Button_保健食品 = new MyUI.PLC_RJ_Button();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -324,6 +324,60 @@ namespace 中藥調劑系統
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(1904, 100);
             this.panel_main.TabIndex = 1;
+            // 
+            // plC_RJ_Button_保健食品
+            // 
+            this.plC_RJ_Button_保健食品.AutoResetState = false;
+            this.plC_RJ_Button_保健食品.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_保健食品.Bool = false;
+            this.plC_RJ_Button_保健食品.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_保健食品.BorderRadius = 10;
+            this.plC_RJ_Button_保健食品.BorderSize = 1;
+            this.plC_RJ_Button_保健食品.but_press = false;
+            this.plC_RJ_Button_保健食品.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_保健食品.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_保健食品.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Button_保健食品.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_保健食品.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_保健食品.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_保健食品.GUID = "";
+            this.plC_RJ_Button_保健食品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_保健食品.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
+            this.plC_RJ_Button_保健食品.Location = new System.Drawing.Point(748, 0);
+            this.plC_RJ_Button_保健食品.Name = "plC_RJ_Button_保健食品";
+            this.plC_RJ_Button_保健食品.OFF_文字內容 = "保健食品";
+            this.plC_RJ_Button_保健食品.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_保健食品.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_保健食品.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_保健食品.ON_BorderSize = 1;
+            this.plC_RJ_Button_保健食品.ON_文字內容 = "保健食品";
+            this.plC_RJ_Button_保健食品.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_保健食品.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_保健食品.ON_背景顏色 = System.Drawing.Color.OrangeRed;
+            this.plC_RJ_Button_保健食品.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_保健食品.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_保健食品.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_保健食品.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_保健食品.ShadowSize = 3;
+            this.plC_RJ_Button_保健食品.ShowLoadingForm = false;
+            this.plC_RJ_Button_保健食品.Size = new System.Drawing.Size(97, 100);
+            this.plC_RJ_Button_保健食品.State = false;
+            this.plC_RJ_Button_保健食品.TabIndex = 167;
+            this.plC_RJ_Button_保健食品.Text = "保健食品";
+            this.plC_RJ_Button_保健食品.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_保健食品.TextHeight = 35;
+            this.plC_RJ_Button_保健食品.Texts = "保健食品";
+            this.plC_RJ_Button_保健食品.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_保健食品.字型鎖住 = false;
+            this.plC_RJ_Button_保健食品.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_保健食品.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_保健食品.文字鎖住 = false;
+            this.plC_RJ_Button_保健食品.背景圖片 = global::中藥調劑系統.Properties.Resources._health_supplements_order_removebg_preview;
+            this.plC_RJ_Button_保健食品.讀取位元反向 = false;
+            this.plC_RJ_Button_保健食品.讀寫鎖住 = false;
+            this.plC_RJ_Button_保健食品.音效 = false;
+            this.plC_RJ_Button_保健食品.顯示 = false;
+            this.plC_RJ_Button_保健食品.顯示狀態 = false;
             // 
             // plC_RJ_Button_其它處方
             // 
@@ -4624,61 +4678,6 @@ namespace 中藥調劑系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // plC_RJ_Button_保健食品
-            // 
-            this.plC_RJ_Button_保健食品.AutoResetState = false;
-            this.plC_RJ_Button_保健食品.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_保健食品.Bool = false;
-            this.plC_RJ_Button_保健食品.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_保健食品.BorderRadius = 10;
-            this.plC_RJ_Button_保健食品.BorderSize = 1;
-            this.plC_RJ_Button_保健食品.but_press = false;
-            this.plC_RJ_Button_保健食品.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_保健食品.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_保健食品.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_RJ_Button_保健食品.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_保健食品.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_保健食品.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_保健食品.GUID = "";
-            this.plC_RJ_Button_保健食品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_保健食品.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
-            this.plC_RJ_Button_保健食品.Location = new System.Drawing.Point(748, 0);
-            this.plC_RJ_Button_保健食品.Name = "plC_RJ_Button_保健食品";
-            this.plC_RJ_Button_保健食品.OFF_文字內容 = "保健食品";
-            this.plC_RJ_Button_保健食品.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_保健食品.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_保健食品.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_保健食品.ON_BorderSize = 1;
-            this.plC_RJ_Button_保健食品.ON_文字內容 = "保健食品";
-            this.plC_RJ_Button_保健食品.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_保健食品.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_保健食品.ON_背景顏色 = System.Drawing.Color.OrangeRed;
-            this.plC_RJ_Button_保健食品.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_保健食品.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_保健食品.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_保健食品.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_保健食品.ShadowSize = 3;
-            this.plC_RJ_Button_保健食品.ShowLoadingForm = false;
-            this.plC_RJ_Button_保健食品.Size = new System.Drawing.Size(97, 100);
-            this.plC_RJ_Button_保健食品.State = false;
-            this.plC_RJ_Button_保健食品.TabIndex = 167;
-            this.plC_RJ_Button_保健食品.Text = "保健食品";
-            this.plC_RJ_Button_保健食品.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_保健食品.TextHeight = 35;
-            this.plC_RJ_Button_保健食品.Texts = "保健食品";
-            this.plC_RJ_Button_保健食品.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_保健食品.字型鎖住 = false;
-            this.plC_RJ_Button_保健食品.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_保健食品.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_保健食品.文字鎖住 = false;
-            this.plC_RJ_Button_保健食品.背景圖片 = global::中藥調劑系統.Properties.Resources._health_supplements_order_removebg_preview;
-            this.plC_RJ_Button_保健食品.致能讀取位置 = "S4000";
-            this.plC_RJ_Button_保健食品.讀取位元反向 = false;
-            this.plC_RJ_Button_保健食品.讀寫鎖住 = false;
-            this.plC_RJ_Button_保健食品.音效 = false;
-            this.plC_RJ_Button_保健食品.顯示 = false;
-            this.plC_RJ_Button_保健食品.顯示狀態 = false;
             // 
             // Main_Form
             // 

@@ -3142,6 +3142,11 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批次ID">
+            <summary>
+            批次ID
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.操作者姓名">
             <summary>
             操作者姓名
@@ -3863,6 +3868,36 @@
         <member name="P:HIS_DB_Lib.udnoectc_ctcvars.說明">
             <summary>
             說明
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.程式名稱">
+            <summary>
+            程式名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.內容">
+            <summary>
+            內容
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.信心分數">
+            <summary>
+            信心分數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.ServerName">
+            <summary>
+            ServerName
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.voxVerifyClass.ServerType">
+            <summary>
+            ServerType
             </summary>
         </member>
     </members>

@@ -199,7 +199,6 @@ namespace 智能藥庫系統
             List<Storage> storages_EPD266 = List_EPD266_雲端資料;
             List<Storage> storages_EPD266_buf = new List<Storage>();
 
-            Dictionary<string, List<Storage>> keyValuePairs_storage =  storages_EPD266.CoverToDictionaryByIP();
 
             List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266 = this.storageUI_EPD_266.GerAllUDP_READ();
             //Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 藥品區域,取得uDP_READs_EPD266,{uDP_READs_EPD266.Count}筆資料  ,{myTimer}");
@@ -207,10 +206,11 @@ namespace 智能藥庫系統
             List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266_buf = new List<StorageUI_EPD_266.UDP_READ>();
             for (int i = 0; i < uDP_READs_EPD266.Count; i++)
             {
-                storages_EPD266_buf = keyValuePairs_storage.SortDictionaryByIP(uDP_READs_EPD266[i].IP);
-                if(storages_EPD266_buf.Count > 0)
+                Storage storage = storages_EPD266.SortByIP(uDP_READs_EPD266[i].IP);
+                if(storage != null)
                 {
-                    storages_EPD266_buf[0].LightState.IsLightOn = uDP_READs_EPD266[i].WS2812_State;
+                    storage.LightState.IsLightOn = uDP_READs_EPD266[i].WS2812_State;
+                    storages_EPD266.Add_NewStorage(storage);
                 }
               
             }
