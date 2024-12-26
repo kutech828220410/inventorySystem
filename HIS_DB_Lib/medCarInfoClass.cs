@@ -527,7 +527,7 @@ namespace HIS_DB_Lib
                 return new List<medCarInfoClass>();
             }
         }
-        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByBedNum(List<medCarInfoClass> medCarInfoClasses)
+        static public Dictionary<string, List<medCarInfoClass>> ToDictByBedNum(List<medCarInfoClass> medCarInfoClasses)
         {
             Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
             foreach (var item in medCarInfoClasses)
@@ -543,7 +543,7 @@ namespace HIS_DB_Lib
             }
             return dictionary;
         }
-        static public List<medCarInfoClass> SortDictByBedNum(Dictionary<string, List<medCarInfoClass>> dict, string 床號)
+        static public List<medCarInfoClass> GetDictByBedNum(Dictionary<string, List<medCarInfoClass>> dict, string 床號)
         {
             if (dict.TryGetValue(床號, out List<medCarInfoClass> medCarInfoClasses))
             {

@@ -457,6 +457,21 @@ namespace HIS_DB_Lib
             //medCarListClass medCarListClass = returnData.Data.ObjToClass<medCarListClass>();
             return returnData;
         }
+        static public List<medCpoeClass> get_medCpoe(string API_Server)
+        {
+            List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
+            string url = $"{API_Server}/api/med_cart/get_medCpoe";
+
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCpoeClass;
+        }
         static public List<medClass> get_med_clouds_by_codes(string API_Server, List<string> code)
         {
             string url = $"{API_Server}/api/MED_page/get_med_clouds_by_codes";

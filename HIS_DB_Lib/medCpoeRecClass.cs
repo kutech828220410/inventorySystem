@@ -244,7 +244,7 @@ namespace HIS_DB_Lib
             return out_medCarInfoClass;
 
         }
-        static public Dictionary<string, List<medCpoeRecClass>> CoverToDictByMasterGUID(List<medCpoeRecClass> medCpoeRecClasses)
+        static public Dictionary<string, List<medCpoeRecClass>> ToDictByMasterGUID(List<medCpoeRecClass> medCpoeRecClasses)
         {
             Dictionary<string, List<medCpoeRecClass>> dictionary = new Dictionary<string, List<medCpoeRecClass>>();
             foreach (var item in medCpoeRecClasses)
@@ -260,7 +260,7 @@ namespace HIS_DB_Lib
             }
             return dictionary;
         }
-        static public List<medCpoeRecClass> SortDictByMasterGUID(Dictionary<string, List<medCpoeRecClass>> dict, string master_GUID)
+        static public List<medCpoeRecClass> GetDictByMasterGUID(Dictionary<string, List<medCpoeRecClass>> dict, string master_GUID)
         {
             if (dict.TryGetValue(master_GUID, out List<medCpoeRecClass> medCpoeRecClasses))
             {
