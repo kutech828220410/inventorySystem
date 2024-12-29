@@ -37,7 +37,7 @@ namespace HIS_DB_Lib
         病歷號,
         [Description("調劑台,VARCHAR,30,NONE")]
         調劑台,
-        [Description("序號,VARCHAR,100,NONE")]
+        [Description("序號,VARCHAR,150,NONE")]
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
         狀態,
@@ -55,7 +55,7 @@ namespace HIS_DB_Lib
         藥品名,
         [Description("中文名,VARCHAR,150,NONE")]
         中文名,
-        [Description("途徑,VARCHAR,10,NONE")]
+        [Description("途徑,VARCHAR,30,NONE")]
         途徑,
         [Description("數量,VARCHAR,10,NONE")]
         數量,

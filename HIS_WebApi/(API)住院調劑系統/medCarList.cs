@@ -74,7 +74,7 @@ namespace HIS_WebApi._API_住院調劑系統
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "ValueAry":[藥局, 護理站]
+        ///         "ValueAry":[藥局代號,藥局, 護理站]
         ///     }
         /// </code>
         /// </remarks>
@@ -96,7 +96,7 @@ namespace HIS_WebApi._API_住院調劑系統
                 if (returnData.ValueAry.Count != 3)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥局代號,藥局, 護理站]";
                     return returnData.JsonSerializationt(true);
                 }
                 string 藥局代號 = returnData.ValueAry[0];
