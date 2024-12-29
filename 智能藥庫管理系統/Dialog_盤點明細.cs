@@ -57,9 +57,6 @@ namespace 智能藥庫系統
 
         }
 
-  
-
-
         #region Fucntion
         private void Function_RereshUI(List<inventoryClass.content> contents)
         {
