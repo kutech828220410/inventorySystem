@@ -3198,6 +3198,8 @@ namespace HIS_WebApi
                 inventoryClass.creat creat = new inventoryClass.creat();
                 string error = "";
                 List<medClass> medClasses = new List<medClass>();
+                string str = "";
+                List<string> 中西藥 = new List<string> {"中藥","西藥"};
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     await formFile.CopyToAsync(memoryStream);
@@ -3210,13 +3212,23 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt(true);
                     }
                     List<object[]> list_value = dt.DataTableToRowList();
-
-                    //if (IC_NAME.StringIsEmpty())
-                    //{
-                    //    IC_NAME = Path.GetFileNameWithoutExtension(file.FileName);
-                    //}
+                    if(list_value.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"文件內容不得為空";
+                        return returnData.JsonSerializationt(true);
+                    }
+                
                     for (int i = 0; i < list_value.Count; i++)
                     {
+                        string 中西藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString();
+                        if (!中西藥.Contains(中西藥品))
+                        {
+                            string 藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString();
+                            str += $"藥品 :{藥品名稱} 未加入成功，中西藥欄位需填入\"中藥\"或\"西藥\"，";
+                            continue;
+                        }
+                    
                         medClass medClass = new medClass
                         {
                             藥品碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥碼].ObjectToString(),
@@ -3233,17 +3245,29 @@ namespace HIS_WebApi
                             類別 = list_value[i][(int)enum_雲端藥檔_EXCEL.類別].ObjectToString(),
                             廠牌 = list_value[i][(int)enum_雲端藥檔_EXCEL.廠牌].ObjectToString(),
                             藥品許可證號 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品許可證號].ObjectToString(),
+                            中西藥 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString()
                         };                       
                         medClasses.Add(medClass);
                     }
                 }
-                medClass.add_med_clouds("http://127.0.0.1:4433", medClasses);
-
-                returnData.Data = medClasses;
-                returnData.Code = 200;
-                returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Result = "接收上傳文件成功";
-                return returnData.JsonSerializationt(true);
+                if(medClasses.Count > 0) 
+                {
+                    medClass.add_med_clouds("http://127.0.0.1:4433", medClasses);
+                    returnData.Data = medClasses;
+                    returnData.Code = 200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"{str}共新增{medClasses.Count}筆藥檔";
+                    return returnData.JsonSerializationt(true);
+                }
+                else
+                {
+                    returnData.Data = medClasses;
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"{str}";
+                    return returnData.JsonSerializationt(true);
+                }
+                
             }
 
             catch (Exception e)
@@ -3275,6 +3299,8 @@ namespace HIS_WebApi
                 worksheet.Cells[1,12].Value = "類別";
                 worksheet.Cells[1,13].Value = "廠牌";
                 worksheet.Cells[1,14].Value = "藥品許可證號";
+                worksheet.Cells[1,15].Value = "中西藥";
+
 
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 

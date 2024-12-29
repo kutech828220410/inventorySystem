@@ -37,6 +37,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass8 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_刪除 = new System.Windows.Forms.Button();
             this.button_新增 = new System.Windows.Forms.Button();
@@ -56,6 +57,7 @@ namespace ServerSettingForm
             this.panel_SQLContent8 = new ServerSettingForm.Panel_SQLContent();
             this.comboBox_單位 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel_API_URL3 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -232,7 +234,8 @@ namespace ServerSettingForm
             // panel_API_URL5
             // 
             this.panel_API_URL5.Content = "Med_API";
-            this.panel_API_URL5.Location = new System.Drawing.Point(18, 537);
+            this.panel_API_URL5.Description = "-----";
+            this.panel_API_URL5.Location = new System.Drawing.Point(18, 582);
             this.panel_API_URL5.Name = "panel_API_URL5";
             serverSettingClass4.DBName = null;
             serverSettingClass4.GUID = null;
@@ -255,6 +258,7 @@ namespace ServerSettingForm
             // panel_API_URL4
             // 
             this.panel_API_URL4.Content = "Order_API";
+            this.panel_API_URL4.Description = "-----";
             this.panel_API_URL4.Location = new System.Drawing.Point(18, 495);
             this.panel_API_URL4.Name = "panel_API_URL4";
             serverSettingClass5.DBName = null;
@@ -278,6 +282,7 @@ namespace ServerSettingForm
             // panel_API_URL2
             // 
             this.panel_API_URL2.Content = "API02";
+            this.panel_API_URL2.Description = "-----";
             this.panel_API_URL2.Location = new System.Drawing.Point(18, 453);
             this.panel_API_URL2.Name = "panel_API_URL2";
             serverSettingClass6.DBName = null;
@@ -301,6 +306,7 @@ namespace ServerSettingForm
             // panel_API_URL1
             // 
             this.panel_API_URL1.Content = "API01";
+            this.panel_API_URL1.Description = "-----";
             this.panel_API_URL1.Location = new System.Drawing.Point(18, 411);
             this.panel_API_URL1.Name = "panel_API_URL1";
             serverSettingClass7.DBName = null;
@@ -364,11 +370,36 @@ namespace ServerSettingForm
             this.label2.TabIndex = 82;
             this.label2.Text = "單位 :";
             // 
+            // panel_API_URL3
+            // 
+            this.panel_API_URL3.Content = "OrderT_API";
+            this.panel_API_URL3.Description = "-----";
+            this.panel_API_URL3.Location = new System.Drawing.Point(18, 540);
+            this.panel_API_URL3.Name = "panel_API_URL3";
+            serverSettingClass9.DBName = null;
+            serverSettingClass9.GUID = null;
+            serverSettingClass9.Password = null;
+            serverSettingClass9.Port = null;
+            serverSettingClass9.Server = "";
+            serverSettingClass9.TableName = null;
+            serverSettingClass9.User = null;
+            serverSettingClass9.Value = null;
+            serverSettingClass9.內容 = "OrderT_API";
+            serverSettingClass9.單位 = null;
+            serverSettingClass9.程式類別 = null;
+            serverSettingClass9.設備名稱 = "";
+            serverSettingClass9.類別 = "中藥調劑系統";
+            this.panel_API_URL3.ServerSetting = serverSettingClass9;
+            this.panel_API_URL3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.中藥調劑系統;
+            this.panel_API_URL3.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL3.TabIndex = 84;
+            // 
             // Dialog_中藥調劑系統
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_API_URL3);
             this.Controls.Add(this.comboBox_單位);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_SQLContent3);
@@ -419,5 +450,6 @@ namespace ServerSettingForm
         private Panel_SQLContent panel_SQLContent3;
         private System.Windows.Forms.ComboBox comboBox_單位;
         private System.Windows.Forms.Label label2;
+        private Panel_API_URL panel_API_URL3;
     }
 }

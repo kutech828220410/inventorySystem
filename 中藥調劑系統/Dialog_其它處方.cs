@@ -74,6 +74,7 @@ namespace 中藥調劑系統
             //formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
             //formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
             //formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
+            //formularyClass.add(Main_Form.API_Server, add_強筋固底湯());
             formularyClasses = formularyClass.get_all(Main_Form.API_Server);
             List<formularyClass> formularyClasses_套餐選擇 = formularyClasses
             .GroupBy(f => f.名稱)
@@ -94,7 +95,30 @@ namespace 中藥調劑系統
             formularyClasses_seleted = list_value.SQLToClass<formularyClass, enum_formulary>();
             sqL_DataGridView_套餐藥品內容.RefreshGrid(list_value);
         }
+        private List<formularyClass> add_強筋固底湯()
+        {
+            List<formularyClass> formularyClasses = new List<formularyClass>();
 
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "1", 藥碼 = "C0047-1", 數量 = "-6", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "2", 藥碼 = "C0004-1", 數量 = "-5", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "3", 藥碼 = "C0012-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "4", 藥碼 = "C0014-1", 數量 = "-6", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "5", 藥碼 = "C0013-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "6", 藥碼 = "C0036-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "7", 藥碼 = "C0058-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "8", 藥碼 = "C0022-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "9", 藥碼 = "C0003-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "10", 藥碼 = "C0072-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "11", 藥碼 = "C0056-1", 數量 = "-7", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "12", 藥碼 = "C0057-1", 數量 = "-10", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "13", 藥碼 = "C0029-1", 數量 = "-15", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "14", 藥碼 = "C0069-1", 數量 = "-10", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "15", 藥碼 = "C0068-1", 數量 = "-3", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "16", 藥碼 = "C0086-1", 數量 = "-3", 備註 = "水量6000ml" });
+            formularyClasses.Add(new formularyClass { 名稱 = "強筋固底湯", 批序 = "17", 藥碼 = "C0087-1", 數量 = "-17", 備註 = "水量6000ml" });
+
+            return formularyClasses;
+        }
         private List<formularyClass> add_養肝明目飲()
         {
             List<formularyClass> formularyClasses = new List<formularyClass>();

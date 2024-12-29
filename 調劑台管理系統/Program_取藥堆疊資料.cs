@@ -2832,6 +2832,23 @@ namespace 調劑台管理系統
                 if (list_已亮燈藥碼_buf.Count != 0) continue;
 
                 if (Type.Contains("EPD583")) Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color), ref list_lock_IP);
+                else if (Type == DeviceType.RFID_Device.GetEnumName())
+                {
+                    RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
+                    RFIDDevice rFIDDevice = rFIDClass.SortByGUID(Device_GUID);
+                    Num = rFIDDevice.MasterIndex.ToString();
+                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                    list_locker_table_value_buf = list_locker_table_value_buf.GetRows((int)enum_Locker_Index_Table.Num, Num.ToString());
+                    if (list_locker_table_value_buf.Count > 0)
+                    {
+                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
+                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
+                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
+                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                        list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
+                        Console.WriteLine($"開啟RFID抽屜致能,IP:{IP} {DateTime.Now.ToDateTimeString()}");
+                    }
+                }
                 else Function_儲位亮燈(new Main_Form.LightOn(藥品碼, color, 數量), ref list_lock_IP);
                 list_已亮燈藥碼.Add(藥品碼);
 

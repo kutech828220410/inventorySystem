@@ -887,7 +887,6 @@ C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CoreCompileInputs.ca
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
-C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csprojAssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBase.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrvAsm4.5.dll
@@ -923,3 +922,10 @@ C:\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrvAsm4.5.dll
 C:\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBaseAsm4.5.dll
 C:\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkMsr.dll
 C:\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBase.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrvAsm4.5.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkBaseAsm4.5.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkMsr.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.dll
+C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache

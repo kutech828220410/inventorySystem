@@ -16,7 +16,7 @@ namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
-        private MySerialPort MySerialPort_Scanner01 = new MySerialPort();
+        static private MySerialPort MySerialPort_Scanner01 = new MySerialPort();
         private void Program_RS232_Scanner_Init()
         {
             MySerialPort_Scanner01.ConsoleWrite = true;

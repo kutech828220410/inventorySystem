@@ -379,6 +379,23 @@ namespace 中藥調劑系統
             }
            
         }
+        public static string Function_ReadBacodeScanner01()
+        {
+            if (MySerialPort_Scanner01.IsConnected == false) return null;
+            string text = MySerialPort_Scanner01.ReadString();
+            if (text == null) return null;
+            System.Threading.Thread.Sleep(20);
+            text = text.Replace("\0", "");
+            if (text.StringIsEmpty()) return null;
+            if (text.Length <= 2 || text.Length > 200) return null;
+            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            MySerialPort_Scanner01.ClearReadByte();
+            text = text.Replace("\n", "");
+            text = text.Replace("\r", "");
+            text = text.Replace("\r\n", "");
+            return text;
+        }
+
         static public List<OrderClass> Funtion_醫令資料_API呼叫(string barcode)
         {
             barcode = barcode.Replace("\r\n", "");
@@ -386,7 +403,7 @@ namespace 中藥調劑系統
             List<OrderClass> orderClasses = new List<OrderClass>();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            string apitext = $"{dBConfigClass.OrderApiURL}{barcode}";
+            string apitext = $"{dBConfigClass.OrderTApiURL}{barcode}";
             string jsonString = Basic.Net.WEBApiGet(apitext);
 
             if (jsonString.StringIsEmpty())
@@ -410,6 +427,49 @@ namespace 中藥調劑系統
                 //Dialog_AlarmForm dialog_錯誤提示 = new Dialog_AlarmForm($"{returnData.Result}", 2000);
                 //dialog_錯誤提示.ShowDialog();
                 return null;
+
+            }
+            orderClasses = returnData.Data.ObjToListClass<OrderClass>();
+            if (orderClasses == null)
+            {
+                Console.WriteLine($"串接資料傳回格式錯誤!");
+                orderClasses = new List<OrderClass>();
+
+            }
+
+            return orderClasses;
+        }
+        static public List<OrderClass> Function_西藥醫令資料_API呼叫(string url, string barcode)
+        {
+            barcode = barcode.Replace("\r\n", "");
+            barcode = Uri.EscapeDataString(barcode);
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            string apitext = $"{url}{barcode}";
+
+            Console.Write($"Call api : {apitext}\n");
+            string jsonString = Basic.Net.WEBApiGet(apitext);
+            Console.Write($"{jsonString}\n");
+            Console.Write($"耗時 {myTimer.ToString()}ms\n");
+            if (jsonString.StringIsEmpty())
+            {
+  
+                //MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
+                return orderClasses;
+            }
+            returnData returnData = jsonString.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+  
+                //MyMessageBox.ShowDialog(jsonString);
+                return new List<OrderClass>();
+            }
+            if (returnData.Code != 200)
+            {
+                //MyMessageBox.ShowDialog($"{returnData.Result}");
+    
+                return new List<OrderClass>();
 
             }
             orderClasses = returnData.Data.ObjToListClass<OrderClass>();

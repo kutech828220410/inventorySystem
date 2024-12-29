@@ -171,10 +171,7 @@ namespace 中藥調劑系統
                         調劑完成 = "N";
                     }
                 }
-                if(orderTClasses_buf[0].領藥號 == "6020")
-                {
-
-                }
+       
                 if (packages.Count > 1)
                 {
 
@@ -1334,7 +1331,8 @@ namespace 中藥調劑系統
         }
         private void PlC_RJ_Button_保健食品_MouseDownEvent(MouseEventArgs mevent)
         {
-           
+            Dialog_保健食品搜尋 dialog_保健食品搜尋 = new Dialog_保健食品搜尋();
+            dialog_保健食品搜尋.ShowDialog();
         }
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)
         {
