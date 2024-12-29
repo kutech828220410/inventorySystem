@@ -484,10 +484,13 @@ namespace 中藥調劑系統
         }
         public static string ReplaceHyphenWithStar(string input)
         {
-            string pattern = "-[a-zA-Z0-9]";
+            string pattern = "(?<!HEA)-[a-zA-Z0-9]";
             string replacement = "";
-            input = System.Text.RegularExpressions.Regex.Replace(input, pattern, replacement);
-            input = $"{input}*";
+            if (!input.StartsWith("HEA"))
+            {
+                input = System.Text.RegularExpressions.Regex.Replace(input, pattern, replacement);
+                input = $"{input}*";
+            }
             return input;
         }
     }

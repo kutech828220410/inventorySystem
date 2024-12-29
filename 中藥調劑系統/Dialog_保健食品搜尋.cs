@@ -17,6 +17,7 @@ namespace 中藥調劑系統
 {
     public partial class Dialog_保健食品搜尋 : MyDialog
     {
+        static public bool IsShown = false;
         private List<string> codes = new List<string>();
         private MyThread myThread = new MyThread();
         public enum enum_處方內容
@@ -48,10 +49,11 @@ namespace 中藥調劑系統
         {
             if (codes.Count > 0)
             {
-                Main_Form.Function_儲位亮燈(codes, Color.Black);
+                Main_Form.Function_儲位亮燈(codes, Color.Black, true);
             }
             myThread.Abort();
             myThread = null;
+            IsShown = false;
         }
 
         private void Dialog_保健食品搜尋_LoadFinishedEvent(EventArgs e)
@@ -76,6 +78,8 @@ namespace 中藥調劑系統
             myThread.SetSleepTime(10);
             myThread.Add_Method(sub_program);
             myThread.Trigger();
+
+            IsShown = true;
         }
         private void sub_program()
         {
@@ -96,7 +100,7 @@ namespace 中藥調劑系統
                              select temp.藥品碼).Distinct().ToList();
                     if (codes.Count > 0)
                     {
-                        Main_Form.Function_儲位亮燈(codes, Color.Green);
+                        Main_Form.Function_儲位亮燈(codes, Color.Green , true);
                     }
 
                 }

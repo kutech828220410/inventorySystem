@@ -373,6 +373,7 @@ namespace 中藥調劑系統
             this.plC_RJ_Button_保健食品.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_保健食品.文字鎖住 = false;
             this.plC_RJ_Button_保健食品.背景圖片 = global::中藥調劑系統.Properties.Resources._health_supplements_order_removebg_preview;
+            this.plC_RJ_Button_保健食品.致能讀取位置 = "S4000";
             this.plC_RJ_Button_保健食品.讀取位元反向 = false;
             this.plC_RJ_Button_保健食品.讀寫鎖住 = false;
             this.plC_RJ_Button_保健食品.音效 = false;

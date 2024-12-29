@@ -164,6 +164,10 @@ namespace 中藥調劑系統
                 orderTClasses_buf = keyValuePairs.SortDictionaryBy_PRI_KEY(list_PRI_KEY[i]);
                 list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
                 List<string> packages = orderTClasses_buf.GetPackages();
+                if(orderTClasses_buf[0].領藥號 == "6046")
+                {
+
+                }
                 for (int k = 0; k < orderTClasses_buf.Count; k++)
                 {
                     if (orderTClasses_buf[k].實際調劑量.StringIsDouble() == false)
@@ -280,19 +284,30 @@ namespace 中藥調劑系統
                         List<object[]> list_value_temp_buf = (from temp in list_value_buf
                                                               where temp[(int)enum_病患資訊.處方類型].ObjectToString() == list_處方類型[i]
                                                               select temp).ToList();
-
-                        if (list_value_temp_buf.Count > 0)
+                        for(int k = 0; k < list_value_temp_buf.Count; k++)
                         {
-                            list_value_temp_buf.Sort(new ICP_病患資訊_降序());
-                            if (list_value_temp_buf[0][(int)enum_病患資訊.調劑完成].ObjectToString() != "Y")
+                            if (list_value_temp_buf[k][(int)enum_病患資訊.調劑完成].ObjectToString() != "Y")
                             {
-                                list_value_temp.Add(list_value_temp_buf[0]);
+                                list_value_temp.Add(list_value_temp_buf[k]);
                             }
                             else
                             {
-                                list_value_delete.Add(list_value_temp_buf[0]);
+                                list_value_delete.Add(list_value_temp_buf[k]);
                             }
                         }
+
+                        //if (list_value_temp_buf.Count > 0)
+                        //{
+                        //    list_value_temp_buf.Sort(new ICP_病患資訊_降序());
+                        //    if (list_value_temp_buf[0][(int)enum_病患資訊.調劑完成].ObjectToString() != "Y")
+                        //    {
+                        //        list_value_temp.Add(list_value_temp_buf[0]);
+                        //    }
+                        //    else
+                        //    {
+                        //        list_value_delete.Add(list_value_temp_buf[0]);
+                        //    }
+                        //}
 
                     }
                 }
@@ -381,7 +396,7 @@ namespace 中藥調劑系統
             if (plC_NumBox_檢核下限_克.Value < 1) plC_NumBox_檢核下限_克.Value = 1;
             if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 1;
             if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 1;
-            if (MySerialPort_Scanner01.IsConnected && plC_ScreenPage_main.PageText == "調劑畫面" && PLC_Device_已登入.Bool)
+            if (MySerialPort_Scanner01.IsConnected && plC_ScreenPage_main.PageText == "調劑畫面" && PLC_Device_已登入.Bool && Dialog_保健食品搜尋.IsShown == false)
             {
 
                 try
@@ -926,6 +941,7 @@ namespace 中藥調劑系統
                 this.plC_RJ_Button_登入.Texts = "登入";
                 rJ_Lable_調劑人員.Text = $"【請登入系統】";
                 rJ_Lable_調劑人員.TextColor = Color.OrangeRed;
+                sqL_DataGridView_病患資訊.ClearGrid();
                 Function_重置處方();
             }));
         }
