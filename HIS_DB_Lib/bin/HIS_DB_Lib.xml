@@ -3272,6 +3272,11 @@
             藥名位置
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.確認">
+            <summary>
+            確認
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.識別位置">
             <summary>
             識別位置

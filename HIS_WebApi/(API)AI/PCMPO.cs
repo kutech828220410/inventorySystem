@@ -630,7 +630,81 @@ namespace HIS_WebApi
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
+        }/// <summary>
+         /// 以GUID更新圖片資料
+         /// </summary>
+         /// <remarks>
+         /// 以下為JSON範例
+         /// <code>
+         ///     {
+         ///         "ValueAry":
+         ///         [
+         ///                 "GUID",
+         ///                 "base64"
+         ///         ]
+         ///         
+         ///     }
+         /// </code>
+         /// </remarks>
+         /// <param name="returnData">共用傳遞資料結構</param>
+         /// <returns></returns>
+        [HttpPost("update_pic_by_GUID")]
+        public string update_pic_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_pic_by_GUID";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\",\"base64\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                string 圖片 = returnData.ValueAry[1];
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                if (list_textVision.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                圖片 = textVisionClasses[0].圖片;
+                List<object[]> Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
+                sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
+
+                returnData.Code = 200;
+                returnData.Data = textVisionClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"編輯<{Update_textVision.Count}>筆";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
         }
+
         /// <summary>
         /// 更新檢索表
         /// </summary>
@@ -797,7 +871,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以GUID刪除textVision資料
+        /// 以GUID取得資料
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -850,6 +924,73 @@ namespace HIS_WebApi
                 returnData.Data = textVisionClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"取得GUID : {GUID} 資料";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以單號取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///             "po_num"
+        ///         ]
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_po_num")]
+        public string get_by_po_num([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_po_num";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"po_num\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string 單號 = returnData.ValueAry[0];
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.單號, 單號);
+                if (list_textVision.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+
+                returnData.Code = 200;
+                returnData.Data = textVisionClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得單號 : {單號} 資料";
                 Logger.Log(project, returnData.JsonSerializationt());
                 Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);

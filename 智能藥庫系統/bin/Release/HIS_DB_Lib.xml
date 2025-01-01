@@ -3142,6 +3142,11 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批次ID">
             <summary>
             批次ID
@@ -3265,6 +3270,11 @@
         <member name="P:HIS_DB_Lib.textVisionClass.藥名位置">
             <summary>
             藥名位置
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.確認">
+            <summary>
+            確認
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.textVisionClass.識別位置">
