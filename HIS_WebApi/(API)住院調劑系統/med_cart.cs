@@ -1400,7 +1400,7 @@ namespace HIS_WebApi
                     if (buff == sql_medCpoe.Count)
                     {
                         SQLControl sQLControl_med_carinfo = new SQLControl(Server, DB, "med_carinfo", UserName, Password, Port, SSLMode);
-                        List<object[]> list_med_carInfo = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, Master_GUID);
+                        List<object[]> list_med_carInfo = sQLControl_med_carinfo.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, Master_GUID);
                         list_med_carInfo[0][(int)enum_med_carInfo.調劑狀態] = "Y";
                         sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_med_carInfo);
                     }
