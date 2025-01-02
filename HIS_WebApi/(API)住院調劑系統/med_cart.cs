@@ -1244,7 +1244,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID確認藥品調劑
+        ///以GUID調整藥品調劑狀態
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1330,6 +1330,95 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception:{ex.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///以GUID確認藥品調劑
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":["處方GUID","處方GUID", "處方Master_GUID"]";
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("dispensed_by_GUID")]
+        public string dispensed_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "dispensed_by_GUID";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                if (returnData.ValueAry == null )
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 空白，請輸入對應欄位資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"處方GUID1;處方GUID2\",\"處方Master_GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<string> GUIDs = returnData.ValueAry[0].Split(";").ToList();
+                string Master_GUID = returnData.ValueAry[1];
+             
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                if (sql_medCpoe.Count == 0)
+                {
+                    returnData.Code = 200;
+                    returnData.Result = $"無對應處方";
+                    return returnData.JsonSerializationt(true);
+                }
+                int buff = 0;
+                for (int i = 0; i < sql_medCpoe.Count; i++)
+                {
+                    if (GUIDs.Contains(sql_medCpoe[i].GUID))
+                    {
+                        sql_medCpoe[i].調劑狀態 = "Y";
+                        buff += 1;
+                    }
+                }
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                    sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
+                })));
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    if (buff == sql_medCpoe.Count)
+                    {
+                        SQLControl sQLControl_med_carinfo = new SQLControl(Server, DB, "med_carinfo", UserName, Password, Port, SSLMode);
+                        List<object[]> list_med_carInfo = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, Master_GUID);
+                        list_med_carInfo[0][(int)enum_med_carInfo.調劑狀態] = "Y";
+                        sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_med_carInfo);
+                    }
+                })));
+                Task.WhenAll(tasks).Wait();
+                
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"更新處方紀錄共{buff}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception:{ex.Message}";
+                Logger.Log(returnData.JsonSerializationt(true));
                 return returnData.JsonSerializationt(true);
             }
         }
@@ -1508,20 +1597,20 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "med_cart/get_med_qty";
             try
-            {                
-               
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
-                    return returnData.JsonSerializationt(true);
-                }
+            {
                 if (returnData.Value == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.Value 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
+                    return returnData.JsonSerializationt(true);
+                }
+                
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
 
@@ -1554,24 +1643,45 @@ namespace HIS_WebApi
                         }).ToList()
                     })
                     .ToList();
-                List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    for(int i = 0; i < medQtyClasses.Count; i++)
+                    {
+                        bool flag = true;
+                        for (int j = 0; j < medQtyClasses[i].病床清單.Count; j++)
+                        {
+                            if (medQtyClasses[i].病床清單[j].大瓶點滴 != "L") flag = false;
+                        }
+                        if (flag)
+                        {
+                            medQtyClasses[i].大瓶點滴 = "L";
+                        }
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
 
-                if(returnData.Value == "all")
-                {
-                    foreach (var medQtyClass in medQtyClasses)
+                    if (returnData.Value == "all")
                     {
-                        medQtyClass.調劑台 = "Y";
+                        foreach (var medQtyClass in medQtyClasses)
+                        {
+                            medQtyClass.調劑台 = "Y";
+                        }
                     }
-                }
-                else
-                {
-                    List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
-                    Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
-                    foreach (var medQtyClass in medQtyClasses)
+                    else
                     {
-                        if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
+                        List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
+                        Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+                        foreach (var medQtyClass in medQtyClasses)
+                        {
+                            if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
+                        }
                     }
-                }
+                    
+                })));
+                Task.WhenAll(tasks).Wait();
                 foreach (var medQtyClass in medQtyClasses)
                 {
                     medQtyClass.病床清單.Sort(new bedListClass.ICP_By_bedNum());
