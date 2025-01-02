@@ -171,6 +171,12 @@ namespace E_UpdateVersion
         }
         private void RJ_Button_智慧調劑台系統_MouseDownEvent(MouseEventArgs mevent)
         {
+            System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName("調劑台管理系統");
+            for (int i = 0; i < MyProcess.Length; i++)
+            {
+                MyProcess[i].Kill();
+            }
+
             string 調劑台名稱 = computerConfigClass.GetValue("調劑台管理系統", "系統名稱");
             string 控制中心 = computerConfigClass.GetValue("調劑台管理系統", "控制中心");
             if (調劑台名稱.StringIsEmpty())
