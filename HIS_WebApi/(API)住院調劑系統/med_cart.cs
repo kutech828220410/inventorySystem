@@ -1386,10 +1386,12 @@ namespace HIS_WebApi
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
                         sql_medCpoe[i].調劑狀態 = "Y";
-                        buff += 1;
                     }
+                    if(sql_medCpoe[i].調劑狀態 == "Y") buff += 1;
+
                 }
                 List<Task> tasks = new List<Task>();
+                string str = "";
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -1403,6 +1405,9 @@ namespace HIS_WebApi
                         List<object[]> list_med_carInfo = sQLControl_med_carinfo.GetRowsByDefult(null, (int)enum_med_carInfo.GUID, Master_GUID);
                         list_med_carInfo[0][(int)enum_med_carInfo.調劑狀態] = "Y";
                         sQLControl_med_carinfo.UpdateByDefulteExtra(null, list_med_carInfo);
+                        string 護理站 = list_med_carInfo[0][(int)enum_med_carInfo.護理站].ObjectToString();
+                        string 床號 = list_med_carInfo[0][(int)enum_med_carInfo.床號].ObjectToString();
+                        str += $"更新{護理站} 第{床號}床 調劑狀態";
                     }
                 })));
                 Task.WhenAll(tasks).Wait();
@@ -1411,7 +1416,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoe;
-                returnData.Result = $"更新處方紀錄共{buff}筆";
+                returnData.Result = $"更新處方紀錄共{buff}筆，{str}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
