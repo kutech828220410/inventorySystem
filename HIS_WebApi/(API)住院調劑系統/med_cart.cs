@@ -508,6 +508,7 @@ namespace HIS_WebApi
                 string API = GetServerAPI("Main", "網頁", "API01");
                 List<medCpoeRecClass> input_medCpoe_rec = returnData.Data.ObjToClass<List<medCpoeRecClass>>();
                 string 藥局 = input_medCpoe_rec[0].藥局;
+                string 護理站 = input_medCpoe_rec[0].護理站;
                 if (input_medCpoe_rec == null)
                 {
                     returnData.Code = -200;
@@ -524,6 +525,7 @@ namespace HIS_WebApi
 
                 List<object[]> sql_medCpoeRecClass = sQLControl_med_cpoe_rec.GetRowsByDefult(null, (int)enum_med_cpoe_rec.藥局, 藥局);
                 List<medCpoeRecClass> list_medCpoeRecClass = sql_medCpoeRecClass.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
+                list_medCpoeRecClass = list_medCpoeRecClass.Where(temp => temp.護理站 == 護理站).ToList();
                 Dictionary<string, List<medCpoeRecClass>> inputMedCpoeRecDict = medCpoeRecClass.ToDictByMasterGUID(input_medCpoe_rec);
                 Dictionary<string, List<medCpoeRecClass>> sqlMedCpoeRecDict = medCpoeRecClass.ToDictByMasterGUID(list_medCpoeRecClass);
                 List<medCpoeRecClass> add_medCpoeRecClass = new List<medCpoeRecClass>();
@@ -938,7 +940,6 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("get_medCpoe")]
         public string get_medCpoe([FromBody] returnData returnData)
         {
