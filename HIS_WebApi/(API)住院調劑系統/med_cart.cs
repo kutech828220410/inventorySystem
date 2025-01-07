@@ -516,7 +516,7 @@ namespace HIS_WebApi
                 }
 
                 DateTime lestweek = DateTime.Now.AddDays(-7);
-                DateTime yesterday = DateTime.Now.AddDays(-1);
+                DateTime yesterday = DateTime.Now.AddDays(-0);
                 string starttime = lestweek.GetStartDate().ToDateString();
                 string endtime = yesterday.GetEndDate().ToDateString();
                 SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
