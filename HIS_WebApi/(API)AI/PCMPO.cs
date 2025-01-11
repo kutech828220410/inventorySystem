@@ -394,24 +394,25 @@ namespace HIS_WebApi
                 {
                     returnData.Result = "AI連線失敗";
                     returnData.Code = -3;
+                    returnData.Data = textVisionClasses;
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
                 }
-               
-
-                List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
-                List<positionClass> positionClasses = new List<positionClass>();
-                textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
                 if (return_textVisionClass.Result == "False")
                 {
                     returnData.Result = "AI辨識失敗";
                     returnData.Code = -1;
-                    returnData.Data = textVisionClass_AI;
+                    returnData.Data = textVisionClasses;
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
                 }
+
+                List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
+                List<positionClass> positionClasses = new List<positionClass>();
+                textVisionClass_AI = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>();
+                
                 textVisionClass textVision = textVisionClass_AI[0];
                 inspectionClass.content content = new inspectionClass.content();
                 if (textVision.單號.StringIsEmpty() == false)
@@ -630,7 +631,8 @@ namespace HIS_WebApi
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-        }/// <summary>
+        }
+        /// <summary>
          /// 以GUID更新圖片資料
          /// </summary>
          /// <remarks>
@@ -704,7 +706,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-
         /// <summary>
         /// 更新檢索表
         /// </summary>
