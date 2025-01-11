@@ -454,6 +454,7 @@ namespace HIS_WebApi
                     textVisionClass_AI[0].操作者姓名 = textVisionClasses[0].操作者姓名;
                     textVisionClass_AI[0].圖片 = textVisionClasses[0].圖片;
                     textVisionClass_AI[0].批次ID = textVisionClasses[0].批次ID;
+                    textVisionClass_AI[0].確認 = "未確認";
 
                     List<object[]> update_textVisionClass = textVisionClass_AI.ClassToSQL<textVisionClass, enum_textVision>();
                     sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
@@ -1064,8 +1065,6 @@ namespace HIS_WebApi
                 returnData.Data = input_textVision;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"請購單資料預儲存成功";
-                Logger.Log(project, returnData.JsonSerializationt());
-                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -1078,6 +1077,177 @@ namespace HIS_WebApi
             }
 
 
+        }
+        /// <summary>
+        /// 以操作者ID找出最新的一批資料 "Y" Data 回傳完整資料/ "N" Data不回傳資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///                 "op_id"
+        ///         ],
+        ///         "Value":"Y"/"N" 
+        ///         
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("preCheck")]
+        public string preCheck([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "preCheck";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"操作者ID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.Value == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.Value 空白，內容應為\"Y\" or \"N\"";
+                    return returnData.JsonSerializationt();
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API_Server = GetServerAPI("Main", "網頁", "API01");
+                string 操作者ID = returnData.ValueAry[0];
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
+                string maxBatchID = dicTextVision.Keys.Max();
+                List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
+                bool flag = false;
+                List<textVisionClass> textVision_buff = textVisions.Where(temp => temp.確認 == "未確認").ToList();
+                if(textVision_buff.Count > 0)
+                {
+                    flag = true;
+                }
+                if(flag == false)
+                {
+                    returnData.Code = 202; //操作者最新的一批資料中沒有未確認資料
+                    returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，未含有未確認資料";
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.Value == "N" && flag == true)
+                {
+                    returnData.Code = 201; //操作者最新的一批資料中有未確認資料
+                    returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，含有未確認資料{textVision_buff.Count}筆";
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.Value == "Y" && flag == true)
+                {
+                    returnData.Code = 201; //操作者最新的一批資料中有未確認資料
+                    returnData.Data = textVisions;
+                    returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，，含有未確認資料{textVision_buff.Count}筆";
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    return returnData.JsonSerializationt(true);
+                }
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+
+            }
+        }
+        /// <summary>
+        /// 將辨識資料送出確認
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///                 "batchID",
+        ///                 "GUID1;GUID2;GUID3"
+        ///         ],
+        ///         
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("Check")]
+        public string Check([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "Check";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"BatchID\",\"GUID1;GUID2\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
+                string API_Server = GetServerAPI("Main", "網頁", "API01");
+                string 批次ID = returnData.ValueAry[0];
+                string[] GUIDs = returnData.ValueAry[1].Split(";");
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.批次ID, 批次ID);
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                List<textVisionClass> update_textVisionClass = new List<textVisionClass>();
+                for (int i = 0; i < textVisionClasses.Count; i++)
+                {
+                    string GUID = textVisionClasses[i].GUID;
+                    if (GUIDs.Contains(GUID))
+                    {
+                        textVisionClasses[i].確認 = "已確認";
+                        update_textVisionClass.Add(textVisionClasses[i]);
+                    }
+                }
+                List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
+                if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
+
+                returnData.Code = 200;
+                returnData.Data = textVisionClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"更新請購單資料共{update_textVisionClass.Count}筆";
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+
+            }
         }
         [HttpPost("recover")]
         public string recover([FromBody] returnData returnData)
