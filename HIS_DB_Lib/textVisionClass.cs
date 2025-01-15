@@ -449,8 +449,8 @@ namespace HIS_DB_Lib
     }
     public class returnDataClass
     {
-        public string Data { get; set; }
-        public string Code { get; set; }
+        public List<textVisionClass> Data { get; set; }
+        public int Code { get; set; }
         public string Result { get; set; }
     }
     public class sub_textVisionClass

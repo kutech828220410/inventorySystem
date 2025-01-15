@@ -1219,12 +1219,20 @@ namespace HIS_WebApi
                 List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
                 bool flag = false;
                 List<textVisionClass> textVision_buff = new List<textVisionClass>();
+                List<returnDataClass> returnDataClasses = new List<returnDataClass>();
                 for (int i = 0; i < textVisions.Count; i++)
                 {
                     if (textVisions[i].確認 == "未確認") 
                     {
                         flag = true;
+                        returnDataClass returnDataClass = new returnDataClass()
+                        {
+                            Code = textVisions[i].Code.StringToInt32(),
+                            Result = textVisions[i].Code,
+                            Data = new List<textVisionClass>() { textVisions[i] } 
+                        };
                         textVision_buff.Add(textVisions[i]);
+                        returnDataClasses.Add(returnDataClass);
                     } 
                 }
                 if(flag == false)
@@ -1244,7 +1252,7 @@ namespace HIS_WebApi
                 if(returnData.Value == "Y" && flag == true)
                 {
                     returnData.Code = 201; //操作者最新的一批資料中有未確認資料
-                    returnData.Data = textVisions;
+                    returnData.Data = returnDataClasses;
                     returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，，含有未確認資料{textVision_buff.Count}筆";
                     returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt(true);
