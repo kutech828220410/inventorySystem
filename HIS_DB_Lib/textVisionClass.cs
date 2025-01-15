@@ -54,17 +54,17 @@ namespace HIS_DB_Lib
         中文名信心分數,
         [Description("數量信心分數,VARCHAR,20,NONE")]
         數量信心分數,
-        [Description("批號位置,VARCHAR,20,NONE")]
+        [Description("批號位置,VARCHAR,50,NONE")]
         批號位置,
-        [Description("中文名位置,VARCHAR,20,NONE")]
+        [Description("中文名位置,VARCHAR,50,NONE")]
         中文名位置,
-        [Description("效期位置,VARCHAR,20,NONE")]
+        [Description("效期位置,VARCHAR,50,NONE")]
         效期位置,
-        [Description("單號位置,VARCHAR,20,NONE")]
+        [Description("單號位置,VARCHAR,50,NONE")]
         單號位置,
-        [Description("數量位置,VARCHAR,20,NONE")]
+        [Description("數量位置,VARCHAR,50,NONE")]
         數量位置,
-        [Description("藥名位置,VARCHAR,20,NONE")]
+        [Description("藥名位置,VARCHAR,50,NONE")]
         藥名位置,
         [Description("確認,VARCHAR,20,NONE")]
         確認,
