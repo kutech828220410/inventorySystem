@@ -3277,6 +3277,16 @@
             確認
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.Code">
+            <summary>
+            Code_status
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.Result">
+            <summary>
+            Result
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.識別位置">
             <summary>
             識別位置
@@ -3320,6 +3330,21 @@
         <member name="P:HIS_DB_Lib.medCodeSrchClass.操作時間">
             <summary>
             操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.sub_textVisionClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.sub_textVisionClass.Master_GUID">
+            <summary>
+            Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.sub_textVisionClass.圖片">
+            <summary>
+            base64
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">

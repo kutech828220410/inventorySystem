@@ -54,21 +54,34 @@ namespace HIS_DB_Lib
         中文名信心分數,
         [Description("數量信心分數,VARCHAR,20,NONE")]
         數量信心分數,
-        [Description("批號位置,VARCHAR,20,NONE")]
+        [Description("批號位置,VARCHAR,50,NONE")]
         批號位置,
-        [Description("中文名位置,VARCHAR,20,NONE")]
+        [Description("中文名位置,VARCHAR,50,NONE")]
         中文名位置,
-        [Description("效期位置,VARCHAR,20,NONE")]
+        [Description("效期位置,VARCHAR,50,NONE")]
         效期位置,
-        [Description("單號位置,VARCHAR,20,NONE")]
+        [Description("單號位置,VARCHAR,50,NONE")]
         單號位置,
-        [Description("數量位置,VARCHAR,20,NONE")]
+        [Description("數量位置,VARCHAR,50,NONE")]
         數量位置,
-        [Description("藥名位置,VARCHAR,20,NONE")]
+        [Description("藥名位置,VARCHAR,50,NONE")]
         藥名位置,
         [Description("確認,VARCHAR,20,NONE")]
         確認,
-
+        [Description("Code,VARCHAR,20,NONE")]
+        Code,
+        [Description("Result,VARCHAR,20,NONE")]
+        Result
+    }
+    [EnumDescription("sub_textVision")]
+    public enum enum_sub_textVision
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
+        [Description("圖片,LONGTEXT,10,NONE")]
+        圖片,
     }
     [EnumDescription("med_code_srch")]
     public enum enum_med_code_srch
@@ -84,7 +97,7 @@ namespace HIS_DB_Lib
         [Description("藥品碼,VARCHAR,30,NONE")]
         藥品碼,
         [Description("藥名,VARCHAR,50,NONE")]
-        藥名, 
+        藥名,
         [Description("中文名,VARCHAR,50,NONE")]
         中文名,
         [Description("操作時間,DATETIME,50,NONE")]
@@ -236,6 +249,16 @@ namespace HIS_DB_Lib
         [JsonPropertyName("check")]
         public string 確認 { get; set; }
         /// <summary>
+        /// Code_status
+        /// </summary>
+        [JsonPropertyName("Code_status")]
+        public string Code { get; set; }
+        /// <summary>
+        /// Result
+        /// </summary>
+        [JsonPropertyName("Result")]
+        public string Result { get; set; }
+        /// <summary>
         /// 識別位置
         /// </summary>
         [JsonPropertyName("value")]
@@ -253,9 +276,9 @@ namespace HIS_DB_Lib
         static public Dictionary<string, List<textVisionClass>> ToDicByBatchID(List<textVisionClass> textVisionClasses)
         {
             Dictionary<string, List<textVisionClass>> dictionary = new Dictionary<string, List<textVisionClass>>();
-            foreach(textVisionClass item in textVisionClasses)
+            foreach (textVisionClass item in textVisionClasses)
             {
-                if(dictionary.TryGetValue(item.批次ID, out List<textVisionClass> list))
+                if (dictionary.TryGetValue(item.批次ID, out List<textVisionClass> list))
                 {
                     list.Add(item);
                 }
@@ -268,7 +291,7 @@ namespace HIS_DB_Lib
         }
         static public List<textVisionClass> GetValueByBatchID(Dictionary<string, List<textVisionClass>> dict, string batchID)
         {
-            if(dict.TryGetValue(batchID,out List<textVisionClass> list))
+            if (dict.TryGetValue(batchID, out List<textVisionClass> list))
             {
                 return list;
             }
@@ -277,9 +300,9 @@ namespace HIS_DB_Lib
                 return new List<textVisionClass>();
             }
 
-        }     
+        }
 
-        static public returnData ai_analyze(string API,List<textVisionClass> textVisionClasses)
+        static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
         {
             //string url = $"{API}/PO_Vision";
             string url = API;
@@ -295,6 +318,35 @@ namespace HIS_DB_Lib
             //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             Console.WriteLine($"{returnData}");
             return returnData_AI;
+        }
+        static public List<textVisionClass> get_by_po_num(string API, string po_num)
+        {
+            string url = $"{API}/api/pcmpo/get_by_po_num";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry = new List<string>() { po_num };
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+        
+            List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return out_textVisionClass;
+        }
+        static public List<textVisionClass> delete_by_GUID(string API, string GUID)
+        { 
+            string url = $"{API}/api/pcmpo/delete_by_GUID";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry = new List<string>() { GUID };
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            if(returnData.Code != 200)
+            {
+                return null;
+            }
+            List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return out_textVisionClass;
         }
         public enum enum_point_type
         {
@@ -350,27 +402,7 @@ namespace HIS_DB_Lib
             return points;
         }
 
-        //[JsonIgnore]
-        //public List<System.Drawing.Point> batch_num_coord_points
-        //{
-        //    get
-        //    {
-        //        List<System.Drawing.Point> points = new List<System.Drawing.Point>();
-        //        string[] strs = 批號位置.Split(';');
-        //        if(strs.Length == 4)
-        //        {
-        //            for (int i = 0; i < strs.Length; i++)
-        //            {
-        //                string[] strs_temp = strs[i].Split(',');
-        //                System.Drawing.Point point = new System.Drawing.Point(strs_temp[0].StringToInt32(), strs_temp[1].StringToInt32());
-
-        //                points.Add(point);
-        //            }
-        //        }
-
-        //        return points;
-        //    }
-        //}
+        
     }
     public class medCodeSrchClass
     {
@@ -414,5 +446,29 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("op_time")]
         public string 操作時間 { get; set; }
+    }
+    public class returnDataClass
+    {
+        public string Data { get; set; }
+        public string Code { get; set; }
+        public string Result { get; set; }
+    }
+    public class sub_textVisionClass
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// Master_GUID
+        /// </summary>
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        /// <summary>
+        /// base64
+        /// </summary>
+        [JsonPropertyName("base64")]
+        public string 圖片 { get; set; }
     }
 }
