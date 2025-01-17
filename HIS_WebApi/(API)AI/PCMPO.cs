@@ -597,6 +597,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+
         /// <summary>
         /// 更新文字辨識資料
         /// </summary>
@@ -651,10 +652,15 @@ namespace HIS_WebApi
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 inspectionClass.content content = inspectionClass.content_get_by_PON(API, 單號);
-                if(content == null)
+                List<object[]> Update_textVision = new List<object[]>();
+                if (content == null)
                 {
                     returnData.Code = -2;
                     returnData.Result = $"查無對應單號資料 單號 {單號}";
+                    textVisionClasses[0].Code = returnData.Code.ToString();
+                    textVisionClasses[0].Result = returnData.Result;
+                    Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
+                    sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
 
@@ -681,21 +687,24 @@ namespace HIS_WebApi
                 }
                 textVisionClasses[0] = textVision;
 
-                List<object[]> Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
-                sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
+                
 
                 returnData.Code = 200;
                 returnData.Data = textVisionClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"編輯<{Update_textVision.Count}>筆";
-                Logger.Log(project, returnData.JsonSerializationt());
-                Logger.Log(project, Message);
+                returnData.Result = $"編輯<{textVisionClasses.Count}>筆";
+                textVisionClasses[0].Code = returnData.Code.ToString();
+                textVisionClasses[0].Result = returnData.Result;
+                Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
+                sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
             }
         }
