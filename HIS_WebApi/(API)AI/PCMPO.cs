@@ -1224,6 +1224,13 @@ namespace HIS_WebApi
                 List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
+                if(dicTextVision.Count == 0)
+                {
+                    returnData.Code = 202; //操作者最新的一批資料中沒有未確認資料
+                    returnData.Result = $"id : {操作者ID} 未含有未確認資料";
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    return returnData.JsonSerializationt(true);
+                }
                 string maxBatchID = dicTextVision.Keys.Max();
                 List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
                 bool flag = false;
@@ -1268,7 +1275,7 @@ namespace HIS_WebApi
                 }
                 return returnData.JsonSerializationt(true);
 
-            }
+        }
             catch (Exception ex)
             {
                 returnData.Code = -200;
