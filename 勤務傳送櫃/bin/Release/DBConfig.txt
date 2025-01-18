@@ -1,1 +1,1 @@
-{"Name":"portal","Api_Server":"http://127.0.0.1:4433"}
+{"Name":"¶Ç°eÂd","Api_Server":"http://127.0.0.1:4433"}

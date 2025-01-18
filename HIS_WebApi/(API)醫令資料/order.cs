@@ -44,7 +44,14 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -119,7 +126,14 @@ namespace HIS_WebApi
                 DateTime date_st = 起始時間.StringToDateTime();
                 DateTime date_end = 結束時間.StringToDateTime();
 
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -210,7 +224,14 @@ namespace HIS_WebApi
                 DateTime date_st = 起始時間.StringToDateTime();
                 DateTime date_end = 結束時間.StringToDateTime();
 
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -287,10 +308,14 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string PRI_KEY = returnData.ValueAry[0];
-
-
-
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -452,7 +477,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -535,7 +567,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -618,7 +657,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -702,7 +748,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[領藥號,日期]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -771,7 +824,14 @@ namespace HIS_WebApi
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -843,7 +903,14 @@ namespace HIS_WebApi
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -891,7 +958,7 @@ namespace HIS_WebApi
             returnData.Method = "update_order_list";
             try
             {
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 List<OrderClass> input_orderClass = returnData.Data.ObjToClass<List<OrderClass>>();
                 string priKey = input_orderClass[0].PRI_KEY;
@@ -1042,6 +1109,105 @@ namespace HIS_WebApi
 
         }
 
+
+        /// <summary>
+        /// 以GUID更新西藥醫令
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///       [OrderClass(陣列)]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add_and_updete_by_guid")]
+        [HttpPost]
+        public string POST_add_and_updete_by_guid([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add_and_updete_by_guid";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                string serverName = returnData.ServerName;
+                string serverType = returnData.ServerType;
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "order_list";
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
+                List<OrderClass> OrderClasses = returnData.Data.ObjToClass<List<OrderClass>>();
+                if (OrderClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入醫令資料為空值";
+                    return returnData.JsonSerializationt();
+                }
+                List<object[]> list_value_buf = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                for (int i = 0; i < OrderClasses.Count; i++)
+                {
+                    string GUID = OrderClasses[i].GUID;
+                    object[] value = OrderClasses[i].ClassToSQL<OrderClass, enum_醫囑資料>();
+                    list_value_buf = sQLControl_醫令資料.GetRowsByDefult(null, (int)enum_醫囑資料.GUID, GUID);
+                    if(list_value_buf.Count == 0)
+                    {
+                        list_value_add.Add(value);
+                    }
+                    else
+                    {
+                        list_value_replace.Add(value);
+                    }
+                }
+
+                sQLControl_醫令資料.AddRows(null, list_value_add);
+                sQLControl_醫令資料.UpdateByDefulteExtra(null, list_value_replace);
+
+
+
+                returnData.Code = 200;
+                returnData.Result = $"新增及更新西藥醫令,共新增<{list_value_add.Count}>筆資料,修改<{list_value_replace.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = OrderClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+
         /// <summary>
         /// 以領藥號取得西藥醫令病患列表
         /// </summary>
@@ -1087,7 +1253,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1220,7 +1393,14 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[病歷號]";
                     return returnData.JsonSerializationt(true);
                 }
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;

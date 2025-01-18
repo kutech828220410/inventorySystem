@@ -21,7 +21,7 @@ namespace HIS_DB_Lib
     [EnumDescription("order_list")]
     public enum enum_醫囑資料
     {
-        [Description("GUID,VARCHAR,50,PRIMARY")]
+        [Description("GUID,VARCHAR,100,PRIMARY")]
         GUID,
         [Description("PRI_KEY,VARCHAR,200,INDEX")]
         PRI_KEY,
@@ -199,8 +199,24 @@ namespace HIS_DB_Lib
 
             returnData returnData = new returnData();
             string tableName = "";
- 
+
             returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
+        static public SQLUI.Table init(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/order/init";
+
+            returnData returnData = new returnData();
+            string tableName = "";
+
+            returnData.TableName = tableName;
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -638,6 +654,31 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_OrderClass;
         }
+
+        static public (int code,string result ,List<OrderClass> orderClasses) add_and_updete_by_guid(string API_Server, string ServerName, string ServerType, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/add_and_updete_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+
+            }
+            if (returnData_out.Data == null)
+            {
+
+            }
+            List<OrderClass> OrderClasses_out = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return (returnData_out.Code, returnData_out.Result, OrderClasses_out);
+        }
+
     }
 
     static public class OrderClassMethod
