@@ -453,6 +453,7 @@ namespace HIS_WebApi
 
                 List<positionClass> positionClasses = new List<positionClass>();
                 textVisionClass textVision = return_textVisionClass.Data.ObjToClass<List<textVisionClass>>()[0];
+                textVision.批次ID = textVisionClasses[0].批次ID;
                 inspectionClass.content content = new inspectionClass.content();
                 if (textVision.單號.StringIsEmpty() == false)
                 {
@@ -474,10 +475,25 @@ namespace HIS_WebApi
                             returnData.Data = textVisions;
                             return returnData.JsonSerializationt(true);
                         }
-                        else
+                        else if(textVisions[0].確認 == "未確認" && textVisions[0].批次ID == textVision.批次ID && textVisions[0].GUID != textVision.GUID)
+                        {
+                            returnData.Code = -5;
+                            returnData.Result = $"此單號已上傳過 單號 {textVision.單號}";
+
+                            textVisions[0].Code = returnData.Code.ToString();
+                            textVisions[0].Result = returnData.Result;
+
+
+                            returnData.Value = $"{textVision.單號}";
+                            textVisions[0].圖片 = "";
+                            textVisions[0].Log = "";
+                            returnData.Data = textVisions;
+                            return returnData.JsonSerializationt(true);
+                        }
+                        else 
                         {
                             string GUID_delete = textVisions[0].GUID;
-                            textVisionClass.delete_by_GUID(API, GUID_delete);
+                            textVisionClass.delete_by_GUID(API, textVision.單號);
                         }
                         
                     }
