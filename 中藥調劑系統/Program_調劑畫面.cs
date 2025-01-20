@@ -1287,8 +1287,7 @@ namespace 中藥調劑系統
 
             }
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
-            //this.sqL_DataGridView_處方內容.ClearSelection();
-            //this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
+
             RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
 
@@ -1395,10 +1394,7 @@ namespace 中藥調劑系統
                 Codes.Add(藥碼);
 
             }
-            //for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
-            //{
-            //    List_RowsLED_本地資料[i] = H_Pannel_lib.RowsLEDUI.ResetLightStateLEDBytes(List_RowsLED_本地資料[i]);
-            //}
+
             Function_儲位亮燈(Codes, Color.Black);
         }
         private void RJ_Button_調劑畫面_單滅_MouseDownEvent(MouseEventArgs mevent)
