@@ -459,11 +459,27 @@ namespace HIS_WebApi
                     List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
                     if (textVisions !=  null)
                     {
-                        returnData.Value = $"{textVision.單號}";
-                        returnData.Code = -4;
-                        returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
-                        return returnData.JsonSerializationt(true);
+                        if (textVisions[0].確認 == "已確認") 
+                        {
+                            returnData.Code = -4;
+                            returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
 
+                            textVisions[0].Code = returnData.Code.ToString();
+                            textVisions[0].Result = returnData.Result;
+
+
+                            returnData.Value = $"{textVision.單號}";
+                            textVisions[0].圖片 = "";
+                            textVisions[0].Log = "";
+                            returnData.Data = textVisions;
+                            return returnData.JsonSerializationt(true);
+                        }
+                        else
+                        {
+                            string GUID_delete = textVisions[0].GUID;
+                            textVisionClass.delete_by_GUID(API, GUID_delete);
+                        }
+                        
                     }
 
                     content = inspectionClass.content_get_by_PON(API, textVision.單號);
@@ -1141,7 +1157,10 @@ namespace HIS_WebApi
                     textVisionClass.GUID = Guid.NewGuid().ToString();
                     textVisionClass.操作時間 = DateTime.Now.ToDateTimeString();
                     textVisionClass.確認 = "未確認";
-                    textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();                
+                    textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();
+                    textVisionClass.Code = "-200";
+                    textVisionClass.Result = "未辨識";
+
                 }
 
                 List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();

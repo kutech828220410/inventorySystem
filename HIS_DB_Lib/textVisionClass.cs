@@ -342,7 +342,8 @@ namespace HIS_DB_Lib
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
-            if(returnData.Code != 200)
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200)
             {
                 return null;
             }
