@@ -457,7 +457,7 @@ namespace HIS_WebApi
                 if (textVision.單號.StringIsEmpty() == false)
                 {
                     List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
-                    if (textVisions.Count > 0)
+                    if (textVisions !=  null)
                     {
                         returnData.Value = $"{textVision.單號}";
                         returnData.Code = -4;
