@@ -583,6 +583,7 @@ namespace HIS_WebApi
                 sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
 
                 textVision.圖片 = "";
+                textVision.Log = "";
                 returnData.Data = new List<textVisionClass>() { textVision };
 
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -1142,6 +1143,8 @@ namespace HIS_WebApi
                     textVisionClass.GUID = Guid.NewGuid().ToString();
                     textVisionClass.操作時間 = DateTime.Now.ToDateTimeString();
                     textVisionClass.確認 = "未確認";
+                    textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();
+
                     //string 圖片 = textVisionClass.圖片;
                     ////textVisionClass.圖片 = "";
                     //sub_textVisionClass sub_TextVisionClass = new sub_textVisionClass 
@@ -1339,7 +1342,7 @@ namespace HIS_WebApi
                 string 批次ID = returnData.ValueAry[0];
                 string[] GUIDs = returnData.ValueAry[1].Split(";");
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.批次ID, 批次ID);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.批次ID, 批次ID);              
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 List<textVisionClass> update_textVisionClass = new List<textVisionClass>();
                 for (int i = 0; i < textVisionClasses.Count; i++)
@@ -1353,6 +1356,11 @@ namespace HIS_WebApi
                 }
                 List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
                 if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
+                for(int i = 0; i < textVisionClasses.Count; i++)
+                {
+                    textVisionClasses[i].圖片 = "";
+                    textVisionClasses[i].Log = "";
+                }
 
                 returnData.Code = 200;
                 returnData.Data = textVisionClasses;
