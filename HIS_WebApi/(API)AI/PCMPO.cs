@@ -412,7 +412,7 @@ namespace HIS_WebApi
                 List<object[]> getPicByMaster = sQLControl_sub_textVision.GetRowsByDefult(null, (int)enum_sub_textVision.Master_GUID, GUID);
                 List<object[]> getDateByGuid = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
 
-                List<sub_textVisionClass> sub_textVisionClasses = getDateByGuid.SQLToClass<sub_textVisionClass, enum_sub_textVision>();
+                List<sub_textVisionClass> sub_textVisionClasses = getPicByMaster.SQLToClass<sub_textVisionClass, enum_sub_textVision>();
                 List<textVisionClass> textVisionClasses = getDateByGuid.SQLToClass<textVisionClass, enum_textVision>();
 
                 string 圖片 = sub_textVisionClasses[0].圖片;
