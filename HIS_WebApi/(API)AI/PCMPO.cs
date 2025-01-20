@@ -21,7 +21,7 @@ namespace HIS_WebApi
     [ApiController]
     public class PCMPO : ControllerBase
     {
-        //static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        //static private string API_Server = "http://220.135.128.247:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private static string fileDirectory = $"{currentDirectory}/log/";
@@ -456,6 +456,16 @@ namespace HIS_WebApi
                 inspectionClass.content content = new inspectionClass.content();
                 if (textVision.單號.StringIsEmpty() == false)
                 {
+                    List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
+                    if (textVisions.Count > 0)
+                    {
+                        returnData.Value = $"{textVision.單號}";
+                        returnData.Code = -4;
+                        returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
+                        return returnData.JsonSerializationt(true);
+
+                    }
+
                     content = inspectionClass.content_get_by_PON(API, textVision.單號);
                     if (content == null)
                     {
@@ -478,18 +488,7 @@ namespace HIS_WebApi
 
                         return returnData.JsonSerializationt(true);
                     }
-                }
-                else
-                {
-                    List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
-                    if(textVisions.Count > 0)
-                    {
-                        returnData.Code = -4;
-                        returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
-                        return returnData.JsonSerializationt(true);
-
-                    }
-                }
+                }        
 
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
@@ -1068,7 +1067,7 @@ namespace HIS_WebApi
                 string 單號 = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
 
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.單號, 單號);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.PRI_KEY, 單號);
                 if (list_textVision.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1076,6 +1075,8 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                textVisionClasses[0].圖片 = "";
+                textVisionClasses[0].Log = "";
 
                 returnData.Code = 200;
                 returnData.Data = textVisionClasses;
@@ -1124,7 +1125,6 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
                 if (input_textVision == null)
                 {
@@ -1134,34 +1134,20 @@ namespace HIS_WebApi
                 }
       
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
-                //SQLControl sQLControl_sub_textVision = new SQLControl(Server, DB, "sub_textVision", UserName, Password, Port, SSLMode);
-                //List<sub_textVisionClass> sub_textVisionClasses = new List<sub_textVisionClass>();
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);          
 
                 foreach (textVisionClass textVisionClass in input_textVision)
                 {
                     textVisionClass.GUID = Guid.NewGuid().ToString();
                     textVisionClass.操作時間 = DateTime.Now.ToDateTimeString();
                     textVisionClass.確認 = "未確認";
-                    textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();
-
-                    //string 圖片 = textVisionClass.圖片;
-                    ////textVisionClass.圖片 = "";
-                    //sub_textVisionClass sub_TextVisionClass = new sub_textVisionClass 
-                    //{
-                    //    GUID = Guid.NewGuid().ToString(),
-                    //    Master_GUID = textVisionClass.GUID,
-                    //    圖片 = 圖片
-                    //};
-                    //sub_textVisionClasses.Add(sub_TextVisionClass);
+                    textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();                
                 }
 
                 List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
-                //List<object[]> list_sub_textVision = sub_textVisionClasses.ClassToSQL<sub_textVisionClass, enum_sub_textVision>();
 
                 sQLControl_textVision.AddRows(null, list_textVision);
-                //sQLControl_sub_textVision.AddRows(null, list_sub_textVision);
-                
+                input_textVision[0].圖片 = "";
                 returnData.Code = 200;
                 returnData.Data = input_textVision;
                 returnData.TimeTaken = $"{myTimerBasic}";
