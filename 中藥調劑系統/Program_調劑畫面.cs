@@ -438,6 +438,18 @@ namespace 中藥調劑系統
                         if (orderClasses.Count > 0)
                         {
                             bool flag_ok = true;
+                            List<OrderTClass> orderTClasses_header = OrderTClass.get_header_by_MED_BAG_NUM(API_Server, orderClasses[0].領藥號);
+                            if(orderTClasses_header.Count > 0)
+                            {
+                                if (orderTClasses_header[0].狀態 == "Y")
+                                {
+                                    Voice voice = new Voice();
+                                    voice.SpeakOnTask(RemoveParenthesesContent($"處方已調劑完成"));
+                                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方已調劑完成", 1000);
+                                    dialog_AlarmForm.ShowDialog();
+                                    return;
+                                }
+                            }
 
                             if(rJ_Lable_領藥號.Text == orderClasses[0].領藥號)
                             {
@@ -1036,7 +1048,7 @@ namespace 中藥調劑系統
 
             dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
             dialog_AlarmForm.ShowDialog();
-            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+            RJ_Button_調劑畫面_全滅_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
             Function_重置處方();
 
             return orderTClass;
@@ -1341,7 +1353,7 @@ namespace 中藥調劑系統
 
             }
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
-            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+            RJ_Button_調劑畫面_全滅_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
             Function_重置處方();
         }
         private void PlC_RJ_Button_保健食品_MouseDownEvent(MouseEventArgs mevent)
@@ -1379,7 +1391,7 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_全滅_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (MyMessageBox.ShowDialog("是否將燈號【全滅】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            if (mevent != null) if (MyMessageBox.ShowDialog("是否將燈號【全滅】?", MyMessageBox.enum_BoxType.Asterisk, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_處方內容.GetAllRows();
             if (list_value.Count == 0)
             {

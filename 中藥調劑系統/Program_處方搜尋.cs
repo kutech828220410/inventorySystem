@@ -232,6 +232,11 @@ namespace 中藥調劑系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
+                orderTClasses = (from temp in orderTClasses
+                                 where temp.開方日期.StringToDateTime() >= this.dateTimeIntervelPicker_處方搜尋_開方時間.StartTime
+                                 where temp.開方日期.StringToDateTime() <= this.dateTimeIntervelPicker_處方搜尋_開方時間.EndTime
+                                 select temp).ToList();
+
                 Finction_處方搜尋_更新UI(orderTClasses);
             }
             catch
