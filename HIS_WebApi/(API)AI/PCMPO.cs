@@ -461,13 +461,18 @@ namespace HIS_WebApi
                     {
                         returnData.Code = -2;
                         returnData.Result = $"查無對應單號資料 單號 {textVision.單號}";
-                        returnData.Data = new List<textVisionClass> { textVision } ;
+
                         textVisionClasses[0].Code = returnData.Code.ToString();
                         textVisionClasses[0].Result = returnData.Result;
                         textVisionClasses[0].效期 = DateTime.MinValue.ToDateTimeString();
+                        textVisionClasses[0].單號 = textVision.單號;
 
                         update_textVisionClass = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
                         sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
+
+                        textVisionClasses[0].圖片 = "";
+                        returnData.Data = textVisionClasses;
+                        
                         Logger.Log(project, returnData.JsonSerializationt());
                         Logger.Log(project, Message);
 
@@ -1220,8 +1225,11 @@ namespace HIS_WebApi
                 string API_Server = GetServerAPI("Main", "網頁", "API01");
                 string 操作者ID = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                //List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                List<object[]> list_textVision = sQLControl_textVision.GetAllRows(null);
+
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
                 Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
                 if(dicTextVision.Count == 0)
                 {
@@ -1234,20 +1242,22 @@ namespace HIS_WebApi
                 List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
                 bool flag = false;
                 List<textVisionClass> textVision_buff = new List<textVisionClass>();
-                List<returnDataClass> returnDataClasses = new List<returnDataClass>();
+                //List<returnDataClass> returnDataClasses = new List<returnDataClass>();
                 for (int i = 0; i < textVisions.Count; i++)
                 {
                     if (textVisions[i].確認 == "未確認") 
                     {
                         flag = true;
-                        returnDataClass returnDataClass = new returnDataClass()
-                        {
-                            Code = textVisions[i].Code.StringToInt32(),
-                            Result = textVisions[i].Code,
-                            Data = new List<textVisionClass>() { textVisions[i] } 
-                        };
+                        textVisions[i].圖片 = "";
+                        textVisions[i].Log = "";
+                        //returnDataClass returnDataClass = new returnDataClass()
+                        //{
+                        //    Code = textVisions[i].Code.StringToInt32(),
+                        //    Result = textVisions[i].Code,
+                        //    Data = new List<textVisionClass>() { textVisions[i] } 
+                        //};
                         textVision_buff.Add(textVisions[i]);
-                        returnDataClasses.Add(returnDataClass);
+                        //returnDataClasses.Add(returnDataClass);
                     } 
                 }
                 if(flag == false)
@@ -1267,7 +1277,7 @@ namespace HIS_WebApi
                 if(returnData.Value == "Y" && flag == true)
                 {
                     returnData.Code = 201; //操作者最新的一批資料中有未確認資料
-                    returnData.Data = returnDataClasses;
+                    returnData.Data = textVision_buff;
                     returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，，含有未確認資料{textVision_buff.Count}筆";
                     returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt(true);
