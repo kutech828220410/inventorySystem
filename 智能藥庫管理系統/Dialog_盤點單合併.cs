@@ -107,7 +107,13 @@ namespace 智能藥庫系統
                     dataTable.RemoveColumn(enum_盤點定盤_Excel.覆盤量);
                     dataTable.RemoveColumn(enum_盤點定盤_Excel.GUID);
                     dataTables[0] = dataTable;
-                    byte[] bytes = MyOffice.ExcelClass.NPOI_GetBytes(dataTables , Excel_Type.xlsx);
+                    for (int i = 0; i < dataTables.Count; i++)
+                    {
+                        dataTables[i].TableName = dataTables[i].TableName.Replace("/", " ");
+                    }
+                    byte[] bytes = MyOffice.ExcelClass.NPOI_GetBytes(dataTables, Excel_Type.xlsx);
+                 
+                    
                     LoadingForm.Set_Description($"儲存檔案...");
                     bytes.SaveFileStream(saveFileDialog_SaveExcel.FileName);
                     LoadingForm.CloseLoadingForm();
