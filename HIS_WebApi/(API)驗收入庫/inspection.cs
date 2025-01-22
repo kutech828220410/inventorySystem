@@ -538,7 +538,11 @@ namespace HIS_WebApi
                 string GUID = contents[0].GUID;
                 List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetRowsByDefult(null, (int)enum_驗收明細.Master_GUID, GUID);
                 List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
-                contents[0].Sub_content.Add(sub_Contents[0]);
+                if(sub_Contents.Count > 0)
+                {
+                    contents[0].Sub_content.Add(sub_Contents[0]);
+                }
+                
                 
                 returnData.Data = contents[0];
                 returnData.Code = 200;

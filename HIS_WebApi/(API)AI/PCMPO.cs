@@ -12,6 +12,7 @@ using System.Drawing;
 using SkiaSharp;
 using System.IO;
 using System.Reflection;
+using System.Globalization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -460,19 +461,25 @@ namespace HIS_WebApi
                     List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
                     if (textVisions !=  null)
                     {
+                        if(textVisions.Count > 1)
+                        {
+                            returnData.Result = "單號重複儲存，請確認";
+                            returnData.Code = -200;
+                            return returnData.JsonSerializationt(true);
+                        }
                         if (textVisions[0].確認 == "已確認") 
                         {
                             returnData.Code = -4;
                             returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
 
-                            textVisions[0].Code = returnData.Code.ToString();
-                            textVisions[0].Result = returnData.Result;
+                            textVision.Code = returnData.Code.ToString();
+                            textVision.Result = returnData.Result;
 
-
+                            
                             returnData.Value = $"{textVision.單號}";
-                            textVisions[0].圖片 = "";
-                            textVisions[0].Log = "";
-                            returnData.Data = textVisions;
+                            textVision.圖片 = "";
+                            textVision.Log = "";
+                            returnData.Data = new List<textVisionClass>() { textVision };
                             return returnData.JsonSerializationt(true);
                         }
                         else if(textVisions[0].確認 == "未確認" && textVisions[0].批次ID == textVision.批次ID && textVisions[0].GUID != textVision.GUID)
@@ -480,20 +487,25 @@ namespace HIS_WebApi
                             returnData.Code = -5;
                             returnData.Result = $"此單號已上傳過 單號 {textVision.單號}";
 
-                            textVisions[0].Code = returnData.Code.ToString();
-                            textVisions[0].Result = returnData.Result;
+                            textVision.Code = returnData.Code.ToString();
+                            textVision.Result = returnData.Result;
 
 
                             returnData.Value = $"{textVision.單號}";
-                            textVisions[0].圖片 = "";
-                            textVisions[0].Log = "";
-                            returnData.Data = textVisions;
+                            textVision.圖片 = "";
+                            textVision.Log = "";
+                            returnData.Data = new List<textVisionClass>() { textVision };
+                            //textVisionClass.delete_by_GUID(API, GUID);
                             return returnData.JsonSerializationt(true);
+                        }
+                        else if(textVisions[0].確認 == "未確認" && textVisions[0].批次ID == textVision.批次ID && textVisions[0].GUID == textVision.GUID)
+                        {
+                            
                         }
                         else 
                         {
                             string GUID_delete = textVisions[0].GUID;
-                            textVisionClass.delete_by_GUID(API, textVision.單號);
+                            textVisionClass.delete_by_GUID(API, GUID_delete);
                         }
                         
                     }
@@ -525,17 +537,41 @@ namespace HIS_WebApi
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    if (content.藥品名稱.StringIsEmpty())
+                    if (content.Sub_content.Count > 0)
                     {
-                        textVision.藥名 = content.Sub_content[0].藥品名稱;
+                        if (content.藥品名稱.StringIsEmpty())
+                        {
+                            textVision.藥名 = content.Sub_content[0].藥品名稱;
+                        }
+                        else
+                        {
+                            textVision.藥名 = content.藥品名稱;
+                        }
+                        textVision.批號 = content.Sub_content[0].批號;
+                        textVision.效期 = content.Sub_content[0].效期;
                     }
                     else
                     {
                         textVision.藥名 = content.藥品名稱;
+                        if (textVision.效期.StringIsEmpty())
+                        {
+                            textVision.效期 = DateTime.MinValue.ToDateTimeString();
+                        }
+                        else
+                        {
+                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy" }; // 可擴展格式
+
+                            if (DateTime.TryParseExact(textVision.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+                            {
+                                textVision.效期 = date.ToString("yyyy-MM-dd");
+                            }
+                            else
+                            {
+                                textVision.效期 = DateTime.MinValue.ToDateTimeString();
+                            }
+                        }
                     }
-                    textVision.藥品碼 = content.藥品碼;
-                    textVision.批號 = content.Sub_content[0].批號;
-                    textVision.效期 = content.Sub_content[0].效期;
+                    textVision.藥品碼 = content.藥品碼;                
                     textVision.數量 = content.應收數量;
                     List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
                     if (medClasses.Count > 0)
@@ -632,7 +668,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-
         /// <summary>
         /// 更新文字辨識資料
         /// </summary>
@@ -686,6 +721,50 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, 單號);
+                if(textVisions != null)
+                {
+                    if (textVisions[0].確認 == "已確認")
+                    {
+                        returnData.Code = -4;
+                        returnData.Result = $"此單號已辨識過 單號 {單號}";
+
+                        textVisionClasses[0].Code = returnData.Code.ToString();
+                        textVisionClasses[0].Result = returnData.Result;
+
+
+                        returnData.Value = $"{單號}";
+                        textVisionClasses[0].圖片 = "";
+                        textVisionClasses[0].Log = "";
+                        returnData.Data = textVisionClasses;
+                        return returnData.JsonSerializationt(true);
+                    }
+                    else if (textVisions[0].確認 == "未確認" && textVisions[0].批次ID == textVisionClasses[0].批次ID && textVisions[0].GUID != textVisionClasses[0].GUID)
+                    {
+                        returnData.Code = -5;
+                        returnData.Result = $"此單號已上傳過 單號 {單號}";
+
+                        textVisionClasses[0].Code = returnData.Code.ToString();
+                        textVisionClasses[0].Result = returnData.Result;
+
+
+                        returnData.Value = $"{單號}";
+                        textVisionClasses[0].圖片 = "";
+                        textVisionClasses[0].Log = "";
+                        returnData.Data = textVisionClasses;
+                        return returnData.JsonSerializationt(true);
+                    }
+                    else if (textVisions[0].確認 == "未確認" && textVisions[0].批次ID == textVisionClasses[0].批次ID && textVisions[0].GUID == textVisionClasses[0].GUID)
+                    {
+
+                    }
+                    else
+                    {
+                        string GUID_delete = textVisions[0].GUID;
+                        textVisionClass.delete_by_GUID(API, GUID_delete);
+                    }
+                }
+               
                 inspectionClass.content content = inspectionClass.content_get_by_PON(API, 單號);
                 List<object[]> Update_textVision = new List<object[]>();
                 if (content == null)
@@ -698,11 +777,12 @@ namespace HIS_WebApi
                     sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
-
+                    textVisionClasses[0].圖片 = "";
+                    textVisionClasses[0].Log = "";
+                    returnData.Data = textVisionClasses;
                     return returnData.JsonSerializationt(true);
                 }
                 textVisionClass textVision = textVisionClasses[0];
-                textVision.單號 = 單號;
                 if (content.藥品名稱.StringIsEmpty())
                 {
                     textVision.藥名 = content.Sub_content[0].藥品名稱;
@@ -711,10 +791,16 @@ namespace HIS_WebApi
                 {
                     textVision.藥名 = content.藥品名稱;
                 }
+                if(content.Sub_content.Count > 0)
+                {
+                    textVision.批號 = content.Sub_content[0].批號;
+                    textVision.效期 = content.Sub_content[0].效期;
+                }
                 textVision.藥品碼 = content.藥品碼;
-                textVision.批號 = content.Sub_content[0].批號;
-                textVision.效期 = content.Sub_content[0].效期;
                 textVision.數量 = content.應收數量;
+                textVision.單號 = 單號;
+                textVision.PRI_KEY = 單號;
+
                 List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
                 if (medClasses.Count > 0)
                 {
@@ -725,13 +811,15 @@ namespace HIS_WebApi
                 
 
                 returnData.Code = 200;
-                returnData.Data = textVisionClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"編輯<{textVisionClasses.Count}>筆";
                 textVisionClasses[0].Code = returnData.Code.ToString();
                 textVisionClasses[0].Result = returnData.Result;
                 Update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, Update_textVision);
+                textVisionClasses[0].圖片 = "";
+                textVisionClasses[0].Log = "";
+                returnData.Data = textVisionClasses;
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

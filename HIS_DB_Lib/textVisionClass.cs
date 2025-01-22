@@ -329,7 +329,10 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-
+            if (returnData.Code != 200)
+            {
+                return null;
+            }
             List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             return out_textVisionClass;
         }
