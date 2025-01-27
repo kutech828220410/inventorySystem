@@ -16,7 +16,7 @@ namespace HIS_WebApi
     [ApiController]
     public class login_sessionController : Controller
     {
-        static private string DataBaseName = ConfigurationManager.AppSettings["person_page_database"];
+        static private string DataBaseName = ConfigurationManager.AppSettings["VM_DB"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
         static private string IP = ConfigurationManager.AppSettings["IP"];

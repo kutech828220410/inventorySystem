@@ -28,10 +28,10 @@ namespace HIS_WebApi
             無效期可入帳,
         }
 
-        static private string DataBaseName = ConfigurationManager.AppSettings["acceptance_med_database"];
+        static private string DataBaseName = ConfigurationManager.AppSettings["VM_DB"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string IP = ConfigurationManager.AppSettings["acceptance_med_IP"];
+        static private string IP = ConfigurationManager.AppSettings["Server"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         private SQLControl sQLControl_acceptance_med = new SQLControl(IP, DataBaseName, "acceptance_med", UserName, Password, Port, SSLMode);

@@ -23,10 +23,10 @@ namespace HIS_WebApi
 
     public class login_data_pageController : ControllerBase
     {
-        static private string DataBaseName = ConfigurationManager.AppSettings["person_page_database"];
+        static private string DataBaseName = ConfigurationManager.AppSettings["VM_DB"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string IP = ConfigurationManager.AppSettings["person_page_IP"];
+        static private string IP = ConfigurationManager.AppSettings["Server"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 

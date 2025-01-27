@@ -43,7 +43,7 @@ namespace HIS_WebApi
             var protocol = HttpContext.Request.IsHttps ? "https" : "http";
             returnData returnData = new returnData();
             returnData.Code = 200;
-            returnData.Result = $"Api test sucess!{protocol}://{localIpAddress}:{localPort}";
+            returnData.Result = $"Api test sucess 20250126!{protocol}://{localIpAddress}:{localPort}";
 
             string DB = ConfigurationManager.AppSettings["DB"];
             string Server = ConfigurationManager.AppSettings["Server"];
@@ -57,12 +57,14 @@ namespace HIS_WebApi
             strs.Add($"VM Database : {VM_DB}");
             //strs.Add($"uDP_Class PORT: {Startup.uDP_Class.Port}");
             strs.Add($"Version : {version}");
-
-
+            strs.Add($"RunningInDocker : " + $"{(ContainerChecker.IsRunningInDocker() ? "Y" : "N")}");
+      
             returnData.Data = strs;
 
+            string json = returnData.JsonSerializationt(true);
 
-            return returnData.JsonSerializationt(true);
+            //Logger.Log("test", json);
+            return json;
         }
         [Route("price")]
         [HttpGet]
@@ -99,13 +101,12 @@ namespace HIS_WebApi
             return list_colname_UDDRGVWA.JsonSerializationt() + list_colname_UDPRDPF.JsonSerializationt();
         }
 
-        [Route("OrderLastWriteTime")]
+        [Route("check")]
         [HttpGet]
-        public string Get_OrderLastWriteTime()
+        public string get_check()
         {
 
-            DateTime dateTime = System.IO.File.GetLastWriteTime(@"C:\itinvd0304.txt");
-            return dateTime.ToDateTimeString();
+            return "OK";
         }
 
    

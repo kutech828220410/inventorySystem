@@ -10,11 +10,60 @@ using Microsoft.OpenApi.Models; // 导入 OpenApiInfo 和 OpenApiContact 类
 using System;
 using System.IO;
 using System.Reflection;
-
 using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using System.Configuration;
 namespace HIS_WebApi
 {
+    public class ContainerChecker
+    {
+        public static bool IsRunningInDocker()
+        {
+            // 檢查 /.dockerenv 檔案是否存在
+            if (File.Exists("/.dockerenv"))
+            {
+                return true;
+            }
+
+            // 檢查 /proc/1/cgroup 檔案的內容
+            if (File.Exists("/proc/1/cgroup"))
+            {
+                string[] lines = File.ReadAllLines("/proc/1/cgroup");
+                foreach (string line in lines)
+                {
+                    if (line.Contains("docker") || line.Contains("lxc") || line.Contains("kubepods"))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+        static public void UpdateAppSettings()
+        {
+            // 判斷是否在 Docker 中運行
+            bool isInDocker = IsRunningInDocker();
+
+            // 開啟配置檔案
+            Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            // 更新設定值
+            string newValue = isInDocker ? "127.0.0.1" : "127.0.0.1";
+            config.AppSettings.Settings["IP"].Value = newValue;
+            config.AppSettings.Settings["server"].Value = newValue;
+            config.AppSettings.Settings["Server"].Value = newValue;
+            config.AppSettings.Settings["VM_Server"].Value = newValue;
+            config.AppSettings.Settings["device_Server"].Value = newValue;
+
+            // 儲存配置檔案
+            config.Save(ConfigurationSaveMode.Modified);
+
+            // 刷新 appSettings 節，使修改立即生效
+            System.Configuration.ConfigurationManager.RefreshSection("appSettings");
+        }
+    }
+  
     public class Startup
     {
         private static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -24,7 +73,7 @@ namespace HIS_WebApi
         {
             _environment = environment;
 
-
+            ContainerChecker.UpdateAppSettings();
             //if (_environment.IsDevelopment())
             //{
             //    uDP_Class = new UDP_Class("0.0.0.0", 29500);
@@ -55,15 +104,15 @@ namespace HIS_WebApi
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .SetIsOriginAllowed(origin => true)
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-           
+                options.AddPolicy("AllowAll",
+                     builder => builder
+                         .AllowAnyOrigin()
+                         .AllowAnyMethod()
+                         .AllowAnyHeader()
+                         .SetIsOriginAllowed(_ => true)
+                         .WithExposedHeaders("Location")
+                 );
+
             });
 
 
@@ -111,7 +160,7 @@ namespace HIS_WebApi
             });
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(); // 啟用CORS
+            app.UseCors("AllowAll"); // ✅ 啟用 CORS
             app.UseAuthorization();
             app.UseDefaultFiles();
             app.UseStaticFiles();

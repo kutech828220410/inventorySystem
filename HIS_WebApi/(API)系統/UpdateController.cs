@@ -254,6 +254,16 @@ namespace HIS_WebApi
                                         select temp).ToList();
                 if (updateVersionClasses.Count == 0) return "";
                 string filepath = updateVersionClasses[0].filepath;
+     
+
+                if (ContainerChecker.IsRunningInDocker())
+                {
+                    filepath = filepath.Replace("\\", "/");
+                    string fileName = Path.GetFileName(filepath);
+                    string directoryPath = Path.GetDirectoryName(filepath);
+                    string folderName = Path.GetFileName(directoryPath);
+                    filepath = $"/update_program/{folderName}/{fileName}";
+                }
                 Assembly assembly = Assembly.LoadFrom(filepath);
                 string version = assembly.GetName().Version.ToString();
 
