@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using Basic;
 using System.ComponentModel;
 using System.Reflection;
+
 namespace HIS_DB_Lib
 {
     public enum enum_驗收單匯入
