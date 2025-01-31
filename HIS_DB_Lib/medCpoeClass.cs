@@ -23,6 +23,10 @@ namespace HIS_DB_Lib
         更新時間,
         [Description("調劑狀態,VARCHAR,10,INDEX")]
         調劑狀態,
+        [Description("針劑,VARCHAR,10,NONE")]
+        針劑,
+        [Description("公藥,VARCHAR,10,NONE")]
+        公藥,
         [Description("藥局,VARCHAR,10,INDEX")]
         藥局,
         [Description("護理站,VARCHAR,10,INDEX")]
@@ -45,7 +49,7 @@ namespace HIS_DB_Lib
         開始時間,
         [Description("結束時間,DATETIME,20,NONE")]
         結束時間,
-        [Description("藥碼,VARCHAR,10,NONE")]
+        [Description("藥碼,VARCHAR,50,NONE")]
         藥碼,
         [Description("頻次代碼,VARCHAR,10,NONE")]
         頻次代碼,
@@ -64,15 +68,9 @@ namespace HIS_DB_Lib
         [Description("單位,VARCHAR,10,NONE")]
         單位,
         [Description("期限,VARCHAR,10,NONE")]
-        期限,
-        [Description("自動包藥機,VARCHAR,10,NONE")]
-        自動包藥機,
-        [Description("化癌分類,VARCHAR,10,NONE")]
-        化癌分類,
+        期限,      
         [Description("自購,VARCHAR,10,NONE")]
         自購,
-        [Description("血液製劑註記,VARCHAR,10,NONE")]
-        血液製劑註記,
         [Description("處方醫師,VARCHAR,10,NONE")]
         處方醫師,
         [Description("處方醫師姓名,VARCHAR,10,NONE")]
@@ -89,22 +87,10 @@ namespace HIS_DB_Lib
         LKFLAG,
         [Description("排序,VARCHAR,10,NONE")]
         排序,
-        [Description("判讀藥師代碼,VARCHAR,10,NONE")]
-        判讀藥師代碼,
-        [Description("判讀FLAG,VARCHAR,10,NONE")]
-        判讀FLAG,
         [Description("勿磨,VARCHAR,10,NONE")]
         勿磨,
-        [Description("抗生素等級,VARCHAR,10,NONE")]
-        抗生素等級,
         [Description("重複用藥,VARCHAR,10,NONE")]
         重複用藥,
-        [Description("配藥天數,VARCHAR,10,NONE")]
-        配藥天數,
-        [Description("交互作用,VARCHAR,10,NONE")]
-        交互作用,
-        [Description("交互作用等級,VARCHAR,10,NONE")]
-        交互作用等級,
         [Description("DC確認,VARCHAR,10,NONE")]
         DC確認,
         [Description("調劑異動,VARCHAR,10,NONE")]
@@ -137,6 +123,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        /// <summary>
+        /// 針劑
+        /// </summary>
+        [JsonPropertyName("injection")]
+        public string 針劑 { get; set; }
+        /// <summary>
+        /// 公藥
+        /// </summary>
+        [JsonPropertyName("pub_med")]
+        public string 公藥 { get; set; }
         /// <summary>
         /// 藥局
         /// </summary>
@@ -243,25 +239,10 @@ namespace HIS_DB_Lib
         [JsonPropertyName("durat")]
         public string 期限 { get; set; }
         /// <summary>
-        /// 自動包藥機
-        /// </summary>
-        [JsonPropertyName("dspmf")]
-        public string 自動包藥機 { get; set; }
-        /// <summary>
-        /// 化癌分類
-        /// </summary>
-        [JsonPropertyName("chemo")]
-        public string 化癌分類 { get; set; }
-        /// <summary>
         /// 自購
         /// </summary>
         [JsonPropertyName("self")]
         public string 自購 { get; set; }
-        /// <summary>
-        /// 血液製劑註記
-        /// </summary>
-        [JsonPropertyName("albumi")]
-        public string 血液製劑註記 { get; set; }
         /// <summary>
         /// 處方醫師
         /// </summary>
@@ -303,45 +284,15 @@ namespace HIS_DB_Lib
         [JsonPropertyName("rank")]
         public string 排序 { get; set; }
         /// <summary>
-        /// 判讀藥師代碼
-        /// </summary>
-        [JsonPropertyName("pharnum")]
-        public string 判讀藥師代碼 { get; set; }
-        /// <summary>
-        /// 判讀FLAG
-        /// </summary>
-        [JsonPropertyName("flag")]
-        public string 判讀FLAG { get; set; }
-        /// <summary>
         /// 勿磨
         /// </summary>
         [JsonPropertyName("udngt")]
         public string 勿磨 { get; set; }
         /// <summary>
-        /// 抗生素等級
-        /// </summary>
-        [JsonPropertyName("anticg")]
-        public string 抗生素等級 { get; set; }
-        /// <summary>
         /// 重複用藥
         /// </summary>
         [JsonPropertyName("samedg")]
         public string 重複用藥 { get; set; }
-        /// <summary>
-        /// 配藥天數
-        /// </summary>
-        [JsonPropertyName("dspdy")]
-        public string 配藥天數 { get; set; }
-        /// <summary>
-        /// 交互作用
-        /// </summary>
-        [JsonPropertyName("ddi")]
-        public string 交互作用 { get; set; }
-        /// <summary>
-        /// 交互作用等級
-        /// </summary>
-        [JsonPropertyName("ddic")]
-        public string 交互作用等級 { get; set; }
         /// <summary>
         /// DC確認
         /// </summary>
@@ -374,7 +325,15 @@ namespace HIS_DB_Lib
         {
             public int Compare(medCpoeClass x, medCpoeClass y)
             {
-                return string.Compare(x.排序, y.排序);
+                int result = string.Compare(x.排序, y.排序);
+
+                // 如果 排序 相同，則依照 藥名 排序
+                if (result == 0)
+                {
+                    result = string.Compare(x.藥品名, y.藥品名);
+                }
+
+                return result;
             }
         }
         static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
