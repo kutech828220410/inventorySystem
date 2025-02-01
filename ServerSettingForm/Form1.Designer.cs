@@ -29,6 +29,7 @@ namespace ServerSettingForm
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button_調劑台 = new System.Windows.Forms.Button();
             this.button_藥庫 = new System.Windows.Forms.Button();
             this.button_網頁 = new System.Windows.Forms.Button();
@@ -171,8 +172,8 @@ namespace ServerSettingForm
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Server 設定";
             this.Load += new System.EventHandler(this.Form1_Load);
