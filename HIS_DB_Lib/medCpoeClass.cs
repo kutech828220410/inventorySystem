@@ -19,10 +19,14 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("PRI_KEY,VARCHAR,200,INDEX")]
+        PRI_KEY,
         [Description("更新時間,DATETIME,10,NONE")]
         更新時間,
-        [Description("調劑狀態,VARCHAR,10,INDEX")]
+        [Description("調劑狀態,VARCHAR,10,NONE")]
         調劑狀態,
+        [Description("藥品家族,VARCHAR,10,NONE")]
+        藥品家族,
         [Description("針劑,VARCHAR,10,NONE")]
         針劑,
         [Description("公藥,VARCHAR,10,NONE")]
@@ -67,8 +71,8 @@ namespace HIS_DB_Lib
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
         單位,
-        [Description("期限,VARCHAR,10,NONE")]
-        期限,      
+        [Description("儲位,VARCHAR,10,NONE")]
+        儲位,      
         [Description("自購,VARCHAR,10,NONE")]
         自購,
         [Description("處方醫師,VARCHAR,10,NONE")]
@@ -114,6 +118,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
         /// <summary>
+        /// PRI_KEY
+        /// </summary>
+        [JsonPropertyName("PRI_KEY")]
+        public string PRI_KEY { get; set; }
+        /// <summary>
         /// 更新時間
         /// </summary>
         [JsonPropertyName("update_time")]
@@ -123,6 +132,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        /// <summary>
+        /// 藥品家族
+        /// </summary>
+        [JsonPropertyName("med_fam")]
+        public string 藥品家族 { get; set; }
         /// <summary>
         /// 針劑
         /// </summary>
@@ -234,10 +248,10 @@ namespace HIS_DB_Lib
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
         /// <summary>
-        /// 期限
+        /// 儲位
         /// </summary>
-        [JsonPropertyName("durat")]
-        public string 期限 { get; set; }
+        [JsonPropertyName("儲位")]
+        public string 儲位 { get; set; }
         /// <summary>
         /// 自購
         /// </summary>
@@ -446,7 +460,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medClass;
         }
-        static public Dictionary<string, List<medCpoeClass>> CoverToDictByMasterGUID(List<medCpoeClass> medCpoeClasses)
+        static public Dictionary<string, List<medCpoeClass>> ToDictByMasterGUID(List<medCpoeClass> medCpoeClasses)
         {
             Dictionary<string, List<medCpoeClass>> dictionary = new Dictionary<string, List<medCpoeClass>>();
             foreach( var item in medCpoeClasses)
@@ -462,7 +476,7 @@ namespace HIS_DB_Lib
             }
             return dictionary;
         }
-        static public List<medCpoeClass> SortDictByMasterGUID (Dictionary<string, List<medCpoeClass>> dict, string master_GUID)
+        static public List<medCpoeClass> GetByMasterGUID (Dictionary<string, List<medCpoeClass>> dict, string master_GUID)
         {
             if (dict.TryGetValue(master_GUID, out List<medCpoeClass> medCpoeClasses))
             {

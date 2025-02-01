@@ -727,9 +727,19 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.更新時間">
             <summary>
             更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.調劑時間">
+            <summary>
+            調劑時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.異動">
@@ -982,6 +992,11 @@
             Master_GUID
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.更新時間">
             <summary>
             更新時間
@@ -990,6 +1005,11 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑狀態">
             <summary>
             調劑狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥品家族">
+            <summary>
+            藥品家族
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.針劑">
@@ -1102,9 +1122,9 @@
             單位
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.期限">
+        <member name="P:HIS_DB_Lib.medCpoeClass.儲位">
             <summary>
-            期限
+            儲位
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.自購">
