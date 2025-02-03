@@ -301,6 +301,36 @@ namespace HIS_DB_Lib
             }
 
         }
+        static public List<textVisionClass> get_by_GUID(string API_Server, string GUID)
+        {
+            string url = $"{API_Server}/api/pcmpo/get_by_GUID";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<textVisionClass> textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return textVisionClasses;
+        }
+        static public List<textVisionClass> update(string API_Server, List<textVisionClass> textVisionClasses)
+        {
+            string url = $"{API_Server}/api/pcmpo/update";
+
+            returnData returnData = new returnData();
+            returnData.Data = textVisionClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<textVisionClass> out_textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return out_textVisionClasses;
+        }
 
         static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
         {

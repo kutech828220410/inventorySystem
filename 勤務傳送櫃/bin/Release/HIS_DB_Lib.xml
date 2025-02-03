@@ -727,9 +727,19 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.更新時間">
             <summary>
             更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.調劑時間">
+            <summary>
+            調劑時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.異動">
@@ -982,6 +992,11 @@
             Master_GUID
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.更新時間">
             <summary>
             更新時間
@@ -990,6 +1005,21 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑狀態">
             <summary>
             調劑狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥品家族">
+            <summary>
+            藥品家族
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.針劑">
+            <summary>
+            針劑
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.公藥">
+            <summary>
+            公藥
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.藥局">
@@ -1092,29 +1122,14 @@
             單位
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.期限">
+        <member name="P:HIS_DB_Lib.medCpoeClass.儲位">
             <summary>
-            期限
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.自動包藥機">
-            <summary>
-            自動包藥機
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.化癌分類">
-            <summary>
-            化癌分類
+            儲位
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.自購">
             <summary>
             自購
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.血液製劑註記">
-            <summary>
-            血液製劑註記
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.處方醫師">
@@ -1157,44 +1172,14 @@
             排序
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.判讀藥師代碼">
-            <summary>
-            判讀藥師代碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.判讀FLAG">
-            <summary>
-            判讀FLAG
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.勿磨">
             <summary>
             勿磨
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.抗生素等級">
-            <summary>
-            抗生素等級
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.重複用藥">
             <summary>
             重複用藥
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.配藥天數">
-            <summary>
-            配藥天數
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.交互作用">
-            <summary>
-            交互作用
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.交互作用等級">
-            <summary>
-            交互作用等級
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.DC確認">
