@@ -669,6 +669,73 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以GUID取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///                 "GUID",
+        ///         ]
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_GUID")]
+        public string get_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_GUID";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                if (list_textVision.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得<{textVisionClasses.Count}>筆";
+                returnData.Data = textVisionClasses;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 更新文字辨識資料
         /// </summary>
         /// <remarks>
@@ -1075,77 +1142,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        /// <summary>
-        /// 以GUID取得資料
-        /// </summary>
-        /// <remarks>
-        /// 以下為JSON範例
-        /// <code>
-        ///     {
-        ///         "ValueAry":
-        ///         [
-        ///             "GUID"
-        ///         ]
-        ///         
-        ///     }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
-        [HttpPost("get_by_GUID")]
-        public string get_by_GUID([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_by_GUID";
-            try
-            {
-                if (returnData.ValueAry == null)
-                {
-                    returnData.Data = -200;
-                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
-                    return returnData.JsonSerializationt();
-                }
-                if (returnData.ValueAry.Count != 1)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"GUID\"]";
-                    return returnData.JsonSerializationt(true);
-                }
-
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                string GUID = returnData.ValueAry[0];
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                //SQLControl sQLControl_sub_textVision = new SQLControl(Server, DB, "sub_textVision", UserName, Password, Port, SSLMode);
-
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
-                //List<object[]> list_sub_textVision = sQLControl_sub_textVision.GetRowsByDefult(null, (int)enum_sub_textVision.Master_GUID, GUID);
-
-                if (list_textVision.Count == 0 )
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "查無資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
-                //List<sub_textVisionClass> sub_textVisionClasses = list_sub_textVision.SQLToClass<sub_textVisionClass, enum_sub_textVision>();
-                //textVisionClasses[0].圖片 = sub_textVisionClasses[0].圖片;
-                returnData.Code = 200;
-                returnData.Data = textVisionClasses;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"取得GUID : {GUID} 資料";
-                Logger.Log(project, returnData.JsonSerializationt());
-                Logger.Log(project, Message);
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                Logger.Log(project, returnData.JsonSerializationt());
-                Logger.Log(project, Message);
-                return returnData.JsonSerializationt(true);
-            }
-        }
+        
         /// <summary>
         /// 以單號取得資料
         /// </summary>
@@ -1271,6 +1268,62 @@ namespace HIS_WebApi
 
                 sQLControl_textVision.AddRows(null, list_textVision);
                 input_textVision[0].圖片 = "";
+                returnData.Code = 200;
+                returnData.Data = input_textVision;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"請購單資料預儲存成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+
+
+        }
+        /// <summary>
+        /// 資料預儲存
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":
+        ///         [
+        ///             {
+        ///                 textvisionclass
+        ///             }
+        ///         ]
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update")]
+        public string update([FromBody] returnData returnData)
+        {
+            returnData.Method = "api/PCMPO/update";
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
+                if (input_textVision == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
+                sQLControl_textVision.UpdateByDefulteExtra(null, list_textVision);
                 returnData.Code = 200;
                 returnData.Data = input_textVision;
                 returnData.TimeTaken = $"{myTimerBasic}";
