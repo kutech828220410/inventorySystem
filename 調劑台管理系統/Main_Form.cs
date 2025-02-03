@@ -551,6 +551,7 @@ namespace 調劑台管理系統
             this.Program_人員資料_Init();
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
+            this.Program_交易記錄查詢_結存量_Init();
             this.Program_效期管理_Init();
 
             this.Program_後台登入_Init();
