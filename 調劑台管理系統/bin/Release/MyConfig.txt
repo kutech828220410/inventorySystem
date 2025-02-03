@@ -19,7 +19,7 @@
   "外部輸出": false,
   "系統取藥模式": false,
   "EPD1020_Enable": false,
-  "全螢幕顯示": true,
+  "全螢幕顯示": false,
   "鍵盤掃碼模式": false,
   "EPD583_Port": 29005,
   "EPD266_Port": 29000,

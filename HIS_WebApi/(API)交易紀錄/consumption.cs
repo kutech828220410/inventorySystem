@@ -97,57 +97,46 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
                 }
-                DateTime date_st = date_ary[0].StringToDateTime();
-                DateTime date_end = date_ary[1].StringToDateTime();
+                DateTime date_st = date_ary[0].StringToDateTime().GetStartDate();
+                DateTime date_end = date_ary[1].StringToDateTime().GetEndDate();
 
                 List<object[]> list_tradding = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_ary[0], date_ary[1]);
                 List<object[]> list_tradding_buf = new List<object[]>();
                 List<object> Code_LINQ = (from value in list_tradding
                                           select value[(int)enum_交易記錄查詢資料.藥品碼]).Distinct().ToList();
 
-                MED_pageController mED_PageController = new MED_pageController();
-                returnData returnData_med = new returnData();
-                returnData_med.TableName = "medicine_page";
-                returnData_med.ServerName = returnData.ServerName;
-                returnData_med.ServerType = returnData.ServerType;
-                string json_med = mED_PageController.POST_get_by_apiserver(returnData_med);
-                returnData_med = json_med.JsonDeserializet<returnData>();
-                List<medClass> medClasses = returnData_med.Data.ObjToClass<List<medClass>>();
+          
+                List<medClass> medClasses = medClass.get_dps_medClass("http://127.0.0.1:4433", returnData.ServerName);
                 List<medClass> medClasses_buf = new List<medClass>();
                 System.Collections.Generic.Dictionary<string, List<medClass>> keyValuePairs = medClass.CoverToDictionaryByCode(medClasses);
-
+                medClasses = (from temp in medClasses
+                              where (temp.DeviceBasics.Count > 0)
+                              where (temp.藥品碼.StringIsEmpty() == false)
+                              select temp).ToList();
                 List<object[]> list_consumption = new List<object[]>();
-                for (int i = 0; i < Code_LINQ.Count; i++)
+                for (int i = 0; i < medClasses.Count; i++)
                 {
-                    object[] value = new object[new enum_consumption().GetLength()];
-                    string Code = Code_LINQ[i].ObjectToString();
-                    if (Code.StringIsEmpty()) continue;
-                    list_tradding_buf = list_tradding.GetRows((int)enum_交易記錄查詢資料.藥品碼, Code);
-                    list_tradding_buf.Sort(new ICP_交易記錄查詢());
+                    string 藥碼 = medClasses[i].藥品碼;
+                    string 藥名 = medClasses[i].藥品名稱;
+                    string 庫存 = medClasses[i].庫存;
                     int 交易量 = 0;
-                    if (list_tradding_buf.Count > 0)
+                    list_tradding_buf = list_tradding.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
+                    for (int k = 0; k < list_tradding_buf.Count; k++)
                     {
-                        value[(int)enum_consumption.藥品碼] = list_tradding_buf[0][(int)enum_交易記錄查詢資料.藥品碼].ObjectToString();
-                        value[(int)enum_consumption.藥品名稱] = list_tradding_buf[0][(int)enum_交易記錄查詢資料.藥品名稱].ObjectToString();
-                        for (int k = 0; k < list_tradding_buf.Count; k++)
-                        {
-                            交易量 += list_tradding_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
-                        }
-                        value[(int)enum_consumption.交易量] = 交易量;
-                        value[(int)enum_consumption.結存量] = list_tradding_buf[0][(int)enum_交易記錄查詢資料.結存量].ObjectToString(); ;
-
-                        medClasses_buf = medClass.SortDictionaryByCode(keyValuePairs, Code);
-                        if(medClasses_buf.Count > 0)
-                        {
-                            value[(int)enum_consumption.庫存量] = medClasses_buf[0].庫存;
-                        }
-                        list_consumption.Add(value);
+                        交易量 += list_tradding_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
                     }
+                    object[] value = new object[new enum_consumption().GetLength()];
+                    value[(int)enum_consumption.藥品碼] = 藥碼;
+                    value[(int)enum_consumption.藥品名稱] = 藥名;
+                    value[(int)enum_consumption.庫存量] = 庫存;
+                    value[(int)enum_consumption.交易量] = 交易量;
+                    list_consumption.Add(value);
                 }
+               
 
                 List<consumptionClass> consumptionClasses = list_consumption.SQLToClass<consumptionClass , enum_consumption>();
                 returnData.Code = 200;
-                returnData.Result = "取得交易量成功!";
+                returnData.Result = $"取得交易量成功,共<{consumptionClasses.Count}>筆";
                 returnData.Data = consumptionClasses;
                 returnData.TimeTaken = $"{myTimer}";
                 return returnData.JsonSerializationt(true);

@@ -347,7 +347,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間 = new MyUI.RJ_DatePicker();
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部 = new MyUI.PLC_RJ_Button();
-            this.sqL_DataGridView_交易紀錄_結存量 = new SQLUI.SQL_DataGridView();
             this.panel_交易紀錄查詢 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton19 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton20 = new MyUI.PLC_RJ_ScreenButton();
@@ -1601,6 +1600,10 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.panel147 = new System.Windows.Forms.Panel();
+            this.rJ_Pannel31 = new MyUI.RJ_Pannel();
+            this.sqL_DataGridView_交易紀錄_結存量 = new SQLUI.SQL_DataGridView();
+            this.label38 = new System.Windows.Forms.Label();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -2054,6 +2057,8 @@
             this.panel128.SuspendLayout();
             this.panel134.SuspendLayout();
             this.panel129.SuspendLayout();
+            this.panel147.SuspendLayout();
+            this.rJ_Pannel31.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -2238,7 +2243,9 @@
             this.sqL_DataGridView_領藥台_01_領藥內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_領藥台_01_領藥內容.Password = "user82822040";
             this.sqL_DataGridView_領藥台_01_領藥內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_領藥台_01_領藥內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_01_領藥內容.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_領藥台_01_領藥內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_01_領藥內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_領藥台_01_領藥內容.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_領藥台_01_領藥內容.RowsHeight = 40;
@@ -2830,7 +2837,9 @@
             this.sqL_DataGridView_領藥台_02_領藥內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_領藥台_02_領藥內容.Password = "user82822040";
             this.sqL_DataGridView_領藥台_02_領藥內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_領藥台_02_領藥內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_02_領藥內容.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_領藥台_02_領藥內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_02_領藥內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_領藥台_02_領藥內容.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_領藥台_02_領藥內容.RowsHeight = 40;
@@ -3417,7 +3426,9 @@
             this.sqL_DataGridView_領藥台_03_領藥內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_領藥台_03_領藥內容.Password = "user82822040";
             this.sqL_DataGridView_領藥台_03_領藥內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_領藥台_03_領藥內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_03_領藥內容.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_領藥台_03_領藥內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_03_領藥內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_領藥台_03_領藥內容.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_領藥台_03_領藥內容.RowsHeight = 40;
@@ -3808,7 +3819,9 @@
             this.sqL_DataGridView_領藥台_04_領藥內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_領藥台_04_領藥內容.Password = "user82822040";
             this.sqL_DataGridView_領藥台_04_領藥內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_領藥台_04_領藥內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_04_領藥內容.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_領藥台_04_領藥內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_領藥台_04_領藥內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_領藥台_04_領藥內容.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_領藥台_04_領藥內容.RowsHeight = 40;
@@ -6333,7 +6346,9 @@
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Password = "user82822040";
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.RowsHeight = 40;
@@ -6798,7 +6813,9 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Password = "user82822040";
             this.sqL_DataGridView_交班作業_交班表_交班明細.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交班作業_交班表_交班明細.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班作業_交班表_交班明細.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_交班作業_交班表_交班明細.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班作業_交班表_交班明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交班作業_交班表_交班明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_交班作業_交班表_交班明細.RowsHeight = 40;
@@ -7508,7 +7525,9 @@
             this.sqL_DataGridView_收支作業_入庫狀態.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_收支作業_入庫狀態.Password = "user82822040";
             this.sqL_DataGridView_收支作業_入庫狀態.Port = ((uint)(3306u));
+            this.sqL_DataGridView_收支作業_入庫狀態.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_收支作業_入庫狀態.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_收支作業_入庫狀態.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_收支作業_入庫狀態.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_收支作業_入庫狀態.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_收支作業_入庫狀態.RowsHeight = 60;
@@ -8616,7 +8635,9 @@
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Password = "user82822040";
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Port = ((uint)(3306u));
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowsHeight = 80;
@@ -9938,7 +9959,9 @@
             this.sqL_DataGridView_交易記錄查詢.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_交易記錄查詢.Password = "user82822040";
             this.sqL_DataGridView_交易記錄查詢.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交易記錄查詢.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交易記錄查詢.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_交易記錄查詢.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交易記錄查詢.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交易記錄查詢.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_交易記錄查詢.RowsHeight = 60;
@@ -9968,13 +9991,9 @@
             // tabPage20
             // 
             this.tabPage20.BackColor = System.Drawing.Color.White;
-            this.tabPage20.Controls.Add(this.plC_RJ_Button_交易紀錄_結存量_匯出資料);
-            this.tabPage20.Controls.Add(this.rJ_Lable48);
-            this.tabPage20.Controls.Add(this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間);
+            this.tabPage20.Controls.Add(this.rJ_Pannel31);
+            this.tabPage20.Controls.Add(this.panel147);
             this.tabPage20.Controls.Add(this.label18);
-            this.tabPage20.Controls.Add(this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間);
-            this.tabPage20.Controls.Add(this.plC_RJ_Button_交易紀錄_結存量_顯示全部);
-            this.tabPage20.Controls.Add(this.sqL_DataGridView_交易紀錄_結存量);
             this.tabPage20.Location = new System.Drawing.Point(4, 25);
             this.tabPage20.Name = "tabPage20";
             this.tabPage20.Size = new System.Drawing.Size(1645, 953);
@@ -9987,7 +10006,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Bool = false;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.BorderRadius = 5;
+            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.BorderRadius = 22;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.BorderSize = 0;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.but_press = false;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -9998,7 +10017,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.GUID = "";
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Location = new System.Drawing.Point(1416, 119);
+            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Location = new System.Drawing.Point(1418, 6);
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Name = "plC_RJ_Button_交易紀錄_結存量_匯出資料";
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.OFF_文字內容 = "匯出資料";
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -10015,7 +10034,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ShadowSize = 0;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ShowLoadingForm = false;
-            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Size = new System.Drawing.Size(217, 100);
+            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Size = new System.Drawing.Size(217, 93);
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.State = false;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.TabIndex = 215;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Text = "匯出資料";
@@ -10037,16 +10056,16 @@
             // 
             // rJ_Lable48
             // 
-            this.rJ_Lable48.BackColor = System.Drawing.Color.SkyBlue;
-            this.rJ_Lable48.BackgroundColor = System.Drawing.Color.SkyBlue;
-            this.rJ_Lable48.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable48.BorderRadius = 8;
-            this.rJ_Lable48.BorderSize = 0;
+            this.rJ_Lable48.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable48.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Lable48.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable48.BorderRadius = 10;
+            this.rJ_Lable48.BorderSize = 2;
             this.rJ_Lable48.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable48.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable48.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable48.ForeColor = System.Drawing.Color.Black;
             this.rJ_Lable48.GUID = "";
-            this.rJ_Lable48.Location = new System.Drawing.Point(975, 44);
+            this.rJ_Lable48.Location = new System.Drawing.Point(738, 37);
             this.rJ_Lable48.Name = "rJ_Lable48";
             this.rJ_Lable48.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable48.ShadowSize = 0;
@@ -10063,7 +10082,7 @@
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Location = new System.Drawing.Point(1265, 50);
+            this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Location = new System.Drawing.Point(1032, 43);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.MinimumSize = new System.Drawing.Size(100, 35);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Name = "rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間";
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
@@ -10077,7 +10096,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(1248, 61);
+            this.label18.Location = new System.Drawing.Point(1239, 763);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(11, 12);
             this.label18.TabIndex = 168;
@@ -10090,7 +10109,7 @@
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.CalendarFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Font = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Location = new System.Drawing.Point(1110, 50);
+            this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Location = new System.Drawing.Point(873, 43);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.MinimumSize = new System.Drawing.Size(100, 35);
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Name = "rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間";
             this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
@@ -10106,7 +10125,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Bool = false;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交易紀錄_結存量_顯示全部.BorderRadius = 5;
+            this.plC_RJ_Button_交易紀錄_結存量_顯示全部.BorderRadius = 22;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.BorderSize = 0;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.but_press = false;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -10117,7 +10136,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.GUID = "";
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Location = new System.Drawing.Point(1416, 20);
+            this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Location = new System.Drawing.Point(1182, 6);
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Name = "plC_RJ_Button_交易紀錄_結存量_顯示全部";
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.OFF_文字內容 = "顯示全部";
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
@@ -10152,63 +10171,6 @@
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.音效 = true;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.顯示 = false;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.顯示狀態 = false;
-            // 
-            // sqL_DataGridView_交易紀錄_結存量
-            // 
-            this.sqL_DataGridView_交易紀錄_結存量.AutoSelectToDeep = true;
-            this.sqL_DataGridView_交易紀錄_結存量.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交易紀錄_結存量.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交易紀錄_結存量.BorderRadius = 0;
-            this.sqL_DataGridView_交易紀錄_結存量.BorderSize = 2;
-            this.sqL_DataGridView_交易紀錄_結存量.CellBorderColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_交易紀錄_結存量.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交易紀錄_結存量.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.sqL_DataGridView_交易紀錄_結存量.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_交易紀錄_結存量.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersHeight = 18;
-            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_交易紀錄_結存量.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sqL_DataGridView_交易紀錄_結存量.DataKeyEnable = false;
-            this.sqL_DataGridView_交易紀錄_結存量.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sqL_DataGridView_交易紀錄_結存量.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_交易紀錄_結存量.ImageBox = false;
-            this.sqL_DataGridView_交易紀錄_結存量.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_交易紀錄_結存量.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.sqL_DataGridView_交易紀錄_結存量.Name = "sqL_DataGridView_交易紀錄_結存量";
-            this.sqL_DataGridView_交易紀錄_結存量.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_交易紀錄_結存量.Password = "user82822040";
-            this.sqL_DataGridView_交易紀錄_結存量.Port = ((uint)(3306u));
-            this.sqL_DataGridView_交易紀錄_結存量.rowHeaderBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交易紀錄_結存量.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.sqL_DataGridView_交易紀錄_結存量.RowsHeight = 60;
-            this.sqL_DataGridView_交易紀錄_結存量.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_交易紀錄_結存量.selectedBorderSize = 0;
-            this.sqL_DataGridView_交易紀錄_結存量.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_交易紀錄_結存量.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_交易紀錄_結存量.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_交易紀錄_結存量.Server = "localhost";
-            this.sqL_DataGridView_交易紀錄_結存量.Size = new System.Drawing.Size(954, 953);
-            this.sqL_DataGridView_交易紀錄_結存量.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_交易紀錄_結存量.TabIndex = 44;
-            this.sqL_DataGridView_交易紀錄_結存量.TableName = "trading";
-            this.sqL_DataGridView_交易紀錄_結存量.UserName = "root";
-            this.sqL_DataGridView_交易紀錄_結存量.可拖曳欄位寬度 = true;
-            this.sqL_DataGridView_交易紀錄_結存量.可選擇多列 = false;
-            this.sqL_DataGridView_交易紀錄_結存量.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.自動換行 = true;
-            this.sqL_DataGridView_交易紀錄_結存量.表單字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_交易紀錄_結存量.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.顯示CheckBox = true;
-            this.sqL_DataGridView_交易紀錄_結存量.顯示首列 = true;
-            this.sqL_DataGridView_交易紀錄_結存量.顯示首行 = true;
-            this.sqL_DataGridView_交易紀錄_結存量.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_交易紀錄_結存量.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // panel_交易紀錄查詢
             // 
@@ -11153,7 +11115,9 @@
             this.sqL_DataGridView_醫令資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_醫令資料.Password = "user82822040";
             this.sqL_DataGridView_醫令資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_醫令資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_醫令資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_醫令資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_醫令資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫令資料.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_醫令資料.RowsHeight = 40;
@@ -13546,7 +13510,9 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowsHeight = 50;
@@ -13934,7 +13900,9 @@
             this.sqL_DataGridView_藥品群組.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品群組.Password = "user82822040";
             this.sqL_DataGridView_藥品群組.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品群組.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品群組.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品群組.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品群組.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品群組.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_藥品群組.RowsHeight = 40;
@@ -14449,7 +14417,9 @@
             this.sqL_DataGridView_藥品資料_儲位總庫存表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_藥品資料_儲位總庫存表.Password = "user82822040";
             this.sqL_DataGridView_藥品資料_儲位總庫存表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_儲位總庫存表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_儲位總庫存表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料_儲位總庫存表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品資料_儲位總庫存表.RowsHeight = 60;
@@ -14924,7 +14894,9 @@
             this.sqL_DataGridView_藥品資料_儲位效期表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_藥品資料_儲位效期表.Password = "user82822040";
             this.sqL_DataGridView_藥品資料_儲位效期表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品資料_儲位效期表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_儲位效期表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品資料_儲位效期表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料_儲位效期表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料_儲位效期表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品資料_儲位效期表.RowsHeight = 80;
@@ -15430,7 +15402,9 @@
             this.sqL_DataGridView_效期管理.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_效期管理.Password = "user82822040";
             this.sqL_DataGridView_效期管理.Port = ((uint)(3306u));
+            this.sqL_DataGridView_效期管理.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_效期管理.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_效期管理.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_效期管理.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_效期管理.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_效期管理.RowsHeight = 25;
@@ -17149,7 +17123,9 @@
             this.sqL_DataGridView_人員資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_人員資料.Password = "user82822040";
             this.sqL_DataGridView_人員資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_人員資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_人員資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_人員資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_人員資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_人員資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_人員資料.RowsHeight = 50;
@@ -18613,7 +18589,9 @@
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.RowsHeight = 40;
@@ -19446,7 +19424,9 @@
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.RowsHeight = 40;
@@ -20511,7 +20491,9 @@
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsHeight = 40;
@@ -21845,7 +21827,9 @@
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowsHeight = 60;
@@ -22231,7 +22215,9 @@
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.RowsHeight = 40;
@@ -22601,7 +22587,9 @@
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.RowsHeight = 40;
@@ -23643,7 +23631,9 @@
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位資料.RowsHeight = 40;
@@ -23845,7 +23835,9 @@
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_EPD1020_儲位內容_效期及庫存.RowsHeight = 40;
@@ -25756,7 +25748,9 @@
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.RowsHeight = 40;
@@ -26150,7 +26144,9 @@
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.RowsHeight = 40;
@@ -26457,7 +26453,9 @@
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.RowsHeight = 40;
@@ -26820,7 +26818,9 @@
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.RowsHeight = 40;
@@ -27727,7 +27727,9 @@
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.RowsHeight = 40;
@@ -28402,7 +28404,9 @@
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.RowsHeight = 40;
@@ -28618,7 +28622,9 @@
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RFID_儲位資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RFID_儲位資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_RFID_儲位資料.RowsHeight = 40;
@@ -28981,7 +28987,9 @@
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_RFID_儲位內容_效期及庫存.RowsHeight = 40;
@@ -29844,7 +29852,9 @@
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.RowsHeight = 40;
@@ -30383,7 +30393,9 @@
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RFID_儲位列表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RFID_儲位列表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_RFID_儲位列表.RowsHeight = 40;
@@ -30808,7 +30820,9 @@
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.RowsHeight = 40;
@@ -31582,7 +31596,9 @@
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.RowsHeight = 40;
@@ -32728,7 +32744,9 @@
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Password = "user82822040";
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.RowsHeight = 60;
@@ -36954,7 +36972,9 @@
             this.sqL_DataGridView_取藥堆疊母資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_取藥堆疊母資料.Password = "user82822040";
             this.sqL_DataGridView_取藥堆疊母資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_取藥堆疊母資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_取藥堆疊母資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_取藥堆疊母資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_取藥堆疊母資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_取藥堆疊母資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_取藥堆疊母資料.RowsHeight = 20;
@@ -36987,7 +37007,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(475, 355);
+            this.tabPage4.Size = new System.Drawing.Size(1637, 926);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "取藥堆疊子資料";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -37022,7 +37042,9 @@
             this.sqL_DataGridView_取藥堆疊子資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_取藥堆疊子資料.Password = "user82822040";
             this.sqL_DataGridView_取藥堆疊子資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_取藥堆疊子資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_取藥堆疊子資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_取藥堆疊子資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_取藥堆疊子資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_取藥堆疊子資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_取藥堆疊子資料.RowsHeight = 20;
@@ -37032,7 +37054,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_取藥堆疊子資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_取藥堆疊子資料.Server = "localhost";
-            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(469, 349);
+            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(1631, 920);
             this.sqL_DataGridView_取藥堆疊子資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_取藥堆疊子資料.TabIndex = 26;
             this.sqL_DataGridView_取藥堆疊子資料.TableName = "take_medicine_substack_new";
@@ -37054,7 +37076,7 @@
             this.tabPage10.Controls.Add(this.sqL_DataGridView_批次領藥資料);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(475, 355);
+            this.tabPage10.Size = new System.Drawing.Size(1637, 926);
             this.tabPage10.TabIndex = 2;
             this.tabPage10.Text = "批次領藥資料";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -37089,7 +37111,9 @@
             this.sqL_DataGridView_批次領藥資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_批次領藥資料.Password = "user82822040";
             this.sqL_DataGridView_批次領藥資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次領藥資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_批次領藥資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_批次領藥資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_批次領藥資料.RowsHeight = 20;
@@ -37099,7 +37123,7 @@
             this.sqL_DataGridView_批次領藥資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_批次領藥資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_批次領藥資料.Server = "192.168.226.38";
-            this.sqL_DataGridView_批次領藥資料.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_批次領藥資料.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_批次領藥資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_批次領藥資料.TabIndex = 119;
             this.sqL_DataGridView_批次領藥資料.TableName = "UDFTPSTK4";
@@ -37121,7 +37145,7 @@
             this.tabPage11.Controls.Add(this.sqL_DataGridView_管制抽屜權限資料);
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(475, 355);
+            this.tabPage11.Size = new System.Drawing.Size(1637, 926);
             this.tabPage11.TabIndex = 3;
             this.tabPage11.Text = "管制抽屜權限資料";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -37156,7 +37180,9 @@
             this.sqL_DataGridView_管制抽屜權限資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_管制抽屜權限資料.Password = "user82822040";
             this.sqL_DataGridView_管制抽屜權限資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_管制抽屜權限資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_管制抽屜權限資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_管制抽屜權限資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_管制抽屜權限資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_管制抽屜權限資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_管制抽屜權限資料.RowsHeight = 20;
@@ -37166,7 +37192,7 @@
             this.sqL_DataGridView_管制抽屜權限資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_管制抽屜權限資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_管制抽屜權限資料.Server = "192.168.226.38";
-            this.sqL_DataGridView_管制抽屜權限資料.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_管制抽屜權限資料.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_管制抽屜權限資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_管制抽屜權限資料.TabIndex = 119;
             this.sqL_DataGridView_管制抽屜權限資料.TableName = "locker_data";
@@ -37188,7 +37214,7 @@
             this.tabPage12.Controls.Add(this.sqL_DataGridView_設備資料);
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(475, 355);
+            this.tabPage12.Size = new System.Drawing.Size(1637, 926);
             this.tabPage12.TabIndex = 4;
             this.tabPage12.Text = "設備資料";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -37223,7 +37249,9 @@
             this.sqL_DataGridView_設備資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_設備資料.Password = "user82822040";
             this.sqL_DataGridView_設備資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_設備資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_設備資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_設備資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_設備資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_設備資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_設備資料.RowsHeight = 40;
@@ -37233,7 +37261,7 @@
             this.sqL_DataGridView_設備資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_設備資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_設備資料.Server = "localhost";
-            this.sqL_DataGridView_設備資料.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_設備資料.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_設備資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_設備資料.TabIndex = 27;
             this.sqL_DataGridView_設備資料.TableName = "devicelist";
@@ -37255,7 +37283,7 @@
             this.tabPage14.Controls.Add(this.sqL_DataGridView_藥品管制方式設定);
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(475, 355);
+            this.tabPage14.Size = new System.Drawing.Size(1637, 926);
             this.tabPage14.TabIndex = 5;
             this.tabPage14.Text = "藥品管制方式設定";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -37290,7 +37318,9 @@
             this.sqL_DataGridView_藥品管制方式設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品管制方式設定.Password = "user82822040";
             this.sqL_DataGridView_藥品管制方式設定.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品管制方式設定.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品管制方式設定.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品管制方式設定.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品管制方式設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_藥品管制方式設定.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_藥品管制方式設定.RowsHeight = 40;
@@ -37300,7 +37330,7 @@
             this.sqL_DataGridView_藥品管制方式設定.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_藥品管制方式設定.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品管制方式設定.Server = "localhost";
-            this.sqL_DataGridView_藥品管制方式設定.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品管制方式設定.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_藥品管制方式設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品管制方式設定.TabIndex = 28;
             this.sqL_DataGridView_藥品管制方式設定.TableName = "med_controlled_config";
@@ -37322,7 +37352,7 @@
             this.tabPage15.Controls.Add(this.sqL_DataGridView_藥品設定表);
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(475, 355);
+            this.tabPage15.Size = new System.Drawing.Size(1637, 926);
             this.tabPage15.TabIndex = 6;
             this.tabPage15.Text = "藥品設定表";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -37357,7 +37387,9 @@
             this.sqL_DataGridView_藥品設定表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品設定表.Password = "user82822040";
             this.sqL_DataGridView_藥品設定表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品設定表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品設定表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品設定表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品設定表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_藥品設定表.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_藥品設定表.RowsHeight = 40;
@@ -37367,7 +37399,7 @@
             this.sqL_DataGridView_藥品設定表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_藥品設定表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品設定表.Server = "localhost";
-            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(1637, 926);
             this.sqL_DataGridView_藥品設定表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品設定表.TabIndex = 29;
             this.sqL_DataGridView_藥品設定表.TableName = "med_config";
@@ -37389,7 +37421,7 @@
             this.tabPage35.Controls.Add(this.sqL_DataGridView_共用區設定);
             this.tabPage35.Location = new System.Drawing.Point(4, 22);
             this.tabPage35.Name = "tabPage35";
-            this.tabPage35.Size = new System.Drawing.Size(475, 355);
+            this.tabPage35.Size = new System.Drawing.Size(1637, 926);
             this.tabPage35.TabIndex = 7;
             this.tabPage35.Text = "共用區設定";
             this.tabPage35.UseVisualStyleBackColor = true;
@@ -37423,7 +37455,9 @@
             this.sqL_DataGridView_共用區設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_共用區設定.Password = "user82822040";
             this.sqL_DataGridView_共用區設定.Port = ((uint)(3306u));
+            this.sqL_DataGridView_共用區設定.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_共用區設定.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_共用區設定.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_共用區設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_共用區設定.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_共用區設定.RowsHeight = 50;
@@ -37433,7 +37467,7 @@
             this.sqL_DataGridView_共用區設定.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_共用區設定.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_共用區設定.Server = "127.0.0.0";
-            this.sqL_DataGridView_共用區設定.Size = new System.Drawing.Size(475, 772);
+            this.sqL_DataGridView_共用區設定.Size = new System.Drawing.Size(1637, 772);
             this.sqL_DataGridView_共用區設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_共用區設定.TabIndex = 1;
             this.sqL_DataGridView_共用區設定.UserName = "root";
@@ -37456,7 +37490,7 @@
             this.tabPage38.Controls.Add(this.sqL_DataGridView_LCD114_索引表);
             this.tabPage38.Location = new System.Drawing.Point(4, 22);
             this.tabPage38.Name = "tabPage38";
-            this.tabPage38.Size = new System.Drawing.Size(475, 355);
+            this.tabPage38.Size = new System.Drawing.Size(1637, 926);
             this.tabPage38.TabIndex = 9;
             this.tabPage38.Text = "LCD_114_索引表";
             this.tabPage38.UseVisualStyleBackColor = true;
@@ -37596,7 +37630,9 @@
             this.sqL_DataGridView_LCD114_索引表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_LCD114_索引表.Password = "user82822040";
             this.sqL_DataGridView_LCD114_索引表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_LCD114_索引表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_LCD114_索引表.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_LCD114_索引表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_LCD114_索引表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_LCD114_索引表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_LCD114_索引表.RowsHeight = 50;
@@ -37606,7 +37642,7 @@
             this.sqL_DataGridView_LCD114_索引表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_LCD114_索引表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_LCD114_索引表.Server = "127.0.0.0";
-            this.sqL_DataGridView_LCD114_索引表.Size = new System.Drawing.Size(802, 355);
+            this.sqL_DataGridView_LCD114_索引表.Size = new System.Drawing.Size(802, 926);
             this.sqL_DataGridView_LCD114_索引表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_LCD114_索引表.TabIndex = 2;
             this.sqL_DataGridView_LCD114_索引表.UserName = "root";
@@ -37702,7 +37738,9 @@
             this.sqL_DataGridView_特殊輸出表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_特殊輸出表.Password = "user82822040";
             this.sqL_DataGridView_特殊輸出表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_特殊輸出表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_特殊輸出表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_特殊輸出表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_特殊輸出表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_特殊輸出表.RowsColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_特殊輸出表.RowsHeight = 30;
@@ -37799,7 +37837,9 @@
             this.sqL_DataGridView_Locker_Index_Table.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_Locker_Index_Table.Password = "user82822040";
             this.sqL_DataGridView_Locker_Index_Table.Port = ((uint)(3306u));
+            this.sqL_DataGridView_Locker_Index_Table.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_Locker_Index_Table.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_Locker_Index_Table.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_Locker_Index_Table.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_Locker_Index_Table.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_Locker_Index_Table.RowsHeight = 30;
@@ -38640,7 +38680,7 @@
             this.sqL_DataGridView_雲端藥檔.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_雲端藥檔.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_雲端藥檔.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 15;
+            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 18;
             this.sqL_DataGridView_雲端藥檔.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_雲端藥檔.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_雲端藥檔.DataKeyEnable = false;
@@ -38653,7 +38693,9 @@
             this.sqL_DataGridView_雲端藥檔.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_雲端藥檔.Password = "user82822040";
             this.sqL_DataGridView_雲端藥檔.Port = ((uint)(3306u));
+            this.sqL_DataGridView_雲端藥檔.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_雲端藥檔.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_雲端藥檔.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_雲端藥檔.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_雲端藥檔.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_雲端藥檔.RowsHeight = 60;
@@ -39130,7 +39172,9 @@
             this.sqL_DataGridView_藥品區域.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品區域.Password = "user82822040";
             this.sqL_DataGridView_藥品區域.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品區域.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品區域.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品區域.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品區域.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_藥品區域.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品區域.RowsHeight = 20;
@@ -39589,7 +39633,9 @@
             this.sqL_DataGridView_批次領藥_已領取領藥清單.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.Password = "user82822040";
             this.sqL_DataGridView_批次領藥_已領取領藥清單.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次領藥_已領取領藥清單.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_批次領藥_已領取領藥清單.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.RowsColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.RowsHeight = 25;
@@ -39684,7 +39730,9 @@
             this.sqL_DataGridView_批次領藥_未領取領藥清單.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_批次領藥_未領取領藥清單.Password = "user82822040";
             this.sqL_DataGridView_批次領藥_未領取領藥清單.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次領藥_未領取領藥清單.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_未領取領藥清單.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_批次領藥_未領取領藥清單.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_未領取領藥清單.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_批次領藥_未領取領藥清單.RowsColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_批次領藥_未領取領藥清單.RowsHeight = 25;
@@ -39778,7 +39826,9 @@
             this.sqL_DataGridView_批次領藥_領藥總量清單.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_批次領藥_領藥總量清單.Password = "user82822040";
             this.sqL_DataGridView_批次領藥_領藥總量清單.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次領藥_領藥總量清單.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_領藥總量清單.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_批次領藥_領藥總量清單.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次領藥_領藥總量清單.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_批次領藥_領藥總量清單.RowsColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_批次領藥_領藥總量清單.RowsHeight = 25;
@@ -40241,7 +40291,9 @@
             this.sqL_DataGridView_盤點作業_定盤.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點作業_定盤.Password = "user82822040";
             this.sqL_DataGridView_盤點作業_定盤.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_定盤.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_定盤.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_定盤.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_定盤.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_盤點作業_定盤.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_盤點作業_定盤.RowsHeight = 50;
@@ -40351,7 +40403,9 @@
             this.sqL_DataGridView_盤點作業_盤點藥品清單.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點作業_盤點藥品清單.Password = "user82822040";
             this.sqL_DataGridView_盤點作業_盤點藥品清單.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_盤點藥品清單.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_盤點藥品清單.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點作業_盤點藥品清單.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_盤點作業_盤點藥品清單.RowsHeight = 50;
@@ -40624,7 +40678,9 @@
             this.sqL_DataGridView_盤點作業_藥品資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點作業_藥品資料.Password = "user82822040";
             this.sqL_DataGridView_盤點作業_藥品資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_藥品資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_藥品資料.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_藥品資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_藥品資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點作業_藥品資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_盤點作業_藥品資料.RowsHeight = 60;
@@ -41207,7 +41263,9 @@
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.Password = "user82822040";
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.RowsHeight = 40;
@@ -41307,7 +41365,9 @@
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.Password = "user82822040";
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容.RowsHeight = 40;
@@ -42208,7 +42268,9 @@
             this.sqL_DataGridView_盤點單號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點單號.Password = "user82822040";
             this.sqL_DataGridView_盤點單號.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點單號.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點單號.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_盤點單號.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點單號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點單號.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_盤點單號.RowsHeight = 60;
@@ -42317,7 +42379,9 @@
             this.sqL_DataGridView_盤點內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點內容.Password = "user82822040";
             this.sqL_DataGridView_盤點內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點內容.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_盤點內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點內容.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_盤點內容.RowsHeight = 60;
@@ -42425,7 +42489,9 @@
             this.sqL_DataGridView_盤點明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點明細.Password = "user82822040";
             this.sqL_DataGridView_盤點明細.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點明細.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點明細.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點明細.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_盤點明細.RowsHeight = 60;
@@ -43039,7 +43105,9 @@
             this.sqL_DataGridView_異常通知_盤點錯誤.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_異常通知_盤點錯誤.Password = "user82822040";
             this.sqL_DataGridView_異常通知_盤點錯誤.Port = ((uint)(3306u));
+            this.sqL_DataGridView_異常通知_盤點錯誤.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_異常通知_盤點錯誤.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_異常通知_盤點錯誤.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_異常通知_盤點錯誤.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_異常通知_盤點錯誤.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_異常通知_盤點錯誤.RowsHeight = 50;
@@ -44056,6 +44124,108 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // panel147
+            // 
+            this.panel147.Controls.Add(this.label38);
+            this.panel147.Controls.Add(this.rJ_Lable48);
+            this.panel147.Controls.Add(this.plC_RJ_Button_交易紀錄_結存量_顯示全部);
+            this.panel147.Controls.Add(this.plC_RJ_Button_交易紀錄_結存量_匯出資料);
+            this.panel147.Controls.Add(this.rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間);
+            this.panel147.Controls.Add(this.rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間);
+            this.panel147.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel147.Location = new System.Drawing.Point(0, 843);
+            this.panel147.Name = "panel147";
+            this.panel147.Size = new System.Drawing.Size(1645, 110);
+            this.panel147.TabIndex = 217;
+            // 
+            // rJ_Pannel31
+            // 
+            this.rJ_Pannel31.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel31.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel31.BorderColor = System.Drawing.Color.Gainsboro;
+            this.rJ_Pannel31.BorderRadius = 40;
+            this.rJ_Pannel31.BorderSize = 2;
+            this.rJ_Pannel31.Controls.Add(this.sqL_DataGridView_交易紀錄_結存量);
+            this.rJ_Pannel31.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Pannel31.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel31.IsSelected = false;
+            this.rJ_Pannel31.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Pannel31.Name = "rJ_Pannel31";
+            this.rJ_Pannel31.Padding = new System.Windows.Forms.Padding(10, 12, 12, 25);
+            this.rJ_Pannel31.ShadowColor = System.Drawing.Color.Gainsboro;
+            this.rJ_Pannel31.ShadowSize = 3;
+            this.rJ_Pannel31.Size = new System.Drawing.Size(1645, 843);
+            this.rJ_Pannel31.TabIndex = 218;
+            // 
+            // sqL_DataGridView_交易紀錄_結存量
+            // 
+            this.sqL_DataGridView_交易紀錄_結存量.AutoSelectToDeep = true;
+            this.sqL_DataGridView_交易紀錄_結存量.backColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_交易紀錄_結存量.BorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_交易紀錄_結存量.BorderRadius = 1;
+            this.sqL_DataGridView_交易紀錄_結存量.BorderSize = 1;
+            this.sqL_DataGridView_交易紀錄_結存量.CellBorderColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易紀錄_結存量.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
+            this.sqL_DataGridView_交易紀錄_結存量.cellStylBackColor = System.Drawing.Color.Transparent;
+            this.sqL_DataGridView_交易紀錄_結存量.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sqL_DataGridView_交易紀錄_結存量.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易紀錄_結存量.checkedRowBackColor = System.Drawing.Color.YellowGreen;
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderBackColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderBorderColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersHeight = 40;
+            this.sqL_DataGridView_交易紀錄_結存量.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.sqL_DataGridView_交易紀錄_結存量.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_交易紀錄_結存量.DataKeyEnable = false;
+            this.sqL_DataGridView_交易紀錄_結存量.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_交易紀錄_結存量.Font = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_交易紀錄_結存量.ImageBox = false;
+            this.sqL_DataGridView_交易紀錄_結存量.Location = new System.Drawing.Point(10, 12);
+            this.sqL_DataGridView_交易紀錄_結存量.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_交易紀錄_結存量.Name = "sqL_DataGridView_交易紀錄_結存量";
+            this.sqL_DataGridView_交易紀錄_結存量.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_交易紀錄_結存量.Password = "user82822040";
+            this.sqL_DataGridView_交易紀錄_結存量.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交易紀錄_結存量.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.BottomLine;
+            this.sqL_DataGridView_交易紀錄_結存量.rowHeaderBackColor = System.Drawing.Color.LightGray;
+            this.sqL_DataGridView_交易紀錄_結存量.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.BottomLine;
+            this.sqL_DataGridView_交易紀錄_結存量.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_交易紀錄_結存量.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_交易紀錄_結存量.RowsHeight = 60;
+            this.sqL_DataGridView_交易紀錄_結存量.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_交易紀錄_結存量.selectedBorderSize = 0;
+            this.sqL_DataGridView_交易紀錄_結存量.selectedRowBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_交易紀錄_結存量.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_交易紀錄_結存量.selectedRowForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_交易紀錄_結存量.Server = "localhost";
+            this.sqL_DataGridView_交易紀錄_結存量.Size = new System.Drawing.Size(1623, 806);
+            this.sqL_DataGridView_交易紀錄_結存量.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_交易紀錄_結存量.TabIndex = 217;
+            this.sqL_DataGridView_交易紀錄_結存量.TableName = "trading";
+            this.sqL_DataGridView_交易紀錄_結存量.UserName = "root";
+            this.sqL_DataGridView_交易紀錄_結存量.可拖曳欄位寬度 = true;
+            this.sqL_DataGridView_交易紀錄_結存量.可選擇多列 = true;
+            this.sqL_DataGridView_交易紀錄_結存量.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
+            this.sqL_DataGridView_交易紀錄_結存量.自動換行 = true;
+            this.sqL_DataGridView_交易紀錄_結存量.表單字體 = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_交易紀錄_結存量.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_交易紀錄_結存量.顯示CheckBox = false;
+            this.sqL_DataGridView_交易紀錄_結存量.顯示首列 = true;
+            this.sqL_DataGridView_交易紀錄_結存量.顯示首行 = true;
+            this.sqL_DataGridView_交易紀錄_結存量.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_交易紀錄_結存量.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label38.Location = new System.Drawing.Point(1009, 51);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(19, 19);
+            this.label38.TabIndex = 216;
+            this.label38.Text = "~";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -44593,6 +44763,9 @@
             this.panel128.ResumeLayout(false);
             this.panel134.ResumeLayout(false);
             this.panel129.ResumeLayout(false);
+            this.panel147.ResumeLayout(false);
+            this.panel147.PerformLayout();
+            this.rJ_Pannel31.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -45522,7 +45695,6 @@
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton19;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton20;
         private MyUI.RJ_TextBox textBox_交易記錄查詢_藥品碼;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_交易紀錄_結存量;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易紀錄_結存量_顯示全部;
         private MyUI.RJ_Lable rJ_Lable48;
         private MyUI.RJ_DatePicker rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間;
@@ -46174,6 +46346,10 @@
         private System.Windows.Forms.Panel panel_DHT;
         private System.Windows.Forms.Label label_濕度;
         private System.Windows.Forms.Label label_溫度;
+        private MyUI.RJ_Pannel rJ_Pannel31;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_交易紀錄_結存量;
+        private System.Windows.Forms.Panel panel147;
+        private System.Windows.Forms.Label label38;
     }
 }
 

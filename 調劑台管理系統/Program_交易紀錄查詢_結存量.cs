@@ -25,11 +25,17 @@ namespace 調劑台管理系統
             Table table = new Table(new enum_consumption());
             this.sqL_DataGridView_交易紀錄_結存量.Init(table);
             this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnVisible(false, new enum_consumption().GetEnumNames());
-            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品碼);
-            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品名稱);
-            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.交易量);
-            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.庫存量);
-            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.結存量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品碼);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(1000, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品名稱);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_consumption.交易量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_consumption.庫存量);
+            //this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.結存量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_consumption.藥品碼);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_consumption.藥品名稱);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_consumption.交易量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_consumption.庫存量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnText("藥碼", enum_consumption.藥品碼);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnText("藥名", enum_consumption.藥品名稱);
 
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_匯出資料_MouseDownEvent;
