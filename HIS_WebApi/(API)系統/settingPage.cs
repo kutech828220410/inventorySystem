@@ -92,6 +92,16 @@ namespace HIS_WebApi._API_系統
                         List<string> option = settingPageClasses[i].選項.Split(";").ToList();
                         settingPageClasses[i].option = option;
                     }
+                    if(settingPageClasses[i].欄位代碼 == "display_block")
+                    {
+                        List<uiConfig> uiConfigs = Convert(settingPageClasses[i].設定值);
+                        settingPageClasses[i].value = uiConfigs;
+                    }
+                    else
+                    {
+                        settingPageClasses[i].value = settingPageClasses[i].設定值;
+
+                    }
                 }
                 returnData.Code = 200;
                 returnData.Data = settingPageClasses;
@@ -198,12 +208,12 @@ namespace HIS_WebApi._API_系統
                 }
 
                 string GUID = returnData.ValueAry[0];
-                string value = returnData.ValueAry[1];
+                string value_db = returnData.ValueAry[1];
 
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
                 List<object[]> list_settingPage = sQLControl.GetRowsByDefult(null, (int)enum_settingPage.GUID, GUID);
-                list_settingPage[0][(int)enum_settingPage.設定值] = value;
+                list_settingPage[0][(int)enum_settingPage.設定值] = value_db;
                 sQLControl.UpdateByDefulteExtra(null, list_settingPage);
 
                 returnData.Code = 200;
@@ -218,7 +228,6 @@ namespace HIS_WebApi._API_系統
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-
 
         }
 
@@ -253,5 +262,38 @@ namespace HIS_WebApi._API_系統
             }
             return serverSettingClass.Server;
         }
+        private Dictionary<string, string> dicColumnName = new Dictionary<string, string>
+        {
+            { "ordseq", "序號" },
+            { "dosage", "劑量" },
+            { "dunit", "單位" },
+            { "freqn", "頻次" },
+            { "route", "途徑" },
+            { "code", "藥碼" },
+            { "storage", "儲位" }
+        };
+        private List<uiConfig> Convert(string value_db)
+        {
+            List<uiConfig> uiConfigs = new List<uiConfig>();
+            List<string> list_value = value_db.Split(";").ToList();
+            foreach(string key in dicColumnName.Keys)
+            {
+                uiConfig uiConfig = new uiConfig();
+                uiConfig.欄位代碼 = key;
+                uiConfig.欄位名稱 = dicColumnName[key];
+
+                if (list_value.Contains(key))
+                {
+                    uiConfig.設定值 = "True";
+                }
+                else
+                {
+                    uiConfig.設定值 = "False";
+                }
+                uiConfigs.Add(uiConfig);
+            }
+            return uiConfigs;
+        }
+        
     }
 }

@@ -19,13 +19,13 @@ namespace HIS_DB_Lib
         頁面名稱,
         [Description("欄位名稱,VARCHAR,20,NONE")]
         欄位名稱,
-        [Description("欄位代碼,VARCHAR,10,NONE")]
+        [Description("欄位代碼,VARCHAR,30,NONE")]
         欄位代碼,
         [Description("欄位種類,VARCHAR,20,NONE")]
         欄位種類,
         [Description("選項,VARCHAR,50,NONE")]
         選項,
-        [Description("設定值,VARCHAR,20,NONE")]
+        [Description("設定值,VARCHAR,100,NONE")]
         設定值,
 
     }
@@ -62,11 +62,21 @@ namespace HIS_DB_Lib
         [JsonPropertyName("option_str")]
         public string 選項 { get; set; }
         /// <summary>
-        /// value
+        /// value_db
         /// </summary>
-        [JsonPropertyName("value")]
+        [JsonPropertyName("value_db")]
         public string 設定值 { get; set; }
         public List<string> option { get; set; }
+        public object value { get; set; }
 
+    }
+    public class uiConfig
+    {
+        [JsonPropertyName("cht")]
+        public string 欄位名稱 { get; set; }
+        [JsonPropertyName("name")]
+        public string 欄位代碼 { get; set; }
+        [JsonPropertyName("value")]
+        public string 設定值 { get; set; }
     }
 }
