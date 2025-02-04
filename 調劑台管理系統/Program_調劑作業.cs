@@ -870,7 +870,7 @@ namespace 調劑台管理系統
         private void sub_Program_DHT()
         {
             StorageUI_EPD_266.UDP_READ uDP_READ_266 = this.storageUI_EPD_266.Get_UDP_READ("192.168.0.50");
-            bool flag_ping = Basic.Net.Ping("192.168.0.50", 2, 100);
+            bool flag_ping = Basic.Net.Ping("192.168.48.21", 2, 100);
             if (uDP_READ_266 != null)
             {
                 this.Invoke(new Action(delegate 
