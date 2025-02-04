@@ -157,6 +157,7 @@
     <Compile Include="protalClass.cs" />
     <Compile Include="ServerSettingClass.cs" />
     <Compile Include="sessionClass.cs" />
+    <Compile Include="settingPageClass.cs" />
     <Compile Include="stockRecordClass.cs" />
     <Compile Include="storagelistClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />
