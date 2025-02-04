@@ -2964,7 +2964,7 @@
         </member>
         <member name="P:HIS_DB_Lib.settingPageClass.設定值">
             <summary>
-            value
+            value_db
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.takeMedicineStackClass">
