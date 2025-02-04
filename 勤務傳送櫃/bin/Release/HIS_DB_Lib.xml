@@ -2932,6 +2932,41 @@
             備註。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.頁面名稱">
+            <summary>
+            頁面名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.欄位名稱">
+            <summary>
+            欄位名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.欄位代碼">
+            <summary>
+            欄位代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.欄位種類">
+            <summary>
+            欄位種類
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.選項">
+            <summary>
+            選項
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.settingPageClass.設定值">
+            <summary>
+            value
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.takeMedicineStackClass">
             <summary>
             藥物取用堆疊類別
