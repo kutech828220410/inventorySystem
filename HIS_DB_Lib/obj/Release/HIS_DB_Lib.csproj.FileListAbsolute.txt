@@ -740,7 +740,6 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\of
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\stdole.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\Basic.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\SQLUI.xml
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MyOffice.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NPOI.dll
@@ -929,3 +928,4 @@ C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxOvkMsr.dll
 C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\AxAltairUDrv.dll
 C:\Users\HS\source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
 C:\Users\User\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.Up2Date
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.Up2Date
