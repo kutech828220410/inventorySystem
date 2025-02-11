@@ -131,6 +131,30 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("init_bed_status")]
+        public string init_bed_status([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/init_bed_status";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(serverSettingClasses[0], new enum_bed_status());
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
         /// <summary>
         ///更新病床資料
         /// </summary>
@@ -544,6 +568,77 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = list_medCpoe_add;
+                returnData.Result = $"更新處方資料表成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+
+            }
+        }
+        /// <summary>
+        ///更新處方DC/NEW紀錄資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[medCpoeRecClass]
+        ///         "ValueAry":["藥局","護理站"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update_bed_status")]
+        public string update_bed_status([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_bed_status";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                string API = GetServerAPI("Main", "網頁", "API01");
+                List<bedStatusClass> input_bedStatus = returnData.Data.ObjToClass<List<bedStatusClass>>();
+                if (input_bedStatus == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+
+                DateTime lestweek = DateTime.Now.AddDays(-7);
+                DateTime yesterday = DateTime.Now.AddDays(-0);
+                string starttime = lestweek.GetStartDate().ToDateString();
+                string endtime = yesterday.GetEndDate().ToDateString();
+                SQLControl sQLControl = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
+                sQLControl.DeleteByBetween(null, (int)enum_bed_status.轉床時間, starttime, endtime);
+
+                List<object[]> sql_bedStatusClass = sQLControl.GetAllRows(null);
+                List<bedStatusClass> list_bedStatusClass = sql_bedStatusClass.SQLToClass<bedStatusClass, enum_bed_status>();
+
+                Dictionary<string, List<bedStatusClass>> inputBedStatusDict = bedStatusClass.ToDictByMasterGUID(input_bedStatus);
+                Dictionary<string, List<bedStatusClass>> sqlBedStatusDict = bedStatusClass.ToDictByMasterGUID(list_bedStatusClass);
+                List<bedStatusClass> add_bedStatusClass = new List<bedStatusClass>();
+                foreach (var Master_GUID in inputBedStatusDict.Keys)
+                {
+                    List<bedStatusClass> input = bedStatusClass.GetByMasterGUID(inputBedStatusDict, Master_GUID);
+                    List<bedStatusClass> sql = bedStatusClass.GetByMasterGUID(sqlBedStatusDict, Master_GUID);
+
+                    List<bedStatusClass> result = input
+                        .Where(inputItem => !sql.Any(sqlItem => sqlItem.PRI_KEY == inputItem.PRI_KEY))
+                        .ToList();
+                    if (result.Count > 0) add_bedStatusClass.AddRange(result);
+                }
+                List<object[]> list_bedStatus_add = add_bedStatusClass.ClassToSQL<bedStatusClass, enum_bed_status>();
+                sQLControl.AddRows(null, list_bedStatus_add);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = list_bedStatus_add;
                 returnData.Result = $"更新處方資料表成功";
                 return returnData.JsonSerializationt(true);
             }
