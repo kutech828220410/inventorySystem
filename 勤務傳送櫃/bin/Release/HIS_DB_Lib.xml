@@ -169,6 +169,56 @@
             備註
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.Master_GUID">
+            <summary>
+            Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.轉床時間">
+            <summary>
+            轉床時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.姓名">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.住院號">
+            <summary>
+            住院號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.病歷號">
+            <summary>
+            病歷號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.轉床前護理站床號">
+            <summary>
+            轉床前護理站床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.bedStatusClass.轉床後護理站床號">
+            <summary>
+            轉床後護理站床號
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugStotreArea.GUID">
             <summary>
             唯一KEY

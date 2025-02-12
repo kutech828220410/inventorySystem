@@ -487,7 +487,7 @@ namespace HIS_DB_Lib
             out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
-        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByGUID(List<medCarInfoClass> medCarInfoClasses)
+        static public Dictionary<string, List<medCarInfoClass>> ToDictByGUID(List<medCarInfoClass> medCarInfoClasses)
         {
             Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
             foreach(var item in medCarInfoClasses)
@@ -503,7 +503,7 @@ namespace HIS_DB_Lib
             }
             return dictionary;
         }
-        static public List<medCarInfoClass> SortDictByGUID (Dictionary<string, List<medCarInfoClass>> dict, string GUID)
+        static public List<medCarInfoClass> GetDictByGUID (Dictionary<string, List<medCarInfoClass>> dict, string GUID)
         {
             if (dict.TryGetValue(GUID, out List<medCarInfoClass> medCarInfoClasses))
             {
