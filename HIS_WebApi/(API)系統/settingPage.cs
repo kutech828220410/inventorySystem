@@ -96,7 +96,7 @@ namespace HIS_WebApi._API_系統
                     {
                         List<uiConfig> uiConfigs = Convert(settingPageClasses[i].設定值);
                         settingPageClasses[i].value = uiConfigs;
-                    }
+                    }                   
                     else
                     {
                         settingPageClasses[i].value = settingPageClasses[i].設定值;

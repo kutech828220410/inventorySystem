@@ -184,9 +184,7 @@ namespace HIS_WebApi
                 List<medCarInfoClass> medCarInfo = sql_medCar.Where(temp => temp.護理站 == 護理站).ToList();
                 Dictionary<string, List<medCarInfoClass>> medCarInfoDictBedNum = medCarInfoClass.ToDictByBedNum(medCarInfo);
 
-                //ConcurrentBag<medCarInfoClass> localList_add = new ConcurrentBag<medCarInfoClass>();
-                //ConcurrentBag<medCarInfoClass> localList_delete = new ConcurrentBag<medCarInfoClass>();
-                //ConcurrentBag<medCarInfoClass> localList_replace = new ConcurrentBag<medCarInfoClass>();
+             
               
                 List<Task> tasks = new List<Task>();
                 

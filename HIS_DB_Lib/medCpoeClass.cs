@@ -250,7 +250,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 儲位
         /// </summary>
-        [JsonPropertyName("儲位")]
+        [JsonPropertyName("store_position")]
         public string 儲位 { get; set; }
         /// <summary>
         /// 自購
