@@ -88,7 +88,14 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("bed_new")]
         public string 轉床後護理站床號 { get; set; }
+        public class ICP_By_UP_Time : IComparer<bedStatusClass>
+        {
 
+            public int Compare(bedStatusClass x, bedStatusClass y)
+            {
+                return x.轉床時間.CompareTo(y.轉床時間) * -1;
+            }
+        }
         static public Dictionary<string, List<bedStatusClass>> ToDictByMasterGUID(List<bedStatusClass> bedStatusClasses)
         {
             Dictionary<string, List<bedStatusClass>> dictionary = new Dictionary<string, List<bedStatusClass>>();
