@@ -10,10 +10,15 @@ using System.ComponentModel;
 
 namespace HIS_DB_Lib
 {
+    [EnumDescription("bed_status")]
     public enum enum_bed_status
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
+        [Description("PRI_KEY,VARCHAR,50,INDEX")]
+        PRI_KEY,
         [Description("轉床時間,DATETIME,10,NONE")]
         轉床時間,
         [Description("狀態,VARCHAR,20,NONE")]
@@ -38,6 +43,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// Master_GUID
+        /// </summary>
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        /// <summary>
+        /// PRI_KEY
+        /// </summary>
+        [JsonPropertyName("PRI_KEY")]
+        public string PRI_KEY { get; set; }
         /// <summary>
         /// 轉床時間
         /// </summary>
@@ -73,6 +88,51 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("bed_new")]
         public string 轉床後護理站床號 { get; set; }
-        
+
+        static public Dictionary<string, List<bedStatusClass>> ToDictByMasterGUID(List<bedStatusClass> bedStatusClasses)
+        {
+            Dictionary<string, List<bedStatusClass>> dictionary = new Dictionary<string, List<bedStatusClass>>();
+            foreach (var item in bedStatusClasses)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<bedStatusClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<bedStatusClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<bedStatusClass> GetByMasterGUID(Dictionary<string, List<bedStatusClass>> dict, string master_GUID)
+        {
+            if (dict.TryGetValue(master_GUID, out List<bedStatusClass> bedStatusClasses))
+            {
+                return bedStatusClasses;
+            }
+            else
+            {
+                return new List<bedStatusClass>();
+            }
+        }
+        static public List<bedStatusClass> update_med_CpoeRec(string API_Server, List<bedStatusClass> bedStatusClasses)
+        {
+            List<bedStatusClass> out_bedStatusClass = new List<bedStatusClass>();
+            string url = $"{API_Server}/api/med_cart/update_bed_status";
+
+            returnData returnData = new returnData();
+            returnData.Data = bedStatusClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_bedStatusClass = returnData.Data.ObjToClass<List<bedStatusClass>>();
+            return out_bedStatusClass;
+        }
+
     }
+
 }
