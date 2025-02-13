@@ -2117,6 +2117,79 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 清洗資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":["UC02"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("edit_data")]
+        public string edit_data([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "edit_data";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+
+                //string 藥局 = returnData.ValueAry[0];
+
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
+
+
+                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetAllRows(null);
+                List<object[]> list_med_cpoe_rec = sQLControl_med_cpoe_rec.GetAllRows(null);
+
+                List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+                List<medCpoeRecClass> sql_medCpoeRec = list_med_cpoe_rec.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
+
+                List<medCpoeRecClass> update_medCpoeRec = new List<medCpoeRecClass>();
+
+
+                for (int i = 0; i < sql_medCarInfo.Count; i++)
+                {
+                    string 護理站 = sql_medCarInfo[i].護理站;
+                    string 床號 = sql_medCarInfo[i].床號;
+                    string GUID = sql_medCarInfo[i].GUID;
+                    List<medCpoeRecClass> medCpoeRec_buff = sql_medCpoeRec.Where(temp => temp.護理站 == 護理站 && temp.床號 == 床號).ToList();
+                    if(medCpoeRec_buff.Count > 0)
+                    {
+                        foreach(var item in medCpoeRec_buff)
+                        {
+                            item.Master_GUID = GUID;
+                        }
+                        update_medCpoeRec.AddRange(medCpoeRec_buff);
+                    }
+                }
+
+                
+
+                List<object[]> update = update_medCpoeRec.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
+                if (update_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.UpdateByDefulteExtra(null, update);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                //returnData.Data = medCarInfoClasses;
+                returnData.Result = $"更改所有病人資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
         private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
         {
             string Server = serverSettingClass.Server;
