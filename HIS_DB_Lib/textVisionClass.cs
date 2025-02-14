@@ -265,9 +265,15 @@ namespace HIS_DB_Lib
         public List<positionClass> 識別位置 { get; set; }
         static public returnData analyze(string API_Server, string GUID)
         {
+            string vm = "";
+            return analyze(API_Server, GUID, vm);
+        }
+        static public returnData analyze(string API_Server, string GUID , string VM)
+        {
             string url = $"{API_Server}/api/pcmpo/analyze";
             returnData returnData = new returnData();
             returnData.ValueAry[0] = GUID;
+            returnData.Value = VM;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
@@ -346,8 +352,7 @@ namespace HIS_DB_Lib
             //List<textVisionClass> out_textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
             return returnData;
         }
-
-
+        
         static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
         {
             //string url = $"{API}/PO_Vision";
