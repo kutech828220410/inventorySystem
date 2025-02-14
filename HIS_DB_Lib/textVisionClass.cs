@@ -331,9 +331,9 @@ namespace HIS_DB_Lib
             List<textVisionClass> out_textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
             return out_textVisionClasses;
         }
-        static public List<textVisionClass> analyze_by_po_num(string API_Server, List<textVisionClass> textVision)
+        static public returnData analyze_by_po_num(string API_Server, textVisionClass textVision)
         {
-            string url = $"{API_Server}/api/pcmpo/update";
+            string url = $"{API_Server}/api/pcmpo/analyze_by_po_num";
 
             returnData returnData = new returnData();
             returnData.Data = textVision;
@@ -342,9 +342,9 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
-            List<textVisionClass> out_textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
-            return out_textVisionClasses;
+            //if (returnData.Code != 200) return null;
+            //List<textVisionClass> out_textVisionClasses = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return returnData;
         }
 
 
