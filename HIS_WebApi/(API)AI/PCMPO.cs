@@ -464,9 +464,20 @@ namespace HIS_WebApi
                     Logger.Log(fileName, project, returnData.JsonSerializationt());
                 }
                 //換API
-                returnData returnData_poNum = textVisionClass.analyze_by_po_num(API, textVision);
-          
-                return returnData_poNum.JsonSerializationt(true);
+                if(returnData.Value == "Y")
+                {
+                    returnData.Code = 200;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Result = $"AI 辨識完成";
+                    returnData.Data = textVision;
+                    return returnData.JsonSerializationt(true);
+                }
+                else
+                {
+                    returnData returnData_poNum = textVisionClass.analyze_by_po_num(API, textVision);
+                    return returnData_poNum.JsonSerializationt(true);
+                }
+                
 
 
                 //return returnData.JsonSerializationt(true);
