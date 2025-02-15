@@ -423,8 +423,8 @@ namespace HIS_WebApi
                 if(return_textVisionClass == null)
                 {
                     returnData.Result = "AI連線失敗";
-                    returnData.Code = -3;
-                    textVisionClasses[0].Code = returnData.Code.ToString();
+                    returnData.Code = -200;
+                    textVisionClasses[0].Code = "-3";
                     textVisionClasses[0].Result = returnData.Result;
 
                     update_textVisionClass = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();

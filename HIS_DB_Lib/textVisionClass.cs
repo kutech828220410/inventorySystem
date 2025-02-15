@@ -272,7 +272,7 @@ namespace HIS_DB_Lib
         {
             string url = $"{API_Server}/api/pcmpo/analyze";
             returnData returnData = new returnData();
-            returnData.ValueAry[0] = GUID;
+            returnData.ValueAry.Add(GUID);
             returnData.Value = VM;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
