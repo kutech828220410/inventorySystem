@@ -350,7 +350,7 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
-        static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
+        static public returnData update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
             string url = $"{API_Server}/api/med_cart/update_med_cpoe";
@@ -361,11 +361,11 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
             out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
             Console.WriteLine($"{returnData}");
-            return out_medCpoeClass;
+            return returnData;
         }
         static public List<medCpoeClass> add_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
