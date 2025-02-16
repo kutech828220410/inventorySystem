@@ -438,13 +438,17 @@ namespace HIS_WebApi
                 textVision.批次ID = textVisionClasses[0].批次ID;
                 textVision.操作時間 = textVisionClasses[0].操作時間;
                 textVision.確認 = textVisionClasses[0].確認;
-                textVision.效期 = textVisionClasses[0].效期;
+                //textVision.效期 = textVisionClasses[0].效期;
                 textVision.Code = textVisionClasses[0].Code;
                 textVision.Result = textVisionClasses[0].Result;
                 textVision.操作者ID = textVisionClasses[0].操作者ID;
                 textVision.操作者姓名 = textVisionClasses[0].操作者姓名;
                 textVision.圖片 = textVisionClasses[0].圖片;
                 textVision.PRI_KEY = textVision.單號;
+                if (textVision.效期.StringIsEmpty())
+                {
+                    textVision.效期 = textVisionClasses[0].效期;
+                }
                 if (return_textVisionClass.Result == "False")
                 {
                     string base64 = textVision.圖片;
@@ -578,8 +582,8 @@ namespace HIS_WebApi
 
                         returnData.Data = clearLongData(textVision);
                         return returnData.JsonSerializationt(true);
-                    }
-                    else
+                    }                 
+                    else if(textVisions[0].確認 == "未確認" && textVisions[0].批次ID != textVision.批次ID )
                     {
                         string GUID_delete = textVisions[0].GUID;
                         textVisionClass.delete_by_GUID(API, GUID_delete);
@@ -630,7 +634,7 @@ namespace HIS_WebApi
                         }
                         else
                         {
-                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy" }; // 可擴展格式
+                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy","yyyy.MM.dd" }; // 可擴展格式
 
                             if (DateTime.TryParseExact(textVision.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
                             {
@@ -1202,7 +1206,7 @@ namespace HIS_WebApi
                 string 單號 = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
 
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.PRI_KEY, 單號);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.單號, 單號);
                 if (list_textVision.Count == 0)
                 {
                     returnData.Code = -200;

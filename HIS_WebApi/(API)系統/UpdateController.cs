@@ -219,7 +219,14 @@ namespace HIS_WebApi
                                         select temp).ToList();
                 if (updateVersionClasses.Count == 0) return null;
                 string filepath = updateVersionClasses[0].filepath;
-
+                if (ContainerChecker.IsRunningInDocker())
+                {
+                    filepath = filepath.Replace("\\", "/");
+                    string fileName = Path.GetFileName(filepath);
+                    string directoryPath = Path.GetDirectoryName(filepath);
+                    string folderName = Path.GetFileName(directoryPath);
+                    filepath = $"/update_program/{folderName}/{fileName}";
+                }
                 using (ZipFile zip = new ZipFile(System.Text.Encoding.GetEncoding("big5")))
                 {
                     string folderPath = Path.GetDirectoryName(filepath);
@@ -232,6 +239,7 @@ namespace HIS_WebApi
             }
             catch(Exception e)
             {
+                Console.WriteLine($"Exception : {e.Message}");
                 return null;
             }
             finally

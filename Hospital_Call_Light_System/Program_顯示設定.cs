@@ -174,7 +174,7 @@ namespace Hospital_Call_Light_System
             string jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
             List<string> list_jsonstring = new List<string>();
             list_jsonstring.Add(jsonstr);
-            if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+            if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
             {
                 MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 return;
