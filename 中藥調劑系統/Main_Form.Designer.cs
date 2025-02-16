@@ -242,6 +242,7 @@ namespace 中藥調劑系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.checkBox_測試模式 = new System.Windows.Forms.CheckBox();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -1931,7 +1932,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_處方內容.Password = "user82822040";
             this.sqL_DataGridView_處方內容.Port = ((uint)(3306u));
+            this.sqL_DataGridView_處方內容.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_處方內容.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_處方內容.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_處方內容.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_處方內容.RowsColor = System.Drawing.Color.LightCyan;
             this.sqL_DataGridView_處方內容.RowsHeight = 40;
@@ -2057,7 +2060,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_病患資訊.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_病患資訊.Password = "user82822040";
             this.sqL_DataGridView_病患資訊.Port = ((uint)(3306u));
+            this.sqL_DataGridView_病患資訊.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_病患資訊.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_病患資訊.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_病患資訊.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_病患資訊.RowsColor = System.Drawing.Color.LightCyan;
             this.sqL_DataGridView_病患資訊.RowsHeight = 40;
@@ -2944,7 +2949,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_處方搜尋.Password = "user82822040";
             this.sqL_DataGridView_處方搜尋.Port = ((uint)(3306u));
+            this.sqL_DataGridView_處方搜尋.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_處方搜尋.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_處方搜尋.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_處方搜尋.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_處方搜尋.RowsColor = System.Drawing.Color.LightCyan;
             this.sqL_DataGridView_處方搜尋.RowsHeight = 40;
@@ -3225,7 +3232,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_交易紀錄.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_交易紀錄.Password = "user82822040";
             this.sqL_DataGridView_交易紀錄.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交易紀錄.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交易紀錄.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_交易紀錄.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交易紀錄.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交易紀錄.RowsColor = System.Drawing.Color.LightCyan;
             this.sqL_DataGridView_交易紀錄.RowsHeight = 40;
@@ -3434,6 +3443,7 @@ namespace 中藥調劑系統
             // 設定
             // 
             this.設定.BackColor = System.Drawing.Color.White;
+            this.設定.Controls.Add(this.checkBox_測試模式);
             this.設定.Controls.Add(this.groupBox5);
             this.設定.Controls.Add(this.groupBox4);
             this.設定.Controls.Add(this.rJ_Button_存檔);
@@ -4644,7 +4654,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_藥品區域.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品區域.Password = "user82822040";
             this.sqL_DataGridView_藥品區域.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品區域.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品區域.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品區域.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品區域.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_藥品區域.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品區域.RowsHeight = 20;
@@ -4679,6 +4691,16 @@ namespace 中藥調劑系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
+            // checkBox_測試模式
+            // 
+            this.checkBox_測試模式.AutoSize = true;
+            this.checkBox_測試模式.Location = new System.Drawing.Point(780, 731);
+            this.checkBox_測試模式.Name = "checkBox_測試模式";
+            this.checkBox_測試模式.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_測試模式.TabIndex = 34;
+            this.checkBox_測試模式.Text = "測試模式";
+            this.checkBox_測試模式.UseVisualStyleBackColor = true;
             // 
             // Main_Form
             // 
@@ -4729,6 +4751,7 @@ namespace 中藥調劑系統
             this.panel30.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.設定.ResumeLayout(false);
+            this.設定.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -4977,6 +5000,7 @@ namespace 中藥調劑系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_調劑畫面_藥品地圖;
         private MyUI.PLC_RJ_Button plC_RJ_Button_其它處方;
         private MyUI.PLC_RJ_Button plC_RJ_Button_保健食品;
+        private System.Windows.Forms.CheckBox checkBox_測試模式;
     }
 }
 

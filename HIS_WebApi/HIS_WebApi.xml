@@ -4,7 +4,7 @@
         <name>HIS_WebApi</name>
     </assembly>
     <members>
-        <member name="M:HIS_WebApi.PCMPO.analyze(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.OLDanalyze(HIS_DB_Lib.returnData)">
             <summary>
             執行文字辨識
             </summary>
@@ -27,7 +27,64 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.PCMPO.update_textvision(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.analyze(HIS_DB_Lib.returnData)">
+            <summary>
+            執行文字辨識
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                        "GUID":
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.analyze_by_po_num(HIS_DB_Lib.returnData)">
+            <summary>
+            執行文字辨識
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                        "GUID":
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.get_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                            "GUID",
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.update_by_GUID_poNum(HIS_DB_Lib.returnData)">
             <summary>
             更新文字辨識資料
             </summary>
@@ -35,18 +92,30 @@
             以下為JSON範例
             <code>
                 {
-                    "Data":
+                    "ValueAry":
                     [
-                        {
-                            "GUID":"",
-                            "name":"",
-                            "cht_name":"",
-                            "batch_num":"",
-                            "po_num":
-                            "qty":"",
-                            "expirydate":"",
-                            "code":"" 
-                        }
+                            "GUID",
+                            "po_num"
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.update_pic_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID更新圖片資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                            "GUID",
+                            "base64"
                     ]
                     
                 }
@@ -78,7 +147,7 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
         </member>
-        <member name="M:HIS_WebApi.PCMPO.delete_textVision(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.PCMPO.delete_by_GUID(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除textVision資料
             </summary>
@@ -90,6 +159,112 @@
                     [
                         "GUID"
                     ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.get_by_po_num(HIS_DB_Lib.returnData)">
+            <summary>
+            以單號取得資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                        "po_num"
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.preSave(HIS_DB_Lib.returnData)">
+            <summary>
+            資料預儲存
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        {
+                            "op_id":
+                            "op_name":
+                            "bsse64":
+                            "batch_id":"日期時間"
+                        }
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.update(HIS_DB_Lib.returnData)">
+            <summary>
+            資料預儲存
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        {
+                            textvisionclass
+                        }
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.preCheck(HIS_DB_Lib.returnData)">
+            <summary>
+            以操作者ID找出最新的一批資料 "Y" Data 回傳完整資料/ "N" Data不回傳資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                            "op_id"
+                    ],
+                    "Value":"Y"/"N" 
+                    
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.PCMPO.Check(HIS_DB_Lib.returnData)">
+            <summary>
+            將辨識資料送出確認
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":
+                    [
+                            "batchID",
+                            "GUID1;GUID2;GUID3"
+                    ],
+                    
                     
                 }
             </code>
@@ -920,7 +1095,7 @@
              以下為JSON範例
              <code>
                  {
-                     "ValueAry":[藥局, 護理站]
+                     "ValueAry":[藥局代號,藥局, 護理站]
                  }
              </code>
              </remarks>
@@ -1184,6 +1359,22 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.update_bed_status(HIS_DB_Lib.returnData)">
+             <summary>
+            更新處方DC/NEW紀錄資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medCpoeRecClass]
+                     "ValueAry":["藥局","護理站"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.update_med_info(HIS_DB_Lib.returnData)">
              <summary>
             更新藥品資訊資料
@@ -1230,6 +1421,37 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.get_medCpoe(HIS_DB_Lib.returnData)">
+             <summary>
+            取得所有處方資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Value":""
+                     "ValueAry":[]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.get_bed_status(HIS_DB_Lib.returnData)">
+             <summary>
+            取得病床更動紀錄
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.get_medChange_by_GUID(HIS_DB_Lib.returnData)">
              <summary>
             以GUID取得藥品更動紀錄
@@ -1262,7 +1484,7 @@
         </member>
         <member name="M:HIS_WebApi.med_cart.check_dispense(HIS_DB_Lib.returnData)">
              <summary>
-            確認藥品調劑
+            逐床確認藥品調劑狀態
              </summary>
              <remarks>
              以下為JSON範例
@@ -1279,13 +1501,43 @@
         </member>
         <member name="M:HIS_WebApi.med_cart.check_dispense_by_GUID(HIS_DB_Lib.returnData)">
              <summary>
-            以GUID確認藥品調劑
+            以GUID調整藥品調劑狀態
              </summary>
              <remarks>
              以下為JSON範例
              <code>
                  {
                      "ValueAry":["病人GUID","藥品GUID", "Y/ "]";
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.dispensed_by_GUID(HIS_DB_Lib.returnData)">
+             <summary>
+            以GUID確認藥品調劑
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":["處方GUID","處方GUID", "處方Master_GUID"]";
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.dispensed_by_cart(HIS_DB_Lib.returnData)">
+             <summary>
+            以GUID確認藥品調劑
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":["處方GUID";"處方GUID", "護理站"]";
                  }
              </code>
              </remarks>
@@ -1357,6 +1609,22 @@
              <returns></returns>
         </member>
         <member name="M:HIS_WebApi.med_cart.clear_data(HIS_DB_Lib.returnData)">
+            <summary>
+            清洗資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Value":""
+                    "ValueAry":["UC02"]
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.edit_data(HIS_DB_Lib.returnData)">
             <summary>
             清洗資料
             </summary>
@@ -4527,6 +4795,57 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi._API_系統.settingPage.get_by_page_name(HIS_DB_Lib.returnData)">
+             <summary>
+            以page_name取得資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":["page_name"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_系統.settingPage.add(HIS_DB_Lib.returnData)">
+            <summary>
+            增加資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        {
+                            settingPage
+                        }
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_系統.settingPage.update(HIS_DB_Lib.returnData)">
+            <summary>
+            更新資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "ValueAry":["GUID", "value"]
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi._API_藥品交互作用.med_interaction.init_med_Inter(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_Inter資料庫
@@ -4923,6 +5242,26 @@
                 [
                    "code"
                 ]
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.upload_pic(HIS_DB_Lib.returnData)">
+            <summary>
+            根據藥碼獲取藥品圖片資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   "code":"藥碼",
+                   "name":"藥名",
+                   "extension":"副檔名",
+                   "pic_base64":"string_base64"
+                },
             }
             </code>
             </remarks>
@@ -6001,6 +6340,28 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.order.POST_get_by_BagNum_day(HIS_DB_Lib.returnData)">
+            <summary>
+            以領藥號和日期取得西藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "領藥號","日期",
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.order.POST_updete_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID更新西藥醫令
@@ -6048,6 +6409,28 @@
         <member name="M:HIS_WebApi.order.POST_add(HIS_DB_Lib.returnData)">
             <summary>
             新增西藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  [OrderClass(陣列)]
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.order.POST_add_and_updete_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID更新西藥醫令
             </summary>
             <remarks>
             以下為範例JSON範例

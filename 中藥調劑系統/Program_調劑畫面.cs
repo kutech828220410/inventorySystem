@@ -438,7 +438,7 @@ namespace 中藥調劑系統
                         if (orderClasses.Count > 0)
                         {
                             bool flag_ok = true;
-                            List<OrderTClass> orderTClasses_header = OrderTClass.get_header_by_MED_BAG_NUM(API_Server, orderClasses[0].領藥號);
+                            List<OrderTClass> orderTClasses_header = OrderTClass.get_header_by_MED_BAG_NUM(API_Server, orderClasses[0].領藥號,DateTime.Now.AddDays(plC_NumBox_更新前幾天醫令.Value));
                             if(orderTClasses_header.Count > 0)
                             {
                                 if (orderTClasses_header[0].狀態 == "Y")
@@ -587,6 +587,10 @@ namespace 中藥調劑系統
 
                                 double 應調_H = 應調 + 檢核上限;
                                 double 應調_L = 應調 - 檢核下限;
+                                if(checkBox_測試模式.Checked)
+                                {
+                                    實調 = 應調;
+                                }
                                 if (單位 == "錢" || 單位 == "克")
                                 {
                                     if (實調 < 應調_L || 實調 > 應調_H)
@@ -656,10 +660,11 @@ namespace 中藥調劑系統
                                     }));
 
                                     this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
+                                  
                                     ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
                                     return;
                                 }
-                                if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
+                         
 
 
                  
@@ -990,6 +995,7 @@ namespace 中藥調劑系統
         }
         private OrderTClass Funtion_調劑完成(string GUID, string 實調, string 備註, bool flag_更新處方內容)
         {
+            if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
             Dialog_AlarmForm dialog_AlarmForm;
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
             if (orderTClass == null) return null;
