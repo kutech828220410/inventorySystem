@@ -1054,7 +1054,7 @@ namespace 中藥調劑系統
 
             dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
             dialog_AlarmForm.ShowDialog();
-            RJ_Button_調劑畫面_全滅_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
 
             return orderTClass;
