@@ -995,7 +995,8 @@ namespace 中藥調劑系統
         }
         private OrderTClass Funtion_調劑完成(string GUID, string 實調, string 備註, bool flag_更新處方內容)
         {
-            if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
+            
+            if (flag_EXCELL_SCALE_IS_READY == true && 備註 != "強制扣帳") EXCELL_set_sub_current_weight();
             Dialog_AlarmForm dialog_AlarmForm;
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
             if (orderTClass == null) return null;

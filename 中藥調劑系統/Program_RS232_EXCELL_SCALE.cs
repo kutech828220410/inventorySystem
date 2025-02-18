@@ -57,7 +57,7 @@ namespace 中藥調劑系統
             flag_EXCELL_set_sub_current_weight = true;
             while(true)
             {
-                Program_RS232_EXCELL_SCALE();
+                
                 if (flag_EXCELL_set_sub_current_weight == false) return;
                 System.Threading.Thread.Sleep(100);
             }
