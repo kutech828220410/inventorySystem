@@ -501,6 +501,8 @@ namespace HIS_DB_Lib
         public string 調劑台 { get; set; }
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
+        [JsonPropertyName("route")]
+        public string 途徑 { get; set; }
         [JsonPropertyName("bed_list")]
         public List<bedListClass> 病床清單 { get; set; }
     }
@@ -520,7 +522,8 @@ namespace HIS_DB_Lib
         public string 調劑狀態 { get; set; }
         [JsonPropertyName("check_status")]
         public string 覆核狀態 { get; set; }
-
+        [JsonPropertyName("route")]
+        public string 途徑 { get; set; }
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
         public class ICP_By_bedNum : IComparer<bedListClass>
