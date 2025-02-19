@@ -15,6 +15,7 @@ using dBASE.NET;
 using System.Data.SQLite;
 using System.Data.OleDb;
 using System.Data.Odbc;
+using System.IO;
 namespace TestForm
 {
     public partial class Form1 : Form
@@ -26,7 +27,11 @@ namespace TestForm
             InitializeComponent();
             button_LoadImage.Click += Button_LoadImage_Click;
             button_call_api.Click += Button_call_api_Click;
+            button_loadBase64.Click += Button_loadBase64_Click;   
         }
+
+        
+
         private OleDbConnection conn;
 
         private void Button_call_api_Click(object sender, EventArgs e)
@@ -116,6 +121,19 @@ namespace TestForm
             pictureBox1.Image = image;
 
 
+        }
+        private void Button_loadBase64_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            string base64 = File.ReadAllText(this.openFileDialog.FileName);
+            base64 = base64.Replace("data:image/jpeg;base64,", "");                                
+            byte[] imageBytes = Convert.FromBase64String(base64);
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                image = Image.FromStream(ms);
+            }
+            pictureBox1.Image = image;
         }
 
     }

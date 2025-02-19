@@ -612,6 +612,7 @@ namespace HIS_WebApi
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
+                    string 藥品碼 = content.藥品碼;
                     if (content.Sub_content.Count > 0)
                     {
                         if (content.藥品名稱.StringIsEmpty())
@@ -647,11 +648,28 @@ namespace HIS_WebApi
                         }
                     }
                     textVision.藥品碼 = content.藥品碼;
+
                     textVision.數量 = content.應收數量;
-                    List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                    List<medClass> medClasses = new List<medClass>();
+                    if (textVision.藥品碼.StringIsEmpty() == false)
+                    {
+                        medClass medClass = medClass.get_med_clouds_by_code(API, textVision.藥品碼);
+                        medClasses = new List<medClass>() { medClass };
+                    }
+                    else
+                    {
+                        if(textVision.藥名.StringIsEmpty() == false)
+                        {
+                           medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                        }
+                    }
+                    
                     if (medClasses.Count > 0)
                     {
-                        textVision.中文名 = medClasses[0].中文名稱;
+                        if(medClasses[0].中文名稱.StringIsEmpty() == false)
+                        {
+                            textVision.中文名 = medClasses[0].中文名稱;
+                        }                      
                     }
                     
                 })));

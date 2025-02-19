@@ -160,7 +160,8 @@ namespace HIS_WebApi
             });
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors("AllowAll"); // ✅ 啟用 CORS
+            app.UseCors("AllowSpecificOrigin");
+
             app.UseAuthorization();
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -171,7 +172,8 @@ namespace HIS_WebApi
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("/chatHub").RequireCors("AllowSpecificOrigin"); // ✅ 確保 SignalR 也允許 CORS
+                
             });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
