@@ -28,11 +28,11 @@ namespace 調劑台管理系統
             SQLControl sQLControl = new SQLControl();
             for (int i = 0; i < commonSapceClasses.Count; i++)
             {
-                table.Server = commonSapceClasses[i].serverSettingClass.Server;
-                table.Username = commonSapceClasses[i].serverSettingClass.User;
-                table.Password = commonSapceClasses[i].serverSettingClass.Password;
-                table.Port = commonSapceClasses[i].serverSettingClass.Port;
-                table.DBName = commonSapceClasses[i].serverSettingClass.DBName;
+                table.Server = commonSapceClasses[i].sys_serverSettingClass.Server;
+                table.Username = commonSapceClasses[i].sys_serverSettingClass.User;
+                table.Password = commonSapceClasses[i].sys_serverSettingClass.Password;
+                table.Port = commonSapceClasses[i].sys_serverSettingClass.Port;
+                table.DBName = commonSapceClasses[i].sys_serverSettingClass.DBName;
                 sQLControl.Init(table);
                 List<string> list_str = (from temp in list_堆疊母資料_add
                                          select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).ToList();
@@ -55,22 +55,22 @@ namespace 調劑台管理系統
     {
         public override string ToString()
         {
-            return ($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{List_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
+            return ($"{DateTime.Now.ToDateTimeString()} - ({sys_serverSettingClass.設備名稱}) EPD583<{List_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
-        public ServerSettingClass serverSettingClass = new ServerSettingClass();
+        public sys_serverSettingClass sys_serverSettingClass = new sys_serverSettingClass();
         public List<Storage> List_EPD266 = new List<Storage>();
         public List<Drawer> List_EPD583 = new List<Drawer>();
         public List<RowsLED> List_RowsLED = new List<RowsLED>();
 
         
-        public CommonSapceClass(ServerSettingClass serverSettingClass)
+        public CommonSapceClass(sys_serverSettingClass sys_serverSettingClass)
         {
-            this.serverSettingClass = serverSettingClass;
+            this.sys_serverSettingClass = sys_serverSettingClass;
         }
 
         public void WriteTakeMedicineStack(List<takeMedicineStackClass> takeMedicineStackClasses)
         {
-            takeMedicineStackClass.set_device_tradding(Main_Form.API_Server, serverSettingClass.設備名稱, Main_Form.ServerType, takeMedicineStackClasses);
+            takeMedicineStackClass.set_device_tradding(Main_Form.API_Server, sys_serverSettingClass.設備名稱, Main_Form.ServerType, takeMedicineStackClasses);
         }
         public static Drawer GetEPD583(string IP , ref List<CommonSapceClass> commonSapceClasses)
         {
@@ -101,11 +101,11 @@ namespace 調劑台管理系統
         }
         public void Load()
         {
-            string IP = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = serverSettingClass.Port.StringToUInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = sys_serverSettingClass.Port.StringToUInt32();
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DataBaseName, "epd583_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DataBaseName, "epd266_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DataBaseName, "rowsled_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
@@ -116,7 +116,7 @@ namespace 調劑台管理系統
             List_EPD266 = H_Pannel_lib.StorageMethod.SQL_GetAllStorage(list_EPD266);
             List_RowsLED = H_Pannel_lib.RowsLEDMethod.SQL_GetAllRowsLED(list_RowsLED);
 
-            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
+            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({sys_serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
     }
 
@@ -213,11 +213,11 @@ namespace 調劑台管理系統
         static public List<CommonSapceClass> Function_取得共用區所有儲位()
         {
             List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = Function_取得共用區連線資訊();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = Function_取得共用區連線資訊();
 
-            for (int i = 0; i < serverSettingClasses.Count; i++)
+            for (int i = 0; i < sys_serverSettingClasses.Count; i++)
             {
-                CommonSapceClass commonSapceClass = new CommonSapceClass(serverSettingClasses[i]);
+                CommonSapceClass commonSapceClass = new CommonSapceClass(sys_serverSettingClasses[i]);
                 commonSapceClass.Load();
                 commonSapceClasses.Add(commonSapceClass);
             }
@@ -225,7 +225,7 @@ namespace 調劑台管理系統
 
             return commonSapceClasses;
         }
-        static private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()
+        static private List<HIS_DB_Lib.sys_serverSettingClass> Function_取得共用區連線資訊()
         {
             List<object[]> list_value = _sqL_DataGridView_共用區設定.SQL_GetAllRows(false);
 
@@ -237,28 +237,28 @@ namespace 調劑台管理系統
             if (json_result.StringIsEmpty())
             {
                 Console.WriteLine($"API 連結失敗 : {dBConfigClass.Api_Server}/api/ServerSetting");
-                return new List<ServerSettingClass>();
+                return new List<sys_serverSettingClass>();
             }
             Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses_return = new List<ServerSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses_return = new List<sys_serverSettingClass>();
             for (int i = 0; i < list_value.Count; i++ )
             {
                 string 名稱 = list_value[i][(int)enum_commonSpaceSetup.共用區名稱].ObjectToString();
-                serverSettingClasses_buf = (from temp in serverSettingClasses
+                sys_serverSettingClasses_buf = (from temp in sys_serverSettingClasses
                                             where temp.設備名稱 == 名稱
                                             where temp.類別 == "調劑台"
                                             where temp.內容 == "儲位資料"
                                             select temp).ToList();
 
-                if (serverSettingClasses_buf.Count > 0)
+                if (sys_serverSettingClasses_buf.Count > 0)
                 {
-                    serverSettingClasses_return.Add(serverSettingClasses_buf[0]);
+                    sys_serverSettingClasses_return.Add(sys_serverSettingClasses_buf[0]);
                 }
             }
-            return serverSettingClasses_return; 
+            return sys_serverSettingClasses_return; 
 
         }
         #endregion

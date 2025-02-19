@@ -77,7 +77,7 @@ namespace 調劑台管理系統
 
             string url = $"{dBConfigClass.Api_URL}/api/person_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
@@ -336,7 +336,7 @@ namespace 調劑台管理系統
             List<personPageClass> personPageClasses = new List<personPageClass>();
             string url = $"{dBConfigClass.Api_URL}/api/person_page/";
             returnData returnData = new returnData(url);
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json = returnData.ApiPostJson();
             if(returnData.ResultData == null)

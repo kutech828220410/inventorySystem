@@ -48,14 +48,14 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
                 Logger.Log("ctclist", "[init_ctclist] sucess!");
-                return CheckCreatTable_ctclist(serverSettingClasses[0]);
+                return CheckCreatTable_ctclist(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -113,9 +113,9 @@ namespace HIS_WebApi
             {
 
                 ctclistClass ctclistClass = returnData.Data.ObjToClass<ctclistClass>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -129,11 +129,11 @@ namespace HIS_WebApi
                 }
                 Logger.Log("add_ctclist", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_ctclist = new SQLControl(Server, DB, "ctclist", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_ctclist_udAry = new SQLControl(Server, DB, "ctclist_udAry", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_ctclist_changAry = new SQLControl(Server, DB, "ctclist_changeAry", UserName, Password, Port, SSLMode);
@@ -221,13 +221,13 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable_udnoectc(serverSettingClasses[0]);
+                return CheckCreatTable_udnoectc(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -283,9 +283,9 @@ namespace HIS_WebApi
             returnData.Method = "add_udnoectc";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -300,11 +300,11 @@ namespace HIS_WebApi
                 }
                 Logger.Log("add_udnoectc", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -409,9 +409,9 @@ namespace HIS_WebApi
             returnData.Method = "get_udnoectc_by_ctdate_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -444,11 +444,11 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -518,9 +518,9 @@ namespace HIS_WebApi
             returnData.Method = "get_udnoectc_by_GUID";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -541,11 +541,11 @@ namespace HIS_WebApi
                 }
                
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -607,9 +607,9 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_orders_comp";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -630,11 +630,11 @@ namespace HIS_WebApi
                 //}
 
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -698,9 +698,9 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_confirm_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -721,11 +721,11 @@ namespace HIS_WebApi
                 //}
 
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -784,9 +784,9 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_disp_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -807,11 +807,11 @@ namespace HIS_WebApi
                 //}
 
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -870,9 +870,9 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_check_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -893,11 +893,11 @@ namespace HIS_WebApi
                 //}
 
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
@@ -953,13 +953,13 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable_udphnoph(serverSettingClasses[0]);
+                return CheckCreatTable_udphnoph(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -1015,9 +1015,9 @@ namespace HIS_WebApi
             returnData.Method = "add_udphnoph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1032,11 +1032,11 @@ namespace HIS_WebApi
                 }
                 Logger.Log("add_udphnoph", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_udphnoph = new SQLControl(Server, DB, "udphnoph", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_udphnoph_orders = new SQLControl(Server, DB, "udphnoph_orders", UserName, Password, Port, SSLMode);
@@ -1102,13 +1102,13 @@ namespace HIS_WebApi
 
         }
 
-        private string CheckCreatTable_ctclist(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable_ctclist(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl_ctclist = new SQLControl(Server, DB, "ctclist", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_ctclist_udAry = new SQLControl(Server, DB, "ctclist_udAry", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_ctclist_changAry = new SQLControl(Server, DB, "ctclist_changeAry", UserName, Password, Port, SSLMode);
@@ -1216,13 +1216,13 @@ namespace HIS_WebApi
 
             return tables.JsonSerializationt(true);
         }
-        private string CheckCreatTable_udnoectc(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable_udnoectc(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
@@ -1309,13 +1309,13 @@ namespace HIS_WebApi
 
             return tables.JsonSerializationt(true);
         }
-        private string CheckCreatTable_udphnoph(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable_udphnoph(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl_udphnoph = new SQLControl(Server, DB, "udphnoph", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_udphnoph_orders = new SQLControl(Server, DB, "udphnoph_orders", UserName, Password, Port, SSLMode);
 

@@ -63,14 +63,14 @@ namespace HIS_DB_Lib
 
         static public returnData LoginByUID(string API_Server, string UID)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
                 return null;
             }
-            string url = $"{serverSettingClasses[0].Server}";
+            string url = $"{sys_serverSettingClasses[0].Server}";
 
             returnData returnData = new returnData();
             sessionClass _sessionClass = new sessionClass();
@@ -97,14 +97,14 @@ namespace HIS_DB_Lib
         }
         static public returnData LoginByBarCode(string API_Server, string BARCODE)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
                 return null;
             }
-            string url = $"{serverSettingClasses[0].Server}";
+            string url = $"{sys_serverSettingClasses[0].Server}";
 
             returnData returnData = new returnData();
             sessionClass _sessionClass = new sessionClass();
@@ -131,14 +131,14 @@ namespace HIS_DB_Lib
         }
         static public returnData LoginByID(string API_Server, string userID, string password)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
                 return null;
             }
-            string url = $"{serverSettingClasses[0].Server}";
+            string url = $"{sys_serverSettingClasses[0].Server}";
 
             returnData returnData = new returnData();
             sessionClass _sessionClass = new sessionClass();

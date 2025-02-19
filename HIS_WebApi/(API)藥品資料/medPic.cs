@@ -57,15 +57,15 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -102,10 +102,10 @@ namespace HIS_WebApi
             try
             {
                 GET_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses_buf.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -118,13 +118,13 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料異常";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass_VM = serverSettingClasses_buf[0];
+                sys_serverSettingClass sys_serverSettingClass_VM = sys_serverSettingClasses_buf[0];
 
-                string Server = serverSettingClass_VM.Server;
-                string DB = serverSettingClass_VM.DBName;
-                string UserName = serverSettingClass_VM.User;
-                string Password = serverSettingClass_VM.Password;
-                uint Port = (uint)serverSettingClass_VM.Port.StringToInt32();
+                string Server = sys_serverSettingClass_VM.Server;
+                string DB = sys_serverSettingClass_VM.DBName;
+                string UserName = sys_serverSettingClass_VM.User;
+                string Password = sys_serverSettingClass_VM.Password;
+                uint Port = (uint)sys_serverSettingClass_VM.Port.StringToInt32();
 
                 List<medPicClass> medPicClasses_add = new List<medPicClass>();
                 List<medPicClass> medPicClasses_replace = new List<medPicClass>();
@@ -204,10 +204,10 @@ namespace HIS_WebApi
             returnData.Method = "get_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses_buf.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -219,13 +219,13 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[code]";
                     return returnData.JsonSerializationt(true);
                 }
-                ServerSettingClass serverSettingClass_VM = serverSettingClasses_buf[0];
+                sys_serverSettingClass sys_serverSettingClass_VM = sys_serverSettingClasses_buf[0];
 
-                string Server = serverSettingClass_VM.Server;
-                string DB = serverSettingClass_VM.DBName;
-                string UserName = serverSettingClass_VM.User;
-                string Password = serverSettingClass_VM.Password;
-                uint Port = (uint)serverSettingClass_VM.Port.StringToInt32();
+                string Server = sys_serverSettingClass_VM.Server;
+                string DB = sys_serverSettingClass_VM.DBName;
+                string UserName = sys_serverSettingClass_VM.User;
+                string Password = sys_serverSettingClass_VM.Password;
+                uint Port = (uint)sys_serverSettingClass_VM.Port.StringToInt32();
                 string Code = returnData.ValueAry[0];
                 SQLControl sQLControl_medPic = new SQLControl(Server, DB, new enum_medPic().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_medPic.GetRowsByDefult(null, (int)enum_medPic.藥碼, Code);
@@ -281,13 +281,13 @@ namespace HIS_WebApi
             try
             {
                 medPicClass medPicClass = returnData.Data.ObjToClass<medPicClass>();
-                List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-                ServerSettingClass serverSettingClass = serverSetting.MyFind("Main", "網頁", "API01").FirstOrDefault();
-                if (serverSettingClass == null)
+                List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind("Main", "網頁", "API01").FirstOrDefault();
+                if (sys_serverSettingClass == null)
                 {
                     throw new Exception("找無Server資料");
                 }
-                string API =  serverSettingClass.Server;
+                string API =  sys_serverSettingClass.Server;
                 medPicClass.add(API, medPicClass);
                 returnData.Data = medPicClass;
                 returnData.Code = 200;
@@ -306,9 +306,9 @@ namespace HIS_WebApi
         
                  
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_medPic());
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_medPic());
             return table.JsonSerializationt(true);
         }
     }

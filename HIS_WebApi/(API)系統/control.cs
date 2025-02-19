@@ -51,15 +51,15 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
-                if (serverSettingClass == null)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(value, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.本地端);
+                if (sys_serverSettingClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無伺服器資料";
                     return returnData.JsonSerializationt(true);
                 }
-                SQLControl sQLControl_unlock = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "locker_index_table", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_unlock = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "locker_index_table", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_unlock.GetAllRows(null);
                 for(int i = 0; i < list_value.Count; i++) 
                 {

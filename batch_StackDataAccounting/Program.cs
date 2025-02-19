@@ -21,11 +21,11 @@ namespace batch_StackDataAccounting
             SQLControl sQLControl = new SQLControl();
             for (int i = 0; i < commonSapceClasses.Count; i++)
             {
-                table.Server = commonSapceClasses[i].serverSettingClass.Server;
-                table.Username = commonSapceClasses[i].serverSettingClass.User;
-                table.Password = commonSapceClasses[i].serverSettingClass.Password;
-                table.Port = commonSapceClasses[i].serverSettingClass.Port;
-                table.DBName = commonSapceClasses[i].serverSettingClass.DBName;
+                table.Server = commonSapceClasses[i].sys_serverSettingClass.Server;
+                table.Username = commonSapceClasses[i].sys_serverSettingClass.User;
+                table.Password = commonSapceClasses[i].sys_serverSettingClass.Password;
+                table.Port = commonSapceClasses[i].sys_serverSettingClass.Port;
+                table.DBName = commonSapceClasses[i].sys_serverSettingClass.DBName;
                 sQLControl.Init(table);
                 List<string> list_str = (from temp in list_堆疊母資料_add
                                          select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).ToList();
@@ -48,22 +48,22 @@ namespace batch_StackDataAccounting
     {
         public override string ToString()
         {
-            return ($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{List_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
+            return ($"{DateTime.Now.ToDateTimeString()} - ({sys_serverSettingClass.設備名稱}) EPD583<{List_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
-        public ServerSettingClass serverSettingClass = new ServerSettingClass();
+        public sys_serverSettingClass sys_serverSettingClass = new sys_serverSettingClass();
         public List<Storage> List_EPD266 = new List<Storage>();
         public List<Drawer> List_EPD583 = new List<Drawer>();
         public List<RowsLED> List_RowsLED = new List<RowsLED>();
 
 
-        public CommonSapceClass(ServerSettingClass serverSettingClass)
+        public CommonSapceClass(sys_serverSettingClass sys_serverSettingClass)
         {
-            this.serverSettingClass = serverSettingClass;
+            this.sys_serverSettingClass = sys_serverSettingClass;
         }
 
         public void WriteTakeMedicineStack(List<takeMedicineStackClass> takeMedicineStackClasses)
         {
-            takeMedicineStackClass.set_device_tradding(Program.API_Server, serverSettingClass.設備名稱, Program.ServerType, takeMedicineStackClasses);
+            takeMedicineStackClass.set_device_tradding(Program.API_Server, sys_serverSettingClass.設備名稱, Program.ServerType, takeMedicineStackClasses);
         }
         public static Drawer GetEPD583(string IP, ref List<CommonSapceClass> commonSapceClasses)
         {
@@ -94,11 +94,11 @@ namespace batch_StackDataAccounting
         }
         public void Load()
         {
-            string IP = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = serverSettingClass.Port.StringToUInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = sys_serverSettingClass.Port.StringToUInt32();
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DataBaseName, "epd583_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DataBaseName, "epd266_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DataBaseName, "rowsled_jsonstring", UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
@@ -109,7 +109,7 @@ namespace batch_StackDataAccounting
             List_EPD266 = H_Pannel_lib.StorageMethod.SQL_GetAllStorage(list_EPD266);
             List_RowsLED = H_Pannel_lib.RowsLEDMethod.SQL_GetAllRowsLED(list_RowsLED);
 
-            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
+            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({sys_serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
     }
 
@@ -170,11 +170,11 @@ namespace batch_StackDataAccounting
         static public List<CommonSapceClass> Function_取得共用區所有儲位()
         {
             List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = Function_取得共用區連線資訊();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = Function_取得共用區連線資訊();
 
-            for (int i = 0; i < serverSettingClasses.Count; i++)
+            for (int i = 0; i < sys_serverSettingClasses.Count; i++)
             {
-                CommonSapceClass commonSapceClass = new CommonSapceClass(serverSettingClasses[i]);
+                CommonSapceClass commonSapceClass = new CommonSapceClass(sys_serverSettingClasses[i]);
                 commonSapceClass.Load();
                 commonSapceClasses.Add(commonSapceClass);
             }
@@ -182,7 +182,7 @@ namespace batch_StackDataAccounting
 
             return commonSapceClasses;
         }
-        static private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()
+        static private List<HIS_DB_Lib.sys_serverSettingClass> Function_取得共用區連線資訊()
         {
             List<object[]> list_value = sQLControl_共用區設定.GetAllRows(null);
 
@@ -194,28 +194,28 @@ namespace batch_StackDataAccounting
             if (json_result.StringIsEmpty())
             {
                 Console.WriteLine($"API 連結失敗 : {dBConfigClass.Api_Server}/api/ServerSetting");
-                return new List<ServerSettingClass>();
+                return new List<sys_serverSettingClass>();
             }
             Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses_return = new List<ServerSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses_return = new List<sys_serverSettingClass>();
             for (int i = 0; i < list_value.Count; i++)
             {
                 string 名稱 = list_value[i][(int)enum_commonSpaceSetup.共用區名稱].ObjectToString();
-                serverSettingClasses_buf = (from temp in serverSettingClasses
+                sys_serverSettingClasses_buf = (from temp in sys_serverSettingClasses
                                             where temp.設備名稱 == 名稱
                                             where temp.類別 == "調劑台"
                                             where temp.內容 == "儲位資料"
                                             select temp).ToList();
 
-                if (serverSettingClasses_buf.Count > 0)
+                if (sys_serverSettingClasses_buf.Count > 0)
                 {
-                    serverSettingClasses_return.Add(serverSettingClasses_buf[0]);
+                    sys_serverSettingClasses_return.Add(sys_serverSettingClasses_buf[0]);
                 }
             }
-            return serverSettingClasses_return;
+            return sys_serverSettingClasses_return;
 
         }
 
@@ -792,12 +792,12 @@ namespace batch_StackDataAccounting
             }
             API_Server = dBConfigClass.Api_Server;
             ServerName = dBConfigClass.Name;
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
-            ServerSettingClass serverSettingClass = serverSettingClasses.myFind(ServerName, "調劑台", "一般資料");
-            ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses.myFind(ServerName, "調劑台", "儲位資料");
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.myFind(ServerName, "調劑台", "一般資料");
+            sys_serverSettingClass sys_serverSettingClass_儲位資料 = sys_serverSettingClasses.myFind(ServerName, "調劑台", "儲位資料");
             List<SQLUI.Table> tables = new List<Table>();
             Table table;
-            tables = takeMedicineStackClass.init(API_Server, $"{ServerName}", enum_ServerSetting_Type.調劑台.GetEnumName());
+            tables = takeMedicineStackClass.init(API_Server, $"{ServerName}", enum_sys_serverSetting_Type.調劑台.GetEnumName());
             sQLControl_取藥堆疊母資料.Init(tables.GetTable(new enum_取藥堆疊母資料()));
             sQLControl_取藥堆疊子資料.Init(tables.GetTable(new enum_取藥堆疊子資料()));
             table = medConfigClass.init(API_Server);
@@ -808,19 +808,19 @@ namespace batch_StackDataAccounting
             sQLControl_醫令資料.Init(table);
 
             table = new Table(new enum_Locker_Index_Table());
-            table.Server = serverSettingClass.Server;
-            table.Username = serverSettingClass.User;
-            table.Password = serverSettingClass.Password;
-            table.Port = serverSettingClass.Port;
-            table.DBName = serverSettingClass.DBName;
+            table.Server = sys_serverSettingClass.Server;
+            table.Username = sys_serverSettingClass.User;
+            table.Password = sys_serverSettingClass.Password;
+            table.Port = sys_serverSettingClass.Port;
+            table.DBName = sys_serverSettingClass.DBName;
             sQLControl_Locker_Index_Table.Init(table);
 
 
-            table.Server = serverSettingClass.Server;
-            table.Port = serverSettingClass.Port;
-            table.Username = serverSettingClass.User;
-            table.Password = serverSettingClass.Password;
-            table.DBName = serverSettingClass.DBName;
+            table.Server = sys_serverSettingClass.Server;
+            table.Port = sys_serverSettingClass.Port;
+            table.Username = sys_serverSettingClass.User;
+            table.Password = sys_serverSettingClass.Password;
+            table.DBName = sys_serverSettingClass.DBName;
             table.TableName = "common_space_setup";
             table.AddColumnList("GUID", Table.StringType.VARCHAR, Table.IndexType.PRIMARY);
             table.AddColumnList("共用區名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
@@ -836,10 +836,10 @@ namespace batch_StackDataAccounting
             Console.WriteLine($"Pannel35_Port : {myConfigClass.Pannel35_Port} \n");
             Console.WriteLine($"RowsLED_Port : {myConfigClass.RowsLED_Port} \n");
 
-            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , myConfigClass.EPD583_Port + 1000, myConfigClass.EPD583_Port);
-            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.EPD266_Port + 1000, myConfigClass.EPD266_Port);
-            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.Pannel35_Port + 1000, myConfigClass.Pannel35_Port);
-            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.RowsLED_Port + 1000, myConfigClass.RowsLED_Port);
+            drawerUI_EPD_583.Console_Init(sys_serverSettingClass_儲位資料.DBName, sys_serverSettingClass_儲位資料.User, sys_serverSettingClass_儲位資料.Password, sys_serverSettingClass_儲位資料.Server, sys_serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , myConfigClass.EPD583_Port + 1000, myConfigClass.EPD583_Port);
+            storageUI_EPD_266.Console_Init(sys_serverSettingClass_儲位資料.DBName, sys_serverSettingClass_儲位資料.User, sys_serverSettingClass_儲位資料.Password, sys_serverSettingClass_儲位資料.Server, sys_serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.EPD266_Port + 1000, myConfigClass.EPD266_Port);
+            storageUI_WT32.Console_Init(sys_serverSettingClass_儲位資料.DBName, sys_serverSettingClass_儲位資料.User, sys_serverSettingClass_儲位資料.Password, sys_serverSettingClass_儲位資料.Server, sys_serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.Pannel35_Port + 1000, myConfigClass.Pannel35_Port);
+            rowsLEDUI.Console_Init(sys_serverSettingClass_儲位資料.DBName, sys_serverSettingClass_儲位資料.User, sys_serverSettingClass_儲位資料.Password, sys_serverSettingClass_儲位資料.Server, sys_serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None, myConfigClass.RowsLED_Port + 1000, myConfigClass.RowsLED_Port);
 
         
 

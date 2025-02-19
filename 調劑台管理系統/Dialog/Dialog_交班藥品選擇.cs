@@ -74,7 +74,7 @@ namespace 調劑台管理系統
 
             string url = $"{Main_Form.API_Server}/api/medShiftConfig/get_all";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
@@ -107,7 +107,7 @@ namespace 調劑台管理系統
  
             string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
@@ -154,7 +154,7 @@ namespace 調劑台管理系統
             }
             string url = $"{Main_Form.API_Server}/api/medShiftConfig/update_by_code";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.Data = medShiftConfigClasses;
             string json_in = returnData.JsonSerializationt();
@@ -233,7 +233,7 @@ namespace 調劑台管理系統
             }
             string url = $"{Main_Form.API_Server}/api/medShiftConfig/update_by_code";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.Data = medShiftConfigClasses;
             string json_in = returnData.JsonSerializationt();

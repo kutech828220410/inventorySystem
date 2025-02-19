@@ -54,7 +54,7 @@ namespace 勤務傳送櫃
         {
             string url = $"{dBConfigClass.Api_URL}/api/transactions/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.傳送櫃.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.傳送櫃.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);

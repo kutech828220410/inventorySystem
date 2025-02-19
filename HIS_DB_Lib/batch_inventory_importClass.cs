@@ -251,7 +251,7 @@ namespace HIS_DB_Lib
 
         static public List<batch_inventory_importClass> excel_upload(string API_Server , byte[] bytes, string CT_NAME)
         {
-            string api_url_server = ServerSettingClass.get_api_url(API_Server, "Main", "網頁", "batch_inventory_import_excel_upload");
+            string api_url_server = sys_serverSettingClass.get_api_url(API_Server, "Main", "網頁", "batch_inventory_import_excel_upload");
             string url = $"{API_Server}/api/batch_inventory_import/excel_upload";
             if (api_url_server.StringIsEmpty() == false) url = api_url_server;
             returnData returnData = new returnData();

@@ -61,16 +61,16 @@ namespace HIS_WebApi
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
                 returnData.Method = "POST_init";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -113,20 +113,20 @@ namespace HIS_WebApi
             try
             {
                 POST_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
                 if (returnData.ValueAry == null)
                 {
@@ -236,20 +236,20 @@ namespace HIS_WebApi
             try
             {
                 POST_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
 
 
@@ -309,10 +309,10 @@ namespace HIS_WebApi
             string temp = "";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -320,14 +320,14 @@ namespace HIS_WebApi
                 }
 
 
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                CheckCreatTable(serverSettingClass);
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                CheckCreatTable(sys_serverSettingClass);
 
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
                 SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
@@ -399,10 +399,10 @@ namespace HIS_WebApi
             string temp = "";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -410,14 +410,14 @@ namespace HIS_WebApi
                 }
 
 
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                CheckCreatTable(serverSettingClass);
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                CheckCreatTable(sys_serverSettingClass);
 
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
                 SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
@@ -480,10 +480,10 @@ namespace HIS_WebApi
             returnData.Method = "get_record_by_guid";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -502,14 +502,14 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                CheckCreatTable(serverSettingClass);
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                CheckCreatTable(sys_serverSettingClass);
 
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
                 string GUID = returnData.ValueAry[0];
 
@@ -570,10 +570,10 @@ namespace HIS_WebApi
             returnData.Method = "get_record_by_guid";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -592,14 +592,14 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                CheckCreatTable(serverSettingClass);
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                CheckCreatTable(sys_serverSettingClass);
 
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
                 string GUID = returnData.ValueAry[0];
 
@@ -670,7 +670,7 @@ namespace HIS_WebApi
             {
                 List<stockRecord> StockRecords = new List<stockRecord>();
                 List<Task> tasks = new List<Task>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
                 if (returnData.ValueAry == null)
                 {
@@ -704,13 +704,13 @@ namespace HIS_WebApi
                     string GUID = GUIDs[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "一般資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "一般資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
 
                         SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
                         SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
@@ -845,11 +845,11 @@ namespace HIS_WebApi
 
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord()));
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord_content()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_stockRecord()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_stockRecord_content()));
             return tables.JsonSerializationt(true);
         }
       

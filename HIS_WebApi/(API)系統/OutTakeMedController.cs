@@ -44,15 +44,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -226,20 +226,20 @@ namespace HIS_WebApi
                     returnData.Result = "Value格式錯誤,請輸入[藥碼,R,G,B,亮燈時間]!";
                     return returnData.JsonSerializationt();
                 }
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "找無serverSettingClass資料!";
+                    returnData.Result = "找無sys_serverSettingClass資料!";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                string IP = serverSettingClass.Server;
-                string DataBaseName = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                string IP = sys_serverSettingClass.Server;
+                string DataBaseName = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
                 SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
                 string 藥碼 = input_str_Ary[0];
                 byte R = (byte)(input_str_Ary[1].StringToInt32());
@@ -318,11 +318,11 @@ namespace HIS_WebApi
             }
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses_buf[0];
-                if (serverSettingClass_儲位資料 == null)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                sys_serverSettingClass sys_serverSettingClass_儲位資料 = sys_serverSettingClasses_buf[0];
+                if (sys_serverSettingClass_儲位資料 == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -341,7 +341,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料空白";
                     return returnData.JsonSerializationt();
                 }
-                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClass_儲位資料, returnData.TableName);
+                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(sys_serverSettingClass_儲位資料, returnData.TableName);
                 Dictionary<string, List<DeviceBasic>> keyValuePairs = deviceBasics.CoverToDictionaryByCode();
 
                 string GUID = "";
@@ -397,7 +397,7 @@ namespace HIS_WebApi
                     for (int k = 0; k < list_儲位資訊.Count; k++)
                     {
 
-                        deviceController.Function_庫存異動(list_儲位資訊[k], serverSettingClass_儲位資料);
+                        deviceController.Function_庫存異動(list_儲位資訊[k], sys_serverSettingClass_儲位資料);
                         備註 += $"[效期]:{list_儲位資訊[k][(int)deviceController.enum_儲位資訊.效期].ObjectToString()},[批號]:{list_儲位資訊[k][(int)deviceController.enum_儲位資訊.批號].ObjectToString()}";
                         if (k != list_儲位資訊.Count - 1) 備註 += "\n";
                     }
@@ -491,30 +491,30 @@ namespace HIS_WebApi
                 if (num >= 1) return "OK";
                 else return "NG";
             }
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
-            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.本地端);
+            sys_serverSettingClass sys_serverSettingClass_人員資料 = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.VM端);
+            if (sys_serverSettingClass == null)
             {
-                return "serverSettingClass[一般資料] is null!";
+                return "sys_serverSettingClass[一般資料] is null!";
             }
-            if (serverSettingClass_人員資料 == null)
+            if (sys_serverSettingClass_人員資料 == null)
             {
-                return "serverSettingClass[人員資料] is null!";
+                return "sys_serverSettingClass[人員資料] is null!";
             }
-            string IP = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
 
-            string devicelist_IP = serverSettingClass_人員資料.Server;
-            string devicelist_database = serverSettingClass_人員資料.DBName;
+            string devicelist_IP = sys_serverSettingClass_人員資料.Server;
+            string devicelist_database = sys_serverSettingClass_人員資料.DBName;
 
             SQLControl sQLControl_trading = new SQLControl(IP, DataBaseName, "trading", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
+            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, sys_serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
 
 
             List<object[]> list_devicelist = sQLControl_devicelist.GetAllRows(null);
@@ -582,7 +582,7 @@ namespace HIS_WebApi
                     List<object[]> list_trading = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥袋序號, data[0].PRI_KEY);
                     if (list_trading.Count > 0) return "-4";
                 }
-                this.Function_取藥堆疊資料_新增母資料(serverSettingClass, 設備名稱, takeMedicineStackClass);
+                this.Function_取藥堆疊資料_新增母資料(sys_serverSettingClass, 設備名稱, takeMedicineStackClass);
                 return $"OK";
             }
             else if (data[0].功能類型 == "0")
@@ -633,7 +633,7 @@ namespace HIS_WebApi
                 takeMedicineStackClass.批號 = data[0].批號;
                 takeMedicineStackClass.領藥號 = data[0].領藥號;
                 takeMedicineStackClass.收支原因 = data[0].收支原因;
-                this.Function_取藥堆疊資料_新增母資料(serverSettingClass, 設備名稱, takeMedicineStackClass);
+                this.Function_取藥堆疊資料_新增母資料(sys_serverSettingClass, 設備名稱, takeMedicineStackClass);
                 return $"OK";
             }
 
@@ -692,31 +692,31 @@ namespace HIS_WebApi
                 }
             }
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
-            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
-            ServerSettingClass serverSettingClass_雲端藥檔 = serverSettingClasses.myFind("Main", "網頁", "藥檔資料");
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.本地端);
+            sys_serverSettingClass sys_serverSettingClass_人員資料 = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.VM端);
+            sys_serverSettingClass sys_serverSettingClass_雲端藥檔 = sys_serverSettingClasses.myFind("Main", "網頁", "藥檔資料");
+            if (sys_serverSettingClass == null)
             {
-                return "serverSettingClass[一般資料] is null!";
+                return "sys_serverSettingClass[一般資料] is null!";
             }
-            if (serverSettingClass_人員資料 == null)
+            if (sys_serverSettingClass_人員資料 == null)
             {
-                return "serverSettingClass[人員資料] is null!";
+                return "sys_serverSettingClass[人員資料] is null!";
             }
-            string IP = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
 
-            string devicelist_IP = serverSettingClass_人員資料.Server;
-            string devicelist_database = serverSettingClass_人員資料.DBName;
+            string devicelist_IP = sys_serverSettingClass_人員資料.Server;
+            string devicelist_database = sys_serverSettingClass_人員資料.DBName;
 
             SQLControl sQLControl_trading = new SQLControl(IP, DataBaseName, "trading", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
+            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, sys_serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
 
             List<object[]> list_devicelist = sQLControl_devicelist.GetAllRows(null);
             List<object[]> list_devicelist_buf = new List<object[]>();
@@ -1121,7 +1121,7 @@ namespace HIS_WebApi
                     takeMedicineStackClasses.Add(takeMedicineStack);
                 }
             }
-            Function_取藥堆疊資料_新增母資料(serverSettingClass, 設備名稱, takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(sys_serverSettingClass, 設備名稱, takeMedicineStackClasses);
             returnData.Code = 200;
             returnData.TimeTaken = $"{myTimerBasic}";
             returnData.Result = $"OK,共新增<{takeMedicineStackClasses.Count}筆資料!>";
@@ -1131,26 +1131,26 @@ namespace HIS_WebApi
         private List<DeviceBasic> Function_讀取儲位(string name)
         {
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.一般資料);
+            sys_serverSettingClass sys_serverSettingClass_人員資料 = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.人員資料);
+            if (sys_serverSettingClass == null)
             {
 
             }
-            if (serverSettingClass_人員資料 == null)
+            if (sys_serverSettingClass_人員資料 == null)
             {
 
             }
-            string IP = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
 
-            string devicelist_IP = serverSettingClass_人員資料.Server;
-            string devicelist_database = serverSettingClass_人員資料.DBName;
+            string devicelist_IP = sys_serverSettingClass_人員資料.Server;
+            string devicelist_database = sys_serverSettingClass_人員資料.DBName;
 
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DataBaseName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_EPD1020_serialize = new SQLControl(IP, DataBaseName, "epd1020_jsonstring", UserName, Password, Port, SSLMode);
@@ -1193,18 +1193,18 @@ namespace HIS_WebApi
             }
             return 庫存;
         }
-        private bool Function_取藥堆疊資料_新增母資料(ServerSettingClass serverSettingClass, string 設備名稱, List<takeMedicineStackClass> takeMedicineStackClasses)
+        private bool Function_取藥堆疊資料_新增母資料(sys_serverSettingClass sys_serverSettingClass, string 設備名稱, List<takeMedicineStackClass> takeMedicineStackClasses)
         {
-            if (serverSettingClass == null)
+            if (sys_serverSettingClass == null)
             {
                 return false;
             }
 
-            string server = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string server = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
 
 
@@ -1240,18 +1240,18 @@ namespace HIS_WebApi
             return true;
 
         }
-        private bool Function_取藥堆疊資料_新增母資料(ServerSettingClass serverSettingClass, string 設備名稱, takeMedicineStackClass takeMedicineStackClass)
+        private bool Function_取藥堆疊資料_新增母資料(sys_serverSettingClass sys_serverSettingClass, string 設備名稱, takeMedicineStackClass takeMedicineStackClass)
         {
-            if (serverSettingClass == null)
+            if (sys_serverSettingClass == null)
             {
                 return false;
             }
 
-            string server = serverSettingClass.Server;
-            string DataBaseName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string server = sys_serverSettingClass.Server;
+            string DataBaseName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl_take_medicine_stack = new SQLControl(server, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
 
@@ -1308,11 +1308,11 @@ namespace HIS_WebApi
             else return Color.Red;
         }
         #endregion
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_取藥堆疊母資料()));
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_取藥堆疊子資料()));           
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_取藥堆疊母資料()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_取藥堆疊子資料()));           
             return tables.JsonSerializationt(true);
         }
     }

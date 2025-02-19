@@ -10,7 +10,7 @@ using SQLUI;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace HIS_WebApi._API_藥品交互作用
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -38,15 +38,15 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0], new enum_med_inter());
+                return CheckCreatTable(sys_serverSettingClasses[0], new enum_med_inter());
             }
             catch (Exception ex)
             {
@@ -62,15 +62,15 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0], new enum_med_inter_dtl());
+                return CheckCreatTable(sys_serverSettingClasses[0], new enum_med_inter_dtl());
             }
             catch (Exception ex)
             {
@@ -79,15 +79,15 @@ namespace HIS_WebApi._API_藥品交互作用
                 return returnData.JsonSerializationt(true);
             }
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass, Enum enumInstance)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, enumInstance);
             return table.JsonSerializationt(true);
         }
         [HttpPost("get_med_inter")]
@@ -96,19 +96,19 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if(serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if(sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt(true);
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter = new SQLControl(Server, DB, "med_inter", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter = sQLControl_med_inter.GetAllRows(null);
                 List<medInterClass> sql_medInter = list_med_inter.SQLToClass<medInterClass, enum_med_inter>();
@@ -133,19 +133,19 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt(true);
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter_dtl = new SQLControl(Server, DB, "med_inter_dtl", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter_dtl = sQLControl_med_inter_dtl.GetAllRows(null);
                 List<medInterDtlClass> sql_medInter = list_med_inter_dtl.SQLToClass<medInterDtlClass, enum_med_inter_dtl>();
@@ -169,19 +169,19 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt(true);
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter = new SQLControl(Server, DB, "med_inter", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter_sql = sQLControl_med_inter.GetAllRows(null);
                 List<medInterClass> current_medInterClass = list_med_inter_sql.SQLToClass <medInterClass, enum_med_inter> ();
@@ -236,19 +236,19 @@ namespace HIS_WebApi._API_藥品交互作用
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt(true);
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inter_dtl = new SQLControl(Server, DB, "med_inter_dtl", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_inter_dtl_sql = sQLControl_med_inter_dtl.GetAllRows(null);
                 List<medInterDtlClass> current_medInterDtlClass = list_med_inter_dtl_sql.SQLToClass<medInterDtlClass, enum_med_inter_dtl>();

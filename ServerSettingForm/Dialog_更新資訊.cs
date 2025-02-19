@@ -107,7 +107,7 @@ namespace ServerSettingForm
             if (myConfigClass != null)
             {
                 rJ_TextBox_API_Server.Texts = myConfigClass.Api_server;
-                Panel_UpdateVersion.ApiURL = $"{myConfigClass.Api_server}";
+                Panel_sys_updateVersion.ApiURL = $"{myConfigClass.Api_server}";
             }
             Button_測試_Click(null, null);
         }
@@ -122,16 +122,16 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.更新資訊);
-            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.更新資訊);
-            Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
-            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.更新資訊);
-            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClassMethod.MyFind(sys_serverSettingClasses, enum_sys_serverSetting_Type.更新資訊);
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.更新資訊);
+            Panel_SQLContent.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.更新資訊);
+            Panel_API_URL.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
 
 
    
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
@@ -170,16 +170,16 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.更新資訊);
-            Panel_SQLContent.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.更新資訊);
-            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClassMethod.MyFind(sys_serverSettingClasses, enum_sys_serverSetting_Type.更新資訊);
+            Panel_SQLContent.SetValue(this.FindForm(), DataName, enum_sys_serverSetting_Type.更新資訊);
+            Panel_SQLContent.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_API_URL.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.更新資訊);
-            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), DataName, enum_sys_serverSetting_Type.更新資訊);
+            Panel_API_URL.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
 
-            Panel_UpdateVersion.LoadAll(this.FindForm());
+            Panel_sys_updateVersion.LoadAll(this.FindForm());
         }
         private void Button_刪除_Click(object sender, EventArgs e)
         {
@@ -187,12 +187,12 @@ namespace ServerSettingForm
 
             string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = (from value in serverSettingClasses
-                                    where value.類別 == enum_ServerSetting_Type.更新資訊.GetEnumName()
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = (from value in sys_serverSettingClasses
+                                    where value.類別 == enum_sys_serverSetting_Type.更新資訊.GetEnumName()
                                     where value.設備名稱 == DataName
                                     select value).ToList();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);

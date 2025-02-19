@@ -114,11 +114,11 @@
     <Compile Include="formularyClass.cs" />
     <Compile Include="lockerAccessClass.cs" />
     <Compile Include="loggerClass.cs" />
-    <Compile Include="CMPM_StorageConfig_Class.cs" />
+    <Compile Include="化療排程\CMPM_StorageConfig_Class.cs" />
     <Compile Include="commonSpaceSetup.cs" />
     <Compile Include="computerConfigClass.cs" />
     <Compile Include="consumptionClass.cs" />
-    <Compile Include="ctclistClass.cs" />
+    <Compile Include="化療排程\ctclistClass.cs" />
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
     <Compile Include="materialRequisitionClass.cs" />
@@ -134,21 +134,21 @@
     <Compile Include="inventoryResultClass.cs" />
     <Compile Include="inv_combinelistClass.cs" />
     <Compile Include="lockerIndexClass.cs" />
-    <Compile Include="medClass.cs" />
-    <Compile Include="medConfigClass.cs" />
-    <Compile Include="medCouldClass.cs" />
-    <Compile Include="medDrugstoreClass.cs" />
-    <Compile Include="medGroupClass.cs" />
+    <Compile Include="藥品基本檔\medClass.cs" />
+    <Compile Include="藥品基本檔\medConfigClass.cs" />
+    <Compile Include="藥品基本檔\medCouldClass.cs" />
+    <Compile Include="藥品基本檔\medDrugstoreClass.cs" />
+    <Compile Include="藥品基本檔\medGroupClass.cs" />
     <Compile Include="medInfoCalss.cs" />
     <Compile Include="medInterClass .cs" />
     <Compile Include="medInventoryClass.cs" />
-    <Compile Include="medPharmacyClass.cs" />
-    <Compile Include="medPicClass.cs" />
-    <Compile Include="medPriceClass.cs" />
+    <Compile Include="藥品基本檔\medPharmacyClass.cs" />
+    <Compile Include="藥品基本檔\medPicClass.cs" />
+    <Compile Include="藥品基本檔\medPriceClass.cs" />
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
-    <Compile Include="medSMDSClass.cs" />
-    <Compile Include="medTypeClass.cs" />
+    <Compile Include="藥品基本檔\medSMDSClass.cs" />
+    <Compile Include="藥品基本檔\medTypeClass.cs" />
     <Compile Include="notifyExceptionClass.cs" />
     <Compile Include="orderClass.cs" />
     <Compile Include="orderTClass.cs" />
@@ -156,7 +156,7 @@
     <Compile Include="drugStotreDistributionClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="protalClass.cs" />
-    <Compile Include="ServerSettingClass.cs" />
+    <Compile Include="sys_serverSettingClass.cs" />
     <Compile Include="sessionClass.cs" />
     <Compile Include="settingPageClass.cs" />
     <Compile Include="stockRecordClass.cs" />
@@ -164,15 +164,15 @@
     <Compile Include="takeMedicineStackClass.cs" />
     <Compile Include="textVisionClass.cs" />
     <Compile Include="transactionsClass.cs" />
-    <Compile Include="udnoectc.cs" />
-    <Compile Include="udphnoph.cs" />
-    <Compile Include="updateVersionClass.cs" />
-    <Compile Include="voxVerifyClass.cs" />
+    <Compile Include="化療排程\udnoectc.cs" />
+    <Compile Include="化療排程\udphnoph.cs" />
+    <Compile Include="sys_updateVersionClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)\0.DLL"

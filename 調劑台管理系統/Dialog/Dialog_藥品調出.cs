@@ -74,8 +74,8 @@ namespace 調劑台管理系統
         private void Dialog_藥品調出_Load(object sender, EventArgs e)
         {
             rJ_Lable_來源調劑台名稱.Text = Main_Form.ServerName;
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.get_serversetting_by_type(Main_Form.API_Server, "調劑台");
-            List<string> serverNames = (from temp in serverSettingClasses
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_type(Main_Form.API_Server, "調劑台");
+            List<string> serverNames = (from temp in sys_serverSettingClasses
                                         select temp.設備名稱).Distinct().ToList();
             serverNames.Remove(Main_Form.ServerName);
 

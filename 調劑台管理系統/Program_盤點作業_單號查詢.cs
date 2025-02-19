@@ -133,7 +133,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_CT_TIME", json_in);
@@ -163,7 +163,7 @@ namespace 調劑台管理系統
 
             returnData.Data = content;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_get_by_content_GUID", json_in);
@@ -205,7 +205,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_delete_by_IC_SN", json_in);
@@ -221,7 +221,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_IC_SN", json_in);
@@ -280,7 +280,7 @@ namespace 調劑台管理系統
             }
             returnData.Data = contents;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/contents_delete_by_GUID", json_in);
@@ -335,7 +335,7 @@ namespace 調劑台管理系統
             sub_Content.操作人 = 登入者名稱;
             returnData.Data = sub_Content;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_add", json_in);
@@ -366,7 +366,7 @@ namespace 調劑台管理系統
             }
             returnData.Data = sub_contents;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_contents_delete_by_GUID", json_in);
@@ -379,7 +379,7 @@ namespace 調劑台管理系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             inventoryClass.creat creat = new inventoryClass.creat();
             this.Invoke(new Action(delegate

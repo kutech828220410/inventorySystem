@@ -31,19 +31,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無資料庫參數!";
                     return returnData.JsonSerializationt();
                 }
-                string IP = serverSettingClasses[0].Server;
-                string DataBaseName = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string IP = sys_serverSettingClasses[0].Server;
+                string DataBaseName = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 bool flag_admin = false;
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
@@ -192,19 +192,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無資料庫參數!";
                     return returnData.JsonSerializationt();
                 }
-                string IP = serverSettingClasses[0].Server;
-                string DataBaseName = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string IP = sys_serverSettingClasses[0].Server;
+                string DataBaseName = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
@@ -241,19 +241,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無資料庫參數!";
                     return returnData.JsonSerializationt();
                 }
-                string IP = serverSettingClasses[0].Server;
-                string DataBaseName = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string IP = sys_serverSettingClasses[0].Server;
+                string DataBaseName = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
@@ -313,19 +313,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無資料庫參數!";
                     return returnData.JsonSerializationt();
                 }
-                string IP = serverSettingClasses[0].Server;
-                string DataBaseName = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string IP = sys_serverSettingClasses[0].Server;
+                string DataBaseName = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
@@ -361,19 +361,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無資料庫參數!";
                     return returnData.JsonSerializationt();
                 }
-                string IP = serverSettingClasses[0].Server;
-                string DataBaseName = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string IP = sys_serverSettingClasses[0].Server;
+                string DataBaseName = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
@@ -425,17 +425,17 @@ namespace HIS_WebApi
 
         private List<PermissionsClass> GetPermissions(int level)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+            if (sys_serverSettingClasses.Count == 0)
             {
                 return new List<PermissionsClass>();
             }
-            string IP = serverSettingClasses[0].Server;
-            string DataBaseName = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string IP = sys_serverSettingClasses[0].Server;
+            string DataBaseName = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             List<PermissionsClass> result = new List<PermissionsClass>();
             SQLControl sQLControl_login_data_index = new SQLControl(IP, DataBaseName, "login_data_index", UserName, Password, Port, SSLMode);
@@ -495,17 +495,17 @@ namespace HIS_WebApi
         }
         private void Check_Table()
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+            if (sys_serverSettingClasses.Count == 0)
             {
                 return;
             }
-            string IP = serverSettingClasses[0].Server;
-            string DataBaseName = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string IP = sys_serverSettingClasses[0].Server;
+            string DataBaseName = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
 

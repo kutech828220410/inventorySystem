@@ -25,15 +25,15 @@ namespace HIS_WebApi._API_系統
             returnData.Method = "init_settingPage";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0], new enum_settingPage());
+                return CheckCreatTable(sys_serverSettingClasses[0], new enum_settingPage());
             }
             catch (Exception ex)
             {
@@ -231,36 +231,36 @@ namespace HIS_WebApi._API_系統
 
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass, Enum enumInstance)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, enumInstance);
             return table.JsonSerializationt(true);
         }
         private (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
         {
-            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (sys_serverSettingClass == null)
             {
                 throw new Exception("找無Server資料");
             }
-            return (serverSettingClass.Server, serverSettingClass.DBName, serverSettingClass.User, serverSettingClass.Password, (uint)serverSettingClass.Port.StringToInt32());
+            return (sys_serverSettingClass.Server, sys_serverSettingClass.DBName, sys_serverSettingClass.User, sys_serverSettingClass.Password, (uint)sys_serverSettingClass.Port.StringToInt32());
         }
         private string GetServerAPI(string Name, string Type, string Content)
         {
-            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (sys_serverSettingClass == null)
             {
                 throw new Exception("找無Server資料");
             }
-            return serverSettingClass.Server;
+            return sys_serverSettingClass.Server;
         }
         private Dictionary<string, string> dicColumnName = new Dictionary<string, string>
         {

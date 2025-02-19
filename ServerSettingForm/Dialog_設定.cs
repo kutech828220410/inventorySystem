@@ -116,11 +116,11 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
 
-            Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
+            Panel_CheckBox.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
 
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
@@ -137,8 +137,8 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            Panel_CheckBox.LoadAll(this.FindForm(), sys_serverSettingClasses);
         }
         private void Button_測試_Click(object sender, EventArgs e)
         {

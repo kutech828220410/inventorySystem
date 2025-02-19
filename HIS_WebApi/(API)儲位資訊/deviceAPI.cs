@@ -121,15 +121,15 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.儲位資料);
-                if(serverSettingClass == null)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(value, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.儲位資料);
+                if(sys_serverSettingClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無伺服器資料";
                     return returnData.JsonSerializationt(true);
                 }
-                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClass);
+                List<DeviceBasic> deviceBasics = Function_Get_device(sys_serverSettingClass);
                 deviceBasics = (from temp in deviceBasics
                                     where temp.Code.StringIsEmpty() == false
                                     select temp).ToList();
@@ -194,17 +194,17 @@ namespace HIS_WebApi
             returnData.Method = "all";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
 
-                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0], returnData.TableName);
+                List<DeviceBasic> deviceBasics = Function_Get_device(sys_serverSettingClasses[0], returnData.TableName);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Code = 200;
                 returnData.Result = $"Device取得成功!,共<{deviceBasics.Count}>筆資料,TableName : {returnData.TableName}";
@@ -259,10 +259,10 @@ namespace HIS_WebApi
             }
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -276,7 +276,7 @@ namespace HIS_WebApi
                 }
 
                 string[] Codes = returnData.ValueAry[0].Split(",");
-                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0], returnData.TableName);
+                List<DeviceBasic> deviceBasics = Function_Get_device(sys_serverSettingClasses[0], returnData.TableName);
                 Dictionary<string, List<DeviceBasic>> keyValuePairs = deviceBasics.CoverToDictionaryByCode();
 
 
@@ -348,10 +348,10 @@ namespace HIS_WebApi
             returnData.Method = "get_from_pharma_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -364,11 +364,11 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string Code = returnData.ValueAry[0];
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 List<DeviceBasic> deviceBasics = Function_讀取儲位_By_Code(Server, DB, UserName, Password, Port, Code);
               
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -418,10 +418,10 @@ namespace HIS_WebApi
             returnData.Method = "update_deviceBasic";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -436,7 +436,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                Function_Set_device(serverSettingClasses[0], returnData.TableName, deviceBasics);
+                Function_Set_device(sys_serverSettingClasses[0], returnData.TableName, deviceBasics);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Code = 200;
                 returnData.Result = $"Device取得成功!,共<{deviceBasics.Count}>筆資料,TableName : {returnData.TableName}";
@@ -483,10 +483,10 @@ namespace HIS_WebApi
             returnData.Method = "get_device";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -494,11 +494,11 @@ namespace HIS_WebApi
                 }
                 string tableName = returnData.ValueAry[0];
 
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Device> devices = DeviceMethod.SQL_GetAllDevice(sQLControl_device);
@@ -551,10 +551,10 @@ namespace HIS_WebApi
             returnData.Method = "get_rowLEDs";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -562,11 +562,11 @@ namespace HIS_WebApi
                 }
 
                 string tableName = "RowsLED_Jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetAllRowsLED(sQLControl_device);
@@ -619,10 +619,10 @@ namespace HIS_WebApi
             returnData.Method = "get_rowLED_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -636,11 +636,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "RowsLED_Jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetRowsLEDByCode(sQLControl_device, Code);
@@ -700,10 +700,10 @@ namespace HIS_WebApi
             returnData.Method = "get_rowLED_DeviceBasics_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -717,11 +717,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "RowsLED_Jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<DeviceBasic> deviceBasics = RowsLEDMethod.GetDeviceBasicByCode(sQLControl_device, Code);
@@ -781,10 +781,10 @@ namespace HIS_WebApi
             returnData.Method = "get_rowLED_ByIP";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -798,11 +798,11 @@ namespace HIS_WebApi
                 }
                 string IP = returnData.ValueAry[0];
                 string tableName = "RowsLED_Jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetAllRowsLED(sQLControl_device);
@@ -863,21 +863,21 @@ namespace HIS_WebApi
             returnData.Method = "update_rowsLED";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
                 string tableName = "RowsLED_Jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<RowsLED> rowsLEDs = returnData.Data.ObjToClass<List<RowsLED>>();
                 if (rowsLEDs.Count == 0)
@@ -955,10 +955,10 @@ namespace HIS_WebApi
             returnData.Method = "get_Drawers";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -966,11 +966,11 @@ namespace HIS_WebApi
                 }
 
                 string tableName = "epd583_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Drawer> drawers = DrawerMethod.SQL_GetAllDrawers(sQLControl_device);
@@ -1023,10 +1023,10 @@ namespace HIS_WebApi
             returnData.Method = "epd583_Drawer_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1040,11 +1040,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "epd583_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Drawer> drawers = DrawerMethod.SQL_GetDrawersByCode(sQLControl_device, Code);
@@ -1103,10 +1103,10 @@ namespace HIS_WebApi
             returnData.Method = "get_epd583_DeviceBasics_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1120,11 +1120,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "epd583_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<DeviceBasic> deviceBasics = DrawerMethod.GetDeviceBasicByCode(sQLControl_device, Code);
@@ -1183,10 +1183,10 @@ namespace HIS_WebApi
             returnData.Method = "get_Drawer_ByIP";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1200,11 +1200,11 @@ namespace HIS_WebApi
                 }
                 string IP = returnData.ValueAry[0];
                 string tableName = "epd583_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 Drawer drawer = DrawerMethod.SQL_GetDrawerByIP(sQLControl_device , IP);
@@ -1263,21 +1263,21 @@ namespace HIS_WebApi
             returnData.Method = "update_Drawers";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
                 string tableName = "epd583_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<Drawer> drawers = returnData.Data.ObjToClass<List<Drawer>>();
                 if (drawers.Count == 0)
@@ -1354,10 +1354,10 @@ namespace HIS_WebApi
             returnData.Method = "get_epd266_storage";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1365,11 +1365,11 @@ namespace HIS_WebApi
                 }
 
                 string tableName = "epd266_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Storage> storages = StorageMethod.SQL_GetAllStorage(sQLControl_device);
@@ -1422,10 +1422,10 @@ namespace HIS_WebApi
             returnData.Method = "get_epd266_storage_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1439,11 +1439,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "epd266_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Storage> storages = StorageMethod.SQL_GetStorageByCode(sQLControl_device, Code);
@@ -1502,10 +1502,10 @@ namespace HIS_WebApi
             returnData.Method = "get_epd266_storage_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1519,11 +1519,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "epd266_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<DeviceBasic> deviceBasics = StorageMethod.GetDeviceBasicByCode(sQLControl_device, Code);
@@ -1582,10 +1582,10 @@ namespace HIS_WebApi
             returnData.Method = "get_epd266_storage_ByIP";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1599,11 +1599,11 @@ namespace HIS_WebApi
                 }
                 string IP = returnData.ValueAry[0];
                 string tableName = "epd266_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 Storage storage = StorageMethod.SQL_GetStorageByIP(sQLControl_device, IP);
@@ -1662,21 +1662,21 @@ namespace HIS_WebApi
             returnData.Method = "update_epd266_storages";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
                 string tableName = "epd266_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<Storage> storages = returnData.Data.ObjToClass<List<Storage>>();
                 if (storages.Count == 0)
@@ -1753,10 +1753,10 @@ namespace HIS_WebApi
             returnData.Method = "get_panel35_storage";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1764,11 +1764,11 @@ namespace HIS_WebApi
                 }
 
                 string tableName = "wt32_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Storage> storages = StorageMethod.SQL_GetAllStorage(sQLControl_device);
@@ -1821,10 +1821,10 @@ namespace HIS_WebApi
             returnData.Method = "get_Panel35_storage_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1838,11 +1838,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "Panel35_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<Storage> storages = StorageMethod.SQL_GetStorageByCode(sQLControl_device, Code);
@@ -1901,10 +1901,10 @@ namespace HIS_WebApi
             returnData.Method = "get_Panel35_storage_By_Code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1918,11 +1918,11 @@ namespace HIS_WebApi
                 }
                 string Code = returnData.ValueAry[0];
                 string tableName = "Panel35_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<DeviceBasic> deviceBasics = StorageMethod.GetDeviceBasicByCode(sQLControl_device, Code);
@@ -1981,10 +1981,10 @@ namespace HIS_WebApi
             returnData.Method = "get_panel35_storage_ByIP";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
@@ -1998,11 +1998,11 @@ namespace HIS_WebApi
                 }
                 string IP = returnData.ValueAry[0];
                 string tableName = "wt32_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 Storage storage = StorageMethod.SQL_GetStorageByIP(sQLControl_device, IP);
@@ -2061,21 +2061,21 @@ namespace HIS_WebApi
             returnData.Method = "update_panel35_storages";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
                 string tableName = "wt32_jsonstring";
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<Storage> storages = returnData.Data.ObjToClass<List<Storage>>();
                 if (storages.Count == 0)
@@ -2153,27 +2153,27 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                ServerSettingClass serverSettingClass_儲位資料 = null;
-                ServerSettingClass serverSettingClass_堆疊資料 = null;
-                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (serverSettingClasses_buf.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                sys_serverSettingClass sys_serverSettingClass_儲位資料 = null;
+                sys_serverSettingClass sys_serverSettingClass_堆疊資料 = null;
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                serverSettingClass_儲位資料 = serverSettingClasses_buf[0];
+                sys_serverSettingClass_儲位資料 = sys_serverSettingClasses_buf[0];
 
-                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses_buf.Count == 0)
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                serverSettingClass_堆疊資料 = serverSettingClasses_buf[0];
+                sys_serverSettingClass_堆疊資料 = sys_serverSettingClasses_buf[0];
 
                 if (returnData.ValueAry.Count != 3)
                 {
@@ -2193,11 +2193,11 @@ namespace HIS_WebApi
                     returnData.Result = $"亮燈時間(s) 輸入內容錯誤";
                     return returnData.JsonSerializationt(true);
                 }
-                string Server = serverSettingClass_儲位資料.Server;
-                string DB = serverSettingClass_儲位資料.DBName;
-                string UserName = serverSettingClass_儲位資料.User;
-                string Password = serverSettingClass_儲位資料.Password;
-                uint Port = (uint)serverSettingClass_儲位資料.Port.StringToInt32();
+                string Server = sys_serverSettingClass_儲位資料.Server;
+                string DB = sys_serverSettingClass_儲位資料.DBName;
+                string UserName = sys_serverSettingClass_儲位資料.User;
+                string Password = sys_serverSettingClass_儲位資料.Password;
+                uint Port = (uint)sys_serverSettingClass_儲位資料.Port.StringToInt32();
 
                 string[] codes = str_codes.Split(",");
 
@@ -2222,8 +2222,8 @@ namespace HIS_WebApi
                     value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
                     list_add.Add(value);
                 }
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(serverSettingClass_堆疊資料.Server, serverSettingClass_堆疊資料.DBName, "take_medicine_stack_new", 
-                    serverSettingClass_堆疊資料.User, serverSettingClass_堆疊資料.Password, serverSettingClass_堆疊資料.Port.StringToUInt32(), SSLMode);
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(sys_serverSettingClass_堆疊資料.Server, sys_serverSettingClass_堆疊資料.DBName, "take_medicine_stack_new", 
+                    sys_serverSettingClass_堆疊資料.User, sys_serverSettingClass_堆疊資料.Password, sys_serverSettingClass_堆疊資料.Port.StringToUInt32(), SSLMode);
 
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
 
@@ -2257,16 +2257,16 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string device_Server = serverSettingClasses[0].Server;
-                string device_DB = serverSettingClasses[0].DBName;
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Color color = returnData.Value.ToColor();
@@ -2314,16 +2314,16 @@ namespace HIS_WebApi
             returnData.Method = "light";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string device_Server = serverSettingClasses[0].Server;
-                string device_DB = serverSettingClasses[0].DBName;
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Color color = returnData.Value.ToColor();
@@ -2395,16 +2395,16 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string device_Server = serverSettingClasses[0].Server;
-                string device_DB = serverSettingClasses[0].DBName;
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Color color = returnData.Value.ToColor();
@@ -2453,9 +2453,9 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -2479,13 +2479,13 @@ namespace HIS_WebApi
                 }
              
 
-                string device_Server = serverSettingClasses[0].Server;
-                string device_DB = serverSettingClasses[0].DBName;
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Color color = returnData.Value.ToColor();
                 string json_in = returnData.Data.JsonSerializationt();
-                List<DeviceBasic> deviceBasics = Function_Get_device_by_ip(serverSettingClasses[0], Storage_IP);
+                List<DeviceBasic> deviceBasics = Function_Get_device_by_ip(sys_serverSettingClasses[0], Storage_IP);
                 returnData.Data = deviceBasics;
 
                 returnData.Code = 200;
@@ -2519,20 +2519,20 @@ namespace HIS_WebApi
             return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName, returnData.UserName, returnData.Password, returnData.Port);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
+        static public List<DeviceBasic> Function_Get_device(sys_serverSettingClass sys_serverSettingClass)
         {
-            return Function_Get_device(serverSettingClass, "");
+            return Function_Get_device(sys_serverSettingClass, "");
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass , string TableName)
+        static public List<DeviceBasic> Function_Get_device(sys_serverSettingClass sys_serverSettingClass , string TableName)
         {
-            string Server = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
-            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
+            if (sys_serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
             {
                 SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
@@ -2546,37 +2546,37 @@ namespace HIS_WebApi
             return deviceBasics;
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public List<DeviceSimple> Function_Get_deviceSimple(ServerSettingClass serverSettingClass, string TableName)
+        static public List<DeviceSimple> Function_Get_deviceSimple(sys_serverSettingClass sys_serverSettingClass, string TableName)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            string Server = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             List<DeviceSimple> deviceBasics = new List<DeviceSimple>();
-            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
+            if (sys_serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
             {
                 SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceSimple(sQLControl_device);
-                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
+                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {sys_serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
             }
             return deviceBasics;
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public void Function_Set_device(ServerSettingClass serverSettingClass, string TableName , List<DeviceBasic> deviceBasics)
+        static public void Function_Set_device(sys_serverSettingClass sys_serverSettingClass, string TableName , List<DeviceBasic> deviceBasics)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            string Server = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
+            string Server = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+            if (sys_serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
             {
                 SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 DeviceBasicMethod.SQL_ReplaceDeviceBasic(sQLControl_device , deviceBasics);
-                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
+                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {sys_serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
             }
         }
         static private List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
@@ -2594,13 +2594,13 @@ namespace HIS_WebApi
 
             return deviceBasics;
         }
-        static private List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
+        static private List<DeviceBasic> Function_Get_device_by_ip(sys_serverSettingClass sys_serverSettingClass, string storageIP)
         {
-            string IP = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             List<DeviceBasic> deviceBasics = Function_讀取儲位_by_ip(IP, DBName, UserName, Password, Port, storageIP);
 
@@ -2746,13 +2746,13 @@ namespace HIS_WebApi
             return deviceBasics_buf;
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public List<DeviceBasic> Function_讀取儲位_By_Code(ServerSettingClass serverSettingClass, string Code)
+        static public List<DeviceBasic> Function_讀取儲位_By_Code(sys_serverSettingClass sys_serverSettingClass, string Code)
         {
-            string IP = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string IP = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             return Function_讀取儲位_By_Code(IP, DBName, UserName, Password, Port, Code);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -3278,13 +3278,13 @@ namespace HIS_WebApi
 
             return 儲位資訊_buf;
         }
-        static public object Function_庫存異動(object[] 儲位資訊 , ServerSettingClass serverSettingClass)
+        static public object Function_庫存異動(object[] 儲位資訊 , sys_serverSettingClass sys_serverSettingClass)
         {
-            SQLControl sQLControl_EPD583_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_EPD266_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_RowsLED_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_RFID_Device_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_WT32_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD583_serialize = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD266_serialize = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RowsLED_serialize = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RFID_Device_serialize = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_WT32_serialize = new SQLControl(sys_serverSettingClass.Server, sys_serverSettingClass.DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
 
             object Value = 儲位資訊[(int)enum_儲位資訊.Value];
             string 效期 = 儲位資訊[(int)enum_儲位資訊.效期].ObjectToString();

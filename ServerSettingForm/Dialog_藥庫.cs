@@ -121,19 +121,19 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
-            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.藥庫);
-            Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
-            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.藥庫);
-            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
-            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
-            Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClassMethod.MyFind(sys_serverSettingClasses, enum_sys_serverSetting_Type.藥庫);
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.藥庫);
+            Panel_SQLContent.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.藥庫);
+            Panel_API_URL.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
+            Panel_CheckBox.SetValue(this.FindForm(), enum_sys_serverSetting_Type.藥庫);
+            Panel_CheckBox.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
 
-            serverSettingClasses.Set_department_type(comboBox_單位.Text);
+            sys_serverSettingClasses.Set_department_type(comboBox_單位.Text);
 
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
-            if (serverSettingClass != null)
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_藥庫.功能);
+            if (sys_serverSettingClass != null)
             {
                 List<string> list_value = new List<string>();
                 if (checkBox_驗收.Checked) list_value.Add("驗收");
@@ -141,11 +141,11 @@ namespace ServerSettingForm
                 if (checkBox_揀貨.Checked) list_value.Add("揀貨");
                 if (checkBox_條碼管理.Checked) list_value.Add("條碼管理");
                 if (checkBox_儲位管理.Checked) list_value.Add("儲位管理");
-                serverSettingClass.Value = list_value.JsonSerializationt();
+                sys_serverSettingClass.Value = list_value.JsonSerializationt();
             }
             else
             {
-                ServerSettingClass serverSettingClass_temp = new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_藥庫.功能,
+                sys_serverSettingClass sys_serverSettingClass_temp = new sys_serverSettingClass(Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_ProgramType.WEB, enum_sys_serverSetting_藥庫.功能,
                 "", "", "", "", "", "");
                 List<string> list_value = new List<string>();
                 if (checkBox_驗收.Checked) list_value.Add("驗收");
@@ -153,10 +153,10 @@ namespace ServerSettingForm
                 if (checkBox_揀貨.Checked) list_value.Add("揀貨");
                 if (checkBox_條碼管理.Checked) list_value.Add("條碼管理");
                 if (checkBox_儲位管理.Checked) list_value.Add("儲位管理");
-                serverSettingClass_temp.Value = list_value.JsonSerializationt();
-                serverSettingClasses.Add(serverSettingClass_temp);
+                sys_serverSettingClass_temp.Value = list_value.JsonSerializationt();
+                sys_serverSettingClasses.Add(sys_serverSettingClass_temp);
             }
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
@@ -195,25 +195,25 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
-            Panel_SQLContent.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.藥庫);
-            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClassMethod.MyFind(sys_serverSettingClasses, enum_sys_serverSetting_Type.藥庫);
+            Panel_SQLContent.SetValue(this.FindForm(), DataName, enum_sys_serverSetting_Type.藥庫);
+            Panel_SQLContent.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_API_URL.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.藥庫);
-            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), DataName, enum_sys_serverSetting_Type.藥庫);
+            Panel_API_URL.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
-            Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_CheckBox.SetValue(this.FindForm(), enum_sys_serverSetting_Type.藥庫);
+            Panel_CheckBox.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            this.comboBox_單位.DataSource = serverSettingClasses.Get_department_types();
-            ServerSettingClass serverSettingClass = serverSettingClasses.myFind("DS01", enum_ServerSetting_Type.藥庫.GetEnumName(), "一般資料");
-            this.comboBox_單位.Text = serverSettingClass.單位;
+            this.comboBox_單位.DataSource = sys_serverSettingClasses.Get_department_types();
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.myFind("DS01", enum_sys_serverSetting_Type.藥庫.GetEnumName(), "一般資料");
+            this.comboBox_單位.Text = sys_serverSettingClass.單位;
 
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(DataName, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_藥庫.功能);
+            if (sys_serverSettingClass != null)
             {
-                List<string> list_value = serverSettingClass.Value.JsonDeserializet<List<string>>();
+                List<string> list_value = sys_serverSettingClass.Value.JsonDeserializet<List<string>>();
                 if (list_value == null) return;
                 checkBox_驗收.Checked = false;
                 checkBox_盤點.Checked = false;
@@ -237,12 +237,12 @@ namespace ServerSettingForm
 
             string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = (from value in serverSettingClasses
-                                    where value.類別 == enum_ServerSetting_Type.藥庫.GetEnumName()
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = (from value in sys_serverSettingClasses
+                                    where value.類別 == enum_sys_serverSetting_Type.藥庫.GetEnumName()
                                     where value.設備名稱 == DataName
                                     select value).ToList();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);

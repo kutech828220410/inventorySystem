@@ -126,7 +126,7 @@ namespace 智能藥庫系統
             List<string> str_ary = new List<string>();
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.creat creat = new inventoryClass.creat();
@@ -158,7 +158,7 @@ namespace 智能藥庫系統
             if (Content_GUID.StringIsEmpty()) return;
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.content content = new inventoryClass.content();
@@ -201,7 +201,7 @@ namespace 智能藥庫系統
             List<string> str_ary = new List<string>();
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = IC_SN;
 
@@ -216,7 +216,7 @@ namespace 智能藥庫系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.creat creat = new inventoryClass.creat();
@@ -280,7 +280,7 @@ namespace 智能藥庫系統
             }
             returnData.Data = contents;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             string json_in = returnData.JsonSerializationt(true);
@@ -329,7 +329,7 @@ namespace 智能藥庫系統
             數量 = dialog_NumPannel.Value.ToString();
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.sub_content sub_Content = new inventoryClass.sub_content();
@@ -359,7 +359,7 @@ namespace 智能藥庫系統
             if (MyMessageBox.ShowDialog($"是否刪除選取<{list_value.Count}>筆資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             List<inventoryClass.sub_content> sub_contents = new List<inventoryClass.sub_content>();
@@ -383,7 +383,7 @@ namespace 智能藥庫系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.creat creat = new inventoryClass.creat();

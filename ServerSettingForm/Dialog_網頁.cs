@@ -110,15 +110,15 @@ namespace ServerSettingForm
         private void Function_Add(string Name)
         {
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁);
-            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.網頁);
-            Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
-            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.網頁);
-            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.網頁);
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.網頁);
+            Panel_SQLContent.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.網頁);
+            Panel_API_URL.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
 
             returnData returnData = new returnData();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             string json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
@@ -135,11 +135,11 @@ namespace ServerSettingForm
             if (MyMessageBox.ShowDialog("確認重置Web表單?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             Function_Add(WEB_Name);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁);
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(WEB_Name, enum_sys_serverSetting_Type.網頁);
 
             returnData returnData = new returnData();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             string json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);
@@ -167,13 +167,13 @@ namespace ServerSettingForm
         private void Button_讀取_Click(object sender, EventArgs e)
         {
     
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁);
-            Panel_SQLContent.SetValue(this.FindForm(), WEB_Name, enum_ServerSetting_Type.網頁);
-            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁);
+            Panel_SQLContent.SetValue(this.FindForm(), WEB_Name, enum_sys_serverSetting_Type.網頁);
+            Panel_SQLContent.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_API_URL.SetValue(this.FindForm(), WEB_Name, enum_ServerSetting_Type.網頁);
-            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), WEB_Name, enum_sys_serverSetting_Type.網頁);
+            Panel_API_URL.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
 
 
@@ -182,13 +182,13 @@ namespace ServerSettingForm
         {
             if (MyMessageBox.ShowDialog("確認刪除?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            serverSettingClasses = (from value in serverSettingClasses
-                                    where value.類別 == enum_ServerSetting_Type.網頁.GetEnumName()
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            sys_serverSettingClasses = (from value in sys_serverSettingClasses
+                                    where value.類別 == enum_sys_serverSetting_Type.網頁.GetEnumName()
                                     where value.設備名稱 == WEB_Name
                                     select value).ToList();
             returnData returnData = new returnData();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             string json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);

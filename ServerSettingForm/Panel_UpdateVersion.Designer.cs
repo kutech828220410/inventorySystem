@@ -1,7 +1,7 @@
 ﻿
 namespace ServerSettingForm
 {
-    partial class Panel_UpdateVersion
+    partial class Panel_sys_updateVersion
     {
         /// <summary> 
         /// 設計工具所需的變數。
@@ -163,7 +163,7 @@ namespace ServerSettingForm
             this.button_刪除.Text = "刪除";
             this.button_刪除.UseVisualStyleBackColor = true;
             // 
-            // Panel_UpdateVersion
+            // Panel_sys_updateVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,7 +178,7 @@ namespace ServerSettingForm
             this.Controls.Add(this.button_瀏覽);
             this.Controls.Add(this.textBox_filepath);
             this.Controls.Add(this.label2);
-            this.Name = "Panel_UpdateVersion";
+            this.Name = "Panel_sys_updateVersion";
             this.Size = new System.Drawing.Size(526, 160);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

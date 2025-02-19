@@ -133,12 +133,12 @@ namespace 智能藥庫系統
         }
         private void DateTimeIntervelPicker_報表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
-            ServerSettingClass serverSettingClass = ServerSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
-            if (serverSettingClass != null)
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
+            if (sys_serverSettingClass != null)
             {
-                if (serverSettingClass.Server.StringIsEmpty() == false)
+                if (sys_serverSettingClass.Server.StringIsEmpty() == false)
                 {
-                    string json = Basic.Net.WEBApiPostJson(serverSettingClass.Server, new returnData().JsonSerializationt());
+                    string json = Basic.Net.WEBApiPostJson(sys_serverSettingClass.Server, new returnData().JsonSerializationt());
                 }
             }
             List<inspectionClass.creat> creats = inspectionClass.creat_get_by_CT_TIME_ST_END(Main_Form.API_Server, dateTimeIntervelPicker_報表日期.StartTime, dateTimeIntervelPicker_報表日期.EndTime);
@@ -158,12 +158,12 @@ namespace 智能藥庫系統
             {
                 LoadingForm.ShowLoadingForm();
 
-                ServerSettingClass serverSettingClass = ServerSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
-                if (serverSettingClass != null)
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
+                if (sys_serverSettingClass != null)
                 {
-                    if (serverSettingClass.Server.StringIsEmpty() == false)
+                    if (sys_serverSettingClass.Server.StringIsEmpty() == false)
                     {
-                        string json = Basic.Net.WEBApiPostJson(serverSettingClass.Server, new returnData().JsonSerializationt());
+                        string json = Basic.Net.WEBApiPostJson(sys_serverSettingClass.Server, new returnData().JsonSerializationt());
                     }
                 }
                 string IC_SN = "";

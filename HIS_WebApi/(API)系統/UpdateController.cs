@@ -38,13 +38,13 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -59,20 +59,20 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Method = "all";
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
                 returnData.Code = 200;
-                returnData.Data = updateVersionClasses;
+                returnData.Data = sys_updateVersionClasses;
                 returnData.Method = "all";
-                returnData.Result = $"取得 update version 資訊成功! 共<{updateVersionClasses.Count}>筆";
+                returnData.Result = $"取得 update version 資訊成功! 共<{sys_updateVersionClasses.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
             catch(Exception e)
@@ -90,56 +90,56 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Method = "add";
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
-                List<updateVersionClass> updateVersionClasses_input = returnData.Data.ObjToListClass<updateVersionClass>();
-                if(updateVersionClasses_input == null || updateVersionClasses_input.Count == 0)
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
+                List<sys_updateVersionClass> sys_updateVersionClasses_input = returnData.Data.ObjToListClass<sys_updateVersionClass>();
+                if(sys_updateVersionClasses_input == null || sys_updateVersionClasses_input.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Method = "add";
                     returnData.Result = $"傳入資料資訊錯誤!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<object[]> list_value = updateVersionClasses.ClassToSQL<updateVersionClass, enum_updateVersion>();
+                List<object[]> list_value = sys_updateVersionClasses.ClassToSQL<sys_updateVersionClass, enum_sys_updateVersion>();
                 List<object[]> list_value_buf = new List<object[]>();
                 List<object[]> list_value_add = new List<object[]>();
                 List<object[]> list_value_replace = new List<object[]>();
-                List<object[]> list_value_input = updateVersionClasses_input.ClassToSQL<updateVersionClass, enum_updateVersion>();
+                List<object[]> list_value_input = sys_updateVersionClasses_input.ClassToSQL<sys_updateVersionClass, enum_sys_updateVersion>();
                 for (int i = 0; i < list_value_input.Count; i++)
                 {
                     object[] value = list_value_input[i];
-                    string program_name = value[(int)enum_updateVersion.program_name].ObjectToString();
-                    list_value_buf = list_value.GetRows((int)enum_updateVersion.program_name, program_name);
+                    string program_name = value[(int)enum_sys_updateVersion.program_name].ObjectToString();
+                    list_value_buf = list_value.GetRows((int)enum_sys_updateVersion.program_name, program_name);
                     if(list_value_buf.Count == 0)
                     {
-                        value[(int)enum_updateVersion.GUID] = Guid.NewGuid().ToString();
+                        value[(int)enum_sys_updateVersion.GUID] = Guid.NewGuid().ToString();
                         list_value_add.Add(value);
                     }
                     else
                     {
-                        value[(int)enum_updateVersion.GUID] = list_value_buf[0][(int)enum_updateVersion.GUID];
+                        value[(int)enum_sys_updateVersion.GUID] = list_value_buf[0][(int)enum_sys_updateVersion.GUID];
                         list_value_replace.Add(value);
                     }
-                    value[(int)enum_updateVersion.update_time] = DateTime.Now.ToDateTimeString();
+                    value[(int)enum_sys_updateVersion.update_time] = DateTime.Now.ToDateTimeString();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, "update_version", UserName, Password, Port, SSLMode);
                 if (list_value_add.Count > 0) sQLControl.AddRows(null, list_value_add);
                 if (list_value_replace.Count > 0) sQLControl.UpdateByDefulteExtra(null, list_value_replace);
                 returnData.Code = 200;
-                returnData.Data = updateVersionClasses_input;
+                returnData.Data = sys_updateVersionClasses_input;
                 returnData.Method = "add";
                 returnData.Result = $"新增 update version 資訊成功! 新增<{list_value_add.Count}>筆,修改<{list_value_replace.Count}>筆";
                 return returnData.JsonSerializationt(true);
@@ -159,17 +159,17 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Method = "delete";
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
-                updateVersionClasses = (from temp in updateVersionClasses
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
+                sys_updateVersionClasses = (from temp in sys_updateVersionClasses
                                         where temp.program_name == returnData.Value
                                         select temp).ToList();
 
@@ -180,13 +180,13 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料資訊錯誤!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<object[]> list_value = updateVersionClasses.ClassToSQL<updateVersionClass, enum_updateVersion>();
+                List<object[]> list_value = sys_updateVersionClasses.ClassToSQL<sys_updateVersionClass, enum_sys_updateVersion>();
             
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, "update_version", UserName, Password, Port, SSLMode);
                 if (list_value.Count > 0) sQLControl.DeleteExtra(null, list_value);
                 returnData.Code = 200;
@@ -210,15 +210,15 @@ namespace HIS_WebApi
             MemoryStream outputStream = new MemoryStream();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0) return null;
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
-                updateVersionClasses = (from temp in updateVersionClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0) return null;
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
+                sys_updateVersionClasses = (from temp in sys_updateVersionClasses
                                         where temp.program_name == value
                                         select temp).ToList();
-                if (updateVersionClasses.Count == 0) return null;
-                string filepath = updateVersionClasses[0].filepath;
+                if (sys_updateVersionClasses.Count == 0) return null;
+                string filepath = sys_updateVersionClasses[0].filepath;
                 if (ContainerChecker.IsRunningInDocker())
                 {
                     filepath = filepath.Replace("\\", "/");
@@ -253,15 +253,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0) return null;
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
-                updateVersionClasses = (from temp in updateVersionClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0) return null;
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
+                sys_updateVersionClasses = (from temp in sys_updateVersionClasses
                                         where temp.program_name == value
                                         select temp).ToList();
-                if (updateVersionClasses.Count == 0) return "";
-                string filepath = updateVersionClasses[0].filepath;
+                if (sys_updateVersionClasses.Count == 0) return "";
+                string filepath = sys_updateVersionClasses[0].filepath;
      
 
                 if (ContainerChecker.IsRunningInDocker())
@@ -290,15 +290,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0) return null;
-                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
-                updateVersionClasses = (from temp in updateVersionClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0) return null;
+                List<sys_updateVersionClass> sys_updateVersionClasses = GetAllUpdateVersion(sys_serverSettingClasses[0]);
+                sys_updateVersionClasses = (from temp in sys_updateVersionClasses
                                         where temp.program_name == value
                                         select temp).ToList();
-                if (updateVersionClasses.Count == 0) return "";
-                string filepath = updateVersionClasses[0].filepath;
+                if (sys_updateVersionClasses.Count == 0) return "";
+                string filepath = sys_updateVersionClasses[0].filepath;
                 return Path.GetExtension(filepath); 
             }
             catch
@@ -307,14 +307,14 @@ namespace HIS_WebApi
             }
 
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl = new SQLControl(Server, DB, "update_version", UserName, Password, Port, SSLMode);
 
@@ -329,18 +329,18 @@ namespace HIS_WebApi
             else sQLControl.CheckAllColumnName(table, true);
             return table.JsonSerializationt(true);
         }
-        private List<updateVersionClass> GetAllUpdateVersion(ServerSettingClass serverSettingClass)
+        private List<sys_updateVersionClass> GetAllUpdateVersion(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl = new SQLControl(Server, DB, "update_version", UserName, Password, Port, SSLMode);
             List<object[]> list_value = sQLControl.GetAllRows(null);
-            List<updateVersionClass> updateVersionClasses = list_value.SQLToClass<updateVersionClass, enum_updateVersion>();
-            return updateVersionClasses;
+            List<sys_updateVersionClass> sys_updateVersionClasses = list_value.SQLToClass<sys_updateVersionClass, enum_sys_updateVersion>();
+            return sys_updateVersionClasses;
         }
 
         private void GetZip(string folderPath)

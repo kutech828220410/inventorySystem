@@ -67,7 +67,7 @@ namespace 智能藥庫系統
 
             string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             returnData.TableName = "medicine_page_firstclass";
             string json_in = returnData.JsonSerializationt();

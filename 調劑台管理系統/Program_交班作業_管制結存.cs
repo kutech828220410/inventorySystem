@@ -276,10 +276,10 @@ namespace 調劑台管理系統
 
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
@@ -331,7 +331,7 @@ namespace 調劑台管理系統
 
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
@@ -361,7 +361,7 @@ namespace 調劑台管理系統
 
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();

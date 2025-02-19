@@ -27,13 +27,13 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -47,9 +47,9 @@ namespace HIS_WebApi
             try
             {
                 POST_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Method = "post_add_device";
@@ -64,9 +64,9 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料資訊錯誤!";
                     return returnData.JsonSerializationt(true);
                 }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
                 string result = "";
-                if(SetValue(serverSettingClass , datas_input , ref result) == false)
+                if(SetValue(sys_serverSettingClass , datas_input , ref result) == false)
                 {
                     returnData.Code = -200;
                     returnData.Method = "post_add_device";
@@ -97,19 +97,19 @@ namespace HIS_WebApi
             try
             {
                 POST_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"get_parameter";
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
                 string deviceName = returnData.Value;
 
-                computerConfigClass computerConfigClass = GetValue(serverSettingClass, deviceName);
+                computerConfigClass computerConfigClass = GetValue(sys_serverSettingClass, deviceName);
                 if(computerConfigClass == null)
                 {
                     returnData.Code = -200;
@@ -131,14 +131,14 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-        private computerConfigClass GetValue(ServerSettingClass serverSettingClass, string deviceName)
+        private computerConfigClass GetValue(sys_serverSettingClass sys_serverSettingClass, string deviceName)
         {
             computerConfigClass computerConfigClass = new computerConfigClass();
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             try
             {
                 SQLControl sQLControl_devicelist = new SQLControl(Server, DB, "devicelist", UserName, Password, Port, SSLMode);
@@ -148,7 +148,7 @@ namespace HIS_WebApi
                 {
                     string result = "";
                     computerConfigClass.名稱 = deviceName;
-                    SetValue(serverSettingClass, computerConfigClass, ref result);
+                    SetValue(sys_serverSettingClass, computerConfigClass, ref result);
                     return computerConfigClass;
                 }
                 computerConfigClass = list_devicelist[0].SQLToClass<computerConfigClass, enum_computerConfig>();
@@ -164,19 +164,19 @@ namespace HIS_WebApi
             }
       
         }
-        private bool SetValue(ServerSettingClass serverSettingClass, computerConfigClass data_input, ref string result)
+        private bool SetValue(sys_serverSettingClass sys_serverSettingClass, computerConfigClass data_input, ref string result)
         {
             List<computerConfigClass> datas_input = new List<computerConfigClass>();
             datas_input.Add(data_input);
-            return SetValue(serverSettingClass, datas_input, ref result);
+            return SetValue(sys_serverSettingClass, datas_input, ref result);
         }
-        private bool SetValue(ServerSettingClass serverSettingClass, List<computerConfigClass> datas_input , ref string result)
+        private bool SetValue(sys_serverSettingClass sys_serverSettingClass, List<computerConfigClass> datas_input , ref string result)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl_devicelist = new SQLControl(Server, DB, "devicelist", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_sub_devicelist = new SQLControl(Server, DB, "sub_devicelist", UserName, Password, Port, SSLMode);
@@ -236,14 +236,14 @@ namespace HIS_WebApi
             result += $"新增 sub_devicelist 資訊成功! 新增 <{ list_sub_devicelist_add.Count}> 筆,修改 <{ list_sub_devicelist_replace.Count}> 筆\n";
             return true;
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl;
             List<Table> tables = new List<Table>();
             sQLControl = new SQLControl(Server, DB, "devicelist", UserName, Password, Port, SSLMode);

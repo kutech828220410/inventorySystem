@@ -68,7 +68,7 @@ namespace 調劑台管理系統
         {
             string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page_cloud";
             string json_in = returnData.JsonSerializationt();
@@ -96,7 +96,7 @@ namespace 調劑台管理系統
         {
             string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
@@ -167,30 +167,30 @@ namespace 調劑台管理系統
             }
             Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass;
 
-            serverSettingClass = serverSettingClasses.MyFind(Main_Form.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Main_Form.ServerName, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.一般資料);
+            if (sys_serverSettingClass != null)
             {
                 SQLUI.SQL_DataGridView.ConnentionClass connentionClass = new SQL_DataGridView.ConnentionClass();
-                connentionClass.IP = serverSettingClass.Server;
-                connentionClass.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                connentionClass.DataBaseName = serverSettingClass.DBName;
-                connentionClass.UserName = serverSettingClass.User;
-                connentionClass.Password = serverSettingClass.Password;
+                connentionClass.IP = sys_serverSettingClass.Server;
+                connentionClass.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                connentionClass.DataBaseName = sys_serverSettingClass.DBName;
+                connentionClass.UserName = sys_serverSettingClass.User;
+                connentionClass.Password = sys_serverSettingClass.Password;
                 SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_本地藥檔, connentionClass);
                 this.sqL_DataGridView_本地藥檔.SQL_Reset();
             }
-            serverSettingClass = serverSettingClasses.MyFind(Main_Form.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Main_Form.ServerName, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.藥檔資料);
+            if (sys_serverSettingClass != null)
             {
                 SQLUI.SQL_DataGridView.ConnentionClass connentionClass = new SQL_DataGridView.ConnentionClass();
-                connentionClass.IP = serverSettingClass.Server;
-                connentionClass.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                connentionClass.DataBaseName = serverSettingClass.DBName;
-                connentionClass.UserName = serverSettingClass.User;
-                connentionClass.Password = serverSettingClass.Password;
+                connentionClass.IP = sys_serverSettingClass.Server;
+                connentionClass.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                connentionClass.DataBaseName = sys_serverSettingClass.DBName;
+                connentionClass.UserName = sys_serverSettingClass.User;
+                connentionClass.Password = sys_serverSettingClass.Password;
                 SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, connentionClass);
                 this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             }

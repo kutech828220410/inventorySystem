@@ -33,15 +33,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -82,20 +82,20 @@ namespace HIS_WebApi
             returnData.Method = "get_all";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                CheckCreatTable(serverSettingClasses[0]);
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                CheckCreatTable(sys_serverSettingClasses[0]);
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, "med_shift_config", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<medShiftConfigClass> medShiftConfigClasses = list_value.SQLToClass<medShiftConfigClass, enum_交班藥品設定>();
@@ -141,7 +141,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_all";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -173,13 +173,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "本地端");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "本地端");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "med_shift_config";
                         SQLControl sQLControl_med_shift_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value = sQLControl_med_shift_config.GetAllRows(null);
@@ -227,20 +227,20 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                CheckCreatTable(serverSettingClasses[0]);
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                CheckCreatTable(sys_serverSettingClasses[0]);
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, "med_shift_config", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<object[]> list_value_buf = new List<object[]>();
@@ -335,14 +335,14 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl = new SQLControl(Server, DB, "med_shift_config", UserName, Password, Port, SSLMode);
 

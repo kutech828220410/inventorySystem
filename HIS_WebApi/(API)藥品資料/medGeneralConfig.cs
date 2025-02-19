@@ -53,15 +53,15 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -93,19 +93,19 @@ namespace HIS_WebApi
             returnData.Method = "get_all";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
-                if (_serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = _serverSettingClasses[0].Server;
-                string DB = _serverSettingClasses[0].DBName;
-                string UserName = _serverSettingClasses[0].User;
-                string Password = _serverSettingClasses[0].Password;
-                uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                 string TableName = new enum_medGeneralConfig().GetEnumDescription();
                 SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_med_config = sQLControl_med_config.GetAllRows(null);
@@ -150,19 +150,19 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
-                if (_serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = _serverSettingClasses[0].Server;
-                string DB = _serverSettingClasses[0].DBName;
-                string UserName = _serverSettingClasses[0].User;
-                string Password = _serverSettingClasses[0].Password;
-                uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                 string TableName = new enum_medGeneralConfig().GetEnumDescription();
                 SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_med_config = sQLControl_med_config.GetAllRows(null);
@@ -210,13 +210,13 @@ namespace HIS_WebApi
         }
 
 
-        private void Function_CheckTable(ServerSettingClass serverSettingClass , Enum _enum)
+        private void Function_CheckTable(sys_serverSettingClass sys_serverSettingClass , Enum _enum)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl = new SQLControl(Server, DB, _enum.GetEnumDescription(), UserName, Password, Port, SSLMode);
 
             List<object[]> list_value = sQLControl.GetAllRows(null);
@@ -331,11 +331,11 @@ namespace HIS_WebApi
             sQLControl.DeleteExtra(null, list_value_delete);
             sQLControl.AddRows(null, list_value_add);
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_medGeneralConfig()));
-            Function_CheckTable(serverSettingClass, new enum_medGeneralConfig());
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_medGeneralConfig()));
+            Function_CheckTable(sys_serverSettingClass, new enum_medGeneralConfig());
             return tables.JsonSerializationt(true);
         }
     }

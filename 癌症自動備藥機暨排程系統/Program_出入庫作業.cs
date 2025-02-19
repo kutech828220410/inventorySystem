@@ -31,7 +31,7 @@ namespace 癌症備藥機
 
             string url = $"{API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.癌症備藥機.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();

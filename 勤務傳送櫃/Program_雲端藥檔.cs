@@ -25,7 +25,7 @@ namespace 勤務傳送櫃
         {
             string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.傳送櫃.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.傳送櫃.GetEnumName();
             returnData.ServerName = $"{dBConfigClass.Name}";
             returnData.TableName = "medicine_page_cloud";
             string json_in = returnData.JsonSerializationt();

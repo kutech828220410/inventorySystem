@@ -128,7 +128,7 @@ namespace 智能藥庫系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", returnData.JsonSerializationt());
             Console.WriteLine(json);
@@ -136,7 +136,7 @@ namespace 智能藥庫系統
             {
                 returnData = json.JsonDeserializet<returnData>();
                 returnData.ServerName = dBConfigClass.Name;
-                returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+                returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
                 if (returnData == null) return;
                 if (returnData.Code != 200) return;
                 this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts = $"{returnData.Value}";
@@ -189,7 +189,7 @@ namespace 智能藥庫系統
             }
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
 
             inventoryClass.creat creat = new inventoryClass.creat();
@@ -222,7 +222,7 @@ namespace 智能藥庫系統
             string 盤點名稱 = rJ_TextBox_盤點作業_新增盤點_盤點名稱.Text;
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             returnData.TableName = "medicine_page_firstclass";
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
@@ -231,7 +231,7 @@ namespace 智能藥庫系統
 
             returnData.Data = creat;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_auto_add", json_in);
             Console.WriteLine(json);

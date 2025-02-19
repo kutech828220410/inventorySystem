@@ -332,78 +332,78 @@ namespace 勤務傳送櫃
         }
         private void ApiServerSetting()
         {
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
-            if (serverSettingClasses.Count == 0)
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("API Server 連結失敗!");
                 return;
             }
-            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass;
 
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "本地端");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "本地端");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Basic.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "VM端");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "VM端");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
-                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
-                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+                dBConfigClass.DB_person_page.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "藥檔資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "藥檔資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Medicine_Cloud.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Medicine_Cloud.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "交易紀錄資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "交易紀錄資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_tradding.IP = serverSettingClass.Server;
-                dBConfigClass.DB_tradding.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_tradding.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_tradding.UserName = serverSettingClass.User;
-                dBConfigClass.DB_tradding.Password = serverSettingClass.Password;
+                dBConfigClass.DB_tradding.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_tradding.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_tradding.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_tradding.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_tradding.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "醫囑資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "醫囑資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_order.IP = serverSettingClass.Server;
-                dBConfigClass.DB_order.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_order.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_order.UserName = serverSettingClass.User;
-                dBConfigClass.DB_order.Password = serverSettingClass.Password;
+                dBConfigClass.DB_order.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_order.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_order.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_order.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_order.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "儲位資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "儲位資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_storage.IP = serverSettingClass.Server;
-                dBConfigClass.DB_storage.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_storage.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_storage.UserName = serverSettingClass.User;
-                dBConfigClass.DB_storage.Password = serverSettingClass.Password;
+                dBConfigClass.DB_storage.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_storage.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_storage.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_storage.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_storage.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "API01");
-            if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Order_API");
-            if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Med_API");
-            if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "OrderCheckin_API");
-            if (serverSettingClass != null) dBConfigClass.OrderCheckinApiURL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "OrderTakeOut_API");
-            if (serverSettingClass != null) dBConfigClass.OrderTakeOutApiURL = serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "API01");
+            if (sys_serverSettingClass != null) dBConfigClass.Api_URL = sys_serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "Order_API");
+            if (sys_serverSettingClass != null) dBConfigClass.OrderApiURL = sys_serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "Med_API");
+            if (sys_serverSettingClass != null) dBConfigClass.MedApiURL = sys_serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "OrderCheckin_API");
+            if (sys_serverSettingClass != null) dBConfigClass.OrderCheckinApiURL = sys_serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.傳送櫃, "OrderTakeOut_API");
+            if (sys_serverSettingClass != null) dBConfigClass.OrderTakeOutApiURL = sys_serverSettingClass.Server;
 
             API_Server = dBConfigClass.Api_URL;
 

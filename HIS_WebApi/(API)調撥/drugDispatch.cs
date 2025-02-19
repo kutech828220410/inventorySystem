@@ -59,15 +59,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -107,19 +107,19 @@ namespace HIS_WebApi
             try
             {
                 GET_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<drugDispatchClass> drugDispatchClasses = returnData.Data.ObjToClass<List<drugDispatchClass>>();
                 List<drugDispatchClass> drugDispatchClasses_buf = new List<drugDispatchClass>();
@@ -191,22 +191,22 @@ namespace HIS_WebApi
             try
             {
                 GET_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses_buf.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                ServerSettingClass serverSettingClass_VM = serverSettingClasses_buf[0];
+                sys_serverSettingClass sys_serverSettingClass_VM = sys_serverSettingClasses_buf[0];
 
-                string Server = serverSettingClass_VM.Server;
-                string DB = serverSettingClass_VM.DBName;
-                string UserName = serverSettingClass_VM.User;
-                string Password = serverSettingClass_VM.Password;
-                uint Port = (uint)serverSettingClass_VM.Port.StringToInt32();
+                string Server = sys_serverSettingClass_VM.Server;
+                string DB = sys_serverSettingClass_VM.DBName;
+                string UserName = sys_serverSettingClass_VM.User;
+                string Password = sys_serverSettingClass_VM.Password;
+                uint Port = (uint)sys_serverSettingClass_VM.Port.StringToInt32();
 
                 List<drugDispatchClass> drugDispatchClasses = returnData.Data.ObjToClass<List<drugDispatchClass>>();
                 List<drugDispatchClass> drugDispatchClasses_buf = new List<drugDispatchClass>();
@@ -226,7 +226,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                drugDispatchClasses_buf = Function_Inbound(serverSettingClasses, drugDispatchClasses);
+                drugDispatchClasses_buf = Function_Inbound(sys_serverSettingClasses, drugDispatchClasses);
                 for (int i = 0; i < drugDispatchClasses_buf.Count; i++)
                 {
                     drugDispatchClasses_buf[i].GUID = Guid.NewGuid().ToString();
@@ -265,7 +265,7 @@ namespace HIS_WebApi
             Value,
         }
 
-        private List<drugDispatchClass> Function_Inbound(List<ServerSettingClass> serverSettingClasses,List<drugDispatchClass> drugDispatchClasses)
+        private List<drugDispatchClass> Function_Inbound(List<sys_serverSettingClass> sys_serverSettingClasses,List<drugDispatchClass> drugDispatchClasses)
         {
             List<drugDispatchClass> drugDispatchClasses_buf = new List<drugDispatchClass>();
             string Action = "";
@@ -293,18 +293,18 @@ namespace HIS_WebApi
                 出庫庫別 = drugDispatchClasses[i].出庫庫別;
                 調出量 = drugDispatchClasses[i].出庫量.StringToInt32();
                 調入量 = 0;
-                ServerSettingClass serverSettingClass_Inbound = serverSettingClasses.myFind(入庫庫別, "調劑台", "儲位資料");
-                ServerSettingClass serverSettingClass_Outbound = serverSettingClasses.myFind(出庫庫別, "調劑台", "儲位資料");
-                if (serverSettingClass_Inbound == null) continue;
-                if (serverSettingClass_Outbound == null) continue;
+                sys_serverSettingClass sys_serverSettingClass_Inbound = sys_serverSettingClasses.myFind(入庫庫別, "調劑台", "儲位資料");
+                sys_serverSettingClass sys_serverSettingClass_Outbound = sys_serverSettingClasses.myFind(出庫庫別, "調劑台", "儲位資料");
+                if (sys_serverSettingClass_Inbound == null) continue;
+                if (sys_serverSettingClass_Outbound == null) continue;
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    deviceBasics_Inbound = deviceController.Function_讀取儲位_By_Code(serverSettingClass_Inbound, 藥碼);
+                    deviceBasics_Inbound = deviceController.Function_讀取儲位_By_Code(sys_serverSettingClass_Inbound, 藥碼);
                 })));
 
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    deviceBasics_Outbound = deviceController.Function_讀取儲位_By_Code(serverSettingClass_Outbound, 藥碼);
+                    deviceBasics_Outbound = deviceController.Function_讀取儲位_By_Code(sys_serverSettingClass_Outbound, 藥碼);
                 })));
 
                 Task.WhenAll(tasks).Wait();
@@ -327,7 +327,7 @@ namespace HIS_WebApi
                     string 批號 = "";
                     for (int k = 0; k < 儲位資訊_Inbound.Count; k++)
                     {
-                        Function_庫存異動上傳(serverSettingClass_Inbound, 儲位資訊_Inbound[k]);
+                        Function_庫存異動上傳(sys_serverSettingClass_Inbound, 儲位資訊_Inbound[k]);
 
                         效期 = 儲位資訊_Inbound[k][(int)enum_儲位資訊.效期].ObjectToString();
                         批號 = 儲位資訊_Inbound[k][(int)enum_儲位資訊.批號].ObjectToString();
@@ -343,7 +343,7 @@ namespace HIS_WebApi
                     string 批號 = "";
                     for (int k = 0; k < 儲位資訊_Outbound.Count; k++)
                     {
-                        Function_庫存異動上傳(serverSettingClass_Outbound, 儲位資訊_Outbound[k]);
+                        Function_庫存異動上傳(sys_serverSettingClass_Outbound, 儲位資訊_Outbound[k]);
 
                         效期 = 儲位資訊_Outbound[k][(int)enum_儲位資訊.效期].ObjectToString();
                         批號 = 儲位資訊_Outbound[k][(int)enum_儲位資訊.批號].ObjectToString();
@@ -475,14 +475,14 @@ namespace HIS_WebApi
 
             return 儲位資訊_buf;
         }
-        private object Function_庫存異動上傳(ServerSettingClass serverSettingClass,object[] 儲位資訊)
+        private object Function_庫存異動上傳(sys_serverSettingClass sys_serverSettingClass,object[] 儲位資訊)
         {
-            string Server = serverSettingClass.Server;
-            string DBName = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
+            string Server = sys_serverSettingClass.Server;
+            string DBName = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
 
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl_EPD583_serialize = new SQLControl(Server, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(Server, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(Server, DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
@@ -556,9 +556,9 @@ namespace HIS_WebApi
    
             return null;
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_drugDispatch());
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_drugDispatch());
             return table.JsonSerializationt(true);
         }
     }

@@ -56,15 +56,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -96,19 +96,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
@@ -167,19 +167,19 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -205,7 +205,7 @@ namespace HIS_WebApi
                 sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 List<object[]> list_inspection_creat = sQLControl_inspection_creat.GetAllRows(null);
                 list_inspection_creat = list_inspection_creat.GetRowsInDateEx((int)enum_驗收單號.建表時間, date_st, date_end);
-                returnData = Function_Get_inspection_creat(serverSettingClasses[0], returnData.TableName, list_inspection_creat, false);
+                returnData = Function_Get_inspection_creat(sys_serverSettingClasses[0], returnData.TableName, list_inspection_creat, false);
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "creat_get_by_CT_TIME_ST_END";
@@ -250,19 +250,19 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -279,11 +279,11 @@ namespace HIS_WebApi
                 list_inspection_creat = list_inspection_creat.GetRowsInDate((int)enum_驗收單號.建表時間, creat.建表時間.StringToDateTime());
                 if (returnData.Value == "1")
                 {
-                    returnData = Function_Get_inspection_creat(serverSettingClasses[0], returnData.TableName, list_inspection_creat, false);
+                    returnData = Function_Get_inspection_creat(sys_serverSettingClasses[0], returnData.TableName, list_inspection_creat, false);
                 }
                 else
                 {
-                    returnData = Function_Get_inspection_creat(serverSettingClasses[0], returnData.TableName, list_inspection_creat);
+                    returnData = Function_Get_inspection_creat(sys_serverSettingClasses[0], returnData.TableName, list_inspection_creat);
                 }
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
@@ -329,19 +329,19 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -422,19 +422,19 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -467,7 +467,7 @@ namespace HIS_WebApi
                 }
                 MED_pageController mED_PageController = new MED_pageController();
 
-                returnData = Function_Get_inspection_creat(serverSettingClasses[0], returnData.TableName, list_inspection_creat);
+                returnData = Function_Get_inspection_creat(sys_serverSettingClasses[0], returnData.TableName, list_inspection_creat);
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Result = $"取得驗收資料成功!";
@@ -493,19 +493,19 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -633,19 +633,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -792,19 +792,19 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -946,19 +946,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses_buf.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses_buf[0].Server;
-                string DB = serverSettingClasses_buf[0].DBName;
-                string UserName = serverSettingClasses_buf[0].User;
-                string Password = serverSettingClasses_buf[0].Password;
-                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses_buf[0].Server;
+                string DB = sys_serverSettingClasses_buf[0].DBName;
+                string UserName = sys_serverSettingClasses_buf[0].User;
+                string Password = sys_serverSettingClasses_buf[0].Password;
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
 
                 returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
                 string str_IC_SN = returnData_GET_new_IC_SN.Value;
@@ -1038,19 +1038,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1114,19 +1114,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1190,19 +1190,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1268,19 +1268,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1332,19 +1332,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1462,19 +1462,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1533,19 +1533,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1626,19 +1626,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1735,19 +1735,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1798,19 +1798,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return returnData.JsonSerializationt();
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
@@ -1891,19 +1891,19 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (serverSettingClasses.Count == 0)
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無Server資料!";
                 return null;
             }
-            string Server = serverSettingClasses[0].Server;
-            string DB = serverSettingClasses[0].DBName;
-            string UserName = serverSettingClasses[0].User;
-            string Password = serverSettingClasses[0].Password;
-            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
             string server = Server;
             string dbName = DB;
@@ -2014,17 +2014,17 @@ namespace HIS_WebApi
             string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClasses_med = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
             MED_pageController mED_PageController = new MED_pageController();
             returnData returnData_med = new returnData();
-            returnData_med.Server = serverSettingClasses_med.Server;
-            returnData_med.DbName = serverSettingClasses_med.DBName;
+            returnData_med.Server = sys_serverSettingClasses_med.Server;
+            returnData_med.DbName = sys_serverSettingClasses_med.DBName;
             returnData_med.TableName = "medicine_page_cloud";
-            returnData_med.UserName = serverSettingClasses_med.User;
-            returnData_med.Password = serverSettingClasses_med.Password;
-            returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+            returnData_med.UserName = sys_serverSettingClasses_med.User;
+            returnData_med.Password = sys_serverSettingClasses_med.Password;
+            returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
             string json_med = Basic.Net.WEBApiPostJson("http://127.0.0.1:4433/api/MED_page", returnData_med.JsonSerializationt());
             returnData_med = json_med.JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
@@ -2074,35 +2074,35 @@ namespace HIS_WebApi
         }
 
 
-        private returnData Function_Get_inspection_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat)
+        private returnData Function_Get_inspection_creat(sys_serverSettingClass sys_serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat)
         {
-            return Function_Get_inspection_creat(serverSettingClass, MED_TableName, list_inspection_creat, true);
+            return Function_Get_inspection_creat(sys_serverSettingClass, MED_TableName, list_inspection_creat, true);
         }
-        private returnData Function_Get_inspection_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat, bool allData)
+        private returnData Function_Get_inspection_creat(sys_serverSettingClass sys_serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat, bool allData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClasses_med = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
             MED_pageController mED_PageController = new MED_pageController();
             returnData returnData_med = new returnData();
-            returnData_med.Server = serverSettingClasses_med.Server;
-            returnData_med.DbName = serverSettingClasses_med.DBName;
+            returnData_med.Server = sys_serverSettingClasses_med.Server;
+            returnData_med.DbName = sys_serverSettingClasses_med.DBName;
             returnData_med.TableName = "medicine_page_cloud";
-            returnData_med.UserName = serverSettingClasses_med.User;
-            returnData_med.Password = serverSettingClasses_med.Password;
-            returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+            returnData_med.UserName = sys_serverSettingClasses_med.User;
+            returnData_med.Password = sys_serverSettingClasses_med.Password;
+            returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
             returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
@@ -2191,12 +2191,12 @@ namespace HIS_WebApi
 
 
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收單號()));
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收內容()));
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收明細()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_驗收單號()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_驗收內容()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_驗收明細()));
             return tables.JsonSerializationt(true);
 
         }

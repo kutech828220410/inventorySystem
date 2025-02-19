@@ -32,7 +32,7 @@ namespace 調劑台管理系統
         {
             string url = $"{Main_Form.API_Server}/api/order/init";
             returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.ServerName = $"{Main_Form.ServerName}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);

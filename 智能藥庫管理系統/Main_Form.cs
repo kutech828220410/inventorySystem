@@ -286,42 +286,42 @@ namespace 智能藥庫系統
 
             this.Text = $"智能藥庫系統 Ver{this.ProductVersion}";
             ServerName = Name;
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
-            Console.WriteLine($"[ServerSettingClassMethod.WebApiGet] url : {API_Server}/api/serversetting");
-            Console.WriteLine($"[ServerSettingClassMethod.WebApiGet] 取得<{serverSettingClasses.Count}>筆資料");
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            Console.WriteLine($"[sys_serverSettingClassMethod.WebApiGet] url : {API_Server}/api/serversetting");
+            Console.WriteLine($"[sys_serverSettingClassMethod.WebApiGet] 取得<{sys_serverSettingClasses.Count}>筆資料");
 
-            ServerSettingClass serverSettingClass_一般資料 = serverSettingClasses.myFind(Name, "藥庫", "一般資料");
-            ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses.myFind(Name, "藥庫", "儲位資料");
-            ServerSettingClass serverSettingClass_VM端 = serverSettingClasses.myFind(Name, "藥庫", "VM端");
+            sys_serverSettingClass sys_serverSettingClass_一般資料 = sys_serverSettingClasses.myFind(Name, "藥庫", "一般資料");
+            sys_serverSettingClass sys_serverSettingClass_儲位資料 = sys_serverSettingClasses.myFind(Name, "藥庫", "儲位資料");
+            sys_serverSettingClass sys_serverSettingClass_VM端 = sys_serverSettingClasses.myFind(Name, "藥庫", "VM端");
 
 
-            if (serverSettingClass_一般資料 != null)
+            if (sys_serverSettingClass_一般資料 != null)
             {
-                dBConfigClass.DB_Basic.IP = serverSettingClass_一般資料.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass_一般資料.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass_一般資料.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass_一般資料.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass_一般資料.Password;
+                dBConfigClass.DB_Basic.IP = sys_serverSettingClass_一般資料.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(sys_serverSettingClass_一般資料.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = sys_serverSettingClass_一般資料.DBName;
+                dBConfigClass.DB_Basic.UserName = sys_serverSettingClass_一般資料.User;
+                dBConfigClass.DB_Basic.Password = sys_serverSettingClass_一般資料.Password;
             }
-            if (serverSettingClass_VM端 != null)
+            if (sys_serverSettingClass_VM端 != null)
             {
-                dBConfigClass.DB_VM.IP = serverSettingClass_VM端.Server;
-                dBConfigClass.DB_VM.Port = (uint)(serverSettingClass_VM端.Port.StringToInt32());
-                dBConfigClass.DB_VM.DataBaseName = serverSettingClass_VM端.DBName;
-                dBConfigClass.DB_VM.UserName = serverSettingClass_VM端.User;
-                dBConfigClass.DB_VM.Password = serverSettingClass_VM端.Password;
+                dBConfigClass.DB_VM.IP = sys_serverSettingClass_VM端.Server;
+                dBConfigClass.DB_VM.Port = (uint)(sys_serverSettingClass_VM端.Port.StringToInt32());
+                dBConfigClass.DB_VM.DataBaseName = sys_serverSettingClass_VM端.DBName;
+                dBConfigClass.DB_VM.UserName = sys_serverSettingClass_VM端.User;
+                dBConfigClass.DB_VM.Password = sys_serverSettingClass_VM端.Password;
             }
-            if (serverSettingClass_儲位資料 != null)
+            if (sys_serverSettingClass_儲位資料 != null)
             {
-                dBConfigClass.DB_儲位資料.IP = serverSettingClass_儲位資料.Server;
-                dBConfigClass.DB_儲位資料.Port = (uint)(serverSettingClass_儲位資料.Port.StringToInt32());
-                dBConfigClass.DB_儲位資料.DataBaseName = serverSettingClass_儲位資料.DBName;
-                dBConfigClass.DB_儲位資料.UserName = serverSettingClass_儲位資料.User;
-                dBConfigClass.DB_儲位資料.Password = serverSettingClass_儲位資料.Password;
+                dBConfigClass.DB_儲位資料.IP = sys_serverSettingClass_儲位資料.Server;
+                dBConfigClass.DB_儲位資料.Port = (uint)(sys_serverSettingClass_儲位資料.Port.StringToInt32());
+                dBConfigClass.DB_儲位資料.DataBaseName = sys_serverSettingClass_儲位資料.DBName;
+                dBConfigClass.DB_儲位資料.UserName = sys_serverSettingClass_儲位資料.User;
+                dBConfigClass.DB_儲位資料.Password = sys_serverSettingClass_儲位資料.Password;
             }
 
-            ServerSettingClass serverSettingClass = serverSettingClasses.myFind("Main", "網頁", "get_full_inv_cmb_DataTable_by_SN");
-            if (serverSettingClass != null) dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN = serverSettingClass.Server;
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.myFind("Main", "網頁", "get_full_inv_cmb_DataTable_by_SN");
+            if (sys_serverSettingClass != null) dBConfigClass.Api_get_full_inv_cmb_DataTable_by_SN = sys_serverSettingClass.Server;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace 調劑台管理系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             DateTime dateTime_startTime = rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間.Value;
             dateTime_startTime = new DateTime(dateTime_startTime.Year, dateTime_startTime.Month, dateTime_startTime.Day, 00, 00, 00);
             DateTime dateTime_endTime = rJ_DatePicker_交易紀錄_結存量_操作時間_結束時間.Value;
@@ -77,7 +77,7 @@ namespace 調劑台管理系統
 
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             returnData.Value = $"{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();

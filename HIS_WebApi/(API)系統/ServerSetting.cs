@@ -44,11 +44,11 @@ namespace HIS_WebApi
                 SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
 
-                List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
+                List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
 
                 returnData.Code = 200;
-                returnData.Data = serverSettingClasses;
-                returnData.Result = $"取得伺服器設定成功!共<{serverSettingClasses.Count}>筆";
+                returnData.Data = sys_serverSettingClasses;
+                returnData.Result = $"取得伺服器設定成功!共<{sys_serverSettingClasses.Count}>筆";
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -151,7 +151,7 @@ namespace HIS_WebApi
         [HttpGet]
         public string GET_type()
         {
-            return new enum_ServerSetting_Type().GetEnumNames().JsonSerializationt();
+            return new enum_sys_serverSetting_Type().GetEnumNames().JsonSerializationt();
         }
         /// <summary>
         /// 取得程式類別(SQLServer、API、WEB...)
@@ -162,7 +162,7 @@ namespace HIS_WebApi
         [HttpGet]
         public string GET_program()
         {
-            return new enum_ServerSetting_ProgramType().GetEnumNames().JsonSerializationt();
+            return new enum_sys_serverSetting_ProgramType().GetEnumNames().JsonSerializationt();
         }
         /// <summary>
         /// 新增連線資訊
@@ -173,7 +173,7 @@ namespace HIS_WebApi
         ///   {
         ///     "Data": 
         ///     {
-        ///        [List<serverSettingClasses>]
+        ///        [List<sys_serverSettingClasses>]
         ///     }
         ///   }
         /// </code>
@@ -205,29 +205,29 @@ namespace HIS_WebApi
                 List<object[]> list_value_replace = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
       
-                List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-                list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
+                List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+                list_value_returnData = sys_serverSettingClasses.ClassToSQL<sys_serverSettingClass, enum_sys_serverSetting>();
                 for (int i = 0; i < list_value_returnData.Count; i++)
                 {
-                    string 名稱 = list_value_returnData[i][(int)enum_ServerSetting.設備名稱].ObjectToString();
-                    string 類別 = list_value_returnData[i][(int)enum_ServerSetting.類別].ObjectToString();
-                    string 程式類別 = list_value_returnData[i][(int)enum_ServerSetting.程式類別].ObjectToString();
-                    string 內容 = list_value_returnData[i][(int)enum_ServerSetting.內容].ObjectToString();
+                    string 名稱 = list_value_returnData[i][(int)enum_sys_serverSetting.設備名稱].ObjectToString();
+                    string 類別 = list_value_returnData[i][(int)enum_sys_serverSetting.類別].ObjectToString();
+                    string 程式類別 = list_value_returnData[i][(int)enum_sys_serverSetting.程式類別].ObjectToString();
+                    string 內容 = list_value_returnData[i][(int)enum_sys_serverSetting.內容].ObjectToString();
 
-                    list_value_buf = list_value.GetRows((int)enum_ServerSetting.設備名稱, 名稱);
-                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.類別, 類別);
-                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.程式類別, 程式類別);
-                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.內容, 內容);
+                    list_value_buf = list_value.GetRows((int)enum_sys_serverSetting.設備名稱, 名稱);
+                    list_value_buf = list_value_buf.GetRows((int)enum_sys_serverSetting.類別, 類別);
+                    list_value_buf = list_value_buf.GetRows((int)enum_sys_serverSetting.程式類別, 程式類別);
+                    list_value_buf = list_value_buf.GetRows((int)enum_sys_serverSetting.內容, 內容);
                     if (list_value_buf.Count == 0)
                     {
                         object[] value = list_value_returnData[i];
-                        value[(int)enum_ServerSetting.GUID] = Guid.NewGuid().ToString();
+                        value[(int)enum_sys_serverSetting.GUID] = Guid.NewGuid().ToString();
                         list_value_add.Add(value);
                     }
                     else
                     {
                         object[] value = list_value_returnData[i];
-                        value[(int)enum_ServerSetting.GUID] = list_value_buf[0][(int)enum_ServerSetting.GUID].ObjectToString();
+                        value[(int)enum_sys_serverSetting.GUID] = list_value_buf[0][(int)enum_sys_serverSetting.GUID].ObjectToString();
                         list_value_replace.Add(value);
                     }
                 }
@@ -236,7 +236,7 @@ namespace HIS_WebApi
 
                 returnData.Code = 200;
                 returnData.Result = "新增伺服器資料成功!";
-                returnData.Data = serverSettingClasses;
+                returnData.Data = sys_serverSettingClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt();
             }
@@ -258,7 +258,7 @@ namespace HIS_WebApi
         ///   {
         ///     "Data": 
         ///     {
-        ///        [List<serverSettingClasses>]
+        ///        [List<sys_serverSettingClasses>]
         ///     }
         ///   }
         /// </code>
@@ -289,14 +289,14 @@ namespace HIS_WebApi
                 List<object[]> list_value_add = new List<object[]>();
                 List<object[]> list_value_replace = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-                list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
+                List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+                list_value_returnData = sys_serverSettingClasses.ClassToSQL<sys_serverSettingClass, enum_sys_serverSetting>();
 
                 sQLControl.DeleteExtra(null, list_value_returnData);
 
                 returnData.Code = 200;
                 returnData.Result = "刪除伺服器資料成功!";
-                returnData.Data = serverSettingClasses;
+                returnData.Data = sys_serverSettingClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt();
             }
@@ -367,16 +367,16 @@ namespace HIS_WebApi
                 }
                 string Type = returnData.ValueAry[0];
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
-                serverSettingClasses = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                sys_serverSettingClasses = (from temp in sys_serverSettingClasses
                                         where temp.類別 == Type
                                         where temp.內容 == "一般資料"
                                         select temp).ToList();
         
 
                 returnData.Code = 200;
-                returnData.Result = $"取得連線資訊,共<{serverSettingClasses.Count}>筆";
-                returnData.Data = serverSettingClasses;
+                returnData.Result = $"取得連線資訊,共<{sys_serverSettingClasses.Count}>筆";
+                returnData.Data = sys_serverSettingClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -450,8 +450,8 @@ namespace HIS_WebApi
                 }
                 string Type = returnData.ValueAry[0];
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
-                List<string> department_types = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                List<string> department_types = (from temp in sys_serverSettingClasses
                                                  where temp.類別 == Type
                                                  where temp.內容 == "一般資料"
                                                  select temp.單位).Distinct().ToList();
@@ -531,16 +531,16 @@ namespace HIS_WebApi
                 }
                 string department_type = returnData.ValueAry[0];
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
-                serverSettingClasses = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                sys_serverSettingClasses = (from temp in sys_serverSettingClasses
                                         where temp.單位 == department_type
                                         where temp.內容 == "一般資料"
                                         select temp).ToList();
 
 
                 returnData.Code = 200;
-                returnData.Result = $"取得連線資訊,共<{serverSettingClasses.Count}>筆";
-                returnData.Data = serverSettingClasses;
+                returnData.Result = $"取得連線資訊,共<{sys_serverSettingClasses.Count}>筆";
+                returnData.Data = sys_serverSettingClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -607,20 +607,20 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
     
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
-                List<ServerSettingClass> serverSettingClasses_VM = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_VM = (from temp in sys_serverSettingClasses
                                                  where temp.類別 == "網頁"
                                                  where temp.內容 == "VM端"
                                                  select temp).ToList();
-                if(serverSettingClasses_VM.Count == 0)
+                if(sys_serverSettingClasses_VM.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Code = 200;
-                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_VM.Count}>筆";
-                returnData.Data = serverSettingClasses_VM[0];
+                returnData.Result = $"取得伺服器服務端,共<{sys_serverSettingClasses_VM.Count}>筆";
+                returnData.Data = sys_serverSettingClasses_VM[0];
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -688,9 +688,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -705,20 +705,20 @@ namespace HIS_WebApi
                 string 類別 = returnData.ValueAry[1].ToUpper();
                 string 設備名稱 = returnData.ValueAry[0].ToUpper();
                 string 內容 = returnData.ValueAry[2].ToUpper();
-                List<ServerSettingClass> serverSettingClasses_buf = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = (from temp in sys_serverSettingClasses
                                                                      where temp.類別.ToUpper() == 類別
                                                                      where temp.設備名稱.ToUpper() == 設備名稱
                                                                      where temp.內容.ToUpper() == 內容
                                                                      select temp).ToList();
-                if (serverSettingClasses_buf.Count == 0)
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Code = 200;
-                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_buf.Count}>筆";
-                returnData.Data = serverSettingClasses_buf[0];
+                returnData.Result = $"取得伺服器服務端,共<{sys_serverSettingClasses_buf.Count}>筆";
+                returnData.Data = sys_serverSettingClasses_buf[0];
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -787,9 +787,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -802,30 +802,30 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string 類別 = "網頁";
-                List<ServerSettingClass> serverSettingClasses_temp = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses_temp = (from temp in sys_serverSettingClasses
                                                                       where temp.類別.ToUpper() == 類別
                                                                       where temp.程式類別.ToUpper() == "peremeter".ToUpper()
                                                                       select temp).ToList();
-                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-                for (int i = 0; i < serverSettingClasses_temp.Count; i++)
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
+                for (int i = 0; i < sys_serverSettingClasses_temp.Count; i++)
                 {
                     foreach(string str_temp in returnData.ValueAry)
                     {
-                        if (serverSettingClasses_temp[i].內容 == str_temp)
+                        if (sys_serverSettingClasses_temp[i].內容 == str_temp)
                         {
-                            serverSettingClasses_buf.Add(serverSettingClasses_temp[i]);
+                            sys_serverSettingClasses_buf.Add(sys_serverSettingClasses_temp[i]);
                         }
                     }
                 }
-                if (serverSettingClasses_buf.Count == 0)
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Code = 200;
-                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_buf.Count}>筆";
-                returnData.Data = serverSettingClasses_buf;
+                returnData.Result = $"取得伺服器服務端,共<{sys_serverSettingClasses_buf.Count}>筆";
+                returnData.Data = sys_serverSettingClasses_buf;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
@@ -890,9 +890,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
 
-                if (serverSettingClasses.Count == 0)
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
@@ -900,22 +900,22 @@ namespace HIS_WebApi
                 }
          
                 string 類別 = "網頁";
-                List<ServerSettingClass> serverSettingClasses_temp = (from temp in serverSettingClasses
+                List<sys_serverSettingClass> sys_serverSettingClasses_temp = (from temp in sys_serverSettingClasses
                                                                       where temp.類別.ToUpper() == 類別
                                                                       where temp.程式類別.ToUpper() == "peremeter".ToUpper()
                                                                       select temp).ToList();
        
-                if (serverSettingClasses_temp.Count == 0)
+                if (sys_serverSettingClasses_temp.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt(true);
                 }
-                List<string> strs = (from temp in serverSettingClasses_temp
+                List<string> strs = (from temp in sys_serverSettingClasses_temp
                                      select temp.內容).ToList();
 
                 returnData.Code = 200;
-                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_temp.Count}>筆";
+                returnData.Result = $"取得伺服器服務端,共<{sys_serverSettingClasses_temp.Count}>筆";
                 returnData.Data = strs;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
@@ -932,29 +932,29 @@ namespace HIS_WebApi
 
         private string CheckCreatTable()
         {
-            ServerSettingClass serverSettingClass = new ServerSettingClass();
-            serverSettingClass.Server = Server;
-            serverSettingClass.Port = Port.ToString();
-            serverSettingClass.User = UserName;
-            serverSettingClass.Password = Password;
-            serverSettingClass.DBName = DB;
+            sys_serverSettingClass sys_serverSettingClass = new sys_serverSettingClass();
+            sys_serverSettingClass.Server = Server;
+            sys_serverSettingClass.Port = Port.ToString();
+            sys_serverSettingClass.User = UserName;
+            sys_serverSettingClass.Password = Password;
+            sys_serverSettingClass.DBName = DB;
 
-            return CheckCreatTable(serverSettingClass);
+            return CheckCreatTable(sys_serverSettingClass);
         }
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_ServerSetting());
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_sys_serverSetting());
             return table.JsonSerializationt(true);
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        static public List<ServerSettingClass> GetAllServerSetting()
+        static public List<sys_serverSettingClass> GetAllServerSetting()
         {
             SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
             List<object[]> list_value = sQLControl.GetAllRows(null);
 
-            List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
-            return serverSettingClasses;
+            List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
+            return sys_serverSettingClasses;
         }
     }
 }

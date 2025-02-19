@@ -268,13 +268,13 @@ namespace HIS_WebApi
         }
         private string GetServerAPI(string Name, string Type, string Content)
         {
-            List<ServerSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-            ServerSettingClass serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
-            if (serverSettingClass == null)
+            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (sys_serverSettingClass == null)
             {
                 throw new Exception("找無Server資料");
             }
-            return serverSettingClass.Server;
+            return sys_serverSettingClass.Server;
         }
 
         private static string ConvertMemoryStreamToBase64(MemoryStream memoryStream)

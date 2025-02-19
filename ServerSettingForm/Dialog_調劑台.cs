@@ -115,18 +115,18 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台);
-            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.調劑台);
-            Panel_SQLContent.SaveAll(this.FindForm(),ref serverSettingClasses);
-            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.調劑台);
-            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
-            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.調劑台);
-            Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.調劑台);
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.調劑台);
+            Panel_SQLContent.SaveAll(this.FindForm(),ref sys_serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_sys_serverSetting_Type.調劑台);
+            Panel_API_URL.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
+            Panel_CheckBox.SetValue(this.FindForm(), enum_sys_serverSetting_Type.調劑台);
+            Panel_CheckBox.SaveAll(this.FindForm(), ref sys_serverSettingClasses);
 
-            serverSettingClasses.Set_department_type(comboBox_單位.Text);
+            sys_serverSettingClasses.Set_department_type(comboBox_單位.Text);
 
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
@@ -150,15 +150,15 @@ namespace ServerSettingForm
             Console.WriteLine($"{json_result}");
             SaveConfig();
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.調劑台);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClassMethod.MyFind(sys_serverSettingClasses, enum_sys_serverSetting_Type.調劑台);
             comboBox_名稱.Items.Clear();
 
-            for (int i = 0; i < serverSettingClasses.Count; i++)
+            for (int i = 0; i < sys_serverSettingClasses.Count; i++)
             {
-               if(! comboBox_名稱.Items.Contains(serverSettingClasses[i].設備名稱))
+               if(! comboBox_名稱.Items.Contains(sys_serverSettingClasses[i].設備名稱))
                 {
-                    if (!serverSettingClasses[i].設備名稱.StringIsEmpty()) comboBox_名稱.Items.Add(serverSettingClasses[i].設備名稱);
+                    if (!sys_serverSettingClasses[i].設備名稱.StringIsEmpty()) comboBox_名稱.Items.Add(sys_serverSettingClasses[i].設備名稱);
                 }
             }
             if (comboBox_名稱.Items.Count > 0) comboBox_名稱.SelectedIndex = 0;
@@ -177,20 +177,20 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.調劑台);
-            Panel_SQLContent.SetValue(this.FindForm(), comboBox_名稱.Text, enum_ServerSetting_Type.調劑台);
-            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.調劑台);
+            Panel_SQLContent.SetValue(this.FindForm(), comboBox_名稱.Text, enum_sys_serverSetting_Type.調劑台);
+            Panel_SQLContent.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_API_URL.SetValue(this.FindForm(), comboBox_名稱.Text, enum_ServerSetting_Type.調劑台);
-            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), comboBox_名稱.Text, enum_sys_serverSetting_Type.調劑台);
+            Panel_API_URL.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.調劑台);
-            Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
+            Panel_CheckBox.SetValue(this.FindForm(), enum_sys_serverSetting_Type.調劑台);
+            Panel_CheckBox.LoadAll(this.FindForm(), sys_serverSettingClasses);
 
-            this.comboBox_單位.DataSource = serverSettingClasses.Get_department_types();
-            ServerSettingClass serverSettingClass = serverSettingClasses.myFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台.GetEnumName(), "一般資料");
-            this.comboBox_單位.Text = serverSettingClass.單位;
+            this.comboBox_單位.DataSource = sys_serverSettingClasses.Get_department_types();
+            sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.myFind(comboBox_名稱.Text, enum_sys_serverSetting_Type.調劑台.GetEnumName(), "一般資料");
+            this.comboBox_單位.Text = sys_serverSettingClass.單位;
         }
         private void Button_刪除_Click(object sender, EventArgs e)
         {
@@ -198,12 +198,12 @@ namespace ServerSettingForm
 
             string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = (from value in serverSettingClasses
-                                    where value.類別 == enum_ServerSetting_Type.調劑台.GetEnumName()
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            sys_serverSettingClasses = (from value in sys_serverSettingClasses
+                                    where value.類別 == enum_sys_serverSetting_Type.調劑台.GetEnumName()
                                     where value.設備名稱 == comboBox_名稱.Text
                                     select value).ToList();
-            returnData.Data = serverSettingClasses;
+            returnData.Data = sys_serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
             json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);
@@ -220,18 +220,18 @@ namespace ServerSettingForm
 
             string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
 
-            serverSettingClasses = (from value in serverSettingClasses
-                                    where value.類別 == enum_ServerSetting_Type.調劑台.GetEnumName()
+            sys_serverSettingClasses = (from value in sys_serverSettingClasses
+                                    where value.類別 == enum_sys_serverSetting_Type.調劑台.GetEnumName()
                                     select value).ToList();
             comboBox_名稱.Items.Clear();
 
-            for (int i = 0; i < serverSettingClasses.Count; i++)
+            for (int i = 0; i < sys_serverSettingClasses.Count; i++)
             {
-                if (!comboBox_名稱.Items.Contains(serverSettingClasses[i].設備名稱))
+                if (!comboBox_名稱.Items.Contains(sys_serverSettingClasses[i].設備名稱))
                 {
-                    comboBox_名稱.Items.Add(serverSettingClasses[i].設備名稱);
+                    comboBox_名稱.Items.Add(sys_serverSettingClasses[i].設備名稱);
                 }
             }
             if (comboBox_名稱.Items.Count > 0) comboBox_名稱.SelectedIndex = 0;

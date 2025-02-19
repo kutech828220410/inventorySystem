@@ -47,26 +47,26 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable_storage_config(serverSettingClasses[0]);
+                return CheckCreatTable_storage_config(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
                 return e.Message;
             }
         }
-        private string CheckCreatTable_storage_config(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable_storage_config(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
             SQLControl sQLControl_storage_config = new SQLControl(Server, DB, "storage_config", UserName, Password, Port, SSLMode);
         
             Table table_storage_config = new Table("storage_config");

@@ -70,9 +70,9 @@ namespace 調劑台管理系統
             List<object[]> list_value_buf = new List<object[]>();
             string json_result = Basic.Net.WEBApiGet($"{api_server}/api/ServerSetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
 
-            serverNames = (from temp in serverSettingClasses
+            serverNames = (from temp in sys_serverSettingClasses
                            where temp.類別 == "調劑台"
                            select temp.設備名稱).Distinct().ToList();
 

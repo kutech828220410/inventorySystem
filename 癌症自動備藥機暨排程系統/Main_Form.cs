@@ -29,7 +29,7 @@ namespace 癌症備藥機
     public partial class Main_Form : Form
     {
         public static string ServerName = "";
-        public static string ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
+        public static string ServerType = enum_sys_serverSetting_Type.癌症備藥機.GetEnumName();
         public static string API_Server = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public LadderConnection.Properties PLC;
@@ -204,44 +204,44 @@ namespace 癌症備藥機
             }
             Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass;
             ServerName = Name;
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, basicName);
-            List<string> DPS_Names = (from temp in serverSettingClasses
-                                      where temp.類別 == enum_ServerSetting_Type.癌症備藥機.GetEnumName()
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.癌症備藥機, basicName);
+            List<string> DPS_Names = (from temp in sys_serverSettingClasses
+                                      where temp.類別 == enum_sys_serverSetting_Type.癌症備藥機.GetEnumName()
                                       select temp.設備名稱).Distinct().ToList();
 
-            if (serverSettingClass != null)
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Basic.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, "人員資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.癌症備藥機, "人員資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
-                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
-                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+                dBConfigClass.DB_person_page.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, "儲位資料");
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.癌症備藥機, "儲位資料");
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Storagelist.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Storagelist.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Storagelist.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Storagelist.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Storagelist.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Storagelist.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Storagelist.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Storagelist.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Storagelist.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Storagelist.Password = sys_serverSettingClass.Password;
             }
             API_Server = dBConfigClass.Api_Server;
 
-            serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
-            if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind("Main", enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.API_Login);
+            if (sys_serverSettingClass != null) dBConfigClass.Login_URL = sys_serverSettingClass.Server;
         }
         #endregion
         public Main_Form()

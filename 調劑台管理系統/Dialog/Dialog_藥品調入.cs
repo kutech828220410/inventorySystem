@@ -70,8 +70,8 @@ namespace 調劑台管理系統
 
             Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\sucess_01.wav");
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.get_serversetting_by_type(Main_Form.API_Server, "調劑台");
-            List<string> serverNames = (from temp in serverSettingClasses
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_type(Main_Form.API_Server, "調劑台");
+            List<string> serverNames = (from temp in sys_serverSettingClasses
                                         select temp.設備名稱.Trim()).Distinct().OrderBy(name => name).ToList();
             serverNames.Remove(Main_Form.ServerName);
             List<Task> tasks = new List<Task>();

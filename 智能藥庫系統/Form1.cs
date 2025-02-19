@@ -34,7 +34,7 @@ namespace 智能藥庫系統
         private MyConvert myConvert = new MyConvert();
         private Stopwatch stopwatch = new Stopwatch();
         public static string ServerName = "";
-        public static string ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+        public static string ServerType = enum_sys_serverSetting_Type.藥庫.GetEnumName();
         public static string API_Server = "";
         public static string Order_URL = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -147,57 +147,57 @@ namespace 智能藥庫系統
         }
         private void ApiServerSetting()
         {
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
-            if (serverSettingClasses.Count == 0)
+            List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (sys_serverSettingClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("API Server 連結失敗!");
                 return;
             }
-            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass;
 
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.一般資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_調劑台.一般資料);
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Basic.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.人員資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_調劑台.人員資料);
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
-                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
-                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+                dBConfigClass.DB_person_page.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.藥檔資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_調劑台.藥檔資料);
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
+                dBConfigClass.DB_Medicine_Cloud.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_Medicine_Cloud.Password = sys_serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
-            if (serverSettingClass != null)
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_藥庫.批次過帳資料);
+            if (sys_serverSettingClass != null)
             {
-                dBConfigClass.DB_posting_server.IP = serverSettingClass.Server;
-                dBConfigClass.DB_posting_server.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_posting_server.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_posting_server.UserName = serverSettingClass.User;
-                dBConfigClass.DB_posting_server.Password = serverSettingClass.Password;
+                dBConfigClass.DB_posting_server.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_posting_server.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_posting_server.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_posting_server.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_posting_server.Password = sys_serverSettingClass.Password;
             }
  
 
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
-            if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_藥庫.API01);
+            if (sys_serverSettingClass != null) dBConfigClass.Api_URL = sys_serverSettingClass.Server;
 
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
-            if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(dBConfigClass.Name, enum_sys_serverSetting_Type.藥庫, enum_sys_serverSetting_藥庫.Website);
+            if (sys_serverSettingClass != null) dBConfigClass.Web_URL = sys_serverSettingClass.Server;
         }
   
      

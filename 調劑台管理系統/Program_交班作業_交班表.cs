@@ -104,9 +104,9 @@ namespace 調劑台管理系統
             {
                 flowLayoutPanel_交班作業_交班表_庫別.Controls.Clear();
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClass.get_serversetting_by_type(API_Server, "調劑台");
+                List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_type(API_Server, "調劑台");
 
-                List<string> list_names = (from temp in serverSettingClasses
+                List<string> list_names = (from temp in sys_serverSettingClasses
                                            select temp.設備名稱).Distinct().ToList();
                 for (int i = 0; i < list_names.Count; i++)
                 {
@@ -390,7 +390,7 @@ namespace 調劑台管理系統
             List<medShiftListClass> medShiftListClasses = list_交班明細.SQLToClass<medShiftListClass, enum_medShiftList>();
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.Data = medShiftListClasses;
             returnData.Value = $"交班明細 [{dateTime_st.ToDateTimeString()}]-[{dateTime_end.ToDateTimeString()}]";
 

@@ -131,7 +131,7 @@ namespace 調劑台管理系統
         {
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", json_in);
@@ -191,7 +191,7 @@ namespace 調劑台管理系統
             }
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
@@ -229,7 +229,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_auto_add", json_in);

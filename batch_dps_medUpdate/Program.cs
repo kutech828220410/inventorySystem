@@ -20,8 +20,8 @@ namespace batch_dps_medUpdate
 
         static void Main(string[] args)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet(API_Server);
-            List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet(API_Server);
+            List<sys_serverSettingClass> sys_serverSettingClasses_buf = (from value in sys_serverSettingClasses
                                                                  where value.類別 == "調劑台"
                                                                  where value.內容 == "一般資料"
                                                                  select value).ToList();
@@ -35,25 +35,25 @@ namespace batch_dps_medUpdate
                 return;
             }
             List<medClass> med_cloud = returnData_med_cloud.Data.ObjToClass<List<medClass>>();
-            if (serverSettingClasses.Count == 0)
+            if (sys_serverSettingClasses.Count == 0)
             {
 
-                Console.WriteLine($"找無[ServerSettingClass]資料");
+                Console.WriteLine($"找無[sys_serverSettingClass]資料");
                 System.Threading.Thread.Sleep(3000);
                 return;
             }
             Logger.LogAddLine();
-            for (int i = 0; i < serverSettingClasses_buf.Count; i++)
+            for (int i = 0; i < sys_serverSettingClasses_buf.Count; i++)
             {
                 try
                 {
-                    ServerSettingClass serverSettingClass = serverSettingClasses_buf[i];
-                    string 設備名稱 = serverSettingClass.設備名稱;
-                    string Server = serverSettingClass.Server;
-                    string DB = serverSettingClass.DBName;
-                    string UserName = serverSettingClass.User;
-                    string Password = serverSettingClass.Password;
-                    uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                    sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses_buf[i];
+                    string 設備名稱 = sys_serverSettingClass.設備名稱;
+                    string Server = sys_serverSettingClass.Server;
+                    string DB = sys_serverSettingClass.DBName;
+                    string UserName = sys_serverSettingClass.User;
+                    string Password = sys_serverSettingClass.Password;
+                    uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
                     string TableName_medicine_page = "medicine_page";
                     SQLControl sQLControl_med_dps = new SQLControl(Server, DB, TableName_medicine_page, UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.None);
 

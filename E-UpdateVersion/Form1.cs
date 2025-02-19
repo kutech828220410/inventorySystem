@@ -276,7 +276,7 @@ namespace E_UpdateVersion
         #region Function
         private void SetUI()
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{ApiServer}/api/serversetting");
+            List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{ApiServer}/api/serversetting");
             #region 調劑台管理系統
        
            
@@ -292,8 +292,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_智慧調劑台系統.Enabled = false;
-                ServerSettingClass serverSettingClass_調劑台 = serverSettingClasses.myFind("", "調劑台", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_調劑台 != null) rJ_Button_智慧調劑台系統.Visible = !(serverSettingClass_調劑台.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_調劑台 = sys_serverSettingClasses.myFind("", "調劑台", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_調劑台 != null) rJ_Button_智慧調劑台系統.Visible = !(sys_serverSettingClass_調劑台.Value == true.ToString());
                 else rJ_Button_智慧調劑台系統.Visible = true;
             }
             #endregion
@@ -307,8 +307,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_智能藥庫系統.Enabled = false;
-                ServerSettingClass serverSettingClass_藥庫 = serverSettingClasses.myFind("", "藥庫", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_藥庫 != null) rJ_Button_智能藥庫系統.Visible = !(serverSettingClass_藥庫.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_藥庫 = sys_serverSettingClasses.myFind("", "藥庫", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_藥庫 != null) rJ_Button_智能藥庫系統.Visible = !(sys_serverSettingClass_藥庫.Value == true.ToString());
                 else rJ_Button_智能藥庫系統.Visible = true;
             }
             #endregion
@@ -324,8 +324,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_中心叫號系統.Enabled = false;
-                ServerSettingClass serverSettingClass_中心叫號系統 = serverSettingClasses.myFind("", "中心叫號系統", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_中心叫號系統 != null) rJ_Button_中心叫號系統.Visible = !(serverSettingClass_中心叫號系統.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_中心叫號系統 = sys_serverSettingClasses.myFind("", "中心叫號系統", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_中心叫號系統 != null) rJ_Button_中心叫號系統.Visible = !(sys_serverSettingClass_中心叫號系統.Value == true.ToString());
                 else rJ_Button_中心叫號系統.Visible = true;
             }
             #endregion
@@ -345,8 +345,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_勤務傳送系統.Enabled = false;
-                ServerSettingClass serverSettingClass_傳送櫃 = serverSettingClasses.myFind("", "傳送櫃", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_傳送櫃 != null) rJ_Button_勤務傳送系統.Visible = !(serverSettingClass_傳送櫃.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_傳送櫃 = sys_serverSettingClasses.myFind("", "傳送櫃", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_傳送櫃 != null) rJ_Button_勤務傳送系統.Visible = !(sys_serverSettingClass_傳送櫃.Value == true.ToString());
                 else rJ_Button_勤務傳送系統.Visible = true;
             }
             #endregion
@@ -365,8 +365,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_癌症備藥機.Enabled = false;
-                ServerSettingClass serverSettingClass_癌症備藥機 = serverSettingClasses.myFind("", "癌症備藥機", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_癌症備藥機 != null) rJ_Button_癌症備藥機.Visible = !(serverSettingClass_癌症備藥機.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_癌症備藥機 = sys_serverSettingClasses.myFind("", "癌症備藥機", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_癌症備藥機 != null) rJ_Button_癌症備藥機.Visible = !(sys_serverSettingClass_癌症備藥機.Value == true.ToString());
                 else rJ_Button_癌症備藥機.Visible = true;
 
             }
@@ -385,8 +385,8 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_中藥調劑系統.Enabled = false;
-                ServerSettingClass serverSettingClass_中藥調劑系統 = serverSettingClasses.myFind("", "中藥調劑系統", "智慧藥局整合平台不顯示");
-                if (serverSettingClass_中藥調劑系統 != null) rJ_Button_中藥調劑系統.Visible = !(serverSettingClass_中藥調劑系統.Value == true.ToString());
+                sys_serverSettingClass sys_serverSettingClass_中藥調劑系統 = sys_serverSettingClasses.myFind("", "中藥調劑系統", "智慧藥局整合平台不顯示");
+                if (sys_serverSettingClass_中藥調劑系統 != null) rJ_Button_中藥調劑系統.Visible = !(sys_serverSettingClass_中藥調劑系統.Value == true.ToString());
                 else rJ_Button_中藥調劑系統.Visible = true;
             }
             #endregion

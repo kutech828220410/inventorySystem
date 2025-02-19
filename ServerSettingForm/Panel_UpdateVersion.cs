@@ -13,21 +13,21 @@ using Basic;
 
 namespace ServerSettingForm
 {
-    public partial class Panel_UpdateVersion : UserControl
+    public partial class Panel_sys_updateVersion : UserControl
     {
         static public string ApiURL = "";
         [Browsable(false)]
-        public updateVersionClass UpdateVersionClass
+        public sys_updateVersionClass sys_updateVersionClass
         {
             get
             {
-                updateVersionClass updateVersionClass = new updateVersionClass();
-                updateVersionClass.program_name = label_標題.Text;
-                updateVersionClass.filepath = textBox_filepath.Text;
-                updateVersionClass.version = textBox_version.Text;
-                updateVersionClass.update_time = label_更新時間.Text;              
-                updateVersionClass.enable = checkBox_致能.Checked.ToString();
-                return updateVersionClass;
+                sys_updateVersionClass sys_updateVersionClass = new sys_updateVersionClass();
+                sys_updateVersionClass.program_name = label_標題.Text;
+                sys_updateVersionClass.filepath = textBox_filepath.Text;
+                sys_updateVersionClass.version = textBox_version.Text;
+                sys_updateVersionClass.update_time = label_更新時間.Text;              
+                sys_updateVersionClass.enable = checkBox_致能.Checked.ToString();
+                return sys_updateVersionClass;
             }
             set
             {
@@ -51,7 +51,7 @@ namespace ServerSettingForm
             }
         }
 
-        public Panel_UpdateVersion()
+        public Panel_sys_updateVersion()
         {
             InitializeComponent();
             this.button_瀏覽.Click += Button_瀏覽_Click;
@@ -70,7 +70,7 @@ namespace ServerSettingForm
             }
             returnData returnData = new returnData();
 
-            returnData.Value = UpdateVersionClass.program_name;
+            returnData.Value = sys_updateVersionClass.program_name;
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{ApiURL}/api/update/delete", json_in);
             MyMessageBox.ShowDialog(json);
@@ -83,9 +83,9 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = new returnData();
-            List<updateVersionClass> updateVersionClasses = new List<updateVersionClass>();
-            updateVersionClasses.Add(UpdateVersionClass);
-            returnData.Data = updateVersionClasses;
+            List<sys_updateVersionClass> sys_updateVersionClasses = new List<sys_updateVersionClass>();
+            sys_updateVersionClasses.Add(sys_updateVersionClass);
+            returnData.Data = sys_updateVersionClasses;
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{ApiURL}/api/update/add", json_in);
             MyMessageBox.ShowDialog(json);
@@ -132,23 +132,23 @@ namespace ServerSettingForm
                 MyMessageBox.ShowDialog(returnData.Result);
                 return;
             }
-            List<updateVersionClass> updateVersionClasses = returnData.Data.ObjToListClass<updateVersionClass>();
-            List<updateVersionClass> updateVersionClasses_buf = new List<updateVersionClass>();
+            List<sys_updateVersionClass> sys_updateVersionClasses = returnData.Data.ObjToListClass<sys_updateVersionClass>();
+            List<sys_updateVersionClass> sys_updateVersionClasses_buf = new List<sys_updateVersionClass>();
             List<Control> controlList = GetAllControls(form);
-            ServerSettingClass serverSettingClass = new ServerSettingClass();
+            sys_serverSettingClass sys_serverSettingClass = new sys_serverSettingClass();
             for (int i = 0; i < controlList.Count; i++)
             {
-                if (controlList[i] is Panel_UpdateVersion)
+                if (controlList[i] is Panel_sys_updateVersion)
                 {
-                    Panel_UpdateVersion panel_UpdateVersion = ((Panel_UpdateVersion)controlList[i]);
-                    updateVersionClasses_buf = (from temp in updateVersionClasses
-                                                where temp.program_name == panel_UpdateVersion.program_name
+                    Panel_sys_updateVersion panel_sys_updateVersion = ((Panel_sys_updateVersion)controlList[i]);
+                    sys_updateVersionClasses_buf = (from temp in sys_updateVersionClasses
+                                                where temp.program_name == panel_sys_updateVersion.program_name
                                                 select temp).ToList();
-                    if(updateVersionClasses_buf.Count > 0)
+                    if(sys_updateVersionClasses_buf.Count > 0)
                     {
-                        string version = Basic.Net.WEBApiGet($"{ApiURL}/api/update/version/{updateVersionClasses_buf[0].program_name}");
-                        updateVersionClasses_buf[0].version = version;
-                        panel_UpdateVersion.UpdateVersionClass = updateVersionClasses_buf[0];
+                        string version = Basic.Net.WEBApiGet($"{ApiURL}/api/update/version/{sys_updateVersionClasses_buf[0].program_name}");
+                        sys_updateVersionClasses_buf[0].version = version;
+                        panel_sys_updateVersion.sys_updateVersionClass = sys_updateVersionClasses_buf[0];
                     }
                 }
             }

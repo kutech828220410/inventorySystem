@@ -47,7 +47,7 @@ namespace 勤務傳送櫃
             string url = $"{dBConfigClass.Api_URL}/api/MED_page/serch_by_BarCode";
             returnData returnData = new returnData(url);
             returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerType = enum_sys_serverSetting_Type.調劑台.GetEnumName();
             returnData.TableName = "medicine_page_cloud";
             returnData.Value = barcode;
             string json = returnData.ApiPostJson();

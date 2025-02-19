@@ -54,15 +54,15 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable(sys_serverSettingClasses[0]);
             }
             catch (Exception e)
             {
@@ -100,19 +100,19 @@ namespace HIS_WebApi
             try
             {
                 //GET_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 transactionsClass transactionsClass = returnData.Data.ObjToClass<transactionsClass>();
 
@@ -172,19 +172,19 @@ namespace HIS_WebApi
             returnData.Method = "add_datas";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 List<transactionsClass> transactionsClasses = returnData.Data.ObjToClass<List<transactionsClass>>();
 
@@ -247,19 +247,19 @@ namespace HIS_WebApi
             returnData.Method = "get_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 if (returnData.Value.StringIsEmpty() == true)
                 {
@@ -316,19 +316,19 @@ namespace HIS_WebApi
             returnData.Method = "get_by_name";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 if (returnData.Value.StringIsEmpty() == true)
                 {
@@ -385,19 +385,19 @@ namespace HIS_WebApi
             returnData.Method = "get_by_op_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 string[] date_ary = returnData.Value.Split(',');
                 if (date_ary.Length != 2)
@@ -466,19 +466,19 @@ namespace HIS_WebApi
             returnData.Method = "get_by_rx_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 string[] date_ary = returnData.Value.Split(',');
                 if (date_ary.Length != 2)
@@ -547,19 +547,19 @@ namespace HIS_WebApi
             returnData.Method = "get_stock_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 if (returnData.Value.StringIsEmpty() == true)
                 {
@@ -653,19 +653,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 if (returnData.Value.StringIsEmpty())
                 {
@@ -719,19 +719,19 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
@@ -806,19 +806,19 @@ namespace HIS_WebApi
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
-                if (serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 string[] input_value = returnData.Value.Split(",");
                 string 藥品碼 = input_value[0];
@@ -1171,7 +1171,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_sheet";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
                 if (returnData.ValueAry == null)
                 {
@@ -1220,18 +1220,18 @@ namespace HIS_WebApi
                 }
                 DateTime dateTime_st = 起始時間.StringToDateTime();
                 DateTime dateTime_end = 結束時間.StringToDateTime();
-                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+                sys_serverSettingClass sys_serverSettingClasses_med = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
 
                 MED_pageController mED_PageController = new MED_pageController();
                 returnData returnData_med = new returnData();
                 returnData_med.ServerName = "Main";
                 returnData_med.ServerType = "網頁";
-                returnData_med.Server = serverSettingClasses_med.Server;
-                returnData_med.DbName = serverSettingClasses_med.DBName;
+                returnData_med.Server = sys_serverSettingClasses_med.Server;
+                returnData_med.DbName = sys_serverSettingClasses_med.DBName;
                 returnData_med.TableName = "medicine_page_cloud";
-                returnData_med.UserName = serverSettingClasses_med.User;
-                returnData_med.Password = serverSettingClasses_med.Password;
-                returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+                returnData_med.UserName = sys_serverSettingClasses_med.User;
+                returnData_med.Password = sys_serverSettingClasses_med.Password;
+                returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
                 returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
@@ -1379,7 +1379,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1409,13 +1409,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥碼);
@@ -1479,7 +1479,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_name";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1509,13 +1509,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{serchValue}%");
@@ -1580,7 +1580,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_mrn";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1610,13 +1610,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病歷號, $"%{serchValue}%");
@@ -1681,7 +1681,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_op";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1711,13 +1711,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.操作人, $"%{serchValue}%");
@@ -1782,7 +1782,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_med_bag_num";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1812,13 +1812,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.領藥號, $"%{serchValue}%");
@@ -1886,7 +1886,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_pat";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1916,13 +1916,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病人姓名, $"%{serchValue}%");
@@ -1988,7 +1988,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_op_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -2030,13 +2030,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         string date_st_str = date_st.ToDateTimeString_6();
@@ -2104,7 +2104,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_rx_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -2147,13 +2147,13 @@ namespace HIS_WebApi
                     string serverType = ServerTypes[i];
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
-                        if (_serverSettingClasses.Count == 0) return;
-                        string Server = _serverSettingClasses[0].Server;
-                        string DB = _serverSettingClasses[0].DBName;
-                        string UserName = _serverSettingClasses[0].User;
-                        string Password = _serverSettingClasses[0].Password;
-                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.開方時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
@@ -2224,9 +2224,9 @@ namespace HIS_WebApi
             return false;
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_交易記錄查詢資料());
+            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_交易記錄查詢資料());
             return table.JsonSerializationt(true);
         }
         public class ICP_交易記錄查詢 : IComparer<object[]>
