@@ -540,7 +540,7 @@ namespace HIS_WebApi
                 {
                     textVision.Code = "-1";
                     textVision.Result = "辨識單號失敗";
-
+                    if (textVision.效期.StringIsEmpty() == false) textVision = EditExpirydate(textVision);
                     update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
                     sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
 
@@ -581,8 +581,8 @@ namespace HIS_WebApi
                         textVision.Code = "-5";
                         textVision.Result = returnData.Result;
 
-                        update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
-                        sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
+                        //update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
+                        //sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
 
                         returnData.Data = clearLongData(textVision);
                         return returnData.JsonSerializationt(true);
@@ -621,7 +621,7 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string 藥品碼 = content.藥品碼;
-                    if (content.Sub_content.Count > 0)
+                    if (content.Sub_content.Count > 0 && content.Sub_content != null)
                     {
                         if (content.藥品名稱.StringIsEmpty())
                         {
@@ -631,29 +631,21 @@ namespace HIS_WebApi
                         {
                             textVision.藥名 = content.藥品名稱;
                         }
-                        textVision.批號 = content.Sub_content[0].批號;
-                        textVision.效期 = content.Sub_content[0].效期;
+                        if(content.Sub_content[0].批號.StringIsEmpty() == false) textVision.批號 = content.Sub_content[0].批號;
+                        if(content.Sub_content[0].效期.StringIsEmpty() == false) textVision.效期 = content.Sub_content[0].效期;
                     }
                     else
                     {
-                        textVision.藥名 = content.藥品名稱;
-                        if (textVision.效期.StringIsEmpty())
-                        {
-                            textVision.效期 = DateTime.MinValue.ToDateTimeString();
-                        }
-                        else
-                        {
-                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd" }; // 可擴展格式
+                        textVision.藥名 = content.藥品名稱;                       
+                    }
 
-                            if (DateTime.TryParseExact(textVision.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
-                            {
-                                textVision.效期 = date.ToString("yyyy-MM-dd");
-                            }
-                            else
-                            {
-                                textVision.效期 = DateTime.MinValue.ToDateTimeString();
-                            }
-                        }
+                    if (textVision.效期.StringIsEmpty())
+                    {
+                        textVision.效期 = DateTime.MinValue.ToDateTimeString();
+                    }
+                    else
+                    {
+                        textVision =  EditExpirydate(textVision);                       
                     }
                     textVision.藥品碼 = content.藥品碼;
                     textVision.數量 = content.應收數量;
@@ -672,7 +664,7 @@ namespace HIS_WebApi
                         }
                     }
 
-                    if (medClasses.Count > 0)
+                    if (medClasses.Count > 0 && medClasses[0] != null)
                     {
                         if (medClasses[0].中文名稱.StringIsEmpty() == false)
                         {
@@ -682,6 +674,11 @@ namespace HIS_WebApi
                         {
                             textVision.中文名 = medClasses[0].藥品學名;
                         }
+                    }
+                    else
+                    {                      
+                        textVision.中文名 = Regex.Replace(textVision.中文名, @"^[0-9A-Za-z]+", "");
+                        textVision.中文名 = Regex.Replace(textVision.中文名, @"（.*?）", "");
                     }
                 })));
                 Dictionary<string, (string Position, string Confidence, string Label)> dic_textVision = toDicByPosition(textVision);
@@ -1802,6 +1799,21 @@ namespace HIS_WebApi
                 throw;
             }
         }
+        private textVisionClass EditExpirydate(textVisionClass textVisionClass)
+        {
+            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd", "yyyy/MM/dd HH:mm:ss" }; // 可擴展格式
+
+            if (DateTime.TryParseExact(textVisionClass.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            {
+                textVisionClass.效期 = date.ToString("yyyy/MM/dd");
+            }
+            else
+            {
+                textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();
+            }
+            return textVisionClass;
+        }
+        
 
 
     }

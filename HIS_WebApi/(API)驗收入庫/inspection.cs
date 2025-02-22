@@ -535,29 +535,33 @@ namespace HIS_WebApi
                     returnData.Result = $"查無此單號資料[{PON}]!";
                     return returnData.JsonSerializationt(true);
                 }
-                for(int i = 0; i < contents.Count; i++)
+
+                //單號可能找到兩種以上GUID，用不同GUID去搜尋詳細資料
+                bool flag = false;
+                for (int i = 0; i < contents.Count; i++)
                 {
                     string GUID = contents[i].GUID;
                     List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetRowsByDefult(null, (int)enum_驗收明細.Master_GUID, GUID);
                     List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
                     if (sub_Contents.Count > 0)
                     {
+                        flag = true;
                         contents[i].Sub_content.Add(sub_Contents[0]);
                         break;
                     }
                 }
-                List<inspectionClass.content> contents_buff = contents.Where(temp => temp.Sub_content.Count > 0).ToList();
-                if(contents_buff.Count == 0)
+                List<inspectionClass.content> contents_buff = new List<inspectionClass.content>();
+                if (flag)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"查無此單號詳細資料[{PON}]!";
-                    return returnData.JsonSerializationt(true);
+                    contents = contents.Where(temp => temp.Sub_content.Count > 0).ToList();
                 }
                 else
                 {
-                    returnData.Data = contents_buff[0];
+                    contents[0].Sub_content = new List<inspectionClass.sub_content>();
                 }
-
+                
+              
+                returnData.Data = contents[0];
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Result = $"取得驗收資料成功!";
