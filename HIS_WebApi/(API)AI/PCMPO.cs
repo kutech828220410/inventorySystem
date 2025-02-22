@@ -9,11 +9,10 @@ using HIS_DB_Lib;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Drawing;
-using SkiaSharp;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
-
+using SkiaSharp;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HIS_WebApi
@@ -137,14 +136,14 @@ namespace HIS_WebApi
             string file = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}";
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "analyze";
-            try 
-            {              
+            try
+            {
                 string API_AI = "http://127.0.0.1:3020";
                 string API = GetServerAPI("Main", "網頁", "API01");
                 string project = "PO_Vision";
 
                 List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
-                List<Task> tasks = new List<Task>();           
+                List<Task> tasks = new List<Task>();
                 returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, input_textVision);
                 if (return_textVisionClass == null)
                 {
@@ -188,7 +187,7 @@ namespace HIS_WebApi
                 })));
                 List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
                 List<positionClass> positionClasses = new List<positionClass>();
-                
+
                 if (return_textVisionClass.Result == "False")
                 {
                     Task.WhenAll(tasks).Wait();
@@ -219,7 +218,7 @@ namespace HIS_WebApi
                     }
 
                     tasks.Add(Task.Run(new Action(delegate
-                    {                                                                                 
+                    {
                         if (content.藥品名稱.StringIsEmpty())
                         {
                             textVision.藥名 = content.Sub_content[0].藥品名稱;
@@ -233,10 +232,10 @@ namespace HIS_WebApi
                         textVision.效期 = content.Sub_content[0].效期;
                         textVision.數量 = content.應收數量;
                         List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
-                        if(medClasses.Count > 0)
+                        if (medClasses.Count > 0)
                         {
                             textVision.中文名 = medClasses[0].中文名稱;
-                        }                                                   
+                        }
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
@@ -347,7 +346,7 @@ namespace HIS_WebApi
                     textVision.圖片 = input_textVision[0].圖片;
                     textVisionClass_AI[0] = textVision;
                 }
-                
+
                 returnData.Code = 200;
                 returnData.Data = textVisionClass_AI;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -356,13 +355,13 @@ namespace HIS_WebApi
                 Logger.Log(file, project, returnData.JsonSerializationt());
                 return returnData.JsonSerializationt(true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-            
+
 
         }
         /// <summary>
@@ -401,6 +400,7 @@ namespace HIS_WebApi
                     returnData.Code = -200;
                     return returnData.JsonSerializationt(true);
                 }
+
                 string GUID = returnData.ValueAry[0];
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
                 string API_AI = GetServerAPI("Main", "網頁", "po_vision_api");
@@ -408,7 +408,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 List<object[]> getDateByGuid = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
                 List<textVisionClass> textVisionClasses = getDateByGuid.SQLToClass<textVisionClass, enum_textVision>();
-                if(textVisionClasses.Count == 0)
+                if (textVisionClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無此 GUID {GUID}";
@@ -416,11 +416,11 @@ namespace HIS_WebApi
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
                 }
-          
+
                 List<object[]> update_textVisionClass = new List<object[]>();
                 returnData return_textVisionClass = textVisionClass.ai_analyze(API_AI, textVisionClasses);
 
-                if(return_textVisionClass == null)
+                if (return_textVisionClass == null)
                 {
                     returnData.Result = "AI連線失敗";
                     returnData.Code = -200;
@@ -445,12 +445,13 @@ namespace HIS_WebApi
                 textVision.操作者姓名 = textVisionClasses[0].操作者姓名;
                 textVision.圖片 = textVisionClasses[0].圖片;
                 textVision.PRI_KEY = textVision.單號;
-                if (textVision.效期.StringIsEmpty())
+                //if (textVision.效期.StringIsEmpty())
+                //{
+                //    textVision.效期 = textVisionClasses[0].效期;
+                //}
+                if (return_textVisionClass.Result == "False") // 批號或效期壞辨識失敗
                 {
                     textVision.效期 = textVisionClasses[0].效期;
-                }
-                if (return_textVisionClass.Result == "False")
-                {
                     string base64 = textVision.圖片;
                     string fileName = "";
                     if (textVision.單號.StringIsEmpty())
@@ -463,12 +464,13 @@ namespace HIS_WebApi
                         fileName = $"{textVision.單號}.txt";
                         SavePic(textVision.單號, base64, project);
                     }
-                                      
-                    returnData.Data = clearLongData(textVision);
+
+                    returnData.Data = textVision;
                     Logger.Log(fileName, project, returnData.JsonSerializationt());
                 }
+
                 //換API
-                if(returnData.Value == "Y")
+                if (returnData.Value == "Y")
                 {
                     returnData.Code = 200;
                     returnData.TimeTaken = $"{myTimerBasic}";
@@ -481,7 +483,7 @@ namespace HIS_WebApi
                     returnData returnData_poNum = textVisionClass.analyze_by_po_num(API, textVision);
                     return returnData_poNum.JsonSerializationt(true);
                 }
-                
+
 
 
                 //return returnData.JsonSerializationt(true);
@@ -534,17 +536,22 @@ namespace HIS_WebApi
                 List<object[]> update_textVisionClass = new List<object[]>();
                 List<positionClass> positionClasses = new List<positionClass>();
                 inspectionClass.content content = new inspectionClass.content();
-
                 if (textVision.單號.StringIsEmpty())
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料無單號";
-                    returnData.Data = textVision;
-                    Logger.Log(project, returnData.JsonSerializationt());
+                    textVision.Code = "-1";
+                    textVision.Result = "辨識單號失敗";
+
+                    update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
+                    sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
+
+                    returnData.Code = 200;
+                    returnData.Data = clearLongData(textVision);
+                    Logger.Log(project, returnData.JsonSerializationt(true));
                     Logger.Log(project, Message);
-                    return returnData.JsonSerializationt();
+                    return returnData.JsonSerializationt(true);
+
                 }
-                
+
                 List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, textVision.單號);
 
                 if (textVisions != null)
@@ -556,16 +563,13 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt(true);
                     }
                     if (textVisions[0].確認 == "已確認") //單號已經辨識過
-                    {                                            
+                    {
                         returnData.Code = 200;
                         returnData.Result = $"此單號已辨識過 單號 {textVision.單號}";
 
                         textVision.Code = "-4";
                         textVision.Result = returnData.Result;
 
-                        update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
-                        sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
-                        
                         returnData.Data = clearLongData(textVision);
                         return returnData.JsonSerializationt(true);
                     }
@@ -582,8 +586,8 @@ namespace HIS_WebApi
 
                         returnData.Data = clearLongData(textVision);
                         return returnData.JsonSerializationt(true);
-                    }                 
-                    else if(textVisions[0].確認 == "未確認" && textVisions[0].批次ID != textVision.批次ID )
+                    }
+                    else if (textVisions[0].確認 == "未確認" && textVisions[0].批次ID != textVision.批次ID)
                     {
                         string GUID_delete = textVisions[0].GUID;
                         textVisionClass.delete_by_GUID(API, GUID_delete);
@@ -598,16 +602,20 @@ namespace HIS_WebApi
 
                     textVision.Code = "-2";
                     textVision.Result = returnData.Result;
+                    if (textVision.效期.Check_Date_String() == false)
+                    {
+                        DateTime.MinValue.ToDateTimeString();
+                    }
 
                     update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
                     sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
-                    
+
                     returnData.Data = clearLongData(textVision);
                     Logger.Log(project, returnData.JsonSerializationt());
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
                 }
-                
+
 
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
@@ -635,7 +643,7 @@ namespace HIS_WebApi
                         }
                         else
                         {
-                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy","yyyy.MM.dd" }; // 可擴展格式
+                            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd" }; // 可擴展格式
 
                             if (DateTime.TryParseExact(textVision.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
                             {
@@ -648,8 +656,8 @@ namespace HIS_WebApi
                         }
                     }
                     textVision.藥品碼 = content.藥品碼;
-
                     textVision.數量 = content.應收數量;
+
                     List<medClass> medClasses = new List<medClass>();
                     if (textVision.藥品碼.StringIsEmpty() == false)
                     {
@@ -658,20 +666,23 @@ namespace HIS_WebApi
                     }
                     else
                     {
-                        if(textVision.藥名.StringIsEmpty() == false)
+                        if (textVision.藥名.StringIsEmpty() == false)
                         {
-                           medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                            medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
                         }
                     }
-                    
+
                     if (medClasses.Count > 0)
                     {
-                        if(medClasses[0].中文名稱.StringIsEmpty() == false)
+                        if (medClasses[0].中文名稱.StringIsEmpty() == false)
                         {
                             textVision.中文名 = medClasses[0].中文名稱;
-                        }                      
+                        }
+                        else
+                        {
+                            textVision.中文名 = medClasses[0].藥品學名;
+                        }
                     }
-                    
                 })));
                 Dictionary<string, (string Position, string Confidence, string Label)> dic_textVision = toDicByPosition(textVision);
                 foreach (string key in dic_textVision.Keys)
@@ -683,7 +694,7 @@ namespace HIS_WebApi
 
                     })));
                 }
-                
+
                 Task.WhenAll(tasks).Wait();
                 textVision.識別位置 = positionClasses;
 
@@ -695,7 +706,7 @@ namespace HIS_WebApi
 
                 update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
                 sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
-              
+
                 returnData.Data = clearLongData(textVision);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
@@ -760,7 +771,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
-                
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"取得<{textVisionClasses.Count}>筆";
@@ -830,7 +841,7 @@ namespace HIS_WebApi
                 }
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 List<textVisionClass> textVisions = textVisionClass.get_by_po_num(API, 單號);
-                if(textVisions != null)
+                if (textVisions != null)
                 {
                     if (textVisions[0].確認 == "已確認")
                     {
@@ -872,7 +883,7 @@ namespace HIS_WebApi
                         textVisionClass.delete_by_GUID(API, GUID_delete);
                     }
                 }
-               
+
                 inspectionClass.content content = inspectionClass.content_get_by_PON(API, 單號);
                 List<object[]> Update_textVision = new List<object[]>();
                 if (content == null)
@@ -899,7 +910,7 @@ namespace HIS_WebApi
                 {
                     textVision.藥名 = content.藥品名稱;
                 }
-                if(content.Sub_content.Count > 0)
+                if (content.Sub_content.Count > 0)
                 {
                     textVision.批號 = content.Sub_content[0].批號;
                     textVision.效期 = content.Sub_content[0].效期;
@@ -916,7 +927,7 @@ namespace HIS_WebApi
                 }
                 textVisionClasses[0] = textVision;
 
-                
+
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -940,23 +951,23 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-         /// 以GUID更新圖片資料
-         /// </summary>
-         /// <remarks>
-         /// 以下為JSON範例
-         /// <code>
-         ///     {
-         ///         "ValueAry":
-         ///         [
-         ///                 "GUID",
-         ///                 "base64"
-         ///         ]
-         ///         
-         ///     }
-         /// </code>
-         /// </remarks>
-         /// <param name="returnData">共用傳遞資料結構</param>
-         /// <returns></returns>
+        /// 以GUID更新圖片資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":
+        ///         [
+        ///                 "GUID",
+        ///                 "base64"
+        ///         ]
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [HttpPost("update_pic_by_GUID")]
         public string update_pic_by_GUID([FromBody] returnData returnData)
         {
@@ -1084,7 +1095,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 medClass medClass = medClass.get_med_clouds_by_code(API, code);
-                if(medClass == null)
+                if (medClass == null)
                 {
                     returnData.Code = 200;
                     returnData.Result = "藥碼不存在";
@@ -1157,7 +1168,7 @@ namespace HIS_WebApi
                 List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
                 //List<object[]> list_sub_textVision = sQLControl_sub_textVision.GetRowsByDefult(null, (int)enum_sub_textVision.Master_GUID, GUID);
 
-                if (list_textVision.Count == 0 )
+                if (list_textVision.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "查無資料";
@@ -1289,9 +1300,9 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-      
+
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);          
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
 
                 foreach (textVisionClass textVisionClass in input_textVision)
                 {
@@ -1301,6 +1312,14 @@ namespace HIS_WebApi
                     textVisionClass.效期 = DateTime.MinValue.ToDateTimeString();
                     textVisionClass.Code = "-200";
                     textVisionClass.Result = "未辨識";
+                    if (textVisionClass.圖片.StringIsEmpty())
+                    {
+                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\20250221\\20250220001.jpg";
+                        byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
+                        string base64 = Convert.ToBase64String(imageBytes);
+                        base64 = $"data:image/jpeg;base64,{base64}";
+                        textVisionClass.圖片 = base64;
+                    }
 
                 }
 
@@ -1436,7 +1455,7 @@ namespace HIS_WebApi
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 //textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
                 Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
-                if(dicTextVision.Count == 0)
+                if (dicTextVision.Count == 0)
                 {
                     returnData.Code = 202; //操作者最新的一批資料中沒有未確認資料
                     returnData.Result = $"id : {操作者ID} 未含有未確認資料";
@@ -1450,7 +1469,7 @@ namespace HIS_WebApi
                 //List<returnDataClass> returnDataClasses = new List<returnDataClass>();
                 for (int i = 0; i < textVisions.Count; i++)
                 {
-                    if (textVisions[i].確認 == "未確認") 
+                    if (textVisions[i].確認 == "未確認")
                     {
                         flag = true;
                         textVisions[i].圖片 = "";
@@ -1463,23 +1482,23 @@ namespace HIS_WebApi
                         //};
                         textVision_buff.Add(textVisions[i]);
                         //returnDataClasses.Add(returnDataClass);
-                    } 
+                    }
                 }
-                if(flag == false)
+                if (flag == false)
                 {
                     returnData.Code = 202; //操作者最新的一批資料中沒有未確認資料
                     returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，未含有未確認資料";
                     returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt(true);
                 }
-                if(returnData.Value == "N" && flag == true)
+                if (returnData.Value == "N" && flag == true)
                 {
                     returnData.Code = 201; //操作者最新的一批資料中有未確認資料
                     returnData.Result = $"id : {操作者ID}, 批次ID : {maxBatchID}  資料共{textVisions.Count}筆，含有未確認資料{textVision_buff.Count}筆";
                     returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt(true);
                 }
-                if(returnData.Value == "Y" && flag == true)
+                if (returnData.Value == "Y" && flag == true)
                 {
                     returnData.Code = 201; //操作者最新的一批資料中有未確認資料
                     returnData.Data = textVision_buff;
@@ -1489,7 +1508,7 @@ namespace HIS_WebApi
                 }
                 return returnData.JsonSerializationt(true);
 
-        }
+            }
             catch (Exception ex)
             {
                 returnData.Code = -200;
@@ -1544,7 +1563,7 @@ namespace HIS_WebApi
                 string 批次ID = returnData.ValueAry[0];
                 string[] GUIDs = returnData.ValueAry[1].Split(";");
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.批次ID, 批次ID);              
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.批次ID, 批次ID);
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
                 List<textVisionClass> update_textVisionClass = new List<textVisionClass>();
                 for (int i = 0; i < textVisionClasses.Count; i++)
@@ -1558,7 +1577,7 @@ namespace HIS_WebApi
                 }
                 List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
                 if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
-                for(int i = 0; i < textVisionClasses.Count; i++)
+                for (int i = 0; i < textVisionClasses.Count; i++)
                 {
                     textVisionClasses[i].圖片 = "";
                     textVisionClasses[i].Log = "";
@@ -1610,12 +1629,12 @@ namespace HIS_WebApi
                 string maxBatchID = dicTextVision.Keys.Max();
                 List<textVisionClass> textVisions = textVisionClass.GetValueByBatchID(dicTextVision, maxBatchID);
                 List<textVisionClass> result = new List<textVisionClass>();
-                for(int i = 0; i < textVisions.Count; i++)
+                for (int i = 0; i < textVisions.Count; i++)
                 {
                     if (!textVisions[i].Log.StringIsEmpty())
                     {
                         returnData returnData_analyze = textVisionClass.analyze(API_Server, textVisions[i].GUID);
-                        if(returnData_analyze.Code == 200)
+                        if (returnData_analyze.Code == 200)
                         {
                             List<textVisionClass> textVision = returnData_analyze.Data.ObjToClass<List<textVisionClass>>();
                             result.Add(textVision[0]);
@@ -1635,7 +1654,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
@@ -1714,9 +1733,9 @@ namespace HIS_WebApi
 
             };
 
-            foreach(var field in fields)
+            foreach (var field in fields)
             {
-                if(field.Position.StringIsEmpty() == false) dic[field.Position] = field;
+                if (field.Position.StringIsEmpty() == false) dic[field.Position] = field;
             }
             return dic;
         }
@@ -1727,29 +1746,63 @@ namespace HIS_WebApi
         }
         private void SavePic(string fileName, string base64, string folderName)
         {
+            // 將檔名副檔名改為 .jpg
             fileName = Path.ChangeExtension(fileName, ".jpg");
 
+            // 移除 Base64 字串前綴
             string pre = "data:image/jpeg;base64,";
             base64 = base64.Replace(pre, "");
 
+            // 取得目前執行檔所在目錄，並組合出 log/目標資料夾路徑
             string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string fileDirectory = Path.Combine(currentDirectory,"log");
-            string folderPath = Path.Combine(fileDirectory, "PO_vision");
-            string filePath = Path.Combine(folderPath, fileName);
+            string fileDirectory = Path.Combine(currentDirectory, "log");
+            string targetFolder = string.IsNullOrEmpty(folderName) ? "PO_vision" : folderName;
+            string folderPath = Path.Combine(fileDirectory, targetFolder);
 
-            byte[] imageBytes = Convert.FromBase64String(base64);
-            SKMemoryStream stream = new SKMemoryStream(imageBytes);
-            SKBitmap bitmap = SKBitmap.Decode(stream);
-            using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+            // 確認目錄是否存在，不存在則建立
+            if (!Directory.Exists(folderPath))
             {
-                using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string filepath = Path.Combine(folderPath, fileName);
+
+            try
+            {
+                // 轉換 Base64 字串為位元組陣列
+                byte[] imageBytes = Convert.FromBase64String(base64);
+
+                // 使用 MemoryStream 與 ImageSharp 載入圖片
+                using (var ms = new MemoryStream(imageBytes))
                 {
-                    using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
+                    using (var image = SixLabors.ImageSharp.Image.Load(ms))
                     {
-                        data.SaveTo(fileStream);
+                        // 若在 Docker 容器中運行，可調整檔案路徑格式
+                        if (ContainerChecker.IsRunningInDocker())
+                        {
+                            filepath = filepath.Replace("\\", "/");
+                            string _fileName = Path.GetFileName(filepath);
+                            string directoryPath = Path.GetDirectoryName(filepath);
+                            string _folderName = Path.GetFileName(directoryPath);
+                            filepath = $"/app/log/{_folderName}/{_fileName}";
+                            Console.WriteLine($"SavePic ..filepath : {filepath}");
+                        }
+                        // 開啟檔案流，並使用 JpegEncoder 儲存圖片
+                        var encoder = new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder { Quality = 100 };
+                        using (FileStream fileStream = System.IO.File.OpenWrite(filepath))
+                        {
+                            image.Save(fileStream, encoder);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"儲存圖片發生錯誤: {ex.Message}");
+                throw;
+            }
         }
+
+
     }
 }

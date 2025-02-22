@@ -859,5 +859,38 @@ namespace HIS_DB_Lib
             }
             return new List<OrderClass>();
         }
+
+        static public System.Collections.Generic.Dictionary<string, List<OrderClass>> CoverToDictionaryBy_Code(this List<OrderClass> OrderClasses)
+        {
+            Dictionary<string, List<OrderClass>> dictionary = new Dictionary<string, List<OrderClass>>();
+
+            foreach (var item in OrderClasses)
+            {
+                string key = item.藥品碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<OrderClass> values = new List<OrderClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<OrderClass> SerchDictionary(this System.Collections.Generic.Dictionary<string, List<OrderClass>> dictionary, string value)
+        {
+            if (dictionary.ContainsKey(value))
+            {
+                return dictionary[value];
+            }
+            return new List<OrderClass>();
+        }
+
     }
 }
