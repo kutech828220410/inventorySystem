@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
 using System.ComponentModel;
-
+using System.Reflection;
+using System.Text.Json;
 
 namespace HIS_DB_Lib
 {
+
+
     [EnumDescription("bed_status")]
     public enum enum_bed_status
     {

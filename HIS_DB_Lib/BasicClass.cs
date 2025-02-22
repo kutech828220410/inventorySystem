@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
+using System.Text.Json;
 namespace HIS_DB_Lib
 {
     public class returnData
@@ -418,5 +421,113 @@ namespace HIS_DB_Lib
             }
         }
     }
-  
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class JsonAliasAttribute : Attribute
+    {
+        public string[] Aliases { get; }
+
+        public JsonAliasAttribute(params string[] aliases)
+        {
+            Aliases = aliases;
+        }
+    }
+    public class GenericAliasJsonConverter<T> : JsonConverter<T> where T : new()
+    {
+        // 儲存每個屬性的主要名稱與別名對應（key 為小寫）
+        private static readonly Dictionary<string, PropertyInfo> _propertyMap;
+
+        // 儲存屬性對應的主要 JSON 名稱，供序列化時使用
+        private static readonly Dictionary<PropertyInfo, string> _propertyPrimaryName;
+
+        static GenericAliasJsonConverter()
+        {
+            _propertyMap = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
+            _propertyPrimaryName = new Dictionary<PropertyInfo, string>();
+
+            foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                // 忽略不可寫或標記 [JsonIgnore] 的屬性
+                if (!prop.CanWrite || prop.GetCustomAttribute<JsonIgnoreAttribute>() != null)
+                    continue;
+
+                // 取得主要 JSON 名稱，若有 JsonPropertyNameAttribute 則使用其設定
+                string primaryName = prop.Name;
+                var jsonPropAttr = prop.GetCustomAttribute<JsonPropertyNameAttribute>();
+                if (jsonPropAttr != null)
+                    primaryName = jsonPropAttr.Name;
+
+                // 儲存主要名稱
+                _propertyPrimaryName[prop] = primaryName;
+
+                // 加入主要名稱映射（轉小寫）
+                _propertyMap[primaryName.ToLowerInvariant()] = prop;
+
+                // 若有定義 JsonAliasAttribute，則也加入別名映射
+                var aliasAttr = prop.GetCustomAttribute<JsonAliasAttribute>();
+                if (aliasAttr != null)
+                {
+                    foreach (var alias in aliasAttr.Aliases)
+                    {
+                        _propertyMap[alias.ToLowerInvariant()] = prop;
+                    }
+                }
+            }
+        }
+
+        public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType != JsonTokenType.StartObject)
+                throw new JsonException();
+
+            T instance = new T();
+
+            while (reader.Read())
+            {
+                if (reader.TokenType == JsonTokenType.EndObject)
+                    return instance;
+
+                if (reader.TokenType == JsonTokenType.PropertyName)
+                {
+                    string jsonPropName = reader.GetString();
+                    reader.Read(); // 移至屬性值
+
+                    string lowerName = jsonPropName.ToLowerInvariant();
+                    if (_propertyMap.TryGetValue(lowerName, out var propertyInfo))
+                    {
+                        // 利用 JsonSerializer.Deserialize 解析屬性值
+                        object value = JsonSerializer.Deserialize(ref reader, propertyInfo.PropertyType, options);
+                        propertyInfo.SetValue(instance, value);
+                    }
+                    else
+                    {
+                        // 當無對應屬性時，略過此值
+                        reader.Skip();
+                    }
+                }
+            }
+            throw new JsonException("無法完成反序列化");
+        }
+
+        public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            // 利用反射取得所有公有實例屬性
+            foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                // 略過不可讀或標記 [JsonIgnore] 的屬性
+                if (!prop.CanRead || prop.GetCustomAttribute<JsonIgnoreAttribute>() != null)
+                    continue;
+
+                // 取得主要名稱
+                string jsonPropName = _propertyPrimaryName.TryGetValue(prop, out var primaryName)
+                    ? primaryName
+                    : prop.Name;
+
+                writer.WritePropertyName(jsonPropName);
+                var propValue = prop.GetValue(value);
+                JsonSerializer.Serialize(writer, propValue, prop.PropertyType, options);
+            }
+            writer.WriteEndObject();
+        }
+    }
 }
