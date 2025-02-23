@@ -22,6 +22,8 @@ namespace HIS_DB_Lib
         消耗量,
         [Description("結存量,VARCHAR,20,NONE")]
         結存量,
+        [Description("實調量,VARCHAR,20,NONE")]
+        實調量,
         [Description("庫存量,VARCHAR,20,NONE")]
         庫存量,
     }
@@ -34,13 +36,13 @@ namespace HIS_DB_Lib
         public string 藥名 { get; set; }
         [JsonPropertyName("TYPE")]
         public string 類別 { get; set; }
-        [JsonPropertyName("TXN_QTY")]
+        [JsonPropertyName("CONSUMPTION")]
         public string 消耗量 { get; set; }
-        [JsonPropertyName("EBQ_QTY")]
+        [JsonPropertyName("BALANCE")]
         public string 結存量 { get; set; }
-        [JsonPropertyName("PXC_QTY")]
+        [JsonPropertyName("DISPENSED")]
         public string 實調量 { get; set; }
-        [JsonPropertyName("INV_QTY")]
+        [JsonPropertyName("STOCK")]
         public string 庫存量 { get; set; }
     }
 }

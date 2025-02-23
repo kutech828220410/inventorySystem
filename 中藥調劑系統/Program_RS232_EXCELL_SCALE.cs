@@ -54,10 +54,10 @@ namespace 中藥調劑系統
         }
         private void EXCELL_set_sub_current_weight()
         {
-            flag_EXCELL_set_sub_current_weight = true;
-            while(true)
-            {
-                
+            if (plC_CheckBox_自動歸零.Checked) flag_EXCELL_set_sub_current_weight = true;
+            else flag_EXCELL_set_sub_current_weight = false;
+            while (true)
+            {    
                 if (flag_EXCELL_set_sub_current_weight == false) return;
                 System.Threading.Thread.Sleep(100);
             }

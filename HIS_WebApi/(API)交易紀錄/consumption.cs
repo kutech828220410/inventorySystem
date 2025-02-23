@@ -623,6 +623,60 @@ namespace HIS_WebApi
             }
 
         }
+        [Route("download/{value}")]
+        [HttpGet]
+        public async Task<ActionResult> get_download_datas_excel_by_serch(string value)
+        {
+           
+            try
+            {
+                string[] date_strs = value.Split(',');
+
+                string date_str_st = date_strs[0];
+                string date_str_end = date_strs[1];
+                if (date_str_st.Length != 8 || date_str_end.Length != 8)
+                {
+                    return BadRequest("輸入日期格式錯誤");
+                }
+                date_str_st = $"{date_str_st.Substring(0, 4)}-{date_str_st.Substring(4, 2)}-{date_str_st.Substring(6, 2)}";
+                date_str_end = $"{date_str_end.Substring(0, 4)}-{date_str_end.Substring(4, 2)}-{date_str_end.Substring(6, 2)}";
+                if(date_str_st.Check_Date_String() == false || date_str_end.Check_Date_String() == false)
+                {
+                    return BadRequest("輸入日期格式錯誤");
+                }
+                DateTime dateTime_st = date_str_st.StringToDateTime().GetStartDate();
+                DateTime dateTime_end = date_str_end.StringToDateTime().GetEndDate();
+
+
+                List<sys_serverSettingClass> list_sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_type("http://127.0.0.1:4433", "調劑台");
+
+                List<string> list_dps = (from temp in list_sys_serverSettingClasses
+                                         select temp.設備名稱).Distinct().ToList();
+
+                string dps_name = "";
+                string dps_type = "";
+                for (int i = 0; i < list_dps.Count; i++)
+                {
+                    dps_name += list_dps[i];
+                    dps_type += "調劑台";
+
+                    if (i != list_dps.Count - 1) dps_name += ",";
+                    if (i != list_dps.Count - 1) dps_type += ",";
+                }
+                returnData returnData = new returnData();
+
+                returnData.ValueAry.Add(dateTime_st.ToDateTimeString());
+                returnData.ValueAry.Add(dateTime_end.ToDateTimeString());
+                returnData.ValueAry.Add(dps_name);
+                returnData.ValueAry.Add(dps_type);
+                return await Post_download_datas_excel_by_serch(returnData);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("錯誤訊息：" + ex.Message);
+            }
+        }
+
         /// <summary>
         /// 取得庫存及消耗總量Excel(xlxs)(多台合併)
         /// </summary>
@@ -630,8 +684,8 @@ namespace HIS_WebApi
         /// 以下為範例JSON範例
         /// <code>
         ///   {
-        ///     "ServerName" : "口服2",
-        ///     "ServerType" : "調劑台",
+        ///     "ServerName" : "",
+        ///     "ServerType" : "",
         ///     "Data": 
         ///     {
         ///     
@@ -649,7 +703,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為[SheetClass]陣列結構</returns>
-        [Route("download_datas_excel_by_serch")]
+        [Route("downloadc_datas_excel_by_serch")]
         [HttpPost]
         public async Task<ActionResult> Post_download_datas_excel_by_serch([FromBody] returnData returnData)
         {
@@ -661,25 +715,28 @@ namespace HIS_WebApi
             {
 
 
-                returnData = POST_get_datas_sheet_by_serch(returnData).JsonDeserializet<returnData>();
+                returnData = POST_serch_datas_by_ST_END(returnData).JsonDeserializet<returnData>();
                 if (returnData.Code != 200)
                 {
                     return null;
                 }
-                string jsondata = returnData.Data.JsonSerializationt();
+                List<consumptionClass> consumptionClasses = returnData.Data.ObjToClass<List<consumptionClass>>();
+                List<object[]> list_value = consumptionClasses.ClassToSQL<consumptionClass , enum_consumption>();
+                System.Data.DataTable dataTable = list_value.ToDataTable(new enum_consumption());
 
-                List<SheetClass> sheetClasses = jsondata.JsonDeserializet<List<SheetClass>>();
+                string 起始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
 
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
-
-                byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
+                dataTable.RemoveColumn(enum_consumption.結存量);
+                byte[] excelData = dataTable.NPOI_GetBytes( Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_消耗量表.xlsx"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{起始時間}_{結束時間}_消耗量表.xlsx"));
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                return BadRequest("錯誤訊息：" + ex.Message);
             }
 
         }
