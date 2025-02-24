@@ -2557,14 +2557,174 @@
             唯一KEY.
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.OrderClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.PRI_KEY">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥局代碼">
+            <summary>
+            藥局代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥袋條碼">
+            <summary>
+            藥袋條碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥袋類型">
+            <summary>
+            藥袋類型
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥品名稱">
+            <summary>
+            藥品名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.領藥號">
+            <summary>
+            領藥號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.住院序號">
+            <summary>
+            住院序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.就醫序號">
+            <summary>
+            就醫序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.就醫類別">
+            <summary>
+            就醫類別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.批序">
+            <summary>
+            批序
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.OrderClass.天數">
             <summary>
             天數
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.OrderClass.單次劑量">
+            <summary>
+            單次劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.劑量單位">
+            <summary>
+            劑量單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.途徑">
+            <summary>
+            途徑
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.頻次">
+            <summary>
+            頻次
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.費用別">
+            <summary>
+            費用別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.病房">
+            <summary>
+            病房
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.床號">
+            <summary>
+            床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.病人姓名">
+            <summary>
+            病人姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.病歷號">
+            <summary>
+            病歷號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.交易量">
+            <summary>
+            交易量
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.OrderClass.實際調劑量">
             <summary>
             實際調劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.醫師代碼">
+            <summary>
+            醫師代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.科別">
+            <summary>
+            科別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.開方日期">
+            <summary>
+            開方日期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.結方日期">
+            <summary>
+            結方日期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.展藥時間">
+            <summary>
+            展藥時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.產出時間">
+            <summary>
+            產出時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.過帳時間">
+            <summary>
+            過帳時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.就醫時間">
+            <summary>
+            就醫時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥師姓名">
+            <summary>
+            藥師姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.藥師ID">
+            <summary>
+            藥師ID
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.OrderClass.核對姓名">
@@ -2575,6 +2735,26 @@
         <member name="P:HIS_DB_Lib.OrderClass.核對ID">
             <summary>
             核對ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.領藥姓名">
+            <summary>
+            領藥姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.領藥ID">
+            <summary>
+            領藥ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.備註">
+            <summary>
+            備註
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.OrderTClass">
