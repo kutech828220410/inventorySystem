@@ -1838,8 +1838,11 @@ namespace HIS_WebApi
                         藥品名 = grouped.Key,
                         藥碼 = grouped.First().藥碼,
                         單位 = grouped.First().單位,
-                        途徑 = grouped.First().途徑,
+                        針劑 = grouped.First().針劑,
+                        口服 = grouped.First().口服,
+                        冷儲 = grouped.First().冷儲,
                         調劑台 = "",
+                        大瓶點滴 = "",
                         病床清單 = grouped.Select(value => new bedListClass
                         {
                             GUID = value.GUID,
@@ -1850,7 +1853,6 @@ namespace HIS_WebApi
                             大瓶點滴 = value.大瓶點滴,
                             調劑狀態 = value.調劑狀態,
                             覆核狀態 = value.覆核狀態,
-                            途徑 = value.途徑
                         }).ToList()
                     })
                     .ToList();

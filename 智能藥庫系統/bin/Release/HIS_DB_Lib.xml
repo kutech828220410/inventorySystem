@@ -1067,6 +1067,16 @@
             針劑
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.口服">
+            <summary>
+            口服
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.冷儲">
+            <summary>
+            冷儲
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.公藥">
             <summary>
             公藥
@@ -1255,6 +1265,11 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑紀錄">
             <summary>
             調劑紀錄
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medQtyClass.冷儲">
+            <summary>
+            冷儲
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
