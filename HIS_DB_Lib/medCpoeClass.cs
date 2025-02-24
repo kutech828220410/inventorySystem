@@ -29,6 +29,10 @@ namespace HIS_DB_Lib
         藥品家族,
         [Description("針劑,VARCHAR,10,NONE")]
         針劑,
+        [Description("口服,VARCHAR,10,NONE")]
+        口服,
+        [Description("冷儲,VARCHAR,10,NONE")]
+        冷儲,
         [Description("公藥,VARCHAR,10,NONE")]
         公藥,
         [Description("藥局,VARCHAR,10,INDEX")]
@@ -142,6 +146,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("injection")]
         public string 針劑 { get; set; }
+        /// <summary>
+        /// 口服
+        /// </summary>
+        [JsonPropertyName("oral")]
+        public string 口服 { get; set; }
+        /// <summary>
+        /// 冷儲
+        /// </summary>
+        [JsonPropertyName("ice")]
+        public string 冷儲 { get; set; }
         /// <summary>
         /// 公藥
         /// </summary>
@@ -350,7 +364,7 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
-        static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
+        static public returnData update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
             string url = $"{API_Server}/api/med_cart/update_med_cpoe";
@@ -361,11 +375,11 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
             out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
             Console.WriteLine($"{returnData}");
-            return out_medCpoeClass;
+            return returnData;
         }
         static public List<medCpoeClass> add_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
@@ -501,6 +515,15 @@ namespace HIS_DB_Lib
         public string 調劑台 { get; set; }
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
+        [JsonPropertyName("injection")]
+        public string 針劑 { get; set; }
+        [JsonPropertyName("oral")]
+        public string 口服 { get; set; }
+        /// <summary>
+        /// 冷儲
+        /// </summary>
+        [JsonPropertyName("ice")]
+        public string 冷儲 { get; set; }
         [JsonPropertyName("bed_list")]
         public List<bedListClass> 病床清單 { get; set; }
     }
@@ -520,9 +543,9 @@ namespace HIS_DB_Lib
         public string 調劑狀態 { get; set; }
         [JsonPropertyName("check_status")]
         public string 覆核狀態 { get; set; }
-
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
+        
         public class ICP_By_bedNum : IComparer<bedListClass>
         {
             public int Compare(bedListClass x, bedListClass y)

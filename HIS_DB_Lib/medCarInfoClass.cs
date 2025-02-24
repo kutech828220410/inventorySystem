@@ -364,7 +364,7 @@ namespace HIS_DB_Lib
                 return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
             }
         }
-        static public List<medCarInfoClass> update_med_carinfo(string API_Server, List<medCarInfoClass> medCarInfoClasses)
+        static public returnData update_med_carinfo(string API_Server, List<medCarInfoClass> medCarInfoClasses)
         {
             string url = $"{API_Server}/api/med_cart/update_med_carinfo";
 
@@ -374,11 +374,11 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
             List<medCarInfoClass>  out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
             Console.WriteLine($"{returnData}");
-            return out_medCarInfoClass;
+            return returnData;
         }
         static public List<medClass> update_med_page_cloud(string API_Server, List<medClass> medClasses)
         {
