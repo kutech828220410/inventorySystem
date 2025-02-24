@@ -371,11 +371,12 @@ namespace HIS_DB_Lib
             inspectionClass.content content_out = returnData_out.Data.ObjToClass<inspectionClass.content>();
             return content_out;
         }
-        static public inspectionClass.content content_get_by_PON(string API_Server, string value)
+        static public inspectionClass.content content_get_by_PON(string API_Server, string 驗收單號, string 請購單號)
         {
             string url = $"{API_Server}/api/inspection/content_get_by_PON";
             returnData returnData = new returnData();
-            returnData.Value = value;
+            returnData.ValueAry.Add(驗收單號);
+            returnData.ValueAry.Add(請購單號);
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData returnData_out = json_out.JsonDeserializet<returnData>();

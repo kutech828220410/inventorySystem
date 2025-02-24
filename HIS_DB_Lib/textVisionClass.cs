@@ -16,6 +16,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("PRI_KEY,VARCHAR,200,INDEX")]
         PRI_KEY,
+        [Description("驗收單號,VARCHAR,200,INDEX")]
+        驗收單號,
         [Description("批次ID,VARCHAR,50,INDEX")]
         批次ID,
         [Description("操作者姓名,VARCHAR,30,INDEX")]
@@ -118,6 +120,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("PRI_KEY")]
         public string PRI_KEY { get; set; }
+        /// <summary>
+        /// 驗收單號
+        /// </summary>
+        [JsonPropertyName("IC_SN")]
+        public string 驗收單號 { get; set; }
         /// <summary>
         /// 批次ID
         /// </summary>
@@ -370,12 +377,12 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData_AI;
         }
-        static public List<textVisionClass> get_by_po_num(string API, string po_num)
+        static public List<textVisionClass> get_by_pri_key(string API, string pri_key)
         {
-            string url = $"{API}/api/pcmpo/get_by_po_num";
+            string url = $"{API}/api/pcmpo/get_by_pri_key";
 
             returnData returnData = new returnData();
-            returnData.ValueAry = new List<string>() { po_num };
+            returnData.ValueAry = new List<string>() { pri_key };
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);

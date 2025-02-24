@@ -3417,6 +3417,11 @@
             PRI_KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.驗收單號">
+            <summary>
+            驗收單號
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.批次ID">
             <summary>
             批次ID
