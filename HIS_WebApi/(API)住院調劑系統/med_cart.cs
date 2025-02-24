@@ -1853,6 +1853,7 @@ namespace HIS_WebApi
                             大瓶點滴 = value.大瓶點滴,
                             調劑狀態 = value.調劑狀態,
                             覆核狀態 = value.覆核狀態,
+                            頻次代碼 = value.頻次代碼
                         }).ToList()
                     })
                     .ToList();

@@ -1272,6 +1272,11 @@
             冷儲
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.bedListClass.頻次代碼">
+            <summary>
+            頻次代碼
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
             <summary>
             medCpoeClass資料
