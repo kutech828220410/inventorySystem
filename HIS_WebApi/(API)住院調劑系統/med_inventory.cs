@@ -117,14 +117,16 @@ namespace HIS_WebApi._API_住院調劑系統
             returnData.Method = "med_inventory/add_med_inventory_log";
             try
             {
-                List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
+                //List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
+                //sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                //if (sys_serverSettingClasses.Count == 0)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"找無Server資料";
+                //    return returnData.JsonSerializationt();
+                //}
                 string Server = sys_serverSettingClasses[0].Server;
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
