@@ -47,8 +47,6 @@ namespace HIS_DB_Lib
         住院號,
         [Description("病歷號,VARCHAR,100,NONE")]
         病歷號,
-        [Description("調劑台,VARCHAR,30,NONE")]
-        調劑台,
         [Description("序號,VARCHAR,150,NONE")]
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
@@ -59,10 +57,8 @@ namespace HIS_DB_Lib
         結束時間,
         [Description("藥碼,VARCHAR,50,NONE")]
         藥碼,
-        [Description("頻次代碼,VARCHAR,10,NONE")]
-        頻次代碼,
-        [Description("頻次屬性,VARCHAR,10,NONE")]
-        頻次屬性,
+        [Description("頻次,VARCHAR,10,NONE")]
+        頻次,
         [Description("藥品名,VARCHAR,150,NONE")]
         藥品名,
         [Description("中文名,VARCHAR,150,NONE")]
@@ -85,10 +81,6 @@ namespace HIS_DB_Lib
         處方醫師姓名,
         [Description("操作人員,VARCHAR,10,NONE")]
         操作人員,
-        [Description("藥局代碼,VARCHAR,10,NONE")]
-        藥局代碼,
-        [Description("藥局名稱,VARCHAR,20,NONE")]
-        藥局名稱,
         [Description("大瓶點滴,VARCHAR,10,NONE")]
         大瓶點滴,
         [Description("LKFLAG,VARCHAR,10,NONE")]
@@ -192,11 +184,6 @@ namespace HIS_DB_Lib
         [JsonPropertyName("histno")]
         public string 病歷號 { get; set; }
         /// <summary>
-        /// 調劑台
-        /// </summary>
-        [JsonPropertyName("dispens_name")]
-        public string 調劑台 { get; set; }
-        /// <summary>
         /// 序號
         /// </summary>
         [JsonPropertyName("ordseq")]
@@ -225,12 +212,7 @@ namespace HIS_DB_Lib
         /// 頻次代碼
         /// </summary>
         [JsonPropertyName("freqn")]
-        public string 頻次代碼 { get; set; }
-        /// <summary>
-        /// 頻次屬性
-        /// </summary>
-        [JsonPropertyName("frqatr")]
-        public string 頻次屬性 { get; set; }
+        public string 頻次 { get; set; }
         /// <summary>
         /// 藥品名
         /// </summary>
@@ -287,16 +269,6 @@ namespace HIS_DB_Lib
         [JsonPropertyName("luser")]
         public string 操作人員 { get; set; }
         /// <summary>
-        /// 藥局代碼
-        /// </summary>
-        [JsonPropertyName("pharm_code")]
-        public string 藥局代碼 { get; set; }
-        /// <summary>
-        /// 藥局名稱
-        /// </summary>
-        [JsonPropertyName("pharm_name")]
-        public string 藥局名稱 { get; set; }
-        /// <summary>
         /// 大瓶點滴
         /// </summary>
         [JsonPropertyName("large")]
@@ -331,8 +303,26 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispens_change")]
         public string 調劑異動 { get; set; }
+        /// <summary>
+        /// 覆核狀態
+        /// </summary>
         [JsonPropertyName("check_status")]
         public string 覆核狀態 { get; set; }
+        /// <summary>
+        /// 藥局代碼
+        /// </summary>
+        [JsonPropertyName("pharm_code")]
+        public string 藥局代碼 { get; set; }
+        /// <summary>
+        /// 藥局名稱
+        /// </summary>
+        [JsonPropertyName("pharm_name")]
+        public string 藥局名稱 { get; set; }
+        /// <summary>
+        /// 調劑台
+        /// </summary>
+        [JsonPropertyName("dispens_name")]
+        public string 調劑台 { get; set; }
         /// <summary>
         /// 雲端藥檔
         /// </summary>
@@ -543,11 +533,8 @@ namespace HIS_DB_Lib
         public string 調劑狀態 { get; set; }
         [JsonPropertyName("check_status")]
         public string 覆核狀態 { get; set; }
-        /// <summary>
-        /// 頻次代碼
-        /// </summary>
         [JsonPropertyName("freqn")]
-        public string 頻次代碼 { get; set; }
+        public string 頻次 { get; set; }
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
         

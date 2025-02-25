@@ -375,7 +375,7 @@ namespace HIS_WebApi
                             {
                                 if (onlyInOld[i].藥碼 == onlyInNew[j].藥碼 &&
                                     onlyInOld[i].途徑 == onlyInNew[j].途徑 &&
-                                    onlyInOld[i].頻次代碼 == onlyInNew[j].頻次代碼)
+                                    onlyInOld[i].頻次 == onlyInNew[j].頻次)
                                 {
                                     medCpoe_sql_delete.Add(onlyInOld[i]);
                                     onlyInNew[j].調劑狀態 = onlyInOld[i].調劑狀態;
@@ -390,7 +390,7 @@ namespace HIS_WebApi
                         double 數量 = oldItem.數量.StringToInt32() * -1;
                         oldItem.數量 = 數量.ToString();
                         oldItem.劑量 = "--";
-                        oldItem.頻次代碼 = "--";
+                        oldItem.頻次 = "--";
                         oldItem.途徑 = "--";
                         oldItem.單位 = "--";
                         oldItem.調劑狀態 = "";
@@ -1853,7 +1853,7 @@ namespace HIS_WebApi
                             大瓶點滴 = value.大瓶點滴,
                             調劑狀態 = value.調劑狀態,
                             覆核狀態 = value.覆核狀態,
-                            頻次代碼 = value.頻次代碼
+                            頻次 = value.頻次
                         }).ToList()
                     })
                     .ToList();

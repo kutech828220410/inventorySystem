@@ -1112,11 +1112,6 @@
             病歷號
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.調劑台">
-            <summary>
-            調劑台
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.序號">
             <summary>
             序號
@@ -1142,14 +1137,9 @@
             藥碼
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.頻次代碼">
+        <member name="P:HIS_DB_Lib.medCpoeClass.頻次">
             <summary>
             頻次代碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.頻次屬性">
-            <summary>
-            頻次屬性
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.藥品名">
@@ -1207,16 +1197,6 @@
             操作人員
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.藥局代碼">
-            <summary>
-            藥局代碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.藥局名稱">
-            <summary>
-            藥局名稱
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.大瓶點滴">
             <summary>
             大瓶點滴
@@ -1252,6 +1232,26 @@
             調劑異動
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.覆核狀態">
+            <summary>
+            覆核狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥局代碼">
+            <summary>
+            藥局代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.藥局名稱">
+            <summary>
+            藥局名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.調劑台">
+            <summary>
+            調劑台
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.雲端藥檔">
             <summary>
             雲端藥檔
@@ -1270,11 +1270,6 @@
         <member name="P:HIS_DB_Lib.medQtyClass.冷儲">
             <summary>
             冷儲
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.bedListClass.頻次代碼">
-            <summary>
-            頻次代碼
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
