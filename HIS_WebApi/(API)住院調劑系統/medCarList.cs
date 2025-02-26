@@ -401,7 +401,7 @@ namespace HIS_WebApi._API_住院調劑系統
                     };
                     medCarList.Add(medCarListClass);
                 }
-                
+                medCarList.Sort(new medCarListClass.ICP_By_phar_name());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = medCarList;
