@@ -1867,6 +1867,52 @@
             藥品條碼2。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.建議頻次">
+            <summary>
+            建議頻次。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.建議劑量">
+            <summary>
+            建議劑量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.治療分類代碼">
+            <summary>
+            治療分類代碼。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.治療分類名">
+            <summary>
+            治療分類名。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.藥理分類序號">
+            <summary>
+            藥理分類序號。
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:HIS_DB_Lib.medClassBasic.藥理分類代碼" -->
+        <member name="P:HIS_DB_Lib.medClassBasic.藥理分類名">
+            <summary>
+            藥理分類名。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.適應症">
+            <summary>
+            適應症。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.健保規範">
+            <summary>
+            健保規範。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.使用說明">
+            <summary>
+            使用說明。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medClassBasic.警訊藥品">
             <summary>
             警訊藥品。
@@ -1877,9 +1923,29 @@
             高價藥品。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.自費藥品">
+            <summary>
+            自費藥品。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.冷藏藥品">
+            <summary>
+            冷藏藥品。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medClassBasic.生物製劑">
             <summary>
             生物製劑。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.管制級別">
+            <summary>
+            管制級別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.懷孕用藥級別">
+            <summary>
+            懷孕用藥級別。
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClassBasic.藥局庫存">
@@ -1890,11 +1956,6 @@
         <member name="P:HIS_DB_Lib.medClassBasic.藥庫庫存">
             <summary>
             藥庫庫存。
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medClassBasic.管制級別">
-            <summary>
-            管制級別。
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClassBasic.總庫存">
@@ -1947,6 +2008,16 @@
             圖片網址。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.仿單網址">
+            <summary>
+            仿單網址。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.說明書網址">
+            <summary>
+            說明書網址。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medClassBasic.開檔狀態">
             <summary>
             開檔狀態。
@@ -1955,6 +2026,11 @@
         <member name="P:HIS_DB_Lib.medClassBasic.儲位描述">
             <summary>
             儲位描述。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.備註">
+            <summary>
+            備註。
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClass.ServerName">

@@ -84,7 +84,7 @@ namespace 調劑台管理系統
         }
         private enum enum_Scanner_陣列內容
         {
-            病人姓名 = 10,
+            病人姓名 = 4,
             藥品碼 = 14,
             藥袋序號 = 15,
             使用數量 = 9,
@@ -265,12 +265,12 @@ namespace 調劑台管理系統
                         cnt = 65500;
                         return;
                     }
-                    if (text.Substring(text.Length - 2, 2) != "\r\n")
-                    {
-                        Console.WriteLine($"接收資料結束碼異常");
-                        cnt = 65500;
-                        return;
-                    }
+                    //if (text.Substring(text.Length - 2, 2) != "\r\n")
+                    //{
+                    //    Console.WriteLine($"接收資料結束碼異常");
+                    //    cnt = 65500;
+                    //    return;
+                    //}
                     text = text.Replace("\r\n", "");
                     Console.WriteLine($"接收結尾碼!");
 
