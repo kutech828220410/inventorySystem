@@ -33,7 +33,7 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -422,7 +422,7 @@ namespace HIS_WebApi
 
                 if (return_textVisionClass == null)
                 {
-                    returnData.Result = "AI連線失敗";
+                    returnData.Result = $"AI連線失敗 url:{API_AI}";
                     returnData.Code = -200;
                     textVisionClasses[0].Code = "-3";
                     textVisionClasses[0].Result = returnData.Result;
@@ -1193,7 +1193,7 @@ namespace HIS_WebApi
                     textVisionClass.Result = "未辨識";
                     if (textVisionClass.圖片.StringIsEmpty())
                     {
-                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\20250221\\20250220001.jpg";
+                        string filPath = @"C:\Users\user\OneDrive - 鴻森智能科技有限公司\軟體部\0.醫院客戶資料\3.衛服部立台北醫院\請購單辨識\測試單據\20250116-1_1140114009-01.jpg";
                         byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
                         string base64 = Convert.ToBase64String(imageBytes);
                         base64 = $"data:image/jpeg;base64,{base64}";
