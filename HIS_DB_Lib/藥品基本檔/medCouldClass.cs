@@ -51,18 +51,48 @@ namespace HIS_DB_Lib
         藥品條碼1,
         [Description("藥品條碼2,TEXT,50,NONE")]
         藥品條碼2,
+        [Description("建議頻次,VARCHAR,20,NONE")]
+        建議頻次,
+        [Description("建議劑量,VARCHAR,20,NONE")]
+        建議劑量,
+        [Description("治療分類代碼,VARCHAR,20,NONE")]
+        治療分類代碼,
+        [Description("治療分類名,VARCHAR,300,NONE")]
+        治療分類名,
+        [Description("藥理分類序號,VARCHAR,20,NONE")]
+        藥理分類序號,
+        [Description("藥理分類代碼,VARCHAR,20,NONE")]
+        藥理分類代碼,
+        [Description("藥理分類名,VARCHAR,300,NONE")]
+        藥理分類名,
+        [Description("適應症,VARCHAR,500,NONE")]
+        適應症,
+        [Description("健保規範,VARCHAR,500,NONE")]
+        健保規範,
+        [Description("使用說明,VARCHAR,500,NONE")]
+        使用說明,
         [Description("警訊藥品,VARCHAR,10,NONE")]
         警訊藥品,
         [Description("高價藥品,VARCHAR,10,NONE")]
         高價藥品,
+        [Description("自費藥品,VARCHAR,10,NONE")]
+        自費藥品,
+        [Description("冷藏藥品,VARCHAR,10,NONE")]
+        冷藏藥品,
         [Description("生物製劑,VARCHAR,10,NONE")]
         生物製劑,
         [Description("管制級別,VARCHAR,10,NONE")]
         管制級別,
+        [Description("懷孕用藥級別,VARCHAR,10,NONE")]
+        懷孕用藥級別,
         [Description("圖片網址,VARCHAR,500,NONE")]
         圖片網址,
         [Description("圖片網址1,VARCHAR,500,NONE")]
         圖片網址1,
+        [Description("仿單網址,VARCHAR,500,NONE")]
+        仿單網址,
+        [Description("說明書網址,VARCHAR,500,NONE")]
+        說明書網址,
         [Description("類別,VARCHAR,500,NONE")]
         類別,
         [Description("中西藥,VARCHAR,30,NONE")]
@@ -75,6 +105,8 @@ namespace HIS_DB_Lib
         開檔狀態,
         [Description("儲位描述,VARCHAR,300,NONE")]
         儲位描述,
+        [Description("備註,VARCHAR,500,NONE")]
+        備註,
     }
 
     public enum enum_雲端藥檔_EXCEL
