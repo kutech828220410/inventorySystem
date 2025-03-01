@@ -3407,6 +3407,11 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.Master_GUID">
+            <summary>
+            Master_GUID
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.textVisionClass.PRI_KEY">
             <summary>
             PRI_KEY

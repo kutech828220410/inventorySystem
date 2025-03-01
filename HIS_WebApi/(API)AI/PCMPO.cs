@@ -438,20 +438,20 @@ namespace HIS_WebApi
                 textVision.批次ID = textVisionClasses[0].批次ID;
                 textVision.操作時間 = textVisionClasses[0].操作時間;
                 textVision.確認 = textVisionClasses[0].確認;
-                //textVision.效期 = textVisionClasses[0].效期;
+                textVision.驗收單號 = textVisionClasses[0].驗收單號;
                 textVision.Code = textVisionClasses[0].Code;
                 textVision.Result = textVisionClasses[0].Result;
                 textVision.操作者ID = textVisionClasses[0].操作者ID;
                 textVision.操作者姓名 = textVisionClasses[0].操作者姓名;
                 textVision.圖片 = textVisionClasses[0].圖片;
-                textVision.PRI_KEY = textVision.單號;
+                textVision.PRI_KEY = $"{textVision.驗收單號}-{textVision.單號}";
                 //if (textVision.效期.StringIsEmpty())
                 //{
                 //    textVision.效期 = textVisionClasses[0].效期;
                 //}
                 if (return_textVisionClass.Result == "False") // 批號或效期壞辨識失敗
                 {
-                    textVision.效期 = textVisionClasses[0].效期;
+                    if(textVision.效期.StringIsEmpty()) textVision.效期 = textVisionClasses[0].效期;
                     string base64 = textVision.圖片;
                     string fileName = "";
                     if (textVision.單號.StringIsEmpty())
@@ -598,7 +598,7 @@ namespace HIS_WebApi
                 if (content == null)
                 {
                     returnData.Code = 200;
-                    returnData.Result = $"查無對應單號資料 單號 {textVision.單號}";
+                    returnData.Result = $"查無對應單號資料 單號 {textVision.驗收單號}-{textVision.單號}";
 
                     textVision.Code = "-2";
                     textVision.Result = returnData.Result;
@@ -621,18 +621,11 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     if (content.藥品名稱.StringIsEmpty() == false) textVision.藥名 = content.藥品名稱;
-                    if (textVision.效期.StringIsEmpty())
-                    {
-                        textVision.效期 = DateTime.MinValue.ToDateTimeString();
-                    }
-                    else
-                    {
-                        textVision = EditExpirydate(textVision);
-                    }
+                    
+                    textVision = EditExpirydate(textVision);                   
                     textVision.藥品碼 = content.藥品碼;
                     textVision.數量 = content.應收數量;
-                   
-                  
+                    textVision.Master_GUID = content.GUID;
 
                     List<medClass> medClasses = new List<medClass>();
                     if (textVision.藥品碼.StringIsEmpty() == false)
@@ -1081,7 +1074,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以單號取得資料
+        /// 以PRI_KEY(驗收單號-請購單號)取得資料
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1098,7 +1091,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("get_by_pri_key")]
-        public string get_by_po_num([FromBody] returnData returnData)
+        public string get_by_pri_key([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_pri_key";
@@ -1113,7 +1106,7 @@ namespace HIS_WebApi
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"po_num\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"驗收單號-請購單號\"]";
                     return returnData.JsonSerializationt(true);
                 }
 
@@ -1162,6 +1155,7 @@ namespace HIS_WebApi
         ///                 "op_name":
         ///                 "bsse64":
         ///                 "batch_id":"日期時間"
+        ///                 "IC_SN":"驗收單號"
         ///             }
         ///         ]
         ///         
@@ -1209,13 +1203,12 @@ namespace HIS_WebApi
                 }
 
                 List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
-
                 sQLControl_textVision.AddRows(null, list_textVision);
-                input_textVision[0].圖片 = "";
+
                 returnData.Code = 200;
-                returnData.Data = input_textVision;
+                returnData.Data = clearLongData(input_textVision[0]);
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"請購單資料預儲存成功";
+                returnData.Result = $"請購單資料預儲存成功 GUID:{input_textVision[0].GUID}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -1460,16 +1453,40 @@ namespace HIS_WebApi
                         update_textVisionClass.Add(textVisionClasses[i]);
                     }
                 }
-                List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
-                if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
-                for (int i = 0; i < textVisionClasses.Count; i++)
+                List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
                 {
-                    textVisionClasses[i].圖片 = "";
-                    textVisionClasses[i].Log = "";
-                }
+                    List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
+                    if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
 
+                })));
+                
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    foreach(var textVisionClass in update_textVisionClass)
+                    {
+                        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
+                        {
+                            Master_GUID = textVisionClass.Master_GUID,
+                            效期 = textVisionClass.效期,
+                            批號 = textVisionClass.批號,
+                            實收數量 = textVisionClass.數量,
+                            操作人 = textVisionClass.操作者姓名,
+                        };
+                        sub_Contents.Add(sub_Content);
+                    }   
+                })));
+                Task.WhenAll(tasks).Wait();
+                foreach (var item in sub_Contents)
+                {
+                    returnData returnData_out = inspectionClass.returnData_sub_content_add(API_Server, item);
+                    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
+                    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
+                }
+                
                 returnData.Code = 200;
-                returnData.Data = textVisionClasses;
+                returnData.Data = clearLongData(update_textVisionClass);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"更新請購單資料共{update_textVisionClass.Count}筆";
                 return returnData.JsonSerializationt(true);
@@ -1603,6 +1620,16 @@ namespace HIS_WebApi
             textVisionClass.圖片 = "";
             textVisionClass.Log = "";
             return new List<textVisionClass>() { textVisionClass };
+        }
+        private List<textVisionClass> clearLongData(List<textVisionClass> textVisionClasses)
+        {
+            foreach(var textVisionClass in textVisionClasses)
+            {
+                textVisionClass.圖片 = "";
+                textVisionClass.Log = "";
+            }
+            
+            return textVisionClasses;
         }
         private Dictionary<string, (string Position, string Confidence, string Label)> toDicByPosition(textVisionClass textVisionClass)
         {
