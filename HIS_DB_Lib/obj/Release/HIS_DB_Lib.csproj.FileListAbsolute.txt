@@ -998,4 +998,4 @@ C:\Users\User'\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.cs
 C:\Users\User'\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\Users\User'\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.Up2Date
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
