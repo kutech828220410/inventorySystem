@@ -569,19 +569,19 @@ namespace HIS_DB_Lib
             }
         }
     }
-    public class diseaseOut
-    {
-        /// <summary>
-        /// 疾病代碼
-        /// </summary>
-        [JsonPropertyName("disease_code")]
-        public string 疾病代碼 { get; set; }
-        /// <summary>
-        /// 疾病說明
-        /// </summary>
-        [JsonPropertyName("disease_descrip")]
-        public string 疾病說明 { get; set; }
+    //public class diseaseOut
+    //{
+    //    /// <summary>
+    //    /// 疾病代碼
+    //    /// </summary>
+    //    [JsonPropertyName("disease_code")]
+    //    public string 疾病代碼 { get; set; }
+    //    /// <summary>
+    //    /// 疾病說明
+    //    /// </summary>
+    //    [JsonPropertyName("disease_descrip")]
+    //    public string 疾病說明 { get; set; }
 
-    }
+    //}
 
 }
