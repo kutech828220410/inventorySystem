@@ -444,7 +444,7 @@ namespace HIS_WebApi
                 textVision.操作者ID = textVisionClasses[0].操作者ID;
                 textVision.操作者姓名 = textVisionClasses[0].操作者姓名;
                 textVision.圖片 = textVisionClasses[0].圖片;
-                textVision.PRI_KEY = $"{textVision.驗收單號}-{textVision.單號}";
+                textVision.PRI_KEY = $"{textVision.驗收單號}_{textVision.單號}";
                 //if (textVision.效期.StringIsEmpty())
                 //{
                 //    textVision.效期 = textVisionClasses[0].效期;
@@ -1193,7 +1193,7 @@ namespace HIS_WebApi
                     textVisionClass.Result = "未辨識";
                     if (textVisionClass.圖片.StringIsEmpty())
                     {
-                        string filPath = @"C:\Users\user\OneDrive - 鴻森智能科技有限公司\軟體部\0.醫院客戶資料\3.衛服部立台北醫院\請購單辨識\測試單據\20250116-1_1140114009-01.jpg";
+                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\20250116-1_1140114013-08.jpg";
                         byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
                         string base64 = Convert.ToBase64String(imageBytes);
                         base64 = $"data:image/jpeg;base64,{base64}";

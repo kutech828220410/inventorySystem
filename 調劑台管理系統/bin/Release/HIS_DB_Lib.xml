@@ -410,6 +410,266 @@
             時間
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.patientInfoClass">
+            <summary>
+            住院藥車病人資訊
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.PRI_KEY">
+            <summary>
+            PRI_KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.更新時間">
+            <summary>
+            更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.調劑時間">
+            <summary>
+            調劑時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.異動">
+            <summary>
+            異動
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.姓名">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.住院號">
+            <summary>
+            住院號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.病歷號">
+            <summary>
+            病歷號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.藥局">
+            <summary>
+            藥局
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.護理站">
+            <summary>
+            護理站
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.床號">
+            <summary>
+            床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.占床狀態">
+            <summary>
+            占床狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.調劑狀態">
+            <summary>
+            調劑狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.處方異動狀態">
+            <summary>
+            處方異動狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.性別">
+            <summary>
+            性別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.出生日期">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.年齡">
+            <summary>
+            年齡
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.科別">
+            <summary>
+            科別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.財務">
+            <summary>
+            財務
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.入院日期">
+            <summary>
+            入院日期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.主治醫師代碼">
+            <summary>
+            主治醫師代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.住院醫師代碼">
+            <summary>
+            住院醫師代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.主治醫師">
+            <summary>
+            診所名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.住院醫師">
+            <summary>
+            醫生姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.身高">
+            <summary>
+            身高
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.體重">
+            <summary>
+            體重
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.體表面積">
+            <summary>
+            體表面積
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.疾病代碼">
+            <summary>
+            疾病代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.疾病說明">
+            <summary>
+            疾病說明
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.鼻胃管使用狀況">
+            <summary>
+            鼻胃管使用狀況
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.其他管路使用狀況">
+            <summary>
+            其他管路使用狀況
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.過敏史">
+            <summary>
+            過敏史
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.白蛋白">
+            <summary>
+            白蛋白
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.肌酸酐">
+            <summary>
+            肌酸酐
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.估算腎小球過濾率">
+            <summary>
+            估算腎小球過濾率
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.丙氨酸氨基轉移酶">
+            <summary>
+            丙氨酸氨基轉移酶
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.鉀離子">
+            <summary>
+            鉀離子
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.鈣離子">
+            <summary>
+            鈣離子
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.總膽紅素">
+            <summary>
+            總膽紅素
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.鈉離子">
+            <summary>
+            鈉離子
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.白血球">
+            <summary>
+            白血球
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.血紅素">
+            <summary>
+            血紅素
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.血小板">
+            <summary>
+            血小板
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.國際標準化比率">
+            <summary>
+            國際標準化比率
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.檢驗數值異常">
+            <summary>
+            檢驗數值異常
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.覆核狀態">
+            <summary>
+            覆核狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.診斷病名">
+            <summary>
+            診斷病名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.處方">
+            <summary>
+            處方
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.patientInfoClass.處方異動">
+            <summary>
+            處方異動
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.diseaseOut.疾病代碼">
+            <summary>
+            疾病代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.diseaseOut.疾病說明">
+            <summary>
+            疾病說明
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugDispatchClass.GUID">
             <summary>
             唯一KEY
@@ -1015,16 +1275,6 @@
         <member name="P:HIS_DB_Lib.medCarInfoClass.處方異動">
             <summary>
             處方異動
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.diseaseOut.疾病代碼">
-            <summary>
-            疾病代碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.diseaseOut.疾病說明">
-            <summary>
-            疾病說明
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medCpoeClass">
