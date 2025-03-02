@@ -14,6 +14,8 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
         [Description("PRI_KEY,VARCHAR,200,INDEX")]
         PRI_KEY,
         [Description("驗收單號,VARCHAR,200,INDEX")]
@@ -115,6 +117,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// Master_GUID
+        /// </summary>
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
         /// <summary>
         /// PRI_KEY
         /// </summary>

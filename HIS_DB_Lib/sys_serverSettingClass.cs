@@ -515,7 +515,13 @@ namespace HIS_DB_Lib
         }
 
 
-        
+        public class ICP_By_dps_name : IComparer<sys_serverSettingClass>
+        {
+            public int Compare(sys_serverSettingClass x, sys_serverSettingClass y)
+            {
+                return (x.設備名稱).CompareTo(y.設備名稱);
+            }
+        }
 
     }
 }
