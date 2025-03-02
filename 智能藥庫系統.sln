@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSettingForm", "Server
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-UpdateVersion", "E-UpdateVersion\E-UpdateVersion.csproj", "{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "癌症自動備藥機暨自動備藥系統", "癌症自動備藥機暨排程系統\癌症自動備藥機暨自動備藥系統.csproj", "{9952E5D3-B159-497F-9DED-612B4B5E1C98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Call_Light_System", "Hospital_Call_Light_System\Hospital_Call_Light_System.csproj", "{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}"
@@ -51,6 +49,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_medpic_download_to_base64", "batch_medpic_download_to_base64\batch_medpic_download_to_base64.csproj", "{D052F6A1-7A59-4351-B2CC-F72D1CE81809}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_StackDataAccounting", "batch_StackDataAccounting\batch_StackDataAccounting.csproj", "{1EE88150-F781-470C-BFFA-3902125C3064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,10 +86,6 @@ Global
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -130,6 +126,10 @@ Global
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

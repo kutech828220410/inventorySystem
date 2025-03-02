@@ -78,7 +78,8 @@ namespace 智能藥庫系統
                 }
                 if (MyTimerBasic_申領通知_開始語音提示.IsTimeOut())
                 {
-                    bool flag_語音提示 = false;
+                    bool flag_緊急申領_語音提示 = false;
+                    bool flag_一般申領_語音提示 = false;
                     bool flag_燈號提示 = false;
                     for (int i = 0; i < materialRequisitionClasses_等待撥補.Count; i++)
                     {
@@ -90,19 +91,25 @@ namespace 智能藥庫系統
                             materialRequisitionClasses_已通知.Add(materialRequisitionClasses_等待撥補[i]);
                             if (materialRequisitionClasses_等待撥補[i].申領類別 == "緊急申領")
                             {
-                                flag_語音提示 = true;
+                                flag_緊急申領_語音提示 = true;
                                 flag_燈號提示 = true;
                             }
                             if (materialRequisitionClasses_等待撥補[i].申領類別 == "一般申領")
                             {
+                                flag_一般申領_語音提示 = true;
                                 flag_燈號提示 = true;
                             }
                         }
                     }
-                    if (flag_語音提示)
+                    if (flag_緊急申領_語音提示)
                     {
-                        Voice.MediaPlayAsync($@"{currentDirectory}\有新申領通知.wav");
-                        Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 申領通知 語音提示");
+                        Voice.MediaPlayAsync($@"{currentDirectory}\緊急申領.wav");
+                        Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 緊急申領 語音提示");
+                    }
+                    if (flag_一般申領_語音提示)
+                    {
+                        Voice.MediaPlayAsync($@"{currentDirectory}\一般申領.wav");
+                        Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 一般申領 語音提示");
                     }
                     if (flag_燈號提示)
                     {

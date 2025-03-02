@@ -22,8 +22,8 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.25.0122")]
-[assembly: AssemblyFileVersion("1.0.25.0122")]
+[assembly: AssemblyVersion("1.0.25.03031")]
+[assembly: AssemblyFileVersion("1.0.25.03031")]
 namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
@@ -206,6 +206,12 @@ namespace 智能藥庫系統
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
             this.drawerUI_EPD_583.Init(dBConfigClass.DB_儲位資料);
             this.rfiD_UI.Init(dBConfigClass.DB_儲位資料);
+
+            byte[] bytes_emg_voice = materialRequisitionClass.emg_voice_download(API_Server);
+            bytes_emg_voice.SaveFileStream($"{currentDirectory}\\緊急申領.wav");
+
+            byte[] bytes_normal_voice = materialRequisitionClass.normal_voice_download(API_Server);
+            bytes_normal_voice.SaveFileStream($"{currentDirectory}\\一般申領.wav");
 
             this.plC_UI_Init.Run(this.FindForm(), lowerMachine_Panel);
         }

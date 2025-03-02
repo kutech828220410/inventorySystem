@@ -528,7 +528,98 @@ namespace HIS_DB_Lib
             byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
             return bytes;
         }
-
+        /// <summary>
+        /// 上傳一般申領語音檔案 (根據檔案路徑)
+        /// </summary>
+        /// <param name="API_Server">API 伺服器的 URL</param>
+        /// <param name="filePath">語音檔案的完整路徑</param>
+        /// <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        static public string normal_voice_upload(string API_Server, string filePath)
+        {
+            // 讀取檔案內容轉換為位元組陣列
+            byte[] bytes = System.IO.File.ReadAllBytes(filePath);
+            // 調用原本的 byte[] 版本進行上傳
+            return normal_voice_upload(API_Server, bytes);
+        }
+        /// <summary>
+        /// 上傳一般申領語音檔案
+        /// </summary>
+        /// <param name="API_Server">API 伺服器的 URL</param>
+        /// <param name="bytes">語音檔案流</param>
+        /// <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        static public string normal_voice_upload(string API_Server, byte[] bytes)
+        {
+            string url = $"{API_Server}/api/materialRequisition/normal_voice_upload";
+            // 呼叫上傳檔案的 Helper 方法，傳入 API URL 與檔案路徑
+            string result = Basic.Net.WEBApiPost(url, "normal_voice_upload.wav", bytes, new List<string>(), new List<string>());
+            return result;
+        }
+        /// <summary>
+        /// 下載一般申領語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此方法透過呼叫 API 伺服器提供的下載介面，
+        /// 將回傳的 JSON 序列化結果轉換成位元組陣列，
+        /// 作為語音檔案內容回傳。
+        /// </remarks>
+        /// <param name="API_Server">API 伺服器的 URL。</param>
+        /// <returns>
+        /// 回傳包含語音檔案內容的位元組陣列。
+        /// </returns>
+        static public byte[] normal_voice_download(string API_Server)
+        {
+            string url = $"{API_Server}/api/materialRequisition/normal_voice_download";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
+        /// <summary>
+        /// 上傳緊急申領語音檔案 (根據檔案路徑)
+        /// </summary>
+        /// <param name="API_Server">API 伺服器的 URL</param>
+        /// <param name="filePath">語音檔案的完整路徑</param>
+        /// <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        static public string emg_voice_upload(string API_Server, string filePath)
+        {
+            // 讀取檔案內容轉換為位元組陣列
+            byte[] bytes = System.IO.File.ReadAllBytes(filePath);
+            // 調用原本的 byte[] 版本進行上傳
+            return emg_voice_upload(API_Server, bytes);
+        }
+        /// <summary>
+        /// 上傳緊急申領語音檔案
+        /// </summary>
+        /// <param name="API_Server">API 伺服器的 URL</param>
+        /// <param name="bytes">語音檔案流</param>
+        /// <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        static public string emg_voice_upload(string API_Server, byte[] bytes)
+        {
+            string url = $"{API_Server}/api/materialRequisition/emg_voice_upload";
+            // 呼叫上傳檔案的 Helper 方法，傳入 API URL 與檔案路徑
+            string result = Basic.Net.WEBApiPost(url, "emg_voice_upload.wav", bytes, new List<string>(), new List<string>());
+            return result;
+        }
+        /// <summary>
+        /// 下載緊急申領語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此方法透過呼叫 API 伺服器提供的下載介面，
+        /// 將回傳的 JSON 序列化結果轉換成位元組陣列，
+        /// 作為語音檔案內容回傳。
+        /// </remarks>
+        /// <param name="API_Server">API 伺服器的 URL。</param>
+        /// <returns>
+        /// 回傳包含語音檔案內容的位元組陣列。
+        /// </returns>
+        static public byte[] emg_voice_download(string API_Server)
+        {
+            string url = $"{API_Server}/api/materialRequisition/emg_voice_download";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
         /// <summary>
         /// 比較藥碼的比較器。
         /// </summary>

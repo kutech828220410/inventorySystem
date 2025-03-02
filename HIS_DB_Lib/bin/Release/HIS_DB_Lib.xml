@@ -1001,6 +1001,66 @@
             <param name="API_Server">API 伺服器地址。</param>
             <param name="guid">資料的 GUID。</param>
         </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_upload(System.String,System.String)">
+            <summary>
+            上傳一般申領語音檔案 (根據檔案路徑)
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="filePath">語音檔案的完整路徑</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_upload(System.String,System.Byte[])">
+            <summary>
+            上傳一般申領語音檔案
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="bytes">語音檔案流</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_download(System.String)">
+            <summary>
+            下載一般申領語音檔案。
+            </summary>
+            <remarks>
+            此方法透過呼叫 API 伺服器提供的下載介面，
+            將回傳的 JSON 序列化結果轉換成位元組陣列，
+            作為語音檔案內容回傳。
+            </remarks>
+            <param name="API_Server">API 伺服器的 URL。</param>
+            <returns>
+            回傳包含語音檔案內容的位元組陣列。
+            </returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_upload(System.String,System.String)">
+            <summary>
+            上傳緊急申領語音檔案 (根據檔案路徑)
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="filePath">語音檔案的完整路徑</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_upload(System.String,System.Byte[])">
+            <summary>
+            上傳緊急申領語音檔案
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="bytes">語音檔案流</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_download(System.String)">
+            <summary>
+            下載緊急申領語音檔案。
+            </summary>
+            <remarks>
+            此方法透過呼叫 API 伺服器提供的下載介面，
+            將回傳的 JSON 序列化結果轉換成位元組陣列，
+            作為語音檔案內容回傳。
+            </remarks>
+            <param name="API_Server">API 伺服器的 URL。</param>
+            <returns>
+            回傳包含語音檔案內容的位元組陣列。
+            </returns>
+        </member>
         <member name="T:HIS_DB_Lib.materialRequisitionClass.ICP_By_Code">
             <summary>
             比較藥碼的比較器。
