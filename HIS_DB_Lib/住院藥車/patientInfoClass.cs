@@ -357,9 +357,9 @@ namespace HIS_DB_Lib
         [JsonPropertyName("cpoe_change")]
         public List<medCpoeRecClass> 處方異動 { get; set; }
 
-        public class ICP_By_bedNum : IComparer<medCarInfoClass>
+        public class ICP_By_bedNum : IComparer<patientInfoClass>
         {
-            public int Compare(medCarInfoClass x, medCarInfoClass y)
+            public int Compare(patientInfoClass x, patientInfoClass y)
             {
                 return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
             }
@@ -487,31 +487,31 @@ namespace HIS_DB_Lib
             out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
-        static public Dictionary<string, List<medCarInfoClass>> ToDictByGUID(List<medCarInfoClass> medCarInfoClasses)
+        static public Dictionary<string, List<patientInfoClass>> ToDictByGUID(List<patientInfoClass> patientInfoClasses)
         {
-            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
-            foreach (var item in medCarInfoClasses)
+            Dictionary<string, List<patientInfoClass>> dictionary = new Dictionary<string, List<patientInfoClass>>();
+            foreach (var item in patientInfoClasses)
             {
-                if (dictionary.TryGetValue(item.GUID, out List<medCarInfoClass> list))
+                if (dictionary.TryGetValue(item.GUID, out List<patientInfoClass> list))
                 {
                     list.Add(item);
                 }
                 else
                 {
-                    dictionary[item.GUID] = new List<medCarInfoClass>() { item };
+                    dictionary[item.GUID] = new List<patientInfoClass>() { item };
                 }
             }
             return dictionary;
         }
-        static public List<medCarInfoClass> GetDictByGUID(Dictionary<string, List<medCarInfoClass>> dict, string GUID)
+        static public List<patientInfoClass> GetDictByGUID(Dictionary<string, List<patientInfoClass>> dict, string GUID)
         {
-            if (dict.TryGetValue(GUID, out List<medCarInfoClass> medCarInfoClasses))
+            if (dict.TryGetValue(GUID, out List<patientInfoClass> patientInfoClasses))
             {
-                return medCarInfoClasses;
+                return patientInfoClasses;
             }
             else
             {
-                return new List<medCarInfoClass>();
+                return new List<patientInfoClass>();
             }
         }
         static public Dictionary<string, List<medCarInfoClass>> CoverToDictByMedCart(List<medCarInfoClass> medCarInfoClasses)
@@ -541,31 +541,31 @@ namespace HIS_DB_Lib
                 return new List<medCarInfoClass>();
             }
         }
-        static public Dictionary<string, List<medCarInfoClass>> ToDictByBedNum(List<medCarInfoClass> medCarInfoClasses)
+        static public Dictionary<string, List<patientInfoClass>> ToDictByBedNum(List<patientInfoClass> patientInfoClasses)
         {
-            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
-            foreach (var item in medCarInfoClasses)
+            Dictionary<string, List<patientInfoClass>> dictionary = new Dictionary<string, List<patientInfoClass>>();
+            foreach (var item in patientInfoClasses)
             {
-                if (dictionary.TryGetValue(item.床號, out List<medCarInfoClass> list))
+                if (dictionary.TryGetValue(item.床號, out List<patientInfoClass> list))
                 {
                     list.Add(item);
                 }
                 else
                 {
-                    dictionary[item.床號] = new List<medCarInfoClass>() { item };
+                    dictionary[item.床號] = new List<patientInfoClass>() { item };
                 }
             }
             return dictionary;
         }
-        static public List<medCarInfoClass> GetDictByBedNum(Dictionary<string, List<medCarInfoClass>> dict, string 床號)
+        static public List<patientInfoClass> GetDictByBedNum(Dictionary<string, List<patientInfoClass>> dict, string 床號)
         {
-            if (dict.TryGetValue(床號, out List<medCarInfoClass> medCarInfoClasses))
+            if (dict.TryGetValue(床號, out List<patientInfoClass> patientInfoClasses))
             {
-                return medCarInfoClasses;
+                return patientInfoClasses;
             }
             else
             {
-                return new List<medCarInfoClass>();
+                return new List<patientInfoClass>();
             }
         }
     }

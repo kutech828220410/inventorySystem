@@ -950,6 +950,26 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 更新西藥醫令
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///       [OrderClass(陣列)]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
 
         [HttpPost("update_order_list")]
         public string update_order_list([FromBody] returnData returnData)
@@ -980,8 +1000,10 @@ namespace HIS_WebApi
                 {
                     if (orderClass.藥袋類型 != "New")
                     {
-                        OrderClass orderClass_delete = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
-                        if (orderClass_delete != null) delete_order_list.Add(orderClass_delete);
+                        //OrderClass orderClass_delete = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
+                        //if (orderClass_delete != null) delete_order_list.Add(orderClass_delete);
+                        orderClass.批序 += "[DC]";
+                        result_order_list.Add(orderClass);
                     }
                     else if (orderClass.藥袋類型 == "New")
                     {

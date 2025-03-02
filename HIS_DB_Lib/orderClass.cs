@@ -786,6 +786,33 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses_out = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return (returnData_out.Code, returnData_out.Result, OrderClasses_out);
         }
+        static public Dictionary<string, List<OrderClass>> ToDictByPriKey(List<OrderClass> OrderClasses)
+        {
+            Dictionary<string, List<OrderClass>> dictionary = new Dictionary<string, List<OrderClass>>();
+            foreach (var item in OrderClasses)
+            {
+                if (dictionary.TryGetValue(item.PRI_KEY, out List<OrderClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.PRI_KEY] = new List<OrderClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<OrderClass> GetByPriKey(Dictionary<string, List<OrderClass>> dict, string PRI_KEY)
+        {
+            if (dict.TryGetValue(PRI_KEY, out List<OrderClass> OrderClasses))
+            {
+                return OrderClasses;
+            }
+            else
+            {
+                return new List<OrderClass>();
+            }
+        }
 
     }
 
