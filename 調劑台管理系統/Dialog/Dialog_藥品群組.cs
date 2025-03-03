@@ -132,7 +132,6 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_群組設定_MouseDownEvent(MouseEventArgs mevent)
         {
             medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
-
             Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定(_medGroupClass);
             if (dialog_藥品群組設定.ShowDialog() != DialogResult.Yes) return;
         }
@@ -148,11 +147,8 @@ namespace 調劑台管理系統
                 dialogResult = MyMessageBox.ShowDialog($"是否儲存群組資料,共<{list_value.Count}>筆?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel);
                 if (dialogResult != DialogResult.Yes) return;
                 List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
-                string text = "";
-                this.Invoke(new Action(delegate
-                {
-                    text = comboBox_藥品群組.Text;
-                }));
+                string text = comboBox_藥品群組.GetComboBoxText();
+      
                 medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, text);
                 _medGroupClass.MedClasses = medClasses;
                 medGroupClass.add_group(Main_Form.API_Server, _medGroupClass);
@@ -168,9 +164,7 @@ namespace 調劑台管理系統
                 {
                     MyMessageBox.ShowDialog("儲存成功");
                 }
-
             }            
-
         }
         private void RJ_Button_藥品群組_新增_MouseDownEvent(MouseEventArgs mevent)
         {

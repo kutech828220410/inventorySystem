@@ -42,6 +42,15 @@ namespace 調劑台管理系統
         }
         private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
+            List<string> serverNames = new List<string>();
+            for (int i = 1; i < checkBoxes.Count; i++)
+            {
+                if (checkBoxes[i].Checked)
+                {
+                    serverNames.Add(checkBoxes[i].Text);
+                }
+            }
+            medGroupClass.update_visible_info(Main_Form.API_Server, medGroupClass.GUID, serverNames);
             this.DialogResult = DialogResult.Yes;
             this.Close();
         }
@@ -55,22 +64,16 @@ namespace 調劑台管理系統
             List<string> serverNames = (from temp in sys_serverSettingClasses
                            where temp.類別 == "調劑台"
                            select temp.設備名稱).Distinct().ToList();
+
             CheckBox checkBox;
             checkBox = new CheckBox();
             checkBox.AutoSize = false;
             checkBox.Size = new Size(200, 30);
             checkBox.Font = new Font("微軟正黑體", 16);
             checkBox.Text = $"全選";
-            checkBox.CheckedChanged += CheckBox_CheckedChanged;
-            //list_value_buf = list_value.GetRows((int)enum_commonSpaceSetup.共用區名稱, serverNames[i]);
-            //if (list_value_buf.Count > 0)
-            //{
-            //    if (list_value_buf[0][(int)enum_commonSpaceSetup.是否共用].ObjectToString().ToUpper() == true.ToString().ToUpper())
-            //    {
-            //        checkBox.Checked = true;
-            //    }
-            //}
+            checkBox.CheckedChanged += CheckBox_CheckedChanged;      
             this.flowLayoutPanel.Controls.Add(checkBox);
+
             for (int i = 0; i < serverNames.Count; i++)
             {
                 checkBox = new CheckBox();
@@ -86,27 +89,45 @@ namespace 調劑台管理系統
                 //        checkBox.Checked = true;
                 //    }
                 //}
+                checkBox.CheckedChanged += CheckBox_CheckedChanged;
                 checkBoxes.Add(checkBox);
                 this.flowLayoutPanel.Controls.Add(checkBox);
             }
             this.flowLayoutPanel.ResumeLayout(false);
         }
 
+        private void Dialog_藥品群組設定_LoadFinishedEvent(EventArgs e)
+        {
+            this.Refresh();
+        }
 
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (sender is CheckBox)
             {
                 CheckBox checkBox = (CheckBox)sender;
-                for (int i = 0; i < checkBoxes.Count; i++)
+                if (checkBox.Text == "全選")
                 {
-                    checkBoxes[i].Checked = checkBox.Checked;
+                    for (int i = 0; i < checkBoxes.Count; i++)
+                    {
+                        checkBoxes[i].Checked = checkBox.Checked;
+                    }
+                }
+                else
+                {
+                    bool allChecked = true;
+                    for (int i = 1; i < checkBoxes.Count; i++)
+                    {
+                        if (checkBoxes[i].Checked == false)
+                        {
+                            allChecked = false;
+                            break;
+                        }
+                    }
+                    checkBoxes[0].Checked = allChecked;
                 }
             }
         }
-        private void Dialog_藥品群組設定_LoadFinishedEvent(EventArgs e)
-        {
-           
-        }
+        
     }
 }
