@@ -199,7 +199,7 @@ namespace HIS_WebApi
                 returnData.Data = medGroupClasses;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "get_group_by_guid";
-                returnData.Result = $"取得藥品群組資料成功!";
+                returnData.Result = $"取得藥品群組資料成功";
 
                 return returnData.JsonSerializationt(true);
             }
@@ -280,8 +280,8 @@ namespace HIS_WebApi
                     returnData.Result = $"輸入資料空白!須為[medGroupClass]";
                     return returnData.JsonSerializationt();
                 }
-                object[] value_medGroup = medGroupClass.ClassToSQL<medGroupClass, enum_藥品群組>();
-                List<object[]> list_sub_medGroup = medGroupClass.MedClasses.ClassToSQL<medClass, enum_藥品群組明細>();
+                object[] value_medGroup = medGroupClass.ClassToSQL<medGroupClass, enum_medGroup>();
+                List<object[]> list_sub_medGroup = medGroupClass.MedClasses.ClassToSQL<medClass, enum_sub_medGroup>();
         
                 if (value_medGroup == null || list_sub_medGroup == null)
                 {
@@ -305,7 +305,7 @@ namespace HIS_WebApi
 
            
 
-                if (value_medGroup[(int)enum_藥品群組.GUID].ObjectToString().StringIsEmpty() == true)
+                if (value_medGroup[(int)enum_medGroup.GUID].ObjectToString().StringIsEmpty() == true)
                 {
                     List<object[]> list_med_group = sQLControl_med_group.GetAllRows(null);
                     List<object[]> list_med_group_buf = new List<object[]>();
@@ -314,19 +314,19 @@ namespace HIS_WebApi
                     List<object[]> list_sub_group_add = new List<object[]>();
 
                     string Master_GUID = Guid.NewGuid().ToString();
-                    value_medGroup[(int)enum_藥品群組.GUID] = Master_GUID;
-                    value_medGroup[(int)enum_藥品群組.建立時間] = DateTime.Now.ToDateTimeString_6();
+                    value_medGroup[(int)enum_medGroup.GUID] = Master_GUID;
+                    value_medGroup[(int)enum_medGroup.建立時間] = DateTime.Now.ToDateTimeString_6();
 
                     for (int i = 0; i < list_sub_medGroup.Count; i++)
                     {
-                        string 藥品碼 = list_sub_medGroup[i][(int)enum_藥品群組明細.藥品碼].ObjectToString();
+                        string 藥品碼 = list_sub_medGroup[i][(int)enum_sub_medGroup.藥品碼].ObjectToString();
                         medClasses_buf = (from temp in medClasses
                                           where temp.藥品碼 == 藥品碼
                                           select temp).ToList();
                         if (medClasses_buf.Count > 0)
                         {
-                            list_sub_medGroup[i][(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
-                            list_sub_medGroup[i][(int)enum_藥品群組明細.Master_GUID] = Master_GUID;
+                            list_sub_medGroup[i][(int)enum_sub_medGroup.GUID] = Guid.NewGuid().ToString();
+                            list_sub_medGroup[i][(int)enum_sub_medGroup.Master_GUID] = Master_GUID;
                             list_sub_group_add.Add(list_sub_medGroup[i]);
                         }
                     }
@@ -344,10 +344,10 @@ namespace HIS_WebApi
                 }
                 else
                 {
-                    string Master_GUID = value_medGroup[(int)enum_藥品群組.GUID].ObjectToString();
-                    List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, Master_GUID);
+                    string Master_GUID = value_medGroup[(int)enum_medGroup.GUID].ObjectToString();
+                    List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, Master_GUID);
                     List<object[]> list_med_group_buf = new List<object[]>();
-                    List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, Master_GUID);
+                    List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_sub_medGroup.Master_GUID, Master_GUID);
                     List<object[]> list_sub_group_buf = new List<object[]>();
                     List<object[]> list_sub_group_add = new List<object[]>();
                     List<object[]> list_sub_group_replace = new List<object[]>();
@@ -361,14 +361,14 @@ namespace HIS_WebApi
 
                     for (int i = 0; i < list_sub_medGroup.Count; i++)
                     {
-                        string 藥品碼 = list_sub_medGroup[i][(int)enum_藥品群組明細.藥品碼].ObjectToString();
+                        string 藥品碼 = list_sub_medGroup[i][(int)enum_sub_medGroup.藥品碼].ObjectToString();
                         medClasses_buf = (from temp in medClasses
                                           where temp.藥品碼 == 藥品碼
                                           select temp).ToList();
                         if (medClasses_buf.Count > 0)
                         {
-                            list_sub_medGroup[i][(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
-                            list_sub_medGroup[i][(int)enum_藥品群組明細.Master_GUID] = Master_GUID;
+                            list_sub_medGroup[i][(int)enum_sub_medGroup.GUID] = Guid.NewGuid().ToString();
+                            list_sub_medGroup[i][(int)enum_sub_medGroup.Master_GUID] = Master_GUID;
                             list_sub_group_add.Add(list_sub_medGroup[i]);
                         }
                     }
@@ -452,18 +452,18 @@ namespace HIS_WebApi
                     returnData.Result = $"輸入資料空白!須為[medGroupClass]";
                     return returnData.JsonSerializationt();
                 }
-                object[] value_medGroup = medGroupClass.ClassToSQL<medGroupClass, enum_藥品群組>();
+                object[] value_medGroup = medGroupClass.ClassToSQL<medGroupClass, enum_medGroup>();
                 string GUID = returnData.Value;
                 SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
-                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, GUID);
+                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, GUID);
                 if(list_medGroup.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無可更動名稱群組!";
                     return returnData.JsonSerializationt();
                 }
-                list_medGroup[0][(int)enum_藥品群組.名稱] = value_medGroup[(int)enum_藥品群組.名稱].ObjectToString();
+                list_medGroup[0][(int)enum_medGroup.名稱] = value_medGroup[(int)enum_medGroup.名稱].ObjectToString();
                 sQLControl_med_group.UpdateByDefulteExtra(null, list_medGroup);
 
                 returnData.Code = 200;
@@ -534,8 +534,8 @@ namespace HIS_WebApi
                 string Master_GUID = returnData.Value;
                 SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
-                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, Master_GUID);
-                List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, Master_GUID);
+                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, Master_GUID);
+                List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_sub_medGroup.Master_GUID, Master_GUID);
                 if (list_medGroup.Count == 0)
                 {
                     returnData.Code = -200;
@@ -630,8 +630,8 @@ namespace HIS_WebApi
                 string Master_GUID = medGroupClass.GUID;
                 SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
-                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, Master_GUID);
-                List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, Master_GUID);
+                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, Master_GUID);
+                List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_sub_medGroup.Master_GUID, Master_GUID);
                 List<object[]> list_med_sub_group_buf = new List<object[]>();
                 List<object[]> list_med_sub_group_delete = new List<object[]>();
                 if (list_medGroup.Count == 0)
@@ -643,7 +643,7 @@ namespace HIS_WebApi
                 for(int i = 0; i < medGroupClass.MedClasses.Count; i++)
                 {
                     string 藥品碼 = medGroupClass.MedClasses[i].藥品碼;
-                    list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_藥品群組明細.藥品碼, 藥品碼);
+                    list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
                     if(list_med_sub_group_buf.Count > 0)
                     {
                         list_med_sub_group_delete.Add(list_med_sub_group_buf[0]);
@@ -748,28 +748,28 @@ namespace HIS_WebApi
 
                 Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
 
-                List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, medGroupClass.GUID);
+                List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, medGroupClass.GUID);
                 if(list_med_group.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料,找無此GUID藥品群組";
                     return returnData.JsonSerializationt();
                 }
-                List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, medGroupClass.GUID);
+                List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_sub_medGroup.Master_GUID, medGroupClass.GUID);
                 List<object[]> list_sub_group_buf = new List<object[]>();
                 List<object[]> list_sub_group_add = new List<object[]>();
                 List<object[]> list_sub_group_replace = new List<object[]>();
 
                 for (int i = 0; i < list_sub_group.Count; i++)
                 {
-                    string 藥品碼 = list_sub_group[i][(int)enum_藥品群組明細.藥品碼].ObjectToString();
-                    list_sub_group_buf = list_sub_group.GetRows((int)enum_藥品群組明細.藥品碼, 藥品碼);
+                    string 藥品碼 = list_sub_group[i][(int)enum_sub_medGroup.藥品碼].ObjectToString();
+                    list_sub_group_buf = list_sub_group.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
                     if (list_sub_group_buf.Count == 0)
                     {
-                        object[] value = new object[new enum_藥品群組明細().GetLength()];
-                        value[(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
-                        value[(int)enum_藥品群組明細.藥品碼] = 藥品碼;
-                        value[(int)enum_藥品群組明細.Master_GUID] = medGroupClass.GUID;
+                        object[] value = new object[new enum_sub_medGroup().GetLength()];
+                        value[(int)enum_sub_medGroup.GUID] = Guid.NewGuid().ToString();
+                        value[(int)enum_sub_medGroup.藥品碼] = 藥品碼;
+                        value[(int)enum_sub_medGroup.Master_GUID] = medGroupClass.GUID;
                         list_sub_group_add.Add(value);
                     }
                 }
@@ -792,7 +792,87 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 修改指定藥品群組顯示資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "NAME": "測試"
+        ///     },
+        ///     "ValueAry":
+        ///     [
+        ///       "GUID",
+        ///       "顯示設備1",
+        ///       "顯示設備2"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("visible_set_by_guid")]
+        [HttpPost]
+        public string POST_visible_set_by_guid([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+      
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                if(returnData.ValueAry.Count < 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入ValueAry資訊錯誤";
+                    return returnData.JsonSerializationt();
+                }
+               
+                string GUID = returnData.ValueAry[0];
+                List<string> visible_device = returnData.ValueAry.GetRange(1, returnData.ValueAry.Count - 1);
 
+
+                SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, GUID);
+                if (list_medGroup.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無可更動名稱群組!";
+                    return returnData.JsonSerializationt();
+                }
+                string visible_device_str = string.Join(",", visible_device);
+                list_medGroup[0][(int)enum_medGroup.顯示資訊] = visible_device_str;
+                sQLControl_med_group.UpdateByDefulteExtra(null, list_medGroup);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"藥品群組顯示資訊更新成功 {visible_device_str}";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
 
         private List<medGroupClass> Function_Get_medGroupClass(sys_serverSettingClass sys_serverSettingClass)
         {
@@ -827,12 +907,12 @@ namespace HIS_WebApi
             List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetAllRows(null);
             List<object[]> list_med_sub_group_buf = new List<object[]>();
 
-            List<medGroupClass> medGroupClasses = list_med_group.SQLToClass<medGroupClass, enum_藥品群組>();
+            List<medGroupClass> medGroupClasses = list_med_group.SQLToClass<medGroupClass, enum_medGroup>();
             for (int i = 0; i < medGroupClasses.Count; i++)
             {
                 string GUID = medGroupClasses[i].GUID;
-                list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_藥品群組明細.Master_GUID, GUID);
-                medGroupClasses[i].MedClasses = list_med_sub_group_buf.SQLToClass<medClass, enum_藥品群組明細>();
+                list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_sub_medGroup.Master_GUID, GUID);
+                medGroupClasses[i].MedClasses = list_med_sub_group_buf.SQLToClass<medClass, enum_sub_medGroup>();
                 for (int k = 0; k < medGroupClasses[i].MedClasses.Count; k++)
                 {
                     medClasses_buf = keyValuePairs_medClass.SortDictionaryByCode(medGroupClasses[i].MedClasses[k].藥品碼);
@@ -847,34 +927,10 @@ namespace HIS_WebApi
         }
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            string Server = sys_serverSettingClass.Server;
-            string DB = sys_serverSettingClass.DBName;
-            string UserName = sys_serverSettingClass.User;
-            string Password = sys_serverSettingClass.Password;
-            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
-
 
             List<Table> tables = new List<Table>();
-
-            Table table_med_group = new Table("med_group");
-            table_med_group.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_med_group.AddColumnList("名稱", Table.StringType.VARCHAR, 500, Table.IndexType.None);
-            table_med_group.AddColumnList("建立時間", Table.DateType.DATETIME, 500, Table.IndexType.None);
-            if (!sQLControl_med_group.IsTableCreat()) sQLControl_med_group.CreatTable(table_med_group);
-            else sQLControl_med_group.CheckAllColumnName(table_med_group, true);
-            tables.Add(table_med_group);
-
-            Table table_med_sub_group = new Table("med_sub_group");
-            table_med_sub_group.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_med_sub_group.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_med_sub_group.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            if (!sQLControl_med_sub_group.IsTableCreat()) sQLControl_med_sub_group.CreatTable(table_med_sub_group);
-            else sQLControl_med_sub_group.CheckAllColumnName(table_med_sub_group, true);
-            tables.Add(table_med_sub_group);
-
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_medGroup()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_sub_medGroup()));
             return tables.JsonSerializationt(true);
         }
     }

@@ -95,7 +95,7 @@ namespace 調劑台管理系統
         條碼3,
         條碼4,
     }
-    public enum enum_藥品群組
+    public enum enum_medGroup
     {
         GUID,
         群組序號,
@@ -1332,8 +1332,8 @@ namespace 調劑台管理系統
         {
             public int Compare(object[] x, object[] y)
             {
-                int index_0 = x[(int)enum_藥品群組.群組序號].ObjectToString().StringToInt32();
-                int index_1 = y[(int)enum_藥品群組.群組序號].ObjectToString().StringToInt32();
+                int index_0 = x[(int)enum_medGroup.群組序號].ObjectToString().StringToInt32();
+                int index_1 = y[(int)enum_medGroup.群組序號].ObjectToString().StringToInt32();
                 return index_0.CompareTo(index_1);
             }
         }

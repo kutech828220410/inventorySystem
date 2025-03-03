@@ -21,9 +21,8 @@ using H_Pannel_lib;
 namespace 調劑台管理系統
 {
     public partial class Dialog_藥品群組 : MyDialog
-    {
-   
- 
+    { 
+        private medGroupClass medGroupClass = new medGroupClass();
         public Dialog_藥品群組()
         {
             form.Invoke(new Action(delegate 
@@ -51,8 +50,8 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_刪除.MouseDownEvent += RJ_Button_藥品群組_刪除_MouseDownEvent;
             comboBox_藥品群組.SelectedIndexChanged += ComboBox_藥品群組_SelectedIndexChanged;
             this.rJ_Button_藥品搜尋.MouseDownEvent += RJ_Button_藥品搜尋_MouseDownEvent;
+            this.plC_RJ_Button_群組設定.MouseDownEvent += PlC_RJ_Button_群組設定_MouseDownEvent;
         }
-
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             List<object[]> RowsList_buf = new List<object[]>();
@@ -129,6 +128,13 @@ namespace 調劑台管理系統
         private void Dialog_藥品群組_LoadFinishedEvent(EventArgs e)
         {
             Function_更新群組列表();
+        }
+        private void PlC_RJ_Button_群組設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
+
+            Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定(_medGroupClass);
+            if (dialog_藥品群組設定.ShowDialog() != DialogResult.Yes) return;
         }
         private void RJ_Button_藥品群組_確認_MouseDownEvent(MouseEventArgs mevent)
         {

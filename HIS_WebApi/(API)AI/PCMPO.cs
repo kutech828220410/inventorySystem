@@ -602,6 +602,8 @@ namespace HIS_WebApi
 
                     textVision.Code = "-2";
                     textVision.Result = returnData.Result;
+                    if (textVision.效期.StringIsEmpty() == false) textVision = EditExpirydate(textVision);
+
                     if (textVision.效期.Check_Date_String() == false)
                     {
                         DateTime.MinValue.ToDateTimeString();
@@ -1454,36 +1456,34 @@ namespace HIS_WebApi
                     }
                 }
                 List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
-                List<Task> tasks = new List<Task>();
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
-                    if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
-
-                })));
                 
-                tasks.Add(Task.Run(new Action(delegate 
-                {
-                    foreach(var textVisionClass in update_textVisionClass)
-                    {
-                        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
-                        {
-                            Master_GUID = textVisionClass.Master_GUID,
-                            效期 = textVisionClass.效期,
-                            批號 = textVisionClass.批號,
-                            實收數量 = textVisionClass.數量,
-                            操作人 = textVisionClass.操作者姓名,
-                        };
-                        sub_Contents.Add(sub_Content);
-                    }   
-                })));
-                Task.WhenAll(tasks).Wait();
-                foreach (var item in sub_Contents)
-                {
-                    returnData returnData_out = inspectionClass.returnData_sub_content_add(API_Server, item);
-                    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
-                    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
-                }
+                List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
+                if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
+
+                
+                
+                //tasks.Add(Task.Run(new Action(delegate 
+                //{
+                //    foreach(var textVisionClass in update_textVisionClass)
+                //    {
+                //        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
+                //        {
+                //            Master_GUID = textVisionClass.Master_GUID,
+                //            效期 = textVisionClass.效期,
+                //            批號 = textVisionClass.批號,
+                //            實收數量 = textVisionClass.數量,
+                //            操作人 = textVisionClass.操作者姓名,
+                //        };
+                //        sub_Contents.Add(sub_Content);
+                //    }   
+                //})));
+                //Task.WhenAll(tasks).Wait();
+                //foreach (var item in sub_Contents)
+                //{
+                //    returnData returnData_out = inspectionClass.returnData_sub_content_add(API_Server, item);
+                //    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
+                //    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
+                //}
                 
                 returnData.Code = 200;
                 returnData.Data = clearLongData(update_textVisionClass);
