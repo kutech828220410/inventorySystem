@@ -1099,15 +1099,16 @@ namespace HIS_WebApi
 
                 foreach (var orderClass in input_orderClass)
                 {
+                    string 批序 = orderClass.批序.Split("-")[0];
                     if (orderClass.批序.Contains("[DC]"))
                     {
-                        OrderClass orderClass_DC = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
+                        OrderClass orderClass_DC = sql_order_list.Where(temp => temp.批序.StartsWith(批序)).FirstOrDefault();
                         if (orderClass_DC != null) result_order_list.Add(orderClass_DC);
                         
                     }
                     else if (orderClass.批序.Contains("[NEW]"))
                     {
-                        OrderClass orderClass_add = sql_order_list.Where(temp => temp.批序 == orderClass.批序).FirstOrDefault();
+                        OrderClass orderClass_add = sql_order_list.Where(temp => temp.批序.StartsWith(批序)).FirstOrDefault();
                         if (orderClass_add == null)
                         {
                             orderClass.GUID = Guid.NewGuid().ToString();
