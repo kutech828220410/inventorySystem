@@ -254,7 +254,75 @@ namespace HIS_WebApi
 
 
         }
+        [Route("get_by_codes")]
+        [HttpPost]
+        public string get_by_codes([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
 
+            try
+            {
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2,藥碼3]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] Codes = returnData.ValueAry[0].Split(",");
+                GET_init(returnData);
+                returnData.Method = "get_by_codes";
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                Table table = new Table(new enum_medPrice());
+                SQLControl sQLControl_medPrice = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_medPrice = new List<object[]>();
+                
+                List<Task> tasks = new List<Task>();
+                for (int i = 0; i < Codes.Length; i++)
+                {
+                    string code = Codes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<object[]> list_value_buf = sQLControl_medPrice.GetRowsByDefult(null, (int)enum_medPrice.藥品碼, code);
+                        list_medPrice.LockAdd(list_value_buf);
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
+                List<medPriceClass> medPirce_sql = list_medPrice.SQLToClass<medPriceClass, enum_medPrice>();
+
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = medPirce_sql;
+                returnData.Code = 200;
+                returnData.Result = $"取得藥品價格資訊,共<{medPirce_sql.Count}>筆";
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch (Exception e)
+            {
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+
+
+
+
+        }
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 

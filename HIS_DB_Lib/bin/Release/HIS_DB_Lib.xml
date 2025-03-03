@@ -1507,11 +1507,6 @@
             雲端藥檔
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCpoeClass.藥品資訊">
-            <summary>
-            藥品資訊
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑紀錄">
             <summary>
             調劑紀錄
@@ -1520,6 +1515,16 @@
         <member name="P:HIS_DB_Lib.medQtyClass.冷儲">
             <summary>
             冷儲
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medTotalInfo.售價">
+            <summary>
+            售價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medTotalInfo.健保價">
+            <summary>
+            健保價
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.medCpoeRecClass">

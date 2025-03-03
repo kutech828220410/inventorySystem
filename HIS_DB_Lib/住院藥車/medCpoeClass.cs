@@ -327,12 +327,12 @@ namespace HIS_DB_Lib
         /// 雲端藥檔
         /// </summary>
         [JsonPropertyName("med_cloud")]
-        public List<medClass> 雲端藥檔 { get; set; }
+        public List<medTotalInfo> 雲端藥檔 { get; set; }
         /// <summary>
         /// 藥品資訊
         /// </summary>
-        [JsonPropertyName("med_info")]
-        public List<medInfoClass> 藥品資訊 { get; set; }
+        //[JsonPropertyName("med_info")]
+        //public List<medInfoClass> 藥品資訊 { get; set; }
         /// <summary>
         /// 調劑紀錄
         /// </summary>
@@ -554,5 +554,18 @@ namespace HIS_DB_Lib
         public string ServerName { get; set; }
         [JsonPropertyName("server_type")]
         public string ServerType { get; set; }
+    }
+    public class medTotalInfo : medClass
+    {
+        /// <summary>
+        /// 售價
+        /// </summary>
+        [JsonPropertyName("cost")]
+        public string 售價 { get; set; }
+        /// <summary>
+        /// 健保價
+        /// </summary>
+        [JsonPropertyName("price")]
+        public string 健保價 { get; set; }
     }
 }

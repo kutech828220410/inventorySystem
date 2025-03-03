@@ -602,10 +602,8 @@ namespace HIS_WebApi
 
                     textVision.Code = "-2";
                     textVision.Result = returnData.Result;
-                    if (textVision.效期.Check_Date_String() == false)
-                    {
-                        DateTime.MinValue.ToDateTimeString();
-                    }
+                    if (textVision.效期.StringIsEmpty() == false) textVision = EditExpirydate(textVision);
+                   
 
                     update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
                     sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);

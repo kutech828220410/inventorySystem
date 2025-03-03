@@ -79,5 +79,56 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("add_time")]
         public string 加入時間 { get; set; }
+        static public returnData update(string API_Server, List<medPriceClass> medPriceClasses)
+        {
+            string url = $"{API_Server}/api/medPirce/update";
+
+            returnData returnData = new returnData();
+            returnData.Data = medPriceClasses;           
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
+        static public List<medPriceClass> get_by_codes(string API_Server, List<string> code)
+        {
+            string url = $"{API_Server}/api/medPirce/get_by_codes";
+
+            returnData returnData = new returnData();
+            string codes = string.Join(",", code);
+            returnData.ValueAry.Add(codes);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<medPriceClass> medPriceClasses = returnData.Data.ObjToClass<List<medPriceClass>>();
+            return medPriceClasses;
+        }
+        static public Dictionary<string, List<medPriceClass>> CoverToDicByCode(List<medPriceClass> medPriceClasses)
+        {
+            Dictionary<string, List<medPriceClass>> dictionary = new Dictionary<string, List<medPriceClass>>();
+            foreach (var item in medPriceClasses)
+            {
+                if (dictionary.TryGetValue(item.藥品碼, out List<medPriceClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.藥品碼] = new List<medPriceClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medPriceClass> GetByCode(Dictionary<string, List<medPriceClass>> dict, string code)
+        {
+            if (dict.TryGetValue(code, out List<medPriceClass> medPriceClasses))
+            {
+                return medPriceClasses;
+            }
+            else
+            {
+                return new List<medPriceClass>();
+            }
+        }
     }
 }
