@@ -1095,7 +1095,6 @@ namespace HIS_WebApi
                 List<OrderClass> add_order_list = new List<OrderClass>();
                 List<OrderClass> update_order_list = new List<OrderClass>();
                 List<OrderClass> result_order_list = new List<OrderClass>();
-                List<OrderClass> delete_order_list = new List<OrderClass>();
 
                 foreach (var orderClass in input_orderClass)
                 {
@@ -1127,11 +1126,9 @@ namespace HIS_WebApi
                 }
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
                 //List<object[]> list_update_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
-                List<object[]> list_delete_order_list = delete_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
                 //if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_add_order_list);
-                if (list_delete_order_list.Count > 0) sQLControl_order_list.DeleteExtra(null, list_delete_order_list);
                 result_order_list.AddRange(add_order_list);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
