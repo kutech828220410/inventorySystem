@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 
 
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HIS_WebApi
@@ -22,6 +23,7 @@ namespace HIS_WebApi
     public class med_cart : ControllerBase
     {
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
+        
         /// <summary>
         ///初始化dbvm.patient_info資料庫
         /// </summary>
@@ -1245,14 +1247,10 @@ namespace HIS_WebApi
                     Dictionary<string, List<medInventoryLogClass>> medInvenDict = medInventoryLogClass.CoverToDictionaryMasterGUID(med_InvenLog);      
                     foreach (var cpoe in sql_medCpoe)
                     {    
-                        List<medClass> medClasses = medClass.SortDictionaryByCode(medCloudDict, cpoe.藥碼);
-                        List<medPriceClass> medPriceClasses = medPriceClass.GetByCode(medPriceDict, cpoe.藥碼);
+                        
 
-                        List<medTotalInfo> medTotalInfos = medClasses.Cast<medTotalInfo>().ToList();
-                        medTotalInfos[0].健保價 = medPriceClasses[0].健保價;
-                        medTotalInfos[0].售價 = medPriceClasses[0].售價;
-
-                        cpoe.雲端藥檔 = medTotalInfos;
+                        cpoe.雲端藥檔 = medClass.SortDictionaryByCode(medCloudDict, cpoe.藥碼);
+                        cpoe.藥品價格 = medPriceClass.GetByCode(medPriceDict, cpoe.藥碼);
                         cpoe.調劑紀錄 = medInventoryLogClass.SortDictByMasterGUID(medInvenDict, cpoe.GUID);
                     }
                     sql_patInfo[0].處方 = sql_medCpoe;
