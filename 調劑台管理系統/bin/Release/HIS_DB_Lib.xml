@@ -2415,6 +2415,21 @@
             <param name="API_Server">API伺服器地址</param>
             <returns>藥品群組資料表列表</returns>
         </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_medGroupList(System.String)">
+            <summary>
+            獲取所有藥品群組名稱列表
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <returns>藥品群組名稱列表</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_medGroup(System.String,System.String)">
+            <summary>
+            根據名稱獲取藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="name">藥品群組名稱</param>
+            <returns>藥品群組</returns>
+        </member>
         <member name="M:HIS_DB_Lib.medGroupClass.get_all_group(System.String,System.String)">
             <summary>
             根據名稱獲取藥品群組

@@ -131,8 +131,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_群組設定_MouseDownEvent(MouseEventArgs mevent)
         {
-            medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
-            Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定(_medGroupClass);
+            Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定();
             if (dialog_藥品群組設定.ShowDialog() != DialogResult.Yes) return;
         }
         private void RJ_Button_藥品群組_確認_MouseDownEvent(MouseEventArgs mevent)

@@ -889,18 +889,8 @@ namespace HIS_WebApi
             SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
 
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClass sys_serverSettingClasses_med = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
-            MED_pageController mED_PageController = new MED_pageController();
-            returnData returnData_med = new returnData();
-            returnData_med.Server = sys_serverSettingClasses_med.Server;
-            returnData_med.DbName = sys_serverSettingClasses_med.DBName;
-            returnData_med.TableName = "medicine_page_cloud";
-            returnData_med.UserName = sys_serverSettingClasses_med.User;
-            returnData_med.Password = sys_serverSettingClasses_med.Password;
-            returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
-            returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+            List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
             List<medClass> medClasses_buf = new List<medClass>();
             Dictionary<string, List<medClass>> keyValuePairs_medClass = medClasses.CoverToDictionaryByCode();
             List<object[]> list_med_group = sQLControl_med_group.GetAllRows(null);

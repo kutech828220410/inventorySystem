@@ -38,6 +38,8 @@ namespace HIS_DB_Lib
         public string GUID { get; set; }
         [JsonPropertyName("NAME")]
         public string 名稱 { get; set; }
+        [JsonPropertyName("VIS_INFO")]
+        public string 顯示資訊 { get; set; } = "";
         [JsonPropertyName("CT_TIME")]
         public string 建立時間 { get; set; }
 
@@ -60,6 +62,34 @@ namespace HIS_DB_Lib
             return tables;
         }
 
+
+        /// <summary>
+        /// 獲取所有藥品群組名稱列表
+        /// </summary>
+        /// <param name="API_Server">API伺服器地址</param>
+        /// <returns>藥品群組名稱列表</returns>
+        static public List<string> get_medGroupList(string API_Server)
+        {
+            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
+            List<string> vs = (from temp in medGroupClasses
+                               select temp.名稱).Distinct().ToList();
+            return vs;
+        }
+        /// <summary>
+        /// 根據名稱獲取藥品群組
+        /// </summary>
+        /// <param name="API_Server">API伺服器地址</param>
+        /// <param name="name">藥品群組名稱</param>
+        /// <returns>藥品群組</returns>
+        static public medGroupClass get_medGroup(string API_Server, string name)
+        {
+            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
+            medGroupClasses = (from temp in medGroupClasses
+                               where temp.名稱 == name
+                               select temp).ToList();
+            if (medGroupClasses.Count == 0) return null;
+            return medGroupClasses[0];
+        }       
         /// <summary>
         /// 根據名稱獲取藥品群組
         /// </summary>

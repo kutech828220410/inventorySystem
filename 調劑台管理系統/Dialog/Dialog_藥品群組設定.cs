@@ -23,27 +23,60 @@ namespace 調劑台管理系統
     public partial class Dialog_藥品群組設定 : MyDialog
     {
         private List<CheckBox> checkBoxes = new List<CheckBox>();
-        private medGroupClass medGroupClass = new medGroupClass();
-        public Dialog_藥品群組設定(medGroupClass medGroupClass)
+        private CheckBox CheckBox_全選;
+        public Dialog_藥品群組設定()
         {
             InitializeComponent();
 
-            this.medGroupClass = medGroupClass; 
 
             this.Load += Dialog_藥品群組設定_Load;
             this.LoadFinishedEvent += Dialog_藥品群組設定_LoadFinishedEvent;
-            this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
-            this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
+            //this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
+            //this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
+            rJ_Button_存檔.MouseDownEvent += RJ_Button_存檔_MouseDownEvent;
+            comboBox_藥品群組.DataSource = medGroupClass.get_medGroupList(Main_Form.API_Server);
+            comboBox_藥品群組.DisplayMember = "藥品群組名稱";
+            if(comboBox_藥品群組.Items.Count == 0)
+            {
+                MyMessageBox.ShowDialog("藥品群組不存在");
+                return;
+            }
+            comboBox_藥品群組.SelectedIndexChanged += ComboBox_藥品群組_SelectedIndexChanged;
         }
 
-        private void RJ_Button_取消_MouseDownEvent(MouseEventArgs mevent)
+        public void update_checkBox()
         {
-            this.Close();
+            LoadingForm.ShowLoadingForm();
+            string text = comboBox_藥品群組.Text;
+            medGroupClass medGroupClass = new medGroupClass();
+            medGroupClass = medGroupClass.get_medGroup(Main_Form.API_Server, text);
+            if (medGroupClass == null)
+            {
+                MyMessageBox.ShowDialog("藥品群組不存在");
+                return;
+            }
+            for (int i = 0; i < checkBoxes.Count; i++)
+            {
+                checkBoxes[i].Checked = medGroupClass.顯示資訊.Contains(checkBoxes[i].Text);
+            }
+            LoadingForm.CloseLoadingForm();
         }
-        private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
+        private void ComboBox_藥品群組_SelectedIndexChanged(object sender, EventArgs e)
         {
+            update_checkBox();
+        }
+        private void RJ_Button_存檔_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = comboBox_藥品群組.GetComboBoxText();
+            medGroupClass medGroupClass = new medGroupClass();
+            medGroupClass = medGroupClass.get_medGroup(Main_Form.API_Server, text);
+            if (medGroupClass == null)
+            {
+                MyMessageBox.ShowDialog("藥品群組不存在");
+                return;
+            }
             List<string> serverNames = new List<string>();
-            for (int i = 1; i < checkBoxes.Count; i++)
+            for (int i = 0; i < checkBoxes.Count; i++)
             {
                 if (checkBoxes[i].Checked)
                 {
@@ -51,6 +84,15 @@ namespace 調劑台管理系統
                 }
             }
             medGroupClass.update_visible_info(Main_Form.API_Server, medGroupClass.GUID, serverNames);
+            MyMessageBox.ShowDialog("儲存成功");
+        }
+        private void RJ_Button_取消_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Close();
+        }
+        private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
+        {
+        
             this.DialogResult = DialogResult.Yes;
             this.Close();
         }
@@ -71,7 +113,8 @@ namespace 調劑台管理系統
             checkBox.Size = new Size(200, 30);
             checkBox.Font = new Font("微軟正黑體", 16);
             checkBox.Text = $"全選";
-            checkBox.CheckedChanged += CheckBox_CheckedChanged;      
+            checkBox.CheckedChanged += CheckBox_CheckedChanged;
+            CheckBox_全選 = checkBox;
             this.flowLayoutPanel.Controls.Add(checkBox);
 
             for (int i = 0; i < serverNames.Count; i++)
@@ -81,24 +124,21 @@ namespace 調劑台管理系統
                 checkBox.Size = new Size(200, 30);
                 checkBox.Font = new Font("微軟正黑體", 16);
                 checkBox.Text = $"{serverNames[i]}";
-                //list_value_buf = list_value.GetRows((int)enum_commonSpaceSetup.共用區名稱, serverNames[i]);
-                //if (list_value_buf.Count > 0)
-                //{
-                //    if (list_value_buf[0][(int)enum_commonSpaceSetup.是否共用].ObjectToString().ToUpper() == true.ToString().ToUpper())
-                //    {
-                //        checkBox.Checked = true;
-                //    }
-                //}
                 checkBox.CheckedChanged += CheckBox_CheckedChanged;
                 checkBoxes.Add(checkBox);
                 this.flowLayoutPanel.Controls.Add(checkBox);
             }
             this.flowLayoutPanel.ResumeLayout(false);
+  
+         
         }
 
         private void Dialog_藥品群組設定_LoadFinishedEvent(EventArgs e)
         {
+            comboBox_藥品群組.SelectedIndex = 0;
+
             this.Refresh();
+            update_checkBox();
         }
 
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -110,13 +150,15 @@ namespace 調劑台管理系統
                 {
                     for (int i = 0; i < checkBoxes.Count; i++)
                     {
+                        checkBoxes[i].CheckedChanged -= CheckBox_CheckedChanged;
                         checkBoxes[i].Checked = checkBox.Checked;
+                        checkBoxes[i].CheckedChanged += CheckBox_CheckedChanged;
                     }
                 }
                 else
                 {
                     bool allChecked = true;
-                    for (int i = 1; i < checkBoxes.Count; i++)
+                    for (int i = 0; i < checkBoxes.Count; i++)
                     {
                         if (checkBoxes[i].Checked == false)
                         {
@@ -124,7 +166,9 @@ namespace 調劑台管理系統
                             break;
                         }
                     }
-                    checkBoxes[0].Checked = allChecked;
+                    CheckBox_全選.CheckedChanged -= CheckBox_CheckedChanged;
+                    CheckBox_全選.Checked = allChecked;
+                    CheckBox_全選.CheckedChanged += CheckBox_CheckedChanged;
                 }
             }
         }
