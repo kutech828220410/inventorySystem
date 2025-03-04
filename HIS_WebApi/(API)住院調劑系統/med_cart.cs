@@ -310,11 +310,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
-                DateTime lestweek = DateTime.Now.AddDays(-30);
-                DateTime yesterday = DateTime.Now.AddDays(-0);
-                string starttime = lestweek.GetStartDate().ToDateString();
-                string endtime = yesterday.GetEndDate().ToDateString();
-                sQLControl_patient_info.DeleteByBetween(null, (int)enum_patient_info.更新時間, starttime, endtime);
+                
+                //sQLControl_patient_info.DeleteByBetween(null, (int)enum_patient_info.更新時間, starttime, endtime);
 
                 List<patientInfoClass> input_medCarInfo = returnData.Data.ObjToClass<List<patientInfoClass>>();
 
@@ -327,7 +324,13 @@ namespace HIS_WebApi
                 string 藥局 = input_medCarInfo[0].藥局;
                 string 護理站 = input_medCarInfo[0].護理站;
 
-                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.藥局, 藥局);
+                DateTime today = DateTime.Now;
+                string starttime = today.GetStartDate().ToDateString();
+                string endtime = today.GetEndDate().ToDateString();
+
+                //List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.藥局, 藥局);
+                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByBetween(null, (int)enum_patient_info.更新時間, starttime, endtime);
+
                 List<patientInfoClass> sql_medCar = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<patientInfoClass> medCarInfo = sql_medCar.Where(temp => temp.護理站 == 護理站).ToList();
                 Dictionary<string, List<patientInfoClass>> medCarInfoDictBedNum = patientInfoClass.ToDictByBedNum(medCarInfo);

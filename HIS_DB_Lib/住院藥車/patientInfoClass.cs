@@ -364,7 +364,7 @@ namespace HIS_DB_Lib
                 return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
             }
         }
-        static public returnData update_med_carinfo(string API_Server, List<patientInfoClass> patientInfoClasses)
+        static public returnData update_patientInfo(string API_Server, List<patientInfoClass> patientInfoClasses)
         {
             string url = $"{API_Server}/api/med_cart/update_patientInfo";
 
@@ -381,38 +381,22 @@ namespace HIS_DB_Lib
             return returnData;
         }
         
-        static public List<OrderClass> update_order_list(string API_Server, List<OrderClass> OrderClasses)
+        static public List<patientInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
-            string url = $"{API_Server}/api/med_cart/update_order_list";
+            string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
 
             returnData returnData = new returnData();
-            returnData.Data = OrderClasses;
+            returnData.ValueAry = Info;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+            List<patientInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
             Console.WriteLine($"{returnData}");
-            return out_OrderClass;
+            return out_medCarInfoClass;
         }
-        //static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
-        //{
-        //    string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
-
-        //    returnData returnData = new returnData();
-        //    returnData.ValueAry = Info;
-
-        //    string json_in = returnData.JsonSerializationt();
-        //    string json_out = Net.WEBApiPostJson(url, json_in);
-        //    returnData = json_out.JsonDeserializet<returnData>();
-        //    if (returnData == null) return null;
-        //    if (returnData.Code != 200) return null;
-        //    List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-        //    Console.WriteLine($"{returnData}");
-        //    return out_medCarInfoClass;
-        //}
         static public List<patientInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
         {
             List<patientInfoClass> out_medCarInfoClass = new List<patientInfoClass>();

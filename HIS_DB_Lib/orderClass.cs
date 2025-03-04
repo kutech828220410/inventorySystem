@@ -746,9 +746,9 @@ namespace HIS_DB_Lib
             return OrderClasses_out;
         }
 
-        static public List<OrderClass> update_order_list(string API_Server, List<OrderClass> OrderClasses)
+        static public returnData update_UDorder_list(string API_Server, List<OrderClass> OrderClasses)
         {
-            string url = $"{API_Server}/api/order/update_order_list";
+            string url = $"{API_Server}/api/order/update_UDorder_list";
 
             returnData returnData = new returnData();
             returnData.Data = OrderClasses;
@@ -758,9 +758,9 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+            //List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
             Console.WriteLine($"{returnData}");
-            return out_OrderClass;
+            return returnData;
         }
         static public returnData update_order_list_new(string API_Server, List<OrderClass> OrderClasses)
         {
