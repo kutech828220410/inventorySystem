@@ -172,6 +172,31 @@ namespace 調劑台管理系統
 
             }));
         }
+        private void Function_醫令退藥(string barcode, string deviceName, bool mul_order)
+        {
+            if (barcode.StringIsEmpty())
+            {
+                Console.WriteLine("barcode is empty");
+                return;
+            }
+
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(5000);
+            int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
+
+
+            DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
+            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
+
+
+
+        }
+
+
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
@@ -1821,6 +1846,7 @@ namespace 調劑台管理系統
             if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
 
         }
+
 
 
         public static string Function_ReadBacodeScanner01()

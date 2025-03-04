@@ -85,7 +85,11 @@ namespace 調劑台管理系統
                 List<string> list_str = new List<string>();
                 for (int i = 0; i < medGroupClasses.Count; i++)
                 {
-                    list_str.Add(medGroupClasses[i].名稱);
+                    if(medGroupClasses[i].顯示資訊.StringIsEmpty() || medGroupClasses[i].顯示資訊.Contains(Main_Form.ServerName))
+                    {
+                        list_str.Add(medGroupClasses[i].名稱);
+                    }
+                  
                 }
                 this.comboBox_藥品群組.DataSource = list_str.ToArray();
                 this.Refresh();
@@ -131,8 +135,20 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_群組設定_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定();
-            if (dialog_藥品群組設定.ShowDialog() != DialogResult.Yes) return;
+            try
+            {
+                Dialog_藥品群組設定 dialog_藥品群組設定 = new Dialog_藥品群組設定();
+                if (dialog_藥品群組設定.ShowDialog() != DialogResult.Yes) return;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Function_更新群組列表();
+            }
+            
         }
         private void RJ_Button_藥品群組_確認_MouseDownEvent(MouseEventArgs mevent)
         {

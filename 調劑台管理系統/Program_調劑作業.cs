@@ -2523,7 +2523,6 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                List<object[]> list_醫令資料_remove = new List<object[]>();
                 PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (pLC_Device.Bool == false) list_醫令資料 = list_醫令資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫令資料.Count == 0)
@@ -2533,27 +2532,9 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                //for (int i = 0; i < list_醫令資料.Count; i++)
-                //{
-                //    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                //    if (Function_從本地資料取得儲位(藥品碼).Count == 0)
-                //    {
-                //        list_醫令資料_remove.Add(list_醫令資料[i]);
-                //    }
-                //}
-                for (int i = 0; i < list_醫令資料_remove.Count; i++)
-                {
-                    list_醫令資料.RemoveByGUID(list_醫令資料_remove[i]);
-                }
+           
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
 
-                //if (list_醫令資料.Count == 0)
-                //{
-                //    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
-                //    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
-                //    dialog_AlarmForm.ShowDialog();
-                //    return;
-                //}
 
                 Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
@@ -2561,8 +2542,12 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
-                Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+                if (!plC_CheckBox_多醫令模式.Bool)
+                {
+                    Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+                }
+               
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
                 string 調劑台名稱 = this.領藥台_01名稱;
@@ -9654,5 +9639,6 @@ namespace 調劑台管理系統
             if (!plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
         }
+ 
     }
 }

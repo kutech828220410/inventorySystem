@@ -285,16 +285,18 @@ namespace 調劑台管理系統
         #region Function
         private List<object[]> Function_醫令資料_API呼叫(string barcode , double value)
         {
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
-            List<object[]> list_value = new List<object[]>();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            for (int i = 0; i < orderClasses.Count; i++)
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
+            List<OrderClass> orderClasses_buf = new List<OrderClass>();
+            List<string> pri_keys = orderClasses.Select(x => x.PRI_KEY).Distinct().ToList();
+            List<object[]> list_value = new List<object[]>();
+               
+            for (int i = 0; i < pri_keys.Count; i++)
             {
-                string pri_key = orderClasses[i].PRI_KEY;
-                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
-                list_value.LockAdd(list_value_buf);
+                orderClasses_buf.LockAdd(OrderClass.get_by_pri_key(API_Server, pri_keys[i]));
             }
+            list_value = orderClasses_buf.ClassToSQL<OrderClass, enum_醫囑資料>();
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
@@ -307,12 +309,7 @@ namespace 調劑台管理系統
             else url = dBConfigClass.OrderApiURL;
             List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode);
             List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
-            //for (int i = 0; i < orderClasses.Count; i++)
-            //{
-            //    string pri_key = orderClasses[i].PRI_KEY;
-            //    List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
-            //    list_value.LockAdd(list_value_buf);
-            //}
+      
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
