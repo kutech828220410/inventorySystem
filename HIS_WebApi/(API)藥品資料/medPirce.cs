@@ -290,7 +290,7 @@ namespace HIS_WebApi
                 Table table = new Table(new enum_medPrice());
                 SQLControl sQLControl_medPrice = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_medPrice = new List<object[]>();
-                
+
                 List<Task> tasks = new List<Task>();
                 for (int i = 0; i < Codes.Length; i++)
                 {
@@ -323,6 +323,7 @@ namespace HIS_WebApi
 
 
         }
+
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 

@@ -387,22 +387,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
-        static public List<medCarInfoClass> check_dispense(string API_Server, string value, List<string> valueAry)
-        {
-            string url = $"{API_Server}/api/med_cart/check_dispense";
-            returnData returnData = new returnData();
-            returnData.Value = value;
-            returnData.ValueAry = valueAry;
 
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
-            List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-            Console.WriteLine($"{returnData}");
-            return out_medCarInfoClass;
-        }
         static public List<medQtyClass> get_med_qty(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/get_med_qty";

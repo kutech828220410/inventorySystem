@@ -349,8 +349,8 @@ namespace HIS_WebApi._API_住院調劑系統
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_inventory", UserName, Password, Port, SSLMode);
-                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
-                List<medInventoryClass> sql_medInvent = list_med_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
+                List<object[]> list_pat_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
+                List<medInventoryClass> sql_medInvent = list_pat_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
                 List<medInventoryClass> result = sql_medInvent
                     .Where(temp => temp.護理站 == 護理站 && temp.藥局 == 藥局)
                     .GroupBy(value => value.操作者代號)
@@ -424,8 +424,8 @@ namespace HIS_WebApi._API_住院調劑系統
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_inventory", UserName, Password, Port, SSLMode);
-                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
-                List<medInventoryClass> sql_medInvent = list_med_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
+                List<object[]> list_pat_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
+                List<medInventoryClass> sql_medInvent = list_pat_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
                 List<medInventoryClass> result = sql_medInvent
                     .Where(temp => temp.護理站 == 護理站 && temp.藥局 == 藥局 && temp.操作者代號 == 操作者代號)
                     .ToList();

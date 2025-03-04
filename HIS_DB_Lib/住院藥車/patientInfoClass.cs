@@ -376,7 +376,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             //if (returnData == null) return null;
             //if (returnData.Code != 200) return null;
-            List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            List<patientInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
             Console.WriteLine($"{returnData}");
             return returnData;
         }
@@ -397,25 +397,25 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_OrderClass;
         }
-        static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
-        {
-            string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
+        //static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
+        //{
+        //    string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
 
-            returnData returnData = new returnData();
-            returnData.ValueAry = Info;
+        //    returnData returnData = new returnData();
+        //    returnData.ValueAry = Info;
 
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
-            List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-            Console.WriteLine($"{returnData}");
-            return out_medCarInfoClass;
-        }
-        static public List<medCarInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
+        //    string json_in = returnData.JsonSerializationt();
+        //    string json_out = Net.WEBApiPostJson(url, json_in);
+        //    returnData = json_out.JsonDeserializet<returnData>();
+        //    if (returnData == null) return null;
+        //    if (returnData.Code != 200) return null;
+        //    List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+        //    Console.WriteLine($"{returnData}");
+        //    return out_medCarInfoClass;
+        //}
+        static public List<patientInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
+            List<patientInfoClass> out_medCarInfoClass = new List<patientInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_patient_by_bedNum";
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
@@ -424,11 +424,11 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
             return out_medCarInfoClass;
 
         }
-        static public medCarInfoClass get_patient_by_GUID(string API_Server, string value, List<string> Info)
+        static public patientInfoClass get_patient_by_GUID(string API_Server, string value, List<string> Info)
         {
             //List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_patient_by_GUID";
@@ -440,11 +440,11 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            medCarInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<medCarInfoClass>();
+            patientInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<patientInfoClass>();
             return out_medCarInfoClass;
 
         }
-        static public medCarInfoClass get_patient_by_GUID_brief(string API_Server, List<string> Info)
+        static public patientInfoClass get_patient_by_GUID_brief(string API_Server, List<string> Info)
         {
             string url = $"{API_Server}/api/med_cart/get_patient_by_GUID_brief";
             returnData returnData = new returnData();
@@ -454,13 +454,13 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            medCarInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<medCarInfoClass>();
+            patientInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<patientInfoClass>();
             return out_medCarInfoClass;
 
         }
-        static public List<medCarInfoClass> get_all(string API_Server)
+        static public List<patientInfoClass> get_all(string API_Server)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
+            List<patientInfoClass> out_medCarInfoClass = new List<patientInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_all";
             returnData returnData = new returnData();
             string json_in = returnData.JsonSerializationt();
@@ -468,8 +468,8 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-            out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
+            out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
+            out_medCarInfoClass.Sort(new patientInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
         static public Dictionary<string, List<patientInfoClass>> ToDictByGUID(List<patientInfoClass> patientInfoClasses)
@@ -499,31 +499,31 @@ namespace HIS_DB_Lib
                 return new List<patientInfoClass>();
             }
         }
-        static public Dictionary<string, List<medCarInfoClass>> CoverToDictByMedCart(List<medCarInfoClass> medCarInfoClasses)
+        static public Dictionary<string, List<patientInfoClass>> CoverToDictByMedCart(List<patientInfoClass> medCarInfoClasses)
         {
-            Dictionary<string, List<medCarInfoClass>> dictionary = new Dictionary<string, List<medCarInfoClass>>();
+            Dictionary<string, List<patientInfoClass>> dictionary = new Dictionary<string, List<patientInfoClass>>();
             foreach (var item in medCarInfoClasses)
             {
-                if (dictionary.TryGetValue(item.護理站, out List<medCarInfoClass> list))
+                if (dictionary.TryGetValue(item.護理站, out List<patientInfoClass> list))
                 {
                     list.Add(item);
                 }
                 else
                 {
-                    dictionary[item.護理站] = new List<medCarInfoClass>() { item };
+                    dictionary[item.護理站] = new List<patientInfoClass>() { item };
                 }
             }
             return dictionary;
         }
-        static public List<medCarInfoClass> SortDictByMedCart(Dictionary<string, List<medCarInfoClass>> dict, string 護理站)
+        static public List<patientInfoClass> SortDictByMedCart(Dictionary<string, List<patientInfoClass>> dict, string 護理站)
         {
-            if (dict.TryGetValue(護理站, out List<medCarInfoClass> medCarInfoClasses))
+            if (dict.TryGetValue(護理站, out List<patientInfoClass> medCarInfoClasses))
             {
                 return medCarInfoClasses;
             }
             else
             {
-                return new List<medCarInfoClass>();
+                return new List<patientInfoClass>();
             }
         }
         static public Dictionary<string, List<patientInfoClass>> ToDictByBedNum(List<patientInfoClass> patientInfoClasses)

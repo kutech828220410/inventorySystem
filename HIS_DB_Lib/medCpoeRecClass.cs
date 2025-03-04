@@ -229,9 +229,9 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeRecClass;
         }
-        static public List<medCarInfoClass> get_medChange_by_GUID(string API_Server, List<string> Info)
+        static public List<patientInfoClass> get_medChange_by_GUID(string API_Server, List<string> Info)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
+            List<patientInfoClass> out_medCarInfoClass = new List<patientInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_medChange_by_GUID";
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
@@ -240,7 +240,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
             return out_medCarInfoClass;
 
         }
