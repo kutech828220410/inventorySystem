@@ -1096,32 +1096,67 @@ namespace HIS_WebApi
                 List<OrderClass> update_order_list = new List<OrderClass>();
                 List<OrderClass> result_order_list = new List<OrderClass>();
 
-                foreach (var orderClass in input_orderClass)
+                foreach(var orderClass in input_orderClass)
                 {
                     string 批序 = orderClass.批序.Split("-")[0];
                     OrderClass orderClass_db = sql_order_list.Where(temp => temp.批序.StartsWith(批序)).FirstOrDefault();
-                    if(orderClass_db == null)
+                    if (orderClass.批序.Contains("[NEW]"))
                     {
-                        orderClass.GUID = Guid.NewGuid().ToString();
-                        orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
-                        orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                        orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
-                        add_order_list.Add(orderClass);
-                    }
-                    else
-                    {
-                        if(orderClass.批序 != orderClass_db.批序)
+                        if(orderClass_db == null)
                         {
-                            orderClass_db.批序 = orderClass.批序;
-                            update_order_list.Add(orderClass_db);
-                            result_order_list.Add(orderClass_db);
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
+                            orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.狀態 = "未過帳";
+                            add_order_list.Add(orderClass);
                         }
                         else
                         {
                             result_order_list.Add(orderClass_db);
                         }
-                    }                    
+                    }
+                    else if(orderClass.批序.Contains("[DC]"))
+                    {
+                        if(orderClass_db == null)
+                        {
+
+                        }
+                        else
+                        {
+                            orderClass_db.批序 = orderClass.批序;
+                            update_order_list.Add(orderClass_db);
+                            //result_order_list.Add(orderClass_db);
+                        }
+                    }
                 }
+
+                //foreach (var orderClass in input_orderClass)
+                //{
+                //    string 批序 = orderClass.批序.Split("-")[0];
+                //    OrderClass orderClass_db = sql_order_list.Where(temp => temp.批序.StartsWith(批序)).FirstOrDefault();
+                //    if(orderClass_db == null)
+                //    {
+                //        orderClass.GUID = Guid.NewGuid().ToString();
+                //        orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
+                //        orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                //        orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                //        add_order_list.Add(orderClass);
+                //    }
+                //    else
+                //    {
+                //        if(orderClass.批序 != orderClass_db.批序)
+                //        {
+                //            orderClass_db.批序 = orderClass.批序;
+                //            update_order_list.Add(orderClass_db);
+                //            result_order_list.Add(orderClass_db);
+                //        }
+                //        else
+                //        {
+                //            result_order_list.Add(orderClass_db);
+                //        }
+                //    }                    
+                //}
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
                 List<object[]> list_update_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
