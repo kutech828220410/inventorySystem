@@ -170,10 +170,28 @@ namespace 調劑台管理系統
         }
 
         #region Function
+        private bool flag_program_init = false;
         private void sub_program()
         {
             try
             {
+                if(flag_program_init == false)
+                {
+                    flag_program_init = true;
+                    PlC_RJ_Button_盤點登入_MouseDownEvent(null);
+
+                    if (list_交班對點 != null)
+                    {
+                        if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                        {
+                            this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點);
+                        }
+                        else
+                        {
+                            list_交班對點 = null;
+                        }
+                    }
+                }
                 if (this.stepViewer.CurrentStep == 1)
                 {
                     this.Invoke(new Action(delegate
@@ -584,24 +602,16 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.差異值);
                 this.sqL_DataGridView_交班藥品.ClearGrid();
             }));
-
-            if (list_交班對點 != null)
-            {
-                if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
-                {
-                    this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點);
-                }
-                else
-                {
-                    list_交班對點 = null;
-                }
-            }
+          
+          
 
             myThread_program = new MyThread();
             myThread_program.Add_Method(sub_program);
             myThread_program.AutoRun(true);
             myThread_program.SetSleepTime(100);
             myThread_program.Trigger();
+
+           
         }
         string CodeLast = "";
 
