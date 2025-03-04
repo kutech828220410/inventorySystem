@@ -522,7 +522,11 @@ namespace HIS_DB_Lib
         public string 頻次 { get; set; }
         [JsonPropertyName("large")]
         public string 大瓶點滴 { get; set; }
-        
+        [JsonPropertyName("self")]
+        public string 自費 { get; set; }
+        [JsonPropertyName("selfPRN")]
+        public string 自費PRN { get; set; }
+
         public class ICP_By_bedNum : IComparer<bedListClass>
         {
             public int Compare(bedListClass x, bedListClass y)
