@@ -444,7 +444,7 @@ namespace HIS_WebApi
                 textVision.操作者ID = textVisionClasses[0].操作者ID;
                 textVision.操作者姓名 = textVisionClasses[0].操作者姓名;
                 textVision.圖片 = textVisionClasses[0].圖片;
-                textVision.PRI_KEY = $"{textVision.驗收單號}-{textVision.單號}";
+                textVision.PRI_KEY = $"{textVision.驗收單號}_{textVision.單號}";
                 //if (textVision.效期.StringIsEmpty())
                 //{
                 //    textVision.效期 = textVisionClasses[0].效期;
@@ -603,7 +603,11 @@ namespace HIS_WebApi
                     textVision.Code = "-2";
                     textVision.Result = returnData.Result;
                     if (textVision.效期.StringIsEmpty() == false) textVision = EditExpirydate(textVision);
-                   
+
+                    if (textVision.效期.Check_Date_String() == false)
+                    {
+                        DateTime.MinValue.ToDateTimeString();
+                    }
 
                     update_textVisionClass = new List<textVisionClass>() { textVision }.ClassToSQL<textVisionClass, enum_textVision>();
                     sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
@@ -1191,7 +1195,7 @@ namespace HIS_WebApi
                     textVisionClass.Result = "未辨識";
                     if (textVisionClass.圖片.StringIsEmpty())
                     {
-                        string filPath = @"C:\Users\user\OneDrive - 鴻森智能科技有限公司\軟體部\0.醫院客戶資料\3.衛服部立台北醫院\請購單辨識\測試單據\20250116-1_1140114009-01.jpg";
+                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\20250116-1_1140114013-08.jpg";
                         byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
                         string base64 = Convert.ToBase64String(imageBytes);
                         base64 = $"data:image/jpeg;base64,{base64}";
@@ -1452,36 +1456,34 @@ namespace HIS_WebApi
                     }
                 }
                 List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
-                List<Task> tasks = new List<Task>();
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
-                    if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
-
-                })));
                 
-                tasks.Add(Task.Run(new Action(delegate 
-                {
-                    foreach(var textVisionClass in update_textVisionClass)
-                    {
-                        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
-                        {
-                            Master_GUID = textVisionClass.Master_GUID,
-                            效期 = textVisionClass.效期,
-                            批號 = textVisionClass.批號,
-                            實收數量 = textVisionClass.數量,
-                            操作人 = textVisionClass.操作者姓名,
-                        };
-                        sub_Contents.Add(sub_Content);
-                    }   
-                })));
-                Task.WhenAll(tasks).Wait();
-                foreach (var item in sub_Contents)
-                {
-                    returnData returnData_out = inspectionClass.returnData_sub_content_add(API_Server, item);
-                    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
-                    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
-                }
+                List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
+                if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
+
+                
+                
+                //tasks.Add(Task.Run(new Action(delegate 
+                //{
+                //    foreach(var textVisionClass in update_textVisionClass)
+                //    {
+                //        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
+                //        {
+                //            Master_GUID = textVisionClass.Master_GUID,
+                //            效期 = textVisionClass.效期,
+                //            批號 = textVisionClass.批號,
+                //            實收數量 = textVisionClass.數量,
+                //            操作人 = textVisionClass.操作者姓名,
+                //        };
+                //        sub_Contents.Add(sub_Content);
+                //    }   
+                //})));
+                //Task.WhenAll(tasks).Wait();
+                //foreach (var item in sub_Contents)
+                //{
+                //    returnData returnData_out = inspectionClass.returnData_sub_content_add(API_Server, item);
+                //    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
+                //    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
+                //}
                 
                 returnData.Code = 200;
                 returnData.Data = clearLongData(update_textVisionClass);

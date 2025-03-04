@@ -45,6 +45,7 @@ namespace 調劑台管理系統
             this.panel5 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥品資料 = new SQLUI.SQL_DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_群組設定 = new MyUI.PLC_RJ_Button();
             this.panel_藥品選擇.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -52,6 +53,7 @@ namespace 調劑台管理系統
             // 
             // panel_藥品選擇
             // 
+            this.panel_藥品選擇.Controls.Add(this.plC_RJ_Button_群組設定);
             this.panel_藥品選擇.Controls.Add(this.rJ_Button_藥品群組_刪除);
             this.panel_藥品選擇.Controls.Add(this.rJ_Button_藥品群組_新增);
             this.panel_藥品選擇.Controls.Add(this.rJ_Button_藥品群組_確認);
@@ -60,7 +62,7 @@ namespace 調劑台管理系統
             this.panel_藥品選擇.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_藥品選擇.Location = new System.Drawing.Point(0, 0);
             this.panel_藥品選擇.Name = "panel_藥品選擇";
-            this.panel_藥品選擇.Size = new System.Drawing.Size(805, 110);
+            this.panel_藥品選擇.Size = new System.Drawing.Size(893, 110);
             this.panel_藥品選擇.TabIndex = 141;
             // 
             // rJ_Button_藥品群組_刪除
@@ -80,14 +82,14 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_刪除.GUID = "";
             this.rJ_Button_藥品群組_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.rJ_Button_藥品群組_刪除.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_藥品群組_刪除.Location = new System.Drawing.Point(583, 6);
+            this.rJ_Button_藥品群組_刪除.Location = new System.Drawing.Point(569, 5);
             this.rJ_Button_藥品群組_刪除.Name = "rJ_Button_藥品群組_刪除";
-            this.rJ_Button_藥品群組_刪除.OFF_文字內容 = "刪除";
+            this.rJ_Button_藥品群組_刪除.OFF_文字內容 = "刪除群組";
             this.rJ_Button_藥品群組_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_藥品群組_刪除.OFF_文字顏色 = System.Drawing.Color.Black;
             this.rJ_Button_藥品群組_刪除.OFF_背景顏色 = System.Drawing.Color.White;
             this.rJ_Button_藥品群組_刪除.ON_BorderSize = 1;
-            this.rJ_Button_藥品群組_刪除.ON_文字內容 = "刪除";
+            this.rJ_Button_藥品群組_刪除.ON_文字內容 = "刪除群組";
             this.rJ_Button_藥品群組_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_藥品群組_刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.rJ_Button_藥品群組_刪除.ON_背景顏色 = System.Drawing.Color.White;
@@ -100,10 +102,10 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_刪除.Size = new System.Drawing.Size(102, 102);
             this.rJ_Button_藥品群組_刪除.State = false;
             this.rJ_Button_藥品群組_刪除.TabIndex = 149;
-            this.rJ_Button_藥品群組_刪除.Text = "刪除";
+            this.rJ_Button_藥品群組_刪除.Text = "刪除群組";
             this.rJ_Button_藥品群組_刪除.TextColor = System.Drawing.Color.Black;
             this.rJ_Button_藥品群組_刪除.TextHeight = 35;
-            this.rJ_Button_藥品群組_刪除.Texts = "刪除";
+            this.rJ_Button_藥品群組_刪除.Texts = "刪除群組";
             this.rJ_Button_藥品群組_刪除.UseVisualStyleBackColor = false;
             this.rJ_Button_藥品群組_刪除.字型鎖住 = false;
             this.rJ_Button_藥品群組_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
@@ -133,7 +135,7 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_新增.GUID = "";
             this.rJ_Button_藥品群組_新增.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.rJ_Button_藥品群組_新增.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_藥品群組_新增.Location = new System.Drawing.Point(475, 6);
+            this.rJ_Button_藥品群組_新增.Location = new System.Drawing.Point(461, 5);
             this.rJ_Button_藥品群組_新增.Name = "rJ_Button_藥品群組_新增";
             this.rJ_Button_藥品群組_新增.OFF_文字內容 = "新增";
             this.rJ_Button_藥品群組_新增.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -153,7 +155,7 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_新增.Size = new System.Drawing.Size(102, 102);
             this.rJ_Button_藥品群組_新增.State = false;
             this.rJ_Button_藥品群組_新增.TabIndex = 148;
-            this.rJ_Button_藥品群組_新增.Text = "新增";
+            this.rJ_Button_藥品群組_新增.Text = "新增群組";
             this.rJ_Button_藥品群組_新增.TextColor = System.Drawing.Color.Black;
             this.rJ_Button_藥品群組_新增.TextHeight = 35;
             this.rJ_Button_藥品群組_新增.Texts = "新增";
@@ -186,7 +188,7 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品群組_確認.GUID = "";
             this.rJ_Button_藥品群組_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.rJ_Button_藥品群組_確認.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_藥品群組_確認.Location = new System.Drawing.Point(691, 6);
+            this.rJ_Button_藥品群組_確認.Location = new System.Drawing.Point(677, 5);
             this.rJ_Button_藥品群組_確認.Name = "rJ_Button_藥品群組_確認";
             this.rJ_Button_藥品群組_確認.OFF_文字內容 = "確認";
             this.rJ_Button_藥品群組_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -226,9 +228,9 @@ namespace 調劑台管理系統
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(33, 37);
+            this.label1.Location = new System.Drawing.Point(9, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 32);
+            this.label1.Size = new System.Drawing.Size(86, 32);
             this.label1.TabIndex = 9;
             this.label1.Text = "名稱:";
             // 
@@ -236,7 +238,7 @@ namespace 調劑台管理系統
             // 
             this.comboBox_藥品群組.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_藥品群組.FormattingEnabled = true;
-            this.comboBox_藥品群組.Location = new System.Drawing.Point(126, 31);
+            this.comboBox_藥品群組.Location = new System.Drawing.Point(102, 35);
             this.comboBox_藥品群組.Name = "comboBox_藥品群組";
             this.comboBox_藥品群組.Size = new System.Drawing.Size(328, 44);
             this.comboBox_藥品群組.TabIndex = 8;
@@ -267,9 +269,9 @@ namespace 調劑台管理系統
             this.panel4.Controls.Add(this.rJ_Button_藥品搜尋);
             this.panel4.Controls.Add(this.comboBox_藥品資料_搜尋條件);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(805, 0);
+            this.panel4.Location = new System.Drawing.Point(893, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(715, 110);
+            this.panel4.Size = new System.Drawing.Size(627, 110);
             this.panel4.TabIndex = 142;
             // 
             // checkBox_只顯示調劑台品項
@@ -278,7 +280,7 @@ namespace 調劑台管理系統
             this.checkBox_只顯示調劑台品項.Checked = true;
             this.checkBox_只顯示調劑台品項.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_只顯示調劑台品項.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_只顯示調劑台品項.Location = new System.Drawing.Point(18, 75);
+            this.checkBox_只顯示調劑台品項.Location = new System.Drawing.Point(14, 72);
             this.checkBox_只顯示調劑台品項.Name = "checkBox_只顯示調劑台品項";
             this.checkBox_只顯示調劑台品項.Size = new System.Drawing.Size(181, 28);
             this.checkBox_只顯示調劑台品項.TabIndex = 153;
@@ -294,9 +296,9 @@ namespace 調劑台管理系統
             "藥碼",
             "藥名",
             "中文名"});
-            this.comboBox_藥品資料_搜尋內容.Location = new System.Drawing.Point(203, 21);
+            this.comboBox_藥品資料_搜尋內容.Location = new System.Drawing.Point(199, 18);
             this.comboBox_藥品資料_搜尋內容.Name = "comboBox_藥品資料_搜尋內容";
-            this.comboBox_藥品資料_搜尋內容.Size = new System.Drawing.Size(399, 44);
+            this.comboBox_藥品資料_搜尋內容.Size = new System.Drawing.Size(319, 44);
             this.comboBox_藥品資料_搜尋內容.TabIndex = 152;
             // 
             // rJ_Button_藥品搜尋
@@ -316,7 +318,7 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品搜尋.GUID = "";
             this.rJ_Button_藥品搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.rJ_Button_藥品搜尋.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_藥品搜尋.Location = new System.Drawing.Point(608, 3);
+            this.rJ_Button_藥品搜尋.Location = new System.Drawing.Point(523, 4);
             this.rJ_Button_藥品搜尋.Name = "rJ_Button_藥品搜尋";
             this.rJ_Button_藥品搜尋.OFF_文字內容 = "搜尋";
             this.rJ_Button_藥品搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -363,7 +365,7 @@ namespace 調劑台管理系統
             "中文名",
             "管制級別",
             "已選藥品"});
-            this.comboBox_藥品資料_搜尋條件.Location = new System.Drawing.Point(18, 21);
+            this.comboBox_藥品資料_搜尋條件.Location = new System.Drawing.Point(14, 18);
             this.comboBox_藥品資料_搜尋條件.Name = "comboBox_藥品資料_搜尋條件";
             this.comboBox_藥品資料_搜尋條件.Size = new System.Drawing.Size(179, 44);
             this.comboBox_藥品資料_搜尋條件.TabIndex = 149;
@@ -405,7 +407,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_藥品資料.Password = "user82822040";
             this.sqL_DataGridView_藥品資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品資料.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_藥品資料.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_藥品資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料.RowsColor = System.Drawing.SystemColors.Window;
             this.sqL_DataGridView_藥品資料.RowsHeight = 40;
@@ -413,7 +417,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料.selectedBorderSize = 2;
             this.sqL_DataGridView_藥品資料.selectedRowBackColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_藥品資料.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_藥品資料.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_藥品資料.selectedRowForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_藥品資料.Server = "127.0.0.0";
             this.sqL_DataGridView_藥品資料.Size = new System.Drawing.Size(1520, 764);
             this.sqL_DataGridView_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
@@ -438,6 +442,59 @@ namespace 調劑台管理系統
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1520, 22);
             this.panel3.TabIndex = 144;
+            // 
+            // plC_RJ_Button_群組設定
+            // 
+            this.plC_RJ_Button_群組設定.AutoResetState = true;
+            this.plC_RJ_Button_群組設定.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_群組設定.Bool = false;
+            this.plC_RJ_Button_群組設定.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_群組設定.BorderRadius = 15;
+            this.plC_RJ_Button_群組設定.BorderSize = 1;
+            this.plC_RJ_Button_群組設定.but_press = false;
+            this.plC_RJ_Button_群組設定.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_群組設定.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_群組設定.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_群組設定.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_群組設定.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_群組設定.GUID = "";
+            this.plC_RJ_Button_群組設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_群組設定.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_群組設定.Location = new System.Drawing.Point(785, 5);
+            this.plC_RJ_Button_群組設定.Name = "plC_RJ_Button_群組設定";
+            this.plC_RJ_Button_群組設定.OFF_文字內容 = "設定";
+            this.plC_RJ_Button_群組設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_群組設定.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_群組設定.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_群組設定.ON_BorderSize = 1;
+            this.plC_RJ_Button_群組設定.ON_文字內容 = "設定";
+            this.plC_RJ_Button_群組設定.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_群組設定.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_群組設定.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_群組設定.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_群組設定.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_群組設定.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_群組設定.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_群組設定.ShadowSize = 3;
+            this.plC_RJ_Button_群組設定.ShowLoadingForm = false;
+            this.plC_RJ_Button_群組設定.Size = new System.Drawing.Size(102, 102);
+            this.plC_RJ_Button_群組設定.State = false;
+            this.plC_RJ_Button_群組設定.TabIndex = 150;
+            this.plC_RJ_Button_群組設定.Text = "設定";
+            this.plC_RJ_Button_群組設定.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_群組設定.TextHeight = 35;
+            this.plC_RJ_Button_群組設定.Texts = "設定";
+            this.plC_RJ_Button_群組設定.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_群組設定.字型鎖住 = false;
+            this.plC_RJ_Button_群組設定.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_群組設定.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_群組設定.文字鎖住 = false;
+            this.plC_RJ_Button_群組設定.背景圖片 = global::調劑台管理系統.Properties.Resources.設定_removebg_preview;
+            this.plC_RJ_Button_群組設定.讀取位元反向 = false;
+            this.plC_RJ_Button_群組設定.讀寫鎖住 = false;
+            this.plC_RJ_Button_群組設定.音效 = false;
+            this.plC_RJ_Button_群組設定.顯示 = false;
+            this.plC_RJ_Button_群組設定.顯示狀態 = false;
             // 
             // Dialog_藥品群組
             // 
@@ -480,5 +537,6 @@ namespace 調劑台管理系統
         private System.Windows.Forms.Panel panel3;
         private MyUI.PLC_RJ_Button rJ_Button_藥品群組_刪除;
         private System.Windows.Forms.CheckBox checkBox_只顯示調劑台品項;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_群組設定;
     }
 }

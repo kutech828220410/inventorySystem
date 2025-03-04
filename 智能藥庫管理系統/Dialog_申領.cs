@@ -81,7 +81,57 @@ namespace 智能藥庫系統
             sqL_DataGridView_申領品項.Set_ColumnText("藥庫庫存", enum_materialRequisition.實撥庫庫存);
             dateTimeIntervelPicker_報表日期.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             this.rJ_Button_搜尋.MouseDownEvent += RJ_Button_搜尋_MouseDownEvent;
+            this.rJ_Button_緊急申領語音上傳.MouseDownEvent += RJ_Button_緊急申領語音上傳_MouseDownEvent;
+            this.rJ_Button_一般申領語音上傳.MouseDownEvent += RJ_Button_一般申領語音上傳_MouseDownEvent;
             this.comboBox_搜尋條件.SelectedIndex = 0;
+        }
+
+        private void RJ_Button_一般申領語音上傳_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                // 建立 OpenFileDialog 實例
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    // 設定篩選條件只允許 .wav 檔案
+                    Filter = "WAV 檔案 (*.wav)|*.wav",
+                    Title = "請選擇一個 WAV 檔案"
+                };
+
+                // 顯示對話框，並判斷是否選擇了檔案
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 取得所選擇的檔案路徑
+                    string filePath = openFileDialog.FileName;
+                    materialRequisitionClass.emg_voice_upload(Main_Form.API_Server, filePath);
+                    MyMessageBox.ShowDialog("上傳完成");
+                }
+
+            }));
+        }
+
+        private void RJ_Button_緊急申領語音上傳_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                // 建立 OpenFileDialog 實例
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    // 設定篩選條件只允許 .wav 檔案
+                    Filter = "WAV 檔案 (*.wav)|*.wav",
+                    Title = "請選擇一個 WAV 檔案"
+                };
+
+                // 顯示對話框，並判斷是否選擇了檔案
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 取得所選擇的檔案路徑
+                    string filePath = openFileDialog.FileName;
+                    materialRequisitionClass.normal_voice_upload(Main_Form.API_Server, filePath);
+                    MyMessageBox.ShowDialog("上傳完成");
+                }
+               
+            }));
         }
         private void Dialog_申領_FormClosing(object sender, FormClosingEventArgs e)
         {

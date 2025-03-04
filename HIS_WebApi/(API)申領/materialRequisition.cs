@@ -524,7 +524,6 @@ namespace HIS_WebApi
         {
             return UpdateStatus(returnData, "已過帳");
         }
-
         /// <summary>
         /// 以請領時間範圍下載請領單
         /// </summary>
@@ -583,6 +582,246 @@ namespace HIS_WebApi
       
             }  
      
+        }
+        /// <summary>
+        /// 上傳一般申領語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此方法用於上傳一般的 wav 格式語音檔案，並將檔案存放於應用程式目錄下的 "wav" 資料夾中。
+        /// 若上傳的檔案為空或格式不符，將回傳錯誤訊息，並不進行檔案儲存。
+        /// 檔案將固定存為 "materialRequisition_normal.wav"。
+        /// </remarks>
+        /// <param name="file">從表單上傳的檔案，必須為 wav 格式。</param>
+        /// <returns>
+        /// 回傳一個 JSON 字串，包含狀態碼 (Code) 與結果訊息 (Result)。
+        /// </returns>
+        [Route("normal_voice_upload")]
+        [HttpPost]
+        public async Task<string> normal_voice_upload([FromForm] Microsoft.AspNetCore.Http.IFormFile file)
+        {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+                returnData.Method = "excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                // 取得檔案副檔名
+                string extension = Path.GetExtension(formFile.FileName);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                // 檢查是否為wav檔案
+                if (!extension.Equals(".wav", StringComparison.OrdinalIgnoreCase))
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "僅支援wav檔案";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                // 指定存放目錄 (與應用程式目錄下的 wav 資料夾)
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wav");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // 建立檔案完整路徑，建議可加入時間戳記或 GUID 避免檔名重複
+                string fileName = Path.GetFileName("materialRequisition_normal.wav");
+                string filePath = Path.Combine(folderPath, fileName);
+
+                // 儲存檔案
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+
+                returnData.Code = 200;
+                returnData.Result = "檔案上傳成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 上傳緊急申領語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此方法用於上傳一般的 wav 格式語音檔案，並將檔案存放於應用程式目錄下的 "wav" 資料夾中。
+        /// 若上傳的檔案為空或格式不符，將回傳錯誤訊息，並不進行檔案儲存。
+        /// 檔案將固定存為 "materialRequisition_emg.wav"。
+        /// </remarks>
+        /// <param name="file">從表單上傳的檔案，必須為 wav 格式。</param>
+        /// <returns>
+        /// 回傳一個 JSON 字串，包含狀態碼 (Code) 與結果訊息 (Result)。
+        /// </returns>
+        [Route("emg_voice_upload")]
+        [HttpPost]
+        public async Task<string> emg_voice_upload([FromForm] Microsoft.AspNetCore.Http.IFormFile file)
+        {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+                returnData.Method = "excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                // 取得檔案副檔名
+                string extension = Path.GetExtension(formFile.FileName);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                // 檢查是否為wav檔案
+                if (!extension.Equals(".wav", StringComparison.OrdinalIgnoreCase))
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "僅支援wav檔案";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                // 指定存放目錄 (與應用程式目錄下的 wav 資料夾)
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wav");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // 建立檔案完整路徑，建議可加入時間戳記或 GUID 避免檔名重複
+                string fileName = Path.GetFileName("materialRequisition_emg.wav");
+                string filePath = Path.Combine(folderPath, fileName);
+
+                // 儲存檔案
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+
+                returnData.Code = 200;
+                returnData.Result = "檔案上傳成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 下載指定的語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此 API 根據提供的檔名，從應用程式目錄下的 "wav" 資料夾讀取語音檔案，並以檔案串流的方式回傳給用戶端。
+        /// 若檔案不存在，將回傳 404 NotFound 狀態與錯誤訊息。
+        /// </remarks>
+        /// <param name="fileName">
+        /// 欲下載的語音檔名（包含副檔名，例如 "materialRequisition_normal.wav"）。
+        /// </param>
+        /// <returns>
+        /// 語音檔案內容 (MIME 類型為 audio/wav) 或錯誤訊息。
+        /// </returns>
+        [Route("normal_voice_download")]
+        [HttpPost]
+        public async Task<IActionResult> normal_voice_download([FromBody] returnData returnData)
+        {
+            try
+            {
+                string fileName = "materialRequisition_normal.wav";
+                // 指定語音檔案所在目錄 (應用程式目錄下的 "wav" 資料夾)
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wav");
+                string filePath = Path.Combine(folderPath, fileName);
+
+                // 檢查檔案是否存在
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound(new { Code = -200, Result = "檔案不存在" });
+                }
+
+                // 將檔案讀入記憶體中
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+
+                // 指定回傳的檔案內容類型
+                string contentType = "audio/wav";
+                return File(memory, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Code = -200, Result = ex.Message });
+            }
+        }
+        /// <summary>
+        /// 下載指定的語音檔案。
+        /// </summary>
+        /// <remarks>
+        /// 此 API 根據提供的檔名，從應用程式目錄下的 "wav" 資料夾讀取語音檔案，並以檔案串流的方式回傳給用戶端。
+        /// 若檔案不存在，將回傳 404 NotFound 狀態與錯誤訊息。
+        /// </remarks>
+        /// <param name="fileName">
+        /// 欲下載的語音檔名（包含副檔名，例如 "materialRequisition_emg.wav"）。
+        /// </param>
+        /// <returns>
+        /// 語音檔案內容 (MIME 類型為 audio/wav) 或錯誤訊息。
+        /// </returns>
+        [Route("emg_voice_download")]
+        [HttpPost]
+        public async Task<IActionResult> emg_voice_download([FromBody] returnData returnData)
+        {
+            try
+            {
+                string fileName = "materialRequisition_emg.wav";
+                // 指定語音檔案所在目錄 (應用程式目錄下的 "wav" 資料夾)
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wav");
+                string filePath = Path.Combine(folderPath, fileName);
+
+                // 檢查檔案是否存在
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound(new { Code = -200, Result = "檔案不存在" });
+                }
+
+                // 將檔案讀入記憶體中
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+
+                // 指定回傳的檔案內容類型
+                string contentType = "audio/wav";
+                return File(memory, contentType, fileName);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Code = -200, Result = ex.Message });
+            }
         }
 
 

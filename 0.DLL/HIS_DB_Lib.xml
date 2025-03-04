@@ -1001,6 +1001,66 @@
             <param name="API_Server">API 伺服器地址。</param>
             <param name="guid">資料的 GUID。</param>
         </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_upload(System.String,System.String)">
+            <summary>
+            上傳一般申領語音檔案 (根據檔案路徑)
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="filePath">語音檔案的完整路徑</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_upload(System.String,System.Byte[])">
+            <summary>
+            上傳一般申領語音檔案
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="bytes">語音檔案流</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.normal_voice_download(System.String)">
+            <summary>
+            下載一般申領語音檔案。
+            </summary>
+            <remarks>
+            此方法透過呼叫 API 伺服器提供的下載介面，
+            將回傳的 JSON 序列化結果轉換成位元組陣列，
+            作為語音檔案內容回傳。
+            </remarks>
+            <param name="API_Server">API 伺服器的 URL。</param>
+            <returns>
+            回傳包含語音檔案內容的位元組陣列。
+            </returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_upload(System.String,System.String)">
+            <summary>
+            上傳緊急申領語音檔案 (根據檔案路徑)
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="filePath">語音檔案的完整路徑</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_upload(System.String,System.Byte[])">
+            <summary>
+            上傳緊急申領語音檔案
+            </summary>
+            <param name="API_Server">API 伺服器的 URL</param>
+            <param name="bytes">語音檔案流</param>
+            <returns>回傳上傳結果字串（例如 JSON 格式訊息）</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.emg_voice_download(System.String)">
+            <summary>
+            下載緊急申領語音檔案。
+            </summary>
+            <remarks>
+            此方法透過呼叫 API 伺服器提供的下載介面，
+            將回傳的 JSON 序列化結果轉換成位元組陣列，
+            作為語音檔案內容回傳。
+            </remarks>
+            <param name="API_Server">API 伺服器的 URL。</param>
+            <returns>
+            回傳包含語音檔案內容的位元組陣列。
+            </returns>
+        </member>
         <member name="T:HIS_DB_Lib.materialRequisitionClass.ICP_By_Code">
             <summary>
             比較藥碼的比較器。
@@ -2347,6 +2407,110 @@
             <summary>
             自定義
             </summary>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.init(System.String)">
+            <summary>
+            初始化藥品群組資料表
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <returns>藥品群組資料表列表</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_medGroupList(System.String)">
+            <summary>
+            獲取所有藥品群組名稱列表
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <returns>藥品群組名稱列表</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_medGroup(System.String,System.String)">
+            <summary>
+            根據名稱獲取藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="name">藥品群組名稱</param>
+            <returns>藥品群組</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_all_group(System.String,System.String)">
+            <summary>
+            根據名稱獲取藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="name">藥品群組名稱</param>
+            <returns>藥品群組</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_all_group(System.String)">
+            <summary>
+            獲取所有藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <returns>藥品群組列表</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_all_group_name(System.String)">
+            <summary>
+            獲取所有藥品群組名稱
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <returns>藥品群組名稱列表</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.add_group(System.String,HIS_DB_Lib.medGroupClass)">
+            <summary>
+            新增藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="medGroupClass">藥品群組</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.delete_group_by_guid(System.String,HIS_DB_Lib.medGroupClass)">
+            <summary>
+            根據GUID刪除藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="medGroupClass">藥品群組</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.delete_group_by_guid(System.String,System.String)">
+            <summary>
+            根據GUID刪除藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="GUID">藥品群組GUID</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.delete_meds_in_group(System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.medClass})">
+            <summary>
+            刪除藥品群組中的藥品
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="GUID">藥品群組GUID</param>
+            <param name="medClasses">藥品列表</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.delete_meds_in_group(System.String,HIS_DB_Lib.medGroupClass)">
+            <summary>
+            刪除藥品群組中的藥品
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="medGroupClass">藥品群組</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.add_meds_in_group(System.String,HIS_DB_Lib.medGroupClass)">
+            <summary>
+            新增藥品到藥品群組中
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="medGroupClass">藥品群組</param>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.update_visible_info(System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            修改指定藥品群組顯示資訊
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="GUID">藥品群組GUID</param>
+            <param name="visibleDevices">顯示設備列表</param>
+            <returns>更新結果，包含狀態碼和結果訊息</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.medGroupClass.get_group_by_guid(System.String,System.String)">
+            <summary>
+            根據GUID獲取藥品群組
+            </summary>
+            <param name="API_Server">API伺服器地址</param>
+            <param name="GUID">藥品群組GUID</param>
+            <returns>藥品群組</returns>
         </member>
         <member name="P:HIS_DB_Lib.medInfoClass.GUID">
             <summary>
