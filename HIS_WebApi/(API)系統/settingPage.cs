@@ -103,6 +103,7 @@ namespace HIS_WebApi._API_系統
 
                     }
                 }
+                settingPageClasses.Sort(new settingPageClass.ICP_By_type());
                 returnData.Code = 200;
                 returnData.Data = settingPageClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";

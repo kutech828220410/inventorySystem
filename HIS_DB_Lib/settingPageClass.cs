@@ -68,6 +68,13 @@ namespace HIS_DB_Lib
         public string 設定值 { get; set; }
         public List<string> option { get; set; }
         public object value { get; set; }
+        public class ICP_By_type : IComparer<settingPageClass>
+        {
+            public int Compare(settingPageClass x, settingPageClass y)
+            {
+                return (x.欄位種類).CompareTo(y.欄位種類);       
+            }
+        }
 
     }
     public class uiConfig
