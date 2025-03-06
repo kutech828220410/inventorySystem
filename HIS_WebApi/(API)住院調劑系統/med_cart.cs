@@ -2278,51 +2278,46 @@ namespace HIS_WebApi
                             大瓶點滴 = value.大瓶點滴,
                             調劑狀態 = value.調劑狀態,
                             覆核狀態 = value.覆核狀態,
-                            頻次 = value.頻次
+                            頻次 = value.頻次,
+                            自費 = value.自購,
+                            自費PRN = ""
                         }).ToList()
                     })
                     .ToList();
-                List<Task> tasks = new List<Task>();
-                tasks.Add(Task.Run(new Action(delegate 
+
+
+                List<medClass> medClasses = new List<medClass>();
+                Dictionary<string, List<medClass>> medClassDict = new Dictionary<string, List<medClass>>();
+
+                if (returnData.Value == "all")
                 {
-                    for(int i = 0; i < medQtyClasses.Count; i++)
+                    foreach (var medQtyClass in medQtyClasses)
                     {
-                        bool flag = true;
-                        for (int j = 0; j < medQtyClasses[i].病床清單.Count; j++)
-                        {
-                            if (medQtyClasses[i].病床清單[j].大瓶點滴 != "L") flag = false;
-                        }
-                        if (flag)
-                        {
-                            medQtyClasses[i].大瓶點滴 = "L";
-                        }
+                        medQtyClass.調劑台 = "Y";
                     }
-                })));
-                tasks.Add(Task.Run(new Action(delegate
+                }
+                else
                 {
                     List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
-
-                    if (returnData.Value == "all")
-                    {
-                        foreach (var medQtyClass in medQtyClasses)
-                        {
-                            medQtyClass.調劑台 = "Y";
-                        }
-                    }
-                    else
-                    {
-                        List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
-                        Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
-                        foreach (var medQtyClass in medQtyClasses)
-                        {
-                            if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
-                        }
-                    }
-                    
-                })));
-                Task.WhenAll(tasks).Wait();
+                    medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
+                    medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+                }              
                 foreach (var medQtyClass in medQtyClasses)
                 {
+                    bool flag = false;
+                    for (int j = 0; j < medQtyClass.病床清單.Count; j++)
+                    {
+                        if (medQtyClass.病床清單[j].大瓶點滴 == "L") flag = true;
+                        if (medQtyClass.病床清單[j].頻次.ToLower().Contains("prn") && medQtyClass.病床清單[j].自費 == "Y") medQtyClass.病床清單[j].自費PRN = "Y";
+                    }
+                    if (flag)
+                    {
+                        medQtyClass.大瓶點滴 = "L";
+                    }
+                    if(medClasses.Count > 0)
+                    {
+                        if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
+                    }
                     medQtyClass.病床清單.Sort(new bedListClass.ICP_By_bedNum());
                 }
                 returnData.Code = 200;

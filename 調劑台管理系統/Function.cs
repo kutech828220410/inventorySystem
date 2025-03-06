@@ -16,6 +16,7 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using ZXing.QrCode.Internal;
 namespace 調劑台管理系統
 {
     public enum enum_儲位資訊
@@ -172,6 +173,54 @@ namespace 調劑台管理系統
 
             }));
         }
+        private void Function_醫令退藥(string barcode, string deviceName, bool single_order)
+        {
+            if (barcode.StringIsEmpty())
+            {
+                Console.WriteLine("barcode is empty");
+                return;
+            }
+
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(5000);
+            int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
+            double 手輸數量 = 0;
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
+            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
+            if (plC_Button_手輸數量.Bool)
+            {
+             
+                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
+                DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+                if (dialogResult != DialogResult.Yes) return;
+                手輸數量 = dialog_NumPannel.Value * 1;
+
+                orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
+            }
+            else
+            {
+                orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order);
+            }
+            orderClasses = (from temp in orderClasses
+                            where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
+                            select temp).ToList();
+
+            if (orderClasses.Count == 0)
+            {
+                Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
+        }
+
+
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
@@ -1821,6 +1870,7 @@ namespace 調劑台管理系統
             if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
 
         }
+
 
 
         public static string Function_ReadBacodeScanner01()

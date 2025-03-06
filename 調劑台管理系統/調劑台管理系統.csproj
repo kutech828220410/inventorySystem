@@ -307,11 +307,11 @@
     <Compile Include="Dialog\Dialog_收支原因設定.Designer.cs">
       <DependentUpon>Dialog_收支原因設定.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_醫囑退藥.cs">
+    <Compile Include="Dialog\Dialog_醫令退藥.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_醫囑退藥.Designer.cs">
-      <DependentUpon>Dialog_醫囑退藥.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_醫令退藥.Designer.cs">
+      <DependentUpon>Dialog_醫令退藥.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_設定產出時間.cs">
       <SubType>Form</SubType>
@@ -751,8 +751,8 @@
     <EmbeddedResource Include="Dialog\Dialog_選擇效期.resx">
       <DependentUpon>Dialog_選擇效期.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_醫囑退藥.resx">
-      <DependentUpon>Dialog_醫囑退藥.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_醫令退藥.resx">
+      <DependentUpon>Dialog_醫令退藥.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_輸入輸出設定.resx">
       <DependentUpon>Dialog_輸入輸出設定.cs</DependentUpon>
