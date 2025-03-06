@@ -269,6 +269,13 @@ namespace HIS_DB_Lib
         [JsonPropertyName("DeviceBasics")]
         public List<DeviceBasic> DeviceBasics { get => deviceBasics; set => deviceBasics = value; }
         private List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+        public class ICP_By_name : IComparer<medClassBasic>
+        {
+            public int Compare(medClassBasic x, medClassBasic y)
+            {
+                return (x.藥品名稱).CompareTo(y.藥品名稱);
+            }
+        }
     }
 
   

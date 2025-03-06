@@ -165,7 +165,7 @@ namespace HIS_WebApi
                     returnData.Result = $"藥檔取得失敗!";
                     return returnData.JsonSerializationt();
                 }
-               
+                medClasses.Sort(new medClass.ICP_By_name());
                 returnData.Data = medClasses;
                 returnData.Code = 200;
                 returnData.Result = "雲端藥檔取得成功!";
@@ -785,11 +785,14 @@ namespace HIS_WebApi
 
                 list_value_add_buf = medClasses_add.ClassToSQL<medClass, enum_雲端藥檔>();
                 list_value_update_buf = medClasses_replace.ClassToSQL<medClass, enum_雲端藥檔>();
-
-
+                List<medClass> result = new List<medClass>();
+                result.AddRange(medClasses_add);
+                result.AddRange(medClasses_replace);
                 sQLControl.AddRows(null, list_value_add_buf);
                 sQLControl.UpdateByDefulteExtra(null, list_value_update_buf);
+
                 returnData.Code = 200;
+                returnData.Data = result;
                 returnData.Result = $"更新雲端藥檔成功,共新增<{list_value_add_buf.Count}>筆資料,共修改<{list_value_update_buf.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
 
