@@ -884,6 +884,97 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 以GUID更新雲端藥檔狀態資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        [medclass陣列]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         "GUID","開檔中 or 停用中"
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("update_med_clouds_status_by_guid")]
+        [HttpPost]
+        public string update_med_clouds_status_by_guid(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_med_clouds_status_by_guid";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (sys_serverSettingClasses_buf.Count == 0)
+                {
+                    if (sys_serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                if(returnData.ValueAry == null)
+                {                
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 不得為空";
+                    return returnData.JsonSerializationt();                  
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 應為[\"GUID\",\"True or False\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string GUID = returnData.ValueAry[0];
+                string Status = returnData.ValueAry[1]; 
+
+                string Server = sys_serverSettingClasses_buf[0].Server;
+                string DB = sys_serverSettingClasses_buf[0].DBName;
+                string UserName = sys_serverSettingClasses_buf[0].User;
+                string Password = sys_serverSettingClasses_buf[0].Password;
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                List<object[]> med_page = sQLControl.GetRowsByDefult(null, (int)enum_雲端藥檔.GUID, GUID);
+                if (med_page.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無對應資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<medClass> medClasses = med_page.SQLToClass<medClass, enum_雲端藥檔>();
+                medClasses[0].開檔狀態 = Status;
+                List<object[]> update = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                sQLControl.UpdateByDefulteExtra(null, update);
+
+                returnData.Code = 200;
+                returnData.Data = medClasses;
+                returnData.Result = $"更新雲端藥檔成功,共<{medClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
 
         /// <summary>
