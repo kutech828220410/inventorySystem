@@ -1283,11 +1283,46 @@ namespace HIS_WebApi
                 string 護理站 = returnData.ValueAry[1];
 
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
-                //List<object[]> list_patInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.護理站, 護理站);
-                //List<patientInfoClass> sql_patinfo = list_patInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<patientInfoClass> sql_patinfo = GetPatInfo(sQLControl_patient_info);
+                List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
+
                 List<patientInfoClass> patientInfoClasses = sql_patinfo.Where(temp => temp.護理站 == 護理站).ToList();
+                List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
+                Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(medCpoeClasses);
+                List<Task> tasks = new List<Task>();
+                foreach (var item in patientInfoClasses)
+                {
+                    tasks.Add(Task.Run(new Action(delegate 
+                    {
+                        string GUID = item.GUID;
+                        List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, GUID);
+                        if (medCpoes.Count > 0)
+                        {
+                            medCpoeClass medCpoe = medCpoes.Where(temp => temp.調劑狀態.StringIsEmpty() == false).FirstOrDefault();
+                            if (medCpoe == null)
+                            {
+                                item.調劑狀態 = "Y";
+                                item.處方異動狀態 = "";
+                            }
+                            else
+                            {
+                                item.調劑狀態 = "";
+                                item.處方異動狀態 = "Y";
+                            }
+                        }
+                        else
+                        {
+                            item.調劑狀態 = "Y";
+                            item.處方異動狀態 = "";
+                        }
+                    })));                  
+                }
+                Task.WhenAll(tasks).Wait();
+                List<object[]> update = patientInfoClasses.ClassToSQL<patientInfoClass, enum_patient_info>();
+                sQLControl_patient_info.UpdateByDefulteExtra(null, update);
+
                 patientInfoClasses.Sort(new patientInfoClass.ICP_By_bedNum());
 
                 returnData.Code = 200;
@@ -1748,7 +1783,7 @@ namespace HIS_WebApi
                     List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.GUID, Master_GUID);
                     List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                     sql_patinfo[0].調劑時間 = DateTime.Now.ToDateString();
-                    sql_patinfo = EditMedCarInfo(unDispensed, DCNew, sql_patinfo);
+                    //sql_patinfo = EditMedCarInfo(unDispensed, DCNew, sql_patinfo);
                     List<object[]> list_medCarInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                 })));
@@ -2600,6 +2635,73 @@ namespace HIS_WebApi
 
                 List<object[]> update = update_medCpoeRec.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
                 if (update_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.UpdateByDefulteExtra(null, update);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                //returnData.Data = patientInfoClasses;
+                returnData.Result = $"更改所有病人資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 清洗資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update_data")]
+        public string update_data([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_data";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+
+                //string 藥局 = returnData.ValueAry[0];
+
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+
+
+                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetAllRows(null);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
+
+                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    foreach(var item in sql_patinfo)
+                    {
+                        item.更新時間 = DateTime.Now.ToDateTimeString();
+                        if(item.入院日期.StringIsEmpty()) item.入院日期 = DateTime.MinValue.ToDateTimeString();
+                    }
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    foreach(var item in sql_medCpoe)
+                    {
+                        item.更新時間 = DateTime.Now.ToDateTimeString();
+                    }
+                })));
+                Task.WhenAll(tasks).Wait();
+
+                List<object[]> update_med_carInfo = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
+                List<object[]> update_medcpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+
+                if (update_med_carInfo.Count > 0) sQLControl_patient_info.UpdateByDefulteExtra(null, update_med_carInfo);
+                if (update_medcpoe.Count > 0) sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medcpoe);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";

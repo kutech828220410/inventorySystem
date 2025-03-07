@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>
     </NoWarn>
-    <DocumentationFile>bin\HIS_DB_Lib.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\HIS_DB_Lib.xml</DocumentationFile>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
