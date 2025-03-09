@@ -34,6 +34,8 @@ namespace HIS_DB_Lib
         刪除資料,
         已領用過,
         新增資料,
+        DC處方,
+        NEW處方,
 
     }
     public enum enum_取藥堆疊母資料_作業模式

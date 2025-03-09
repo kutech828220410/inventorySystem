@@ -18,8 +18,10 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_醫令選擇 : MyDialog
     {
+
         private List<object[]> _list_orders = new List<object[]>();
         public List<object[]> Value = new List<object[]>();
+        public List<OrderClass> OrderClasses = new List<OrderClass>();
         public Dialog_醫令選擇(List<object[]> list_orders)
         {
             form.Invoke(new Action(delegate { InitializeComponent(); }));
@@ -28,6 +30,13 @@ namespace 調劑台管理系統
            
         }
 
+        public Dialog_醫令選擇(List<OrderClass> list_orders)
+        {
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+            _list_orders = list_orders.ClassToSQL<OrderClass,enum_醫囑資料>();
+            this.LoadFinishedEvent += Dialog_醫令選擇_LoadFinishedEvent;
+
+        }
         private void Dialog_醫令選擇_LoadFinishedEvent(EventArgs e)
         {
             Table table = OrderClass.init(Main_Form.API_Server);
@@ -39,6 +48,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(150, enum_醫囑資料.藥品碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(600, DataGridViewContentAlignment.BottomLeft, enum_醫囑資料.藥品名稱);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, enum_醫囑資料.交易量);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, enum_醫囑資料.實際調劑量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(150, enum_醫囑資料.狀態);
 
             this.sqL_DataGridView_醫令資料.RefreshGrid(_list_orders);

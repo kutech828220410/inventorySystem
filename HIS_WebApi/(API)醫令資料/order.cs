@@ -1115,6 +1115,7 @@ namespace HIS_WebApi
                             orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
                             orderClass.狀態 = "未過帳";
+                            if(orderClass.備註.IndexOf("[NEW]") == -1) orderClass.備註 = $"[NEW]{orderClass.備註}";
                             add_order_list.Add(orderClass);
                         }
                         else
@@ -1126,45 +1127,27 @@ namespace HIS_WebApi
                     {
                         if(orderClass_db == null)
                         {
-
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
+                            orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.狀態 = "未過帳";
+                            if (orderClass.備註.IndexOf("[DC]") == -1) orderClass.備註 = $"[DC]{orderClass.備註}";
+                            add_order_list.Add(orderClass);
                         }
                         else
                         {
                             orderClass_db.批序 = orderClass.批序;
+                            if (orderClass_db.備註.IndexOf("[DC]") == -1) orderClass_db.備註 = $"[DC]{orderClass_db.備註}";
                             update_order_list.Add(orderClass_db);
-                            //result_order_list.Add(orderClass_db);
+                            result_order_list.Add(orderClass_db);
                         }
                     }
                 }
 
-                //foreach (var orderClass in input_orderClass)
-                //{
-                //    string 批序 = orderClass.批序.Split("-")[0];
-                //    OrderClass orderClass_db = sql_order_list.Where(temp => temp.批序.StartsWith(批序)).FirstOrDefault();
-                //    if(orderClass_db == null)
-                //    {
-                //        orderClass.GUID = Guid.NewGuid().ToString();
-                //        orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
-                //        orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                //        orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
-                //        add_order_list.Add(orderClass);
-                //    }
-                //    else
-                //    {
-                //        if(orderClass.批序 != orderClass_db.批序)
-                //        {
-                //            orderClass_db.批序 = orderClass.批序;
-                //            update_order_list.Add(orderClass_db);
-                //            result_order_list.Add(orderClass_db);
-                //        }
-                //        else
-                //        {
-                //            result_order_list.Add(orderClass_db);
-                //        }
-                //    }                    
-                //}
+                
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
-                List<object[]> list_update_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
+                List<object[]> list_update_order_list = update_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
                 if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_add_order_list);
@@ -1172,7 +1155,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = result_order_list;
-                returnData.Result = $"取得醫令成功,共<{input_orderClass.Count}>筆,新增<{list_add_order_list.Count}>筆";
+                returnData.Result = $"取得醫令成功,共<{input_orderClass.Count}>筆,新增<{list_add_order_list.Count}>筆,更新<{list_update_order_list.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

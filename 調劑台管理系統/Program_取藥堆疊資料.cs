@@ -204,9 +204,11 @@ namespace 調劑台管理系統
                     takeMedicineStackClasses[i].GUID = Guid.NewGuid().ToString();
 
                 }
-                takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
+                if (takeMedicineStackClasses[i].序號.StringIsEmpty()) takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
-                if (takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料.GetEnumName() && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
+                if (takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料.GetEnumName()
+                    && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
+                    && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
 
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].效期.Check_Date_String())
@@ -297,6 +299,8 @@ namespace 調劑台管理系統
                         takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
                                                         where temp.藥品碼 == list_藥品碼[i]
                                                         where temp.動作 == enum_交易記錄查詢動作.掃碼領藥.GetEnumName()
+                                                        where temp.狀態 != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
+                                                        where temp.狀態 != enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()
                                                         select temp).ToList();
                         if (takeMedicineStackClasses_buf.Count >= 2)
                         {
@@ -2099,6 +2103,7 @@ namespace 調劑台管理系統
                                  where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
                                  || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
                                  || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
+                                 || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()
                                  || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
                                  select temp).ToList();
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
@@ -2598,6 +2603,7 @@ namespace 調劑台管理系統
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
+                                     where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
                                      select value).ToList();
 

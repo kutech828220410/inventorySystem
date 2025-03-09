@@ -283,6 +283,10 @@ namespace 調劑台管理系統
         #endregion
 
         #region Function
+        public enum OrderAction
+        {
+            領藥 = 0, 退藥 = 1
+        }
         private List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, double value)
         {
             MyTimer myTimer = new MyTimer();
@@ -316,14 +320,14 @@ namespace 調劑台管理系統
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, bool 單醫令模式)
+        private List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, bool 單醫令模式 , OrderAction orderAction)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             string url = "";
             if (單醫令模式) url = dBConfigClass.OrderByCodeApiURL;
             else url = dBConfigClass.OrderApiURL;
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode);
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode, orderAction);
 
             Console.Write($"醫令資料搜尋共<{orderClasses.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return orderClasses;
@@ -335,7 +339,7 @@ namespace 調劑台管理系統
             string url = "";
             if (單醫令模式) url = dBConfigClass.OrderByCodeApiURL;
             else url = dBConfigClass.OrderApiURL;
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode);
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode, OrderAction.領藥);
             List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
       
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
@@ -382,14 +386,14 @@ namespace 調劑台管理系統
 
             return orderClasses;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode)
+        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, OrderAction action)
         {
             barcode = barcode.Replace("\r\n", "");
             barcode = Uri.EscapeDataString(barcode);
             List<OrderClass> orderClasses = new List<OrderClass>();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            string apitext = $"{url}{barcode}";
+            string apitext = $"{url}{barcode}&action={(int)action}";
          
             Console.Write($"Call api : {apitext}\n");
             string jsonString = Basic.Net.WEBApiGet(apitext);
@@ -620,7 +624,7 @@ namespace 調劑台管理系統
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, this.rJ_TextBox_醫令資料_搜尋條件_藥袋條碼.Texts);
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, this.rJ_TextBox_醫令資料_搜尋條件_藥袋條碼.Texts, OrderAction.領藥);
             Console.Write($"醫令API回傳共<{orderClasses.Count}>筆,耗時{myTimer.ToString()}ms\n");
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < orderClasses.Count; i++)

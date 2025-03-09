@@ -173,51 +173,411 @@ namespace 調劑台管理系統
 
             }));
         }
-        private void Function_醫令退藥(string barcode, string deviceName, bool single_order)
+        private void Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            MyTimer myTimer_total = new MyTimer();
+            myTimer_total.StartTickTime(50000);
+            string alarm_text = "";
+            string ID = personPageClass.ID;
+            string 操作人 = personPageClass.姓名;
+            string 藥師證字號 = personPageClass.藥師證字號;
+            string 顏色 = personPageClass.顏色;
+
             if (barcode.StringIsEmpty())
             {
                 Console.WriteLine("barcode is empty");
                 return;
             }
 
-            MyTimer myTimer = new MyTimer();
-            myTimer.StartTickTime(5000);
+
             int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
             if (daynum == 7) daynum = 7;
             if (daynum == 8) daynum = 14;
             if (daynum == 9) daynum = 21;
             if (daynum == 10) daynum = 28;
+            daynum *= -1;
             double 手輸數量 = 0;
             List<OrderClass> orderClasses = new List<OrderClass>();
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
-            if (plC_Button_手輸數量.Bool)
-            {
-             
-                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
-                DialogResult dialogResult = dialog_NumPannel.ShowDialog();
-                if (dialogResult != DialogResult.Yes) return;
-                手輸數量 = dialog_NumPannel.Value * 1;
 
-                orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
-            }
-            else
+            List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+            List<object[]> list_堆疊資料_buf = new List<object[]>();
+            Task Task_刪除資料 = Task.Run(() =>
             {
-                orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order);
-            }
-            orderClasses = (from temp in orderClasses
-                            where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
-                            select temp).ToList();
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                if (!plC_CheckBox_多醫令模式.Bool)
+                {
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
+                }
+                Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+            });
+            Task Task_取得醫令 = Task.Run(() =>
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                if (plC_Button_手輸數量.Bool)
+                {
 
-            if (orderClasses.Count == 0)
+                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入領藥數量");
+                    DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+                    if (dialogResult != DialogResult.Yes) return;
+                    手輸數量 = dialog_NumPannel.Value * 1;
+
+                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
+                }
+                else
+                {
+                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order, OrderAction.領藥);
+                }
+                if (orderClasses.Count == 0)
+                {
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                orderClasses = (from temp in orderClasses
+                                where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
+                                || temp.展藥時間.StringToDateTime() >= dateTime_start && temp.展藥時間.StringToDateTime() <= dateTime_end
+                                select temp).ToList();
+
+
+                if (orderClasses.Count == 0)
+                {
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+
+                Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
+
+
+                if (plC_CheckBox_領藥處方選取.Checked)
+                {
+                    List<OrderClass> orderClasses_buf = new List<OrderClass>();
+                    for (int i = 0; i < orderClasses.Count; i++)
+                    {
+                        string 藥碼 = orderClasses[i].藥品碼;
+                        string 狀態 = orderClasses[i].狀態;
+                        if (Main_Form.Function_從本地資料取得儲位(藥碼).Count > 0)
+                        {
+                            if (狀態 == "未過帳") orderClasses_buf.Add(orderClasses[i]);
+                        }
+                    }
+                    if (orderClasses_buf.Count > 1)
+                    {
+                        Dialog_醫令選擇 dialog_醫令選擇 = new Dialog_醫令選擇(orderClasses_buf);
+                        dialog_醫令選擇.ShowDialog();
+                        if (dialog_醫令選擇.DialogResult != DialogResult.Yes) return;
+                        orderClasses = dialog_醫令選擇.OrderClasses;
+                    }
+                }
+
+
+                bool flag_雙人覆核 = false;
+
+                Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
+
+                List<string> Codes = (from temp in orderClasses
+                                      select temp.藥品碼).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
+
+                for (int i = 0; i < orderClasses.Count; i++)
+                {
+                    OrderClass orderClass = orderClasses[i];
+                    string GUID = Guid.NewGuid().ToString();
+                    string 調劑台名稱 = deviceName;
+                    enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
+
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
+                    bool flag_檢查過帳 = false;
+                    if (medClasses_buf.Count > 0)
+                    {
+                        orderClass.藥品名稱 = medClasses_buf[0].藥品名稱;
+                        orderClass.劑量單位 = medClasses_buf[0].包裝單位;
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == orderClass.藥品碼
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
+                                     select temp).ToList();
+
+
+
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.Order_GUID = orderClass.GUID;
+                    takeMedicineStackClass.序號 = orderClass.批序;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.藥品碼 = orderClass.藥品碼;
+                    takeMedicineStackClass.領藥號 = orderClass.領藥號;
+                    takeMedicineStackClass.病房號 = orderClass.病房;
+                    takeMedicineStackClass.診別 = orderClass.藥局代碼;
+                    takeMedicineStackClass.顏色 = 顏色;
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
+                    {
+                        takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
+                    }
+                    takeMedicineStackClass.藥品名稱 = orderClass.藥品名稱;
+                    takeMedicineStackClass.單位 = orderClass.劑量單位;
+                    takeMedicineStackClass.藥袋序號 = orderClass.PRI_KEY;
+                    takeMedicineStackClass.病歷號 = orderClass.病歷號;
+                    takeMedicineStackClass.病人姓名 = orderClass.病人姓名;
+                    takeMedicineStackClass.床號 = orderClass.床號;
+                    takeMedicineStackClass.開方時間 = orderClass.開方日期;
+                    takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.ID = ID;
+
+                    takeMedicineStackClass.藥師證字號 = 藥師證字號;
+                    takeMedicineStackClass.總異動量 = orderClass.交易量;
+                    takeMedicineStackClass.收支原因 = "";
+
+
+                    PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
+                    {
+                        if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                        {
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
+                        }
+
+                    }
+                    if(orderClass.批序.Contains("DC"))
+                    {
+                        takeMedicineStackClass.備註 = "[DC處方]";
+                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.DC處方.GetEnumName();
+                    }
+                    else if (orderClass.批序.Contains("NEW"))
+                    {
+                        alarm_text += $"[NEW]-{takeMedicineStackClass.藥品名稱} ({takeMedicineStackClass.總異動量})\n";
+                        takeMedicineStackClass.備註 = "[NEW處方]";
+                    }
+                    if (flag_雙人覆核)
+                    {
+                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                        continue;
+                    }
+
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
+
+                }
+            });
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
+
+            taskList.Clear();
+            if(alarm_text.StringIsEmpty() == false)
             {
-                Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
-                dialog_AlarmForm.ShowDialog();
+                MyMessageBox.ShowDialog(alarm_text);
+            }
+            taskList.Add(Task.Run(new Action(delegate
+            {
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            })));
+
+            Task.WhenAll(taskList).Wait();
+
+            Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
+        }
+        private void Function_醫令退藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+        {
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            MyTimer myTimer_total = new MyTimer();
+            myTimer_total.StartTickTime(50000);
+            string ID = personPageClass.ID;
+            string 操作人 = personPageClass.姓名;
+            string 藥師證字號 = personPageClass.藥師證字號;
+            string 顏色 = personPageClass.顏色;
+
+            if (barcode.StringIsEmpty())
+            {
+                Console.WriteLine("barcode is empty");
                 return;
             }
-            Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
+
+
+            int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
+            daynum *= -1;
+            double 手輸數量 = 0;
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
+            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
+
+            List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+            List<object[]> list_堆疊資料_buf = new List<object[]>();
+            Task Task_刪除資料 = Task.Run(() =>
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                if (!plC_CheckBox_多醫令模式.Bool)
+                {
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
+                }
+                Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+            });
+            Task Task_取得醫令 = Task.Run(() =>
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                if (plC_Button_手輸數量.Bool)
+                {
+
+                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
+                    DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+                    if (dialogResult != DialogResult.Yes) return;
+                    手輸數量 = dialog_NumPannel.Value * 1;
+
+                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
+                }
+                else
+                {
+                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order , OrderAction.退藥);
+                }
+                if (orderClasses.Count == 0)
+                {
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                orderClasses = (from temp in orderClasses
+                                where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
+                                || temp.展藥時間.StringToDateTime() >= dateTime_start && temp.展藥時間.StringToDateTime() <= dateTime_end
+                                select temp).ToList();
+
+
+                if (orderClasses.Count == 0)
+                {
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+
+                Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
+
+
+
+
+                bool flag_雙人覆核 = false;
+
+                Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
+
+                List<string> Codes = (from temp in orderClasses
+                                      select temp.藥品碼).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
+
+                for (int i = 0; i < orderClasses.Count; i++)
+                {
+                    OrderClass orderClass = orderClasses[i];
+                    string GUID = Guid.NewGuid().ToString();
+                    string 調劑台名稱 = deviceName;
+                    enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
+
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
+                    bool flag_檢查過帳 = false;
+                    if (medClasses_buf.Count > 0)
+                    {
+                        orderClass.藥品名稱 = medClasses_buf[0].藥品名稱;
+                        orderClass.劑量單位 = medClasses_buf[0].包裝單位;
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == orderClass.藥品碼
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
+                                     select temp).ToList();
+
+
+
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.Order_GUID = orderClass.GUID;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.藥品碼 = orderClass.藥品碼;
+                    takeMedicineStackClass.領藥號 = orderClass.領藥號;
+                    takeMedicineStackClass.病房號 = orderClass.病房;
+                    takeMedicineStackClass.診別 = orderClass.藥局代碼;
+                    takeMedicineStackClass.顏色 = 顏色;
+                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
+                    {
+                        takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
+                    }
+                    takeMedicineStackClass.藥品名稱 = orderClass.藥品名稱;
+                    takeMedicineStackClass.單位 = orderClass.劑量單位;
+                    takeMedicineStackClass.藥袋序號 = orderClass.PRI_KEY;
+                    takeMedicineStackClass.病歷號 = orderClass.病歷號;
+                    takeMedicineStackClass.病人姓名 = orderClass.病人姓名;
+                    takeMedicineStackClass.床號 = orderClass.床號;
+                    takeMedicineStackClass.開方時間 = orderClass.開方日期;
+                    takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.ID = ID;
+
+                    takeMedicineStackClass.藥師證字號 = 藥師證字號;
+                    takeMedicineStackClass.總異動量 = orderClass.交易量;
+                    takeMedicineStackClass.收支原因 = "";
+
+
+         
+                  
+
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
+
+                }
+            });
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
+
+            taskList.Clear();
+
+            taskList.Add(Task.Run(new Action(delegate
+            {
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            })));
+
+            Task.WhenAll(taskList).Wait();
+
+            Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
 
 
