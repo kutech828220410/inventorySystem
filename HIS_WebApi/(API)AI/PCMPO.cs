@@ -1219,7 +1219,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 資料預儲存
+        /// 資料更新
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1263,9 +1263,9 @@ namespace HIS_WebApi
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
                 List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
-                textVisionClasses[0].數量 = 數量;
-                textVisionClasses[0].批號 = 批號;
-                textVisionClasses[0].效期 = 效期;
+                if (數量.StringIsEmpty() == false) textVisionClasses[0].數量 = 數量;
+                if (批號.StringIsEmpty() == false) textVisionClasses[0].批號 = 批號;
+                if (效期.StringIsEmpty() == false) textVisionClasses[0].效期 = 效期;
 
 
                 List<object[]> update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
