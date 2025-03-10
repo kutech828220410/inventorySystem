@@ -310,7 +310,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_name")]
         [HttpPost]
-        public string POST_get_by_name([FromBody] returnData returnData)
+        public string POST_get_by_order_guid([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_name";
@@ -341,6 +341,75 @@ namespace HIS_WebApi
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{returnData.Value}%");
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以藥名搜尋交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "Value" : "[order_guid]"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_by_order_guid")]
+        [HttpPost]
+        public string POST_get_by_name([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_order_guid";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.Value.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入參數異常!";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.Order_GUID, $"{returnData.Value}");
                 list_value.Sort(new ICP_交易記錄查詢());
                 List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                 returnData.Code = 200;
@@ -1519,6 +1588,107 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{serchValue}%");
+                        list_value_buf = tradingData(list_value_buf);
+
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
+                        list_value.LockAdd(list_value_buf);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以order_guid搜尋交易紀錄(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "order_guid",
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_datas_by_order_guid")]
+        [HttpPost]
+        public string POST_get_datas_by_order_guid([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_datas_by_order_guid";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[order_guid][ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string serchValue = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+                string[] ServerTypes = returnData.ValueAry[2].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_sys_serverSettingClasses.Count == 0) return;
+                        string Server = _sys_serverSettingClasses[0].Server;
+                        string DB = _sys_serverSettingClasses[0].DBName;
+                        string UserName = _sys_serverSettingClasses[0].User;
+                        string Password = _sys_serverSettingClasses[0].Password;
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "trading";
+                        SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.Order_GUID, $"{serchValue}");
                         list_value_buf = tradingData(list_value_buf);
 
                         for (int i = 0; i < list_value_buf.Count; i++)

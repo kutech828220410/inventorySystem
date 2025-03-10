@@ -68,6 +68,8 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Order_GUID,VARCHAR,50,INDEX")]
+        Order_GUID,
         [Description("動作,VARCHAR,50,NONE")]
         動作,
         [Description("診別,VARCHAR,50,NONE")]
@@ -179,6 +181,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// Order_GUID
+        /// </summary>
+        [JsonPropertyName("Order_GUID")]
+        public string Order_GUID { get; set; }
         /// <summary>
         /// 動作
         /// </summary>
@@ -484,6 +491,50 @@ namespace HIS_DB_Lib
             }
             returnData returnData = new returnData();
             returnData.ValueAry.Add(藥名);
+            returnData.ValueAry.Add(str_serverNames);
+            returnData.ValueAry.Add(str_serverTypes);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_order_guid(string API_Server, string order_guid, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_order_guid(API_Server, order_guid, serverNames, serverTypes);
+        }
+        static public List<transactionsClass> get_datas_by_order_guid(string API_Server, string order_guid, List<string> serverNames, List<string> serverTypes)
+        {
+            string url = $"{API_Server}/api/transactions/get_datas_by_order_guid";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            for (int i = 0; i < serverTypes.Count; i++)
+            {
+                str_serverTypes += serverTypes[i];
+                if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(order_guid);
             returnData.ValueAry.Add(str_serverNames);
             returnData.ValueAry.Add(str_serverTypes);
 

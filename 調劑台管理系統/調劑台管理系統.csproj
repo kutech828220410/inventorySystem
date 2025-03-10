@@ -493,6 +493,12 @@
     <Compile Include="Dialog\Dialog_藥品群組設定.Designer.cs">
       <DependentUpon>Dialog_藥品群組設定.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_效期批號選擇.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_效期批號選擇.Designer.cs">
+      <DependentUpon>Dialog_效期批號選擇.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -801,6 +807,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_醫令選擇.resx">
       <DependentUpon>Dialog_醫令選擇.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_效期批號選擇.resx">
+      <DependentUpon>Dialog_效期批號選擇.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

@@ -26,10 +26,7 @@ namespace 調劑台管理系統
                 this.DialogResult = DialogResult.No;
                 this.Close();
             }
-            else
-            {
-                this.rJ_TextBox_批號.Focus();
-            }
+      
             return base.ProcessCmdKey(ref msg, keyData);
         }
 

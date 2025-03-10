@@ -46,7 +46,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(150, enum_醫囑資料.藥品碼);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(600, DataGridViewContentAlignment.BottomLeft, enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(500, DataGridViewContentAlignment.BottomLeft, enum_醫囑資料.藥品名稱);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, enum_醫囑資料.交易量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, enum_醫囑資料.實際調劑量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(150, enum_醫囑資料.狀態);

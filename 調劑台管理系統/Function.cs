@@ -322,7 +322,7 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
-                    takeMedicineStackClass.Order_GUID = orderClass.GUID;
+                    takeMedicineStackClass.Order_GUID  = orderClass.GUID;
                     takeMedicineStackClass.序號 = orderClass.批序;
                     takeMedicineStackClass.動作 = 動作.GetEnumName();
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
@@ -386,10 +386,10 @@ namespace 調劑台管理系統
             Task.WhenAll(taskList).Wait();
 
             taskList.Clear();
-            if(alarm_text.StringIsEmpty() == false)
-            {
-                MyMessageBox.ShowDialog(alarm_text);
-            }
+            //if(alarm_text.StringIsEmpty() == false)
+            //{
+            //    MyMessageBox.ShowDialog(alarm_text);
+            //}
             taskList.Add(Task.Run(new Action(delegate
             {
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
@@ -2321,6 +2321,34 @@ namespace 調劑台管理系統
         {
             // 使用正則表達式替換括號及其內部的內容
             return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\(.*\)", ""); ;
+        }
+
+
+        public static StockClass convert_note(string 備註)
+        {
+            if (string.IsNullOrEmpty(備註)) return null;
+
+            StockClass stockClass = null;
+          
+            備註 = 備註.Replace("[NEW處方]", "");
+            備註 = 備註.Replace("[DC處方]", "");
+            string[] temp_ary = 備註.Split('\n');
+            for (int k = 0; k < temp_ary.Length; k++)
+            {
+                string 效期 = temp_ary[k].GetTextValue("效期");
+                string 批號 = temp_ary[k].GetTextValue("批號");
+                string 數量 = temp_ary[k].GetTextValue("數量");
+
+                if (效期.StringIsEmpty() == true) continue;
+
+                stockClass = new StockClass();
+                stockClass.Lot_number = 批號;
+                stockClass.Validity_period = 效期;
+                stockClass.Qty = 數量;
+
+
+            }
+            return stockClass;
         }
     }
 

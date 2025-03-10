@@ -3648,6 +3648,7 @@ namespace 調劑台管理系統
 
             bool flag_修正盤點量 = false;
             string GUID = "";
+            string Order_GUID = "";
             string Master_GUID = "";
             double 庫存量 = 0;
             double 結存量 = 0;
@@ -3696,6 +3697,7 @@ namespace 調劑台管理系統
             {
 
                 Master_GUID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                Order_GUID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
                 動作 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString();
                 診別 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.診別].ObjectToString();
                 藥品碼 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
@@ -3768,6 +3770,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
                 交易紀錄_GUID = value_trading[(int)enum_交易記錄查詢資料.GUID].ObjectToString();
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
+                value_trading[(int)enum_交易記錄查詢資料.Order_GUID] = Order_GUID;
                 value_trading[(int)enum_交易記錄查詢資料.診別] = 診別;
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
@@ -3850,13 +3853,11 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
 
-                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
+                Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
                 List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.GUID, Order_GUID, false);
-                //小心!
-                //string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
-                //List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, Order_GUID, false);
+          
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-
+                總異動量 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                 if (list_value.Count == 0) continue;
                 for (int m = 0; m < list_value.Count; m++)
                 {
@@ -3868,9 +3869,8 @@ namespace 調劑台管理系統
 
                     string 實際調劑量 = list_value[m][(int)enum_醫囑資料.實際調劑量].ObjectToString();
                     if(實際調劑量.StringIsEmpty()) 實際調劑量 = "0";
-                    實際調劑量 = (實際調劑量.StringToDouble() + list_value[m][(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble()).ToString();
+                    實際調劑量 = (實際調劑量.StringToDouble() + 總異動量.StringToDouble()).ToString();
                     list_value[m][(int)enum_醫囑資料.實際調劑量] = 實際調劑量;
-                    //list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                     list_醫囑資料_ReplaceValue.Add(list_value[m]);
                 }
 

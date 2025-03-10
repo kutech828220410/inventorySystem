@@ -65,6 +65,7 @@ namespace 調劑台管理系統
         private Basic.MyThread MyThread_領藥_RFID;
         private Basic.MyThread MyThread_領藥_RFID_入出庫資料檢查;
         private Basic.MyThread MyThread_DHT;
+        private Basic.MyThread MyThread_調劑作業;
 
         private MyTimerBasic MyTimerBasic_dht_timeout = new MyTimerBasic();
 
@@ -445,12 +446,19 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品搜索.MouseDownEvent += PlC_RJ_Button_藥品搜索_MouseDownEvent;
             this.plC_RJ_Button_申領.MouseDownEvent += PlC_RJ_Button_申領_MouseDownEvent;
             this.toolStripMenuItem_調劑畫面_顯示設定.Click += ToolStripMenuItem_調劑畫面_顯示設定_Click;
-            this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
-            this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
-            this.MyThread_領藥_RFID.AutoRun(true);
-            this.MyThread_領藥_RFID.AutoStop(false);
-            this.MyThread_領藥_RFID.SetSleepTime(100);
-            this.MyThread_領藥_RFID.Trigger();
+
+            //this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
+            //this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
+            //this.MyThread_領藥_RFID.AutoRun(true);
+            //this.MyThread_領藥_RFID.AutoStop(false);
+            //this.MyThread_領藥_RFID.SetSleepTime(100);
+            //this.MyThread_領藥_RFID.Trigger();
+            //this.MyThread_領藥_RFID_入出庫資料檢查 = new Basic.MyThread(this.FindForm());
+            //this.MyThread_領藥_RFID_入出庫資料檢查.Add_Method(this.sub_Program_領藥_入出庫資料檢查);
+            //this.MyThread_領藥_RFID_入出庫資料檢查.AutoRun(true);
+            //this.MyThread_領藥_RFID_入出庫資料檢查.AutoStop(false);
+            //this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
+            //this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
 
             this.MyThread_DHT = new Basic.MyThread(this.FindForm());
             this.MyThread_DHT.Add_Method(this.sub_Program_DHT);
@@ -459,12 +467,15 @@ namespace 調劑台管理系統
             this.MyThread_DHT.SetSleepTime(500);
             this.MyThread_DHT.Trigger();
 
-            this.MyThread_領藥_RFID_入出庫資料檢查 = new Basic.MyThread(this.FindForm());
-            this.MyThread_領藥_RFID_入出庫資料檢查.Add_Method(this.sub_Program_領藥_入出庫資料檢查);
-            this.MyThread_領藥_RFID_入出庫資料檢查.AutoRun(true);
-            this.MyThread_領藥_RFID_入出庫資料檢查.AutoStop(false);
-            this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
-            this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
+            this.MyThread_調劑作業 = new Basic.MyThread(this.FindForm());
+            this.MyThread_調劑作業.Add_Method(this.sub_Program_調劑作業);
+            this.MyThread_調劑作業.AutoRun(true);
+            this.MyThread_調劑作業.AutoStop(false);
+            this.MyThread_調劑作業.SetSleepTime(10);
+            this.MyThread_調劑作業.Trigger();
+            
+
+
             PLC_Device_領藥台_01_已登入.ValueChangeEvent += PLC_Device_領藥台_01_已登入_ValueChangeEvent;
             PLC_Device_領藥台_02_已登入.ValueChangeEvent += PLC_Device_領藥台_02_已登入_ValueChangeEvent;
             PLC_Device_領藥台_03_已登入.ValueChangeEvent += PLC_Device_領藥台_03_已登入_ValueChangeEvent;
@@ -490,70 +501,62 @@ namespace 調劑台管理系統
                 this.flag_調劑作業_頁面更新 = false;
             }
         }
+        private void sub_Program_調劑作業()
+        {
+           
 
+        }
         private void sub_Program_領藥台_01()
         {
             if (Dialog_藥品搜索.IsShown) return;
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
+            if (PLC_Device_領藥台_01_閒置登出時間.Value != 0)
             {
-                if (PLC_Device_領藥台_01_閒置登出時間.Value != 0)
+                if (PLC_Device_領藥台_01_已登入.Bool)
                 {
-                    if (PLC_Device_領藥台_01_已登入.Bool)
+                    if (MyTimer_領藥台_01_閒置登出時間.IsTimeOut())
                     {
-                        if (MyTimer_領藥台_01_閒置登出時間.IsTimeOut())
-                        {
-                            this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
-                        }
-                    }
-                    else
-                    {
-                        MyTimer_領藥台_01_閒置登出時間.TickStop();
-                        MyTimer_領藥台_01_閒置登出時間.StartTickTime();
+                        this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     }
                 }
-                if (PLC_Device_領藥台_01_入賬完成時間.Value != 0)
+                else
                 {
-                    if (PLC_Device_領藥台_01_已登入.Bool)
+                    MyTimer_領藥台_01_閒置登出時間.TickStop();
+                    MyTimer_領藥台_01_閒置登出時間.StartTickTime();
+                }
+            }
+            if (PLC_Device_領藥台_01_入賬完成時間.Value != 0)
+            {
+                if (PLC_Device_領藥台_01_已登入.Bool)
+                {
+                    if (MyTimer_領藥台_01_入賬完成時間.IsTimeOut())
                     {
-                        if (MyTimer_領藥台_01_入賬完成時間.IsTimeOut())
-                        {
-                            PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(null);
-                            MyTimer_領藥台_01_入賬完成時間.TickStop();
-                            MyTimer_領藥台_01_入賬完成時間.StartTickTime();
-                        }
-                    }
-                    else
-                    {
+                        PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(null);
                         MyTimer_領藥台_01_入賬完成時間.TickStop();
                         MyTimer_領藥台_01_入賬完成時間.StartTickTime();
                     }
                 }
-                if (!this.flag_Program_領藥台_01_換頁)
+                else
                 {
-
-                    this.Invoke(new Action(delegate
-                    {
-                        if (plC_CheckBox_QRcode_Mode.Checked)
-                        {
-                            plC_RJ_Button_條碼輸入.Visible = false;
-                        }
-                        else
-                        {
-                            plC_RJ_Button_條碼輸入.Visible = true;
-                        }
-                    }));
-                    //this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
-                    this.flag_Program_領藥台_01_換頁 = true;
+                    MyTimer_領藥台_01_入賬完成時間.TickStop();
+                    MyTimer_領藥台_01_入賬完成時間.StartTickTime();
                 }
-
             }
-            else
+            if (!this.flag_Program_領藥台_01_換頁)
             {
-                if (this.flag_Program_領藥台_01_換頁)
+
+                this.Invoke(new Action(delegate
                 {
-                    //this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
-                    this.flag_Program_領藥台_01_換頁 = false;
-                }
+                    if (plC_CheckBox_QRcode_Mode.Checked)
+                    {
+                        plC_RJ_Button_條碼輸入.Visible = false;
+                    }
+                    else
+                    {
+                        plC_RJ_Button_條碼輸入.Visible = true;
+                    }
+                }));
+                //this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                this.flag_Program_領藥台_01_換頁 = true;
             }
 
             this.sub_Program_領藥台_01_狀態顯示();
@@ -1854,6 +1857,7 @@ namespace 調劑台管理系統
                     try_error++;
                     retry++;
                 }
+                Fuction_領藥台_01_時間重置();
             }
             if (list_取藥堆疊母資料_replace.Count > 0)
             {
@@ -2177,6 +2181,8 @@ namespace 調劑台管理系統
         }
         private void Function_領藥台_01_醫令退藥(string BarCode)
         {
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
@@ -2275,6 +2281,8 @@ namespace 調劑台管理系統
             }
             else
             {
+
+
                 list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_01_單醫令模式.Bool);
 
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
@@ -2298,8 +2306,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
 
 
-                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
+                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
+                Fuction_領藥台_01_時間重置();
                 object[] value = dialog_醫令退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
@@ -2309,53 +2318,64 @@ namespace 調劑台管理系統
                     Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 }
-               
 
-                string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.領藥台_01名稱;
-                enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
-                藥品碼 = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
+                List<OrderClass> orderClasses = dialog_醫令退藥.orderClasses;
+                for (int i = 0; i < orderClasses.Count; i++)
+                {
+                    OrderClass orderClass = orderClasses[i];
+                    string GUID = Guid.NewGuid().ToString();
+                    string 調劑台名稱 = this.領藥台_01名稱;
+                    enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;            
+                    string ID = 領藥台_01_ID;
+                    string 操作人 = 領藥台_01_登入者姓名;
+                    string 藥師證字號 = 領藥台_01_藥師證字號;
+                    string 顏色 = 領藥台_01_顏色;
+                    double 總異動量 = 0;
+                    string 效期 = "";
+                    string 批號 = "";
+                    string 備註 = orderClasses[i].備註;
+                    StockClass stockClass = convert_note(備註);
+                    if(stockClass != null)
+                    {
+                        效期 = stockClass.Validity_period;
+                        批號 = stockClass.Lot_number;
+                        總異動量 = stockClass.Qty.StringToDouble();
+                    }
 
-                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
-                if (list_藥品資料_buf.Count == 0) return;
-                string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                string 藥袋序號 = "";
-                string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
-                string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
-                string 床號 = "";
-                string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
-                string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
-                string ID = 領藥台_01_ID;
-                string 操作人 = 領藥台_01_登入者姓名;
-                string 藥師證字號 = 領藥台_01_藥師證字號;
-                string 顏色 = 領藥台_01_顏色;
-                double 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToDouble();
-                string 效期 = "";
-                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
-                takeMedicineStackClass.GUID = GUID;
-                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = 動作.GetEnumName();
-                takeMedicineStackClass.顏色 = 顏色;
-                takeMedicineStackClass.藥品碼 = 藥品碼;
-                takeMedicineStackClass.藥品名稱 = 藥品名稱;
-                takeMedicineStackClass.藥袋序號 = 藥袋序號;
-                takeMedicineStackClass.單位 = 單位;
-                takeMedicineStackClass.病歷號 = 病歷號;
-                takeMedicineStackClass.診別 = 診別;
-                takeMedicineStackClass.床號 = 床號;
-                takeMedicineStackClass.病人姓名 = 病人姓名;
-                takeMedicineStackClass.開方時間 = 開方時間;
-                takeMedicineStackClass.操作人 = 操作人;
-                takeMedicineStackClass.藥師證字號 = 藥師證字號;
-                takeMedicineStackClass.顏色 = 顏色;
-                takeMedicineStackClass.總異動量 = 總異動量.ToString();
-                takeMedicineStackClass.效期 = 效期;
-                takeMedicineStackClass.ID = ID;
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.Order_GUID = orderClass.GUID;
+                    takeMedicineStackClass.序號 = orderClass.批序;
+                    takeMedicineStackClass.動作 = 動作.GetEnumName();
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.藥品碼 = orderClass.藥品碼;
+                    takeMedicineStackClass.領藥號 = orderClass.領藥號;
+                    takeMedicineStackClass.病房號 = orderClass.病房;
+                    takeMedicineStackClass.診別 = orderClass.藥局代碼;
+                    takeMedicineStackClass.顏色 = 顏色;
+                 
+                    takeMedicineStackClass.藥品名稱 = orderClass.藥品名稱;
+                    takeMedicineStackClass.單位 = orderClass.劑量單位;
+                    takeMedicineStackClass.藥袋序號 = orderClass.PRI_KEY;
+                    takeMedicineStackClass.病歷號 = orderClass.病歷號;
+                    takeMedicineStackClass.病人姓名 = orderClass.病人姓名;
+                    takeMedicineStackClass.床號 = orderClass.床號;
+                    takeMedicineStackClass.開方時間 = orderClass.開方日期;
+                    takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.藥師證字號 = 藥師證字號;
+                    takeMedicineStackClass.ID = ID;
+                    takeMedicineStackClass.效期 = 效期;
+                    takeMedicineStackClass.批號 = 批號;
+            
+                    takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                    takeMedicineStackClass.收支原因 = "";
+
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
+                }
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
-                Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                Console.Write($"新增退藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
 
@@ -4311,7 +4331,7 @@ namespace 調劑台管理系統
                 //    return;
                 //}
 
-                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
+                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫令退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -6305,7 +6325,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
+                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫令退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -8280,7 +8300,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
+                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫令退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);

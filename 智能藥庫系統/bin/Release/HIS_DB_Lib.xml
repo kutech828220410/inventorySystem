@@ -3867,6 +3867,11 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.transactionsClass.Order_GUID">
+            <summary>
+            Order_GUID
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.動作">
             <summary>
             動作

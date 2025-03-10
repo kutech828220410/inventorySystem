@@ -19,7 +19,7 @@ namespace 調劑台管理系統
    
     public partial class Main_Form : Form
     {
-
+        static public SQL_DataGridView _sqL_DataGridView_醫令資料;
         private void Program_醫令資料_Init()
         {
 
@@ -36,7 +36,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"醫令資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-
+            _sqL_DataGridView_醫令資料 = this.sqL_DataGridView_醫令資料;
             this.sqL_DataGridView_醫令資料.Init(table);
             this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥局代碼);
