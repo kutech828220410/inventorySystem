@@ -1226,11 +1226,14 @@ namespace HIS_WebApi
         /// <code>
         ///     {
         ///         "Data":
-        ///         [
+        ///         
         ///             {
-        ///                 textvisionclass
+        ///                 "GUID":""
+        ///                 "qty":"數量"
+        ///                 "batch_num":"批號"
+        ///                 "expirydate":"效期"
         ///             }
-        ///         ]
+        ///         
         ///         
         ///     }
         /// </code>
@@ -1244,23 +1247,33 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<textVisionClass> input_textVision = returnData.Data.ObjToClass<List<textVisionClass>>();
+                textVisionClass input_textVision = returnData.Data.ObjToClass<textVisionClass>();
                 if (input_textVision == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
+                string GUID = input_textVision.GUID;
+                string 數量 = input_textVision.數量;
+                string 批號 = input_textVision.批號;
+                string 效期 = input_textVision.效期;
 
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textvision", UserName, Password, Port, SSLMode);
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+                textVisionClasses[0].數量 = 數量;
+                textVisionClasses[0].批號 = 批號;
+                textVisionClasses[0].效期 = 效期;
 
-                List<object[]> list_textVision = input_textVision.ClassToSQL<textVisionClass, enum_textVision>();
-                sQLControl_textVision.UpdateByDefulteExtra(null, list_textVision);
+
+                List<object[]> update_textVision = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
+                sQLControl_textVision.UpdateByDefulteExtra(null, update_textVision);
                 returnData.Code = 200;
-                returnData.Data = input_textVision;
+                returnData.Data = textVisionClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"請購單資料預儲存成功";
+                returnData.Result = $"請購單資料更新成功 批號:{批號} 效期:{效期} 數量:{數量}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
