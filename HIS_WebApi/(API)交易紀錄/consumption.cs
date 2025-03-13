@@ -634,18 +634,18 @@ namespace HIS_WebApi
 
                 string date_str_st = date_strs[0];
                 string date_str_end = date_strs[1];
-                if (date_str_st.Length != 8 || date_str_end.Length != 8)
+                if (date_str_st.Length != 12 || date_str_end.Length != 12)
                 {
                     return BadRequest("輸入日期格式錯誤");
                 }
-                date_str_st = $"{date_str_st.Substring(0, 4)}-{date_str_st.Substring(4, 2)}-{date_str_st.Substring(6, 2)}";
-                date_str_end = $"{date_str_end.Substring(0, 4)}-{date_str_end.Substring(4, 2)}-{date_str_end.Substring(6, 2)}";
+                date_str_st = $"{date_str_st.Substring(0, 4)}-{date_str_st.Substring(4, 2)}-{date_str_st.Substring(6, 2)} {date_str_st.Substring(8, 2)}:{date_str_st.Substring(10, 2)}";
+                date_str_end = $"{date_str_end.Substring(0, 4)}-{date_str_end.Substring(4, 2)}-{date_str_end.Substring(6, 2)} {date_str_st.Substring(8, 2)}:{date_str_st.Substring(10, 2)}";
                 if(date_str_st.Check_Date_String() == false || date_str_end.Check_Date_String() == false)
                 {
                     return BadRequest("輸入日期格式錯誤");
                 }
-                DateTime dateTime_st = date_str_st.StringToDateTime().GetStartDate();
-                DateTime dateTime_end = date_str_end.StringToDateTime().GetEndDate();
+                DateTime dateTime_st = date_str_st.StringToDateTime();
+                DateTime dateTime_end = date_str_end.StringToDateTime();
 
 
                 List<sys_serverSettingClass> list_sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_type("http://127.0.0.1:4433", "調劑台");

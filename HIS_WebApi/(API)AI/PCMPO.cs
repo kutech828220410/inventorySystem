@@ -546,6 +546,7 @@ namespace HIS_WebApi
 
                     returnData.Code = 200;
                     returnData.Data = clearLongData(textVision);
+                    returnData.Result = textVision.Result;
                     Logger.Log(project, returnData.JsonSerializationt(true));
                     Logger.Log(project, Message);
                     return returnData.JsonSerializationt(true);
