@@ -97,6 +97,10 @@ namespace HIS_DB_Lib
         調劑異動,
         [Description("覆核狀態,VARCHAR,10,NONE")]
         覆核狀態,
+        [Description("藥局代碼,VARCHAR,10,NONE")]
+        藥局代碼,
+        [Description("藥局名稱,VARCHAR,10,NONE")]
+        藥局名稱,
     }
     /// <summary>
     /// medCpoeClass資料

@@ -111,30 +111,30 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        [HttpPost("init_med_info")]
-        public string init_med_info([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "med_cart/init_med_info";
-            try
-            {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                return CheckCreatTable(sys_serverSettingClasses[0], new enum_med_info());
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                return returnData.JsonSerializationt(true);
-            }
-        }
+        //[HttpPost("init_med_info")]
+        //public string init_med_info([FromBody] returnData returnData)
+        //{
+        //    MyTimerBasic myTimerBasic = new MyTimerBasic();
+        //    returnData.Method = "med_cart/init_med_info";
+        //    try
+        //    {
+        //        List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+        //        sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+        //        if (sys_serverSettingClasses.Count == 0)
+        //        {
+        //            returnData.Code = -200;
+        //            returnData.Result = $"找無Server資料!";
+        //            return returnData.JsonSerializationt();
+        //        }
+        //        return CheckCreatTable(sys_serverSettingClasses[0], new enum_med_info());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        returnData.Code = -200;
+        //        returnData.Result = $"Exception : {ex.Message}";
+        //        return returnData.JsonSerializationt(true);
+        //    }
+        //}
         [HttpPost("init_bed_status")]
         public string init_bed_status([FromBody] returnData returnData)
         {
