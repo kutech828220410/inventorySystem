@@ -626,13 +626,13 @@ namespace HIS_WebApi
                     creat.盤點名稱 = $"{returnData.Value}";
                     for (int i = 0; i < medClasses.Count; i++)
                     {
-                        if (medClasses[i].開檔狀態.StringIsEmpty() == false)
-                        {
-                            if (medClasses[i].開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
-                            {
-                                continue;
-                            }
-                        }
+                        //if (medClasses[i].開檔狀態.StringIsEmpty() == false)
+                        //{
+                        //    if (medClasses[i].開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
+                        //    {
+                        //        continue;
+                        //    }
+                        //}
                         inventoryClass.content content = new inventoryClass.content();
                         content.藥品碼 = medClasses[i].藥品碼;
                         content.藥品名稱 = medClasses[i].藥品名稱;
@@ -952,13 +952,13 @@ namespace HIS_WebApi
                 creat.盤點單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
                 {
-                    if (medClasses[i].開檔狀態.StringIsEmpty() == false)
-                    {
-                        if (medClasses[i].開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
-                        {
-                            continue;
-                        }
-                    }
+                    //if (medClasses[i].開檔狀態.StringIsEmpty() == false)
+                    //{
+                    //    if (medClasses[i].開檔狀態 != enum_開檔狀態.開檔中.GetEnumName())
+                    //    {
+                    //        continue;
+                    //    }
+                    //}
                      
                     inventoryClass.content content = new inventoryClass.content();
                     content.藥品碼 = medClasses[i].藥品碼;
