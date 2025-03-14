@@ -1337,11 +1337,17 @@ namespace HIS_WebApi
                 string API_Server = GetServerAPI("Main", "網頁", "API01");
                 string 操作者ID = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                //List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
+                DateTime today = DateTime.Now.AddDays(-9);
+                string start = today.GetStartDate().ToDateTimeString();
+                string end = today.GetEndDate().ToDateTimeString();
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByBetween(null,(int)enum_textVision.操作時間, start, end);
+
                 //List<object[]> list_textVision = sQLControl_textVision.GetAllRows(null);
 
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
-                //textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
+                textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
                 Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
                 if (dicTextVision.Count == 0)
                 {
