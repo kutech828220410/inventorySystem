@@ -360,16 +360,20 @@ namespace 調劑台管理系統
                         }
 
                     }
-                    if(orderClass.批序.Contains("DC"))
+                    if(orderClass.批序.StringIsEmpty() == false)
                     {
-                        takeMedicineStackClass.備註 = "[DC處方]";
-                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.DC處方.GetEnumName();
+                        if (orderClass.批序.Contains("DC"))
+                        {
+                            takeMedicineStackClass.備註 = "[DC處方]";
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.DC處方.GetEnumName();
+                        }
+                        else if (orderClass.批序.Contains("NEW"))
+                        {
+                            alarm_text += $"[NEW]-{takeMedicineStackClass.藥品名稱} ({takeMedicineStackClass.總異動量})\n";
+                            takeMedicineStackClass.備註 = "[NEW處方]";
+                        }
                     }
-                    else if (orderClass.批序.Contains("NEW"))
-                    {
-                        alarm_text += $"[NEW]-{takeMedicineStackClass.藥品名稱} ({takeMedicineStackClass.總異動量})\n";
-                        takeMedicineStackClass.備註 = "[NEW處方]";
-                    }
+                    
                     if (flag_雙人覆核)
                     {
                         this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
