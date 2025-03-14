@@ -44,21 +44,23 @@ namespace HIS_WebApi
         {
             try
             {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                else serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+
+                if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
-                return CheckCreatTable(sys_serverSettingClasses[0]);
+                return CheckCreatTable(serverSettingClasses[0]);
             }
             catch (Exception e)
             {
