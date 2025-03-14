@@ -1724,7 +1724,7 @@ namespace HIS_WebApi
         }
         private textVisionClass EditExpirydate(textVisionClass textVisionClass)
         {
-            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd", "yyyy/MM/dd HH:mm:ss" }; // 可擴展格式
+            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd" }; // 可擴展格式
 
             if (DateTime.TryParseExact(textVisionClass.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
             {
@@ -1736,8 +1736,5 @@ namespace HIS_WebApi
             }
             return textVisionClass;
         }
-        
-
-
     }
 }

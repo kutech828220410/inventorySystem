@@ -75,7 +75,9 @@ namespace HIS_DB_Lib
         [Description("Code,VARCHAR,20,NONE")]
         Code,
         [Description("Result,VARCHAR,20,NONE")]
-        Result
+        Result,
+        [Description("圖片角度,VARCHAR,20,NONE")]
+        圖片角度
     }
     [EnumDescription("sub_textVision")]
     public enum enum_sub_textVision
@@ -272,6 +274,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("Result")]
         public string Result { get; set; }
+        /// <summary>
+        /// degree
+        /// </summary>
+        [JsonPropertyName("degree")]
+        public string 圖片角度 { get; set; }
         /// <summary>
         /// 識別位置
         /// </summary>
