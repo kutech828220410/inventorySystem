@@ -13,6 +13,7 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
 using System.Runtime.InteropServices;
+using NPOI.SS.Formula.Functions;
 
 namespace 調劑台管理系統
 {
@@ -36,30 +37,38 @@ namespace 調劑台管理系統
                 // 當剪貼簿更新時處理
                 if (myConfigClass.鍵盤掃碼模式)
                 {
-                    IDataObject data = Clipboard.GetDataObject();
-                    if (data != null && data.GetDataPresent(DataFormats.Text))
+                    try
                     {
-                        if (data.GetData(DataFormats.Text).ToString() != keyDataString)
+                        IDataObject data = Clipboard.GetDataObject();
+                        if (data != null && data.GetDataPresent(DataFormats.Text))
                         {
-                            keyDataString = data.GetData(DataFormats.Text).ToString();
-
-                            if (keyDataString.Length > 2)
+                            if (data.GetData(DataFormats.Text).ToString() != keyDataString)
                             {
-                                string temp = keyDataString;
-                                //temp = temp.Replace("\n", "");
-                                //temp = temp.Replace("\r", "");
-                                byte[] byteArray = Encoding.UTF8.GetBytes(temp);
+                                keyDataString = data.GetData(DataFormats.Text).ToString();
 
-                                Console.WriteLine($"keyDataString : {temp}");
-                                MySerialPort_Scanner01.SetReadByte(byteArray);
+                                if (keyDataString.Length > 2)
+                                {
+                                    string temp = keyDataString;
+                                    //temp = temp.Replace("\n", "");
+                                    //temp = temp.Replace("\r", "");
+                                    byte[] byteArray = Encoding.UTF8.GetBytes(temp);
 
-                                MyTimerBasic_Keyboard.TickStop();
-                                MyTimerBasic_Keyboard.StartTickTime(200);
+                                    Console.WriteLine($"keyDataString : {temp}");
+                                    MySerialPort_Scanner01.SetReadByte(byteArray);
 
+                                    MyTimerBasic_Keyboard.TickStop();
+                                    MyTimerBasic_Keyboard.StartTickTime(200);
+
+                                }
                             }
-                        }
 
+                        }
                     }
+                    catch(Exception ex)
+                    {   
+                        Logger.Log(ex.Message);
+                    }
+                   
                 }
               
             }

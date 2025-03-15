@@ -276,7 +276,28 @@ namespace 調劑台管理系統
             sqL_DataGridView_領藥台_03_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
             sqL_DataGridView_領藥台_04_領藥內容.MouseDown += SqL_DataGridView_領藥台_領藥內容_MouseDown;
         }
+        private void Fuction_領藥台_時間重置()
+        {
+            MyTimer_領藥台_01_閒置登出時間.TickStop();
+            MyTimer_領藥台_01_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_01_入賬完成時間.TickStop();
+            MyTimer_領藥台_01_入賬完成時間.StartTickTime();
 
+            MyTimer_領藥台_02_閒置登出時間.TickStop();
+            MyTimer_領藥台_02_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_02_入賬完成時間.TickStop();
+            MyTimer_領藥台_02_入賬完成時間.StartTickTime();
+
+            MyTimer_領藥台_03_閒置登出時間.TickStop();
+            MyTimer_領藥台_03_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_03_入賬完成時間.TickStop();
+            MyTimer_領藥台_03_入賬完成時間.StartTickTime();
+
+            MyTimer_領藥台_04_閒置登出時間.TickStop();
+            MyTimer_領藥台_04_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_04_入賬完成時間.TickStop();
+            MyTimer_領藥台_04_入賬完成時間.StartTickTime();
+        }
         private void SqL_DataGridView_領藥內容_RowPostPaintingEventEx(SQL_DataGridView sQL_DataGridView, DataGridViewRowPostPaintEventArgs e)
         {
             object[] value = sQL_DataGridView.GetRowValues(e.RowIndex);
@@ -2181,6 +2202,13 @@ namespace 調劑台管理系統
         }
         private void Function_領藥台_01_醫令退藥(string BarCode)
         {
+            personPageClass personPageClass = new personPageClass();
+            personPageClass.ID = 領藥台_01_ID;
+            personPageClass.姓名 = 領藥台_01_登入者姓名;
+            personPageClass.藥師證字號 = 領藥台_01_藥師證字號;
+            personPageClass.顏色 = 領藥台_01_顏色;
+            Function_醫令退藥(BarCode, personPageClass, 領藥台_01名稱, PLC_Device_領藥台_01_單醫令模式.Bool);
+            return;
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
 
             MyTimer myTimer = new MyTimer();
@@ -2309,7 +2337,6 @@ namespace 調劑台管理系統
                 Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
                 Fuction_領藥台_01_時間重置();
-                object[] value = dialog_醫令退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
@@ -2566,7 +2593,7 @@ namespace 調劑台管理系統
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
-
+     
         private void Fuction_領藥台_01_時間重置()
         {
             MyTimer_領藥台_01_閒置登出時間.TickStop();

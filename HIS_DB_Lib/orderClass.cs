@@ -379,6 +379,31 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
         }
+        static public List<OrderClass> get_by_creat_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/order/get_by_creat_time_st_end";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+
         static public List<OrderClass> get_by_pri_key(string API_Server, string PRI_KEY)
         {
             string url = $"{API_Server}/api/order/get_by_pri_key";
@@ -428,6 +453,98 @@ namespace HIS_DB_Lib
         static public List<OrderClass> get_by_MED_BAG_NUM(string API_Server, string value)
         {
             string url = $"{API_Server}/api/order/get_by_MED_BAG_NUM";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_barcode(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_barcode";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_drugcode(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_drugcode";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_ward(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_ward";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_drugname(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_drugname";
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(value);

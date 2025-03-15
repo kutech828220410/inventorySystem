@@ -223,6 +223,7 @@ namespace 調劑台管理系統
 
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入領藥數量");
                     DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+                    Fuction_領藥台_時間重置();
                     if (dialogResult != DialogResult.Yes) return;
                     手輸數量 = dialog_NumPannel.Value * 1;
 
@@ -272,13 +273,13 @@ namespace 調劑台管理系統
                     {
                         Dialog_醫令選擇 dialog_醫令選擇 = new Dialog_醫令選擇(orderClasses_buf);
                         dialog_醫令選擇.ShowDialog();
+                        Fuction_領藥台_時間重置();
                         if (dialog_醫令選擇.DialogResult != DialogResult.Yes) return;
                         orderClasses = dialog_醫令選擇.OrderClasses;
                     }
                 }
 
 
-                bool flag_雙人覆核 = false;
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
@@ -321,6 +322,33 @@ namespace 調劑台管理系統
 
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+
+                    PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
+                    {
+                        if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                        {
+                            if (orderClass.實際調劑量.StringIsDouble() == false)
+                            {
+                                takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
+                            }
+                            else
+                            {
+                                if (orderClass.交易量 == orderClass.實際調劑量)
+                                {
+                                    takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
+                                }
+                                else
+                                {
+                                    orderClass.交易量 = (orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble()).ToString();
+                                }
+                            }
+
+                        }
+
+                    }
+
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID  = orderClass.GUID;
                     takeMedicineStackClass.序號 = orderClass.批序;
@@ -350,16 +378,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.收支原因 = "";
 
 
-                    PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
-
-                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
-                    {
-                        if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
-                        {
-                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
-                        }
-
-                    }
+                 
                     if(orderClass.批序.StringIsEmpty() == false)
                     {
                         if (orderClass.批序.Contains("DC"))
@@ -374,11 +393,7 @@ namespace 調劑台管理系統
                         }
                     }
                     
-                    if (flag_雙人覆核)
-                    {
-                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
-                        continue;
-                    }
+   
 
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
 
@@ -453,6 +468,7 @@ namespace 調劑台管理系統
 
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
                     DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+                    Fuction_領藥台_時間重置();
                     if (dialogResult != DialogResult.Yes) return;
                     手輸數量 = dialog_NumPannel.Value * 1;
 
@@ -486,10 +502,10 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
 
 
-
-
-                bool flag_雙人覆核 = false;
-
+                Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(orderClasses);
+                if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
+                orderClasses = dialog_醫令退藥.orderClasses;
+                Fuction_領藥台_時間重置();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
                 List<string> Codes = (from temp in orderClasses
@@ -527,7 +543,17 @@ namespace 調劑台管理系統
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
                                      where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
                                      select temp).ToList();
-
+                    string 備註 = orderClasses[i].備註;
+                    double 總異動量 = 0;
+                    string 效期 = "";
+                    string 批號 = "";
+                    StockClass stockClass = convert_note(備註);
+                    if (stockClass != null)
+                    {
+                        效期 = stockClass.Validity_period;
+                        批號 = stockClass.Lot_number;
+                        總異動量 = stockClass.Qty.StringToDouble();
+                    }
 
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -555,12 +581,14 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.ID = ID;
 
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
-                    takeMedicineStackClass.總異動量 = orderClass.交易量;
+                    takeMedicineStackClass.效期 = 效期;
+                    takeMedicineStackClass.批號 = 批號;
+                    takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.收支原因 = "";
 
 
          
-                  
+
 
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
 

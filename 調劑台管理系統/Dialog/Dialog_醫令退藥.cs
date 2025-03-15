@@ -33,6 +33,23 @@ namespace 調劑台管理系統
         }
 
         public List<OrderClass> orderClasses = new List<OrderClass>();
+        public Dialog_醫令退藥(List<OrderClass> orderClasses)
+        {
+            if (form == null)
+            {
+                InitializeComponent();
+            }
+            else
+            {
+                form.Invoke(new Action(delegate
+                {
+                    InitializeComponent();
+                }));
+            }
+            this.list_醫令資料_buf = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
+            this._sqL_DataGridView_醫令資料 = Main_Form._sqL_DataGridView_醫令資料;
+            //InitializeComponent();
+        }
         public Dialog_醫令退藥(List<object[]> list_醫令資料)
         {
             if (form == null)
@@ -66,9 +83,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, enum_醫囑資料.過帳時間);
             //this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, enum_醫囑資料.備註);
 
-            this.sqL_DataGridView_醫令資料.Set_ColumnText("藥碼", enum_醫囑資料.藥品碼);
-            this.sqL_DataGridView_醫令資料.Set_ColumnText("藥名", enum_醫囑資料.藥品名稱);
-            this.sqL_DataGridView_醫令資料.Set_ColumnText("實調量", enum_醫囑資料.實際調劑量);
+
             this.sqL_DataGridView_醫令資料.RowDoubleClickEvent += SqL_DataGridView_醫令資料_RowDoubleClickEvent;
             this.sqL_DataGridView_醫令資料.DataGridRefreshEvent += SqL_DataGridView_醫令資料_DataGridRefreshEvent;
             this.sqL_DataGridView_醫令資料.RefreshGrid(this.list_醫令資料_buf);
@@ -94,6 +109,7 @@ namespace 調劑台管理系統
             object[] value = list_value[0];
             string order_guid = value[(int)enum_醫囑資料.GUID].ObjectToString();
             string Code = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
+            string 實調量 = value[(int)enum_醫囑資料.實際調劑量].ObjectToString();
             List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_order_guid(Main_Form.API_Server, order_guid, Main_Form.ServerName, Main_Form.ServerType);
             List<string> list_val = new List<string>();
             List<string> list_lot = new List<string>();
@@ -122,7 +138,11 @@ namespace 調劑台管理系統
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"{stockClass.Validity_period}({stockClass.Lot_number})");
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             double num = dialog_NumPannel.Value;
-
+            if(實調量.StringToDouble() + num > 0)
+            {
+                MyMessageBox.ShowDialog("退藥數量不可大於實際調劑量!");
+                return;
+            }
             value[(int)enum_醫囑資料.備註] = $"[效期]:{stockClass.Validity_period},[批號]:{stockClass.Lot_number},[數量]:{num}";
             if (num == 0) value[(int)enum_醫囑資料.備註] = "";
             this.sqL_DataGridView_醫令資料.ReplaceExtra(value, true);

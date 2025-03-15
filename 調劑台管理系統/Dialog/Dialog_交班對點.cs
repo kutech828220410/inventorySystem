@@ -79,6 +79,7 @@ namespace 調劑台管理系統
             this.rJ_Button_2.MouseDownEvent += RJ_Button_2_MouseDownEvent;
             this.rJ_Button_1.MouseDownEvent += RJ_Button_1_MouseDownEvent;
             this.rJ_Button_CE.MouseDownEvent += RJ_Button_CE_MouseDownEvent;
+            this.rJ_Button_dot.MouseDownEvent += RJ_Button_dot_MouseDownEvent;
 
             this.plC_RJ_Button_確認送出.MouseDownEvent += PlC_RJ_Button_確認送出_MouseDownEvent;
             this.plC_RJ_Button_重新盤點.MouseDownEvent += PlC_RJ_Button_重新盤點_MouseDownEvent;
@@ -86,8 +87,16 @@ namespace 調劑台管理系統
 
         }
 
-       
-
+        private void RJ_Button_dot_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                if (rJ_TextBox_盤點量.Text.StringToDouble() != 0 && rJ_TextBox_盤點量.Text.Contains(".") == false)
+                {
+                    rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}.".ToString(); ;
+                }
+            }));
+        }
         private void RJ_Button_CE_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -99,72 +108,72 @@ namespace 調劑台管理系統
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}1".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}1".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_2_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}2".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}2".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_3_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}3".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}3".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_4_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}4".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}4".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_5_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}5".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}5".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_6_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}6".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}6".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_7_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}7".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}7".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_8_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}8".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}8".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_9_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}9".StringToInt32().ToString();
+                rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}9".StringToDouble().ToString();
             }));
         }
         private void RJ_Button_0_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
-                if (rJ_TextBox_盤點量.StringToInt32() != 0)
+                if (rJ_TextBox_盤點量.Text.StringToDouble() != 0)
                 {
-                    rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}0".StringToInt32().ToString(); ;
+                    rJ_TextBox_盤點量.Text = $"{rJ_TextBox_盤點量.Text}0".StringToDouble().ToString(); ;
                 }         
             }));
         }
@@ -184,6 +193,14 @@ namespace 調劑台管理系統
                     {
                         if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                         {
+                            for (int i = 0; i < list_交班對點.Count; i++)
+                            {
+                                string code = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                                int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, code);
+                                double 庫存 = Main_Form.Function_從SQL取得庫存(code);
+                                list_交班對點[i][(int)enum_交班藥品.庫存] = 差異值 + 庫存;
+                            }                 
+
                             this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點);
                         }
                         else
@@ -325,9 +342,9 @@ namespace 調劑台管理系統
             if(flag_確認輸入)
             {
                 flag_確認輸入 = false;
-                int 盤點量 = rJ_TextBox_盤點量.Text.StringToInt32();
-                int 庫存 = 0;
-                if (盤點量.StringToInt32() < 0)
+                double 盤點量 = rJ_TextBox_盤點量.Text.StringToDouble();
+                double 庫存 = 0;
+                if (盤點量.StringToDouble() < 0)
                 {
                     MyMessageBox.ShowDialog("未輸入盤點值");
                     this.Invoke(new Action(delegate
@@ -343,8 +360,8 @@ namespace 調劑台管理系統
                     cnt = 65534;
                     return;
                 }
-                list_交班對點[0][(int)enum_交班藥品.盤點量] = 盤點量.StringToInt32();
-                庫存 = list_交班對點[0][(int)enum_交班藥品.庫存].StringToInt32();
+                list_交班對點[0][(int)enum_交班藥品.盤點量] = 盤點量.StringToDouble();
+                庫存 = list_交班對點[0][(int)enum_交班藥品.庫存].StringToDouble();
                 
                 if (盤點量 != 庫存)
                 {
@@ -368,7 +385,7 @@ namespace 調劑台管理系統
                     }
 
                 }
-                int 差異值 = 盤點量 - 庫存;
+                double 差異值 = 盤點量 - 庫存;
                 list_交班對點[0][(int)enum_交班藥品.差異值] = 差異值;
                 list_交班對點[0][(int)enum_交班藥品.確認時間] = DateTime.Now.ToDateTimeString_6();
 
@@ -387,9 +404,9 @@ namespace 調劑台管理系統
             if (flag_確認輸入)
             {
                 flag_確認輸入 = false;
-                int 覆盤量 = rJ_TextBox_盤點量.Text.StringToInt32();
-                int 庫存 = 0;
-                if (覆盤量.StringToInt32() < 0)
+                double 覆盤量 = rJ_TextBox_盤點量.Text.StringToDouble();
+                double 庫存 = 0;
+                if (覆盤量.StringToDouble() < 0)
                 {
                     MyMessageBox.ShowDialog("未輸入覆盤值");
                     this.Invoke(new Action(delegate
@@ -405,8 +422,8 @@ namespace 調劑台管理系統
                     cnt = 65534;
                     return;
                 }
-                list_交班對點[0][(int)enum_交班藥品.覆盤量] = 覆盤量.StringToInt32();
-                庫存 = list_交班對點[0][(int)enum_交班藥品.庫存].StringToInt32();
+                list_交班對點[0][(int)enum_交班藥品.覆盤量] = 覆盤量.StringToDouble();
+                庫存 = list_交班對點[0][(int)enum_交班藥品.庫存].StringToDouble();
 
                 if (覆盤量 != 庫存)
                 {
@@ -466,13 +483,13 @@ namespace 調劑台管理系統
         private void Function_寫入交易紀錄(string 備註)
         {
             List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
-            if (備註.StringIsEmpty())
+            if (備註 == "完成交班盤點")
             {
                 List<medRecheckLogClass> medRecheckLogClasses = new List<medRecheckLogClass>();
                 for (int i = 0; i < list_交班對點.Count; i++)
                 {
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsDouble() == false) continue;
-                    if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToInt32() != 0)
+                    if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToDouble() != 0)
                     {
                         medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
                         medRecheckLogClass.發生類別 = "交班對點";
@@ -507,6 +524,7 @@ namespace 調劑台管理系統
                 transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
                 transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
                 transactionsClass.操作時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
+
                 transactionsClass.備註 = 備註;
                 if (transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
 
@@ -706,7 +724,7 @@ namespace 調劑台管理系統
         {
             if (MyMessageBox.ShowDialog("確認送出交班表?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
 
-            Function_寫入交易紀錄("");
+            Function_寫入交易紀錄("完成交班盤點");
           
             this.DialogResult = DialogResult.Yes;
             this.Close();

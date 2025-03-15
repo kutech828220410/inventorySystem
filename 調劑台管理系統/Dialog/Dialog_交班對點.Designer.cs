@@ -31,6 +31,8 @@ namespace 調劑台管理系統
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.stepViewer = new MyUI.StepViewer();
+            this.plC_RJ_Button_重新盤點 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_確認送出 = new MyUI.PLC_RJ_Button();
             this.panel_藥品選擇 = new System.Windows.Forms.Panel();
             this.rJ_Button_藥品群組_選擇 = new MyUI.RJ_Button();
@@ -68,8 +70,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_現有庫存 = new MyUI.RJ_Lable();
             this.pictureBox_藥品資訊 = new System.Windows.Forms.PictureBox();
             this.rJ_Lable_藥品資訊 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_重新盤點 = new MyUI.PLC_RJ_Button();
-            this.stepViewer = new MyUI.StepViewer();
+            this.rJ_Button_dot = new MyUI.RJ_Button();
             this.panel9.SuspendLayout();
             this.panel_藥品選擇.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -102,6 +103,74 @@ namespace 調劑台管理系統
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1842, 110);
             this.panel9.TabIndex = 11;
+            // 
+            // stepViewer
+            // 
+            this.stepViewer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.stepViewer.CurrentStep = 0;
+            this.stepViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stepViewer.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.stepViewer.LineWidth = 60;
+            this.stepViewer.ListDataSource = null;
+            this.stepViewer.Location = new System.Drawing.Point(987, 0);
+            this.stepViewer.Margin = new System.Windows.Forms.Padding(4);
+            this.stepViewer.Name = "stepViewer";
+            this.stepViewer.Size = new System.Drawing.Size(747, 110);
+            this.stepViewer.TabIndex = 146;
+            // 
+            // plC_RJ_Button_重新盤點
+            // 
+            this.plC_RJ_Button_重新盤點.AutoResetState = true;
+            this.plC_RJ_Button_重新盤點.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_重新盤點.Bool = false;
+            this.plC_RJ_Button_重新盤點.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_重新盤點.BorderRadius = 15;
+            this.plC_RJ_Button_重新盤點.BorderSize = 1;
+            this.plC_RJ_Button_重新盤點.but_press = false;
+            this.plC_RJ_Button_重新盤點.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_重新盤點.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_重新盤點.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_重新盤點.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_重新盤點.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_重新盤點.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_重新盤點.GUID = "";
+            this.plC_RJ_Button_重新盤點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_重新盤點.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_重新盤點.Location = new System.Drawing.Point(879, 0);
+            this.plC_RJ_Button_重新盤點.Name = "plC_RJ_Button_重新盤點";
+            this.plC_RJ_Button_重新盤點.OFF_文字內容 = "重新盤點";
+            this.plC_RJ_Button_重新盤點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_重新盤點.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_重新盤點.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_重新盤點.ON_BorderSize = 1;
+            this.plC_RJ_Button_重新盤點.ON_文字內容 = "重新盤點";
+            this.plC_RJ_Button_重新盤點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_重新盤點.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_重新盤點.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_重新盤點.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_重新盤點.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_重新盤點.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_重新盤點.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_重新盤點.ShadowSize = 3;
+            this.plC_RJ_Button_重新盤點.ShowLoadingForm = false;
+            this.plC_RJ_Button_重新盤點.Size = new System.Drawing.Size(108, 110);
+            this.plC_RJ_Button_重新盤點.State = false;
+            this.plC_RJ_Button_重新盤點.TabIndex = 145;
+            this.plC_RJ_Button_重新盤點.Text = "重新盤點";
+            this.plC_RJ_Button_重新盤點.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_重新盤點.TextHeight = 35;
+            this.plC_RJ_Button_重新盤點.Texts = "重新盤點";
+            this.plC_RJ_Button_重新盤點.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_重新盤點.字型鎖住 = false;
+            this.plC_RJ_Button_重新盤點.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_重新盤點.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_重新盤點.文字鎖住 = false;
+            this.plC_RJ_Button_重新盤點.背景圖片 = global::調劑台管理系統.Properties.Resources.essential_set_close_512;
+            this.plC_RJ_Button_重新盤點.讀取位元反向 = false;
+            this.plC_RJ_Button_重新盤點.讀寫鎖住 = false;
+            this.plC_RJ_Button_重新盤點.音效 = false;
+            this.plC_RJ_Button_重新盤點.顯示 = false;
+            this.plC_RJ_Button_重新盤點.顯示狀態 = false;
             // 
             // plC_RJ_Button_確認送出
             // 
@@ -207,7 +276,7 @@ namespace 調劑台管理系統
             this.label1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(5, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 32);
+            this.label1.Size = new System.Drawing.Size(150, 32);
             this.label1.TabIndex = 9;
             this.label1.Text = "藥品群組:";
             // 
@@ -426,7 +495,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交班藥品.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_交班藥品.Password = "user82822040";
             this.sqL_DataGridView_交班藥品.Port = ((uint)(3306u));
+            this.sqL_DataGridView_交班藥品.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班藥品.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_交班藥品.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_交班藥品.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交班藥品.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_交班藥品.RowsHeight = 50;
@@ -667,6 +738,7 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.Gray;
             this.rJ_Pannel2.BorderRadius = 50;
             this.rJ_Pannel2.BorderSize = 2;
+            this.rJ_Pannel2.Controls.Add(this.rJ_Button_dot);
             this.rJ_Pannel2.Controls.Add(this.rJ_Button_1);
             this.rJ_Pannel2.Controls.Add(this.rJ_Button_CE);
             this.rJ_Pannel2.Controls.Add(this.rJ_Button_6);
@@ -1117,73 +1189,37 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥品資訊.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_藥品資訊.TextColor = System.Drawing.Color.Black;
             // 
-            // plC_RJ_Button_重新盤點
+            // rJ_Button_dot
             // 
-            this.plC_RJ_Button_重新盤點.AutoResetState = true;
-            this.plC_RJ_Button_重新盤點.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_重新盤點.Bool = false;
-            this.plC_RJ_Button_重新盤點.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_重新盤點.BorderRadius = 15;
-            this.plC_RJ_Button_重新盤點.BorderSize = 1;
-            this.plC_RJ_Button_重新盤點.but_press = false;
-            this.plC_RJ_Button_重新盤點.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_重新盤點.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_重新盤點.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Button_重新盤點.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_重新盤點.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_重新盤點.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_重新盤點.GUID = "";
-            this.plC_RJ_Button_重新盤點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_重新盤點.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button_重新盤點.Location = new System.Drawing.Point(879, 0);
-            this.plC_RJ_Button_重新盤點.Name = "plC_RJ_Button_重新盤點";
-            this.plC_RJ_Button_重新盤點.OFF_文字內容 = "重新盤點";
-            this.plC_RJ_Button_重新盤點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_重新盤點.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_重新盤點.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_重新盤點.ON_BorderSize = 1;
-            this.plC_RJ_Button_重新盤點.ON_文字內容 = "重新盤點";
-            this.plC_RJ_Button_重新盤點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_重新盤點.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_重新盤點.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_重新盤點.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_重新盤點.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_重新盤點.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_重新盤點.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_重新盤點.ShadowSize = 3;
-            this.plC_RJ_Button_重新盤點.ShowLoadingForm = false;
-            this.plC_RJ_Button_重新盤點.Size = new System.Drawing.Size(108, 110);
-            this.plC_RJ_Button_重新盤點.State = false;
-            this.plC_RJ_Button_重新盤點.TabIndex = 145;
-            this.plC_RJ_Button_重新盤點.Text = "重新盤點";
-            this.plC_RJ_Button_重新盤點.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_重新盤點.TextHeight = 35;
-            this.plC_RJ_Button_重新盤點.Texts = "重新盤點";
-            this.plC_RJ_Button_重新盤點.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_重新盤點.字型鎖住 = false;
-            this.plC_RJ_Button_重新盤點.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_重新盤點.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_重新盤點.文字鎖住 = false;
-            this.plC_RJ_Button_重新盤點.背景圖片 = global::調劑台管理系統.Properties.Resources.essential_set_close_512;
-            this.plC_RJ_Button_重新盤點.讀取位元反向 = false;
-            this.plC_RJ_Button_重新盤點.讀寫鎖住 = false;
-            this.plC_RJ_Button_重新盤點.音效 = false;
-            this.plC_RJ_Button_重新盤點.顯示 = false;
-            this.plC_RJ_Button_重新盤點.顯示狀態 = false;
-            // 
-            // stepViewer
-            // 
-            this.stepViewer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.stepViewer.CurrentStep = 0;
-            this.stepViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stepViewer.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.stepViewer.LineWidth = 60;
-            this.stepViewer.ListDataSource = null;
-            this.stepViewer.Location = new System.Drawing.Point(987, 0);
-            this.stepViewer.Margin = new System.Windows.Forms.Padding(4);
-            this.stepViewer.Name = "stepViewer";
-            this.stepViewer.Size = new System.Drawing.Size(747, 110);
-            this.stepViewer.TabIndex = 146;
+            this.rJ_Button_dot.AutoResetState = false;
+            this.rJ_Button_dot.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_dot.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_dot.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_dot.BorderRadius = 10;
+            this.rJ_Button_dot.BorderSize = 0;
+            this.rJ_Button_dot.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_dot.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_dot.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_dot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_dot.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_dot.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_dot.GUID = "";
+            this.rJ_Button_dot.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_dot.Location = new System.Drawing.Point(50, 277);
+            this.rJ_Button_dot.Name = "rJ_Button_dot";
+            this.rJ_Button_dot.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_dot.ProhibitionLineWidth = 4;
+            this.rJ_Button_dot.ProhibitionSymbolSize = 30;
+            this.rJ_Button_dot.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_dot.ShadowSize = 0;
+            this.rJ_Button_dot.ShowLoadingForm = false;
+            this.rJ_Button_dot.Size = new System.Drawing.Size(80, 80);
+            this.rJ_Button_dot.State = false;
+            this.rJ_Button_dot.TabIndex = 30;
+            this.rJ_Button_dot.Text = "●";
+            this.rJ_Button_dot.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_dot.TextHeight = 0;
+            this.rJ_Button_dot.UseVisualStyleBackColor = false;
             // 
             // Dialog_交班對點
             // 
@@ -1254,5 +1290,6 @@ namespace 調劑台管理系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_解鎖;
         private MyUI.PLC_RJ_Button plC_RJ_Button_重新盤點;
         private MyUI.StepViewer stepViewer;
+        private MyUI.RJ_Button rJ_Button_dot;
     }
 }

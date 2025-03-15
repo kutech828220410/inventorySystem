@@ -324,7 +324,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_med.GetAllRows(null);
                 if (returnData.Value == "前綴")
@@ -418,7 +418,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_med.GetAllRows(null);
                 if (returnData.Value == "前綴")
@@ -512,7 +512,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_med.GetAllRows(null);
                 if (returnData.Value == "前綴")
@@ -612,7 +612,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_med.GetAllRows(null);
                 list_value = list_value.GetRows((int)enum_雲端藥檔.管制級別, text);
@@ -779,7 +779,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
@@ -866,7 +866,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
@@ -947,7 +947,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> med_page = sQLControl.GetRowsByDefult(null, (int)enum_雲端藥檔.GUID, GUID);
@@ -1031,7 +1031,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1174,7 +1174,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1219,7 +1219,7 @@ namespace HIS_WebApi
                 Task.WhenAll(tasks.ToArray()).Wait();
                 List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
                 string 藥碼 = "";
-                int inventory = 0;        
+                double inventory = 0;        
                 List<medClassBasic> medClasses = list_med.SQLToClass<medClassBasic, enum_medPharmacy>();
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -1242,7 +1242,7 @@ namespace HIS_WebApi
                     if (deviceBasics_buf.Count == 0) continue;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     medClasses[i].藥局庫存 = inventory.ToString();
@@ -1256,10 +1256,10 @@ namespace HIS_WebApi
                     if (deviceBasics_buf.Count == 0) continue;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].藥庫庫存 = inventory.ToString();
-                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToInt32() + medClasses[i].藥庫庫存.StringToInt32()).ToString();                  
+                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToDouble() + medClasses[i].藥庫庫存.StringToDouble()).ToString();                  
                 }
 
                 returnData.Data = medClasses;
@@ -1334,7 +1334,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_phar", UserName, Password, Port, SSLMode);
 
@@ -1408,7 +1408,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1551,7 +1551,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1596,7 +1596,7 @@ namespace HIS_WebApi
                 Task.WhenAll(tasks.ToArray()).Wait();
                 List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
                 string 藥碼 = "";
-                int inventory = 0;
+                double inventory = 0;
                 List<medClassBasic> medClasses = list_med.SQLToClass<medClassBasic, enum_medDrugstore>();
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -1619,7 +1619,7 @@ namespace HIS_WebApi
                     if (deviceBasics_buf.Count == 0) continue;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
           
                     medClasses[i].藥局庫存 = inventory.ToString();
@@ -1634,11 +1634,11 @@ namespace HIS_WebApi
                     if (deviceBasics_buf.Count == 0) continue;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     medClasses[i].藥庫庫存 = inventory.ToString();
-                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToInt32() + medClasses[i].藥庫庫存.StringToInt32()).ToString();
+                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToDouble() + medClasses[i].藥庫庫存.StringToDouble()).ToString();
                 }
 
                 returnData.Data = medClasses;
@@ -1713,7 +1713,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses_buf[0].DBName;
                 string UserName = sys_serverSettingClasses_buf[0].User;
                 string Password = sys_serverSettingClasses_buf[0].Password;
-                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_firstclass", UserName, Password, Port, SSLMode);
 
@@ -1789,7 +1789,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -1810,7 +1810,7 @@ namespace HIS_WebApi
                         deviceBasics_藥局 = deviceController.Function_Get_deviceSimple(sys_serverSettingClasses[0], "sd0_device_jsonstring");
                         List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
                         string 藥碼 = "";
-                        int inventory = 0;
+                        double inventory = 0;
                         for (int i = 0; i < list_med.Count; i++)
                         {
                             inventory = 0;
@@ -1820,7 +1820,7 @@ namespace HIS_WebApi
                                                 select temp).ToList();
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
-                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                                inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                             }
                             list_med[i][(int)enum_medDrugstore.藥局庫存] = inventory.ToString();
                         }
@@ -1833,7 +1833,7 @@ namespace HIS_WebApi
                         deviceBasics_藥庫 = deviceController.Function_Get_deviceSimple(sys_serverSettingClasses[0], "firstclass_device_jsonstring");
                         List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
                         string 藥碼 = "";
-                        int inventory = 0;
+                        double inventory = 0;
                         for (int i = 0; i < list_med.Count; i++)
                         {
                             inventory = 0;
@@ -1843,7 +1843,7 @@ namespace HIS_WebApi
                                                 select temp).ToList();
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
-                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                                inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                             }
                             list_med[i][(int)enum_medDrugstore.藥庫庫存] = inventory.ToString();
                         }
@@ -1870,7 +1870,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -1893,7 +1893,7 @@ namespace HIS_WebApi
                         Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥局);
                         List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
                         string 藥碼 = "";
-                        int inventory = 0;
+                        double inventory = 0;
                         for (int i = 0; i < list_med.Count; i++)
                         {
                             inventory = 0;
@@ -1906,7 +1906,7 @@ namespace HIS_WebApi
                             if (deviceBasics_buf == null) continue;
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
-                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                                inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                             }
                             list_med[i][(int)enum_medDrugstore.藥局庫存] = inventory.ToString();
                         }
@@ -1920,7 +1920,7 @@ namespace HIS_WebApi
                         List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
                         Dictionary<string,List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥庫);
                         string 藥碼 = "";
-                        int inventory = 0;
+                        double inventory = 0;
                 
                         for (int i = 0; i < list_med.Count; i++)
                         {
@@ -1937,7 +1937,7 @@ namespace HIS_WebApi
                             if (deviceBasics_buf == null) continue;
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
-                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                                inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                             }
                             list_med[i][(int)enum_medDrugstore.藥庫庫存] = inventory.ToString();
                         }
@@ -1964,7 +1964,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -2035,11 +2035,11 @@ namespace HIS_WebApi
                     {
                         藥碼 = medClasses[i].藥品碼;
                         deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                        int inventory = 0;
+                        double inventory = 0;
                         medClasses[i].DeviceBasics = deviceBasics_buf;
                         for (int k = 0; k < deviceBasics_buf.Count; k++)
                         {
-                            inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                            inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                         }
                         medClasses[i].庫存 = inventory.ToString();
                     }
@@ -2105,7 +2105,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
                 string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -2175,11 +2175,11 @@ namespace HIS_WebApi
                 {
                     藥碼 = medClasses[i].藥品碼;
                     deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                    int inventory = 0;
+                    double inventory = 0;
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].庫存 = inventory.ToString();
                 }
@@ -2241,7 +2241,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
                 string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -2348,11 +2348,11 @@ namespace HIS_WebApi
                 {
                     藥碼 = medClasses[i].藥品碼;
                     deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                    int inventory = 0;
+                    double inventory = 0;
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].庫存 = inventory.ToString();
                 }
@@ -2414,7 +2414,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
                 string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -2490,11 +2490,11 @@ namespace HIS_WebApi
                 {
                     藥碼 = medClasses[i].藥品碼;
                     deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                    int inventory = 0;
+                    double inventory = 0;
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].庫存 = inventory.ToString();
                 }
@@ -2556,7 +2556,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
                 string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -2632,11 +2632,11 @@ namespace HIS_WebApi
                 {
                     藥碼 = medClasses[i].藥品碼;
                     deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                    int inventory = 0;
+                    double inventory = 0;
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].庫存 = inventory.ToString();
                 }
@@ -2698,7 +2698,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClasses[0].DBName;
                 string UserName = sys_serverSettingClasses[0].User;
                 string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -2774,11 +2774,11 @@ namespace HIS_WebApi
                 {
                     藥碼 = medClasses[i].藥品碼;
                     deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                    int inventory = 0;
+                    double inventory = 0;
                     medClasses[i].DeviceBasics = deviceBasics_buf;
                     for (int k = 0; k < deviceBasics_buf.Count; k++)
                     {
-                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].庫存 = inventory.ToString();
                 }
@@ -2872,7 +2872,7 @@ namespace HIS_WebApi
                         string DB = _sys_serverSettingClasses[0].DBName;
                         string UserName = _sys_serverSettingClasses[0].User;
                         string Password = _sys_serverSettingClasses[0].Password;
-                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                        uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToDouble();
                         string TableName = "medicine_page";
                         SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
@@ -2884,11 +2884,11 @@ namespace HIS_WebApi
                             keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
 
                             deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
-                            int inventory = 0;
+                            double inventory = 0;
                             _medClass.DeviceBasics = deviceBasics_buf;
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
-                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                                inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                             }
                             _medClass.庫存 = inventory.ToString();
 
@@ -2950,7 +2950,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses_buf[0].DBName;
                     string UserName = sys_serverSettingClasses_buf[0].User;
                     string Password = sys_serverSettingClasses_buf[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
                     if (sys_serverSettingClasses_buf.Count == 0)
                     {
                         returnData.Code = -200;
@@ -2975,7 +2975,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -2998,7 +2998,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3022,7 +3022,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3086,7 +3086,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3134,7 +3134,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3160,7 +3160,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3186,7 +3186,7 @@ namespace HIS_WebApi
                     string DB = sys_serverSettingClasses[0].DBName;
                     string UserName = sys_serverSettingClasses[0].User;
                     string Password = sys_serverSettingClasses[0].Password;
-                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToDouble();
                     if (sys_serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;
@@ -3526,7 +3526,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_med = new List<object[]>();
@@ -3571,7 +3571,7 @@ namespace HIS_WebApi
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
                 string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
                 List<object[]> list_med = sQLControl_med.GetAllRows(null);
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
