@@ -45,13 +45,13 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_選擇 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_庫存設定 = new MyUI.PLC_RJ_Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rJ_Button_搜尋 = new MyUI.RJ_Button();
+            this.comboBox_搜尋內容 = new System.Windows.Forms.ComboBox();
+            this.comboBox_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.plC_RJ_Button_下載報表 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_返回 = new MyUI.PLC_RJ_Button();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.sqL_DataGridView_盤點總表 = new SQLUI.SQL_DataGridView();
-            this.rJ_Button_搜尋 = new MyUI.RJ_Button();
-            this.comboBox_搜尋內容 = new System.Windows.Forms.ComboBox();
-            this.comboBox_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -627,6 +627,64 @@ namespace 智能藥庫系統
             this.panel1.Size = new System.Drawing.Size(1792, 88);
             this.panel1.TabIndex = 10;
             // 
+            // rJ_Button_搜尋
+            // 
+            this.rJ_Button_搜尋.AutoResetState = false;
+            this.rJ_Button_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_搜尋.BorderRadius = 20;
+            this.rJ_Button_搜尋.BorderSize = 0;
+            this.rJ_Button_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_搜尋.GUID = "";
+            this.rJ_Button_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_搜尋.Location = new System.Drawing.Point(756, 20);
+            this.rJ_Button_搜尋.Name = "rJ_Button_搜尋";
+            this.rJ_Button_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_搜尋.ShadowSize = 3;
+            this.rJ_Button_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_搜尋.Size = new System.Drawing.Size(110, 57);
+            this.rJ_Button_搜尋.State = false;
+            this.rJ_Button_搜尋.TabIndex = 127;
+            this.rJ_Button_搜尋.Text = "搜尋";
+            this.rJ_Button_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_搜尋.TextHeight = 0;
+            this.rJ_Button_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // comboBox_搜尋內容
+            // 
+            this.comboBox_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_搜尋內容.FormattingEnabled = true;
+            this.comboBox_搜尋內容.Location = new System.Drawing.Point(457, 27);
+            this.comboBox_搜尋內容.Name = "comboBox_搜尋內容";
+            this.comboBox_搜尋內容.Size = new System.Drawing.Size(291, 39);
+            this.comboBox_搜尋內容.TabIndex = 126;
+            // 
+            // comboBox_搜尋條件
+            // 
+            this.comboBox_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_搜尋條件.FormattingEnabled = true;
+            this.comboBox_搜尋條件.Items.AddRange(new object[] {
+            "藥碼(料號)",
+            "藥名",
+            "別名",
+            "未覆盤",
+            "已覆盤",
+            "全部顯示"});
+            this.comboBox_搜尋條件.Location = new System.Drawing.Point(194, 27);
+            this.comboBox_搜尋條件.Name = "comboBox_搜尋條件";
+            this.comboBox_搜尋條件.Size = new System.Drawing.Size(238, 39);
+            this.comboBox_搜尋條件.TabIndex = 125;
+            // 
             // plC_RJ_Button_下載報表
             // 
             this.plC_RJ_Button_下載報表.AutoResetState = false;
@@ -771,7 +829,9 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點總表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點總表.Password = "user82822040";
             this.sqL_DataGridView_盤點總表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點總表.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點總表.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_盤點總表.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_盤點總表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_盤點總表.RowsColor = System.Drawing.Color.White;
             this.sqL_DataGridView_盤點總表.RowsHeight = 10;
@@ -796,64 +856,6 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點總表.顯示首行 = true;
             this.sqL_DataGridView_盤點總表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_盤點總表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            // 
-            // rJ_Button_搜尋
-            // 
-            this.rJ_Button_搜尋.AutoResetState = false;
-            this.rJ_Button_搜尋.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_搜尋.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_搜尋.BorderRadius = 20;
-            this.rJ_Button_搜尋.BorderSize = 0;
-            this.rJ_Button_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_搜尋.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_搜尋.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_搜尋.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_搜尋.GUID = "";
-            this.rJ_Button_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_搜尋.Location = new System.Drawing.Point(756, 20);
-            this.rJ_Button_搜尋.Name = "rJ_Button_搜尋";
-            this.rJ_Button_搜尋.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_搜尋.ProhibitionLineWidth = 4;
-            this.rJ_Button_搜尋.ProhibitionSymbolSize = 30;
-            this.rJ_Button_搜尋.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_搜尋.ShadowSize = 3;
-            this.rJ_Button_搜尋.ShowLoadingForm = false;
-            this.rJ_Button_搜尋.Size = new System.Drawing.Size(110, 57);
-            this.rJ_Button_搜尋.State = false;
-            this.rJ_Button_搜尋.TabIndex = 127;
-            this.rJ_Button_搜尋.Text = "搜尋";
-            this.rJ_Button_搜尋.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_搜尋.TextHeight = 0;
-            this.rJ_Button_搜尋.UseVisualStyleBackColor = false;
-            // 
-            // comboBox_搜尋內容
-            // 
-            this.comboBox_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_搜尋內容.FormattingEnabled = true;
-            this.comboBox_搜尋內容.Location = new System.Drawing.Point(457, 27);
-            this.comboBox_搜尋內容.Name = "comboBox_搜尋內容";
-            this.comboBox_搜尋內容.Size = new System.Drawing.Size(291, 39);
-            this.comboBox_搜尋內容.TabIndex = 126;
-            // 
-            // comboBox_搜尋條件
-            // 
-            this.comboBox_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_搜尋條件.FormattingEnabled = true;
-            this.comboBox_搜尋條件.Items.AddRange(new object[] {
-            "藥碼(料號)",
-            "藥名",
-            "別名",
-            "未覆盤",
-            "已覆盤",
-            "全部顯示"});
-            this.comboBox_搜尋條件.Location = new System.Drawing.Point(194, 27);
-            this.comboBox_搜尋條件.Name = "comboBox_搜尋條件";
-            this.comboBox_搜尋條件.Size = new System.Drawing.Size(238, 39);
-            this.comboBox_搜尋條件.TabIndex = 125;
             // 
             // Dialog_盤點單合併
             // 

@@ -188,6 +188,9 @@ namespace 智能藥庫系統
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.誤差金額);
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.註記);
             sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.盤點量);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.別名);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.藥名);
+            sqL_DataGridView_盤點總表.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_盤點定盤_Excel.料號);
             sqL_DataGridView_盤點總表.Set_CanEdit(true, enum_盤點定盤_Excel.覆盤量);
 
             sqL_DataGridView_盤點總表.RowEndEditEvent += SqL_DataGridView_盤點總表_RowEndEditEvent;
@@ -241,7 +244,23 @@ namespace 智能藥庫系統
         }
         private void SqL_DataGridView_盤點總表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
+            List<object[]> RowsList_buf = new List<object[]>();
+            List<medClass> medClasses_cloud = medClass.get_med_cloud(Main_Form.API_Server);
+            List<medClass> medClasses_cloud_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
             for (int i = 0; i < RowsList.Count; i++)
+            {
+                string code = RowsList[i][(int)enum_盤點定盤_Excel.藥碼].ObjectToString();
+                medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(code);
+                if(medClasses_cloud_buf.Count > 0)
+                {
+                    if(medClasses_cloud_buf[0].中西藥 == "西藥")
+                    {
+                        RowsList_buf.Add(RowsList[i]);
+                    }
+                }
+            }
+            for (int i = 0; i < RowsList_buf.Count; i++)
             {
                 object[] value = RowsList[i];
                 if (value[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty())
@@ -255,6 +274,7 @@ namespace 智能藥庫系統
                     value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
                 }
             }
+            RowsList = RowsList_buf;
         }
 
         private void DateTimeIntervelPicker_建表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
