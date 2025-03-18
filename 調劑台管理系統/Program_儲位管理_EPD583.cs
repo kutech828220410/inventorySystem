@@ -535,6 +535,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_隔板亮燈_CheckStateChanged(object sender, EventArgs e)
         {
+            if (this.PLC_Device_最高權限.Bool == false) return;
             this.Invoke(new Action(delegate
             {
                 string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
@@ -551,6 +552,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_警報_CheckStateChanged(object sender, EventArgs e)
         {
+            if (this.PLC_Device_最高權限.Bool == false) return;
             this.Invoke(new Action(delegate
             {
                 string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
@@ -565,6 +567,30 @@ namespace 調劑台管理系統
                     flag_Program_輸出入檢查_輸出刷新_Init = false;
                 }
             }));
+        }
+        private void PlC_CheckBox_儲位管理_EPD583_輸出_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (this.PLC_Device_最高權限.Bool == false) return;
+            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
+            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer == null) return;
+            this.drawerUI_EPD_583.SetOutput(drawer, plC_CheckBox_儲位管理_EPD583_輸出.Checked);
+        }
+        private void PlC_CheckBox_儲位管理_EPD583_輸入方向_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (this.PLC_Device_最高權限.Bool == false) return;
+            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
+            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer == null) return;
+            this.drawerUI_EPD_583.SetInput_dir(drawer, plC_CheckBox_儲位管理_EPD583_輸入方向.Checked);
+        }
+        private void PlC_CheckBox_儲位管理_EPD583_輸出方向_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (this.PLC_Device_最高權限.Bool == false) return;
+            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
+            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer == null) return;
+            this.drawerUI_EPD_583.SetOutput_dir(drawer, plC_CheckBox_儲位管理_EPD583_輸出方向.Checked);
         }
         private void RJ_TextBox_儲位管理_EPD583_藥品搜尋_藥品名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1581,27 +1607,7 @@ namespace 調劑台管理系統
             }));
 
         }
-        private void PlC_CheckBox_儲位管理_EPD583_輸出_CheckStateChanged(object sender, EventArgs e)
-        {
-            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
-            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            if (drawer == null) return;
-            this.drawerUI_EPD_583.SetOutput(drawer, plC_CheckBox_儲位管理_EPD583_輸出.Checked);
-        }
-        private void PlC_CheckBox_儲位管理_EPD583_輸入方向_CheckStateChanged(object sender, EventArgs e)
-        {
-            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
-            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            if (drawer == null) return;
-            this.drawerUI_EPD_583.SetInput_dir(drawer, plC_CheckBox_儲位管理_EPD583_輸入方向.Checked);
-        }
-        private void PlC_CheckBox_儲位管理_EPD583_輸出方向_CheckStateChanged(object sender, EventArgs e)
-        {
-            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
-            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            if (drawer == null) return;
-            this.drawerUI_EPD_583.SetOutput_dir(drawer, plC_CheckBox_儲位管理_EPD583_輸出方向.Checked);
-        }
+
         private void PlC_RJ_Button_儲位管理_EPD583_匯出_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate 

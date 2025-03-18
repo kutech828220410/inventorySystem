@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.0314")]
-[assembly: AssemblyFileVersion("1.0.25.0314")]
+[assembly: AssemblyVersion("1.0.25.0318")]
+[assembly: AssemblyFileVersion("1.0.25.0318")]
 namespace 調劑台管理系統
 {
 
@@ -105,6 +105,7 @@ namespace 調劑台管理系統
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_storage = new SQL_DataGridView.ConnentionClass();
 
             private string web_URL = "";
             private string api_URL = "";
@@ -132,6 +133,8 @@ namespace 調劑台管理系統
             public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_tradding { get => dB_tradding; set => dB_tradding = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_storage { get => dB_storage; set => dB_storage = value; }
 
             [JsonIgnore]
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
@@ -864,13 +867,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
 
-            this.drawerUI_EPD_583.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.drawerUI_EPD_1020.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_EPD_266.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.rowsLEDUI.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_WT32.InitEx(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_LCD_114.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.drawerUI_EPD_583.InitEx(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.drawerUI_EPD_1020.InitEx(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.storageUI_EPD_266.InitEx(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.rowsLEDUI.InitEx(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.rfiD_UI.Init(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.storageUI_WT32.InitEx(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
+            this.storageUI_LCD_114.Init(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
             //else
             //{
             //    this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 0, 0);
@@ -962,6 +965,15 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_order_list.DataBaseName = sys_serverSettingClass.DBName;
                 dBConfigClass.DB_order_list.UserName = sys_serverSettingClass.User;
                 dBConfigClass.DB_order_list.Password = sys_serverSettingClass.Password;
+            }
+            sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.調劑台, "儲位資料");
+            if (sys_serverSettingClass != null)
+            {
+                dBConfigClass.DB_storage.IP = sys_serverSettingClass.Server;
+                dBConfigClass.DB_storage.Port = (uint)(sys_serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_storage.DataBaseName = sys_serverSettingClass.DBName;
+                dBConfigClass.DB_storage.UserName = sys_serverSettingClass.User;
+                dBConfigClass.DB_storage.Password = sys_serverSettingClass.Password;
             }
             sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.交易紀錄資料);
             if (sys_serverSettingClass != null)
