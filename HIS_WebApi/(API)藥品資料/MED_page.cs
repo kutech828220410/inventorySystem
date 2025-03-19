@@ -132,9 +132,9 @@ namespace HIS_WebApi
         /// </code>
         /// </remarks>
         /// <returns></returns>
-        [Route("get_med_cloud")]
+        [Route("get_Tmed_cloud")]
         [HttpPost]
-        public string POST_get_med_cloud(returnData returnData)
+        public string POST_get_Tmed_cloud(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -169,6 +169,77 @@ namespace HIS_WebApi
                 returnData.Data = medClasses;
                 returnData.Code = 200;
                 returnData.Result = "雲端藥檔取得成功!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 取得中藥雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_Tmed_cloud")]
+        [HttpPost]
+        public string POST_get_med_cloud(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_Tmed_cloud";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (sys_serverSettingClasses_buf.Count == 0)
+                {
+                    if (sys_serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+
+                returnData.ServerName = "Main";
+                returnData.ServerType = "網頁";
+                returnData.TableName = "medicine_page_cloud";
+                POST_init(returnData);
+                List<medClass> medClasses = Get_med_cloud(sys_serverSettingClasses_buf[0]);
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+                medClasses = medClasses.Where(temp => temp.中西藥 == "中藥").ToList();
+                medClasses.Sort(new medClass.ICP_By_name());
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = "中藥雲端藥檔取得成功!";
                 returnData.TimeTaken = myTimerBasic.ToString();
 
                 return returnData.JsonSerializationt(false);

@@ -1190,7 +1190,7 @@ namespace HIS_WebApi
                     textVisionClass.Result = "未辨識";
                     if (textVisionClass.圖片.StringIsEmpty())
                     {
-                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\20250116-1_1140114013-08.jpg";
+                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\久裕 20250314-0_1140313001-51.jpg";
                         byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
                         string base64 = Convert.ToBase64String(imageBytes);
                         base64 = $"data:image/jpeg;base64,{base64}";
