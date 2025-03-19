@@ -195,6 +195,7 @@ namespace HIS_WebApi
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt();
                 }
+
                 returnData.Code = 200;
                 returnData.Data = medGroupClasses;
                 returnData.TimeTaken = myTimer.ToString();
@@ -392,6 +393,122 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 新增群組
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Value": "",
+        ///     "ValueAry": ["群組名"],
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add_group_name")]
+        [HttpPost]
+        public string POST_add_group_name([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤!returnData.ValueAry 不得為空";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤!returnData.ValueAry應為 [\"群組名稱\"]";
+                    return returnData.JsonSerializationt();
+                }
+           
+                string 群組名 = returnData.ValueAry[0];
+                if (群組名.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"群組名稱不可為空白";
+                    return returnData.JsonSerializationt();
+                }
+                
+                List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null,(int)enum_medGroup.名稱, 群組名);
+                List<object[]> list_med_group_add = new List<object[]>();
+                object[] value = new object[new enum_medGroup().GetLength()];
+                if (list_med_group.Count == 0)
+                {
+                    value[(int)enum_medGroup.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_medGroup.名稱] = 群組名;
+                    value[(int)enum_medGroup.建立時間] = DateTime.Now.ToDateTimeString();
+                    list_med_group_add.Add(value);
+                }
+                else
+                {                 
+                    returnData.Code = -200;
+                    returnData.Result = $"此群組名稱已存在";
+                    return returnData.JsonSerializationt();                                  
+                }
+                
+                sQLControl_med_group.AddRows(null, list_med_group_add);            
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "add_group_name";
+                returnData.Result = $"新增{群組名}群組 成功";
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 修改指定藥品群組名稱
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 藥品群組GUID<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "NAME": "測試"
+        ///     },
+        ///     "Value": "f2563e24-9e54-4f47-9aa9-bb1f42e1bc34"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         /// <summary>
         /// 修改指定藥品群組名稱
         /// </summary>
@@ -742,12 +859,7 @@ namespace HIS_WebApi
                 }
                 
                 sys_serverSettingClass sys_serverSettingClasses_med = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
-
-                List<medClass> medClasses_cloud = medClass.get_med_cloud(API_Server);
-                List<medClass> medClasses_cloud_buf = new List<medClass>();
-
-                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
-
+               
                 List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_medGroup.GUID, medGroupClass.GUID);
                 if(list_med_group.Count == 0)
                 {
@@ -758,12 +870,10 @@ namespace HIS_WebApi
                 List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_sub_medGroup.Master_GUID, medGroupClass.GUID);
                 List<object[]> list_sub_group_buf = new List<object[]>();
                 List<object[]> list_sub_group_add = new List<object[]>();
-                List<object[]> list_sub_group_replace = new List<object[]>();
-
-                for (int i = 0; i < list_sub_group.Count; i++)
+                for (int i = 0; i < medGroupClass.MedClasses.Count; i++) 
                 {
-                    string 藥品碼 = list_sub_group[i][(int)enum_sub_medGroup.藥品碼].ObjectToString();
-                    list_sub_group_buf = list_sub_group.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
+                    string 藥品碼 = medGroupClass.MedClasses[i].藥品碼;
+                    list_sub_group_buf = list_sub_group_buf.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
                     if (list_sub_group_buf.Count == 0)
                     {
                         object[] value = new object[new enum_sub_medGroup().GetLength()];
@@ -773,12 +883,17 @@ namespace HIS_WebApi
                         list_sub_group_add.Add(value);
                     }
                 }
+                
                 sQLControl_med_sub_group.AddRows(null, list_sub_group_add);
+                string API = GetServerAPI("Main", "網頁", "API01");
+
+                (int code, string result, medGroupClass medGroupClass1) = medGroupClass.get_group_by_guid(API, medGroupClass.GUID);
 
                 returnData.Code = 200;
+                returnData.Data = medGroupClass1;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "add_meds_in_group";
-                returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品,共修改<{list_sub_group_replace.Count}>筆藥品!";
+                returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品!";
                 return returnData.JsonSerializationt(true);
 
 
@@ -923,5 +1038,16 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_sub_medGroup()));
             return tables.JsonSerializationt(true);
         }
+        private string GetServerAPI(string Name, string Type, string Content)
+        {
+            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (sys_serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return sys_serverSettingClass.Server;
+        }
+
     }
 }
