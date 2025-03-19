@@ -132,9 +132,9 @@ namespace HIS_WebApi
         /// </code>
         /// </remarks>
         /// <returns></returns>
-        [Route("get_Tmed_cloud")]
+        [Route("get_med_cloud")]
         [HttpPost]
-        public string POST_get_Tmed_cloud(returnData returnData)
+        public string POST_get_med_cloud(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -204,7 +204,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_Tmed_cloud")]
         [HttpPost]
-        public string POST_get_med_cloud(returnData returnData)
+        public string POST_Tget_med_cloud(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
