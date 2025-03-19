@@ -649,11 +649,11 @@ namespace HIS_WebApi
                         list_med_sub_group_delete.Add(list_med_sub_group_buf[0]);
                     }
                 }
-                sQLControl_med_sub_group.DeleteExtra(null, list_med_sub_group_buf);
+                sQLControl_med_sub_group.DeleteExtra(null, list_med_sub_group_delete);
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "delete_meds_in_group";
-                returnData.Result = $"藥品資料刪除指定群組藥品成功!共刪除<{list_med_sub_group.Count}>筆藥品!";
+                returnData.Result = $"藥品資料刪除指定群組藥品成功!共刪除<{list_med_sub_group_delete.Count}>筆藥品!";
 
                 return returnData.JsonSerializationt(true);
             }
