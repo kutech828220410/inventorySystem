@@ -59,7 +59,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_bas
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\System.ValueTuple.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.pdb
 C:\Users\sis87\source\repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\batch_medpic_download_to_base64.exe.config
@@ -203,3 +202,5 @@ C:\Users\User\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\D
 C:\Users\User\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\User\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe
 C:\Users\User\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_me.33EF4FFB.Up2Date

@@ -1020,6 +1020,74 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
+        public string POST_get_by_PATNAME([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_PATNAME";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                string serverName = returnData.ServerName;
+                string serverType = returnData.ServerType;
+
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "order_list";
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByLike(null, (int)enum_醫囑資料.病人姓名, returnData.ValueAry[0]);
+                List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
+                if (OrderClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Data = new List<OrderClass>();
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = OrderClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
         [Route("get_by_ward")]
         [HttpPost]
         public string POST_get_by_ward([FromBody] returnData returnData)
@@ -1090,74 +1158,7 @@ namespace HIS_WebApi
             }
 
         }
-        public string POST_get_by_PATNAME([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_by_PATNAME";
-            try
-            {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                string serverName = returnData.ServerName;
-                string serverType = returnData.ServerType;
-
-
-                if (returnData.ValueAry == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 無傳入資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                if (returnData.ValueAry.Count != 1)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
-                    return returnData.JsonSerializationt(true);
-                }
-                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
-                {
-                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                }
-                else
-                {
-                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
-                }
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
-                string TableName = "order_list";
-                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByLike(null, (int)enum_醫囑資料.病人姓名, returnData.ValueAry[0]);
-                List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
-                if (OrderClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Data = new List<OrderClass>();
-                    returnData.Result = $"查無資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                returnData.Code = 200;
-                returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
-                returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Data = OrderClasses;
-                return returnData.JsonSerializationt();
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Result = e.Message;
-                return returnData.JsonSerializationt();
-            }
-
-        }
+     
         /// <summary>
         /// 以領藥號和日期取得西藥醫令
         /// </summary>
