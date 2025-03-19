@@ -406,7 +406,7 @@ namespace HIS_WebApi
         ///     {
         ///     
         ///     },
-        ///     "Value" : "20231026-0"
+        ///     "ValueAry" : ["驗收單號", "請購單號"]
         ///   }
         /// </code>
         /// </remarks>
