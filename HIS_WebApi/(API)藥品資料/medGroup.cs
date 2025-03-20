@@ -873,7 +873,7 @@ namespace HIS_WebApi
                 for (int i = 0; i < medGroupClass.MedClasses.Count; i++) 
                 {
                     string 藥品碼 = medGroupClass.MedClasses[i].藥品碼;
-                    list_sub_group_buf = list_sub_group_buf.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
+                    list_sub_group_buf = list_sub_group.GetRows((int)enum_sub_medGroup.藥品碼, 藥品碼);
                     if (list_sub_group_buf.Count == 0)
                     {
                         object[] value = new object[new enum_sub_medGroup().GetLength()];
