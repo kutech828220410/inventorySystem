@@ -138,7 +138,8 @@ namespace HIS_WebApi
             returnData.Method = "analyze";
             try
             {
-                string API_AI = "http://127.0.0.1:3020";
+                string API_AI = GetServerAPI("Main", "網頁", "po_vision_api");
+
                 string API = GetServerAPI("Main", "網頁", "API01");
                 string project = "PO_Vision";
 
@@ -168,22 +169,7 @@ namespace HIS_WebApi
                     string base64 = input_textVision[0].圖片;
 
                     SavePic(picfile, base64, "Po_vision");
-                    //string folderPath = Path.Combine(fileDirectory, project);
-                    //if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-                    //string filePath = Path.Combine(folderPath, picfile);
-                    //byte[] imageBytes = Convert.FromBase64String(base64);
-                    //SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                    //SKBitmap bitmap = SKBitmap.Decode(stream);
-                    //using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
-                    //{
-                    //    using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
-                    //    {
-                    //        using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
-                    //        {
-                    //            data.SaveTo(fileStream);
-                    //        }
-                    //    }
-                    //}
+               
                 })));
                 List<textVisionClass> textVisionClass_AI = new List<textVisionClass>();
                 List<positionClass> positionClasses = new List<positionClass>();
@@ -205,7 +191,7 @@ namespace HIS_WebApi
                     inspectionClass.content content = new inspectionClass.content();
                     if (textVision.單號.StringIsEmpty() == false)
                     {
-                        content = inspectionClass.content_get_by_PON(API, textVision.驗收單號, textVision.單號);
+                        content = inspectionClass.sub_content_get_by_PON(API,textVision.單號);
                         if (content == null)
                         {
                             string picfile = "";
@@ -216,7 +202,7 @@ namespace HIS_WebApi
                             return returnData.JsonSerializationt(true);
                         }
                     }
-
+                    List<medClass> medClasses = new List<medClass>();
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         if (content.藥品名稱.StringIsEmpty())
@@ -231,7 +217,12 @@ namespace HIS_WebApi
                         textVision.批號 = content.Sub_content[0].批號;
                         textVision.效期 = content.Sub_content[0].效期;
                         textVision.數量 = content.應收數量;
-                        List<medClass> medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
+                        if (textVision.藥品碼.StringIsEmpty() == false)
+                        {
+                            medClass medClass = medClass.get_med_clouds_by_code(API, textVision.藥品碼);
+                            medClasses = new List<medClass>() { medClass };
+                        }
+                        //medClasses = medClass.get_med_clouds_by_name(API, textVision.藥名);
                         if (medClasses.Count > 0)
                         {
                             textVision.中文名 = medClasses[0].中文名稱;
