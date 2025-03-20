@@ -143,6 +143,7 @@
     <Compile Include="medInfoCalss.cs" />
     <Compile Include="medInterClass .cs" />
     <Compile Include="medInventoryClass.cs" />
+    <Compile Include="藥品基本檔\medListClass.cs" />
     <Compile Include="藥品基本檔\medPharmacyClass.cs" />
     <Compile Include="藥品基本檔\medPicClass.cs" />
     <Compile Include="藥品基本檔\medPriceClass.cs" />
