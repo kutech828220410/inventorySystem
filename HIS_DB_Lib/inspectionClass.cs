@@ -385,6 +385,19 @@ namespace HIS_DB_Lib
             inspectionClass.content content = returnData_out.Data.ObjToClass<inspectionClass.content>();
             return content;
         }
+        static public inspectionClass.content sub_content_get_by_PON(string API_Server, string 請購單號)
+        {
+            string url = $"{API_Server}/api/inspection/sub_content_get_by_PON";
+            returnData returnData = new returnData();
+            returnData.Value = 請購單號;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return null;
+            if (returnData_out.Code != 200) return null;
+            inspectionClass.content content = returnData_out.Data.ObjToClass<inspectionClass.content>();
+            return content;
+        }
         static public List<inspectionClass.sub_content> sub_content_get_by_content_GUID(string API_Server, inspectionClass.content content)
         {
             string url = $"{API_Server}/api/inspection/sub_content_get_by_content_GUID";

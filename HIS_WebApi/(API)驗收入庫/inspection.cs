@@ -542,14 +542,14 @@ namespace HIS_WebApi
 
                 List<object[]> list_inspection_content = sQLControl_inspection_content.GetRowsByDefult(null, (int)enum_驗收單號.驗收單號, 驗收單號);
                 List<inspectionClass.content> contents = list_inspection_content.SQLToClass<inspectionClass.content, enum_驗收內容>();
-                if(contents.Count == 0)
+                if (contents.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無此單驗收單號[{驗收單號}]!";
                     return returnData.JsonSerializationt(true);
                 }
                 List<inspectionClass.content> contents_buff = contents.Where(temp => temp.請購單號 == 請購單號).ToList();
-                if(contents_buff.Count == 0)
+                if (contents_buff.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無此單請購單號[{請購單號}]!";
@@ -578,13 +578,126 @@ namespace HIS_WebApi
                 //{
                 //    contents[0].Sub_content = new List<inspectionClass.sub_content>();
                 //}
-                
-              
+
+
                 returnData.Data = contents_buff[0];
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Result = $"取得驗收資料成功!";
                 returnData.Method = "content_get_by_PON";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        [Route("sub_content_get_by_PON")]
+        [HttpPost]
+        public string POST_sub_content_get_by_PON([FromBody] returnData returnData)
+        {
+            try
+            {
+                GET_init(returnData);
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
+                string PON = "";
+                if (creat != null)
+                {
+                    PON = creat.請購單號;
+                }
+                if (PON.StringIsEmpty())
+                {
+                    PON = returnData.Value;
+                }
+                if (PON.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"請購單號空白";
+                    return returnData.JsonSerializationt();
+                }
+                //if (returnData.ValueAry == null)
+                //{
+                //    returnData.Data = -200;
+                //    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                //    return returnData.JsonSerializationt();
+                //}
+                //if (returnData.ValueAry.Count != 2)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.ValueAry 內容應為[\"驗收單號\",\"請購單號\"]";
+                //    return returnData.JsonSerializationt(true);
+                //}
+                //string 驗收單號 = returnData.ValueAry[0];
+                string 請購單號 = PON;
+
+                List<object[]> list_inspection_content = sQLControl_inspection_content.GetRowsByDefult(null, (int)enum_驗收單號.請購單號, 請購單號);
+                List<inspectionClass.content> contents = list_inspection_content.SQLToClass<inspectionClass.content, enum_驗收內容>();
+                if(contents.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無此單請購單號[{請購單號}]!";
+                    return returnData.JsonSerializationt(true);
+                }
+                //List<inspectionClass.content> contents_buff = contents.Where(temp => temp.請購單號 == 請購單號).ToList();
+                //if(contents_buff.Count == 0)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"查無此單請購單號[{請購單號}]!";
+                //    return returnData.JsonSerializationt(true);
+                //}
+                ///單號可能找到兩種以上GUID，用不同GUID去搜尋詳細資料
+                bool flag = false;
+                for (int i = 0; i < contents.Count; i++)
+                {
+                    string GUID = contents[i].GUID;
+                    List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetRowsByDefult(null, (int)enum_驗收明細.Master_GUID, GUID);
+                    List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+                    if (sub_Contents.Count > 0)
+                    {
+                        flag = true;
+                        contents[i].Sub_content.Add(sub_Contents[0]);
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    contents = contents.Where(temp => temp.Sub_content.Count > 0).ToList();
+                }
+                else
+                {
+                    contents[0].Sub_content = new List<inspectionClass.sub_content>();
+                }
+
+
+                returnData.Data = contents[0];
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"取得驗收資料成功!";
+                returnData.Method = "sub_content_get_by_PON";
 
                 return returnData.JsonSerializationt(true);
             }
