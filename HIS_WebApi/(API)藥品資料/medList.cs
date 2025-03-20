@@ -171,7 +171,7 @@ namespace HIS_WebApi._API_藥品資料
                 if (list_medList_add.Count > 0) sQLControl.AddRows(null, list_medList_add);
                 returnData returnData_get_all = medListClass.get_all(API, tableName);
                 if (returnData_get_all == null || returnData_get_all.Code != 200) return returnData_get_all.JsonSerializationt(true);
-                List<medListClass> medListClasses = returnData.Data.ObjToClass<List<medListClass>>();
+                List<medListClass> medListClasses = returnData_get_all.Data.ObjToClass<List<medListClass>>();
 
                 returnData.Code = 200;
                 returnData.Data = medListClasses;
