@@ -358,6 +358,72 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 刪除人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ValueAry" : ["GUID1;GUID2"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("delete")]
+        [HttpPost]
+        public string delete([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "delete";
+            try
+            {
+                if(returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry不可為空";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry應為[\"GUID1,GUID2\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string[] GUIDs = returnData.ValueAry[0].Split(";");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                SQLControl sQLControl_personPage = new SQLControl(Server, DB, "person_page", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_value = sQLControl_personPage.GetAllRows(null);
+                List<object[]> list_value_buf = new List<object[]>();
+                List<object[]> list_delete= new List<object[]>();
+                for(int i = 0; i < GUIDs.Length; i++)
+                {
+                    string GUID = GUIDs[i];
+                    list_value_buf = list_value.GetRows((int)enum_人員資料.GUID, GUID);
+                    if(list_value_buf.Count > 0)
+                    {
+                        list_delete.Add(list_value_buf[0]);
+                    }
+                }
+                
+                if (list_delete.Count > 0) sQLControl_personPage.DeleteExtra(null, list_delete);
+
+                returnData.Code = 200;
+                returnData.Result = $"更動人員資料成功,刪除<{list_delete.Count}>筆!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
 
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)

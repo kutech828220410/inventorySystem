@@ -23,8 +23,19 @@ namespace HIS_WebApi
             }
             return (sys_serverSettingClass.Server, sys_serverSettingClass.DBName, sys_serverSettingClass.User, sys_serverSettingClass.Password, (uint)sys_serverSettingClass.Port.StringToInt32());
         }
+        static public string GetServerAPI(string Name, string Type, string Content)
+        {
+            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
+            if (sys_serverSettingClass == null)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return sys_serverSettingClass.Server;
+        }
 
     }
+
 
     public class QueueManager
     {
