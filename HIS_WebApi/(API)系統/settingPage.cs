@@ -87,7 +87,7 @@ namespace HIS_WebApi._API_系統
                 List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
                 for(int i = 0; i < settingPageClasses.Count; i++)
                 {
-                    if (!settingPageClasses[i].選項.StringIsEmpty())
+                    if (settingPageClasses[i].選項.StringIsEmpty() == false)
                     {
                         List<string> option = settingPageClasses[i].選項.Split(";").ToList();
                         settingPageClasses[i].option = option;
@@ -150,15 +150,29 @@ namespace HIS_WebApi._API_系統
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-
+                
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
-                foreach(var item in input_settingPageClass)
+                SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
+                List<object[]> list_settingPage = sQLControl.GetAllRows(null);
+                List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
+
+                List<settingPageClass> settingPage_buff = new List<settingPageClass>();
+                List<settingPageClass> settingPage_add = new List<settingPageClass>();
+
+                foreach (var item in input_settingPageClass)
                 {
-                    item.GUID = Guid.NewGuid().ToString();
+                    string 頁面名稱 = item.頁面名稱;
+                    string 欄位名稱 = item.欄位名稱;
+                    settingPage_buff = settingPage_buff.Where(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱).ToList();
+                    if (settingPage_buff.Count == 0 || settingPage_buff == null)
+                    {
+                        item.GUID = Guid.NewGuid().ToString();
+                        settingPage_add.Add(item);
+                    }
+                    
                 }
-                List<object[]> list_textVision = input_settingPageClass.ClassToSQL<settingPageClass, enum_settingPage>();
-                sQLControl_textVision.AddRows(null, list_textVision);
+                List<object[]> list_textVision = settingPage_add.ClassToSQL<settingPageClass, enum_settingPage>();
+                sQLControl.AddRows(null, list_textVision);
 
                 returnData.Code = 200;
                 returnData.Data = input_settingPageClass;
