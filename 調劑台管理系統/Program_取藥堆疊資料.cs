@@ -1539,6 +1539,21 @@ namespace 調劑台管理系統
                         if (drawer == null) return;
                         if (!plC_CheckBox_測試模式.Checked)
                         {
+                            bool flag_black = true;
+                            int num_of_panel_led = DrawerUI_EPD_583.GetPanel_LED_num(drawer.DrawerType);
+                            int num_of_drawer_led = DrawerUI_EPD_583.GetDrawer_LED_num(drawer.DrawerType);
+                            for (int k = 0; k < num_of_drawer_led * 3; k++)
+                            {
+                                if (drawer.LED_Bytes[k] != 0)
+                                {
+                                    flag_black = false;
+                                    break;
+                                }
+                            }
+                            if (flag_black && drawer.BreathLight)
+                            {
+                                drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
+                            }
                             this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                         }
 
@@ -1790,12 +1805,18 @@ namespace 調劑台管理系統
                                     else
                                     {
                                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
-
                                     }
                                 }
                                 else
                                 {
-                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                    if (myConfigClass.舊版晶片 == false)
+                                    {
+                                        this.storageUI_EPD_266.Set_WS2812B_breathing(storage, 30, 30, color);
+                                    }
+                                    else
+                                    {
+                                        this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                    }
                                 }
                             }
                             else
