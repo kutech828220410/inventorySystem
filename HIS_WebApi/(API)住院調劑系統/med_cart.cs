@@ -296,11 +296,32 @@ namespace HIS_WebApi
         public string update_patientInfo([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_med_carinfo";
+            returnData.Method = "update_patientInfo";
             try
             {
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "藥檔資料");
-                string API = GetServerAPI("Main", "網頁", "API01");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "交車時間");
+                if(settingPage != null)
+                {
+                    string 交車時間 = settingPage.設定值;
+                    if(交車時間.StringIsEmpty() == false)
+                    {
+                        TimeSpan 交車 = TimeSpan.Parse(交車時間);
+                        TimeSpan 現在時間 = DateTime.Now.TimeOfDay;
+
+                        if (現在時間 > 交車)
+                        {
+                            returnData.Data = null;
+                            returnData.Code = 200;
+                            returnData.TimeTaken = $"{myTimerBasic}";
+                            returnData.Result = $"已超過交車時間";
+                        }
+                    }
+                }
+                
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
 
                 List<patientInfoClass> medCart_sql_add = new List<patientInfoClass>();
                 List<patientInfoClass> medCart_sql_replace = new List<patientInfoClass>();
@@ -577,9 +598,28 @@ namespace HIS_WebApi
             returnData.Method = "update_med_cpoe";
             try
             {
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                string API = GetServerAPI("Main", "網頁", "API01");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
 
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "交車時間");
+                if (settingPage != null)
+                {
+                    string 交車時間 = settingPage.設定值;
+                    if (交車時間.StringIsEmpty() == false)
+                    {
+                        TimeSpan 交車 = TimeSpan.Parse(交車時間);
+                        TimeSpan 現在時間 = DateTime.Now.TimeOfDay;
+
+                        if (現在時間 > 交車)
+                        {
+                            returnData.Data = null;
+                            returnData.Code = 200;
+                            returnData.TimeTaken = $"{myTimerBasic}";
+                            returnData.Result = $"已超過交車時間";
+                        }
+                    }
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
                 List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
                 if (input_medCpoe == null)
                 {

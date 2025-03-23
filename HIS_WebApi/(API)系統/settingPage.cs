@@ -43,6 +43,50 @@ namespace HIS_WebApi._API_系統
             }
         }
         /// <summary>
+        /// 取得全部資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_all")]
+        public string get_all([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_all";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
+                List<object[]> list_settingPage = sQLControl.GetAllRows(null);
+                if (list_settingPage.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
+                
+                settingPageClasses.Sort(new settingPageClass.ICP_By_type());
+                returnData.Code = 200;
+                returnData.Data = settingPageClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得設定資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         ///以page_name取得資料
         /// </summary>
         /// <remarks>
@@ -75,7 +119,7 @@ namespace HIS_WebApi._API_系統
                     return returnData.JsonSerializationt(true);
                 }
                 string 頁面名稱 = returnData.ValueAry[0];
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
                 List<object[]> list_settingPage = sQLControl.GetRowsByDefult(null, (int)enum_settingPage.頁面名稱, 頁面名稱);
                 if (list_settingPage.Count == 0)
