@@ -627,7 +627,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-
+                
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
@@ -2290,7 +2290,7 @@ namespace HIS_WebApi
                 //List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                 //List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
-
+                medCpoeClasses = medCpoeClasses.Where(temp => temp.公藥.StringIsEmpty() == true).ToList();
                 List<medQtyClass> medQtyClasses = medCpoeClasses
                     .GroupBy(temp => temp.藥品名)
                     .Select(grouped => new medQtyClass
