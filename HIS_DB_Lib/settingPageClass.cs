@@ -29,6 +29,15 @@ namespace HIS_DB_Lib
         設定值,
 
     }
+    public static class settingPageClassMethod
+    {
+        public static settingPageClass myFind(this List<settingPageClass> settingPageClasses, string 頁面名稱, string 欄位名稱)
+        {
+            if (settingPageClasses == null) return null;
+            settingPageClass settingPageClass = settingPageClasses.Where(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱).FirstOrDefault();
+            return settingPageClass;
+        }
+    }
     public class settingPageClass
     {
         /// <summary>
@@ -68,6 +77,19 @@ namespace HIS_DB_Lib
         public string 設定值 { get; set; }
         public List<string> option { get; set; }
         public object value { get; set; }
+        static public List<settingPageClass> get_all(string API_Server)
+        {
+            string url = $"{API_Server}/api/settingPage/get_all";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<settingPageClass> settingPageClasses = returnData.Data.ObjToClass<List<settingPageClass>>();
+            return settingPageClasses;
+
+        }
         public class ICP_By_type : IComparer<settingPageClass>
         {
             public int Compare(settingPageClass x, settingPageClass y)

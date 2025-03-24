@@ -703,7 +703,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為[SheetClass]陣列結構</returns>
-        [Route("downloadc_datas_excel_by_serch")]
+        [Route("download_datas_excel_by_serch")]
         [HttpPost]
         public async Task<ActionResult> Post_download_datas_excel_by_serch([FromBody] returnData returnData)
         {
@@ -713,7 +713,6 @@ namespace HIS_WebApi
 
             try
             {
-
 
                 returnData = POST_serch_datas_by_ST_END(returnData).JsonDeserializet<returnData>();
                 if (returnData.Code != 200)
