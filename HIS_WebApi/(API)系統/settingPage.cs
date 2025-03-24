@@ -43,50 +43,6 @@ namespace HIS_WebApi._API_系統
             }
         }
         /// <summary>
-        /// 取得全部資料
-        /// </summary>
-        /// <remarks>
-        /// 以下為JSON範例
-        /// <code>
-        ///     {
-        ///     }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
-        [HttpPost("get_all")]
-        public string get_all([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_all";
-            try
-            {
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
-                List<object[]> list_settingPage = sQLControl.GetAllRows(null);
-                if (list_settingPage.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "查無資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
-                
-                settingPageClasses.Sort(new settingPageClass.ICP_By_type());
-                returnData.Code = 200;
-                returnData.Data = settingPageClasses;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"取得設定資料";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = ex.Message;
-                return returnData.JsonSerializationt(true);
-            }
-        }
-        /// <summary>
         ///以page_name取得資料
         /// </summary>
         /// <remarks>
@@ -162,6 +118,49 @@ namespace HIS_WebApi._API_系統
             }
         }
         /// <summary>
+        ///取得頁面設定資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":["page_name"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_all")]
+        public string get_all([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_all";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
+                List<object[]> list_settingPage = sQLControl.GetAllRows(null);
+                if (list_settingPage.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
+                returnData.Code = 200;
+                returnData.Data = settingPageClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得設定頁面資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 增加資料
         /// </summary>
         /// <remarks>
@@ -195,7 +194,7 @@ namespace HIS_WebApi._API_系統
                     return returnData.JsonSerializationt();
                 }
                 
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
                 List<object[]> list_settingPage = sQLControl.GetAllRows(null);
                 List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
@@ -269,7 +268,7 @@ namespace HIS_WebApi._API_系統
                 string GUID = returnData.ValueAry[0];
                 string value_db = returnData.ValueAry[1];
 
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
                 List<object[]> list_settingPage = sQLControl.GetRowsByDefult(null, (int)enum_settingPage.GUID, GUID);
                 list_settingPage[0][(int)enum_settingPage.設定值] = value_db;
@@ -300,26 +299,6 @@ namespace HIS_WebApi._API_系統
 
             Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, enumInstance);
             return table.JsonSerializationt(true);
-        }
-        private (string Server, string DB, string UserName, string Password, uint Port) GetServerInfo(string Name, string Type, string Content)
-        {
-            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
-            if (sys_serverSettingClass == null)
-            {
-                throw new Exception("找無Server資料");
-            }
-            return (sys_serverSettingClass.Server, sys_serverSettingClass.DBName, sys_serverSettingClass.User, sys_serverSettingClass.Password, (uint)sys_serverSettingClass.Port.StringToInt32());
-        }
-        private string GetServerAPI(string Name, string Type, string Content)
-        {
-            List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
-            if (sys_serverSettingClass == null)
-            {
-                throw new Exception("找無Server資料");
-            }
-            return sys_serverSettingClass.Server;
         }
         private Dictionary<string, string> dicColumnName = new Dictionary<string, string>
         {
