@@ -2010,6 +2010,31 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("add_trading")]
+        public string add_trading([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if(returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "";
+                }
+
+                //returnData.Data = dispensClasses;
+                returnData.Code = 200;
+                //returnData.Result = $"藥碼{code[0]} 在{dispensClasses.Count}個調劑台裡有";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex) 
+            {
+                returnData.Code = -200; 
+                returnData.Result = ex.Message; 
+                return returnData.JsonSerializationt(true);    
+            }
+        }
         /// <summary>
         /// 清洗資料
         /// </summary>

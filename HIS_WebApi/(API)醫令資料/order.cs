@@ -1158,7 +1158,6 @@ namespace HIS_WebApi
             }
 
         }
-     
         /// <summary>
         /// 以領藥號和日期取得西藥醫令
         /// </summary>
@@ -1327,7 +1326,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以GUID刪除西藥醫令
         /// </summary>
@@ -1426,7 +1424,6 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("update_UDorder_list")]
         public string update_order_list([FromBody] returnData returnData)
         {
@@ -1533,7 +1530,6 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("update_order_list_new")]
         public string update_order_list_new([FromBody] returnData returnData)
         {
@@ -1701,8 +1697,6 @@ namespace HIS_WebApi
             }
 
         }
-
-
         /// <summary>
         /// 以GUID更新西藥醫令
         /// </summary>
@@ -1800,7 +1794,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以領藥號取得西藥醫令病患列表
         /// </summary>
