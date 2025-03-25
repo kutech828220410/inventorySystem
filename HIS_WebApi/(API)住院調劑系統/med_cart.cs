@@ -2010,8 +2010,8 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        [HttpPost("add_trading")]
-        public string add_trading([FromBody] returnData returnData)
+        [HttpPost("debit")]
+        public string debit([FromBody] returnData returnData)
         {
             try
             {
@@ -2019,12 +2019,65 @@ namespace HIS_WebApi
                 if(returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "";
+                    returnData.Result = "ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
                 }
-
-                //returnData.Data = dispensClasses;
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.UserName == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "UserName應為 \"操作人\"";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 操作人 = returnData.UserName;
+                string 調劑台 = returnData.ServerName;
+                string[] GUIDs = returnData.ValueAry[0].Split(";");
+                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                List<OrderClass> orderClasses = new List<OrderClass>();
+                for (int i =0; i < GUIDs.Length; i++)
+                {
+                    string GUID = GUIDs[i].Trim();
+                    OrderClass orderClass = OrderClass.get_by_guid(API_Server, GUID);
+                    if(orderClass != null) orderClasses.Add(orderClass);
+                }
+                List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
+                foreach (var item in orderClasses)
+                {
+                    class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                    {
+                        PRI_KEY = item.GUID,
+                        護理站 = item.病房,
+                        藥品碼 = item.藥品碼,
+                        藥名 = item.藥品名稱,
+                        操作人 = 操作人,
+                        類別 = item.藥袋類型,
+                        病人姓名 = item.病人姓名,
+                        病歷號 = item.病歷號,
+                        交易量 = item.交易量,
+                        開方時間 = item.開方日期,
+                        電腦名稱 = 調劑台,
+                        功能類型 = "-1" //掃碼領藥
+                    };
+                    outTakeMed_Datas.Add(outTakeMed_Data);
+                }
+                
+                returnData returnData_OutTakeMed = class_OutTakeMed_data.OutTakeMed(API_Server,調劑台, outTakeMed_Datas);
+                if (returnData_OutTakeMed == null || returnData_OutTakeMed.Code != 200)
+                {
+                    returnData.Result = "扣帳失敗";
+                    returnData.Code = -200;
+                    returnData.Data = outTakeMed_Datas;
+                    returnData.Value = returnData_OutTakeMed.JsonSerializationt();
+                    return returnData.JsonSerializationt(true);
+                }
+               
                 returnData.Code = 200;
-                //returnData.Result = $"藥碼{code[0]} 在{dispensClasses.Count}個調劑台裡有";
+                returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 return returnData.JsonSerializationt(true);
             }
@@ -2033,6 +2086,84 @@ namespace HIS_WebApi
                 returnData.Code = -200; 
                 returnData.Result = ex.Message; 
                 return returnData.JsonSerializationt(true);    
+            }
+        }
+        [HttpPost("refund")]
+        public string refund([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.UserName == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "UserName應為 \"操作人\"";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 操作人 = returnData.UserName;
+                string 調劑台 = returnData.ServerName;
+                string[] GUIDs = returnData.ValueAry[0].Split(";");
+                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                List<OrderClass> orderClasses = new List<OrderClass>();
+                for (int i = 0; i < GUIDs.Length; i++)
+                {
+                    string GUID = GUIDs[i].Trim();
+                    OrderClass orderClass = OrderClass.get_by_guid(API_Server, GUID);
+                    if (orderClass != null) orderClasses.Add(orderClass);
+                }
+                List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
+                foreach (var item in orderClasses)
+                {
+                    class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                    {
+                        PRI_KEY = item.GUID,
+                        護理站 = item.病房,
+                        藥品碼 = item.藥品碼,
+                        藥名 = item.藥品名稱,
+                        操作人 = 操作人,
+                        類別 = item.藥袋類型,
+                        病人姓名 = item.病人姓名,
+                        病歷號 = item.病歷號,
+                        交易量 = item.交易量,
+                        開方時間 = item.開方日期,
+                        電腦名稱 = 調劑台,
+                        功能類型 = "-1" //掃碼領藥
+                    };
+                    outTakeMed_Datas.Add(outTakeMed_Data);
+                }
+
+                returnData returnData_OutTakeMed = class_OutTakeMed_data.OutTakeMed(API_Server, 調劑台, outTakeMed_Datas);
+                if (returnData_OutTakeMed == null || returnData_OutTakeMed.Code != 200)
+                {
+                    returnData.Result = "扣帳失敗";
+                    returnData.Code = -200;
+                    returnData.Data = outTakeMed_Datas;
+                    returnData.Value = returnData_OutTakeMed.JsonSerializationt();
+                    return returnData.JsonSerializationt(true);
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
             }
         }
         /// <summary>

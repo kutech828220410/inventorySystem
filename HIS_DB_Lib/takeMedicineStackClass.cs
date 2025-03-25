@@ -224,7 +224,21 @@ namespace HIS_DB_Lib
         public string 收支原因 { get; set; }
         [JsonPropertyName("color")]
         public string 顏色 { get; set; }
+
+        static public returnData OutTakeMed(string API_Server, string ServerName, List<class_OutTakeMed_data> outTakeMed_Datas)
+        {
+            string url = $"{API_Server}/api/OutTakeMed/new";
+            returnData returnData = new returnData();
+            returnData.ServerName = "ServerName";
+            returnData.Data = outTakeMed_Datas;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            Logger.Log("OutTakeMed_dataInput", $"{json_in}");
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
     }
+
     /// <summary>
     /// 藥物取用堆疊類別
     /// </summary>
@@ -451,5 +465,6 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_out}");
 
         }
+        
     }
 }
