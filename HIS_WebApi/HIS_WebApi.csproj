@@ -124,6 +124,9 @@
     <Reference Include="System.Management">
       <HintPath>0.DLL\System.Management.dll</HintPath>
     </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\0.DLL\zxing.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
