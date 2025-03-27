@@ -372,8 +372,8 @@ namespace HIS_WebApi
                                         where temp.類別 == Type
                                         where temp.內容 == "一般資料"
                                         select temp).ToList();
-        
 
+                sys_serverSettingClasses.Sort(new sys_serverSettingClass.ICP_By_dps_name());
                 returnData.Code = 200;
                 returnData.Result = $"取得連線資訊,共<{sys_serverSettingClasses.Count}>筆";
                 returnData.Data = sys_serverSettingClasses;
