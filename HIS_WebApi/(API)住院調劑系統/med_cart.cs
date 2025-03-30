@@ -763,7 +763,7 @@ namespace HIS_WebApi
                         List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, GUID);
                         if (medCpoes.Count > 0)
                         {
-                            medCpoeClass medCpoe = medCpoes.Where(temp => temp.調劑狀態.StringIsEmpty() == false).FirstOrDefault();
+                            medCpoeClass medCpoe = medCpoes.Where(temp => temp.調劑狀態.StringIsEmpty()).FirstOrDefault();
                             if (medCpoe == null)
                             {
                                 item.調劑狀態 = "Y";
@@ -952,7 +952,21 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }       
+        }
+        /// <summary>
+        ///以GUID取得病人詳細資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":"調劑台"
+        ///         "ValueAry":[GUID]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [HttpPost("get_patient_with_NOdispense")]
         public string get_patient_with_NOdispense([FromBody] returnData returnData)
         {
@@ -988,11 +1002,10 @@ namespace HIS_WebApi
                 {
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        string GUID = item.GUID;
-                        List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, GUID);
+                        List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
                         if (medCpoes.Count > 0)
                         {
-                            medCpoeClass medCpoe = medCpoes.Where(temp => temp.調劑狀態.StringIsEmpty() == false).FirstOrDefault();
+                            medCpoeClass medCpoe = medCpoes.Where(temp => temp.調劑狀態.StringIsEmpty() == true).FirstOrDefault();
                             if (medCpoe == null)
                             {
                                 item.調劑狀態 = "Y";
@@ -1230,8 +1243,8 @@ namespace HIS_WebApi
                     returnData.Result = $"請指定GUID";
                     return returnData.JsonSerializationt(true);
                 }
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                string API = GetServerAPI("Main", "網頁", "API01");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
 
                 string Master_GUID = returnData.Value;
                 string[] GUID = returnData.ValueAry[0].Split(";");
@@ -1264,8 +1277,10 @@ namespace HIS_WebApi
                     medCpoe_sql_replace.Add(medCpoeClass);
 
                 }
-
-                (bool unDispensed, bool DCNew) = GetDispensFlags(medCpoe_sql_replace);
+                for(int i =0; i < GUID.Length; i++)
+                {
+                    
+                }
 
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
@@ -1278,7 +1293,6 @@ namespace HIS_WebApi
                     List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.GUID, Master_GUID);
                     List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                     sql_patinfo[0].調劑時間 = DateTime.Now.ToDateString();
-                    //sql_patinfo = EditMedCarInfo(unDispensed, DCNew, sql_patinfo);
                     List<object[]> list_medCarInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                 })));
@@ -1784,8 +1798,7 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
                 //List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                 //List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
-                medCpoeClasses = medCpoeClasses.Where(temp => temp.公藥.StringIsEmpty() == true).ToList();
+                List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == true).ToList();
                 List<medQtyClass> medQtyClasses = medCpoeClasses
                     .GroupBy(temp => temp.藥品名)
                     .Select(grouped => new medQtyClass
@@ -2042,8 +2055,9 @@ namespace HIS_WebApi
                 for (int i =0; i < GUIDs.Length; i++)
                 {
                     string GUID = GUIDs[i].Trim();
-                    OrderClass orderClass = OrderClass.get_by_guid(API_Server, GUID);
-                    if(orderClass != null) orderClasses.Add(orderClass);
+                    OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
+                    
+                    if(orderClass != null && orderClass.備註 == "未過帳") orderClasses.Add(orderClass);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 foreach (var item in orderClasses)
@@ -2051,6 +2065,7 @@ namespace HIS_WebApi
                     class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
                     {
                         PRI_KEY = item.GUID,
+                        Order_GUID = item.GUID,
                         護理站 = item.病房,
                         藥品碼 = item.藥品碼,
                         藥名 = item.藥品名稱,
@@ -2129,6 +2144,7 @@ namespace HIS_WebApi
                     class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
                     {
                         PRI_KEY = item.GUID,
+                        Order_GUID = item.GUID,
                         護理站 = item.病房,
                         藥品碼 = item.藥品碼,
                         藥名 = item.藥品名稱,
@@ -2139,7 +2155,7 @@ namespace HIS_WebApi
                         交易量 = item.交易量,
                         開方時間 = item.開方日期,
                         電腦名稱 = 調劑台,
-                        功能類型 = "-1" //掃碼領藥
+                        功能類型 = "-4" //退藥
                     };
                     outTakeMed_Datas.Add(outTakeMed_Data);
                 }

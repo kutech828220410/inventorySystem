@@ -808,8 +808,9 @@ namespace HIS_WebApi
                     if (類別 != null) 類別 = 類別.Trim();
                     takeMedicineStackClass takeMedicineStack = new takeMedicineStackClass();
                     takeMedicineStack.GUID = Guid.NewGuid().ToString();
+                    takeMedicineStack.Order_GUID = data[i].Order_GUID;
                     takeMedicineStack.序號 = DateTime.Now.ToDateTimeString_6();
-                    takeMedicineStack.動作 = enum_交易記錄查詢動作.掃碼領藥.GetEnumName();
+                    takeMedicineStack.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
                     takeMedicineStack.調劑台名稱 = 設備名稱;
                     takeMedicineStack.藥袋序號 = PRI_KEY;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
@@ -884,6 +885,7 @@ namespace HIS_WebApi
                     if (data[i].功能類型 == "-4") takeMedicineStack.動作 = enum_交易記錄查詢動作.系統退藥.GetEnumName();
                     takeMedicineStack.調劑台名稱 = 設備名稱;
                     takeMedicineStack.藥袋序號 = PRI_KEY;
+                    takeMedicineStack.Order_GUID = data[i].Order_GUID;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
                     takeMedicineStack.藥品碼 = 藥品碼;
                     takeMedicineStack.藥品名稱 = 藥品名稱;
@@ -950,6 +952,7 @@ namespace HIS_WebApi
                     if (類別 != null) 類別 = 類別.Trim();
                     takeMedicineStackClass takeMedicineStack = new takeMedicineStackClass();
                     takeMedicineStack.GUID = Guid.NewGuid().ToString();
+                    takeMedicineStack.Order_GUID = data[i].Order_GUID;
                     takeMedicineStack.序號 = DateTime.Now.ToDateTimeString_6();
                     takeMedicineStack.動作 = enum_交易記錄查詢動作.系統入庫.GetEnumName();
                     takeMedicineStack.調劑台名稱 = 設備名稱;
@@ -1027,6 +1030,7 @@ namespace HIS_WebApi
                     if (data[i].功能類型 == "-6") takeMedicineStack.動作 = enum_交易記錄查詢動作.系統撥入.GetEnumName();
                     if (data[i].功能類型 == "-7") takeMedicineStack.動作 = enum_交易記錄查詢動作.系統撥出.GetEnumName();
                     takeMedicineStack.調劑台名稱 = 設備名稱;
+                    takeMedicineStack.Order_GUID = data[i].Order_GUID;
                     takeMedicineStack.藥袋序號 = PRI_KEY;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
                     takeMedicineStack.藥品碼 = 藥品碼;
@@ -1100,6 +1104,7 @@ namespace HIS_WebApi
                     if (data[i].功能類型 == "-8") takeMedicineStack.動作 = enum_交易記錄查詢動作.系統調入.GetEnumName();
                     if (data[i].功能類型 == "-9") takeMedicineStack.動作 = enum_交易記錄查詢動作.系統調出.GetEnumName();
                     takeMedicineStack.調劑台名稱 = 設備名稱;
+                    takeMedicineStack.Order_GUID = data[i].Order_GUID;
                     takeMedicineStack.藥袋序號 = PRI_KEY;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
                     takeMedicineStack.藥品碼 = 藥品碼;

@@ -404,7 +404,7 @@ namespace HIS_DB_Lib
             return OrderClasses;
         }
 
-        static public List<OrderClass> get_by_pri_key(string API_Server, string PRI_KEY)
+        static public OrderClass get_by_pri_key(string API_Server, string PRI_KEY)
         {
             string url = $"{API_Server}/api/order/get_by_pri_key";
 
@@ -424,7 +424,7 @@ namespace HIS_DB_Lib
                 return null;
             }
             Console.WriteLine($"{returnData_out}");
-            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            OrderClass OrderClasses = returnData_out.Data.ObjToClass<OrderClass>();
             return OrderClasses;
         }
         static public OrderClass get_by_guid(string API_Server, string value)

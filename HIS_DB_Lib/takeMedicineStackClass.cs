@@ -170,6 +170,11 @@ namespace HIS_DB_Lib
     {
         [JsonPropertyName("PRI_KEY")]
         public string PRI_KEY { get; set; }
+        /// <summary>
+        /// Order_GUID
+        /// </summary>
+        [JsonPropertyName("Order_GUID")]
+        public string Order_GUID { get; set; }
         [JsonPropertyName("MC_name")]
         public string 電腦名稱 { get; set; }
         [JsonPropertyName("cost_center")]
