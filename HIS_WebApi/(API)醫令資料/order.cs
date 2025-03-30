@@ -427,11 +427,10 @@ namespace HIS_WebApi
                 SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, PRI_KEY);
                 List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
-                OrderClasses.sort(OrderClassMethod.SortType.批序);
                 returnData.Code = 200;
                 returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Data = OrderClasses;
+                returnData.Data = OrderClasses[0];
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)
@@ -442,6 +441,7 @@ namespace HIS_WebApi
             }
 
         }
+
         /// <summary>
         /// 以GUID取得西藥醫令
         /// </summary>
@@ -1158,7 +1158,6 @@ namespace HIS_WebApi
             }
 
         }
-     
         /// <summary>
         /// 以領藥號和日期取得西藥醫令
         /// </summary>
@@ -1327,7 +1326,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以GUID刪除西藥醫令
         /// </summary>
@@ -1426,7 +1424,6 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("update_UDorder_list")]
         public string update_order_list([FromBody] returnData returnData)
         {
@@ -1533,7 +1530,6 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("update_order_list_new")]
         public string update_order_list_new([FromBody] returnData returnData)
         {
@@ -1701,8 +1697,6 @@ namespace HIS_WebApi
             }
 
         }
-
-
         /// <summary>
         /// 以GUID更新西藥醫令
         /// </summary>
@@ -1800,7 +1794,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以領藥號取得西藥醫令病患列表
         /// </summary>
