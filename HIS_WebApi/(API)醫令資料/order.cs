@@ -1432,8 +1432,8 @@ namespace HIS_WebApi
             try
             {
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-
-                List<OrderClass> input_orderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                List <OrderClass> input_orderClass = returnData.Data.ObjToClass<List<OrderClass>>();
                 string priKey = input_orderClass[0].PRI_KEY;
                 if (input_orderClass == null)
                 {
@@ -1458,43 +1458,55 @@ namespace HIS_WebApi
 
                 Dictionary<string, List<OrderClass>> new_orderDicPriKey = OrderClass.ToDictByPriKey(input_orderClass);
                 Dictionary<string, List<OrderClass>> old_orderDicPriKey = OrderClass.ToDictByPriKey(sql_order_list);
-
-                foreach (string PRI_KEY in new_orderDicPriKey.Keys)
+                foreach(var item in input_orderClass)
                 {
-                    List<OrderClass> orderClass_new = OrderClass.GetByPriKey(new_orderDicPriKey, PRI_KEY);
-                    List<OrderClass> orderClass_old = OrderClass.GetByPriKey(old_orderDicPriKey, PRI_KEY);              
-                    foreach(OrderClass item in orderClass_new)
+                    OrderClass orderClass = OrderClass.get_by_pri_key(API, item.PRI_KEY);
+                    if(orderClass == null)
                     {
-                        OrderClass order = orderClass_old.Where(temp => temp.批序 == item.批序).FirstOrDefault();
-                        if(order == null)
-                        {
-                            item.GUID = Guid.NewGuid().ToString();
-                            item.產出時間 = DateTime.Now.ToDateTimeString_6();
-                            item.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                            item.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
-                            item.狀態 = "未過帳";
-                            add_order_list.Add(item);
-                        }
-                    }
-                    foreach(OrderClass item in orderClass_old)
-                    {
-                        OrderClass order = orderClass_new.Where(temp => temp.批序 == item.批序).FirstOrDefault();
-                        if (order == null)
-                        {
-                            if (item.批序.Contains("DC") == false)
-                            {
-                                item.批序 += "-[DC]";
-                                update_order_list.Add(item);
-                            }
-                        }
+                        item.GUID = Guid.NewGuid().ToString();
+                        item.產出時間 = DateTime.Now.ToDateTimeString_6();
+                        item.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                        item.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                        item.狀態 = "未過帳";
+                        add_order_list.Add(item);
                     }
                 }
+                //foreach (string PRI_KEY in new_orderDicPriKey.Keys)
+                //{
+                //    List<OrderClass> orderClass_new = OrderClass.GetByPriKey(new_orderDicPriKey, PRI_KEY);
+                //    List<OrderClass> orderClass_old = OrderClass.GetByPriKey(old_orderDicPriKey, PRI_KEY);              
+                //    foreach(OrderClass item in orderClass_new)
+                //    {
+                //        OrderClass order = orderClass_old.Where(temp => temp.批序 == item.批序).FirstOrDefault();
+                //        if(order == null)
+                //        {
+                //            item.GUID = Guid.NewGuid().ToString();
+                //            item.產出時間 = DateTime.Now.ToDateTimeString_6();
+                //            item.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                //            item.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                //            item.狀態 = "未過帳";
+                //            add_order_list.Add(item);
+                //        }
+                //    }
+                //    foreach(OrderClass item in orderClass_old)
+                //    {
+                //        OrderClass order = orderClass_new.Where(temp => temp.批序 == item.批序).FirstOrDefault();
+                //        if (order == null)
+                //        {
+                //            if (item.批序.Contains("DC") == false)
+                //            {
+                //                item.批序 += "-[DC]";
+                //                update_order_list.Add(item);
+                //            }
+                //        }
+                //    }
+                //}
                 
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
-                List<object[]> list_update_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
+                List<object[]> list_update_order_list = update_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
-                if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_add_order_list);
+                if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_update_order_list);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
