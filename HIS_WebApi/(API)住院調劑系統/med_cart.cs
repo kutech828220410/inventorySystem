@@ -1254,6 +1254,8 @@ namespace HIS_WebApi
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
+                List<medCpoeClass> debit_medcpoe = new List<medCpoeClass> ();
+                List<medCpoeClass> refund_medcpoe = new List<medCpoeClass>();
                 if (sql_medCpoe.Count == 0)
                 {
                     returnData.Code = 200;
@@ -1264,23 +1266,27 @@ namespace HIS_WebApi
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
                     {
-                        medCpoeClass.調劑狀態 = "Y";
+                        if (medCpoeClass.調劑狀態.StringIsEmpty())
+                        {
+                            medCpoeClass.調劑狀態 = "Y";
+                            debit_medcpoe.Add(medCpoeClass);
+                        }
+                        
                         if (medCpoeClass.狀態 == "DC") medCpoeClass.DC確認 = "Y";
                         medCpoeClass.狀態 = "";      
                         medCpoeClass.調劑異動 = "";
                     }
                     else
                     {
-                        medCpoeClass.調劑狀態 = "";
-
+                        if(medCpoeClass.調劑狀態.StringIsEmpty() == false)
+                        {
+                            medCpoeClass.調劑狀態 = "";
+                            refund_medcpoe.Add(medCpoeClass);
+                        }                  
                     }
                     medCpoe_sql_replace.Add(medCpoeClass);
-
                 }
-                for(int i =0; i < GUID.Length; i++)
-                {
-                    
-                }
+                
 
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
@@ -1295,6 +1301,45 @@ namespace HIS_WebApi
                     sql_patinfo[0].調劑時間 = DateTime.Now.ToDateString();
                     List<object[]> list_medCarInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
+                })));
+                //扣帳
+                tasks.Add(Task.Run(new Action(delegate 
+                { 
+                    if(returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if(debit_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in debit_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
+                        }
+                        
+                    }
+                })));
+                //退帳
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if(refund_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in refund_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.refund(API, 操作人, 調劑台, guidString);
+                        }                 
+                    }
                 })));
                 Task.WhenAll(tasks).Wait();
                             
@@ -1348,28 +1393,39 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
 
-                List<medCpoeClass> medCpoe_sql_replace = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();                
+                List<medCpoeClass> medCpoe_sql_replace = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
+                List<medCpoeClass> refund_medcpoe = new List<medCpoeClass>();
                 if (medCpoe_sql_replace.Count == 0)
                 {
                     returnData.Code = 200;
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
-                            
-                for (int i = 0; i < medCpoe_sql_replace.Count; i++)
+                medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
+                medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
+                if (調劑狀態.StringIsEmpty() == false && medCpoe_sql_replace[0].狀態 == "DC")
                 {
-                    if (medCpoe_sql_replace[i].GUID == GUID) 
-                    {
-                        medCpoe_sql_replace[i].調劑狀態 = 調劑狀態;
-                        if (調劑狀態.StringIsEmpty() == false && medCpoe_sql_replace[i].狀態 == "DC")
-                        {                            
-                            medCpoe_sql_replace[i].DC確認 = "Y";
-                            medCpoe_sql_replace[i].狀態 = "";
-                            medCpoe_sql_replace[i].調劑異動 = "";                            
-                        }
-                    }
+                    medCpoe_sql_replace[0].DC確認 = "Y";
+                    medCpoe_sql_replace[0].狀態 = "";
+                    medCpoe_sql_replace[0].調劑異動 = "";
                 }
-                (bool unDispensed, bool DCNew) = GetDispensFlags(medCpoe_sql_replace);
+                //for (int i = 0; i < medCpoe_sql_replace.Count; i++)
+                //{
+                //    if (medCpoe_sql_replace[i].GUID == GUID) 
+                //    {
+                        
+                //    }
+                //}
+                if (調劑狀態.StringIsEmpty())
+                {
+                    refund_medcpoe.Add(medCpoe_sql_replace[0]);
+                }
+                else
+                {
+                    debit_medcpoe.Add(medCpoe_sql_replace[0]);
+                }
+                //(bool unDispensed, bool DCNew) = GetDispensFlags(medCpoe_sql_replace);
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
@@ -1385,6 +1441,45 @@ namespace HIS_WebApi
                     List<object[]> list_medCarInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                     
+                })));
+                //扣帳
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if (debit_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in debit_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
+                        }
+
+                    }
+                })));
+                //退帳
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if (refund_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in refund_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.refund(API, 操作人, 調劑台, guidString);
+                        }
+                    }
                 })));
                 Task.WhenAll(tasks).Wait();
 
@@ -1443,6 +1538,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
+
                 if (sql_medCpoe.Count == 0)
                 {
                     returnData.Code = 200;
@@ -1454,6 +1551,7 @@ namespace HIS_WebApi
                 {
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
+                        debit_medcpoe.Add(sql_medCpoe[i]);
                         sql_medCpoe[i].調劑狀態 = "Y";
                         sql_medCpoe[i].狀態 = "";
                         sql_medCpoe[i].調劑異動 = "";
@@ -1483,6 +1581,26 @@ namespace HIS_WebApi
                     string 床號 = list_pat_carInfo[0][(int)enum_patient_info.床號].ObjectToString();
                     str += $"更新{護理站} 第{床號}床 調劑狀態、調劑時間和處方異動狀態";
                     
+                })));
+                //扣帳
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if (debit_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in debit_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
+                        }
+
+                    }
                 })));
                 Task.WhenAll(tasks).Wait();
                 
@@ -1548,6 +1666,8 @@ namespace HIS_WebApi
                 //List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
                 List<patientInfoClass> sql_patinfo = GetPatInfo(sQLControl_patient_info);
+                List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
+
                 List<string> carinfo_GUID = new List<string>();
                 if (sql_medCpoe.Count == 0)
                 {
@@ -1560,6 +1680,7 @@ namespace HIS_WebApi
                 {
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
+                        debit_medcpoe.Add(sql_medCpoe[i]);
                         sql_medCpoe[i].調劑狀態 = "Y";
                         sql_medCpoe[i].狀態 = "";
                         sql_medCpoe[i].調劑異動 = "";
@@ -1573,6 +1694,26 @@ namespace HIS_WebApi
                 {
                     List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
+                })));
+                //扣帳
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
+                    {
+                        if (debit_medcpoe.Count > 0)
+                        {
+                            string 操作人 = returnData.UserName;
+                            string 調劑台 = returnData.ServerName;
+                            List<string> guidList = new List<string>();
+                            foreach (var item in debit_medcpoe)
+                            {
+                                guidList.Add(item.GUID);
+                            }
+                            string guidString = string.Join(";", guidList);
+                            returnData returnData_debit = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
+                        }
+
+                    }
                 })));
                 //tasks.Add(Task.Run(new Action(delegate 
                 //{
@@ -2058,15 +2199,17 @@ namespace HIS_WebApi
                     OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
                     
                     if(orderClass != null && orderClass.備註 == "未過帳") orderClasses.Add(orderClass);
+                    if(orderClass.備註 == "已過帳" && orderClass.實際調劑量 == "0") orderClasses.Add(orderClass);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 foreach (var item in orderClasses)
                 {
                     class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
                     {
-                        PRI_KEY = item.GUID,
+                        //PRI_KEY = item.GUID,
                         Order_GUID = item.GUID,
                         護理站 = item.病房,
+                        成本中心 = "住院藥車",
                         藥品碼 = item.藥品碼,
                         藥名 = item.藥品名稱,
                         操作人 = 操作人,
@@ -2088,12 +2231,14 @@ namespace HIS_WebApi
                     returnData.Code = -200;
                     returnData.Data = outTakeMed_Datas;
                     returnData.Value = returnData_OutTakeMed.JsonSerializationt();
+                    Logger.Log("debit", $"{returnData.JsonSerializationt(true)}");
                     return returnData.JsonSerializationt(true);
                 }
                
                 returnData.Code = 200;
                 returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
+                Logger.Log("debit", $"{returnData.JsonSerializationt(true)}");
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex) 
@@ -2143,8 +2288,9 @@ namespace HIS_WebApi
                 {
                     class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
                     {
-                        PRI_KEY = item.GUID,
+                        //PRI_KEY = item.GUID,
                         Order_GUID = item.GUID,
+                        成本中心 = "住院藥車",
                         護理站 = item.病房,
                         藥品碼 = item.藥品碼,
                         藥名 = item.藥品名稱,
@@ -2152,7 +2298,7 @@ namespace HIS_WebApi
                         類別 = item.藥袋類型,
                         病人姓名 = item.病人姓名,
                         病歷號 = item.病歷號,
-                        交易量 = item.交易量,
+                        交易量 = item.交易量.Replace("-",""),
                         開方時間 = item.開方日期,
                         電腦名稱 = 調劑台,
                         功能類型 = "-4" //退藥
@@ -2163,16 +2309,18 @@ namespace HIS_WebApi
                 returnData returnData_OutTakeMed = class_OutTakeMed_data.OutTakeMed(API_Server, 調劑台, outTakeMed_Datas);
                 if (returnData_OutTakeMed == null || returnData_OutTakeMed.Code != 200)
                 {
-                    returnData.Result = "扣帳失敗";
+                    returnData.Result = "退帳失敗";
                     returnData.Code = -200;
                     returnData.Data = outTakeMed_Datas;
                     returnData.Value = returnData_OutTakeMed.JsonSerializationt();
+                    Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                     return returnData.JsonSerializationt(true);
                 }
 
                 returnData.Code = 200;
                 returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
+                Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

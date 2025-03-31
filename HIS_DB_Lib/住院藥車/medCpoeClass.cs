@@ -358,6 +358,34 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
+        static public returnData debit(string API_Server, string 操作人, string 調劑台, string GUID)
+        {
+            string url = $"{API_Server}/api/med_cart/debit";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            returnData.UserName = 操作人;
+            returnData.ServerName = 調劑台;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
+        static public returnData refund(string API_Server, string 操作人, string 調劑台, string GUID)
+        {
+            string url = $"{API_Server}/api/med_cart/refund";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            returnData.UserName = 操作人;
+            returnData.ServerName = 調劑台;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
         static public returnData update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
