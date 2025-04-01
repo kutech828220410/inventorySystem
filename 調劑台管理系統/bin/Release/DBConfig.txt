@@ -1,4 +1,4 @@
 {
-  "Name": "ADC(21®æ)",
-  "Api_Server": "http://10.10.15.85:4433"
+  "Name": "ªø«CUD01",
+  "Api_Server": "http://10.107.3.147:4433"
 }

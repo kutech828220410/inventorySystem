@@ -423,6 +423,10 @@ namespace HIS_DB_Lib
             {
                 return null;
             }
+            if (returnData_out.Code != 200)
+            {
+                return null;
+            }
             Console.WriteLine($"{returnData_out}");
             OrderClass OrderClasses = returnData_out.Data.ObjToClass<OrderClass>();
             return OrderClasses;
@@ -873,8 +877,8 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200) return null;
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
             //List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
             Console.WriteLine($"{returnData}");
             return returnData;

@@ -2262,106 +2262,6 @@
             <param name="GUID">藥品群組GUID</param>
             <returns>藥品群組</returns>
         </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.GUID">
-            <summary>
-            GUID
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥碼">
-            <summary>
-            藥碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥品名">
-            <summary>
-            藥品名
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.頻次代碼">
-            <summary>
-            頻次代碼
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.劑量">
-            <summary>
-            劑量
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.序號">
-            <summary>
-            序號
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.分類號">
-            <summary>
-            分類號
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.類別名">
-            <summary>
-            類別名
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥品通名">
-            <summary>
-            藥品通名
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥品商品名">
-            <summary>
-            藥品商品名
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥品分類">
-            <summary>
-            藥品分類
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.藥品治療分類">
-            <summary>
-            藥品治療分類
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.適應症">
-            <summary>
-            適應症
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.用法劑量">
-            <summary>
-            用法劑量
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.備註">
-            <summary>
-            備註
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.售價">
-            <summary>
-            售價
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.健保價">
-            <summary>
-            健保價
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.更新時間">
-            <summary>
-            更新時間
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.仿單">
-            <summary>
-            仿單
-            </summary>
-        </member>
-        <member name="P:HIS_DB_Lib.medInfoClass.健保規範">
-            <summary>
-            健保規範
-            </summary>
-        </member>
         <member name="T:HIS_DB_Lib.medInterClass">
             <summary>
             medInterClass 資料
@@ -3452,6 +3352,11 @@
             value_db
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.class_OutTakeMed_data.Order_GUID">
+            <summary>
+            Order_GUID
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.takeMedicineStackClass">
             <summary>
             藥物取用堆疊類別
@@ -3800,6 +3705,11 @@
         <member name="P:HIS_DB_Lib.textVisionClass.Result">
             <summary>
             Result
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.圖片角度">
+            <summary>
+            degree
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.textVisionClass.識別位置">

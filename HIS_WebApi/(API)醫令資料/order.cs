@@ -427,6 +427,12 @@ namespace HIS_WebApi
                 SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, PRI_KEY);
                 List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
+                if(OrderClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"取無資料";
+                    return returnData.JsonSerializationt();
+                }
                 returnData.Code = 200;
                 returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -1448,25 +1454,24 @@ namespace HIS_WebApi
                 string endtime = today.GetEndDate().ToDateString();
                 SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
-                List<object[]> list_order_list = sQLControl_order_list.GetRowsByBetween(null, (int)enum_醫囑資料.展藥時間, starttime, endtime);
-                List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
-                sql_order_list = sql_order_list.Where(temp => temp.病房 == 病房).ToList();
+                //List<object[]> list_order_list = sQLControl_order_list.GetRowsByBetween(null, (int)enum_醫囑資料.展藥時間, starttime, endtime);
+                //List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
+                //sql_order_list = sql_order_list.Where(temp => temp.病房 == 病房).ToList();
                 List<OrderClass> add_order_list = new List<OrderClass>();
                 List<OrderClass> update_order_list = new List<OrderClass>();
-                List<OrderClass> result_order_list = new List<OrderClass>();
-                List<OrderClass> delete_order_list = new List<OrderClass>();
+                
 
-                Dictionary<string, List<OrderClass>> new_orderDicPriKey = OrderClass.ToDictByPriKey(input_orderClass);
-                Dictionary<string, List<OrderClass>> old_orderDicPriKey = OrderClass.ToDictByPriKey(sql_order_list);
+                //Dictionary<string, List<OrderClass>> new_orderDicPriKey = OrderClass.ToDictByPriKey(input_orderClass);
+                //Dictionary<string, List<OrderClass>> old_orderDicPriKey = OrderClass.ToDictByPriKey(sql_order_list);
                 foreach(var item in input_orderClass)
                 {
                     OrderClass orderClass = OrderClass.get_by_pri_key(API, item.PRI_KEY);
                     if(orderClass == null)
                     {
                         item.GUID = Guid.NewGuid().ToString();
-                        item.產出時間 = DateTime.Now.ToDateTimeString_6();
-                        item.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                        item.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                        item.產出時間 = DateTime.Now.ToDateTimeString();
+                        item.過帳時間 = DateTime.MinValue.ToDateTimeString();
+                        item.展藥時間 = DateTime.MinValue.ToDateTimeString();
                         item.狀態 = "未過帳";
                         add_order_list.Add(item);
                     }
@@ -1506,7 +1511,7 @@ namespace HIS_WebApi
                 List<object[]> list_update_order_list = update_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
-                if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_update_order_list);
+                //if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_update_order_list);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";

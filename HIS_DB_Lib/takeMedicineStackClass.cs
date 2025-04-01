@@ -234,7 +234,7 @@ namespace HIS_DB_Lib
         {
             string url = $"{API_Server}/api/OutTakeMed/new";
             returnData returnData = new returnData();
-            returnData.ServerName = "ServerName";
+            returnData.ServerName = ServerName;
             returnData.Data = outTakeMed_Datas;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
