@@ -687,5 +687,20 @@ namespace HIS_DB_Lib
             List<DeviceBasic> deviceBasics = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
             return deviceBasics;
         }
+        static public List<DeviceBasic> Get_dps_med(string API_Server, string ServerName)
+        {
+            string url = $"{API_Server}/api/device/list/{ServerName}";          
+            string json_out = Net.WEBApiGet(url);
+            //string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_result}");
+            List<DeviceBasic> deviceBasics = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
+            return deviceBasics;
+        }
+
     }
 }

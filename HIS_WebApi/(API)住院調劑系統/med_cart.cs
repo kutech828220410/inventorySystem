@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using SQLUI;
 using System.Collections.Concurrent;
 using System.Text.Json.Serialization;
+using H_Pannel_lib;
 
 
 
@@ -885,9 +886,19 @@ namespace HIS_WebApi
                         //取得調劑台內藥品資訊
                         List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
                         Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+                        //List<DeviceBasic> deviceBasics = deviceApiClass.Get_dps_med(API, returnData.Value);
                         foreach (medCpoeClass medCpoeClass in sql_medCpoe)
                         {
+                            //DeviceBasic deviceBasic = deviceBasics.Where(temp => temp.BarCode == medCpoeClass.藥碼).FirstOrDefault();
                             if (medClassDict.ContainsKey(medCpoeClass.藥碼)) medCpoeClass.調劑台 = "Y";
+                            //if (deviceBasic != null) 
+                            //{
+                            //    medCpoeClass.調劑台 = "Y";
+                            //}
+                            //else
+                            //{
+                            //    medCpoeClass.調劑台 = "";
+                            //}
                         }
                     }
                     str_result_temp += $"取得調劑台內藥品資訊 , {myTimerBasic}ms \n";
@@ -2178,6 +2189,7 @@ namespace HIS_WebApi
         {
             try
             {
+                returnData.Method = "debit";
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 if(returnData.ValueAry == null)
                 {
@@ -2269,6 +2281,7 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
+                returnData.Method = "refund";
                 if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
@@ -2295,8 +2308,14 @@ namespace HIS_WebApi
                 for (int i = 0; i < GUIDs.Length; i++)
                 {
                     string GUID = GUIDs[i].Trim();
-                    OrderClass orderClass = OrderClass.get_by_guid(API_Server, GUID);
-                    if (orderClass != null) orderClasses.Add(orderClass);
+                    OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
+                    if (orderClass != null && orderClass.實際調劑量.StringIsEmpty() == false) orderClasses.Add(orderClass);
+                }
+                if (orderClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "order資料狀態不服";
+                    return returnData.JsonSerializationt(true);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 foreach (var item in orderClasses)
