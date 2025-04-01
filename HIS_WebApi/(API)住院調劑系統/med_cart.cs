@@ -884,13 +884,26 @@ namespace HIS_WebApi
                     if (returnData.Value != "all")
                     {
                         //取得調劑台內藥品資訊
-                        List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
+                        List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes); //我誤會你了
                         Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
                         //List<DeviceBasic> deviceBasics = deviceApiClass.Get_dps_med(API, returnData.Value);
                         foreach (medCpoeClass medCpoeClass in sql_medCpoe)
                         {
                             //DeviceBasic deviceBasic = deviceBasics.Where(temp => temp.BarCode == medCpoeClass.藥碼).FirstOrDefault();
-                            if (medClassDict.ContainsKey(medCpoeClass.藥碼)) medCpoeClass.調劑台 = "Y";
+
+                            if (medClassDict.ContainsKey(medCpoeClass.藥碼)) 
+                            {
+                                medClass medClass_buff = medClassDict[medCpoeClass.藥碼].FirstOrDefault();
+                                if (medClass_buff.DeviceBasics.Count != 0) 
+                                {
+                                    medCpoeClass.調劑台 = "Y";
+                                }
+                                else
+                                {
+                                    medCpoeClass.調劑台 = "";
+                                }
+
+                            } 
                             //if (deviceBasic != null) 
                             //{
                             //    medCpoeClass.調劑台 = "Y";
@@ -1134,8 +1147,8 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                string API = GetServerAPI("Main", "網頁", "API01");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
                 SQLControl sQLControl = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_bed_status = sQLControl.GetAllRows(null);
@@ -2018,7 +2031,20 @@ namespace HIS_WebApi
                     {
                         medQtyClass.大瓶點滴 = "L";
                     }
-                    if(medClasses.Count > 0)
+                    if (medClassDict.ContainsKey(medQtyClass.藥碼))
+                    {
+                        medClass medClass_buff = medClassDict[medQtyClass.藥碼].FirstOrDefault();
+                        if (medClass_buff.DeviceBasics.Count != 0)
+                        {
+                            medQtyClass.調劑台 = "Y";
+                        }
+                        else
+                        {
+                            medQtyClass.調劑台 = "";
+                        }
+
+                    }
+                    if (medClasses.Count > 0)
                     {
                         if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
                     }
@@ -2153,7 +2179,7 @@ namespace HIS_WebApi
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, disp, code);
-                        if (medClasses.Count > 0)
+                        if (medClasses.Count > 0 && medClasses[0].DeviceBasics.Count > 0)
                         {
                             dispensClass dispensClass = new dispensClass
                             {
