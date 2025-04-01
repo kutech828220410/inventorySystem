@@ -1309,8 +1309,8 @@ namespace HIS_WebApi
                 Task.WhenAll(tasks).Wait();
 
                 //扣帳
-                //tasks.Add(Task.Run(new Action(delegate
-                //{
+                tasks.Add(Task.Run(new Action(delegate
+                {
                     if (returnData.ServerName.StringIsEmpty() == false && returnData.UserName.StringIsEmpty() == false)
                     {
                         if (debit_medcpoe.Count > 0)
@@ -1324,14 +1324,14 @@ namespace HIS_WebApi
                             }
                             string guidString = string.Join(";", guidList);
                             returnData returnData_debit = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
-                            if (returnData_debit.Code != 200)
-                            {
-                                return returnData_debit.JsonSerializationt(true);
-                            }
+                            //if (returnData_debit.Code != 200)
+                            //{
+                            //    return returnData_debit.JsonSerializationt(true);
+                            //}
                     }
 
                     }
-                //})));
+                })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
@@ -2209,6 +2209,12 @@ namespace HIS_WebApi
                     
                     if(orderClass != null && orderClass.狀態 == "未過帳") orderClasses.Add(orderClass);
                     if(orderClass.狀態 == "已過帳" && orderClass.實際調劑量 == "0") orderClasses.Add(orderClass);
+                }
+                if (orderClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "order資料狀態不服";
+                    return returnData.JsonSerializationt(true);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 foreach (var item in orderClasses)
