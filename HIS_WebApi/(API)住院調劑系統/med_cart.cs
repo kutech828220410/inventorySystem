@@ -10,6 +10,7 @@ using SQLUI;
 using System.Collections.Concurrent;
 using System.Text.Json.Serialization;
 using H_Pannel_lib;
+using HIS_WebApi._API_藥品資料;
 
 
 
@@ -1967,89 +1968,75 @@ namespace HIS_WebApi
 
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
                 string API = GetServerAPI("Main", "網頁", "API01");
-
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+
                 List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
                 //List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                 //List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medCpoeClass> medCpoeClasses = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == true).ToList();
-                List<medQtyClass> medQtyClasses = medCpoeClasses
-                    .GroupBy(temp => temp.藥品名)
-                    .Select(grouped => new medQtyClass
-                    {
-                        藥品名 = grouped.Key,
-                        藥碼 = grouped.First().藥碼,
-                        單位 = grouped.First().單位,
-                        針劑 = grouped.First().針劑,
-                        口服 = grouped.First().口服,
-                        冷儲 = grouped.First().冷儲,
-                        調劑台 = "",
-                        大瓶點滴 = "",
-                        病床清單 = grouped.Select(value => new bedListClass
-                        {
-                            GUID = value.GUID,
-                            Master_GUID = value.Master_GUID,
-                            床號 = value.床號,
-                            數量 = value.數量,
-                            劑量 = value.劑量,
-                            大瓶點滴 = value.大瓶點滴,
-                            調劑狀態 = value.調劑狀態,
-                            覆核狀態 = value.覆核狀態,
-                            頻次 = value.頻次,
-                            自費 = value.自購,
-                            自費PRN = ""
-                        }).ToList()
-                    })
-                    .ToList();
 
-
+                List<Task> tasks = new List<Task>();
                 List<medClass> medClasses = new List<medClass>();
                 Dictionary<string, List<medClass>> medClassDict = new Dictionary<string, List<medClass>>();
-
-                if (returnData.Value == "all")
-                {
-                    foreach (var medQtyClass in medQtyClasses)
+               
+                List<medQtyClass> medQtyClasses = medCpoeClasses
+                    .GroupBy(temp => temp.藥碼)
+                    .Select(grouped =>
                     {
-                        medQtyClass.調劑台 = "Y";
-                    }
-                }
-                else
-                {
-                    List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
-                    medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
-                    medClassDict = medClass.CoverToDictionaryByCode(medClasses);
-                }              
-                foreach (var medQtyClass in medQtyClasses)
-                {
-                    bool flag = false;
-                    for (int j = 0; j < medQtyClass.病床清單.Count; j++)
-                    {
-                        if (medQtyClass.病床清單[j].大瓶點滴 == "L") flag = true;
-                        if (medQtyClass.病床清單[j].頻次.ToLower().Contains("prn") && medQtyClass.病床清單[j].自費 == "Y") medQtyClass.病床清單[j].自費PRN = "Y";
-                    }
-                    if (flag)
-                    {
-                        medQtyClass.大瓶點滴 = "L";
-                    }
-                    if (medClassDict.ContainsKey(medQtyClass.藥碼))
-                    {
-                        medClass medClass_buff = medClassDict[medQtyClass.藥碼].FirstOrDefault();
-                        if (medClass_buff.DeviceBasics.Count != 0)
+                        medCpoeClass medCpoe = grouped.First();
+                        string 調劑台 = "";
+                        string 大瓶點滴 = "";
+                        if (returnData.Value == "all")
                         {
-                            medQtyClass.調劑台 = "Y";
+                            調劑台 = "Y";
                         }
                         else
                         {
-                            medQtyClass.調劑台 = "";
+                            List<string> codes = medCpoeClasses.Select(temp => temp.藥碼).Distinct().ToList();
+                            medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
+                            medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+                            if(medClassDict.ContainsKey(grouped.Key) 
+                            && medClassDict[grouped.Key][0].DeviceBasics.Count > 0)
+                            {
+                                調劑台 = "Y";
+                            }
                         }
+                        List<bedListClass> bedLists = grouped.Select(value =>
+                        {
+                            string 自費PRN = "";
+                            if (value.頻次.ToLower().Contains("prn") && value.自購 == "Y") 自費PRN = "Y";
+                            return new bedListClass
+                            {
+                                GUID = value.GUID,
+                                Master_GUID = value.Master_GUID,
+                                床號 = value.床號,
+                                數量 = value.數量,
+                                劑量 = value.劑量,
+                                大瓶點滴 = value.大瓶點滴,
+                                調劑狀態 = value.調劑狀態,
+                                覆核狀態 = value.覆核狀態,
+                                頻次 = value.頻次,
+                                自費 = value.自購,
+                                自費PRN = 自費PRN
+                            };
 
-                    }
-                    if (medClasses.Count > 0)
-                    {
-                        if (medClassDict.ContainsKey(medQtyClass.藥碼)) medQtyClass.調劑台 = "Y";
-                    }
-                    medQtyClass.病床清單.Sort(new bedListClass.ICP_By_bedNum());
-                }
+                        }).ToList();
+                        if(bedLists.Any(item => item.大瓶點滴 == "L")) 大瓶點滴 = "Y";
+                        return new medQtyClass
+                        {
+                            藥品名 = grouped.Key,
+                            藥碼 = medCpoe.藥碼,
+                            單位 = medCpoe.單位,
+                            針劑 = medCpoe.針劑,
+                            口服 = medCpoe.口服,
+                            冷儲 = medCpoe.冷儲,
+                            調劑台 = 調劑台,
+                            大瓶點滴 = 大瓶點滴,
+                            病床清單 = bedLists
+                        };
+
+                    }).ToList();
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = medQtyClasses;
