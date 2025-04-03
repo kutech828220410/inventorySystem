@@ -35,6 +35,8 @@ namespace HIS_DB_Lib
         發音相似,
         [Description("自定義,VARCHAR,15,NONE")]
         自定義,
+        [Description("調劑註記,VARCHAR,300,NONE")]
+        調劑註記,
     }
 
     public class medConfigClass
@@ -94,7 +96,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("customVar")]
         public string 自定義 { get; set; }
-
+        /// <summary>
+        /// 調劑註記。
+        /// </summary>
+        [JsonPropertyName("DISPENSING_NOTE")]
+        public string 調劑註記 { get; set; }
 
         static public SQLUI.Table init(string API_Server)
         {

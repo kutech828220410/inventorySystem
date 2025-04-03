@@ -282,6 +282,71 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 取得全部藥品設定
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///     "ValueAry":["code1,code2,code3"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_dispense_note")]
+        [HttpPost]
+        public string get_dispense_note([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_dispense_note";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+
+                if(returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt();
+                }
+                string[] codes = returnData.ValueAry[0].Split(',');
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string TableName = "med_config";
+                SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_config = sQLControl_med_config.GetAllRows(null);
+                List<medConfigClass> medConfigClasses = list_med_config.SQLToClass<medConfigClass, enum_藥品設定表>();
+                medConfigClasses = medConfigClasses.Where(x => codes.Contains(x.藥碼)).ToList();
+                if (medConfigClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medConfigClasses;
+                returnData.Result = $"取得藥品設定成功,共<{medConfigClasses.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {

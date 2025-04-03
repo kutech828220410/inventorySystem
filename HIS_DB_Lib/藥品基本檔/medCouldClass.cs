@@ -105,6 +105,8 @@ namespace HIS_DB_Lib
         開檔狀態,
         [Description("儲位描述,VARCHAR,300,NONE")]
         儲位描述,
+        [Description("調劑註記,VARCHAR,300,NONE")]
+        調劑註記,
         [Description("備註,VARCHAR,500,NONE")]
         備註,
     }
