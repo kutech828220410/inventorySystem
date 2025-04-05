@@ -38,7 +38,7 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt(true);
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
-                SQLControl sQLControl = new SQLControl(Server, DB, "order", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
 
                 List<object[]> list_pha_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.藥袋條碼, BarCode);
