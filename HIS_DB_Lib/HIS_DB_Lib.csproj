@@ -115,6 +115,7 @@
     <Compile Include="formularyClass.cs" />
     <Compile Include="lockerAccessClass.cs" />
     <Compile Include="loggerClass.cs" />
+    <Compile Include="shiftClass.cs" />
     <Compile Include="住院藥車\patientInfoClass.cs" />
     <Compile Include="化療排程\CMPM_StorageConfig_Class.cs" />
     <Compile Include="commonSpaceSetup.cs" />
@@ -124,7 +125,6 @@
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
     <Compile Include="materialRequisitionClass.cs" />
-    <Compile Include="medCarInfoClass.cs" />
     <Compile Include="medCarList.cs" />
     <Compile Include="medCountClass.cs" />
     <Compile Include="住院藥車\medCpoeClass.cs" />

@@ -170,7 +170,11 @@ namespace HIS_WebApi._API_系統
         ///         "Data":
         ///         [
         ///             {
-        ///                 settingPage
+        ///                 "page_name":"",
+        ///                 "cht":"",
+        ///                 "name":"",
+        ///                 "value_type":"",
+        ///                 "value_db":""
         ///             }
         ///         ]
         ///         

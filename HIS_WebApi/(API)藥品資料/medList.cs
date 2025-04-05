@@ -40,7 +40,7 @@ namespace HIS_WebApi._API_藥品資料
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("init")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(OrderClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medListClass))]
         [HttpPost]
         public string POST_init([FromBody] returnData returnData)
         {
