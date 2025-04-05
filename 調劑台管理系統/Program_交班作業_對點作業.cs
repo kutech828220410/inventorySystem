@@ -663,6 +663,8 @@ namespace 調劑台管理系統
                     //if (MyMessageBox.ShowDialog("確認交班,彈開所有抽屜?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
                     Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_當班交接人_ID.Text}],當班交接人");
                     if (!this.plC_CheckBox_單人交班.Bool) Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_被交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
+              
+
                     List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
                     List<object[]> list_locker_table_value_buf = new List<object[]>();
                     List<object[]> list_locker_table_value_result = new List<object[]>();
@@ -687,6 +689,17 @@ namespace 調劑台管理系統
                 }
                 finally
                 {
+                    List<transactionsClass> transactionsClasses = new List<transactionsClass>();
+
+                    transactionsClass transactionsClass = new transactionsClass();
+                    transactionsClass.動作 = enum_交易記錄查詢動作.交班對點.GetEnumName();
+                    transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.備註 = "交班盤點完成";
+                    transactionsClasses.Add(transactionsClass);
+
+                    transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
+
                     PlC_RJ_Button_交班作業_對點作業_取消作業_MouseDownEvent(null);
                     plC_RJ_Button_交班作業_對點作業_開始交班.Bool = false;
                 }

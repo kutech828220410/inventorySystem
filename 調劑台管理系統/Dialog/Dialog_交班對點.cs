@@ -51,6 +51,7 @@ namespace 調劑台管理系統
             備註,
         }
         static public List<object[]> list_交班對點 = null;
+        public bool flag_單人交班 = false;  
         private bool flag_確認輸入 = false;
         private MyThread myThread_program;
         private personPageClass personPageClass_盤點人員 = null;
@@ -223,6 +224,7 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
+                    
                         plC_RJ_Button_盤點登入.Enabled = false;
                         plC_RJ_Button_覆盤登入.Enabled = true;
                         panel_藥品選擇.Enabled = false;
@@ -233,6 +235,7 @@ namespace 調劑台管理系統
                 }
                 if (this.stepViewer.CurrentStep == 3)
                 {
+                    plC_RJ_Button_解鎖.Enabled = true;
                     if (list_交班對點 != null)
                     {
                         int index = 0;
@@ -483,7 +486,7 @@ namespace 調劑台管理系統
         private void Function_寫入交易紀錄(string 備註)
         {
             List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
-            if (備註 == "完成交班盤點")
+            if (備註 == "交班盤點完成")
             {
                 List<medRecheckLogClass> medRecheckLogClasses = new List<medRecheckLogClass>();
                 for (int i = 0; i < list_交班對點.Count; i++)
@@ -530,7 +533,16 @@ namespace 調劑台管理系統
 
                 transactionsClasses.Add(transactionsClass);
             }
-
+            if (備註 == "交班盤點完成")
+            {
+                transactionsClass transactionsClass = new transactionsClass();
+                transactionsClass.動作 = enum_交易記錄查詢動作.交班對點.GetEnumName();
+                transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                transactionsClass.備註 = 備註;
+                transactionsClasses.Add(transactionsClass);
+            }
+                
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
         }
         #endregion
@@ -632,7 +644,6 @@ namespace 調劑台管理系統
            
         }
         string CodeLast = "";
-
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
 
@@ -691,7 +702,6 @@ namespace 調劑台管理系統
             }
 
         }
-
         private void PlC_RJ_Button_盤點登入_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
@@ -703,6 +713,16 @@ namespace 調劑台管理系統
                 rJ_Lable_盤點人員.Text = $"盤點人員 : {personPageClass_盤點人員.姓名}";
                 rJ_Lable_盤點人員.BackgroundColor = Color.YellowGreen;
             }));
+            if (flag_單人交班 == true)
+            {
+                personPageClass_覆盤人員 = dialog_使用者登入.personPageClass;
+                this.stepViewer.Next();
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_覆盤人員.Text = $"覆盤人員 : {personPageClass_覆盤人員.姓名}";
+                    rJ_Lable_覆盤人員.BackgroundColor = Color.YellowGreen;
+                }));
+            }
         }
         private void PlC_RJ_Button_覆盤登入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -716,15 +736,11 @@ namespace 調劑台管理系統
                 rJ_Lable_覆盤人員.BackgroundColor = Color.YellowGreen;
             }));
         }
-        private void RJ_Button_確認輸入_MouseDownEvent(MouseEventArgs mevent)
-        {
-            flag_確認輸入 = true;
-        }
         private void PlC_RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("確認送出交班表?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
 
-            Function_寫入交易紀錄("完成交班盤點");
+            Function_寫入交易紀錄("交班盤點完成");
           
             this.DialogResult = DialogResult.Yes;
             this.Close();
@@ -748,6 +764,11 @@ namespace 調劑台管理系統
             this.stepViewer.CurrentStep = 1;
             this.sqL_DataGridView_交班藥品.ClearGrid();
             list_交班對點 = null;
+        }
+
+        private void RJ_Button_確認輸入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            flag_確認輸入 = true;
         }
         #endregion
 

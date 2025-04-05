@@ -273,7 +273,7 @@ namespace 調劑台管理系統
                     藥品碼 = boxes[k].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                     if (藥品碼.StringIsEmpty()) continue;
                     list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
-                    list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_藥品設定表.藥碼, 藥品碼);
+                    list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_medConfig.藥碼, 藥品碼);
                     if (list_藥品資料_藥檔資料_buf.Count == 0)
                     {
                         boxes[k].Clear();
@@ -292,9 +292,9 @@ namespace 調劑台管理系統
 
                         if (list_藥品設定表_buf.Count > 0)
                         {
-                            麻醉藥品_buf = list_藥品設定表_buf[0][(int)enum_藥品設定表.麻醉藥品].ObjectToString().ToUpper();
-                            形狀相似_buf = list_藥品設定表_buf[0][(int)enum_藥品設定表.形狀相似].ObjectToString().ToUpper();
-                            發音相似_buf = list_藥品設定表_buf[0][(int)enum_藥品設定表.發音相似].ObjectToString().ToUpper();
+                            麻醉藥品_buf = list_藥品設定表_buf[0][(int)enum_medConfig.麻醉藥品].ObjectToString().ToUpper();
+                            形狀相似_buf = list_藥品設定表_buf[0][(int)enum_medConfig.形狀相似].ObjectToString().ToUpper();
+                            發音相似_buf = list_藥品設定表_buf[0][(int)enum_medConfig.發音相似].ObjectToString().ToUpper();
                         }
                         else
                         {

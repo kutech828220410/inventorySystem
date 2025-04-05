@@ -2691,6 +2691,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             if (plC_RJ_Button_領藥台_01_登入.Texts == "登出")
             {
                 PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(null);
@@ -4633,6 +4638,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             if (plC_RJ_Button_領藥台_02_登入.Texts == "登出")
             {
                 PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(null);
@@ -9168,7 +9178,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_條碼輸入_MouseDownEvent(MouseEventArgs mevent)
         {
-
+            if(Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             Dialog_條碼輸入 dialog_條碼輸入 = new Dialog_條碼輸入();
             if (dialog_條碼輸入.ShowDialog() != DialogResult.Yes) return;
             string Barcode = dialog_條碼輸入.Value;
@@ -9183,6 +9197,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_手輸醫令_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             this.Invoke(new Action(delegate
             {
                 Dialog_手輸醫令.enum_狀態 enum_狀態 = Dialog_手輸醫令.enum_狀態.領藥;
@@ -9282,6 +9301,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_藥品調入_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
             dialog_藥品調入.ShowDialog();
         }
@@ -9373,6 +9397,7 @@ namespace 調劑台管理系統
             try
             {
                 Dialog_交班對點 dialog_交班對點 = new Dialog_交班對點();
+                dialog_交班對點.flag_單人交班 = plC_CheckBox_單人交班.Checked;
                 dialog_交班對點.ShowDialog();
             }
             catch
@@ -9392,6 +9417,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_申領_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             Dialog_申領 dialog_申領 = new Dialog_申領();
             dialog_申領.ShowDialog();
         }

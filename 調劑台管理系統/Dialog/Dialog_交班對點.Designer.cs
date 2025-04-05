@@ -55,6 +55,7 @@ namespace 調劑台管理系統
             this.rJ_Button_確認輸入 = new MyUI.RJ_Button();
             this.rJ_TextBox_盤點量 = new MyUI.RJ_TextBox();
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
+            this.rJ_Button_dot = new MyUI.RJ_Button();
             this.rJ_Button_1 = new MyUI.RJ_Button();
             this.rJ_Button_CE = new MyUI.RJ_Button();
             this.rJ_Button_6 = new MyUI.RJ_Button();
@@ -70,7 +71,6 @@ namespace 調劑台管理系統
             this.rJ_Lable_現有庫存 = new MyUI.RJ_Lable();
             this.pictureBox_藥品資訊 = new System.Windows.Forms.PictureBox();
             this.rJ_Lable_藥品資訊 = new MyUI.RJ_Lable();
-            this.rJ_Button_dot = new MyUI.RJ_Button();
             this.panel9.SuspendLayout();
             this.panel_藥品選擇.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -411,6 +411,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_解鎖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_解鎖.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_解鎖.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_解鎖.Enabled = false;
             this.plC_RJ_Button_解鎖.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_解鎖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_解鎖.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -759,6 +760,38 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.ShadowSize = 3;
             this.rJ_Pannel2.Size = new System.Drawing.Size(357, 377);
             this.rJ_Pannel2.TabIndex = 41;
+            // 
+            // rJ_Button_dot
+            // 
+            this.rJ_Button_dot.AutoResetState = false;
+            this.rJ_Button_dot.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_dot.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_dot.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_dot.BorderRadius = 10;
+            this.rJ_Button_dot.BorderSize = 0;
+            this.rJ_Button_dot.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_dot.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_dot.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_dot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_dot.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_dot.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_dot.GUID = "";
+            this.rJ_Button_dot.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_dot.Location = new System.Drawing.Point(50, 277);
+            this.rJ_Button_dot.Name = "rJ_Button_dot";
+            this.rJ_Button_dot.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_dot.ProhibitionLineWidth = 4;
+            this.rJ_Button_dot.ProhibitionSymbolSize = 30;
+            this.rJ_Button_dot.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_dot.ShadowSize = 0;
+            this.rJ_Button_dot.ShowLoadingForm = false;
+            this.rJ_Button_dot.Size = new System.Drawing.Size(80, 80);
+            this.rJ_Button_dot.State = false;
+            this.rJ_Button_dot.TabIndex = 30;
+            this.rJ_Button_dot.Text = "●";
+            this.rJ_Button_dot.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_dot.TextHeight = 0;
+            this.rJ_Button_dot.UseVisualStyleBackColor = false;
             // 
             // rJ_Button_1
             // 
@@ -1188,38 +1221,6 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥品資訊.Text = "(------) -------------------------------------------";
             this.rJ_Lable_藥品資訊.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_藥品資訊.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Button_dot
-            // 
-            this.rJ_Button_dot.AutoResetState = false;
-            this.rJ_Button_dot.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_dot.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_dot.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_dot.BorderRadius = 10;
-            this.rJ_Button_dot.BorderSize = 0;
-            this.rJ_Button_dot.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_dot.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_dot.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_dot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_dot.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_dot.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_dot.GUID = "";
-            this.rJ_Button_dot.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_dot.Location = new System.Drawing.Point(50, 277);
-            this.rJ_Button_dot.Name = "rJ_Button_dot";
-            this.rJ_Button_dot.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_dot.ProhibitionLineWidth = 4;
-            this.rJ_Button_dot.ProhibitionSymbolSize = 30;
-            this.rJ_Button_dot.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_dot.ShadowSize = 0;
-            this.rJ_Button_dot.ShowLoadingForm = false;
-            this.rJ_Button_dot.Size = new System.Drawing.Size(80, 80);
-            this.rJ_Button_dot.State = false;
-            this.rJ_Button_dot.TabIndex = 30;
-            this.rJ_Button_dot.Text = "●";
-            this.rJ_Button_dot.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_dot.TextHeight = 0;
-            this.rJ_Button_dot.UseVisualStyleBackColor = false;
             // 
             // Dialog_交班對點
             // 

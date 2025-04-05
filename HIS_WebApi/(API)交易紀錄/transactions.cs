@@ -575,7 +575,7 @@ namespace HIS_WebApi
                 list_value.Sort(new ICP_交易記錄查詢());
                 List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                 returnData.Code = 200;
-                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.Result = $"取得交易紀錄成功,共<{transactionsClasses.Count}>筆資料,{myTimerBasic}";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = transactionsClasses;
                 return returnData.JsonSerializationt();
@@ -2229,7 +2229,7 @@ namespace HIS_WebApi
                 list_value.Sort(new ICP_交易記錄查詢());
                 List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                 returnData.Code = 200;
-                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.Result = $"取得交易紀錄成功,共<{transactionsClasses.Count}>筆資料,{myTimerBasic}";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = transactionsClasses;
                 return returnData.JsonSerializationt();
@@ -2344,7 +2344,7 @@ namespace HIS_WebApi
                 list_value.Sort(new ICP_交易記錄查詢());
                 List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                 returnData.Code = 200;
-                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.Result = $"取得交易紀錄成功,共<{transactionsClasses.Count}>筆資料,{myTimerBasic}";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = transactionsClasses;
                 return returnData.JsonSerializationt();
@@ -2391,6 +2391,7 @@ namespace HIS_WebApi
             if (str_action == enum_交易記錄查詢動作.調入作業.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.調出作業.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.效期庫存異動.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.交班對點.GetEnumName()) return true;
             return false;
         }
 

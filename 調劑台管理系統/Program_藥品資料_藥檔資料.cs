@@ -305,15 +305,15 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_藥品資料_藥檔資料.AddRow(value, true);
                 }
                 value = Function_藥品資料_藥檔資料_檢查藥品設定表(藥品碼);
-                value[(int)enum_藥品設定表.自定義] = plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked.ToString();
-                value[(int)enum_藥品設定表.效期管理] = plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked.ToString();
-                value[(int)enum_藥品設定表.盲盤] = plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked.ToString();
-                value[(int)enum_藥品設定表.複盤] = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
-                value[(int)enum_藥品設定表.結存報表] = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
-                value[(int)enum_藥品設定表.雙人覆核] = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
-                value[(int)enum_藥品設定表.麻醉藥品] = plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked.ToString();
-                value[(int)enum_藥品設定表.形狀相似] = plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked.ToString();
-                value[(int)enum_藥品設定表.發音相似] = plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked.ToString();
+                value[(int)enum_medConfig.自定義] = plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked.ToString();
+                value[(int)enum_medConfig.效期管理] = plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked.ToString();
+                value[(int)enum_medConfig.盲盤] = plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked.ToString();
+                value[(int)enum_medConfig.複盤] = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
+                value[(int)enum_medConfig.結存報表] = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
+                value[(int)enum_medConfig.雙人覆核] = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
+                value[(int)enum_medConfig.麻醉藥品] = plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked.ToString();
+                value[(int)enum_medConfig.形狀相似] = plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked.ToString();
+                value[(int)enum_medConfig.發音相似] = plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked.ToString();
 
 
                 this.sqL_DataGridView_藥品設定表.SQL_ReplaceExtra(value, false);
@@ -485,22 +485,22 @@ namespace 調劑台管理系統
         }
         private object[] Function_藥品資料_藥檔資料_檢查藥品設定表(string 藥品碼)
         {
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_藥品設定表.藥碼, 藥品碼, false);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_medConfig.藥碼, 藥品碼, false);
             object[] value;
             if (list_藥品設定表.Count == 0)
             {
-                value = new object[new enum_藥品設定表().GetLength()];
-                value[(int)enum_藥品設定表.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品設定表.藥碼] = 藥品碼;
-                value[(int)enum_藥品設定表.效期管理] = false.ToString();
-                value[(int)enum_藥品設定表.盲盤] = false.ToString();
-                value[(int)enum_藥品設定表.複盤] = false.ToString();
-                value[(int)enum_藥品設定表.結存報表] = false.ToString();
-                value[(int)enum_藥品設定表.雙人覆核] = false.ToString();
-                value[(int)enum_藥品設定表.麻醉藥品] = false.ToString();
-                value[(int)enum_藥品設定表.形狀相似] = false.ToString();
-                value[(int)enum_藥品設定表.發音相似] = false.ToString();
-                value[(int)enum_藥品設定表.自定義] = false.ToString();
+                value = new object[new enum_medConfig().GetLength()];
+                value[(int)enum_medConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medConfig.藥碼] = 藥品碼;
+                value[(int)enum_medConfig.效期管理] = false.ToString();
+                value[(int)enum_medConfig.盲盤] = false.ToString();
+                value[(int)enum_medConfig.複盤] = false.ToString();
+                value[(int)enum_medConfig.結存報表] = false.ToString();
+                value[(int)enum_medConfig.雙人覆核] = false.ToString();
+                value[(int)enum_medConfig.麻醉藥品] = false.ToString();
+                value[(int)enum_medConfig.形狀相似] = false.ToString();
+                value[(int)enum_medConfig.發音相似] = false.ToString();
+                value[(int)enum_medConfig.自定義] = false.ToString();
                 this.sqL_DataGridView_藥品設定表.SQL_AddRow(value, false);
             }
             else
@@ -846,15 +846,15 @@ namespace 調劑台管理系統
 
             object[] value = Function_藥品資料_藥檔資料_檢查藥品設定表(藥品碼);
        
-            this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = value[(int)enum_藥品設定表.自定義].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = value[(int)enum_藥品設定表.效期管理].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = value[(int)enum_藥品設定表.複盤].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_藥品設定表.盲盤].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_藥品設定表.結存報表].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_藥品設定表.雙人覆核].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = value[(int)enum_藥品設定表.麻醉藥品].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = value[(int)enum_藥品設定表.形狀相似].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = value[(int)enum_藥品設定表.發音相似].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = value[(int)enum_medConfig.自定義].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = value[(int)enum_medConfig.效期管理].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = value[(int)enum_medConfig.複盤].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_medConfig.盲盤].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_medConfig.結存報表].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_medConfig.雙人覆核].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = value[(int)enum_medConfig.麻醉藥品].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = value[(int)enum_medConfig.形狀相似].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = value[(int)enum_medConfig.發音相似].ObjectToString().StringToBool();
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent(List<object[]> RowsList)
         {

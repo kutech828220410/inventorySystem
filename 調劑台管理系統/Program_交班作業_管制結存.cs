@@ -127,12 +127,12 @@ namespace 調劑台管理系統
                 string 生物製劑 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString();
                 bool flag_自訂義 = false;
                 bool flag_要新增 = false;
-                list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_藥品設定表.藥碼, 藥品碼);
+                list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_medConfig.藥碼, 藥品碼);
                 if (list_藥品設定表_buf.Count > 0)
                 {
-                    if(list_藥品設定表_buf[0][(int)enum_藥品設定表.自定義].StringToBool())
+                    if(list_藥品設定表_buf[0][(int)enum_medConfig.自定義].StringToBool())
                     {
-                        if(list_藥品設定表_buf[0][(int)enum_藥品設定表.結存報表].StringToBool())
+                        if(list_藥品設定表_buf[0][(int)enum_medConfig.結存報表].StringToBool())
                         {
                             flag_要新增 = true;
                         }

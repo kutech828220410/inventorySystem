@@ -11,7 +11,7 @@ using System.Reflection;
 namespace HIS_DB_Lib
 {
     [EnumDescription("med_config")]
-    public enum enum_藥品設定表
+    public enum enum_medConfig
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -99,7 +99,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 調劑註記。
         /// </summary>
-        [JsonPropertyName("DISPENSING_NOTE")]
+        [JsonPropertyName("dispensing_note")]
         public string 調劑註記 { get; set; }
 
         static public SQLUI.Table init(string API_Server)
@@ -110,9 +110,219 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
-            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_藥品設定表());
+            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_medConfig());
             return table;
         }
+        static public List<medConfigClass> get_all(string API_Server)
+        {
+            var (code, result, list) = get_all_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_all_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medConfig/get_all";
+
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> get_by_codes(string API_Server, string code)
+        {
+            var (Code, result, list) = get_by_codes_full(API_Server, new List<string> { code });
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_by_codes_full(string API_Server, List<string> codes)
+        {
+            string url = $"{API_Server}/api/medConfig/get_by_codes";
+            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(sqlList);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> get_dispense_note_by_codes(string API_Server, string code)
+        {
+            var (Code, result, list) = get_dispense_note_by_codes_full(API_Server, new List<string> { code });
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_dispense_note_by_codes_full(string API_Server, List<string> codes)
+        {
+            string url = $"{API_Server}/api/medConfig/get_dispense_note_by_codes";
+            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(sqlList);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> add(string API_Server, List<medConfigClass> medConfigClasses)
+        {
+            var (code, result, list) = add_full(API_Server, medConfigClasses);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) add_full(string API_Server, List<medConfigClass> medConfigClasses)
+        {
+            string url = $"{API_Server}/api/medConfig/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = medConfigClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> delete_by_guid(string API_Server, string guid)
+        {
+            var (code, result, list) = delete_by_guid_full(API_Server, guid);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) delete_by_guid_full(string API_Server, string guid)
+        {
+            string url = $"{API_Server}/api/medConfig/delete_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(guid);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> delete_by_codes(string API_Server, List<string> codes)
+        {
+            var (code, result, list) = delete_by_codes_full(API_Server, codes);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) delete_by_codes_full(string API_Server, List<string> codes)
+        {
+            string url = $"{API_Server}/api/medConfig/delete_by_codes";
+            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(sqlList);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+    }
+    public static class medConfigMethod
+    {
+        static public System.Collections.Generic.Dictionary<string, List<medConfigClass>> CoverToDictionaryByCode(this List<medConfigClass> medClasses)
+        {
+            Dictionary<string, List<medConfigClass>> dictionary = new Dictionary<string, List<medConfigClass>>();
+
+            foreach (var item in medClasses)
+            {
+                string key = item.藥碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<medConfigClass> values = new List<medConfigClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<medConfigClass> SortDictionaryByCode(this System.Collections.Generic.Dictionary<string, List<medConfigClass>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<medConfigClass>();
+        }
+
+
+        
     }
 
 

@@ -634,6 +634,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (Function_檢查是否完成交班() == false)
+            {
+                MyMessageBox.ShowDialog("請先完成交班");
+                return;
+            }
             object[] value = sqL_DataGridView_收支作業_單品入庫_儲位搜尋.GetRowValues();
             if (value == null)
             {

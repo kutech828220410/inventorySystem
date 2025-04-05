@@ -84,6 +84,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
         static public PLC_Device PLC_Device_面板於調劑結束更新 = new PLC_Device("S5030");
         static public PLC_Device PLC_Device_面板於過帳後更新 = new PLC_Device("S5031");
+        static public PLC_Device PLC_Device_未交班無法調劑 = new PLC_Device("S3104");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");

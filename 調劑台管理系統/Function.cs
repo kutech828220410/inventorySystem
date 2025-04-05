@@ -2263,7 +2263,15 @@ namespace 調劑台管理系統
 
         }
 
-
+        public static bool Function_檢查是否完成交班()
+        {
+            if(PLC_Device_未交班無法調劑.Bool == false) return true;
+            List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_rx_time_st_end(Main_Form.API_Server, new DateTime(2025, 04, 05, 16, 00, 00), new DateTime(2025, 04, 05, 23, 00, 00), Main_Form.ServerName, Main_Form.ServerType);
+            transactionsClasses = (from temp in transactionsClasses
+                                   where temp.備註 == "交班盤點完成"
+                                   select temp).ToList();
+            return transactionsClasses.Count > 0;
+        }
 
         public static string Function_ReadBacodeScanner01()
         {

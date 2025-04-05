@@ -914,11 +914,11 @@ namespace HIS_DB_Lib
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
             if (returnData_out == null)
             {
-
+                return (0, "returnData_out == null", null);
             }
             if (returnData_out.Data == null)
             {
-
+                return (0, "returnData_out.Data == null", null);
             }
             List<OrderClass> OrderClasses_out = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return (returnData_out.Code, returnData_out.Result, OrderClasses_out);
