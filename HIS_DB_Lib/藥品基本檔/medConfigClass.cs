@@ -141,15 +141,19 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
 
-        static public List<medConfigClass> get_by_codes(string API_Server, string code)
+        static public medConfigClass get_by_codes(string API_Server, string code)
         {
             var (Code, result, list) = get_by_codes_full(API_Server, new List<string> { code });
-            return list;
+            if(list.Count == 0)
+            {
+                return null;
+            }
+            return list[0];
         }
         static public (int code, string result, List<medConfigClass>) get_by_codes_full(string API_Server, List<string> codes)
         {
             string url = $"{API_Server}/api/medConfig/get_by_codes";
-            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
+            string sqlList = string.Join(", ", codes.Select(code => $"{code}"));
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(sqlList);
@@ -171,6 +175,11 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
 
+        static public List<medConfigClass> get_dispense_note_by_codes(string API_Server, List<string> codes)
+        {
+            var (Code, result, list) = get_dispense_note_by_codes_full(API_Server, codes);
+            return list;
+        }
         static public List<medConfigClass> get_dispense_note_by_codes(string API_Server, string code)
         {
             var (Code, result, list) = get_dispense_note_by_codes_full(API_Server, new List<string> { code });
@@ -179,8 +188,7 @@ namespace HIS_DB_Lib
         static public (int code, string result, List<medConfigClass>) get_dispense_note_by_codes_full(string API_Server, List<string> codes)
         {
             string url = $"{API_Server}/api/medConfig/get_dispense_note_by_codes";
-            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
-
+            string sqlList = string.Join(", ", codes.Select(code => $"{code}"));
             returnData returnData = new returnData();
             returnData.ValueAry.Add(sqlList);
 
@@ -201,6 +209,92 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
 
+        static public List<medConfigClass> get_dispense_note(string API_Server)
+        {
+            var (Code, result, list) = get_dispense_note_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_dispense_note_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medConfig/get_dispense_note";
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> get_isShapeSimilar_note(string API_Server)
+        {
+            var (Code, result, list) = get_isShapeSimilar_note_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_isShapeSimilar_note_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medConfig/get_isShapeSimilar_note";
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> get_isSoundSimilar_note(string API_Server)
+        {
+            var (Code, result, list) = get_isSoundSimilar_note_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_isSoundSimilar_note_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medConfig/get_isSoundSimilar_note";
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
+        static public List<medConfigClass> add(string API_Server, medConfigClass medConfigClass)
+        {
+            var (code, result, list) = add_full(API_Server, new List<medConfigClass> { medConfigClass });
+            return list;
+        }
         static public List<medConfigClass> add(string API_Server, List<medConfigClass> medConfigClasses)
         {
             var (code, result, list) = add_full(API_Server, medConfigClasses);
@@ -224,6 +318,7 @@ namespace HIS_DB_Lib
             {
                 return (0, "returnData_out.Data == null", null);
             }
+            Console.WriteLine($"{returnData_out}");
             medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
@@ -265,8 +360,7 @@ namespace HIS_DB_Lib
         static public (int code, string result, List<medConfigClass>) delete_by_codes_full(string API_Server, List<string> codes)
         {
             string url = $"{API_Server}/api/medConfig/delete_by_codes";
-            string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
-
+            string sqlList = string.Join(", ", codes.Select(code => $"{code}"));
             returnData returnData = new returnData();
             returnData.ValueAry.Add(sqlList);
 

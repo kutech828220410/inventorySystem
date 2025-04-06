@@ -93,7 +93,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]</returns>
         [Route("add")]
         [HttpPost]
-        public string POST_add([FromBody] returnData returnData)
+        public string add([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "add";
@@ -241,7 +241,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_code")]
         [HttpPost]
-        public string POST_get_by_code([FromBody] returnData returnData)
+        public string get_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_code";
@@ -310,7 +310,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_name")]
         [HttpPost]
-        public string POST_get_by_order_guid([FromBody] returnData returnData)
+        public string get_by_order_guid([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_name";
@@ -379,7 +379,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_order_guid")]
         [HttpPost]
-        public string POST_get_by_name([FromBody] returnData returnData)
+        public string get_by_name([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_order_guid";
@@ -448,7 +448,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_op_time_st_end")]
         [HttpPost]
-        public string POST_get_by_op_time_st_end([FromBody] returnData returnData)
+        public string get_by_op_time_st_end([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_op_time_st_end";
@@ -529,7 +529,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_by_rx_time_st_end")]
         [HttpPost]
-        public string POST_get_by_rx_time_st_end([FromBody] returnData returnData)
+        public string get_by_rx_time_st_end([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_rx_time_st_end";
@@ -610,7 +610,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data][StockClass]</returns>
         [Route("get_stock_by_code")]
         [HttpPost]
-        public string POST_get_stock_by_code([FromBody] returnData returnData)
+        public string get_stock_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_stock_by_code";
@@ -718,7 +718,7 @@ namespace HIS_WebApi
 
         [Route("serch_med_information_by_code")]
         [HttpPost]
-        public string POST_serch_med_information_by_code([FromBody] returnData returnData)
+        public string serch_med_information_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -784,7 +784,7 @@ namespace HIS_WebApi
         }
         [Route("serch")]
         [HttpPost]
-        public string POST_serch([FromBody] returnData returnData)
+        public string serch([FromBody] returnData returnData)
         {
             try
             {
@@ -869,7 +869,7 @@ namespace HIS_WebApi
         }
         [Route("get_sheet_by_serch")]
         [HttpPost]
-        public string POST_get_sheet_by_serch([FromBody] returnData returnData)
+        public string get_sheet_by_serch([FromBody] returnData returnData)
         {
             try
             {
@@ -923,7 +923,7 @@ namespace HIS_WebApi
                     }
                 }
 
-                string json = POST_serch(returnData);
+                string json = serch(returnData);
                 returnData = json.JsonDeserializet<returnData>();
 
                 if (returnData.Code != 200)
@@ -1001,14 +1001,14 @@ namespace HIS_WebApi
         }
         [Route("download_excel_by_serch")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_excel_by_serch([FromBody] returnData returnData)
+        public async Task<ActionResult> download_excel_by_serch([FromBody] returnData returnData)
         {
             try
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                returnData = POST_get_sheet_by_serch(returnData).JsonDeserializet<returnData>();
+                returnData = get_sheet_by_serch(returnData).JsonDeserializet<returnData>();
                 if (returnData.Code != 200)
                 {
                     return null;
@@ -1053,7 +1053,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("download_datas_excel")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_datas_excel([FromBody] returnData returnData)
+        public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
         {
             try
             {
@@ -1178,14 +1178,14 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("download_cdmis_datas_excel")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_cdmis_datas_excel([FromBody] returnData returnData)
+        public async Task<ActionResult> download_cdmis_datas_excel([FromBody] returnData returnData)
         {
             try
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                returnData = POST_get_datas_sheet(returnData).JsonDeserializet<returnData>();
+                returnData = get_datas_sheet(returnData).JsonDeserializet<returnData>();
                 if (returnData.Code != 200)
                 {
                     return null;
@@ -1234,7 +1234,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_cdmis_datas_sheet")]
         [HttpPost]
-        public string POST_get_datas_sheet([FromBody] returnData returnData)
+        public string get_datas_sheet([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_sheet";
@@ -1301,7 +1301,7 @@ namespace HIS_WebApi
                 returnData_med.UserName = sys_serverSettingClasses_med.User;
                 returnData_med.Password = sys_serverSettingClasses_med.Password;
                 returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
-                returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+                returnData_med = mED_PageController.get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 List<SheetClass> sheetClasses = new List<SheetClass>();
@@ -1315,7 +1315,7 @@ namespace HIS_WebApi
                     returnData_get_datas_by_code.ValueAry.Add(藥碼Ary[k]);
                     returnData_get_datas_by_code.ValueAry.Add(serverName);
                     returnData_get_datas_by_code.ValueAry.Add(serverType);
-                    string json_get_datas_by_code = POST_get_datas_by_code(returnData_get_datas_by_code);
+                    string json_get_datas_by_code = get_datas_by_code(returnData_get_datas_by_code);
                     returnData_get_datas_by_code = json_get_datas_by_code.JsonDeserializet<returnData>();
                     if (returnData_get_datas_by_code.Code != 200)
                     {
@@ -1442,7 +1442,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_code")]
         [HttpPost]
-        public string POST_get_datas_by_code([FromBody] returnData returnData)
+        public string get_datas_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_code";
@@ -1542,7 +1542,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_name")]
         [HttpPost]
-        public string POST_get_datas_by_name([FromBody] returnData returnData)
+        public string get_datas_by_name([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_name";
@@ -1643,7 +1643,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_order_guid")]
         [HttpPost]
-        public string POST_get_datas_by_order_guid([FromBody] returnData returnData)
+        public string get_datas_by_order_guid([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_order_guid";
@@ -1744,7 +1744,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_mrn")]
         [HttpPost]
-        public string POST_get_datas_by_mrn([FromBody] returnData returnData)
+        public string get_datas_by_mrn([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_mrn";
@@ -1845,7 +1845,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_op")]
         [HttpPost]
-        public string POST_get_datas_by_op([FromBody] returnData returnData)
+        public string get_datas_by_op([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_op";
@@ -1946,7 +1946,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_med_bag_num")]
         [HttpPost]
-        public string POST_get_datas_by_med_bag_num([FromBody] returnData returnData)
+        public string get_datas_by_med_bag_num([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_med_bag_num";
@@ -2050,7 +2050,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_pat")]
         [HttpPost]
-        public string POST_get_datas_by_pat([FromBody] returnData returnData)
+        public string get_datas_by_pat([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_pat";
@@ -2152,7 +2152,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_op_time_st_end")]
         [HttpPost]
-        public string POST_get_datas_by_op_time_st_end([FromBody] returnData returnData)
+        public string get_datas_by_op_time_st_end([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_op_time_st_end";
@@ -2268,7 +2268,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
         [Route("get_datas_by_rx_time_st_end")]
         [HttpPost]
-        public string POST_get_datas_by_rx_time_st_end([FromBody] returnData returnData)
+        public string get_datas_by_rx_time_st_end([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_datas_by_rx_time_st_end";

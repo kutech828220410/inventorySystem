@@ -37,6 +37,10 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_藥品資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
                 this.sqL_DataGridView_藥品資料.Set_ColumnWidth(1000, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
                 this.sqL_DataGridView_藥品資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+
+                this.sqL_DataGridView_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+                this.sqL_DataGridView_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+
                 this.sqL_DataGridView_藥品資料.RowPostPaintingFinishedEvent += SqL_DataGridView_藥品資料_RowPostPaintingFinishedEvent;
                 this.sqL_DataGridView_藥品資料.RowEnterEvent += SqL_DataGridView_藥品資料_RowEnterEvent;
                 this.sqL_DataGridView_藥品資料.DataGridClearGridEvent += SqL_DataGridView_藥品資料_DataGridClearGridEvent;

@@ -493,11 +493,17 @@
     <Compile Include="Dialog\Dialog_藥品群組設定.Designer.cs">
       <DependentUpon>Dialog_藥品群組設定.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog_效期批號選擇.cs">
+    <Compile Include="Dialog\Dialog_效期批號選擇.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog_效期批號選擇.Designer.cs">
+    <Compile Include="Dialog\Dialog_效期批號選擇.Designer.cs">
       <DependentUpon>Dialog_效期批號選擇.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品資料_批次設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品資料_批次設定.Designer.cs">
+      <DependentUpon>Dialog_藥品資料_批次設定.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -720,6 +726,9 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品群組設定.resx">
       <DependentUpon>Dialog_藥品群組設定.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_藥品資料_批次設定.resx">
+      <DependentUpon>Dialog_藥品資料_批次設定.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥檔維護.resx">
       <DependentUpon>Dialog_藥檔維護.cs</DependentUpon>
     </EmbeddedResource>
@@ -808,7 +817,7 @@
     <EmbeddedResource Include="Dialog\Dialog_醫令選擇.resx">
       <DependentUpon>Dialog_醫令選擇.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_效期批號選擇.resx">
+    <EmbeddedResource Include="Dialog\Dialog_效期批號選擇.resx">
       <DependentUpon>Dialog_效期批號選擇.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
@@ -911,6 +920,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\藥品資料批次設定-removebg-preview.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\LOGO-浮水印.png" />
     <None Include="Resources\a-padlock-unlocked--showing-an-open-lock-removebg-preview.png" />

@@ -173,7 +173,7 @@ namespace 調劑台管理系統
 
             }));
         }
-        private void Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+        private bool Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
@@ -187,7 +187,7 @@ namespace 調劑台管理系統
             if (barcode.StringIsEmpty())
             {
                 Console.WriteLine("barcode is empty");
-                return;
+                return false;
             }
 
 
@@ -372,7 +372,6 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.開方時間 = orderClass.開方日期;
                     takeMedicineStackClass.操作人 = 操作人;
                     takeMedicineStackClass.ID = ID;
-
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = orderClass.交易量;
                     takeMedicineStackClass.收支原因 = "";
@@ -404,11 +403,32 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
+            if (PLC_Device_導引模式.Bool)
+            {
+                List<string> codes = (from temp in takeMedicineStackClasses
+                                      select temp.藥品碼).Distinct().ToList();
+
+                List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(API_Server, codes);
+                if (medConfigClasses.Count > 0)
+                {
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
+                    dialog_使用者登入.ShowDialog();
+                    if(dialog_使用者登入.DialogResult != DialogResult.Yes) return false;
+                    personPageClass = dialog_使用者登入.personPageClass;
+                    ID = personPageClass.ID;
+                    操作人 = personPageClass.姓名;
+                    藥師證字號 = personPageClass.藥師證字號;
+                    for (int i = 0; i < takeMedicineStackClasses.Count; i++)
+                    {
+                        takeMedicineStackClasses[i].操作人 = 操作人;
+                        takeMedicineStackClasses[i].ID = ID;
+                        takeMedicineStackClasses[i].藥師證字號 = 藥師證字號;
+                    }
+                }
+            }
+
             taskList.Clear();
-            //if(alarm_text.StringIsEmpty() == false)
-            //{
-            //    MyMessageBox.ShowDialog(alarm_text);
-            //}
+
             taskList.Add(Task.Run(new Action(delegate
             {
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
@@ -418,6 +438,7 @@ namespace 調劑台管理系統
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
+            return true;
         }
         private void Function_醫令退藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {

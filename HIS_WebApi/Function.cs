@@ -33,7 +33,19 @@ namespace HIS_WebApi
             }
             return sys_serverSettingClass.Server;
         }
+        /// <summary>
+        /// 取得目前請求的相對路徑（可選是否包含查詢字串）。若非 HTTP 呼叫則回傳 "[InternalCall]"。
+        /// </summary>
+        public static string GetRequestPath(HttpContext? context, bool includeQuery = false)
+        {
+            if (context?.Request == null)
+                return "[InternalCall]";
 
+            if (includeQuery)
+                return context.Request.Path + context.Request.QueryString;
+
+            return context.Request.Path;
+        }
     }
 
 

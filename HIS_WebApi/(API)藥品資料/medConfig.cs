@@ -42,7 +42,7 @@ namespace HIS_WebApi
         {
             try
             {
-                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -85,7 +85,7 @@ namespace HIS_WebApi
             returnData.Method = "get_all";
             try
             {
-                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -142,7 +142,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_codes";
             try
             {
-                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -224,7 +224,7 @@ namespace HIS_WebApi
             returnData.Method = "add";
             try
             {
-                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -235,7 +235,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 List<medConfigClass> medConfigClasses = returnData.Data.ObjToClass<List<medConfigClass>>();
-                if(medConfigClasses == null)
+                if (medConfigClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
@@ -256,7 +256,7 @@ namespace HIS_WebApi
                 {
                     string 藥碼 = medConfigClasses[i].藥碼;
                     list_med_config_buf = list_med_config.GetRows((int)enum_medConfig.藥碼, 藥碼);
-                    if(list_med_config_buf.Count > 0)
+                    if (list_med_config_buf.Count > 0)
                     {
                         object[] value = new object[new enum_medConfig().GetLength()];
                         medConfigClasses[i].GUID = list_med_config_buf[0][(int)enum_medConfig.GUID].ObjectToString();
@@ -313,7 +313,7 @@ namespace HIS_WebApi
             returnData.Method = "delete_by_guid";
             try
             {
-                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -345,7 +345,7 @@ namespace HIS_WebApi
                 string TableName = "med_config";
                 SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_med_config.GetRowsByDefult(null, (int)enum_medConfig.GUID, GUID);
-                if(list_value.Count ==0)
+                if (list_value.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
@@ -389,7 +389,7 @@ namespace HIS_WebApi
             returnData.Method = "delete_by_codes";
             try
             {
-                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
@@ -412,7 +412,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string[] codes = returnData.ValueAry[0].Split(",");
-                if(codes.Length == 0)
+                if (codes.Length == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[codes]";
@@ -436,6 +436,162 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"刪除藥品設定成功,共刪除<{list_value.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得調劑註記藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_dispense_note")]
+        [HttpPost]
+        public string get_dispense_note([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_dispense_note";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+           
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string TableName = "med_config";
+                SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_config = new List<object[]>();
+                string command = $"select * from {DB}.{TableName} where ( UPPER({enum_medConfig.調劑註記.GetEnumName()}) = 'y' or UPPER({enum_medConfig.調劑註記.GetEnumName()}) = 'true');";
+                DataTable dataTable = sQLControl_med_config.WtrteCommandAndExecuteReader(command);
+                list_med_config = dataTable.DataTableToRowList();
+                List<medConfigClass> medConfigClasses = list_med_config.SQLToClass<medConfigClass, enum_medConfig>();
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medConfigClasses;
+                returnData.Result = $"取得藥品設定成功,共<{medConfigClasses.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得形狀相似藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_isShapeSimilar_note")]
+        [HttpPost]
+        public string get_isShapeSimilar_note([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_isShapeSimilar_note";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string TableName = "med_config";
+                SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_config = new List<object[]>();
+                string command = $"select * from {DB}.{TableName} where ( UPPER({enum_medConfig.形狀相似.GetEnumName()}) = 'y' or UPPER({enum_medConfig.形狀相似.GetEnumName()}) = 'true');";
+                DataTable dataTable = sQLControl_med_config.WtrteCommandAndExecuteReader(command);
+                list_med_config = dataTable.DataTableToRowList();
+                List<medConfigClass> medConfigClasses = list_med_config.SQLToClass<medConfigClass, enum_medConfig>();
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medConfigClasses;
+                returnData.Result = $"取得藥品設定成功,共<{medConfigClasses.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得發音相似藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_isSoundSimilar_note")]
+        [HttpPost]
+        public string get_isSoundSimilar_note([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_isSoundSimilar_note";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string TableName = "med_config";
+                SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_config = new List<object[]>();
+                string command = $"select * from {DB}.{TableName} where ( UPPER({enum_medConfig.發音相似.GetEnumName()}) = 'y' or UPPER({enum_medConfig.發音相似.GetEnumName()}) = 'true');";
+                DataTable dataTable = sQLControl_med_config.WtrteCommandAndExecuteReader(command);
+                list_med_config = dataTable.DataTableToRowList();
+                List<medConfigClass> medConfigClasses = list_med_config.SQLToClass<medConfigClass, enum_medConfig>();
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medConfigClasses;
+                returnData.Result = $"取得藥品設定成功,共<{medConfigClasses.Count}>筆資料";
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)
@@ -470,9 +626,9 @@ namespace HIS_WebApi
             returnData.Method = "get_dispense_note_by_codes";
             try
             {
-                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                if(returnData.ValueAry == null)
+                if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
@@ -524,6 +680,6 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_medConfig()));
             return tables.JsonSerializationt(true);
         }
-   
+
     }
 }

@@ -161,6 +161,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.MouseDownEvent += PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent;
             this.plC_RJ_Button_藥檔資料_藥品群組.MouseDownEvent += PlC_RJ_Button_藥檔資料_藥品群組_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_批次設定.MouseDownEvent += PlC_RJ_Button_藥品資料_批次設定_MouseDownEvent;
 
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_自定義設定_CheckedChanged;
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_效期管理_CheckedChanged;
@@ -170,6 +171,8 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
+
+
 
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
@@ -279,7 +282,6 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.藥品學名] = this.textBox_藥品資料_藥檔資料_藥品學名.Text;
             value[(int)enum_藥品資料_藥檔資料.中文名稱] = this.textBox_藥品資料_藥檔資料_中文名稱.Text;
             value[(int)enum_藥品資料_藥檔資料.健保碼] = this.textBox_藥品資料_藥檔資料_健保碼.Text;
-            value[(int)enum_藥品資料_藥檔資料.藥品條碼] = this.textBox_藥品資料_藥檔資料_藥品條碼.Text;
             value[(int)enum_藥品資料_藥檔資料.包裝單位] = this.textBox_藥品資料_藥檔資料_包裝單位.Text;
             value[(int)enum_藥品資料_藥檔資料.庫存] = this.textBox_藥品資料_藥檔資料_庫存.Text;
             value[(int)enum_藥品資料_藥檔資料.安全庫存] = this.textBox_藥品資料_藥檔資料_安全庫存.Text;
@@ -305,18 +307,21 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_藥品資料_藥檔資料.AddRow(value, true);
                 }
                 value = Function_藥品資料_藥檔資料_檢查藥品設定表(藥品碼);
-                value[(int)enum_medConfig.自定義] = plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked.ToString();
-                value[(int)enum_medConfig.效期管理] = plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked.ToString();
-                value[(int)enum_medConfig.盲盤] = plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked.ToString();
-                value[(int)enum_medConfig.複盤] = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
-                value[(int)enum_medConfig.結存報表] = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
-                value[(int)enum_medConfig.雙人覆核] = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
-                value[(int)enum_medConfig.麻醉藥品] = plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked.ToString();
-                value[(int)enum_medConfig.形狀相似] = plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked.ToString();
-                value[(int)enum_medConfig.發音相似] = plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked.ToString();
 
+                medConfigClass medConfigClass = medConfigClass.get_by_codes(Main_Form.API_Server, 藥品碼);
+                medConfigClass.自定義 = plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked.ToString();
+                medConfigClass.效期管理 = plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked.ToString();
+                medConfigClass.盲盤 = plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked.ToString();
+                medConfigClass.複盤 = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
+                medConfigClass.結存報表 = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
+                medConfigClass.雙人覆核 = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
+                medConfigClass.麻醉藥品 = plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked.ToString();
+                medConfigClass.形狀相似 = plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked.ToString();
+                medConfigClass.發音相似 = plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked.ToString();
+                medConfigClass.調劑註記 = plC_CheckBox_藥品資料_藥檔資料_調劑註記.Checked.ToString();
 
-                this.sqL_DataGridView_藥品設定表.SQL_ReplaceExtra(value, false);
+                medConfigClass.add(Main_Form.API_Server, medConfigClass);
+
                 this.Function_藥品資料_藥檔資料_清除攔位();
                
             }
@@ -335,7 +340,6 @@ namespace 調劑台管理系統
                 this.textBox_藥品資料_藥檔資料_庫存.Text = "";
                 this.textBox_藥品資料_藥檔資料_安全庫存.Text = "";
                 this.textBox_藥品資料_藥檔資料_包裝單位.Text = "";
-                this.textBox_藥品資料_藥檔資料_藥品條碼.Text = "";
                 this.textBox_藥品資料_藥檔資料_廠牌.Text = "";
                 this.textBox_藥品資料_藥檔資料_許可證號.Text = "";
 
@@ -348,6 +352,7 @@ namespace 調劑台管理系統
                 this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_調劑註記.Checked = false;
             }));
             
         }
@@ -834,7 +839,6 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString();
             this.textBox_藥品資料_藥檔資料_安全庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString();
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = RowValue[(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-            this.textBox_藥品資料_藥檔資料_藥品條碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_廠牌.Text = RowValue[(int)enum_藥品資料_藥檔資料.廠牌].ObjectToString();
             this.textBox_藥品資料_藥檔資料_許可證號.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品許可證號].ObjectToString();
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString());
@@ -844,17 +848,40 @@ namespace 調劑台管理系統
             
             this.comboBox_藥品資料_藥檔資料_管制級別.Texts = RowValue[(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
 
-            object[] value = Function_藥品資料_藥檔資料_檢查藥品設定表(藥品碼);
-       
-            this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = value[(int)enum_medConfig.自定義].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = value[(int)enum_medConfig.效期管理].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = value[(int)enum_medConfig.複盤].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_medConfig.盲盤].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_medConfig.結存報表].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_medConfig.雙人覆核].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = value[(int)enum_medConfig.麻醉藥品].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = value[(int)enum_medConfig.形狀相似].ObjectToString().StringToBool();
-            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = value[(int)enum_medConfig.發音相似].ObjectToString().StringToBool();
+            medConfigClass medConfigClass = medConfigClass.get_by_codes(API_Server, 藥品碼);
+
+            if (medConfigClass == null)
+            {
+                this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_調劑註記.Checked = false;
+            }
+            else
+            {
+                object[] value = medConfigClass.ClassToSQL<medConfigClass,enum_medConfig>();
+
+                this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = value[(int)enum_medConfig.自定義].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = value[(int)enum_medConfig.效期管理].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = value[(int)enum_medConfig.複盤].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_medConfig.盲盤].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_medConfig.結存報表].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_medConfig.雙人覆核].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = value[(int)enum_medConfig.麻醉藥品].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = value[(int)enum_medConfig.形狀相似].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = value[(int)enum_medConfig.發音相似].ObjectToString().StringToBool();
+                this.plC_CheckBox_藥品資料_藥檔資料_調劑註記.Checked = value[(int)enum_medConfig.調劑註記].ObjectToString().StringToBool();
+
+            }
+
+
+
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent(List<object[]> RowsList)
         {
@@ -1061,7 +1088,9 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_藥品資料_登錄_MouseDownEvent(MouseEventArgs mevent)
         {
+            LoadingForm.ShowLoadingForm();
             Function_藥品資料_藥檔資料_登錄();
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_藥品資料_匯出_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1079,8 +1108,8 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent(MouseEventArgs mevent)
         {
-
-            List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<medClass> medClasses_本地藥檔 = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
+            List<object[]> list_本地藥檔 = medClasses_本地藥檔.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
             List<object[]> list_本地藥檔_replace = new List<object[]>();
             string url = dBConfigClass.MedApiURL;
             if (!url.StringIsEmpty())
@@ -1099,7 +1128,9 @@ namespace 調劑台管理系統
                     Console.WriteLine($"HIS填入失敗! , response:{response},耗時{myTimer.ToString()}ms");
                 }
             }
-            List<object[]> list_雲端藥檔 = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+            List<medClass> medClasses_雲端藥檔 = medClass.get_med_cloud(Main_Form.API_Server);
+
+            List<object[]> list_雲端藥檔 = medClasses_雲端藥檔.ClassToSQL<medClass, enum_雲端藥檔>();
             List<object[]> list_雲端藥檔_buf = new List<object[]>();
             
             for (int i = 0; i < list_本地藥檔.Count; i++)
@@ -1133,6 +1164,11 @@ namespace 調劑台管理系統
                     }
 
                 }
+            }
+            if (list_本地藥檔_replace.Count == 0)
+            {
+                MyMessageBox.ShowDialog("無資料更新!");
+                return;
             }
             this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_本地藥檔_replace, false);
             MyMessageBox.ShowDialog("更新完成...");
@@ -1169,6 +1205,11 @@ namespace 調劑台管理系統
             try
             {
                 string 藥品碼 = this.textBox_藥品資料_藥檔資料_藥品碼.Text;
+                if (藥品碼.StringIsEmpty())
+                {
+                    MyMessageBox.ShowDialog("請輸入藥品碼");
+                    return;
+                }
                 string url = dBConfigClass.MedApiURL;
                 if (!url.StringIsEmpty())
                 {
@@ -1291,6 +1332,11 @@ namespace 調劑台管理系統
             if (list_藥品資料_add.Count > 0) this.sqL_DataGridView_藥品資料_藥檔資料.SQL_AddRows(list_藥品資料_add, false);
             if (list_藥品資料_replace.Count > 0) this.sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_藥品資料_replace, false);
             dialog_Prcessbar.Close();
+        }
+        private void PlC_RJ_Button_藥品資料_批次設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品資料_批次設定 dialog_藥品資料_批次設定 = new Dialog_藥品資料_批次設定();
+            dialog_藥品資料_批次設定.ShowDialog();
         }
         private void PlC_CheckBox_藥品資料_藥檔資料_結存報表_CheckedChanged(object sender, EventArgs e)
         {

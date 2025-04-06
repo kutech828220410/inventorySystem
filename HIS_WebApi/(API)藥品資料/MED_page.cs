@@ -17,13 +17,13 @@ using System.IO;
 using System.Text;
 using MyOffice;
 using OfficeOpenXml;
-
+using System.Data;
 
 
 namespace HIS_WebApi
 {
 
-
+    //api/MED_page/
     [Route("api/[controller]")]
     [ApiController]
     public class MED_pageController : Controller
@@ -41,11 +41,11 @@ namespace HIS_WebApi
         [Route("init")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(OrderClass))]
         [HttpPost]
-        public string POST_init([FromBody] returnData returnData)
+        public string init([FromBody] returnData returnData)
         {
             try
             {
-                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
                 return CheckCreatTable(returnData);
             }
             catch (Exception e)
@@ -134,12 +134,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_cloud")]
         [HttpPost]
-        public string POST_get_med_cloud(returnData returnData)
+        public string get_med_cloud(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_cloud";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+           returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -157,7 +157,7 @@ namespace HIS_WebApi
                 returnData.ServerName = "Main";
                 returnData.ServerType = "網頁";
                 returnData.TableName = "medicine_page_cloud";
-                POST_init(returnData);
+                init(returnData);
                 List<medClass> medClasses = Get_med_cloud(sys_serverSettingClasses_buf[0]);
                 if (medClasses == null)
                 {
@@ -204,12 +204,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_Tmed_cloud")]
         [HttpPost]
-        public string POST_Tget_med_cloud(returnData returnData)
+        public string Tget_med_cloud(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_Tmed_cloud";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -227,7 +227,7 @@ namespace HIS_WebApi
                 returnData.ServerName = "Main";
                 returnData.ServerType = "網頁";
                 returnData.TableName = "medicine_page_cloud";
-                POST_init(returnData);
+                init(returnData);
                 List<medClass> medClasses = Get_med_cloud(sys_serverSettingClasses_buf[0]);
                 if (medClasses == null)
                 {
@@ -239,7 +239,7 @@ namespace HIS_WebApi
                 medClasses.Sort(new medClass.ICP_By_name());
                 returnData.Data = medClasses;
                 returnData.Code = 200;
-                returnData.Result = "中藥雲端藥檔取得成功!";
+                returnData.Result = $"中藥雲端藥檔取得成功,共<{medClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
 
                 return returnData.JsonSerializationt(false);
@@ -275,12 +275,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_codes")]
         [HttpPost]
-        public string POST_get_med_clouds_by_codes(returnData returnData)
+        public string get_med_clouds_by_codes(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_codes";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -301,11 +301,6 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string[] Codes = returnData.ValueAry[0].Split(",");
-
-                //returnData.ServerName = "Main";
-                //returnData.ServerType = "網頁";
-                //returnData.TableName = "medicine_page_cloud";
-                //POST_init(returnData);
                 List<medClass> medClasses = Get_med_cloud(sys_serverSettingClasses_buf[0], Codes);
                 List<medClass> medClasses_temp = new List<medClass>();
                 List<medClass> medClasses_buf = new List<medClass>();
@@ -362,12 +357,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_name")]
         [HttpPost]
-        public string POST_get_med_clouds_by_name(returnData returnData)
+        public string get_med_clouds_by_name(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_name";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -456,12 +451,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_dianame")]
         [HttpPost]
-        public string POST_get_med_clouds_by_dianame(returnData returnData)
+        public string get_med_clouds_by_dianame(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_dianame";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -550,12 +545,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_chtname")]
         [HttpPost]
-        public string POST_get_med_clouds_by_chtname(returnData returnData)
+        public string get_med_clouds_by_chtname(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_dianame";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -650,12 +645,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_durgkind")]
         [HttpPost]
-        public string POST_get_med_clouds_by_durgkind(returnData returnData)
+        public string get_med_clouds_by_durgkind(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_durgkind";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -745,12 +740,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("add_med_clouds")]
         [HttpPost]
-        public string POST_add_med_clouds(returnData returnData)
+        public string add_med_clouds(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "add_med_clouds";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -900,12 +895,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("update_med_clouds_by_guid")]
         [HttpPost]
-        public string POST_update_med_clouds_by_guid(returnData returnData)
+        public string update_med_clouds_by_guid(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_med_clouds_by_guid";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -929,7 +924,7 @@ namespace HIS_WebApi
                 //returnData.ServerName = "Main";
                 //returnData.ServerType = "網頁";
                 //returnData.TableName = "medicine_page_cloud";
-                //POST_init(returnData);
+                //init(returnData);
                 List<object[]> list_value_replace = medClasses.ClassToSQL<medClass,enum_雲端藥檔>();
 
 
@@ -985,7 +980,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_med_clouds_status_by_guid";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1081,7 +1076,7 @@ namespace HIS_WebApi
             returnData.Method = "get_ds_pharma_med";
             returnData.TableName = "medicine_page_phar";
             returnData.ServerType = "藥庫";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1219,12 +1214,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_ds_pharma_med")]
         [HttpPost]
-        public string POST_get_ds_pharma_med(returnData returnData)
+        public string get_ds_pharma_med(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_ds_pharma_med";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1371,12 +1366,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("update_ds_pharma_by_guid")]
         [HttpPost]
-        public string POST_update_ds_pharma_by_guid(returnData returnData)
+        public string update_ds_pharma_by_guid(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_ds_pharma_by_guid";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1458,7 +1453,7 @@ namespace HIS_WebApi
             returnData.Method = "get_ds_pharma_med";
             returnData.TableName = "medicine_page_firstclass";
             returnData.ServerType = "藥庫";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1596,12 +1591,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_ds_drugstore_med")]
         [HttpPost]
-        public string POST_get_ds_drugstore_med(returnData returnData)
+        public string get_ds_drugstore_med(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_ds_drugstore_med";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1750,12 +1745,12 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("update_ds_drugstore_by_guid")]
         [HttpPost]
-        public string POST_update_ds_store_by_guid(returnData returnData)
+        public string update_ds_store_by_guid(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_ds_drugstore_by_guid";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1835,17 +1830,17 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_by_apiserver")]
         [HttpPost]
-        public string POST_get_by_apiserver([FromBody] returnData returnData)
+        public string get_by_apiserver([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = returnData.TableName;
             returnData.Method = "get_by_apiserver";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {        
                 if (TableName == "medicine_page_cloud")
                 {                  
-                    string json_out = POST_get_med_cloud(returnData);
+                    string json_out = get_med_cloud(returnData);
                     return json_out;
                 }
                 //藥庫藥品資料
@@ -2137,6 +2132,7 @@ namespace HIS_WebApi
             }
           
         }
+
         /// <summary>
         /// 取得[調劑台藥檔]
         /// </summary>
@@ -2159,13 +2155,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_dps_medClass")]
         [HttpPost]
-        public string POST_get_dps_medclass([FromBody] returnData returnData)
+        public string get_dps_medclass([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medclass";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2295,13 +2291,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_dps_medClass_by_code")]
         [HttpPost]
-        public string POST_get_dps_medClass_by_code([FromBody] returnData returnData)
+        public string get_dps_medClass_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_code";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2468,13 +2464,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_dps_medClass_by_name")]
         [HttpPost]
-        public string POST_get_dps_medClass_by_name([FromBody] returnData returnData)
+        public string get_dps_medClass_by_name([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_name";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2610,13 +2606,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_dps_medClass_by_chtname")]
         [HttpPost]
-        public string POST_get_dps_medClass_by_chtname([FromBody] returnData returnData)
+        public string get_dps_medClass_by_chtname([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_chtname";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2752,13 +2748,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_dps_medClass_by_dianame")]
         [HttpPost]
-        public string POST_get_dps_medClass_by_dianame([FromBody] returnData returnData)
+        public string get_dps_medClass_by_dianame([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_dianame";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2893,13 +2889,13 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         [Route("get_datas_dps_medClass_by_code")]
         [HttpPost]
-        public string POST_get_datas_dps_medClass_by_code([FromBody] returnData returnData)
+        public string get_datas_dps_medClass_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_code";
-            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2995,7 +2991,7 @@ namespace HIS_WebApi
 
         [Route("get_by_code")]
         [HttpPost]
-        public string POST_get_by_code([FromBody] returnData returnData)
+        public string get_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -3123,7 +3119,7 @@ namespace HIS_WebApi
         }
         [Route("upadte_by_guid")]
         [HttpPost]
-        public string POST_upadte_by_guid([FromBody] returnData returnData)
+        public string upadte_by_guid([FromBody] returnData returnData)
         {
             try
             {
@@ -3291,7 +3287,7 @@ namespace HIS_WebApi
 
         [Route("serch_by_BarCode")]
         [HttpPost]
-        public string POST_serch_by_BarCode([FromBody] returnData returnData)
+        public string serch_by_BarCode([FromBody] returnData returnData)
         {
             try
             {
@@ -3601,30 +3597,12 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_med = new List<object[]>();
-                //List<object[]> list_med_info = sQLControl_med_carInfo.GetAllRows(null);
-                List<Task> tasks = new List<Task>();
-                for (int i = 0; i < Codes.Length; i++)
-                {
-                    string code = Codes[i];
-                    tasks.Add(Task.Run(new Action(delegate
-                    {
-                        List<object[]> list_value_buf = sQLControl_med.GetRowsByDefult(null, (int)enum_雲端藥檔.藥品碼, code);
-                        list_med.LockAdd(list_value_buf);
-                    })));
-                }
-                Task.WhenAll(tasks).Wait();
-                //List<object[]> list_med = sQLControl_med.GetAllRows(null);
-                //List<object[]> list_med_buf = new List<object[]>();
-                //List<object[]> list_med_temp = new List<object[]>();
-                //for (int i = 0; i < Codes.Length; i++)
-                //{
-                //    list_med_temp = list_med.GetRows((int)enum_雲端藥檔.藥品碼, Codes[i]);
-                //    if(list_med_temp.Count > 0)
-                //    {
-                //        list_med_buf.Add(list_med_temp[0]);
-                //    }
-                //}
-                //List<medClass> medClasses = list_med_buf.SQLToClass<medClass, enum_雲端藥檔>();
+
+                string sqlList = string.Join(", ", Codes.Select(code => $"'{code}'"));
+                string command = $"select * from {DB}.{"medicine_page_cloud"} where UPPER({enum_雲端藥檔.藥品碼.GetEnumName()}) in ({sqlList});";
+                DataTable dataTable = sQLControl_med.WtrteCommandAndExecuteReader(command);
+                list_med = dataTable.DataTableToRowList();
+               
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
 
                 return medClasses;

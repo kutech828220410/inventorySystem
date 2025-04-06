@@ -159,7 +159,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_get_by_CT_TIME_ST_END")]
         [HttpPost]
-        public string POST_creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
+        public string creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
         {
             try
             {
@@ -242,7 +242,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_by_CT_TIME")]
         [HttpPost]
-        public string POST_creat_get_by_CT_TIME([FromBody] returnData returnData)
+        public string creat_get_by_CT_TIME([FromBody] returnData returnData)
         {
             try
             {
@@ -321,7 +321,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_update_startime_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_update_startime_by_IC_SN([FromBody] returnData returnData)
+        public string creat_update_startime_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
-                string json_out = POST_creat_get_by_IC_SN(returnData);
+                string json_out = creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
                 {
@@ -414,7 +414,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_get_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_get_by_IC_SN([FromBody] returnData returnData)
+        public string creat_get_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -485,7 +485,7 @@ namespace HIS_WebApi
         }
         [Route("content_get_by_PON")]
         [HttpPost]
-        public string POST_content_get_by_PON([FromBody] returnData returnData)
+        public string content_get_by_PON([FromBody] returnData returnData)
         {
             try
             {
@@ -598,7 +598,7 @@ namespace HIS_WebApi
         }
         [Route("sub_content_get_by_PON")]
         [HttpPost]
-        public string POST_sub_content_get_by_PON([FromBody] returnData returnData)
+        public string sub_content_get_by_PON([FromBody] returnData returnData)
         {
             try
             {
@@ -764,7 +764,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_add")]
         [HttpPost]
-        public string POST_creat_add([FromBody] returnData returnData)
+        public string creat_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -924,7 +924,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_update")]
         [HttpPost]
-        public string POST_creat_update([FromBody] returnData returnData)
+        public string creat_update([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1078,7 +1078,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_auto_add")]
         [HttpPost]
-        public string POST_creat_auto_add([FromBody] returnData returnData)
+        public string creat_auto_add([FromBody] returnData returnData)
         {
             try
             {
@@ -1110,7 +1110,7 @@ namespace HIS_WebApi
                 returnData_med.UserName = UserName;
                 returnData_med.Password = Password;
 
-                returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+                returnData_med = mED_PageController.get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
@@ -1137,7 +1137,7 @@ namespace HIS_WebApi
                 returnData.Data = creat;
                 returnData.Method = "creat_auto_add";
 
-                return POST_creat_add(returnData);
+                return creat_add(returnData);
             }
             catch (Exception e)
             {
@@ -1169,7 +1169,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_lock_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_lock([FromBody] returnData returnData)
+        public string creat_lock([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1245,7 +1245,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_unlock_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_unlock([FromBody] returnData returnData)
+        public string creat_unlock([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1321,7 +1321,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為驗收單結構</returns>       
         [Route("creat_delete_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_delete_by_IC_SN([FromBody] returnData returnData)
+        public string creat_delete_by_IC_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1399,7 +1399,7 @@ namespace HIS_WebApi
         /// <returns>無</returns>
         [Route("contents_delete_by_GUID")]
         [HttpPost]
-        public string POST_contents_delete_by_GUID([FromBody] returnData returnData)
+        public string contents_delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1463,7 +1463,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("content_get_by_content_GUID")]
         [HttpPost]
-        public string POST_content_get_by_content_GUID([FromBody] returnData returnData)
+        public string content_get_by_content_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1518,7 +1518,7 @@ namespace HIS_WebApi
                 returnData_med.ServerType = "網頁";
                 returnData_med.ServerName = "Main";
                 returnData_med.Value = list_inspection_content_buf[0][(int)enum_驗收內容.藥品碼].ObjectToString();
-                string json_med = mED_PageController.POST_get_by_code(returnData_med);
+                string json_med = mED_PageController.get_by_code(returnData_med);
                 returnData_med = json_med.JsonDeserializet<returnData>();
 
                 content = list_inspection_content_buf[0].SQLToClass<inspectionClass.content, enum_驗收內容>();
@@ -1593,7 +1593,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content陣列資料結構 </returns>
         [Route("sub_content_get_by_content_GUID")]
         [HttpPost]
-        public string POST_sub_content_get_by_content_GUID([FromBody] returnData returnData)
+        public string sub_content_get_by_content_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1664,7 +1664,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add_single")]
         [HttpPost]
-        public string POST_sub_content_add_single([FromBody] returnData returnData)
+        public string sub_content_add_single([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1757,7 +1757,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add")]
         [HttpPost]
-        public string POST_sub_content_add([FromBody] returnData returnData)
+        public string sub_content_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1818,7 +1818,7 @@ namespace HIS_WebApi
             inspectionClass.content content = new inspectionClass.content();
             content.GUID = Master_GUID;
             returnData.Data = content;
-            string json_content = POST_content_get_by_content_GUID(returnData);
+            string json_content = content_get_by_content_GUID(returnData);
             returnData = json_content.JsonDeserializet<returnData>();
             if (returnData == null)
             {
@@ -1866,7 +1866,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_update")]
         [HttpPost]
-        public string POST_sub_content_update([FromBody] returnData returnData)
+        public string sub_content_update([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1929,7 +1929,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("sub_contents_delete_by_GUID")]
         [HttpPost]
-        public string POST_sub_contents_delete_by_GUID([FromBody] returnData returnData)
+        public string sub_contents_delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1972,7 +1972,7 @@ namespace HIS_WebApi
             inspectionClass.content content = new inspectionClass.content();
             content.GUID = Master_GUID;
             returnData.Data = content;
-            string json_content = POST_content_get_by_content_GUID(returnData);
+            string json_content = content_get_by_content_GUID(returnData);
             returnData = json_content.JsonDeserializet<returnData>();
             if (returnData == null)
             {
@@ -2022,7 +2022,7 @@ namespace HIS_WebApi
         /// <returns>Excel</returns>
         [Route("download_excel_by_IC_SN")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
+        public async Task<ActionResult> download_excel_by_IC_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -2043,7 +2043,7 @@ namespace HIS_WebApi
 
             string server = Server;
             string dbName = DB;
-            string json = POST_creat_get_by_IC_SN(returnData);
+            string json = creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
             Server = server;
             DB = dbName;
@@ -2139,7 +2139,7 @@ namespace HIS_WebApi
         /// <returns>Excel</returns>
         [Route("excel_upload")]
         [HttpPost]
-        public async Task<string> POST_excel([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string PON, [FromForm] string CT)
+        public async Task<string> excel([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string PON, [FromForm] string CT)
         {
             var formFile = Request.Form.Files.FirstOrDefault();
 
@@ -2206,7 +2206,7 @@ namespace HIS_WebApi
 
             returnData.Data = creat;
 
-            return POST_creat_add(returnData);
+            return creat_add(returnData);
         }
 
 

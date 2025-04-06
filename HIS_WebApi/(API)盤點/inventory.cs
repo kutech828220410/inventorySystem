@@ -162,7 +162,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單陣列結構</returns>
         [Route("get_all_unlock_creat")]
         [HttpPost]
-        public string POST_get_all_unlock_creat([FromBody] returnData returnData)
+        public string get_all_unlock_creat([FromBody] returnData returnData)
         {
             try
             {
@@ -229,7 +229,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_by_CT_TIME_ST_END")]
         [HttpPost]
-        public string POST_creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
+        public string creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
         {
             try
             {
@@ -315,7 +315,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_by_CT_TIME")]
         [HttpPost]
-        public string POST_creat_get_by_CT_TIME([FromBody] returnData returnData)
+        public string creat_get_by_CT_TIME([FromBody] returnData returnData)
         {
             try
             {
@@ -396,7 +396,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_update_startime_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_update_startime_by_IC_SN([FromBody] returnData returnData)
+        public string creat_update_startime_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -422,7 +422,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
                 inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
-                string json_out = POST_creat_get_by_IC_SN(returnData);
+                string json_out = creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
                 {
@@ -489,7 +489,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_get_by_IC_SN([FromBody] returnData returnData)
+        public string creat_get_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -571,7 +571,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_quick_add")]
         [HttpPost]
-        public string POST_creat_quick_add([FromBody] returnData returnData)
+        public string creat_quick_add([FromBody] returnData returnData)
         {
             try
             {
@@ -609,7 +609,7 @@ namespace HIS_WebApi
                     returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
                     returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
 
-                    returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+                    returnData_med = mED_PageController.get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                     List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                     deviceController deviceController = new deviceController();
@@ -665,7 +665,7 @@ namespace HIS_WebApi
                     returnData.Data = creat;
                     returnData.Method = "creat_auto_add";
                     returnData.Value = creatSN;
-                    POST_creat_add(returnData);
+                    creat_add(returnData);
                     return returnData.JsonSerializationt();
                 }
                 else
@@ -743,7 +743,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_add")]
         [HttpPost]
-        public string POST_creat_add([FromBody] returnData returnData)
+        public string creat_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -907,7 +907,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_auto_add")]
         [HttpPost]
-        public string POST_creat_auto_add([FromBody] returnData returnData)
+        public string creat_auto_add([FromBody] returnData returnData)
         {
             try
             {
@@ -940,7 +940,7 @@ namespace HIS_WebApi
                 returnData_med.UserName = UserName;
                 returnData_med.Password = Password;
 
-                returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+                returnData_med = mED_PageController.get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 deviceController deviceController = new deviceController();
@@ -992,7 +992,7 @@ namespace HIS_WebApi
                 returnData.Data = creat;
                 returnData.Method = "creat_auto_add";
 
-                return POST_creat_add(returnData);
+                return creat_add(returnData);
             }
             catch (Exception e)
             {
@@ -1024,7 +1024,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_lock_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_lock([FromBody] returnData returnData)
+        public string creat_lock([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1103,7 +1103,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_unlock_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_unlock([FromBody] returnData returnData)
+        public string creat_unlock([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1182,7 +1182,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_delete_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_delete_by_IC_SN([FromBody] returnData returnData)
+        public string creat_delete_by_IC_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1329,7 +1329,7 @@ namespace HIS_WebApi
         /// <returns>無</returns>
         [Route("contents_delete_by_GUID")]
         [HttpPost]
-        public string POST_contents_delete_by_GUID([FromBody] returnData returnData)
+        public string contents_delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1393,7 +1393,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("content_get_by_content_GUID")]
         [HttpPost]
-        public string POST_content_get_by_content_GUID([FromBody] returnData returnData)
+        public string content_get_by_content_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1446,7 +1446,7 @@ namespace HIS_WebApi
                 returnData_med.ServerType = "網頁";
                 returnData_med.ServerName = "Main";
                 returnData_med.Value = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼].ObjectToString();
-                string json_med = mED_PageController.POST_get_by_code(returnData_med);
+                string json_med = mED_PageController.get_by_code(returnData_med);
                 returnData_med = json_med.JsonDeserializet<returnData>();
 
 
@@ -1524,7 +1524,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content陣列資料結構 </returns>
         [Route("sub_content_get_by_content_GUID")]
         [HttpPost]
-        public string POST_sub_content_get_by_content_GUID([FromBody] returnData returnData)
+        public string sub_content_get_by_content_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1595,7 +1595,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add_single")]
         [HttpPost]
-        public string POST_sub_content_add_single([FromBody] returnData returnData)
+        public string sub_content_add_single([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1690,7 +1690,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add")]
         [HttpPost]
-        public string POST_sub_content_add([FromBody] returnData returnData)
+        public string sub_content_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1759,7 +1759,7 @@ namespace HIS_WebApi
             inventoryClass.content content = new inventoryClass.content();
             content.GUID = Master_GUID;
             returnData.Data = content;
-            string json_content = POST_content_get_by_content_GUID(returnData);
+            string json_content = content_get_by_content_GUID(returnData);
             returnData = json_content.JsonDeserializet<returnData>();
             if (returnData == null)
             {
@@ -1811,7 +1811,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("sub_contents_delete_by_GUID")]
         [HttpPost]
-        public string POST_sub_contents_delete_by_GUID([FromBody] returnData returnData)
+        public string sub_contents_delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1854,7 +1854,7 @@ namespace HIS_WebApi
             inventoryClass.content content = new inventoryClass.content();
             content.GUID = Master_GUID;
             returnData.Data = content;
-            string json_content = POST_content_get_by_content_GUID(returnData);
+            string json_content = content_get_by_content_GUID(returnData);
             returnData = json_content.JsonDeserializet<returnData>();
             if (returnData == null)
             {
@@ -1903,7 +1903,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_update_default_op_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_update_default_op_by_IC_SN([FromBody] returnData returnData)
+        public string creat_update_default_op_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -1930,7 +1930,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
                 inventoryClass.creat creat_temp = returnData.Data.ObjToClass<inventoryClass.creat>();
                 inventoryClass.creat creat = new inventoryClass.creat();
-                string json_out = POST_creat_get_by_IC_SN(returnData);
+                string json_out = creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
                 {
@@ -1993,7 +1993,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_default_op_by_IC_SN")]
         [HttpPost]
-        public string POST_creat_get_default_op_by_IC_SN([FromBody] returnData returnData)
+        public string creat_get_default_op_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -2020,7 +2020,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
                 inventoryClass.creat creat_temp = returnData.Data.ObjToClass<inventoryClass.creat>();
                 inventoryClass.creat creat = new inventoryClass.creat();
-                string json_out = POST_creat_get_by_IC_SN(returnData);
+                string json_out = creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
                 {
@@ -2110,7 +2110,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("content_add_by_IC_SN")]
         [HttpPost]
-        public string POST_content_add_by_IC_SN([FromBody] returnData returnData)
+        public string content_add_by_IC_SN([FromBody] returnData returnData)
         {
             try
             {
@@ -2156,7 +2156,7 @@ namespace HIS_WebApi
                     returnData.Result = $"Data內無藥品可新增";
                     return returnData.JsonSerializationt();
                 }
-                string json_out = POST_creat_get_by_IC_SN(returnData);
+                string json_out = creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
                 {
@@ -2241,7 +2241,7 @@ namespace HIS_WebApi
         /// <returns>Excel</returns>
         [Route("download_excel_by_IC_SN")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
+        public async Task<ActionResult> download_excel_by_IC_SN([FromBody] returnData returnData)
         {
 
             MyTimer myTimer = new MyTimer();
@@ -2263,7 +2263,7 @@ namespace HIS_WebApi
 
             string server = Server;
             string dbName = DB;
-            string json = POST_creat_get_by_IC_SN(returnData);
+            string json = creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
 
             if (returnData.Code != 200)
@@ -2351,7 +2351,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_excel_header")]
         [HttpPost]
-        public async Task<ActionResult> POST_get_excel_header()
+        public async Task<ActionResult> get_excel_header()
         {
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
@@ -2382,7 +2382,7 @@ namespace HIS_WebApi
         [Route("excel_upload")]
         [Route("excel_inventory_upload")]
         [HttpPost]
-        public async Task<string> POST_excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
+        public async Task<string> excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
         {
             returnData returnData = new returnData();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -2402,7 +2402,7 @@ namespace HIS_WebApi
                 }
  
 
-                returnData.Method = "POST_excel_upload";
+                returnData.Method = "excel_upload";
                 var formFile = Request.Form.Files.FirstOrDefault();
 
                 if (formFile == null)
@@ -2478,7 +2478,7 @@ namespace HIS_WebApi
                     }
                 }
                 returnData.Data = creat;
-                string json_creat_add = POST_creat_add(returnData);
+                string json_creat_add = creat_add(returnData);
                 returnData = json_creat_add.JsonDeserializet<returnData>();
                 if (returnData.Code != 200)
                 {
@@ -2543,7 +2543,7 @@ namespace HIS_WebApi
             returnData_med.UserName = sys_serverSettingClasses_med.User;
             returnData_med.Password = sys_serverSettingClasses_med.Password;
             returnData_med.Port = sys_serverSettingClasses_med.Port.StringToUInt32();
-            returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+            returnData_med = mED_PageController.get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
 

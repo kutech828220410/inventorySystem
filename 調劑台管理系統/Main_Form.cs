@@ -85,6 +85,8 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_面板於調劑結束更新 = new PLC_Device("S5030");
         static public PLC_Device PLC_Device_面板於過帳後更新 = new PLC_Device("S5031");
         static public PLC_Device PLC_Device_未交班無法調劑 = new PLC_Device("S3104");
+        static public PLC_Device PLC_Device_導引模式 = new PLC_Device("S3105");
+        static public PLC_Device PLC_Device_掃碼顏色固定 = new PLC_Device("S3112");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
@@ -414,12 +416,7 @@ namespace 調劑台管理系統
                 Basic.Keyboard.Hook.MouseUp += Hook_MouseUp;
                 this.button_調劑台切換.Click += Button_調劑台切換_Click;
                 Basic.MyMessageBox.音效 = false;
-                //string ProcessName = "WINWORD";//換成想要結束的進程名字
-                //System.Diagnostics.Process[] MyProcess = System.Diagnostics.Process.GetProcessesByName(ProcessName);
-                //for (int i = 0; i < MyProcess.Length; i++)
-                //{
-                //    MyProcess[i].Kill();
-                //}
+            
                 printerClass.Init();
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
