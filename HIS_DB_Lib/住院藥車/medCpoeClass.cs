@@ -71,7 +71,7 @@ namespace HIS_DB_Lib
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
         單位,
-        [Description("儲位,VARCHAR,10,NONE")]
+        [Description("儲位,VARCHAR,50,NONE")]
         儲位,      
         [Description("自購,VARCHAR,10,NONE")]
         自購,

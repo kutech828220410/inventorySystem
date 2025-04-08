@@ -1313,13 +1313,20 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-
+                if (returnData.ValueAry.Count !=  2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 應為[\"藥局\",\"護理站\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 護理站 = returnData.ValueAry[1];
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
                 SQLControl sQLControl = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_bed_status = sQLControl.GetAllRows(null);
                 List<bedStatusClass> bedStatusClasses = list_bed_status.SQLToClass<bedStatusClass, enum_bed_status>();
+                bedStatusClasses = bedStatusClasses.Where(temp => temp.轉床前護理站床號.Contains(護理站) || temp.轉床後護理站床號.Contains(護理站)).ToList();
                 bedStatusClasses.Sort(new bedStatusClass.ICP_By_UP_Time());
 
                 returnData.Code = 200;
@@ -2363,7 +2370,7 @@ namespace HIS_WebApi
                             };
 
                         }).OrderBy(bedlist => bedlist, new bedListClass.ICP_By_bedNum()).ToList();
-                        if(bedLists.Any(item => item.大瓶點滴 == "L")) 大瓶點滴 = "Y";
+                        if(bedLists.Any(item => item.大瓶點滴 == "L")) 大瓶點滴 = "L";
                         return new medQtyClass
                         {
                             藥品名 = medCpoe.藥品名,
