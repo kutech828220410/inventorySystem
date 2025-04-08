@@ -2321,6 +2321,7 @@ namespace HIS_WebApi
                             針劑 = medCpoe.針劑,
                             口服 = medCpoe.口服,
                             冷儲 = medCpoe.冷儲,
+                            儲位 = medCpoe.儲位,
                             調劑台 = 調劑台,
                             大瓶點滴 = 大瓶點滴,
                             病床清單 = bedLists
