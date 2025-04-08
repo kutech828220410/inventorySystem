@@ -94,7 +94,12 @@ namespace HIS_DB_Lib
         {
             public int Compare(settingPageClass x, settingPageClass y)
             {
-                return (x.欄位種類).CompareTo(y.欄位種類);       
+                int result = x.欄位種類.CompareTo(y.欄位種類);
+                if (result == 0)
+                {
+                    result = x.欄位名稱.CompareTo(y.欄位名稱);
+                }
+                return result;
             }
         }
 
