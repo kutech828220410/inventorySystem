@@ -168,6 +168,82 @@ namespace HIS_WebApi._API_系統
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 以現在時間判斷班別
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///     
+        /// }
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[medGroupClasses]</returns>
+        [Route("get_shift_name_by_name")]
+        [HttpPost]
+        public string get_shift_name_by_name([FromBody] returnData returnData)
+        {
+            try
+            {
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry應為[\"2025-04-09 16:00:00\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                init(returnData);
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "人員資料");
+                SQLControl sQLControl = new SQLControl(Server, DB, "shift", UserName, Password, Port, SSLMode);
+                List<object[]> list_shift = sQLControl.GetAllRows(null);
+                List<shiftClass> shiftClasses = list_shift.SQLToClass<shiftClass, enum_shift>();
+
+                if (shiftClasses.Count == 0)
+                {
+                    shiftClasses = AddDefaultData(sQLControl);
+                }
+                //string 時間 = returnData.ValueAry[0];
+                DateTime dt = DateTime.Parse(returnData.ValueAry[0]);
+                TimeSpan now = dt.TimeOfDay;
+                //TimeSpan now = TimeSpan.Parse(時間);
+
+                shiftClass shiftClass = default_data
+                    .FirstOrDefault(shift =>
+                    {
+                        TimeSpan start = TimeSpan.Parse(shift.開始時間);
+                        TimeSpan end = TimeSpan.Parse(shift.結束時間);
+
+                        // 沒跨日（例如早班、小夜班）
+                        if (start <= end)
+                        {
+                            return now >= start && now <= end;
+                        }
+                        else
+                        {
+                        // 跨日（例如大夜班）
+                        return now >= start || now <= end;
+                        }
+                    });
+                if(shiftClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "沒有匹配的班別時間";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Code = 200;
+                returnData.Data = shiftClass;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Method = "get_all";
+                returnData.Result = $"取得班別資料成功,共{shiftClasses.Count}!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         private string CheckCreatTable(returnData returnData)
         {
             string TableName = returnData.TableName;

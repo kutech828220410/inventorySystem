@@ -188,7 +188,7 @@ namespace HIS_DB_Lib
         static public (int code, string result, List<medConfigClass>) get_dispense_note_by_codes_full(string API_Server, List<string> codes)
         {
             string url = $"{API_Server}/api/medConfig/get_dispense_note_by_codes";
-            string sqlList = string.Join(", ", codes.Select(code => $"{code}"));
+            string sqlList = string.Join(",", codes.Select(code => $"{code}"));
             returnData returnData = new returnData();
             returnData.ValueAry.Add(sqlList);
 
