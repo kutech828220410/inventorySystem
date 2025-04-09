@@ -2024,6 +2024,14 @@ namespace HIS_WebApi
         [HttpPost]
         public async Task<ActionResult> download_excel_by_IC_SN([FromBody] returnData returnData)
         {
+            string VM_API = Method.GetServerAPI("網頁", "Main","get_full_inv_cmb_DataTable_by_SN");
+            if (VM_API.StringIsEmpty() == false)
+            {
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Net.WEBApiPostJson(VM_API, json_in);
+                Console.WriteLine($"{returnData}");
+                return Content("成功下載");
+            }
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
