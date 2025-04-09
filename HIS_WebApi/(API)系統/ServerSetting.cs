@@ -390,6 +390,61 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 取得 調劑台、藥庫 設備名稱
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_name")]
+        [HttpPost]
+        public string get_name([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+            returnData.Method = "get_name";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.Where(temp => (temp.類別 == "調劑台" || temp.類別 == "藥庫") && temp.內容 == "一般資料").ToList();
+                sys_serverSettingClasses.Sort(new sys_serverSettingClass.ICP_By_dps_name());
+                returnData.Code = 200;
+                returnData.Result = $"取得連線資訊,共<{sys_serverSettingClasses.Count}>筆";
+                returnData.Data = sys_serverSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        /// <summary>
         /// 取得指定Type(調劑台、藥庫...)伺服器資訊的服務單位
         /// </summary>
         /// <remarks>
@@ -472,6 +527,7 @@ namespace HIS_WebApi
             }
 
         }
+
         /// <summary>
         /// 以單位別取得連線資訊(門診、急診、住院、藥庫...)
         /// </summary>

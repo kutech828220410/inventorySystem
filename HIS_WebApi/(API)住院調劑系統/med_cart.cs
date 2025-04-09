@@ -456,8 +456,7 @@ namespace HIS_WebApi
                                 {
                                     if (medCpoeClass.調劑狀態 == "Y")
                                     {
-                                        double 數量 = medCpoeClass.數量.StringToInt32() * -1;
-                                        medCpoeClass.數量 = 數量.ToString();
+                                        medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                                         medCpoeClass.劑量 = "--";
                                         medCpoeClass.頻次 = "--";
                                         medCpoeClass.途徑 = "--";

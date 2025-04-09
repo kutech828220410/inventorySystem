@@ -554,6 +554,14 @@ namespace HIS_WebApi
             returnData.Method = "download_excel_by_requestTime";
             try
             {
+                string VM_API = Method.GetServerAPI("Main", "網頁", "download_excel_by_requesTime");
+                if(VM_API.StringIsEmpty() == false) 
+                {
+                    string json_in = returnData.JsonSerializationt();
+                    string json_out = Net.WEBApiPostJson(VM_API, json_in);
+                    Console.WriteLine($"{returnData}");
+                    return Content("成功下載");
+                }
                 string json_result = POST_get_by_requestTime(returnData);
 
                 if (json_result.StringIsEmpty()) return null;
