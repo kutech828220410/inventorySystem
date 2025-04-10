@@ -344,21 +344,21 @@ namespace HIS_WebApi
                 string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "交車時間");
+                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "切帳時間");
                 if (settingPage != null)
                 {
-                    string 交車時間 = settingPage.設定值;
-                    if (交車時間.StringIsEmpty() == false)
+                    string 切帳時間 = settingPage.設定值;
+                    if (切帳時間.StringIsEmpty() == false)
                     {
-                        TimeSpan 交車 = TimeSpan.Parse(交車時間);
+                        TimeSpan 切帳 = TimeSpan.Parse(切帳時間);
                         TimeSpan 現在時間 = DateTime.Now.TimeOfDay;
 
-                        if (現在時間 > 交車)
+                        if (現在時間 > 切帳)
                         {
                             returnData.Data = null;
                             returnData.Code = 200;
                             returnData.TimeTaken = $"{myTimerBasic}";
-                            returnData.Result = $"已超過交車時間";
+                            returnData.Result = $"已超過切帳時間";
                             return returnData.JsonSerializationt(true);
                         }
                     }
@@ -2974,9 +2974,36 @@ namespace HIS_WebApi
         }
         private (string StartTime, string Endtime) GetToday()
         {
-            string StartTime = DateTime.Now.GetStartDate().ToDateTimeString_6();
-            string Endtime = DateTime.Now.GetEndDate().ToDateTimeString_6();
-            return (StartTime, Endtime);
+            string API = Method.GetServerAPI("Main", "網頁", "API01");
+            List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+            settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "交車時間");
+
+            DateTime startTime_datetime = new DateTime();
+            DateTime endTime_datetime = new DateTime();
+
+            if (settingPage != null)
+            {
+                string 交車 = settingPage.設定值;
+                TimeSpan 交車時間 = TimeSpan.Parse(交車);
+
+                DateTime 現在 = DateTime.Now;
+                TimeSpan 現在時間 = 現在.TimeOfDay;
+                if (現在時間 >= 交車時間)
+                {
+                    // 現在時間已經過了交車時間：今天~明天
+                    startTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                    endTime_datetime = startTime_datetime.AddDays(1);
+                }
+                else
+                {
+                    // 現在時間還沒到交車時間：昨天~今天
+                    endTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                    startTime_datetime = endTime_datetime.AddDays(-1);
+                }
+            }
+            string startTime = startTime_datetime.ToDateTimeString_6();
+            string endTime = endTime_datetime.ToDateTimeString_6();
+            return (startTime, endTime);
         }
         private returnData ExcuteTrade(returnData returnData, List<medCpoeClass> medCpoeClasses, string action)
         {
