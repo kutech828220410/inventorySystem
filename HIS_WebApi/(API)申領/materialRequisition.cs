@@ -554,13 +554,29 @@ namespace HIS_WebApi
             returnData.Method = "download_excel_by_requestTime";
             try
             {
-                string VM_API = Method.GetServerAPI("Main", "網頁", "download_excel_by_requesTime");
-                if(VM_API.StringIsEmpty() == false) 
+                string VM_API = Method.GetServerAPI("Main", "網頁", "download_excel_by_requestTime");
+                if (VM_API.StringIsEmpty() == false)
                 {
                     string json_in = returnData.JsonSerializationt();
-                    string json_out = Net.WEBApiPostJson(VM_API, json_in);
-                    Console.WriteLine($"{returnData}");
-                    return Content("成功下載");
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var content = new StringContent(json_in, Encoding.UTF8, "application/json");
+                        var response = await client.PostAsync(VM_API, content);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var fileBytes = await response.Content.ReadAsByteArrayAsync();
+                            var contentType = response.Content.Headers.ContentType?.MediaType ??
+                                              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            var fileName = $"{DateTime.Now.ToDateString("-")}_申領明細.xlsx";
+
+                            return File(fileBytes, contentType, fileName);
+                        }
+                        else
+                        {
+                            return Content($"下載失敗：{response.StatusCode}");
+                        }
+                    }
                 }
                 string json_result = POST_get_by_requestTime(returnData);
 

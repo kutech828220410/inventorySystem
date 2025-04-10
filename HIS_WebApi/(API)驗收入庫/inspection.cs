@@ -18,6 +18,8 @@ using System.IO;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using System.Net.Http;
+
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -2024,6 +2026,32 @@ namespace HIS_WebApi
         [HttpPost]
         public async Task<ActionResult> download_excel_by_IC_SN([FromBody] returnData returnData)
         {
+            string VM_API = Method.GetServerAPI("DS01", "藥庫", "API_inspection_excel_download");
+            if (VM_API.StringIsEmpty() == false)
+            {
+                string json_in = returnData.JsonSerializationt();
+
+                using (HttpClient client = new HttpClient())
+                {
+                    var content = new StringContent(json_in, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(VM_API, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var fileBytes = await response.Content.ReadAsByteArrayAsync();
+                        var contentType = response.Content.Headers.ContentType?.MediaType ??
+                                          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                        var fileName = $"{DateTime.Now.ToDateString("-")}_驗收表.xlsx";
+
+                        return File(fileBytes, contentType, fileName);
+                    }
+                    else
+                    {
+                        return Content($"下載失敗：{response.StatusCode}");
+                    }
+                }
+            }
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
