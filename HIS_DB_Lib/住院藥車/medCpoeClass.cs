@@ -101,6 +101,8 @@ namespace HIS_DB_Lib
         藥局代碼,
         [Description("藥局名稱,VARCHAR,10,NONE")]
         藥局名稱,
+        [Description("備註,VARCHAR,200,NONE")]
+        備註,
     }
     /// <summary>
     /// medCpoeClass資料
@@ -322,6 +324,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("pharm_name")]
         public string 藥局名稱 { get; set; }
+        /// <summary>
+        /// 備註
+        /// </summary>
+        [JsonPropertyName("note")]
+        public string 備註 { get; set; }
         /// <summary>
         /// 調劑台
         /// </summary>
