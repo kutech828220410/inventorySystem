@@ -374,7 +374,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.ID = ID;
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = orderClass.交易量;
-                    takeMedicineStackClass.收支原因 = "";
+                    takeMedicineStackClass.收支原因 = "調劑領藥";
 
 
                  
@@ -605,7 +605,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.批號 = 批號;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
-                    takeMedicineStackClass.收支原因 = "";
+                    takeMedicineStackClass.收支原因 = "退回調劑";
 
 
          

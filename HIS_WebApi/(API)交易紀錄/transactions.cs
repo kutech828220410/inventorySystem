@@ -19,6 +19,8 @@ using System.IO;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using System.Text;
+
 namespace HIS_WebApi
 {
     /// <summary>
@@ -1182,6 +1184,37 @@ namespace HIS_WebApi
         {
             try
             {
+                string VM_API = Method.GetServerAPI("Main", "網頁", "med_cart_vm_api");
+                if (VM_API.StringIsEmpty() == false)
+                {
+                    string json_in = returnData.JsonSerializationt();
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var content = new StringContent(json_in, Encoding.UTF8, "application/json");
+
+                        var response = await client.PostAsync(VM_API, content);
+                        //string json_out = Net.WEBApiPostJson(VM_API, json_in);
+                        //returnData = json_out.JsonDeserializet<returnData>();
+
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var fileBytes = await response.Content.ReadAsByteArrayAsync();
+                            var contentType = response.Content.Headers.ContentType?.MediaType ??
+                                              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                            var fileName = $"{DateTime.Now.ToDateString("-")}_管制結存.xlsx";
+
+                            return File(fileBytes, contentType, fileName);
+                        }
+                        else
+                        {
+                            string errorContent = await response.Content.ReadAsStringAsync();
+                            return Content($"下載失敗：{response.StatusCode}\n{errorContent}");
+                        }
+                    }
+                }
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
