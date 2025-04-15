@@ -222,7 +222,7 @@ namespace 調劑台管理系統
             MyTimer_收支作業_單品入庫_狀態更新_刷新時間.StartTickTime(200);
             if (MyTimer_收支作業_單品入庫_狀態更新_刷新時間.IsTimeOut())
             {
-                List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+                List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
                 List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
                 List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
                 List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();

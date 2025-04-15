@@ -615,18 +615,30 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_醫令資料_設為未過帳_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_醫令資料.Get_All_Select_RowsValues();
-            if (list_value.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("請選取資料!");
-                return;
+                List<object[]> list_value = this.sqL_DataGridView_醫令資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("請選取資料!");
+                    return;
+                }
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    if (list_value[i][(int)enum_醫囑資料.結方日期].ObjectToString().Check_Date_String() == false) list_value[i][(int)enum_醫囑資料.結方日期] = DateTime.MinValue.ToDateTimeString();
+                    if (list_value[i][(int)enum_醫囑資料.展藥時間].ObjectToString().Check_Date_String() == false) list_value[i][(int)enum_醫囑資料.展藥時間] = DateTime.MinValue.ToDateTimeString();
+                    if (list_value[i][(int)enum_醫囑資料.就醫時間].ObjectToString().Check_Date_String() == false) list_value[i][(int)enum_醫囑資料.就醫時間] = DateTime.MinValue.ToDateTimeString();
+                    list_value[i][(int)enum_醫囑資料.實際調劑量] = "0";
+                    list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.未過帳.GetEnumName();
+                }
+                this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
+                this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);
             }
-            for (int i = 0; i < list_value.Count; i++)
+            catch(Exception ex)
             {
-                list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.未過帳.GetEnumName();
+                MyMessageBox.ShowDialog($"Exception : {ex.Message}");
             }
-            this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
-            this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);
+
         }
    
         private void PlC_RJ_Button_醫令資料_日期時間_搜尋_MouseDownEvent(MouseEventArgs mevent)

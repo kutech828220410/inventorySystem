@@ -10,13 +10,13 @@ using HIS_DB_Lib;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace HIS_WebApi._API_住院調劑系統
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
     public class medCarList : ControllerBase
     {
-        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        static private string API_Server = "http://127.0.0.1:4433";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         /// <summary>
         ///初始化dbvm.med_carList資料庫

@@ -48,7 +48,11 @@ namespace 調劑台管理系統
                 medPicClass medPicClass = new medPicClass();
                 images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
                 medPicClass.藥碼 = Code;
-                if (images.Count == null) return null;
+                if (images.Count == null)
+                {
+                    medPicClasses.Add(medPicClass);
+                    return images;
+                }
                 for (int i = 0; i < images.Count; i++)
                 {
                     if (i == 0) medPicClass.Image_0 = images[0];
@@ -99,7 +103,7 @@ namespace 調劑台管理系統
 
             Task.Run(new Action(delegate
             {
-                List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
+                List<Image> images = Function_取得藥品圖片(藥碼);
                 this.Invoke(new Action(delegate
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";

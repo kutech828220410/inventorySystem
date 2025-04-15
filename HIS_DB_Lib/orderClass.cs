@@ -752,7 +752,7 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
         }
-        static public List<OrderClass> get_API_by_BAG_NUM(string url, string BAG_NUM ,DateTime dateTime)
+        static public List<OrderClass> get_API_by_BAG_NUM(string url, string BAG_NUM, DateTime dateTime)
         {
 
             returnData returnData = new returnData();
@@ -775,6 +775,36 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_out}");
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
+        }
+        static public List<OrderClass> get_by_nursingstation_day(string API_Server, string station_code, DateTime dateTime)
+        {
+            var (code, result, list) = get_by_nursingstation_day_full(API_Server, station_code, dateTime);
+            return list;
+        }
+
+        static public (int code, string result, List<OrderClass>) get_by_nursingstation_day_full(string API_Server, string station_code, DateTime dateTime)
+        {
+
+            string url = $"{API_Server}/api/order/get_by_nursingstation_day";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(station_code);
+            returnData.ValueAry.Add(dateTime.ToDateString());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> orderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return (returnData_out.Code, returnData_out.Result, orderClasses);
         }
 
         static public void updete_by_guid(string API_Server, OrderClass OrderClass)

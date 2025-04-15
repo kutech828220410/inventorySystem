@@ -31,6 +31,8 @@ namespace 調劑台管理系統
             病歷號,
             [Description("M2501")]
             領藥號,
+            [Description("M8000")]
+            長期用藥,
         }
 
         static public SQL_DataGridView _sqL_DataGridView_領藥台_01_領藥內容;
@@ -8965,6 +8967,7 @@ namespace 調劑台管理系統
             dialog_ContextMenuStrip.SetEnable(enum_ContextMenuStrip_Main_醫令檢索.病歷號, !dBConfigClass.Order_mrn_ApiURL.StringIsEmpty());
             dialog_ContextMenuStrip.SetEnable(enum_ContextMenuStrip_Main_醫令檢索.領藥號, !dBConfigClass.Order_bag_num_ApiURL.StringIsEmpty());
             dialog_ContextMenuStrip.TitleText = "醫令檢索";
+            dialog_ContextMenuStrip.TopMost = true;
             if (dialog_ContextMenuStrip.ShowDialog() != DialogResult.Yes) return;
             if (dialog_ContextMenuStrip.Value == enum_ContextMenuStrip_Main_醫令檢索.病歷號.GetEnumName())
             {
@@ -8989,7 +8992,23 @@ namespace 調劑台管理系統
                 }));
 
             }
+            if (dialog_ContextMenuStrip.Value == enum_ContextMenuStrip_Main_醫令檢索.長期用藥.GetEnumName())
+            {
+                this.Invoke(new Action(delegate
+                {
+                    personPageClass personPageClass = new personPageClass();
+                    personPageClass.ID = 領藥台_01_ID;
+                    personPageClass.姓名 = 領藥台_01_登入者姓名;
+                    personPageClass.藥師證字號 = 領藥台_01_藥師證字號;
+                    personPageClass.顏色 = 領藥台_01_顏色;
 
+                    Dialog_長期醫令 dialog_長期醫令;
+                    dialog_長期醫令 = new Dialog_長期醫令(personPageClass, 領藥台_01名稱);
+                    if (dialog_長期醫令.ShowDialog() != DialogResult.Yes) return;
+                }));
+             
+                return;
+            }
 
 
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);

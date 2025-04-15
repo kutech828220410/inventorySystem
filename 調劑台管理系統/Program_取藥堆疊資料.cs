@@ -145,9 +145,9 @@ namespace 調劑台管理系統
 
         }
 
-        private List<object[]> Function_取藥堆疊資料_取得母資料()
+        static public List<object[]> Function_取藥堆疊資料_取得母資料()
         {
-            List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            List<object[]> list_value = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
             if (list_value.Count > 0)
             {
 
@@ -166,7 +166,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
         }
-        private void Function_取藥堆疊資料_新增母資料(List<takeMedicineStackClass> takeMedicineStackClasses)
+        public void Function_取藥堆疊資料_新增母資料(List<takeMedicineStackClass> takeMedicineStackClasses)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses_buf = new List<takeMedicineStackClass>();
             List<Task> taskList = new List<Task>();
@@ -1989,7 +1989,7 @@ namespace 調劑台管理系統
         {
             //-----------------------------------------------------------------------------------------------------------------------------------------
             //檢查系統領藥是否資料是否到達時間
-            this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            this.list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊母資料 = this.list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
             int 刷新時間 = 2;
@@ -2114,7 +2114,7 @@ namespace 調劑台管理系統
             //-----------------------------------------------------------------------------------------------------------------------------------------
             //檢查領藥是否資料是否到達時間
             if (plC_NumBox_處方存在時間.Value < 20000) plC_NumBox_處方存在時間.Value = 20000;
-            this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            this.list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊母資料 = (from temp in this.list_取藥堆疊母資料
                                  where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
                                  || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
@@ -2152,7 +2152,7 @@ namespace 調劑台管理系統
         void cnt_Program_取藥堆疊資料_檢查資料_堆疊資料整理(ref int cnt)
         {
             string GUID = "";
-            this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            this.list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
             List<object[]> list_取藥堆疊子資料_DeleteValue = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_資料更新 = new List<object[]>();
@@ -2208,7 +2208,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref int cnt)
         {
-            List<object[]> _list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            List<object[]> _list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             if (_list_取藥堆疊母資料.Count > 0)
             {
                 List<object[]> list_取藥堆疊母資料_ReplaceValue = new List<object[]>();
@@ -2348,7 +2348,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
         {
-            this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            this.list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊母資料 = (from temp in this.list_取藥堆疊母資料
                                  where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != "新增資料"
                                  select temp).ToList();
@@ -2954,7 +2954,7 @@ namespace 調劑台管理系統
             bool 配藥完成 = true;
             bool 調劑結束 = true;
             bool 已入帳 = true;
-            List<object[]> _list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            List<object[]> _list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
             List<object[]> _list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
             List<object[]> _list_取藥堆疊母資料_ReplaceValue = new List<object[]>();
             List<object[]> _list_取藥堆疊子資料_ReplaceValue = new List<object[]>();

@@ -695,7 +695,6 @@ namespace HIS_WebApi
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
             sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.本地端);
             sys_serverSettingClass sys_serverSettingClass_人員資料 = sys_serverSettingClasses.MyFind(name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.VM端);
-            sys_serverSettingClass sys_serverSettingClass_雲端藥檔 = sys_serverSettingClasses.myFind("Main", "網頁", "藥檔資料");
             if (sys_serverSettingClass == null)
             {
                 return "sys_serverSettingClass[一般資料] is null!";
