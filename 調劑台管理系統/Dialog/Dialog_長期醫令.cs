@@ -109,6 +109,7 @@ namespace 調劑台管理系統
                             continue;
                         }
                     }
+                    if (orderClasses_temp[0].藥品碼.StringIsEmpty()) continue;
                     value[(int)enum_用藥資訊_總量.GUID] = orderClasses_temp[0].藥品碼;
                     value[(int)enum_用藥資訊_總量.藥碼] = orderClasses_temp[0].藥品碼;
                     value[(int)enum_用藥資訊_總量.藥名] = orderClasses_temp[0].藥品名稱;
