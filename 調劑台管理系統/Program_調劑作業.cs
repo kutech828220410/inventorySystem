@@ -1159,6 +1159,11 @@ namespace 調劑台管理系統
             if (!UID.StringIsEmpty() && UID.StringToInt32() != 0 && Dialog_使用者登入.myTimerBasic_覆核完成.IsTimeOut())
             {
                 Console.WriteLine($"成功讀取RFID  {UID}");
+                if(領藥台_01_卡號 == UID && PLC_Device_領藥台_01_已登入.Bool)
+                {
+                    Console.WriteLine($"使用者01已經登入中....");
+                    return;
+                }
                 領藥台_01_卡號 = UID;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), 領藥台_01_卡號, false);
                 if (list_人員資料.Count == 0) return;
@@ -2920,6 +2925,11 @@ namespace 調劑台管理系統
             if (!UID.StringIsEmpty() && UID.StringToInt32() != 0)
             {
                 Console.WriteLine($"成功讀取RFID  {UID}");
+                if (領藥台_02_卡號 == UID && PLC_Device_領藥台_02_已登入.Bool)
+                {
+                    Console.WriteLine($"使用者02已經登入中....");
+                    return;
+                }
                 領藥台_02_卡號 = UID;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), 領藥台_02_卡號, false);
                 if (list_人員資料.Count == 0) return;
