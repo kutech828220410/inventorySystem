@@ -83,7 +83,7 @@ namespace HIS_WebApi._API_AI
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
-                string TableName = $"{new enum_medGpt().GetEnumName()}";
+                string TableName = "medgpt";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> add_medGpt = new List<medGPTClass>(){ medGPTClasses }.ClassToSQL<medGPTClass, enum_medGpt>();
                 sQLControl.AddRows(null, add_medGpt);
@@ -147,7 +147,10 @@ namespace HIS_WebApi._API_AI
                 string url = @"https://www.kutech.tw:3000/medgpt";
                 medGPTClass medGPTClasses = new medGPTClass();
                 medGPTClass medGPT = medGPTClass.Excute(url, result);
-                if(medGPT.error == true.ToString())
+                returnData.Data = medGPT;
+                Logger.LogAddLine();
+                Logger.Log("MedGpt", returnData.Data.JsonSerializationt(true));
+                if (medGPT.error == true.ToString())
                 {
                     medGPTClasses = new medGPTClass()
                     {
