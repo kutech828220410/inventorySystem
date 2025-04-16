@@ -11,6 +11,8 @@ using System.Collections.Concurrent;
 using System.Text.Json.Serialization;
 using H_Pannel_lib;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using NPOI.HPSF;
+using NPOI.HSSF.Util;
 
 namespace HIS_WebApi._API_AI
 {
@@ -21,31 +23,109 @@ namespace HIS_WebApi._API_AI
     {
         static string API_Server = Method.GetServerAPI("Main", "網頁", "API01");
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-
-
-        [HttpGet("analyze")]
-        public string analyze(string? BarCode)
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///     
+        /// }
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("init")]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(shiftClass))]
+        [HttpPost]
+        public string init()
         {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData returnData = new returnData();
-            returnData.Method = "api/medgpt/analyze?barcode=";
             try
             {
-                if (BarCode.StringIsEmpty())
+                //returnData.TableName = $"{enum_medGpt}";
+                return CheckCreatTable(new enum_medGpt());
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        /// <summary>
+        /// 新增或修改藥品設定
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [medConfigClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add")]
+        [HttpPost]
+        public string add([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+              
+                medGPTClass medGPTClasses = returnData.Data.ObjToClass<medGPTClass>();
+                if (medGPTClasses == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "Barcode空白";
-                    return returnData.JsonSerializationt(true);
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
                 }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = $"{new enum_medGpt().GetEnumName()}";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> add_medGpt = new List<medGPTClass>(){ medGPTClasses }.ClassToSQL<medGPTClass, enum_medGpt>();
+                sQLControl.AddRows(null, add_medGpt);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medGPTClasses;
+                returnData.Result = $"新增一筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        [HttpPost("analyze")]
+        public string analyze(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            //returnData returnData = new returnData();
+            returnData.Method = "api/medgpt/analyze";
+            try
+            {
+                //if (BarCode.StringIsEmpty())
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = "Barcode空白";
+                //    return returnData.JsonSerializationt(true);
+                //}
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
 
-                List<object[]> list_pha_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.藥袋條碼, BarCode);
-                List<OrderClass> orders = list_pha_order.SQLToClass<OrderClass, enum_醫囑資料>();
-                orders = (from temp in orders
-                          where temp.產出時間.StringToDateTime() >= DateTime.Now.AddDays(-1).GetStartDate()
-                          select temp).ToList();
+                List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                if (orders == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data空白";
+                    return returnData.JsonSerializationt(true);
+                }
+
                 List<Prescription> eff_cpoe = GroupOrderList(orders);
 
 
@@ -65,9 +145,36 @@ namespace HIS_WebApi._API_AI
                     歷史處方 = old_cpoe
                 };
                 string url = @"https://www.kutech.tw:3000/medgpt";
+                medGPTClass medGPTClasses = new medGPTClass();
                 medGPTClass medGPT = medGPTClass.Excute(url, result);
+                if(medGPT.error == true.ToString())
+                {
+                    medGPTClasses = new medGPTClass()
+                    {
+                        GUID = Guid.NewGuid().ToString(),
+                        病歷號 = 病歷號,
+                        醫生姓名 = orders[0].醫師代碼,
+                        開方時間 = orders[0].開方日期,
+                        藥袋類型 = orders[0].藥袋類型,
+                        錯誤類別 = string.Join(",", medGPT.error_type),
+                        簡述事件 = medGPT.response,
+                        狀態 = "未更改",
+                        操作人員 = orders[0].藥師姓名,
+                        操作時間 = DateTime.Now.ToDateTimeString(),
+                    };
+                    init();
+                    medGPTClass.add(API_Server, medGPTClasses);
+                }
+                else
+                {
+                    medGPTClasses = medGPT;
+                }
 
-                returnData.Data = medGPT;
+
+
+
+
+                returnData.Data = medGPTClasses;
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);
@@ -122,57 +229,21 @@ namespace HIS_WebApi._API_AI
             return cpoeList;
 
         }
-        //private class identify
-        //{
-        //    [JsonPropertyName("eff_order")]
-        //    public List<cpoe> 有效處方 { get; set; }
-        //    [JsonPropertyName("old_order")]
-        //    public List<cpoe> 歷史處方 { get; set; }
+        private string CheckCreatTable(Enum Enum)
+        {
+            //string TableName = returnData.TableName;
+            SQLUI.Table table = new SQLUI.Table(Enum.GetEnumName());
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+            if (sys_serverSettingClasses.Count == 0)
+            {
+                return $"找無Server資料!";
+            }
+            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum);
 
-        //}
-        //private class order
-        //{
-        //    [JsonPropertyName("CTYPE")]
-        //    public string 費用別 { get; set; }
-        //    [JsonPropertyName("NAME")]
-        //    public string 藥品名稱 { get; set; }
-        //    [JsonPropertyName("HI_CODE")]
-        //    public string 健保碼 { get; set; }
-        //    [JsonPropertyName("ATC")]
-        //    public string ATC { get; set; }
-        //    [JsonPropertyName("LICENSE")]
-        //    public string 藥品許可證號 { get; set; }
-        //    [JsonPropertyName("DIANAME")]
-        //    public string 藥品學名 { get; set; }
-        //    [JsonPropertyName("DRUGKIND")]
-        //    public string 管制級別 { get; set; }
-        //    [JsonPropertyName("TXN_QTY")]
-        //    public string 交易量 { get; set; }
-        //    [JsonPropertyName("FREQ")]
-        //    public string 頻次 { get; set; }
-        //    [JsonPropertyName("DAYS")]
-        //    public string 天數 { get; set; }
-        //}
-        //private class cpoe
-        //{
-        //    [JsonPropertyName("MED_BAG_SN")]
-        //    public string 藥袋條碼 { get; set; }
-        //    [JsonPropertyName("DOC")]
-        //    public string 醫師代碼 { get; set; }
-        //    [JsonPropertyName("CT_TIME")]
-        //    public string 產出時間 { get; set; }
-        //    [JsonPropertyName("order")]
-        //    public List<order> 處方 { get; set; }
-        //    [JsonPropertyName("SECTNO")]
-        //    public string 科別 { get; set; }
-        //}
-        //private class medGPTClass
-        //{
-        //    public string MED_BAG_SN { get; set; }
-        //    public string error { get; set; }
-        //    public List<string> error_type { get; set; }
-        //    public string response { get; set; }
-        //}
+            return table.JsonSerializationt(true);
+        }
         
+
     }
 }
