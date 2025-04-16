@@ -140,10 +140,12 @@ namespace HIS_WebApi
                 }
 
                 sQLControl_drugstotreDistribution.AddRows(null, list_drugstotreDistributions);
+                List<drugStotreDistributionClass> drugstotre = list_drugstotreDistributions.SQLToClass<drugStotreDistributionClass, enum_drugStotreDistribution>();
 
                 returnData.Result = $"新增撥補資料成功,共<{list_drugstotreDistributions.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
+                returnData.Data = drugstotre;
                 Logger.LogAddLine($"drugstotreDistribution");
                 Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
                 Logger.LogAddLine($"drugstotreDistribution");
