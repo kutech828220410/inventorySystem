@@ -24,7 +24,7 @@ namespace HIS_DB_Lib
         效期,
         [Description("批號,VARCHAR,50,NONE")]
         批號,
-        [Description("數量,INT,0,NONE")]
+        [Description("數量,VARCHAR,50,NONE")]
         數量,
         [Description("存放位置,VARCHAR,100,NONE")]
         存放位置,
@@ -187,6 +187,12 @@ namespace HIS_DB_Lib
             return descending
                 ? hfTags.OrderByDescending(tag => tag.更新時間).ToList()
                 : hfTags.OrderBy(tag => tag.更新時間).ToList();
+        }
+
+        public static DrugHFTagClass SerchByTagSN(this List<DrugHFTagClass> hfTags, string tagSN)
+        {
+            if (hfTags == null) return null;
+            return hfTags.FirstOrDefault(tag => tag.TagSN.Equals(tagSN, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

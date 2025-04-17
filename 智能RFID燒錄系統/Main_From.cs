@@ -84,10 +84,10 @@ namespace 智能RFID燒錄系統
             API_Server = dBConfigClass.Api_Server;
             this.comboBox_Comport.DataSource = MySerialPort.GetPortNames();
             rJ_Button_Connect.MouseDownEvent += RJ_Button_Connect_MouseDownEvent;
-    
+
             Table table = DrugHFTagClass.init(API_Server);
             this.sqL_DataGridView_TagList.RowsHeight = 40;
-            this.sqL_DataGridView_TagList.Init(new Table(new enum_DrugHFTag()));
+            this.sqL_DataGridView_TagList.Init(table);
             this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
@@ -108,24 +108,51 @@ namespace 智能RFID燒錄系統
             {
                 List<string> uids = _rfidReader.ReadMultipleUIDs();
 
-                this.Invoke(new Action(delegate 
+                this.Invoke(new Action(delegate
                 {
-                    rJ_Lable_標籤數量.Text =$"標籤數量 : {uids.Count.ToString()}";
+                    rJ_Lable_標籤數量.Text = $"標籤數量 : {uids.Count.ToString()}";
                 }));
 
                 List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tag_ByTagSN(API_Server, uids);
+                List<DrugHFTagClass> drugHFTagClasses_grid = new List<DrugHFTagClass>();
+                for (int i = 0; i < uids.Count; i++)
+                {
+                    string uid = uids[i];
+                    DrugHFTagClass drugHFTagClass = drugHFTagClasses.SerchByTagSN(uid);
+                    if (drugHFTagClass == null)
+                    {
+                        drugHFTagClass = new DrugHFTagClass();
+                        drugHFTagClass.GUID = Guid.NewGuid().ToString();
+                        drugHFTagClass.TagSN = uid;
+                        drugHFTagClass.藥碼 = "";
+                        drugHFTagClass.藥名 = "";
+                        drugHFTagClass.效期 = "";
+                        drugHFTagClass.批號 = "";
+                        drugHFTagClass.數量 = "";
+                        drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    }
+                    drugHFTagClasses_grid.Add(drugHFTagClass);
+                }
+                List<object[]> list_value = drugHFTagClasses_grid.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
+                //this.sqL_DataGridView_TagList.AddRows(list_value , true);
+                this.sqL_DataGridView_TagList.RefreshGrid(list_value);
+
             }
         }
         private void RJ_Button_Connect_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
-                _rfidReader.ConfigurePort(this.comboBox_Comport.Text , 115200);
+                _rfidReader.ConfigurePort(this.comboBox_Comport.Text, 115200);
                 _rfidReader.Open();
                 if (_rfidReader.IsOpen)
                 {
                     string str = _rfidReader.ReadHardwareInfo();
-                    if(str.StringIsEmpty())
+                    if (str.StringIsEmpty())
                     {
                         MyMessageBox.ShowDialog("Failed to read RFID reader information.");
                         return;
@@ -141,7 +168,7 @@ namespace 智能RFID燒錄系統
                     MyMessageBox.ShowDialog("Failed to connect to RFID reader.");
                 }
             }));
-        
+
         }
     }
 }
