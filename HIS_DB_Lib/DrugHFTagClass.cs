@@ -16,11 +16,11 @@ namespace HIS_DB_Lib
         GUID,
         [Description("TagSN,VARCHAR,50,INDEX")]
         標籤序號,
-        [Description("藥品代碼,VARCHAR,30,INDEX")]
+        [Description("藥碼,VARCHAR,30,INDEX")]
         藥碼,
-        [Description("藥品名稱,VARCHAR,200,NONE")]
+        [Description("藥名,VARCHAR,200,NONE")]
         藥名,
-        [Description("效期,DATETIME,0,NONE")]
+        [Description("效期,VARCHAR,20,NONE")]
         效期,
         [Description("批號,VARCHAR,50,NONE")]
         批號,
@@ -28,9 +28,11 @@ namespace HIS_DB_Lib
         數量,
         [Description("存放位置,VARCHAR,100,NONE")]
         存放位置,
+        [Description("操作人員,VARCHAR,100,INDEX")]
+        操作人員,
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
-        [Description("更新時間,DATETIME,0,NONE")]
+        [Description("更新時間,DATETIME,20,INDEX")]
         更新時間
     }
     public enum enum_DrugHFTagStatus
@@ -44,7 +46,7 @@ namespace HIS_DB_Lib
     public class DrugHFTagClass
     {
         /// <summary>唯一識別碼</summary>
-        [JsonPropertyName("guid")]
+        [JsonPropertyName("GUID")]
         public string GUID { get; set; }
 
         /// <summary>電子標籤序號</summary>
@@ -75,6 +77,10 @@ namespace HIS_DB_Lib
         [JsonPropertyName("location")]
         public string 存放位置 { get; set; }
 
+        /// <summary>操作人員</summary>
+        [JsonPropertyName("operator")]
+        public string 操作人員 { get; set; }
+
         /// <summary>狀態（例如：入庫註記,出庫註記,進入儲位,離開儲位,已重置）</summary>
         [JsonPropertyName("status")]
         public string 狀態 { get; set; }
@@ -86,6 +92,81 @@ namespace HIS_DB_Lib
 
     public static class DrugHFTagMethod
     {
+        static public SQLUI.Table init(string API_Server)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/init";
+
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
+            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_DrugHFTag());
+            return table;
+        }
+
+        static public List<DrugHFTagClass> add(string API_Server, DrugHFTagClass DrugHFTagClass)
+        {
+            var (code, result, list) = add_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            return list;
+        }
+        static public List<DrugHFTagClass> add(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            var (code, result, list) = add_full(API_Server, DrugHFTagClasses);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) add_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = DrugHFTagClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
+
+
+        static public List<DrugHFTagClass> get_all(string API_Server , string tagSN)
+        {
+            var (code, result, list) = get_all_full(API_Server , new List<string>() { tagSN });
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) get_all_full(string API_Server ,List<string> tagsSN)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/get_latest_tag_ByTagSN";
+
+            returnData returnData = new returnData();
+            string sqlList = string.Join(", ", tagsSN.Select(tagSN => $"{tagSN}"));
+            returnData.ValueAry.Add(sqlList);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<DrugHFTagClass> DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
+
         /// <summary>
         /// 依更新時間排序 HFTag 清單
         /// </summary>
