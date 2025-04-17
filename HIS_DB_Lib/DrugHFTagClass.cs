@@ -15,7 +15,7 @@ namespace HIS_DB_Lib
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
         [Description("TagSN,VARCHAR,50,INDEX")]
-        標籤序號,
+        TagSN,
         [Description("藥碼,VARCHAR,30,INDEX")]
         藥碼,
         [Description("藥名,VARCHAR,200,NONE")]

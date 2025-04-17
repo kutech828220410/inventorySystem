@@ -203,7 +203,7 @@ namespace HIS_WebApi
 
                 List<object[]> list_value = new List<object[]>();
                 string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
-                string tagCol = enum_DrugHFTag.標籤序號.GetEnumName();
+                string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
                 string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
 
                 string command = $@"

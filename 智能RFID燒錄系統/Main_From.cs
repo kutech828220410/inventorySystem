@@ -89,7 +89,7 @@ namespace 智能RFID燒錄系統
             this.sqL_DataGridView_TagList.RowsHeight = 40;
             this.sqL_DataGridView_TagList.Init(new Table(new enum_DrugHFTag()));
             this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.標籤序號);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
