@@ -81,17 +81,21 @@ namespace 智能RFID燒錄系統
         private void Main_From_Load(object sender, EventArgs e)
         {
             LoadDBConfig();
+
+            MyMessageBox.form = this.FindForm();
+
             API_Server = dBConfigClass.Api_Server;
             this.comboBox_Comport.DataSource = MySerialPort.GetPortNames();
             rJ_Button_Connect.MouseDownEvent += RJ_Button_Connect_MouseDownEvent;
+            rJ_Button_Write.MouseDownEvent += RJ_Button_Write_MouseDownEvent;
 
             Table table = DrugHFTagClass.init(API_Server);
-            this.sqL_DataGridView_TagList.RowsHeight = 40;
+            this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(table);
             this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(180, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
@@ -101,7 +105,11 @@ namespace 智能RFID燒錄系統
             myThread_program.SetSleepTime(10);
             myThread_program.Add_Method(sub_program);
             myThread_program.Trigger();
+
+    
         }
+
+      
         private void sub_program()
         {
             if (IsComConnected)
@@ -143,6 +151,31 @@ namespace 智能RFID燒錄系統
 
             }
         }
+        private void RJ_Button_Write_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_TagList.GetAllRows();
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("請先讀取標籤!");
+                return;
+            }
+            List<DrugHFTagClass> drugHFTagClasses = list_value.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+            for (int i = 0; i < drugHFTagClasses.Count; i++)
+            {
+                drugHFTagClasses[i].藥碼 = rJ_TextBox_藥碼.Text;
+                drugHFTagClasses[i].藥名 = rJ_TextBox_藥名.Text;
+                drugHFTagClasses[i].效期 = rJ_DatePicker_效期.Value.ToDateString();
+                drugHFTagClasses[i].批號 = rJ_TextBox_批號.Text;
+                drugHFTagClasses[i].數量 = rJ_TextBox_數量.Text;
+            }
+            (int code, string result, var data) = DrugHFTagClass.add_full(API_Server, drugHFTagClasses);
+            if (code != 200)
+            {
+                MyMessageBox.ShowDialog($"寫入失敗!{result}");
+                return;
+            }
+            MyMessageBox.ShowDialog($"寫入成功!{result}");
+        }
         private void RJ_Button_Connect_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -170,5 +203,6 @@ namespace 智能RFID燒錄系統
             }));
 
         }
+
     }
 }
