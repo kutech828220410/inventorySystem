@@ -114,9 +114,10 @@
     <Compile Include="bedStatusClass.cs" />
     <Compile Include="drugStotreArea.cs" />
     <Compile Include="formularyClass.cs" />
+    <Compile Include="DrugHFTagClass.cs" />
     <Compile Include="lockerAccessClass.cs" />
     <Compile Include="loggerClass.cs" />
-    <Compile Include="nursingStationClass.cs" />
+    <Compile Include="住院藥車\nursingStationClass.cs" />
     <Compile Include="shiftClass.cs" />
     <Compile Include="住院藥車\patientInfoClass.cs" />
     <Compile Include="化療排程\CMPM_StorageConfig_Class.cs" />
