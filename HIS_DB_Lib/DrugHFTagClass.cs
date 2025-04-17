@@ -88,10 +88,7 @@ namespace HIS_DB_Lib
         /// <summary>最後更新時間</summary>
         [JsonPropertyName("updated_time")]
         public string 更新時間 { get; set; }
-    }
 
-    public static class DrugHFTagMethod
-    {
         static public SQLUI.Table init(string API_Server)
         {
             string url = $"{API_Server}/api/DrugHFTag/init";
@@ -99,8 +96,7 @@ namespace HIS_DB_Lib
             returnData returnData = new returnData();
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
-            List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
-            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_DrugHFTag());
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
 
@@ -138,12 +134,17 @@ namespace HIS_DB_Lib
         }
 
 
-        static public List<DrugHFTagClass> get_all(string API_Server , string tagSN)
+        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, string tagSN)
         {
-            var (code, result, list) = get_all_full(API_Server , new List<string>() { tagSN });
+            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, new List<string>() { tagSN });
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_all_full(string API_Server ,List<string> tagsSN)
+        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, List<string> tagsSN)
+        {
+            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, tagsSN);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_tag_ByTagSN_full(string API_Server, List<string> tagsSN)
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_tag_ByTagSN";
 
@@ -166,6 +167,12 @@ namespace HIS_DB_Lib
             List<DrugHFTagClass> DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
+
+    }
+
+    public static class DrugHFTagMethod
+    {
+       
 
         /// <summary>
         /// 依更新時間排序 HFTag 清單

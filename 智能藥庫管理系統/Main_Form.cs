@@ -74,7 +74,7 @@ namespace 智能藥庫系統
             //this.LoadcommandLineArgs();
             string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
 
-            Console.WriteLine($"[LoadDBConfig] path : {MyConfigFileName} ");
+            Console.WriteLine($"[LoadDBConfig] path : {DBConfigFileName} ");
             Console.WriteLine($"[LoadDBConfig] jsonstr : {jsonstr} ");
 
             if (jsonstr.StringIsEmpty())
