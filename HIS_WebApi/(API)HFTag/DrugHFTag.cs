@@ -179,7 +179,7 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
-             
+
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
@@ -193,6 +193,10 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[tagsSN]";
                     return returnData.JsonSerializationt(true);
                 }
+                for (int i = 0; i < codes.Length; i++)
+                {
+                    codes[i] = codes[i].Trim();
+                }
                 string Server = _sys_serverSettingClasses[0].Server;
                 string DB = _sys_serverSettingClasses[0].DBName;
                 string UserName = _sys_serverSettingClasses[0].User;
@@ -202,7 +206,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                 List<object[]> list_value = new List<object[]>();
-                string sqlList = string.Join(", ", codes.Select(code => $"'{code}'"));
+                string sqlList = string.Join(",", codes.Select(code => $"'{code}'"));
                 string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
                 string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
 
@@ -212,7 +216,7 @@ namespace HIS_WebApi
                                 AND t1.{timeCol} = (
                                     SELECT MAX(t2.{timeCol})
                                     FROM {DB}.{TableName} t2
-                                    WHERE t2.{tagCol} = t1.{tagCol}
+                                    WHERE UPPER(t2.{tagCol}) = UPPER(t1.{tagCol})
                                 )";
 
                 DataTable dataTable = sQLControl_drugHFTag.WtrteCommandAndExecuteReader(command);
