@@ -88,18 +88,34 @@ namespace 智能RFID燒錄系統
             this.comboBox_Comport.DataSource = MySerialPort.GetPortNames();
             rJ_Button_Connect.MouseDownEvent += RJ_Button_Connect_MouseDownEvent;
             rJ_Button_Write.MouseDownEvent += RJ_Button_Write_MouseDownEvent;
+            rJ_Button_藥品資料_搜尋.MouseDownEvent += RJ_Button_藥品資料_搜尋_MouseDownEvent;
+
+            comboBox_藥品資料_搜尋方式.SelectedIndex = 0;
+
 
             Table table = DrugHFTagClass.init(API_Server);
             this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(table);
             this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(180, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
+
+
+            table = medClass.init(API_Server);
+
+            sqL_DataGridView_藥品資料.Init(table);
+            this.sqL_DataGridView_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_藥品資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_藥品資料.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+
+            this.sqL_DataGridView_藥品資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_RowDoubleClickEvent;
 
             myThread_program.AutoRun(true);
             myThread_program.SetSleepTime(10);
@@ -109,7 +125,8 @@ namespace 智能RFID燒錄系統
     
         }
 
-      
+     
+
         private void sub_program()
         {
             if (IsComConnected)
@@ -151,6 +168,52 @@ namespace 智能RFID燒錄系統
 
             }
         }
+        private void SqL_DataGridView_藥品資料_RowDoubleClickEvent(object[] RowValue)
+        {
+            string 藥碼 = RowValue[(int)enum_雲端藥檔.藥品碼].ToString();
+            string 藥名 = RowValue[(int)enum_雲端藥檔.藥品名稱].ToString();
+
+            rJ_TextBox_藥碼.Text = 藥碼;
+            rJ_TextBox_藥名.Text = 藥名;
+        }
+        private void RJ_Button_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string cmb_text = comboBox_藥品資料_搜尋方式.GetComboBoxText();
+            string search_text = rJ_TextBox_藥品資料_搜尋內容.Text;
+            List<medClass> medClasses = new List<medClass>();
+            if (search_text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("請輸入搜尋內容!");
+                return;
+            }
+            if (cmb_text == "藥碼")
+            {
+                medClass _medClass = medClass.get_med_clouds_by_code(API_Server, search_text);
+                if(_medClass == null)
+                {
+                    MyMessageBox.ShowDialog("查無資料!");
+                    return;
+                }
+                medClasses.Add(_medClass);
+            }
+            else if (cmb_text == "藥名")
+            {
+                List<medClass> medClasses_temp = medClass.get_med_clouds_by_name(API_Server, search_text);
+                medClasses.LockAdd(medClasses_temp);
+            }
+            else
+            {
+                MyMessageBox.ShowDialog("請選擇搜尋方式!");
+            }
+
+            if (medClasses.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+            this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
+        }
         private void RJ_Button_Write_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_TagList.GetAllRows();
@@ -160,6 +223,21 @@ namespace 智能RFID燒錄系統
                 return;
             }
             List<DrugHFTagClass> drugHFTagClasses = list_value.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+            if(rJ_TextBox_藥碼.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("藥碼請輸入!");
+                return;
+            }
+            if (rJ_TextBox_藥名.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("藥名請輸入!");
+                return;
+            }
+            if (rJ_TextBox_數量.Text.StringIsInt32() == false)
+            {
+                MyMessageBox.ShowDialog("數量請輸入數字!");
+                return;
+            }
             for (int i = 0; i < drugHFTagClasses.Count; i++)
             {
                 drugHFTagClasses[i].藥碼 = rJ_TextBox_藥碼.Text;
