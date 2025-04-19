@@ -58,7 +58,7 @@ namespace HIS_WebApi._API_AI
         ///   {
         ///     "Data": 
         ///     {
-        ///        [medConfigClass陣列]
+        ///        [nearmissClass陣列]
         ///     }
         ///   }
         /// </code>
@@ -100,6 +100,7 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
+
         /// <summary>
         /// 以order_PRI_KEY(藥袋條碼)取得資料
         /// </summary>
@@ -119,6 +120,7 @@ namespace HIS_WebApi._API_AI
         [HttpPost("get_by_order_PRI_KEY")]
         public string get_by_order_PRI_KEY([FromBody] returnData returnData)
         {
+            init();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_order_PRI_KEY";
             try
@@ -137,13 +139,74 @@ namespace HIS_WebApi._API_AI
 
                 string TableName = "nearmiss";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_nearMiss = sQLControl.GetRowsByDefult(null, (int)enum_nearmiss.ORDER_PRI_KEY, 藥袋條碼);
+                List<object[]> list_nearMiss = sQLControl.GetRowsByDefult(null, (int)enum_nearmiss.藥袋條碼, 藥袋條碼);
                 List<nearmissClass> nearmissClasses = list_nearMiss.SQLToClass<nearmissClass, enum_nearmiss>();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = nearmissClasses;
                 returnData.Result = $"取得{nearmissClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 以order_PRI_KEY(藥袋條碼)取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [nearmissClass陣列]
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update")]
+        public string update([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<nearmissClass> nearmissClasses = returnData.Data.ObjToClass<List<nearmissClass>>();
+                if (nearmissClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                if (nearmissClasses.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data筆數超過1筆";
+                    return returnData.JsonSerializationt();
+                }
+                string GUID = nearmissClasses[0].GUID;
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "nearmiss";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> update_nearmiss = nearmissClasses.ClassToSQL<nearmissClass, enum_nearmiss>();
+                sQLControl.UpdateByDefulteExtra(null, update_nearmiss);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = nearmissClasses;
+                returnData.Result = $"更新{nearmissClasses.Count}筆資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -229,8 +292,8 @@ namespace HIS_WebApi._API_AI
                     nearmissClasses = new nearmissClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
-                        PRI_KEY = $"{病歷號}-{orders[0].科別}-{orders[0].開方日期}",
-                        ORDER_PRI_KEY = orders[0].藥袋條碼,
+                        藥袋條碼 = orders[0].藥袋條碼,
+                        加入時間 = DateTime.Now.ToDateTimeString(),
                         病歷號 = 病歷號,
                         科別 = orders[0].科別,
                         醫生姓名 = orders[0].醫師代碼,
@@ -241,8 +304,9 @@ namespace HIS_WebApi._API_AI
                         狀態 = enum_nearmiss_status.未更改.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
+                        提報時間 = DateTime.MinValue.ToDateTimeString(),
+                        處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    init();
                     nearmissClass.add(API_Server, nearmissClasses);
                 }
                 else
@@ -250,8 +314,8 @@ namespace HIS_WebApi._API_AI
                     nearmissClasses = new nearmissClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
-                        PRI_KEY = $"{病歷號}-{orders[0].科別}-{orders[0].開方日期}",
-                        ORDER_PRI_KEY = orders[0].藥袋條碼,
+                        藥袋條碼 = orders[0].藥袋條碼,
+                        加入時間 = DateTime.Now.ToDateTimeString(),
                         病歷號 = 病歷號,
                         科別 = orders[0].科別,
                         醫生姓名 = orders[0].醫師代碼,
@@ -262,8 +326,9 @@ namespace HIS_WebApi._API_AI
                         狀態 = enum_nearmiss_status.無異狀.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
+                        提報時間 = DateTime.MinValue.ToDateTimeString(),
+                        處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    init();
                     nearmissClass.add(API_Server, nearmissClasses);
                 }
 

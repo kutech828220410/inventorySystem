@@ -17,21 +17,35 @@ namespace HIS_DB_Lib
         未更改,
         已更改
     }
+    public enum enum_nearmiss_errorType
+    {
+        A藥名錯誤,
+        B途徑錯誤,
+        C劑量錯誤,
+        D頻率錯誤,
+        E劑型錯誤,
+        F數量錯誤,
+        G多種藥物組合,
+        H重複用藥,
+        Z其他,
+    }
     [EnumDescription("nearmiss")]
     public enum enum_nearmiss
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        [Description("PRI_KEY,VARCHAR,50,INDEX")]
-        PRI_KEY,
-        [Description("ORDER_PRI_KEY,VARCHAR,200,INDEX")]
-        ORDER_PRI_KEY,
+        [Description("藥袋條碼,VARCHAR,200,INDEX")]
+        藥袋條碼,
         [Description("病歷號,VARCHAR,20,NONE")]
         病歷號,
         [Description("科別,VARCHAR,20,NONE")]
         科別,
         [Description("醫生姓名,VARCHAR,30,NONE")]
         醫生姓名,
+        [Description("診斷碼,VARCHAR,30,NONE")]
+        診斷碼,
+        [Description("診斷內容,VARCHAR,1000,NONE")]
+        診斷內容,
         [Description("開方時間,DATETIME,30,NONE")]
         開方時間,
         [Description("加入時間,DATETIME,30,NONE")]
@@ -69,11 +83,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
 
-        [JsonPropertyName("PRI_KEY")]
-        public string PRI_KEY { get; set; }
-
-        [JsonPropertyName("ORDER_PRI_KEY")]
-        public string ORDER_PRI_KEY { get; set; }
+        [JsonPropertyName("藥袋條碼")]
+        public string 藥袋條碼 { get; set; }
 
         [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
@@ -83,6 +94,12 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("DOCTOR")]
         public string 醫生姓名 { get; set; }
+
+        [JsonPropertyName("ICD_CODE")]
+        public string 診斷碼 { get; set; }
+
+        [JsonPropertyName("ICD_DESC")]
+        public string 診斷內容 { get; set; }
 
         [JsonPropertyName("ORDER_TIME")]
         public string 開方時間 { get; set; }
@@ -199,6 +216,28 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_out}");
             nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
             return (returnData_out.Code, returnData_out.Result, nearmissClass);
+
+        }
+        static public (int code, string resuult, List<nearmissClass> nearmissClass) update(string API_Server, List<nearmissClass> nearmissClasses)
+        {
+            string url = $"{API_Server}/api/nearmiss/update";
+            returnData returnData = new returnData();
+            returnData.Data = nearmissClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            nearmissClasses = json_out.JsonDeserializet<List<nearmissClass>>();
+            return (returnData_out.Code, returnData_out.Result, nearmissClasses);
 
         }
     }
