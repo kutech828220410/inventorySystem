@@ -2287,7 +2287,50 @@ namespace 調劑台管理系統
         public static bool Function_檢查是否完成交班()
         {
             if(PLC_Device_未交班無法調劑.Bool == false) return true;
-            List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_rx_time_st_end(Main_Form.API_Server, new DateTime(2025, 04, 05, 16, 00, 00), new DateTime(2025, 04, 05, 23, 00, 00), Main_Form.ServerName, Main_Form.ServerType);
+            string nowTime = DateTime.Now.ToDateTimeString_6();
+            shiftClass shiftClass = shiftClass.get_shift_name_by_name(Main_Form.API_Server, nowTime);
+
+            // 解析時間字串
+            TimeSpan 開始時間 = TimeSpan.Parse(shiftClass.開始時間);
+            TimeSpan 結束時間 = TimeSpan.Parse(shiftClass.結束時間);
+
+            // 當前時間資訊
+            DateTime today = DateTime.Now.Date;
+            TimeSpan 現在時間 = DateTime.Now.TimeOfDay;
+
+            DateTime startTime;
+            DateTime endTime;
+
+            // 判斷是否為跨日班別（例如大夜班 22:00 ~ 07:59）
+            bool 是跨日班別 = 開始時間 > 結束時間;
+
+            if (是跨日班別)
+            {
+                // 跨日處理邏輯
+                if (現在時間 <= 結束時間)
+                {
+                    // 屬於昨天晚上的大夜班
+                    startTime = today.AddDays(-1).Add(開始時間);
+                    endTime = today.Add(結束時間);
+                }
+                else
+                {
+                    // 屬於今天晚上的大夜班
+                    startTime = today.Add(開始時間);
+                    endTime = today.AddDays(1).Add(結束時間);
+                }
+            }
+            else
+            {
+                // 非跨日班別（如早班、小夜班）
+                startTime = today.Add(開始時間);
+                endTime = today.Add(結束時間);
+            }
+
+
+
+
+            List<transactionsClass> transactionsClasses = transactionsClass.get_datas_by_rx_time_st_end(Main_Form.API_Server, startTime, endTime, Main_Form.ServerName, Main_Form.ServerType);
             transactionsClasses = (from temp in transactionsClasses
                                    where temp.備註 == "交班盤點完成"
                                    select temp).ToList();

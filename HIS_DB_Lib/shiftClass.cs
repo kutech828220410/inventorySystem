@@ -86,6 +86,19 @@ namespace HIS_DB_Lib
             List<shiftClass> shiftClasses = returnData.Data.ObjToClass<List<shiftClass>>();
             return shiftClasses;
         }
+        static public shiftClass get_shift_name_by_name(string API_Server ,string 現在時間)
+        {
+            string url = $"{API_Server}/api/shift/get_shift_name_by_name";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(現在時間);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return null;
+            if (returnData_out.Code != 200) return null;
+            shiftClass shiftClasses = returnData_out.Data.ObjToClass<shiftClass>();
+            return shiftClasses;
+        }
     }
     
 }
