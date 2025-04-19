@@ -101,9 +101,10 @@ namespace 智能RFID燒錄系統
             this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
             this.sqL_DataGridView_TagList.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.狀態);
 
 
             table = medClass.init(API_Server);
@@ -154,12 +155,15 @@ namespace 智能RFID燒錄系統
                         drugHFTagClass.效期 = "";
                         drugHFTagClass.批號 = "";
                         drugHFTagClass.數量 = "";
+
                         drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                     }
                     else
                     {
+                        drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
                         drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                     }
+                  
                     drugHFTagClasses_grid.Add(drugHFTagClass);
                 }
                 List<object[]> list_value = drugHFTagClasses_grid.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
