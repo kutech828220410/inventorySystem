@@ -304,6 +304,7 @@ namespace 調劑台管理系統
                         }
                         if(nearmissClass.狀態 != enum_nearmiss_status.無異狀.GetEnumName())
                         {
+                            Voice.GoogleSpeaker("處方有疑義,請審核", $@"{currentDirectory}/gooler_speaker_temp.mp3");
                             Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(nearmissClass, 操作人);
 
                             if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
