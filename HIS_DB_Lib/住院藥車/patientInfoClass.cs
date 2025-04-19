@@ -9,6 +9,11 @@ using System.Text.Json.Serialization;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_bed_status_string
+    {
+        已佔床,
+        已出院,
+    }
     [EnumDescription("patient_info")]
     public enum enum_patient_info
     {
