@@ -14,12 +14,14 @@ using Org.BouncyCastle.Bcpg.OpenPgp;
 using NPOI.HPSF;
 using NPOI.HSSF.Util;
 
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace HIS_WebApi._API_AI
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class medgpt : ControllerBase
+    public class nearmiss : ControllerBase
     {
         static string API_Server = Method.GetServerAPI("Main", "網頁", "API01");
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -34,14 +36,13 @@ namespace HIS_WebApi._API_AI
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("init")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(shiftClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(nearmissClass))]
         [HttpPost]
         public string init()
         {
             try
             {
-                //returnData.TableName = $"{enum_medGpt}";
-                return CheckCreatTable(new enum_medGpt());
+                return CheckCreatTable(new enum_nearmiss());
             }
             catch (Exception ex)
             {
@@ -73,9 +74,9 @@ namespace HIS_WebApi._API_AI
             try
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-              
-                medGPTClass medGPTClasses = returnData.Data.ObjToClass<medGPTClass>();
-                if (medGPTClasses == null)
+
+                nearmissClass nearmissClasses = returnData.Data.ObjToClass<nearmissClass>();
+                if (nearmissClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
@@ -83,13 +84,13 @@ namespace HIS_WebApi._API_AI
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
-                string TableName = "medgpt";
+                string TableName = "nearmiss";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> add_medGpt = new List<medGPTClass>(){ medGPTClasses }.ClassToSQL<medGPTClass, enum_medGpt>();
-                sQLControl.AddRows(null, add_medGpt);
+                List<object[]> add_nearmiss = new List<nearmissClass>() { nearmissClasses }.ClassToSQL<nearmissClass, enum_nearmiss>();
+                sQLControl.AddRows(null, add_nearmiss);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medGPTClasses;
+                returnData.Data = nearmissClasses;
                 returnData.Result = $"新增一筆資料";
                 return returnData.JsonSerializationt();
             }
@@ -105,7 +106,7 @@ namespace HIS_WebApi._API_AI
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             //returnData returnData = new returnData();
-            returnData.Method = "api/medgpt/analyze";
+            returnData.Method = "api/nearmiss/analyze";
             try
             {
                 //if (BarCode.StringIsEmpty())
@@ -119,6 +120,8 @@ namespace HIS_WebApi._API_AI
 
 
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                string 病歷號 = orders[0].病歷號;
+
                 if (orders == null)
                 {
                     returnData.Code = -200;
@@ -126,18 +129,24 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt(true);
                 }
 
-                List<Prescription> eff_cpoe = GroupOrderList(orders);
-
-
-                string 病歷號 = orders[0].病歷號;
-                List<object[]> list_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.病歷號, 病歷號);
-                List<OrderClass> history_order = list_order.SQLToClass<OrderClass, enum_醫囑資料>();
-                history_order = (from temp in history_order
-                                 where temp.產出時間.StringToDateTime() >= DateTime.Now.AddDays(-1).AddMonths(-3).GetStartDate()
-                                 where temp.產出時間.StringToDateTime() >= DateTime.Now.AddDays(-1).AddMonths(-3).GetStartDate()
-                                 select temp).ToList();
-                List<Prescription> old_cpoe = GroupOrderList(history_order);
-
+                List<Task> tasks = new List<Task>();
+                List<Prescription> eff_cpoe = new List<Prescription>();
+                List<Prescription> old_cpoe = new List<Prescription>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    List<object[]> list_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.病歷號, 病歷號);
+                    List<OrderClass> history_order = list_order.SQLToClass<OrderClass, enum_醫囑資料>();
+                    history_order = (from temp in history_order
+                                     where temp.產出時間.StringToDateTime() >= DateTime.Now.AddDays(-1).AddMonths(-3).GetStartDate()
+                                     where temp.產出時間.StringToDateTime() >= DateTime.Now.AddDays(-1).AddMonths(-3).GetStartDate()
+                                     select temp).ToList();
+                    old_cpoe = GroupOrderList(history_order);
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    eff_cpoe = GroupOrderList(orders);
+                })));
+                Task.WhenAll(tasks).Wait();
 
                 PrescriptionSet result = new PrescriptionSet
                 {
@@ -145,39 +154,38 @@ namespace HIS_WebApi._API_AI
                     歷史處方 = old_cpoe
                 };
                 string url = @"https://www.kutech.tw:3000/medgpt";
-                medGPTClass medGPTClasses = new medGPTClass();
-                medGPTClass medGPT = medGPTClass.Excute(url, result);
-                returnData.Data = medGPT;
+                nearmissClass nearmissClasses = new nearmissClass();
+                nearmissClass nearmiss = nearmissClass.Excute(url, result);
+                returnData.Data = nearmiss;
                 Logger.LogAddLine();
-                Logger.Log("MedGpt", returnData.Data.JsonSerializationt(true));
-                if (medGPT.error == true.ToString())
+                Logger.Log("nearmiss", returnData.Data.JsonSerializationt(true));
+                if (nearmiss.error == true.ToString())
                 {
-                    medGPTClasses = new medGPTClass()
+                    nearmissClasses = new nearmissClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
+                        PRI_KEY = $"{病歷號}-{orders[0].科別}-{orders[0].開方日期}",
+                        ORDER_PRI_KEY = orders[0].藥袋條碼,
                         病歷號 = 病歷號,
+                        科別 = orders[0].科別,
                         醫生姓名 = orders[0].醫師代碼,
                         開方時間 = orders[0].開方日期,
                         藥袋類型 = orders[0].藥袋類型,
-                        錯誤類別 = string.Join(",", medGPT.error_type),
-                        簡述事件 = medGPT.response,
+                        錯誤類別 = string.Join(",", nearmiss.error_type),
+                        簡述事件 = nearmiss.response,
                         狀態 = "未更改",
-                        操作人員 = orders[0].藥師姓名,
-                        操作時間 = DateTime.Now.ToDateTimeString(),
+                        調劑人員 = orders[0].藥師姓名,
+                        調劑時間 = orders[0].過帳時間,
                     };
                     init();
-                    medGPTClass.add(API_Server, medGPTClasses);
+                    nearmissClass.add(API_Server, nearmissClasses);
                 }
                 else
                 {
-                    medGPTClasses = medGPT;
+                    nearmissClasses = nearmiss;
                 }
 
-
-
-
-
-                returnData.Data = medGPTClasses;
+                returnData.Data = nearmissClasses;
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);
@@ -246,7 +254,5 @@ namespace HIS_WebApi._API_AI
 
             return table.JsonSerializationt(true);
         }
-        
-
     }
 }

@@ -107,7 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\medGPTClass.cs" />
+    <Compile Include="AI\nearmissClass.cs" />
     <Compile Include="BasicClass.cs" />
     <Compile Include="batch_inventory_exportClass.cs" />
     <Compile Include="batch_inventory_importClass.cs" />

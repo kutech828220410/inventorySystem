@@ -11,18 +11,26 @@ using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
-    [EnumDescription("medGpt")]
+    [EnumDescription("nearmiss")]
 
-    public enum enum_medGpt
+    public enum enum_nearmiss
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("PRI_KEY,VARCHAR,50,INDEX")]
+        PRI_KEY,
+        [Description("ORDER_PRI_KEY,VARCHAR,200,INDEX")]
+        ORDER_PRI_KEY,
         [Description("病歷號,VARCHAR,20,NONE")]
         病歷號,
+        [Description("科別,VARCHAR,20,NONE")]
+        科別,
         [Description("醫生姓名,VARCHAR,30,NONE")]
         醫生姓名,
         [Description("開方時間,DATETIME,30,NONE")]
         開方時間,
+        [Description("加入時間,DATETIME,30,NONE")]
+        加入時間,
         [Description("藥袋類型,VARCHAR,20,NONE")]
         藥袋類型,
         [Description("錯誤類別,VARCHAR,20,NONE")]
@@ -31,107 +39,121 @@ namespace HIS_DB_Lib
         簡述事件,
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
-        [Description("操作人員,VARCHAR,20,NONE")]
-        操作人員,
+        [Description("調劑人員,VARCHAR,20,NONE")]
+        調劑人員,
+        [Description("調劑時間,DATETIME,200,INDEX")]
+        調劑時間,
+        [Description("提報人員,VARCHAR,20,NONE")]
+        提報人員,
+        [Description("提報等級,VARCHAR,20,NONE")]
+        提報等級,
+        [Description("提報時間,DATETIME,200,INDEX")]
+        提報時間,
         [Description("處理人員,VARCHAR,20,NONE")]
         處理人員,
-        [Description("操作時間,DATETIME,200,INDEX")]
-        操作時間,
+        [Description("處理時間,DATETIME,200,INDEX")]
+        處理時間,
         [Description("通報TPR,VARCHAR,20,NONE")]
         通報TPR,
+        [Description("備註,VARCHAR,100,NONE")]
+        備註,
+
     }
-    public class medGPTClass
+    public class nearmissClass
     {
-        /// <summary>
-        /// 唯一KEY
-        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-        /// <summary>
-        /// 病歷號
-        /// </summary>
+
+        [JsonPropertyName("PRI_KEY")]
+        public string PRI_KEY { get; set; }
+
+        [JsonPropertyName("ORDER_PRI_KEY")]
+        public string ORDER_PRI_KEY { get; set; }
+
         [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
-        /// <summary>
-        /// 醫生姓名
-        /// </summary>
+
+        [JsonPropertyName("SECTNO")]
+        public string 科別 { get; set; }
+
         [JsonPropertyName("DOCTOR")]
         public string 醫生姓名 { get; set; }
-        /// <summary>
-        /// 開方時間
-        /// </summary>
+
         [JsonPropertyName("ORDER_TIME")]
         public string 開方時間 { get; set; }
-        /// <summary>
-        /// 藥袋類型
-        /// </summary>
+
+        [JsonPropertyName("CREATE_TIME")]
+        public string 加入時間 { get; set; }
+
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
-        /// <summary>
-        /// 錯誤類別
-        /// </summary>
+
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
-        /// <summary>
-        /// 簡述事件
-        /// </summary>
+
         [JsonPropertyName("EVENT_DESC")]
         public string 簡述事件 { get; set; }
-        /// <summary>
-        /// 狀態
-        /// </summary>
+
         [JsonPropertyName("STATUS")]
         public string 狀態 { get; set; }
-        /// <summary>
-        /// 操作人員
-        /// </summary>
+
         [JsonPropertyName("OPERATOR")]
-        public string 操作人員 { get; set; }
-        /// <summary>
-        /// 處理人員
-        /// </summary>
+        public string 調劑人員 { get; set; }
+
+        [JsonPropertyName("OPERATE_TIME")]
+        public string 調劑時間 { get; set; }
+
+        [JsonPropertyName("REPORTER")]
+        public string 提報人員 { get; set; }
+        
+        [JsonPropertyName("REPORT_LEVEL")]
+        public string 提報等級 { get; set; }
+
+        [JsonPropertyName("REPORT_TIME")]
+        public string 提報時間 { get; set; }
+
         [JsonPropertyName("HANDLER")]
         public string 處理人員 { get; set; }
-        /// <summary>
-        /// 操作時間
-        /// </summary>
-        [JsonPropertyName("OPERATE_TIME")]
-        public string 操作時間 { get; set; }
-        /// <summary>
-        /// 通報TPR
-        /// </summary>
+
+        [JsonPropertyName("HANDLE_TIME")]
+        public string 處理時間 { get; set; }
+
         [JsonPropertyName("TPR_NOTIFY")]
         public string 通報TPR { get; set; }
+
+        [JsonPropertyName("REMARK")]
+        public string 備註 { get; set; }
+
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
         public string response { get; set; }
-        static public medGPTClass add(string API_Server, medGPTClass medGPTClasses)
+        static public nearmissClass add(string API_Server, nearmissClass nearmissClasses)
         {
             string url = $"{API_Server}/api/medgpt/add";
 
             returnData returnData = new returnData();
-            returnData.Data = medGPTClasses;
+            returnData.Data = nearmissClasses;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 
             returnData = json_out.JsonDeserializet<returnData>();
-            medGPTClass medGPTClass = returnData.Data.ObjToClass<medGPTClass>();
-            return medGPTClass;
+            nearmissClass nearmissClass = returnData.Data.ObjToClass<nearmissClass>();
+            return nearmissClass;
         }
-        static public medGPTClass Excute(string API, PrescriptionSet PrescriptionSet)
+        static public nearmissClass Excute(string API, PrescriptionSet PrescriptionSet)
         {
             returnData returnData = new returnData();
             returnData.Data = PrescriptionSet;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(API, json_in);
-            medGPTClass medGPTClass = json_out.JsonDeserializet<medGPTClass>();
+            nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
 
-            return medGPTClass;
+            return nearmissClass;
         }
-        static public medGPTClass analyze(string API_Server, List<OrderClass> orderClasses)
+        static public nearmissClass analyze(string API_Server, List<OrderClass> orderClasses)
         {
             string url = $"{API_Server}/api/medgpt/analyze";
 
@@ -141,8 +163,8 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 
-            medGPTClass medGPTClass = json_out.JsonDeserializet<medGPTClass>();
-            return medGPTClass;
+            nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
+            return nearmissClass;
         }
     }
     public class PrescriptionSet
