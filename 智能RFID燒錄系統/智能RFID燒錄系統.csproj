@@ -4,18 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71556FBB-D08A-43C4-A5C6-24F70762A279}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HIS_DB_Lib</RootNamespace>
-    <AssemblyName>HIS_DB_Lib</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <ProjectGuid>{E223D52A-5547-4EFB-8D13-258DC841E1D9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>智能RFID燒錄系統</RootNamespace>
+    <AssemblyName>智能RFID燒錄系統</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,48 +24,43 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\HIS_DB_Lib.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>
-    </NoWarn>
-    <DocumentationFile>bin\Release\HIS_DB_Lib.xml</DocumentationFile>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ugbb2-0r6c8-001.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Basic">
       <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
-    <Reference Include="H_Pannel_lib">
-      <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
+    <Reference Include="CSkin, Version=12.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\0.DLL\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS_DB_Lib">
+      <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="MyOffice">
-      <HintPath>..\0.DLL\MyOffice.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\0.DLL\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="MyUI">
       <HintPath>..\0.DLL\MyUI.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\0.DLL\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML">
-      <HintPath>..\0.DLL\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\0.DLL\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\0.DLL\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="RfidReaderLib">
+      <HintPath>..\0.DLL\RfidReaderLib.dll</HintPath>
     </Reference>
     <Reference Include="SQLUI">
       <HintPath>..\0.DLL\SQLUI.dll</HintPath>
@@ -73,9 +69,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -96,94 +90,57 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\medGPTClass.cs" />
-    <Compile Include="BasicClass.cs" />
-    <Compile Include="batch_inventory_exportClass.cs" />
-    <Compile Include="batch_inventory_importClass.cs" />
-    <Compile Include="bedStatusClass.cs" />
-    <Compile Include="drugStotreArea.cs" />
-    <Compile Include="formularyClass.cs" />
-    <Compile Include="DrugHFTagClass.cs" />
-    <Compile Include="lockerAccessClass.cs" />
-    <Compile Include="loggerClass.cs" />
-    <Compile Include="住院藥車\nursingStationClass.cs" />
-    <Compile Include="shiftClass.cs" />
-    <Compile Include="住院藥車\patientInfoClass.cs" />
-    <Compile Include="化療排程\CMPM_StorageConfig_Class.cs" />
-    <Compile Include="commonSpaceSetup.cs" />
-    <Compile Include="computerConfigClass.cs" />
-    <Compile Include="consumptionClass.cs" />
-    <Compile Include="化療排程\ctclistClass.cs" />
-    <Compile Include="deviceApiClass.cs" />
-    <Compile Include="drugDispatchClass.cs" />
-    <Compile Include="materialRequisitionClass.cs" />
-    <Compile Include="medCarList.cs" />
-    <Compile Include="medCountClass.cs" />
-    <Compile Include="住院藥車\medCpoeClass.cs" />
-    <Compile Include="medCpoeRecClass.cs" />
-    <Compile Include="medGeneralConfigClass.cs" />
-    <Compile Include="IncomeReasonsClass.cs" />
-    <Compile Include="inspectionClass.cs" />
-    <Compile Include="inventoryClass.cs" />
-    <Compile Include="inventoryResultClass.cs" />
-    <Compile Include="inv_combinelistClass.cs" />
-    <Compile Include="lockerIndexClass.cs" />
-    <Compile Include="藥品基本檔\medClass.cs" />
-    <Compile Include="藥品基本檔\medConfigClass.cs" />
-    <Compile Include="藥品基本檔\medCouldClass.cs" />
-    <Compile Include="藥品基本檔\medDrugstoreClass.cs" />
-    <Compile Include="藥品基本檔\medGroupClass.cs" />
-    <Compile Include="medInfoCalss.cs" />
-    <Compile Include="medInterClass .cs" />
-    <Compile Include="medInventoryClass.cs" />
-    <Compile Include="藥品基本檔\medListClass.cs" />
-    <Compile Include="藥品基本檔\medPharmacyClass.cs" />
-    <Compile Include="藥品基本檔\medPicClass.cs" />
-    <Compile Include="藥品基本檔\medPriceClass.cs" />
-    <Compile Include="medRecheckLogClass.cs" />
-    <Compile Include="medShiftConfigClass.cs" />
-    <Compile Include="藥品基本檔\medSMDSClass.cs" />
-    <Compile Include="藥品基本檔\medTypeClass.cs" />
-    <Compile Include="notifyExceptionClass.cs" />
-    <Compile Include="orderClass.cs" />
-    <Compile Include="orderTClass.cs" />
-    <Compile Include="personClass.cs" />
-    <Compile Include="drugStotreDistributionClass.cs" />
+    <Compile Include="Main_From.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_From.Designer.cs">
+      <DependentUpon>Main_From.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="protalClass.cs" />
-    <Compile Include="sys_serverSettingClass.cs" />
-    <Compile Include="sessionClass.cs" />
-    <Compile Include="settingPageClass.cs" />
-    <Compile Include="stockRecordClass.cs" />
-    <Compile Include="storagelistClass.cs" />
-    <Compile Include="takeMedicineStackClass.cs" />
-    <Compile Include="textVisionClass.cs" />
-    <Compile Include="transactionsClass.cs" />
-    <Compile Include="化療排程\udnoectc.cs" />
-    <Compile Include="化療排程\udphnoph.cs" />
-    <Compile Include="sys_updateVersionClass.cs" />
+    <EmbeddedResource Include="Main_From.resx">
+      <DependentUpon>Main_From.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ugbb2-0r6c8-001.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)\0.DLL"
-copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)\0.DLL"</PostBuildEvent>
-  </PropertyGroup>
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -191,9 +148,4 @@ copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)\0.DLL"</PostBuildEvent>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
   </Target>
-  <PropertyGroup>
-    <PreBuildEvent>nIF EXIST "$(TargetDir)$(ProjectName).xml" (
-    del "$(TargetDir)$(ProjectName).xml"
-)</PreBuildEvent>
-  </PropertyGroup>
 </Project>

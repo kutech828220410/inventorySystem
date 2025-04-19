@@ -48,7 +48,11 @@ namespace 調劑台管理系統
                 medPicClass medPicClass = new medPicClass();
                 images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
                 medPicClass.藥碼 = Code;
-                if (images.Count == null) return null;
+                if (images.Count == null)
+                {
+                    medPicClasses.Add(medPicClass);
+                    return images;
+                }
                 for (int i = 0; i < images.Count; i++)
                 {
                     if (i == 0) medPicClass.Image_0 = images[0];
@@ -99,7 +103,7 @@ namespace 調劑台管理系統
 
             Task.Run(new Action(delegate
             {
-                List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
+                List<Image> images = Function_取得藥品圖片(藥碼);
                 this.Invoke(new Action(delegate
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
@@ -374,7 +378,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.ID = ID;
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = orderClass.交易量;
-                    takeMedicineStackClass.收支原因 = "";
+                    takeMedicineStackClass.收支原因 = "調劑領藥";
 
 
                  
@@ -605,7 +609,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.批號 = 批號;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
-                    takeMedicineStackClass.收支原因 = "";
+                    takeMedicineStackClass.收支原因 = "退回調劑";
 
 
          

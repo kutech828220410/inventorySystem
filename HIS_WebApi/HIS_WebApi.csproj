@@ -18,7 +18,7 @@
 
   <Target Name="GenerateBuildRevision" BeforeTargets="BeforeBuild">
     <!-- 使用 Exec 任务运行 PowerShell 脚本生成版本号 -->
-    <Exec Command="powershell -NoProfile -Command &quot;(Get-Date).ToString('yyyyMMddHHmmss') | Out-File -FilePath $(TempVersionFile) -Encoding UTF8&quot;" />
+    <!--<Exec Command="powershell -NoProfile -Command &quot;(Get-Date).ToString('yyyyMMddHHmmss') | Out-File -FilePath '&quot;$(TempVersionFile)&quot;' -Encoding UTF8&quot;" />-->
 
     <!-- 读取生成的版本号 -->
     <ReadLinesFromFile File="$(TempVersionFile)">

@@ -206,7 +206,7 @@ namespace HIS_WebApi._API_系統
                 TimeSpan now = dt.TimeOfDay;
                 //TimeSpan now = TimeSpan.Parse(時間);
 
-                shiftClass shiftClass = default_data
+                shiftClass shiftClass = shiftClasses
                     .FirstOrDefault(shift =>
                     {
                         TimeSpan start = TimeSpan.Parse(shift.開始時間);

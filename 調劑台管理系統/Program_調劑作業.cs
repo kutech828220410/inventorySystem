@@ -31,6 +31,8 @@ namespace 調劑台管理系統
             病歷號,
             [Description("M2501")]
             領藥號,
+            [Description("M8000")]
+            長期用藥,
         }
 
         static public SQL_DataGridView _sqL_DataGridView_領藥台_01_領藥內容;
@@ -1159,6 +1161,11 @@ namespace 調劑台管理系統
             if (!UID.StringIsEmpty() && UID.StringToInt32() != 0 && Dialog_使用者登入.myTimerBasic_覆核完成.IsTimeOut())
             {
                 Console.WriteLine($"成功讀取RFID  {UID}");
+                if(領藥台_01_卡號 == UID && PLC_Device_領藥台_01_已登入.Bool)
+                {
+                    Console.WriteLine($"使用者01已經登入中....");
+                    return;
+                }
                 領藥台_01_卡號 = UID;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), 領藥台_01_卡號, false);
                 if (list_人員資料.Count == 0) return;
@@ -2920,6 +2927,11 @@ namespace 調劑台管理系統
             if (!UID.StringIsEmpty() && UID.StringToInt32() != 0)
             {
                 Console.WriteLine($"成功讀取RFID  {UID}");
+                if (領藥台_02_卡號 == UID && PLC_Device_領藥台_02_已登入.Bool)
+                {
+                    Console.WriteLine($"使用者02已經登入中....");
+                    return;
+                }
                 領藥台_02_卡號 = UID;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), 領藥台_02_卡號, false);
                 if (list_人員資料.Count == 0) return;
@@ -8955,6 +8967,7 @@ namespace 調劑台管理系統
             dialog_ContextMenuStrip.SetEnable(enum_ContextMenuStrip_Main_醫令檢索.病歷號, !dBConfigClass.Order_mrn_ApiURL.StringIsEmpty());
             dialog_ContextMenuStrip.SetEnable(enum_ContextMenuStrip_Main_醫令檢索.領藥號, !dBConfigClass.Order_bag_num_ApiURL.StringIsEmpty());
             dialog_ContextMenuStrip.TitleText = "醫令檢索";
+            dialog_ContextMenuStrip.TopMost = true;
             if (dialog_ContextMenuStrip.ShowDialog() != DialogResult.Yes) return;
             if (dialog_ContextMenuStrip.Value == enum_ContextMenuStrip_Main_醫令檢索.病歷號.GetEnumName())
             {
@@ -8979,7 +8992,23 @@ namespace 調劑台管理系統
                 }));
 
             }
+            if (dialog_ContextMenuStrip.Value == enum_ContextMenuStrip_Main_醫令檢索.長期用藥.GetEnumName())
+            {
+                this.Invoke(new Action(delegate
+                {
+                    personPageClass personPageClass = new personPageClass();
+                    personPageClass.ID = 領藥台_01_ID;
+                    personPageClass.姓名 = 領藥台_01_登入者姓名;
+                    personPageClass.藥師證字號 = 領藥台_01_藥師證字號;
+                    personPageClass.顏色 = 領藥台_01_顏色;
 
+                    Dialog_長期醫令 dialog_長期醫令;
+                    dialog_長期醫令 = new Dialog_長期醫令(personPageClass, 領藥台_01名稱);
+                    if (dialog_長期醫令.ShowDialog() != DialogResult.Yes) return;
+                }));
+             
+                return;
+            }
 
 
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);

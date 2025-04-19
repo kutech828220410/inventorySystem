@@ -612,8 +612,12 @@ namespace 調劑台管理系統
             List<string> list_str = new List<string>();
             for (int i = 0; i < medGroupClasses.Count; i++)
             {
-                list_str.Add(medGroupClasses[i].名稱);
+                if (medGroupClasses[i].顯示資訊.StringIsEmpty() || medGroupClasses[i].顯示資訊.Contains(Main_Form.ServerName))
+                {
+                    list_str.Add(medGroupClasses[i].名稱);
+                }
             }
+       
             this.comboBox_藥品群組.DataSource = list_str.ToArray();
             if (list_str.Count > 0)
             {
