@@ -253,11 +253,15 @@ namespace HIS_WebApi
                                 patientInfoClass.GUID = Guid.NewGuid().ToString();
                                 patientInfoClass.異動 = "Y";
                                 medCart_sql_add.LockAdd(patientInfoClass);
-                                medCart_sql_delete.LockAdd(targetPatient);
+                                targetPatient.占床狀態 = enum_bed_status_string.已出院.GetEnumName();
+                                medCart_sql_replace.LockAdd(targetPatient);
+
+                                //medCart_sql_delete.LockAdd(targetPatient);
                             }
                             else
                             {
                                 patientInfoClass.GUID = targetPatient.GUID;
+                                patientInfoClass.調劑時間 = targetPatient.調劑時間;
                                 patientInfoClass.調劑狀態 = targetPatient.調劑狀態;
                                 medCart_sql_replace.LockAdd(patientInfoClass);
                             }
