@@ -11,8 +11,13 @@ using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_nearmiss_status
+    {
+        無異狀,
+        未更改,
+        已更改
+    }
     [EnumDescription("nearmiss")]
-
     public enum enum_nearmiss
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
@@ -35,27 +40,27 @@ namespace HIS_DB_Lib
         藥袋類型,
         [Description("錯誤類別,VARCHAR,20,NONE")]
         錯誤類別,
-        [Description("簡述事件,VARCHAR,500,NONE")]
+        [Description("簡述事件,VARCHAR,2000,NONE")]
         簡述事件,
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
-        [Description("調劑人員,VARCHAR,20,NONE")]
+        [Description("調劑人員,VARCHAR,30,NONE")]
         調劑人員,
         [Description("調劑時間,DATETIME,200,INDEX")]
         調劑時間,
-        [Description("提報人員,VARCHAR,20,NONE")]
+        [Description("提報人員,VARCHAR,30,NONE")]
         提報人員,
         [Description("提報等級,VARCHAR,20,NONE")]
         提報等級,
         [Description("提報時間,DATETIME,200,INDEX")]
         提報時間,
-        [Description("處理人員,VARCHAR,20,NONE")]
+        [Description("處理人員,VARCHAR,30,NONE")]
         處理人員,
         [Description("處理時間,DATETIME,200,INDEX")]
         處理時間,
         [Description("通報TPR,VARCHAR,20,NONE")]
         通報TPR,
-        [Description("備註,VARCHAR,100,NONE")]
+        [Description("備註,VARCHAR,500,NONE")]
         備註,
 
     }
@@ -124,6 +129,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("REMARK")]
         public string 備註 { get; set; }
 
+        [JsonPropertyName("identified")]
+        public string  辨識註記{ get; set; }
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
@@ -131,7 +138,7 @@ namespace HIS_DB_Lib
         public string response { get; set; }
         static public nearmissClass add(string API_Server, nearmissClass nearmissClasses)
         {
-            string url = $"{API_Server}/api/medgpt/add";
+            string url = $"{API_Server}/api/nearmiss/add";
 
             returnData returnData = new returnData();
             returnData.Data = nearmissClasses;
@@ -143,6 +150,20 @@ namespace HIS_DB_Lib
             nearmissClass nearmissClass = returnData.Data.ObjToClass<nearmissClass>();
             return nearmissClass;
         }
+        static public List<nearmissClass> get_by_order_PRI_KEY(string API_Server, string 藥袋條碼)
+        {
+            string url = $"{API_Server}/api/nearmiss/get_by_order_PRI_KEY";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(藥袋條碼);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<nearmissClass> nearmissClasses = returnData.Data.ObjToClass<List<nearmissClass>>();
+            return nearmissClasses;
+        }
         static public nearmissClass Excute(string API, PrescriptionSet PrescriptionSet)
         {
             returnData returnData = new returnData();
@@ -153,18 +174,32 @@ namespace HIS_DB_Lib
 
             return nearmissClass;
         }
-        static public nearmissClass analyze(string API_Server, List<OrderClass> orderClasses)
+        static public nearmissClass medGPT(string API_Server, List<OrderClass> orderClasses)
         {
-            string url = $"{API_Server}/api/medgpt/analyze";
-
+            (int code, string resuult, nearmissClass nearmissClass) = medGPT_full(API_Server, orderClasses);
+            return nearmissClass;
+        }
+        static public (int code , string resuult ,nearmissClass nearmissClass) medGPT_full(string API_Server, List<OrderClass> orderClasses)
+        {
+            string url = $"{API_Server}/api/nearmiss/medGPT";
             returnData returnData = new returnData();
             returnData.Data = orderClasses;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
-
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
             nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
-            return nearmissClass;
+            return (returnData_out.Code, returnData_out.Result, nearmissClass);
+
         }
     }
     public class PrescriptionSet

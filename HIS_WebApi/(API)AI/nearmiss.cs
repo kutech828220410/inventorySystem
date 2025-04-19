@@ -65,8 +65,7 @@ namespace HIS_WebApi._API_AI
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [Route("add")]
-        [HttpPost]
+        [HttpPost("add")]
         public string add([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -101,25 +100,87 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
-        [HttpPost("analyze")]
-        public string analyze(returnData returnData)
+        /// <summary>
+        /// 以order_PRI_KEY(藥袋條碼)取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["藥袋條碼"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_order_PRI_KEY")]
+        public string get_by_order_PRI_KEY([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            //returnData returnData = new returnData();
+            returnData.Method = "get_by_order_PRI_KEY";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"藥袋條碼\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string 藥袋條碼 = returnData.ValueAry[0];
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "nearmiss";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_nearMiss = sQLControl.GetRowsByDefult(null, (int)enum_nearmiss.ORDER_PRI_KEY, 藥袋條碼);
+                List<nearmissClass> nearmissClasses = list_nearMiss.SQLToClass<nearmissClass, enum_nearmiss>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = nearmissClasses;
+                returnData.Result = $"取得{nearmissClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        [HttpPost("medGPT")]
+        public string medGPT(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "api/nearmiss/analyze";
             try
             {
-                //if (BarCode.StringIsEmpty())
-                //{
-                //    returnData.Code = -200;
-                //    returnData.Result = "Barcode空白";
-                //    return returnData.JsonSerializationt(true);
-                //}
+                List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                if(orders.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data應為List<OrderClass>";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string 藥袋條碼 = orders[0].藥袋條碼;
+                List<nearmissClass> nearmisses = nearmissClass.get_by_order_PRI_KEY(API_Server, 藥袋條碼);
+                if (nearmisses.Count > 0)
+                {
+                    nearmisses[0].辨識註記 = "Y";
+                    returnData.Code = 200;
+                    returnData.Data = nearmisses;
+                    returnData.Result = $"條碼{藥袋條碼}已辨識過";
+                    return returnData.JsonSerializationt(true);
+                }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
-
-
-                List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+    
                 string 病歷號 = orders[0].病歷號;
 
                 if (orders == null)
@@ -161,6 +222,10 @@ namespace HIS_WebApi._API_AI
                 Logger.Log("nearmiss", returnData.Data.JsonSerializationt(true));
                 if (nearmiss.error == true.ToString())
                 {
+                    if (nearmiss.response.Contains("None科別"))
+                    {
+                        nearmiss.response = nearmiss.response.Replace("None科別", $"{orders[0].科別}");
+                    }
                     nearmissClasses = new nearmissClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
@@ -173,7 +238,7 @@ namespace HIS_WebApi._API_AI
                         藥袋類型 = orders[0].藥袋類型,
                         錯誤類別 = string.Join(",", nearmiss.error_type),
                         簡述事件 = nearmiss.response,
-                        狀態 = "未更改",
+                        狀態 = enum_nearmiss_status.未更改.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
                     };
@@ -182,7 +247,24 @@ namespace HIS_WebApi._API_AI
                 }
                 else
                 {
-                    nearmissClasses = nearmiss;
+                    nearmissClasses = new nearmissClass()
+                    {
+                        GUID = Guid.NewGuid().ToString(),
+                        PRI_KEY = $"{病歷號}-{orders[0].科別}-{orders[0].開方日期}",
+                        ORDER_PRI_KEY = orders[0].藥袋條碼,
+                        病歷號 = 病歷號,
+                        科別 = orders[0].科別,
+                        醫生姓名 = orders[0].醫師代碼,
+                        開方時間 = orders[0].開方日期,
+                        藥袋類型 = orders[0].藥袋類型,
+                        錯誤類別 = string.Join(",", nearmiss.error_type),
+                        簡述事件 = nearmiss.response,
+                        狀態 = enum_nearmiss_status.無異狀.GetEnumName(),
+                        調劑人員 = orders[0].藥師姓名,
+                        調劑時間 = orders[0].過帳時間,
+                    };
+                    init();
+                    nearmissClass.add(API_Server, nearmissClasses);
                 }
 
                 returnData.Data = nearmissClasses;

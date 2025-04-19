@@ -87,6 +87,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_未交班無法調劑 = new PLC_Device("S3104");
         static public PLC_Device PLC_Device_導引模式 = new PLC_Device("S3105");
         static public PLC_Device PLC_Device_掃碼顏色固定 = new PLC_Device("S3112");
+        static public PLC_Device PLC_Device_AI處方核對啟用 = new PLC_Device("S3120");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");

@@ -293,6 +293,23 @@ namespace 調劑台管理系統
                 List<medClass> medClasses_buf = new List<medClass>();
                 Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
+                if(PLC_Device_AI處方核對啟用.Bool)
+                {
+                    Task.Run(new Action(delegate
+                    {
+                        (int code, string resuult, nearmissClass nearmissClass) = nearmissClass.medGPT_full(Main_Form.API_Server, orderClasses);
+                        if(code == -200)
+                        {
+                            return;
+                        }
+                        if(nearmissClass.狀態 != enum_nearmiss_status.無異狀.GetEnumName())
+                        {
+
+                        }
+                    }));
+                }
+             
+
                 for (int i = 0; i < orderClasses.Count; i++)
                 {
                     OrderClass orderClass = orderClasses[i];
