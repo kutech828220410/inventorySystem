@@ -4475,9 +4475,9 @@ namespace batch_StackDataAccounting
             bool flag_修正盤點量 = false;
             string GUID = "";
             string Master_GUID = "";
-            int 庫存量 = 0;
-            int 結存量 = 0;
-            int 總異動量 = 0;
+            double 庫存量 = 0;
+            double 結存量 = 0;
+            double 總異動量 = 0;
             string 盤點量 = "";
             string 動作 = "";
             string 藥品碼 = "";
@@ -4506,7 +4506,7 @@ namespace batch_StackDataAccounting
             string 病房號 = "";
             string 醫令_GUID = "";
             string 交易紀錄_GUID = "";
-
+            string Order_GUID = "";
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
             List<string> list_儲位刷新_藥品碼 = new List<string>();
@@ -4675,17 +4675,25 @@ namespace batch_StackDataAccounting
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
-                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
+
+                Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
+                List<object[]> list_value = sQLControl_醫令資料.GetRowsByDefult(null,(int)enum_醫囑資料.GUID, Order_GUID);
+
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                List<object[]> list_value = sQLControl_醫令資料.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, Order_GUID);
+                總異動量 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                 if (list_value.Count == 0) continue;
                 for (int m = 0; m < list_value.Count; m++)
                 {
+                    //if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                     list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                     list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
                     list_value[m][(int)enum_醫囑資料.藥師ID] = ID;
                     list_value[m][(int)enum_醫囑資料.藥師姓名] = 操作人;
-                    list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
+
+                    string 實際調劑量 = list_value[m][(int)enum_醫囑資料.實際調劑量].ObjectToString();
+                    if (實際調劑量.StringIsEmpty()) 實際調劑量 = "0";
+                    實際調劑量 = (實際調劑量.StringToDouble() + 總異動量.StringToDouble()).ToString();
+                    list_value[m][(int)enum_醫囑資料.實際調劑量] = 實際調劑量;
                     list_醫囑資料_ReplaceValue.Add(list_value[m]);
                 }
 

@@ -17,6 +17,18 @@ namespace HIS_DB_Lib
         未更改,
         已更改
     }
+    public enum enum_nearmiss_errorType
+    {
+        A藥名錯誤,
+        B途徑錯誤,
+        C劑量錯誤,
+        D頻率錯誤,
+        E劑型錯誤,
+        F數量錯誤,
+        G多種藥物組合,
+        H重複用藥,
+        Z其他,
+    }
     [EnumDescription("nearmiss")]
     public enum enum_nearmiss
     {
