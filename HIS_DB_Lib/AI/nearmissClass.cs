@@ -214,11 +214,35 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
-            return (returnData_out.Code, returnData_out.Result, nearmissClass);
+            List<nearmissClass> nearmissClasses = returnData_out.Data.ObjToClass<List<nearmissClass>>();
+            if (nearmissClasses == null) return (0, "nearmissClasses == null", null);
+            if (nearmissClasses.Count == 0) return (0, "nearmissClasses.Count == 0", null);
+            return (returnData_out.Code, returnData_out.Result, nearmissClasses[0]);
 
         }
-        static public (int code, string resuult, List<nearmissClass> nearmissClass) update(string API_Server, List<nearmissClass> nearmissClasses)
+        static public nearmissClass update(string API_Server, nearmissClass nearmissClass)
+        {
+            List<nearmissClass> nearmissClasses = new List<nearmissClass>();
+            nearmissClasses.Add(nearmissClass);
+
+            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
+            if (_nearmissClasses == null) return null;
+            if (_nearmissClasses.Count == 0) return null;
+            return _nearmissClasses[0];
+        }
+        static public List<nearmissClass> update(string API_Server, List<nearmissClass> nearmissClasses)
+        {
+            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
+            return nearmissClasses;
+        }
+        static public (int code, string resuult, nearmissClass nearmissClass) update_full(string API_Server, nearmissClass nearmissClass)
+        {
+            List<nearmissClass> nearmissClasses = new List<nearmissClass>();
+            nearmissClasses.Add(nearmissClass);
+            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
+            return (code, resuult, nearmissClass);
+        }
+        static public (int code, string resuult, List<nearmissClass> nearmissClass) update_full(string API_Server, List<nearmissClass> nearmissClasses)
         {
             string url = $"{API_Server}/api/nearmiss/update";
             returnData returnData = new returnData();
@@ -236,7 +260,7 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            nearmissClasses = json_out.JsonDeserializet<List<nearmissClass>>();
+            nearmissClasses = returnData_out.Data.ObjToClass<List<nearmissClass>>();
             return (returnData_out.Code, returnData_out.Result, nearmissClasses);
 
         }

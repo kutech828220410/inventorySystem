@@ -304,7 +304,16 @@ namespace 調劑台管理系統
                         }
                         if(nearmissClass.狀態 != enum_nearmiss_status.無異狀.GetEnumName())
                         {
+                            Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(nearmissClass, 操作人);
 
+                            if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
+
+                            (code, resuult, nearmissClass) = nearmissClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
+                            if(code != 200)
+                            {
+                                MyMessageBox.ShowDialog(resuult);
+                                return;
+                            }
                         }
                     }));
                 }

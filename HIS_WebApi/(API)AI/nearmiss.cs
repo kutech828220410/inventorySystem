@@ -332,7 +332,7 @@ namespace HIS_WebApi._API_AI
                     nearmissClass.add(API_Server, nearmissClasses);
                 }
 
-                returnData.Data = nearmissClasses;
+                returnData.Data = new List<nearmissClass>() { nearmissClasses };
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);
