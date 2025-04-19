@@ -1618,6 +1618,7 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.plC_CheckBox6 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -33536,6 +33537,7 @@
             // 
             // tabPage39
             // 
+            this.tabPage39.Controls.Add(this.plC_CheckBox6);
             this.tabPage39.Controls.Add(this.plC_CheckBox_掃碼顏色固定);
             this.tabPage39.Controls.Add(this.groupBox39);
             this.tabPage39.Controls.Add(this.groupBox23);
@@ -44629,6 +44631,26 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // plC_CheckBox6
+            // 
+            this.plC_CheckBox6.AutoSize = true;
+            this.plC_CheckBox6.Bool = false;
+            this.plC_CheckBox6.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox6.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox6.Location = new System.Drawing.Point(8, 217);
+            this.plC_CheckBox6.Name = "plC_CheckBox6";
+            this.plC_CheckBox6.Size = new System.Drawing.Size(209, 20);
+            this.plC_CheckBox6.TabIndex = 233;
+            this.plC_CheckBox6.Text = "AI 處方核對(MedGPT)啟用";
+            this.plC_CheckBox6.UseVisualStyleBackColor = true;
+            this.plC_CheckBox6.寫入元件位置 = "S3120";
+            this.plC_CheckBox6.文字內容 = "AI 處方核對(MedGPT)啟用";
+            this.plC_CheckBox6.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox6.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox6.讀取元件位置 = "S3120";
+            this.plC_CheckBox6.讀寫鎖住 = false;
+            this.plC_CheckBox6.音效 = false;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -46775,6 +46797,7 @@
         private System.Windows.Forms.Panel panel_工程模式_領藥台_03_顏色;
         private System.Windows.Forms.GroupBox groupBox22;
         private System.Windows.Forms.Panel panel_工程模式_領藥台_01_顏色;
+        private MyUI.PLC_CheckBox plC_CheckBox6;
     }
 }
 
