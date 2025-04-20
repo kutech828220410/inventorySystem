@@ -69,13 +69,13 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "數量");
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "單位");
 
-            formularyClass.add(Main_Form.API_Server, add_養肝明目飲());
-            formularyClass.add(Main_Form.API_Server, add_防疫正氣茶());
-            formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
-            formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
-            formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
-            formularyClass.add(Main_Form.API_Server, add_強筋固底湯());
-            formularyClass.add(Main_Form.API_Server, add_止痛活絡飲());
+            //formularyClass.add(Main_Form.API_Server, add_養肝明目飲());
+            //formularyClass.add(Main_Form.API_Server, add_防疫正氣茶());
+            //formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
+            //formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
+            //formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
+            //formularyClass.add(Main_Form.API_Server, add_強筋固底湯());
+            //formularyClass.add(Main_Form.API_Server, add_止痛活絡飲());
             formularyClasses = formularyClass.get_all(Main_Form.API_Server);
             List<formularyClass> formularyClasses_套餐選擇 = formularyClasses
             .GroupBy(f => f.名稱)

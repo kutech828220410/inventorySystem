@@ -1,11 +1,13 @@
-﻿using Basic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using Basic;
+using System.ComponentModel;
+using System.Web;
+using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
@@ -27,6 +29,9 @@ namespace HIS_DB_Lib
         H重複用藥,
         Z其他,
     }
+    /// <summary>
+    /// 醫師處方疑義紀錄表
+    /// </summary>
     [EnumDescription("suspiciousRxLog")]
     public enum enum_suspiciousRxLog
     {
@@ -186,8 +191,7 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(API, json_in);
             suspiciousRxLogClass suspiciousRxLogClass = json_out.JsonDeserializet<suspiciousRxLogClass>();
-            Logger.LogAddLine();
-            Logger.Log("medGPT", returnData.Data.JsonSerializationt(true));
+
             return suspiciousRxLogClass;
         }
         static public suspiciousRxLogClass medGPT(string API_Server, List<OrderClass> orderClasses)
@@ -213,8 +217,10 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            suspiciousRxLogClass suspiciousRxLogClass = json_out.JsonDeserializet<suspiciousRxLogClass>();
-            return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClass);
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData_out.Data.ObjToClass<List<suspiciousRxLogClass>>();
+            if (suspiciousRxLogClasses == null) return (0, "suspiciousRxLogClasses == null", null);
+            if (suspiciousRxLogClasses.Count == 0) return (0, "suspiciousRxLogClasses.Count == 0", null);
+            return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses[0]);
 
         }
         static public suspiciousRxLogClass update(string API_Server, suspiciousRxLogClass suspiciousRxLogClass)
