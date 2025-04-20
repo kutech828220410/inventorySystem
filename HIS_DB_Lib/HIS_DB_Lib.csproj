@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\nearmissClass.cs" />
+    <Compile Include="AI\SuspiciousRxLogClass.cs" />
     <Compile Include="BasicClass.cs" />
     <Compile Include="batch_inventory_exportClass.cs" />
     <Compile Include="batch_inventory_importClass.cs" />
