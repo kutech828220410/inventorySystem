@@ -220,7 +220,7 @@ namespace HIS_WebApi._API_AI
         public string medGPT(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "api/suspiciousRxLog/analyze";
+            returnData.Method = "api/suspiciousRxLog/medGPT";
             try
             {
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
@@ -363,6 +363,7 @@ namespace HIS_WebApi._API_AI
                         return new DrugOrder
                         {
                             藥品名稱 = value.藥品名稱,
+                            藥品碼 = value.藥品碼,
                             費用別 = value.費用別,
                             交易量 = value.交易量.Replace("-", ""),
                             頻次 = value.頻次,
