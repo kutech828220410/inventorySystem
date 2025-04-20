@@ -297,6 +297,33 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
 
+        static public List<medConfigClass> get_useRFID(string API_Server)
+        {
+            var (Code, result, list) = get_useRFID_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<medConfigClass>) get_useRFID_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medConfig/get_useRFID";
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<medConfigClass> medConfigClasses = returnData_out.Data.ObjToClass<List<medConfigClass>>();
+            return (returnData_out.Code, returnData_out.Result, medConfigClasses);
+        }
+
         static public List<medConfigClass> add(string API_Server, medConfigClass medConfigClass)
         {
             var (code, result, list) = add_full(API_Server, new List<medConfigClass> { medConfigClass });

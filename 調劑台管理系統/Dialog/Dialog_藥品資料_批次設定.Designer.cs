@@ -34,12 +34,12 @@
             this.comboBox_設定種類 = new System.Windows.Forms.ComboBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.rJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.checkBox_只顯示調劑台品項 = new System.Windows.Forms.CheckBox();
             this.comboBox_搜尋內容 = new System.Windows.Forms.ComboBox();
             this.rJ_Button_藥品搜尋 = new MyUI.PLC_RJ_Button();
             this.comboBox_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.sqL_DataGridView_藥品資料 = new SQLUI.SQL_DataGridView();
-            this.rJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.panel2.SuspendLayout();
             this.panel_藥品選擇.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -81,7 +81,8 @@
             this.comboBox_設定種類.Items.AddRange(new object[] {
             "調劑註記",
             "形狀相似",
-            "發音相似"});
+            "發音相似",
+            "使用RFID"});
             this.comboBox_設定種類.Location = new System.Drawing.Point(167, 30);
             this.comboBox_設定種類.Name = "comboBox_設定種類";
             this.comboBox_設定種類.Size = new System.Drawing.Size(302, 48);
@@ -108,6 +109,60 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1520, 110);
             this.panel4.TabIndex = 149;
+            // 
+            // rJ_Button_確認
+            // 
+            this.rJ_Button_確認.AutoResetState = true;
+            this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.Bool = false;
+            this.rJ_Button_確認.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Button_確認.BorderRadius = 15;
+            this.rJ_Button_確認.BorderSize = 1;
+            this.rJ_Button_確認.but_press = false;
+            this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.rJ_Button_確認.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_確認.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_確認.GUID = "";
+            this.rJ_Button_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.rJ_Button_確認.Location = new System.Drawing.Point(1416, 0);
+            this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.OFF_文字內容 = "確認";
+            this.rJ_Button_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_確認.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.rJ_Button_確認.OFF_背景顏色 = System.Drawing.Color.White;
+            this.rJ_Button_確認.ON_BorderSize = 1;
+            this.rJ_Button_確認.ON_文字內容 = "確認";
+            this.rJ_Button_確認.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_確認.ON_文字顏色 = System.Drawing.Color.Black;
+            this.rJ_Button_確認.ON_背景顏色 = System.Drawing.Color.White;
+            this.rJ_Button_確認.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_確認.ProhibitionLineWidth = 4;
+            this.rJ_Button_確認.ProhibitionSymbolSize = 30;
+            this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_確認.ShadowSize = 3;
+            this.rJ_Button_確認.ShowLoadingForm = false;
+            this.rJ_Button_確認.Size = new System.Drawing.Size(102, 108);
+            this.rJ_Button_確認.State = false;
+            this.rJ_Button_確認.TabIndex = 154;
+            this.rJ_Button_確認.Text = "確認";
+            this.rJ_Button_確認.TextColor = System.Drawing.Color.Black;
+            this.rJ_Button_確認.TextHeight = 35;
+            this.rJ_Button_確認.Texts = "確認";
+            this.rJ_Button_確認.UseVisualStyleBackColor = false;
+            this.rJ_Button_確認.字型鎖住 = false;
+            this.rJ_Button_確認.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.rJ_Button_確認.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.rJ_Button_確認.文字鎖住 = false;
+            this.rJ_Button_確認.背景圖片 = global::調劑台管理系統.Properties.Resources.adjusted_checkmark_removebg_preview;
+            this.rJ_Button_確認.讀取位元反向 = false;
+            this.rJ_Button_確認.讀寫鎖住 = false;
+            this.rJ_Button_確認.音效 = false;
+            this.rJ_Button_確認.顯示 = false;
+            this.rJ_Button_確認.顯示狀態 = false;
             // 
             // checkBox_只顯示調劑台品項
             // 
@@ -261,60 +316,6 @@
             this.sqL_DataGridView_藥品資料.顯示首行 = true;
             this.sqL_DataGridView_藥品資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            // 
-            // rJ_Button_確認
-            // 
-            this.rJ_Button_確認.AutoResetState = true;
-            this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Button_確認.Bool = false;
-            this.rJ_Button_確認.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Button_確認.BorderRadius = 15;
-            this.rJ_Button_確認.BorderSize = 1;
-            this.rJ_Button_確認.but_press = false;
-            this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.rJ_Button_確認.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_確認.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_確認.GUID = "";
-            this.rJ_Button_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.rJ_Button_確認.Location = new System.Drawing.Point(1416, 0);
-            this.rJ_Button_確認.Name = "rJ_Button_確認";
-            this.rJ_Button_確認.OFF_文字內容 = "確認";
-            this.rJ_Button_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_確認.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.rJ_Button_確認.OFF_背景顏色 = System.Drawing.Color.White;
-            this.rJ_Button_確認.ON_BorderSize = 1;
-            this.rJ_Button_確認.ON_文字內容 = "確認";
-            this.rJ_Button_確認.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_確認.ON_文字顏色 = System.Drawing.Color.Black;
-            this.rJ_Button_確認.ON_背景顏色 = System.Drawing.Color.White;
-            this.rJ_Button_確認.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_確認.ProhibitionLineWidth = 4;
-            this.rJ_Button_確認.ProhibitionSymbolSize = 30;
-            this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_確認.ShadowSize = 3;
-            this.rJ_Button_確認.ShowLoadingForm = false;
-            this.rJ_Button_確認.Size = new System.Drawing.Size(102, 108);
-            this.rJ_Button_確認.State = false;
-            this.rJ_Button_確認.TabIndex = 154;
-            this.rJ_Button_確認.Text = "確認";
-            this.rJ_Button_確認.TextColor = System.Drawing.Color.Black;
-            this.rJ_Button_確認.TextHeight = 35;
-            this.rJ_Button_確認.Texts = "確認";
-            this.rJ_Button_確認.UseVisualStyleBackColor = false;
-            this.rJ_Button_確認.字型鎖住 = false;
-            this.rJ_Button_確認.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.rJ_Button_確認.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.rJ_Button_確認.文字鎖住 = false;
-            this.rJ_Button_確認.背景圖片 = global::調劑台管理系統.Properties.Resources.adjusted_checkmark_removebg_preview;
-            this.rJ_Button_確認.讀取位元反向 = false;
-            this.rJ_Button_確認.讀寫鎖住 = false;
-            this.rJ_Button_確認.音效 = false;
-            this.rJ_Button_確認.顯示 = false;
-            this.rJ_Button_確認.顯示狀態 = false;
             // 
             // Dialog_藥品資料_批次設定
             // 

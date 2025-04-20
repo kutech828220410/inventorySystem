@@ -162,7 +162,7 @@ namespace 調劑台管理系統
             try
             {
                 string text = comboBox_設定種類.GetComboBoxText();
-                if (text == "調劑註記" || text == "形狀相似" || text == "發音相似")
+                if (text == "調劑註記" || text == "形狀相似" || text == "發音相似" || text == "使用RFID")
                 {
                     List<medClass> medClasses_cloud = medClass.get_med_cloud(Main_Form.API_Server);
                     List<object[]> list_med = medClasses_cloud.ClassToSQL<medClass, enum_雲端藥檔>();
@@ -191,6 +191,7 @@ namespace 調劑台管理系統
                         if (text == "調劑註記") medConfigClass.調劑註記 = (medClass_checked != null).ToString();
                         if (text == "形狀相似") medConfigClass.形狀相似 = (medClass_checked != null).ToString();
                         if (text == "發音相似") medConfigClass.發音相似 = (medClass_checked != null).ToString();
+                        if (text == "使用RFID") medConfigClass.使用RFID = (medClass_checked != null).ToString();
                         medConfigClasses_update.Add(medConfigClass);
 
                     }
@@ -243,7 +244,7 @@ namespace 調劑台管理系統
             try
             {
                 string text = comboBox_設定種類.GetComboBoxText();
-                if (text == "調劑註記" || text == "形狀相似" || text == "發音相似")
+                if (text == "調劑註記" || text == "形狀相似" || text == "發音相似" || text == "使用RFID")
                 {
                     List<medClass> medClasses = medClass.get_med_cloud(Main_Form.API_Server);
                     List<medClass> medClasses_temp = new List<medClass>();
