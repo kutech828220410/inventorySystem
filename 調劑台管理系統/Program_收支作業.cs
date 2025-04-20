@@ -112,13 +112,15 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_收支作業_調出.MouseDownEvent += PlC_RJ_Button_收支作業_調出_MouseDownEvent;
 
             this.plC_RJ_Button_收支作業_設定.MouseDownEvent += PlC_RJ_Button_收支作業_設定_MouseDownEvent;
-
             this.plC_RJ_Button_收支作業_批次入庫.MouseDownEvent += PlC_RJ_Button_收支作業_批次入庫_MouseDownEvent;
+
+            this.plC_RJ_Button_收支作業_RFID出庫.MouseDownEvent += PlC_RJ_Button_收支作業_RFID出庫_MouseDownEvent;
+            this.plC_RJ_Button_收支作業_RFID入庫.MouseDownEvent += PlC_RJ_Button_收支作業_RFID入庫_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
-     
+
 
         private bool flag_Program_收支作業_換頁 = false;
         private bool flag_Program_收支作業_換頁離開 = false;
@@ -870,6 +872,39 @@ namespace 調劑台管理系統
                 takeMedicineStackClasses.Add(takeMedicineStackClass);
             }
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+        }
+        private void PlC_RJ_Button_收支作業_RFID出庫_MouseDownEvent(MouseEventArgs mevent)
+        {
+            
+        }
+        private void PlC_RJ_Button_收支作業_RFID入庫_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_收支作業_RFID出入庫 dialog_收支作業_RFID出入庫 = new Dialog_收支作業_RFID出入庫();
+            if (dialog_收支作業_RFID出入庫.ShowDialog() != DialogResult.Yes) return;
+
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            List<StockClass> stockClasses = dialog_收支作業_RFID出入庫.stockClasses;
+            for (int i = 0; i < stockClasses.Count; i++)
+            {
+                StockClass stockClass = stockClasses[i];
+                string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
+                takeMedicineStackClass.藥品碼 = stockClass.Code;
+                takeMedicineStackClass.藥品名稱 = stockClass.Name;
+                takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                takeMedicineStackClass.收支原因 = ""; 
+                takeMedicineStackClass.操作人 = Main_Form._登入者名稱;
+                takeMedicineStackClass.ID = Main_Form._登入者ID;
+                takeMedicineStackClass.顏色 = 登入者顏色;
+                takeMedicineStackClass.總異動量 = stockClass.Qty;
+                takeMedicineStackClass.效期 = stockClass.Validity_period;
+                takeMedicineStackClass.批號 = stockClass.Lot_number;
+                takeMedicineStackClasses.Add(takeMedicineStackClass);
+            }
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+
         }
         #endregion
     }

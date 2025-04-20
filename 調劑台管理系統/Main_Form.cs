@@ -231,6 +231,7 @@ namespace 調劑台管理系統
             private string scanner02_COMPort = "COM3";
             private string scanner03_COMPort = "";
             private string scanner04_COMPort = "";
+            private string hFRFID_COMPort = "";
             private string _藥物辨識網址 = "";
             private string _聲紋辨識_IP = "";
 
@@ -240,6 +241,7 @@ namespace 調劑台管理系統
             public bool RFID使用 { get => _RFID使用; set => _RFID使用 = value; }
             public bool 掃碼槍COM通訊 { get => _掃碼槍COM通訊; set => _掃碼槍COM通訊 = value; }
             public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
+            public string HFRFID_COMPort { get => hFRFID_COMPort; set => hFRFID_COMPort = value; }
             public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
             public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
             public string Scanner03_COMPort { get => scanner03_COMPort; set => scanner03_COMPort = value; }
@@ -578,7 +580,7 @@ namespace 調劑台管理系統
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
             this.Program_指紋辨識_Init();
-
+            this.Program_HFRFID_Init();
 
             this.Program_異常通知_盤點錯誤_Init();
             this.Program_聲紋辨識_Init();

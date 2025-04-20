@@ -83,7 +83,7 @@ namespace 智能RFID燒錄系統
             LoadDBConfig();
 
             MyMessageBox.form = this.FindForm();
-
+            MyMessageBox.音效 = false;
             API_Server = dBConfigClass.Api_Server;
             this.comboBox_Comport.DataSource = MySerialPort.GetPortNames();
             rJ_Button_Connect.MouseDownEvent += RJ_Button_Connect_MouseDownEvent;
@@ -124,10 +124,7 @@ namespace 智能RFID燒錄系統
             myThread_program.Trigger();
 
     
-        }
-
-     
-
+        }   
         private void sub_program()
         {
             if (IsComConnected)
@@ -155,13 +152,13 @@ namespace 智能RFID燒錄系統
                         drugHFTagClass.效期 = "";
                         drugHFTagClass.批號 = "";
                         drugHFTagClass.數量 = "";
-
-                        drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                        //drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
+                        //drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                     }
                     else
                     {
-                        drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
-                        drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                        //drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
+                        //drugHFTagClass.更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                     }
                   
                     drugHFTagClasses_grid.Add(drugHFTagClass);
@@ -249,6 +246,9 @@ namespace 智能RFID燒錄系統
                 drugHFTagClasses[i].效期 = rJ_DatePicker_效期.Value.ToDateString();
                 drugHFTagClasses[i].批號 = rJ_TextBox_批號.Text;
                 drugHFTagClasses[i].數量 = rJ_TextBox_數量.Text;
+                drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
+                drugHFTagClasses[i].更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
             }
             (int code, string result, var data) = DrugHFTagClass.add_full(API_Server, drugHFTagClasses);
             if (code != 200)

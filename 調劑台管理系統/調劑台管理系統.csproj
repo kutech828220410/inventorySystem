@@ -161,6 +161,9 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\0.DLL\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="RfidReaderLib">
+      <HintPath>..\0.DLL\RfidReaderLib.dll</HintPath>
+    </Reference>
     <Reference Include="RFID_FX600lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\RFID_FX600lib.dll</HintPath>
@@ -517,6 +520,12 @@
     <Compile Include="Dialog_AI\Dialog_醫師疑義處方紀錄表.Designer.cs">
       <DependentUpon>Dialog_醫師疑義處方紀錄表.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_收支作業_RFID出入庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_收支作業_RFID出入庫.Designer.cs">
+      <DependentUpon>Dialog_收支作業_RFID出入庫.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -530,6 +539,9 @@
       <DependentUpon>Form_Buffer.cs</DependentUpon>
     </Compile>
     <Compile Include="Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_HFRFID.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_LCD114_索引表.cs">
@@ -712,6 +724,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_指紋登入.resx">
       <DependentUpon>Dialog_指紋登入.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID出入庫.resx">
+      <DependentUpon>Dialog_收支作業_RFID出入庫.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
@@ -938,6 +953,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\RFID出庫1.png" />
+    <None Include="Resources\RFID入庫1.png" />
+    <None Include="Resources\RFID入庫.png" />
+    <None Include="Resources\RFID出庫.png" />
     <None Include="Resources\藥品資料批次設定-removebg-preview.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\LOGO-浮水印.png" />

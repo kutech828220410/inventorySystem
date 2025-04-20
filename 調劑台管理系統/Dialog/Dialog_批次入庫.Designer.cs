@@ -391,7 +391,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_批次入庫.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_批次入庫.Password = "user82822040";
             this.sqL_DataGridView_批次入庫.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次入庫.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次入庫.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_批次入庫.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
             this.sqL_DataGridView_批次入庫.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_批次入庫.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_批次入庫.RowsHeight = 50;

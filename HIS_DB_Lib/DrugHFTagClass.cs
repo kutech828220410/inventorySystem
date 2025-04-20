@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
 using System.ComponentModel;
+using H_Pannel_lib;
 
 namespace HIS_DB_Lib
 {
@@ -168,6 +169,35 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
+        static public List<DrugHFTagClass> get_latest_reset_tag(string API_Server)
+        {
+            var (code, result, list) = get_latest_reset_tag_full(API_Server);
+            return list;
+        }
+
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_reset_tag_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/get_latest_reset_tag";
+
+            returnData returnData = new returnData(); // 無需傳 tagSN，只需空殼傳入
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            List<DrugHFTagClass> DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
+
+
     }
 
     public static class DrugHFTagMethod
@@ -188,11 +218,26 @@ namespace HIS_DB_Lib
                 ? hfTags.OrderByDescending(tag => tag.更新時間).ToList()
                 : hfTags.OrderBy(tag => tag.更新時間).ToList();
         }
-
         public static DrugHFTagClass SerchByTagSN(this List<DrugHFTagClass> hfTags, string tagSN)
         {
             if (hfTags == null) return null;
             return hfTags.FirstOrDefault(tag => tag.TagSN.Equals(tagSN, StringComparison.OrdinalIgnoreCase));
         }
+        public static List<StockClass> GetStockClasses(this List<DrugHFTagClass> hfTags)
+        {
+            if (hfTags == null) return new List<StockClass>();
+
+            return hfTags
+                .GroupBy(tag => new { tag.藥碼, tag.藥名, tag.效期, tag.批號 })
+                .Select(group => new StockClass
+                {
+                    Code = group.Key.藥碼,
+                    Name = group.Key.藥名,
+                    Validity_period = group.Key.效期,
+                    Lot_number = group.Key.批號,
+                    Qty = group.Sum(tag => tag.數量.StringToDouble()).ToString()
+                }).ToList();
+        }
+
     }
 }

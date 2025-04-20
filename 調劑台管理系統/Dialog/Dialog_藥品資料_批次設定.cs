@@ -255,6 +255,7 @@ namespace 調劑台管理系統
                     if (text == "調劑註記") medConfigClasses = medConfigClass.get_dispense_note(Main_Form.API_Server);
                     if (text == "形狀相似") medConfigClasses = medConfigClass.get_isShapeSimilar_note(Main_Form.API_Server);
                     if (text == "發音相似") medConfigClasses = medConfigClass.get_isSoundSimilar_note(Main_Form.API_Server);
+                    if (text == "使用RFID") medConfigClasses = medConfigClass.get_useRFID(Main_Form.API_Server);
 
                     for (int i = 0; i < medConfigClasses.Count; i++)
                     {
