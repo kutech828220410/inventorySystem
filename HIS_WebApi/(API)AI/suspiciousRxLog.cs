@@ -333,7 +333,7 @@ namespace HIS_WebApi._API_AI
                     suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
                 }
 
-                returnData.Data = suspiciousRxLogClasses;
+                returnData.Data = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);

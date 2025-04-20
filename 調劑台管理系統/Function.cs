@@ -297,19 +297,19 @@ namespace 調劑台管理系統
                 {
                     Task.Run(new Action(delegate
                     {
-                        (int code, string resuult, nearmissClass nearmissClass) = nearmissClass.medGPT_full(Main_Form.API_Server, orderClasses);
+                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
                         if(code == -200)
                         {
                             return;
                         }
-                        if(nearmissClass.狀態 != enum_nearmiss_status.無異狀.GetEnumName())
+                        if(suspiciousRxLogClass.狀態 != enum_suspiciousRxLog_status.無異狀.GetEnumName())
                         {
                             Voice.GoogleSpeaker("處方有疑義,請審核", $@"{currentDirectory}/gooler_speaker_temp.mp3");
-                            Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(nearmissClass, 操作人);
+                            Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(suspiciousRxLogClass, 操作人);
 
                             if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
 
-                            (code, resuult, nearmissClass) = nearmissClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
+                            (code, resuult, suspiciousRxLogClass) = suspiciousRxLogClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
                             if(code != 200)
                             {
                                 MyMessageBox.ShowDialog(resuult);

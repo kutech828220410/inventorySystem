@@ -217,7 +217,29 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClass);
 
         }
-        static public (int code, string resuult, List<suspiciousRxLogClass> suspiciousRxLogClass) update(string API_Server, List<suspiciousRxLogClass> suspiciousRxLogClasses)
+        static public suspiciousRxLogClass update(string API_Server, suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = new List<suspiciousRxLogClass>();
+            suspiciousRxLogClasses.Add(suspiciousRxLogClass);
+
+            (int code, string resuult, List<suspiciousRxLogClass> _suspiciousRxLogClasses) = update_full(API_Server, suspiciousRxLogClasses);
+            if (_suspiciousRxLogClasses == null) return null;
+            if (_suspiciousRxLogClasses.Count == 0) return null;
+            return _suspiciousRxLogClasses[0];
+        }
+        static public List<suspiciousRxLogClass> update(string API_Server, List<suspiciousRxLogClass> suspiciousRxLogClasses)
+        {
+            (int code, string resuult, List<suspiciousRxLogClass> _suspiciousRxLogClasses) = update_full(API_Server, suspiciousRxLogClasses);
+            return suspiciousRxLogClasses;
+        }
+        static public (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) update_full(string API_Server, suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = new List<suspiciousRxLogClass>();
+            suspiciousRxLogClasses.Add(suspiciousRxLogClass);
+            (int code, string resuult, List<suspiciousRxLogClass> _suspiciousRxLogClasses) = update_full(API_Server, suspiciousRxLogClasses);
+            return (code, resuult, suspiciousRxLogClass);
+        }
+        static public (int code, string resuult, List<suspiciousRxLogClass> suspiciousRxLogClass) update_full(string API_Server, List<suspiciousRxLogClass> suspiciousRxLogClasses)
         {
             string url = $"{API_Server}/api/suspiciousRxLog/update";
             returnData returnData = new returnData();
@@ -235,7 +257,7 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            suspiciousRxLogClasses = json_out.JsonDeserializet<List<suspiciousRxLogClass>>();
+            suspiciousRxLogClasses = returnData_out.Data.ObjToClass<List<suspiciousRxLogClass>>();
             return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses);
 
         }
