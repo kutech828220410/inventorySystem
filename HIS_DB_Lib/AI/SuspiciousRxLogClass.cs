@@ -1,23 +1,21 @@
-﻿using System;
+﻿using Basic;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using Basic;
-using System.ComponentModel;
-using System.Web;
-using NPOI.SS.Formula.Functions;
+using System.Threading.Tasks;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_nearmiss_status
+    public enum enum_suspiciousRxLog_status
     {
         無異狀,
         未更改,
         已更改
     }
-    public enum enum_nearmiss_errorType
+    public enum enum_suspiciousRxLog_errorType
     {
         A藥名錯誤,
         B途徑錯誤,
@@ -29,8 +27,8 @@ namespace HIS_DB_Lib
         H重複用藥,
         Z其他,
     }
-    [EnumDescription("nearmiss")]
-    public enum enum_nearmiss
+    [EnumDescription("suspiciousRxLog")]
+    public enum enum_suspiciousRxLog
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -78,7 +76,7 @@ namespace HIS_DB_Lib
         備註,
 
     }
-    public class nearmissClass
+    public class suspiciousRxLogClass
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
@@ -127,7 +125,7 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("REPORTER")]
         public string 提報人員 { get; set; }
-        
+
         [JsonPropertyName("REPORT_LEVEL")]
         public string 提報等級 { get; set; }
 
@@ -147,29 +145,29 @@ namespace HIS_DB_Lib
         public string 備註 { get; set; }
 
         [JsonPropertyName("identified")]
-        public string  辨識註記{ get; set; }
+        public string 辨識註記 { get; set; }
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
         public string response { get; set; }
-        static public nearmissClass add(string API_Server, nearmissClass nearmissClasses)
+        static public suspiciousRxLogClass add(string API_Server, suspiciousRxLogClass suspiciousRxLogClasses)
         {
-            string url = $"{API_Server}/api/nearmiss/add";
+            string url = $"{API_Server}/api/suspiciousRxLog/add";
 
             returnData returnData = new returnData();
-            returnData.Data = nearmissClasses;
+            returnData.Data = suspiciousRxLogClasses;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 
             returnData = json_out.JsonDeserializet<returnData>();
-            nearmissClass nearmissClass = returnData.Data.ObjToClass<nearmissClass>();
-            return nearmissClass;
+            suspiciousRxLogClass suspiciousRxLogClass = returnData.Data.ObjToClass<suspiciousRxLogClass>();
+            return suspiciousRxLogClass;
         }
-        static public List<nearmissClass> get_by_order_PRI_KEY(string API_Server, string 藥袋條碼)
+        static public List<suspiciousRxLogClass> get_by_order_PRI_KEY(string API_Server, string 藥袋條碼)
         {
-            string url = $"{API_Server}/api/nearmiss/get_by_order_PRI_KEY";
+            string url = $"{API_Server}/api/suspiciousRxLog/get_by_order_PRI_KEY";
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(藥袋條碼);
@@ -178,27 +176,28 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
 
             returnData = json_out.JsonDeserializet<returnData>();
-            List<nearmissClass> nearmissClasses = returnData.Data.ObjToClass<List<nearmissClass>>();
-            return nearmissClasses;
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
+            return suspiciousRxLogClasses;
         }
-        static public nearmissClass Excute(string API, PrescriptionSet PrescriptionSet)
+        static public suspiciousRxLogClass Excute(string API, PrescriptionSet PrescriptionSet)
         {
             returnData returnData = new returnData();
             returnData.Data = PrescriptionSet;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(API, json_in);
-            nearmissClass nearmissClass = json_out.JsonDeserializet<nearmissClass>();
-
-            return nearmissClass;
+            suspiciousRxLogClass suspiciousRxLogClass = json_out.JsonDeserializet<suspiciousRxLogClass>();
+            Logger.LogAddLine();
+            Logger.Log("medGPT", returnData.Data.JsonSerializationt(true));
+            return suspiciousRxLogClass;
         }
-        static public nearmissClass medGPT(string API_Server, List<OrderClass> orderClasses)
+        static public suspiciousRxLogClass medGPT(string API_Server, List<OrderClass> orderClasses)
         {
-            (int code, string resuult, nearmissClass nearmissClass) = medGPT_full(API_Server, orderClasses);
-            return nearmissClass;
+            (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = medGPT_full(API_Server, orderClasses);
+            return suspiciousRxLogClass;
         }
-        static public (int code , string resuult ,nearmissClass nearmissClass) medGPT_full(string API_Server, List<OrderClass> orderClasses)
+        static public (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) medGPT_full(string API_Server, List<OrderClass> orderClasses)
         {
-            string url = $"{API_Server}/api/nearmiss/medGPT";
+            string url = $"{API_Server}/api/suspiciousRxLog/medGPT";
             returnData returnData = new returnData();
             returnData.Data = orderClasses;
 
@@ -214,39 +213,15 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            List<nearmissClass> nearmissClasses = returnData_out.Data.ObjToClass<List<nearmissClass>>();
-            if (nearmissClasses == null) return (0, "nearmissClasses == null", null);
-            if (nearmissClasses.Count == 0) return (0, "nearmissClasses.Count == 0", null);
-            return (returnData_out.Code, returnData_out.Result, nearmissClasses[0]);
+            suspiciousRxLogClass suspiciousRxLogClass = json_out.JsonDeserializet<suspiciousRxLogClass>();
+            return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClass);
 
         }
-        static public nearmissClass update(string API_Server, nearmissClass nearmissClass)
+        static public (int code, string resuult, List<suspiciousRxLogClass> suspiciousRxLogClass) update(string API_Server, List<suspiciousRxLogClass> suspiciousRxLogClasses)
         {
-            List<nearmissClass> nearmissClasses = new List<nearmissClass>();
-            nearmissClasses.Add(nearmissClass);
-
-            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
-            if (_nearmissClasses == null) return null;
-            if (_nearmissClasses.Count == 0) return null;
-            return _nearmissClasses[0];
-        }
-        static public List<nearmissClass> update(string API_Server, List<nearmissClass> nearmissClasses)
-        {
-            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
-            return nearmissClasses;
-        }
-        static public (int code, string resuult, nearmissClass nearmissClass) update_full(string API_Server, nearmissClass nearmissClass)
-        {
-            List<nearmissClass> nearmissClasses = new List<nearmissClass>();
-            nearmissClasses.Add(nearmissClass);
-            (int code, string resuult, List<nearmissClass> _nearmissClasses) = update_full(API_Server, nearmissClasses);
-            return (code, resuult, nearmissClass);
-        }
-        static public (int code, string resuult, List<nearmissClass> nearmissClass) update_full(string API_Server, List<nearmissClass> nearmissClasses)
-        {
-            string url = $"{API_Server}/api/nearmiss/update";
+            string url = $"{API_Server}/api/suspiciousRxLog/update";
             returnData returnData = new returnData();
-            returnData.Data = nearmissClasses;
+            returnData.Data = suspiciousRxLogClasses;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -260,53 +235,53 @@ namespace HIS_DB_Lib
                 return (0, "returnData_out.Data == null", null);
             }
             Console.WriteLine($"{returnData_out}");
-            nearmissClasses = returnData_out.Data.ObjToClass<List<nearmissClass>>();
-            return (returnData_out.Code, returnData_out.Result, nearmissClasses);
+            suspiciousRxLogClasses = json_out.JsonDeserializet<List<suspiciousRxLogClass>>();
+            return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses);
 
         }
     }
-    //public class PrescriptionSet
-    //{
-    //    [JsonPropertyName("eff_order")]
-    //    public List<Prescription> 有效處方 { get; set; }
-    //    [JsonPropertyName("old_order")]
-    //    public List<Prescription> 歷史處方 { get; set; }
+    public class PrescriptionSet
+    {
+        [JsonPropertyName("eff_order")]
+        public List<Prescription> 有效處方 { get; set; }
+        [JsonPropertyName("old_order")]
+        public List<Prescription> 歷史處方 { get; set; }
 
-    //}
-    //public class DrugOrder
-    //{
-    //    [JsonPropertyName("CTYPE")]
-    //    public string 費用別 { get; set; }
-    //    [JsonPropertyName("NAME")]
-    //    public string 藥品名稱 { get; set; }
-    //    [JsonPropertyName("HI_CODE")]
-    //    public string 健保碼 { get; set; }
-    //    [JsonPropertyName("ATC")]
-    //    public string ATC { get; set; }
-    //    [JsonPropertyName("LICENSE")]
-    //    public string 藥品許可證號 { get; set; }
-    //    [JsonPropertyName("DIANAME")]
-    //    public string 藥品學名 { get; set; }
-    //    [JsonPropertyName("DRUGKIND")]
-    //    public string 管制級別 { get; set; }
-    //    [JsonPropertyName("TXN_QTY")]
-    //    public string 交易量 { get; set; }
-    //    [JsonPropertyName("FREQ")]
-    //    public string 頻次 { get; set; }
-    //    [JsonPropertyName("DAYS")]
-    //    public string 天數 { get; set; }
-    //}
-    //public class Prescription
-    //{
-    //    [JsonPropertyName("MED_BAG_SN")]
-    //    public string 藥袋條碼 { get; set; }
-    //    [JsonPropertyName("DOC")]
-    //    public string 醫師代碼 { get; set; }
-    //    [JsonPropertyName("CT_TIME")]
-    //    public string 產出時間 { get; set; }
-    //    [JsonPropertyName("SECTNO")]
-    //    public string 科別 { get; set; }
-    //    [JsonPropertyName("order")]
-    //    public List<DrugOrder> 處方 { get; set; }
-    //}
+    }
+    public class DrugOrder
+    {
+        [JsonPropertyName("CTYPE")]
+        public string 費用別 { get; set; }
+        [JsonPropertyName("NAME")]
+        public string 藥品名稱 { get; set; }
+        [JsonPropertyName("HI_CODE")]
+        public string 健保碼 { get; set; }
+        [JsonPropertyName("ATC")]
+        public string ATC { get; set; }
+        [JsonPropertyName("LICENSE")]
+        public string 藥品許可證號 { get; set; }
+        [JsonPropertyName("DIANAME")]
+        public string 藥品學名 { get; set; }
+        [JsonPropertyName("DRUGKIND")]
+        public string 管制級別 { get; set; }
+        [JsonPropertyName("TXN_QTY")]
+        public string 交易量 { get; set; }
+        [JsonPropertyName("FREQ")]
+        public string 頻次 { get; set; }
+        [JsonPropertyName("DAYS")]
+        public string 天數 { get; set; }
+    }
+    public class Prescription
+    {
+        [JsonPropertyName("MED_BAG_SN")]
+        public string 藥袋條碼 { get; set; }
+        [JsonPropertyName("DOC")]
+        public string 醫師代碼 { get; set; }
+        [JsonPropertyName("CT_TIME")]
+        public string 產出時間 { get; set; }
+        [JsonPropertyName("SECTNO")]
+        public string 科別 { get; set; }
+        [JsonPropertyName("order")]
+        public List<DrugOrder> 處方 { get; set; }
+    }
 }

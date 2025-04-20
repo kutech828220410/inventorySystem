@@ -362,6 +362,22 @@ namespace HIS_DB_Lib
         [JsonPropertyName("cpoe_change")]
         public List<medCpoeRecClass> 處方異動 { get; set; }
 
+        public class ICP_By_cart : IComparer<patientInfoClass>
+        {
+            public int Compare(patientInfoClass x, patientInfoClass y)
+            {
+                int result = string.Compare(x.護理站, y.護理站);
+
+                // 如果 排序 相同，則依照 藥名 排序
+                if (result == 0)
+                {
+                    result = string.Compare(x.床號, y.床號);
+                }
+
+                return result;
+            }
+        }
+
         public class ICP_By_bedNum : IComparer<patientInfoClass>
         {
             public int Compare(patientInfoClass x, patientInfoClass y)

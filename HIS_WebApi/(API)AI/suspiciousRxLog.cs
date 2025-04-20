@@ -21,7 +21,7 @@ namespace HIS_WebApi._API_AI
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class nearmiss : ControllerBase
+    public class suspiciousRxLog : ControllerBase
     {
         static string API_Server = Method.GetServerAPI("Main", "網頁", "API01");
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -36,13 +36,13 @@ namespace HIS_WebApi._API_AI
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("init")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(nearmissClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(suspiciousRxLogClass))]
         [HttpPost]
         public string init()
         {
             try
             {
-                return CheckCreatTable(new enum_nearmiss());
+                return CheckCreatTable(new enum_suspiciousRxLog());
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace HIS_WebApi._API_AI
         ///   {
         ///     "Data": 
         ///     {
-        ///        [nearmissClass陣列]
+        ///        [suspiciousRxLogClass陣列]
         ///     }
         ///   }
         /// </code>
@@ -74,8 +74,8 @@ namespace HIS_WebApi._API_AI
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                nearmissClass nearmissClasses = returnData.Data.ObjToClass<nearmissClass>();
-                if (nearmissClasses == null)
+                suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<suspiciousRxLogClass>();
+                if (suspiciousRxLogClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
@@ -83,13 +83,13 @@ namespace HIS_WebApi._API_AI
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
-                string TableName = "nearmiss";
+                string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> add_nearmiss = new List<nearmissClass>() { nearmissClasses }.ClassToSQL<nearmissClass, enum_nearmiss>();
-                sQLControl.AddRows(null, add_nearmiss);
+                List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                sQLControl.AddRows(null, add_suspiciousRxLog);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = nearmissClasses;
+                returnData.Data = suspiciousRxLogClasses;
                 returnData.Result = $"新增一筆資料";
                 return returnData.JsonSerializationt();
             }
@@ -137,15 +137,15 @@ namespace HIS_WebApi._API_AI
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
-                string TableName = "nearmiss";
+                string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_nearMiss = sQLControl.GetRowsByDefult(null, (int)enum_nearmiss.藥袋條碼, 藥袋條碼);
-                List<nearmissClass> nearmissClasses = list_nearMiss.SQLToClass<nearmissClass, enum_nearmiss>();
+                List<object[]> list_suspiciousRxLog = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = nearmissClasses;
-                returnData.Result = $"取得{nearmissClasses.Count}筆資料";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"取得{suspiciousRxLogClasses.Count}筆資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -164,7 +164,7 @@ namespace HIS_WebApi._API_AI
         ///   {
         ///     "Data": 
         ///     {
-        ///         [nearmissClass陣列]
+        ///         [suspiciousRxLogClass陣列]
         ///     },
         ///     "ValueAry":[""]
         ///   }
@@ -181,32 +181,32 @@ namespace HIS_WebApi._API_AI
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                List<nearmissClass> nearmissClasses = returnData.Data.ObjToClass<List<nearmissClass>>();
-                if (nearmissClasses == null)
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
+                if (suspiciousRxLogClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-                if (nearmissClasses.Count != 1)
+                if (suspiciousRxLogClasses.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data筆數超過1筆";
                     return returnData.JsonSerializationt();
                 }
-                string GUID = nearmissClasses[0].GUID;
+                string GUID = suspiciousRxLogClasses[0].GUID;
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
-                string TableName = "nearmiss";
+                string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> update_nearmiss = nearmissClasses.ClassToSQL<nearmissClass, enum_nearmiss>();
-                sQLControl.UpdateByDefulteExtra(null, update_nearmiss);
+                List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = nearmissClasses;
-                returnData.Result = $"更新{nearmissClasses.Count}筆資料";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"更新{suspiciousRxLogClasses.Count}筆資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -220,7 +220,7 @@ namespace HIS_WebApi._API_AI
         public string medGPT(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "api/nearmiss/analyze";
+            returnData.Method = "api/suspiciousRxLog/analyze";
             try
             {
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
@@ -232,12 +232,12 @@ namespace HIS_WebApi._API_AI
                 }
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
-                List<nearmissClass> nearmisses = nearmissClass.get_by_order_PRI_KEY(API_Server, 藥袋條碼);
-                if (nearmisses.Count > 0)
+                List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_order_PRI_KEY(API_Server, 藥袋條碼);
+                if (suspiciousRxLoges.Count > 0)
                 {
-                    nearmisses[0].辨識註記 = "Y";
+                    suspiciousRxLoges[0].辨識註記 = "Y";
                     returnData.Code = 200;
-                    returnData.Data = nearmisses;
+                    returnData.Data = suspiciousRxLoges;
                     returnData.Result = $"條碼{藥袋條碼}已辨識過";
                     return returnData.JsonSerializationt(true);
                 }
@@ -278,18 +278,19 @@ namespace HIS_WebApi._API_AI
                     歷史處方 = old_cpoe
                 };
                 string url = @"https://www.kutech.tw:3000/medgpt";
-                nearmissClass nearmissClasses = new nearmissClass();
-                nearmissClass nearmiss = nearmissClass.Excute(url, result);
-                returnData.Data = nearmiss;
+                suspiciousRxLogClass suspiciousRxLogClasses = new suspiciousRxLogClass();
+                
+                suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
+                returnData.Data = suspiciousRxLog;
                 Logger.LogAddLine();
-                Logger.Log("nearmiss", returnData.Data.JsonSerializationt(true));
-                if (nearmiss.error == true.ToString())
+                Logger.Log("suspiciousRxLog", returnData.Data.JsonSerializationt(true));
+                if (suspiciousRxLog.error == true.ToString())
                 {
-                    if (nearmiss.response.Contains("None科別"))
+                    if (suspiciousRxLog.response.Contains("None科別"))
                     {
-                        nearmiss.response = nearmiss.response.Replace("None科別", $"{orders[0].科別}");
+                        suspiciousRxLog.response = suspiciousRxLog.response.Replace("None科別", $"{orders[0].科別}");
                     }
-                    nearmissClasses = new nearmissClass()
+                    suspiciousRxLogClasses = new suspiciousRxLogClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
                         藥袋條碼 = orders[0].藥袋條碼,
@@ -299,19 +300,19 @@ namespace HIS_WebApi._API_AI
                         醫生姓名 = orders[0].醫師代碼,
                         開方時間 = orders[0].開方日期,
                         藥袋類型 = orders[0].藥袋類型,
-                        錯誤類別 = string.Join(",", nearmiss.error_type),
-                        簡述事件 = nearmiss.response,
-                        狀態 = enum_nearmiss_status.未更改.GetEnumName(),
+                        錯誤類別 = string.Join(",", suspiciousRxLog.error_type),
+                        簡述事件 = suspiciousRxLog.response,
+                        狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
                         提報時間 = DateTime.MinValue.ToDateTimeString(),
                         處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    nearmissClass.add(API_Server, nearmissClasses);
+                    suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
                 }
                 else
                 {
-                    nearmissClasses = new nearmissClass()
+                    suspiciousRxLogClasses = new suspiciousRxLogClass()
                     {
                         GUID = Guid.NewGuid().ToString(),
                         藥袋條碼 = orders[0].藥袋條碼,
@@ -321,18 +322,18 @@ namespace HIS_WebApi._API_AI
                         醫生姓名 = orders[0].醫師代碼,
                         開方時間 = orders[0].開方日期,
                         藥袋類型 = orders[0].藥袋類型,
-                        錯誤類別 = string.Join(",", nearmiss.error_type),
-                        簡述事件 = nearmiss.response,
-                        狀態 = enum_nearmiss_status.無異狀.GetEnumName(),
+                        錯誤類別 = string.Join(",", suspiciousRxLog.error_type),
+                        簡述事件 = suspiciousRxLog.response,
+                        狀態 = enum_suspiciousRxLog_status.無異狀.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
                         提報時間 = DateTime.MinValue.ToDateTimeString(),
                         處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    nearmissClass.add(API_Server, nearmissClasses);
+                    suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
                 }
 
-                returnData.Data = new List<nearmissClass>() { nearmissClasses };
+                returnData.Data = suspiciousRxLogClasses;
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);
