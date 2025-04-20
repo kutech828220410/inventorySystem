@@ -191,7 +191,8 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(API, json_in);
             suspiciousRxLogClass suspiciousRxLogClass = json_out.JsonDeserializet<suspiciousRxLogClass>();
-
+            Logger.LogAddLine();
+            Logger.Log("MedGPT", returnData.Data.JsonSerializationt(true));
             return suspiciousRxLogClass;
         }
         static public suspiciousRxLogClass medGPT(string API_Server, List<OrderClass> orderClasses)
@@ -282,6 +283,8 @@ namespace HIS_DB_Lib
         public string 費用別 { get; set; }
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
+        [JsonPropertyName("CODE")]
+        public string 藥品碼 { get; set; }
         [JsonPropertyName("HI_CODE")]
         public string 健保碼 { get; set; }
         [JsonPropertyName("ATC")]
