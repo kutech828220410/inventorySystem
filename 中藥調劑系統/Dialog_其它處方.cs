@@ -69,12 +69,13 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "數量");
             this.sqL_DataGridView_套餐藥品內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "單位");
 
-            //formularyClass.add(Main_Form.API_Server, add_養肝明目飲());
-            //formularyClass.add(Main_Form.API_Server, add_防疫正氣茶());
-            //formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
-            //formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
-            //formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
-            //formularyClass.add(Main_Form.API_Server, add_強筋固底湯());
+            formularyClass.add(Main_Form.API_Server, add_養肝明目飲());
+            formularyClass.add(Main_Form.API_Server, add_防疫正氣茶());
+            formularyClass.add(Main_Form.API_Server, add_桂圓紅棗茶());
+            formularyClass.add(Main_Form.API_Server, add_消脂纖體茶());
+            formularyClass.add(Main_Form.API_Server, add_養氣生脈飲());
+            formularyClass.add(Main_Form.API_Server, add_強筋固底湯());
+            formularyClass.add(Main_Form.API_Server, add_止痛活絡飲());
             formularyClasses = formularyClass.get_all(Main_Form.API_Server);
             List<formularyClass> formularyClasses_套餐選擇 = formularyClasses
             .GroupBy(f => f.名稱)
@@ -178,6 +179,27 @@ namespace 中藥調劑系統
             formularyClasses.Add(new formularyClass { 名稱 = "養氣生脈飲", 批序 = "4", 藥碼 = "C0043-1", 數量 = "-6", 備註 = "水量6000ml" });
             return formularyClasses;
         }
+        private List<formularyClass> add_止痛活絡飲()
+        {
+            List<formularyClass> formularyClasses = new List<formularyClass>();
+
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "1", 藥碼 = "C0047-1", 數量 = "-6", 備註 = "水量6000ml" }); // 當歸(特級)飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "2", 藥碼 = "C0004-1", 數量 = "-6", 備註 = "水量6000ml" }); // 川芎(特級)飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "3", 藥碼 = "C0012-1", 數量 = "-9", 備註 = "水量6000ml" }); // 生地黃飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "4", 藥碼 = "C0117-1", 數量 = "-6", 備註 = "水量6000ml" }); // 千斤拔(一條根)飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "5", 藥碼 = "C0022-1", 數量 = "-9", 備註 = "水量6000ml" }); // 杜仲(炒)飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "6", 藥碼 = "C0116-1", 數量 = "-6", 備註 = "水量6000ml" }); // 木瓜飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "7", 藥碼 = "C0003-1", 數量 = "-6", 備註 = "水量6000ml" }); // 川牛膝飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "8", 藥碼 = "C0034-1", 數量 = "-6", 備註 = "水量6000ml" }); // 桑枝飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "9", 藥碼 = "C0113-1", 數量 = "-6", 備註 = "水量6000ml" }); // 桃仁飲片(敲碎)
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "10", 藥碼 = "C0058-1", 數量 = "-9", 備註 = "水量6000ml" }); // 續斷飲片
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "11", 藥碼 = "C0073-1", 數量 = "-9", 備註 = "水量6000ml" }); // 骨碎補飲片(槲蕨)
+            formularyClasses.Add(new formularyClass { 名稱 = "止痛活絡飲", 批序 = "12", 藥碼 = "C0118-1", 數量 = "-6", 備註 = "水量6000ml" }); // 威靈仙飲片
+
+
+            return formularyClasses;
+        }
+
 
         private void PlC_RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -512,7 +512,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_開方時間.BorderSize = 0;
             this.rJ_Lable_開方時間.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_開方時間.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_開方時間.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_開方時間.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_開方時間.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_開方時間.GUID = "";
             this.rJ_Lable_開方時間.Location = new System.Drawing.Point(136, 3);
