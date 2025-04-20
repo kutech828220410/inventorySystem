@@ -120,13 +120,18 @@ namespace 調劑台管理系統
                 if (comboBox_搜尋條件.GetComboBoxText() == "已選藥品")
                 {
                     string text = comboBox_設定種類.GetComboBoxText();
-                    if (text == "調劑註記")
+                    if (text == "調劑註記" || text == "形狀相似" || text == "發音相似" || text == "使用RFID")
                     {
                         medClasses = medClass.get_med_cloud(Main_Form.API_Server);
                         List<medClass> medClasses_temp = new List<medClass>();
                         List<medClass> medClasses_buf = new List<medClass>();
                         Dictionary<string, List<medClass>> keyValuePairs_cloud = medClasses.CoverToDictionaryByCode();
-                        List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note(Main_Form.API_Server);
+                        List<medConfigClass> medConfigClasses = new List<medConfigClass>();
+                        if (text == "調劑註記") medConfigClasses = medConfigClass.get_dispense_note(Main_Form.API_Server);
+                        if (text == "形狀相似") medConfigClasses = medConfigClass.get_isShapeSimilar_note(Main_Form.API_Server);
+                        if (text == "發音相似") medConfigClasses = medConfigClass.get_isSoundSimilar_note(Main_Form.API_Server);
+                        if (text == "使用RFID") medConfigClasses = medConfigClass.get_useRFID(Main_Form.API_Server);
+
 
                         for (int i = 0; i < medConfigClasses.Count; i++)
                         {
