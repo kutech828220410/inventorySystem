@@ -602,6 +602,58 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 取得使用RFID管控藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_useRFID")]
+        [HttpPost]
+        public string get_useRFID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_useRFID";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
+                string TableName = "med_config";
+                SQLControl sQLControl_med_config = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_config = new List<object[]>();
+                string command = $"select * from {DB}.{TableName} where ( UPPER({enum_medConfig.使用RFID.GetEnumName()}) = 'y' or UPPER({enum_medConfig.使用RFID.GetEnumName()}) = 'true');";
+                DataTable dataTable = sQLControl_med_config.WtrteCommandAndExecuteReader(command);
+                list_med_config = dataTable.DataTableToRowList();
+                List<medConfigClass> medConfigClasses = list_med_config.SQLToClass<medConfigClass, enum_medConfig>();
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medConfigClasses;
+                returnData.Result = $"取得藥品設定成功,共<{medConfigClasses.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 以藥碼取得調劑註記藥品
         /// </summary>
         /// <remarks>
@@ -673,6 +725,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {

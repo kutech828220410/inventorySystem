@@ -37,8 +37,10 @@ namespace HIS_DB_Lib
         自定義,
         [Description("調劑註記,VARCHAR,300,NONE")]
         調劑註記,
-    }
+        [Description("使用RFID,VARCHAR,5,NONE")]
+        使用RFID,
 
+    }
     public class medConfigClass
     {
         /// <summary>
@@ -101,6 +103,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dispensing_note")]
         public string 調劑註記 { get; set; }
+        /// <summary>
+        /// 是否啟用 RFID 管控
+        /// </summary>
+        [JsonPropertyName("useRFID")]
+        public string 使用RFID { get; set; }
 
         static public SQLUI.Table init(string API_Server)
         {
@@ -381,6 +388,7 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, medConfigClasses);
         }
     }
+
     public static class medConfigMethod
     {
         static public System.Collections.Generic.Dictionary<string, List<medConfigClass>> CoverToDictionaryByCode(this List<medConfigClass> medClasses)
