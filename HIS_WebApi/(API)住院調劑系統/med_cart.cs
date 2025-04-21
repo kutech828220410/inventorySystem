@@ -1719,12 +1719,14 @@ namespace HIS_WebApi
                 //扣帳
                 tasks.Add(Task.Run(new Action(delegate
                 {        
-                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");           
+                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
 
 
@@ -2812,7 +2814,7 @@ namespace HIS_WebApi
                     returnData.Result = "ValueAry不得為空";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.UserName == null)
+                if (returnData.UserName.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "UserName應為 \"操作人\"";
@@ -2868,9 +2870,9 @@ namespace HIS_WebApi
                     Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                     return returnData.JsonSerializationt(true);
                 }
-
+                returnData.Data = returnData_OutTakeMed.Data;
                 returnData.Code = 200;
-                returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
+                returnData.Result = $"退帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                 return returnData.JsonSerializationt(true);
