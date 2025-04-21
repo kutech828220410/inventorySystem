@@ -1490,6 +1490,53 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        ///取得所有處方資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medCpoe_by_MasterGUID")]
+        public string get__medCpoe_by_MasterGUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medCpoe_by_MasterGUID";
+            try
+            {
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Result = "ValueAry應為[\"Master_GUID\"]";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+                string Master_GUID = returnData.ValueAry[0];
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null,(int)enum_med_cpoe.Master_GUID, Master_GUID);
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"取得處方資料共{sql_medCpoe.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         ///取得病床更動紀錄
         /// </summary>
         /// <remarks>
@@ -1715,7 +1762,7 @@ namespace HIS_WebApi
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                 })));
                 Task.WhenAll(tasks).Wait();
-
+                tasks.Clear();
                 //扣帳
                 tasks.Add(Task.Run(new Action(delegate
                 {        
@@ -1728,7 +1775,7 @@ namespace HIS_WebApi
                     returnData returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
                     Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
-
+                Task.WhenAll(tasks).Wait();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -3146,7 +3193,7 @@ namespace HIS_WebApi
                         guidList.Add(item.GUID);
                     }
                     string guidString = string.Join(";", guidList);
-                    string API = Method.GetServerAPI("網頁", "Main", "API01");
+                    string API = Method.GetServerAPI("Main", "網頁", "API01");
                     if (action == enum_交易記錄查詢動作.系統領藥.GetEnumName())
                     {
                         returnData_result = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
