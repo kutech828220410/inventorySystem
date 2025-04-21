@@ -300,7 +300,7 @@ namespace HIS_WebApi
                             {
                                 item.數量 = $"-{item.數量}";
                                 item.劑量 = "--";
-                                item.頻次 = "--";
+                                //item.頻次 = "--";
                                 item.途徑 = "--";
                                 item.單位 = "--";
                                 item.調劑狀態 = "";
@@ -460,7 +460,7 @@ namespace HIS_WebApi
                                     {
                                         medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                                         medCpoeClass.劑量 = "--";
-                                        medCpoeClass.頻次 = "--";
+                                        //medCpoeClass.頻次 = "--";
                                         medCpoeClass.途徑 = "--";
                                         medCpoeClass.單位 = "--";
                                         medCpoeClass.調劑狀態 = "";
