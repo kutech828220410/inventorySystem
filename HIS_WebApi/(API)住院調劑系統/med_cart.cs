@@ -1791,13 +1791,8 @@ namespace HIS_WebApi
                 }
                 medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
                 medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
-                if (調劑狀態.StringIsEmpty() == false && medCpoe_sql_replace[0].狀態 == "DC")
-                {
-                    medCpoe_sql_replace[0].DC確認 = "Y";
-                    //medCpoe_sql_replace[0].狀態 = "";
-                    //medCpoe_sql_replace[0].調劑異動 = "";
-                }
-                if (調劑狀態.StringIsEmpty())
+
+                if (調劑狀態.StringIsEmpty() == true)
                 {
                     refund_medcpoe.Add(medCpoe_sql_replace[0]);
                 }
@@ -1805,6 +1800,7 @@ namespace HIS_WebApi
                 {
                     if (medCpoe_sql_replace[0].PRI_KEY.Contains("DC")) 
                     {
+                        medCpoe_sql_replace[0].DC確認 = "Y";
                         refund_medcpoe.Add(medCpoe_sql_replace[0]);
                     }
                     else
@@ -1832,11 +1828,14 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
+
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
                 Task.WhenAll(tasks).Wait();
 
@@ -1911,6 +1910,7 @@ namespace HIS_WebApi
                         sql_medCpoe[i].調劑狀態 = "Y";
                         if (sql_medCpoe[i].PRI_KEY.Contains("DC"))
                         {
+                            sql_medCpoe[i].DC確認 = "Y";
                             refund_medcpoe.Add(sql_medCpoe[i]);
                         }
                         else
@@ -1946,11 +1946,14 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
+
                 })));
                 Task.WhenAll(tasks).Wait();
                 
@@ -2085,11 +2088,13 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
 
                 Task.WhenAll(tasks).Wait();
@@ -2870,7 +2875,7 @@ namespace HIS_WebApi
                     Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                     return returnData.JsonSerializationt(true);
                 }
-                returnData.Data = returnData_OutTakeMed.Data;
+                returnData.Data = outTakeMed_Datas;
                 returnData.Code = 200;
                 returnData.Result = $"退帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
