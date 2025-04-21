@@ -303,6 +303,10 @@ namespace HIS_DB_Lib
         public string 頻次 { get; set; }
         [JsonPropertyName("DAYS")]
         public string 天數 { get; set; }
+        [JsonPropertyName("SD")]
+        public string 單次劑量 { get; set; }
+        [JsonPropertyName("DUNIT")]
+        public string 劑量單位 { get; set; }
     }
     public class Prescription
     {
@@ -310,6 +314,8 @@ namespace HIS_DB_Lib
         public string 藥袋條碼 { get; set; }
         [JsonPropertyName("DOC")]
         public string 醫師代碼 { get; set; }
+        [JsonPropertyName("PATNAME")]
+        public string 病人姓名 { get; set; }
         [JsonPropertyName("CT_TIME")]
         public string 產出時間 { get; set; }
         [JsonPropertyName("SECTNO")]

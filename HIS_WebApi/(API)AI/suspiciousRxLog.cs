@@ -13,7 +13,7 @@ using H_Pannel_lib;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 using NPOI.HPSF;
 using NPOI.HSSF.Util;
-
+using System.Text.RegularExpressions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -368,6 +368,8 @@ namespace HIS_WebApi._API_AI
                             交易量 = value.交易量.Replace("-", ""),
                             頻次 = value.頻次,
                             天數 = value.天數,
+                            單次劑量 = value.單次劑量,
+                            劑量單位 = value.劑量單位,
                             類別 = med.類別,
                             健保碼 = med.健保碼,
                             ATC = med.ATC,
@@ -379,11 +381,17 @@ namespace HIS_WebApi._API_AI
                     })
                     .Where(value => value != null)
                     .ToList();
+                    bool result = group.Any(item =>
+                     item.病人姓名.StartsWith("金") ||
+                     item.病人姓名.StartsWith("朴") ||
+                     item.病人姓名.StartsWith("崔") ||
+                      Regex.IsMatch(item.病人姓名, @"^[A-Za-z]+$"));
                     return new Prescription
                     {
                         藥袋條碼 = group.Key,
                         產出時間 = orderClass.產出時間,
                         醫師代碼 = group.Any(item => item.醫師代碼 == item.病人姓名).ToString(),
+                        病人姓名 = result.ToString(),
                         處方 = drugOrders
                     };
                 }).ToList();
