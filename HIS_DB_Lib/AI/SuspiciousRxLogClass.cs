@@ -287,6 +287,8 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("HI_CODE")]
         public string 健保碼 { get; set; }
+        [JsonPropertyName("TYPE")]
+        public string 類別 { get; set; }
         [JsonPropertyName("ATC")]
         public string ATC { get; set; }
         [JsonPropertyName("LICENSE")]
