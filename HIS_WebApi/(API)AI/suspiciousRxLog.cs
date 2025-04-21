@@ -392,7 +392,8 @@ namespace HIS_WebApi._API_AI
                         產出時間 = orderClass.產出時間,
                         醫師代碼 = group.Any(item => item.醫師代碼 == item.病人姓名).ToString(),
                         病人姓名 = result.ToString(),
-                        處方 = drugOrders
+                        處方 = drugOrders,
+                        科別 = orderClass.科別,
                     };
                 }).ToList();
             return cpoeList;
