@@ -368,6 +368,7 @@ namespace HIS_WebApi._API_AI
                             交易量 = value.交易量.Replace("-", ""),
                             頻次 = value.頻次,
                             天數 = value.天數,
+                            類別 = med.類別,
                             健保碼 = med.健保碼,
                             ATC = med.ATC,
                             藥品學名 = med.藥品學名,

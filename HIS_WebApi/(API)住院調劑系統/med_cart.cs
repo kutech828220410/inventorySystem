@@ -982,7 +982,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以藥局、護理站取得已出院資料
+        ///以藥局取得已出院護理站
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1145,7 +1145,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以藥局、護理站取得未調劑處方資料
+        ///以藥局取得未調劑藥車
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1244,10 +1244,11 @@ namespace HIS_WebApi
                 List<object[]> list_pat_carInfo = dataTable_patient_info.DataTableToRowList();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<Task> tasks = new List<Task>();
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    UpdateStatus(sql_patinfo, sql_medCpoe);
-                })));
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    UpdateStatus(sql_patinfo, sql_medCpoe);
+                //})));
+                sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);
                 sql_patinfo = sql_patinfo.Where(temp => temp.調劑狀態.StringIsEmpty()).ToList();
 
                             
@@ -1278,7 +1279,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以藥局、護理站取得未調劑處方資料
+        ///以藥局取得未覆核藥車資料
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -1339,7 +1340,7 @@ namespace HIS_WebApi
         /// <code>
         ///     {
         ///         "Value":"調劑台"
-        ///         "ValueAry":[GUID]
+        ///         "ValueAry":["藥局",護理站]
         ///     }
         /// </code>
         /// </remarks>
