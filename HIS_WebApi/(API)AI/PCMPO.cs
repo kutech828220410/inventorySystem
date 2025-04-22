@@ -1721,6 +1721,10 @@ namespace HIS_WebApi
         }
         private textVisionClass EditExpirydate(textVisionClass textVisionClass)
         {
+            if (Regex.IsMatch(textVisionClass.效期, @"^\d{3}/\d{2}/\d{2}$")) // 範例：025/08/16
+            {
+                textVisionClass.效期 = "2" + textVisionClass.效期; // 轉為 2025/08/16
+            }
             string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd","yyyyMMdd" }; // 可擴展格式
 
             if (DateTime.TryParseExact(textVisionClass.效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
