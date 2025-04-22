@@ -14,6 +14,7 @@ using HIS_WebApi._API_藥品資料;
 using K4os.Compression.LZ4.Internal;
 using Google.Protobuf.WellKnownTypes;
 using System.Data;
+using NPOI.SS.Formula.Functions;
 
 
 
@@ -300,7 +301,7 @@ namespace HIS_WebApi
                             {
                                 item.數量 = $"-{item.數量}";
                                 item.劑量 = "--";
-                                item.頻次 = "--";
+                                //item.頻次 = "--";
                                 item.途徑 = "--";
                                 item.單位 = "--";
                                 item.調劑狀態 = "";
@@ -460,7 +461,7 @@ namespace HIS_WebApi
                                     {
                                         medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                                         medCpoeClass.劑量 = "--";
-                                        medCpoeClass.頻次 = "--";
+                                        //medCpoeClass.頻次 = "--";
                                         medCpoeClass.途徑 = "--";
                                         medCpoeClass.單位 = "--";
                                         medCpoeClass.調劑狀態 = "";
@@ -1490,6 +1491,53 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        ///取得所有處方資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medCpoe_by_MasterGUID")]
+        public string get__medCpoe_by_MasterGUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medCpoe_by_MasterGUID";
+            try
+            {
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Result = "ValueAry應為[\"Master_GUID\"]";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+                string Master_GUID = returnData.ValueAry[0];
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null,(int)enum_med_cpoe.Master_GUID, Master_GUID);
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"取得處方資料共{sql_medCpoe.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         ///取得病床更動紀錄
         /// </summary>
         /// <remarks>
@@ -1715,18 +1763,22 @@ namespace HIS_WebApi
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                 })));
                 Task.WhenAll(tasks).Wait();
-
+                tasks.Clear();
                 //扣帳
+                returnData returnData_debit = new returnData();
+                returnData returnData_refund = new returnData();
                 tasks.Add(Task.Run(new Action(delegate
-                {        
-                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");           
+                {
+                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    //Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    //Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
-
+                Task.WhenAll(tasks).Wait();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -1789,13 +1841,8 @@ namespace HIS_WebApi
                 }
                 medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
                 medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
-                if (調劑狀態.StringIsEmpty() == false && medCpoe_sql_replace[0].狀態 == "DC")
-                {
-                    medCpoe_sql_replace[0].DC確認 = "Y";
-                    //medCpoe_sql_replace[0].狀態 = "";
-                    //medCpoe_sql_replace[0].調劑異動 = "";
-                }
-                if (調劑狀態.StringIsEmpty())
+
+                if (調劑狀態.StringIsEmpty() == true)
                 {
                     refund_medcpoe.Add(medCpoe_sql_replace[0]);
                 }
@@ -1803,6 +1850,7 @@ namespace HIS_WebApi
                 {
                     if (medCpoe_sql_replace[0].PRI_KEY.Contains("DC")) 
                     {
+                        medCpoe_sql_replace[0].DC確認 = "Y";
                         refund_medcpoe.Add(medCpoe_sql_replace[0]);
                     }
                     else
@@ -1826,15 +1874,20 @@ namespace HIS_WebApi
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
                     
                 })));
+                returnData returnData_debit = new returnData();
+                returnData returnData_refund = new returnData();
                 //扣帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    //Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
+
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    //Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
                 Task.WhenAll(tasks).Wait();
 
@@ -1909,6 +1962,7 @@ namespace HIS_WebApi
                         sql_medCpoe[i].調劑狀態 = "Y";
                         if (sql_medCpoe[i].PRI_KEY.Contains("DC"))
                         {
+                            sql_medCpoe[i].DC確認 = "Y";
                             refund_medcpoe.Add(sql_medCpoe[i]);
                         }
                         else
@@ -1940,15 +1994,20 @@ namespace HIS_WebApi
                     //str += $"更新{護理站} 第{床號}床 調劑狀態、調劑時間和處方異動狀態";
                     
                 })));
+                returnData returnData_debit = new returnData();
+                returnData returnData_refund = new returnData();
                 //扣帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    //Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    //Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
+
                 })));
                 Task.WhenAll(tasks).Wait();
                 
@@ -2079,15 +2138,19 @@ namespace HIS_WebApi
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCarInfo_replace);
 
                 })));
+                returnData returnData_debit = new returnData();
+                returnData returnData_refund = new returnData();
                 //扣帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                    //Logger.Log("debit", $"{returnData_debit.JsonSerializationt(true)}");
                 })));
                 //退帳
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    returnData returnData_debit = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                    //Logger.Log("refund", $"{returnData_refund.JsonSerializationt(true)}");
                 })));
 
                 Task.WhenAll(tasks).Wait();
@@ -2747,28 +2810,42 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
+                List<string> Codes = orderClasses.Select(temp => temp.藥品碼).Distinct().ToList();
+                if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
+                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API_Server, 調劑台, Codes);
+                Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+
                 foreach (var item in orderClasses)
                 {
-                    class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                    medClass medClass_buff = medClassDict[item.藥品碼].FirstOrDefault();
+                    if (medClass_buff.DeviceBasics.Count != 0)
                     {
-                        //PRI_KEY = item.GUID,
-                        Order_GUID = item.GUID,
-                        護理站 = item.病房,
-                        成本中心 = "住院藥車",
-                        藥品碼 = item.藥品碼,
-                        藥名 = item.藥品名稱,
-                        操作人 = 操作人,
-                        類別 = item.藥袋類型,
-                        病人姓名 = item.病人姓名,
-                        病歷號 = item.病歷號,
-                        交易量 = item.交易量,
-                        開方時間 = item.開方日期,
-                        電腦名稱 = 調劑台,
-                        功能類型 = "-1" //掃碼領藥
-                    };
-                    outTakeMed_Datas.Add(outTakeMed_Data);
+                        class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                        {
+                            //PRI_KEY = item.GUID,
+                            Order_GUID = item.GUID,
+                            護理站 = item.病房,
+                            成本中心 = "住院藥車",
+                            藥品碼 = item.藥品碼,
+                            藥名 = item.藥品名稱,
+                            操作人 = 操作人,
+                            類別 = item.藥袋類型,
+                            病人姓名 = item.病人姓名,
+                            病歷號 = item.病歷號,
+                            交易量 = item.交易量,
+                            開方時間 = item.開方日期,
+                            電腦名稱 = 調劑台,
+                            功能類型 = "-1" //掃碼領藥
+                        };
+                        outTakeMed_Datas.Add(outTakeMed_Data);
+                    }
                 }
-                
+                if(outTakeMed_Datas.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "藥品不在調劑台內";
+                    return returnData.JsonSerializationt(true);
+                }
                 returnData returnData_OutTakeMed = class_OutTakeMed_data.OutTakeMed(API_Server,調劑台, outTakeMed_Datas);
                 if (returnData_OutTakeMed == null || returnData_OutTakeMed.Code != 200)
                 {
@@ -2812,7 +2889,7 @@ namespace HIS_WebApi
                     returnData.Result = "ValueAry不得為空";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.UserName == null)
+                if (returnData.UserName.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "UserName應為 \"操作人\"";
@@ -2827,37 +2904,54 @@ namespace HIS_WebApi
                 {
                     string GUID = GUIDs[i].Trim();
                     OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
-                    if (orderClass != null && orderClass.實際調劑量.StringIsEmpty() == false) orderClasses.Add(orderClass);
+                    if (orderClass != null && orderClass.實際調劑量 == orderClass.交易量) orderClasses.Add(orderClass);
                 }
                 if (orderClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "order資料狀態不服";
+                    returnData.Result = "order資料狀態不符";
                     return returnData.JsonSerializationt(true);
                 }
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
+                List<string> Codes = orderClasses.Select(temp => temp.藥品碼).Distinct().ToList();
+                if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
+                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API_Server, 調劑台, Codes);
+                Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
+
+
+
                 foreach (var item in orderClasses)
                 {
-                    class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                    medClass medClass_buff = medClassDict[item.藥品碼].FirstOrDefault();
+                    if (medClass_buff.DeviceBasics.Count != 0)
                     {
-                        //PRI_KEY = item.GUID,
-                        Order_GUID = item.GUID,
-                        成本中心 = "住院藥車",
-                        護理站 = item.病房,
-                        藥品碼 = item.藥品碼,
-                        藥名 = item.藥品名稱,
-                        操作人 = 操作人,
-                        類別 = item.藥袋類型,
-                        病人姓名 = item.病人姓名,
-                        病歷號 = item.病歷號,
-                        交易量 = item.交易量.Replace("-",""),
-                        開方時間 = item.開方日期,
-                        電腦名稱 = 調劑台,
-                        功能類型 = "-4" //退藥
-                    };
-                    outTakeMed_Datas.Add(outTakeMed_Data);
+                        class_OutTakeMed_data outTakeMed_Data = new class_OutTakeMed_data()
+                        {
+                            //PRI_KEY = item.GUID,
+                            Order_GUID = item.GUID,
+                            成本中心 = "住院藥車",
+                            護理站 = item.病房,
+                            藥品碼 = item.藥品碼,
+                            藥名 = item.藥品名稱,
+                            操作人 = 操作人,
+                            類別 = item.藥袋類型,
+                            病人姓名 = item.病人姓名,
+                            病歷號 = item.病歷號,
+                            交易量 = item.交易量.Replace("-", ""),
+                            開方時間 = item.開方日期,
+                            電腦名稱 = 調劑台,
+                            功能類型 = "-4" //退藥
+                        };
+                        outTakeMed_Datas.Add(outTakeMed_Data);
+                    }
+                        
                 }
-
+                if (outTakeMed_Datas.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "藥品不在調劑台內";
+                    return returnData.JsonSerializationt(true);
+                }
                 returnData returnData_OutTakeMed = class_OutTakeMed_data.OutTakeMed(API_Server, 調劑台, outTakeMed_Datas);
                 if (returnData_OutTakeMed == null || returnData_OutTakeMed.Code != 200)
                 {
@@ -2868,9 +2962,9 @@ namespace HIS_WebApi
                     Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                     return returnData.JsonSerializationt(true);
                 }
-
+                returnData.Data = outTakeMed_Datas;
                 returnData.Code = 200;
-                returnData.Result = $"扣帳成功 共<{outTakeMed_Datas.Count}>筆資料";
+                returnData.Result = $"退帳成功 共<{outTakeMed_Datas.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 Logger.Log("refund", $"{returnData.JsonSerializationt(true)}");
                 return returnData.JsonSerializationt(true);
@@ -3144,7 +3238,7 @@ namespace HIS_WebApi
                         guidList.Add(item.GUID);
                     }
                     string guidString = string.Join(";", guidList);
-                    string API = Method.GetServerAPI("網頁", "Main", "API01");
+                    string API = Method.GetServerAPI("Main", "網頁", "API01");
                     if (action == enum_交易記錄查詢動作.系統領藥.GetEnumName())
                     {
                         returnData_result = medCpoeClass.debit(API, 操作人, 調劑台, guidString);
