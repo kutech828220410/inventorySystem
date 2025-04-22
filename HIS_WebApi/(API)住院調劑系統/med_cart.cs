@@ -289,7 +289,7 @@ namespace HIS_WebApi
                     //List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                     //List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                     List<medCpoeClass> filterCpoe = sql_medCpoe
-                        .Where(cpoe => medCart_sql_delete_buff.Any(medCart => medCart.GUID == cpoe.Master_GUID)).ToList();
+                        .Where(cpoe => medCart_sql_delete_buff.Any(medCart => medCart.GUID == cpoe.Master_GUID) && cpoe.公藥.StringIsEmpty()).ToList();
                     foreach (var item in filterCpoe)
                     {
                         if(item.PRI_KEY.Contains($"-[{enum_bed_status_string.已出院.GetEnumName()}]") == false)
@@ -408,11 +408,12 @@ namespace HIS_WebApi
 
                     List<medCpoeClass> Cpoe_new = medCpoeClass.GetByMasterGUID(inputMedCpoeDict, Master_GUID);
                     List<medCpoeClass> Cpoe_old = medCpoeClass.GetByMasterGUID(sqlMedCpoeDict, Master_GUID);
+                    List<medCpoeClass> Cpoe_public_new = Cpoe_new.Where(temp => temp.公藥 == "Y").ToList();
+                    List<medCpoeClass> Cpoe_public_old = Cpoe_old.Where(temp => temp.公藥 == "Y").ToList();
                     Cpoe_new = Cpoe_new.Where(temp => temp.公藥.StringIsEmpty()).ToList();
                     Cpoe_old = Cpoe_old.Where(temp => temp.公藥.StringIsEmpty()).ToList();
 
-                    List<medCpoeClass> Cpoe_public_new = Cpoe_new.Where(temp => temp.公藥 == "Y").ToList();
-                    List<medCpoeClass> Cpoe_public_old = Cpoe_old.Where(temp => temp.公藥 == "Y").ToList();
+                    
                     List<Task> tasks = new List<Task>();
                     tasks.Add(Task.Run(new Action(delegate 
                     {
@@ -1021,7 +1022,7 @@ namespace HIS_WebApi
                 DataTable dataTable_patient_info = sQLControl_patient_info.WtrteCommandAndExecuteReader(command);
                 List<object[]> list_pat_carInfo = dataTable_patient_info.DataTableToRowList();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-
+                sql_patinfo = sql_patinfo.Where(temp => temp.調劑狀態.StringIsEmpty() == true).ToList();
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
