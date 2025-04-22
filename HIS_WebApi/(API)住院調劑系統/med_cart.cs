@@ -259,8 +259,6 @@ namespace HIS_WebApi
                                     medCart_sql_add.LockAdd(patientInfoClass);
                                 }                           
                                 targetPatient.占床狀態 = enum_bed_status_string.已出院.GetEnumName();
-                                //medCart_sql_replace.LockAdd(targetPatient);
-
                                 medCart_sql_delete_buff.LockAdd(targetPatient);
                             }
                             else
@@ -309,6 +307,7 @@ namespace HIS_WebApi
                                 item.調劑異動 = "Y";
                                 item.PRI_KEY += "-[DC]";
                             }
+                            
                         }
                     }
                     List<object[]> list_medCpoe_delete_buff = filterCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -790,10 +789,8 @@ namespace HIS_WebApi
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
-                Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站).ToList();
 
-                List<Task> tasks = new List<Task>();
                 sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);               
                 sql_patinfo.Sort(new patientInfoClass.ICP_By_bedNum());
 
@@ -1240,17 +1237,16 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
 
-                string command = $"SELECT * FROM {DB}.{tableName_patient_info} WHERE 更新時間 BETWEEN '{StartTime}' AND '{Endtime}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' AND 占床狀態 != '{enum_bed_status_string.已出院.GetEnumName()}';";
+                //string command = $"SELECT * FROM {DB}.{tableName_patient_info} WHERE 更新時間 BETWEEN '{StartTime}' AND '{Endtime}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' AND 占床狀態 != '{enum_bed_status_string.已出院.GetEnumName()}';";
+                string command = $"SELECT * FROM {DB}.{tableName_patient_info} WHERE 更新時間 BETWEEN '{StartTime}' AND '{Endtime}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' ;";
+
                 DataTable dataTable_patient_info = sQLControl_patient_info.WtrteCommandAndExecuteReader(command);
                 List<object[]> list_pat_carInfo = dataTable_patient_info.DataTableToRowList();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<Task> tasks = new List<Task>();
-                //tasks.Add(Task.Run(new Action(delegate
-                //{
-                //    UpdateStatus(sql_patinfo, sql_medCpoe);
-                //})));
+                
                 sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);
-                sql_patinfo = sql_patinfo.Where(temp => temp.調劑狀態.StringIsEmpty()).ToList();
+                sql_patinfo = sql_patinfo.Where(temp => temp.調劑狀態.StringIsEmpty() && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
 
                             
                 foreach ( var item in sql_patinfo)
@@ -1374,58 +1370,15 @@ namespace HIS_WebApi
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站).ToList();
 
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
 
                 List<Task> tasks = new List<Task>();
+                sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);
+                sql_patinfo = sql_patinfo.Where(temp => temp.覆核狀態.StringIsEmpty() == false && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
                 foreach (var item in sql_patinfo)
                 {
-                    tasks.Add(Task.Run(new Action(delegate
-                    {
-                        List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
-                        if (medCpoes.Count > 0)
-                        {
-                            bool mecCpoeDispenseFalg = medCpoes.Any(temp => temp.調劑狀態.StringIsEmpty());
-                            bool mecCpoeCheckFalg = medCpoes.Any(temp => temp.覆核狀態.StringIsEmpty());
-                            if (mecCpoeDispenseFalg)
-                            {
-                                item.調劑狀態 = "";
-                                item.處方異動狀態 = "Y";
-                            }
-                            else
-                            {
-                                item.調劑狀態 = "Y";
-                                item.處方異動狀態 = "";
-                            }
-                            if (mecCpoeCheckFalg)
-                            {
-                                item.覆核狀態 = "";
-                            }
-                            else
-                            {
-                                item.覆核狀態 = "Y";
-                            }
-                        }
-                        else
-                        {
-                            item.調劑狀態 = "Y";
-                            item.處方異動狀態 = "";
-                            item.覆核狀態 = "Y";
-                        }
-                    })));
-                }
-                Task.WhenAll(tasks).Wait();
-                tasks.Clear();
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    List<object[]> update = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
-                    sQLControl_patient_info.UpdateByDefulteExtra(null, update);
-                })));
-
-                foreach (var item in sql_patinfo)
-                {
-                    if (item.覆核狀態.StringIsEmpty() == false) continue;
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         List<medCpoeClass> targetCpoe = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
@@ -3287,6 +3240,7 @@ namespace HIS_WebApi
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     List<medCpoeClass> medCpoes = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
+                    if (item.占床狀態 == enum_bed_status_string.已出院.GetEnumName()) medCpoes = medCpoes.Where(temp => temp.PRI_KEY.Contains("[DC]")).ToList();
                     if (medCpoes.Count > 0)
                     {
                         bool mecCpoeDispenseFalg = medCpoes.Any(temp => temp.調劑狀態.StringIsEmpty());
@@ -3326,6 +3280,7 @@ namespace HIS_WebApi
                 sQLControl_patient_info.UpdateByDefulteExtra(null, update);
             })));
             Task.WhenAll(tasks).Wait();
+            tasks.Clear();
             return patientInfoClasses;
         }
 
