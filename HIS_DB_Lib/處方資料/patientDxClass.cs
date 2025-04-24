@@ -42,25 +42,33 @@ namespace HIS_DB_Lib
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-        [JsonPropertyName("")]
+        [JsonPropertyName("CODE")]
         public string 藥袋條碼 { get; set; }
-        [JsonPropertyName("")]
+        [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("ICD_CODE")]
         public string 診斷碼 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("ICD_DESC")]
         public string 診斷內容 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("ALLERGY_CODE")]
         public string 過敏藥碼 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("ALLERGY_NAME")]
         public string 過敏藥名 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("INTERACT_DRUG_CODE")]
         public string 交互作用藥碼 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("INTERACTION_DESC")]
         public string 交互作用 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("CREATE_TIME")]
         public string 加入時間 { get; set; }
-        [JsonPropertyName("")]
+
+        [JsonPropertyName("REMARK")]
         public string 備註 { get; set; }
     }
 }

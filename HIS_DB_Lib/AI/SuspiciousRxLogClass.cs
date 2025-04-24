@@ -170,9 +170,9 @@ namespace HIS_DB_Lib
             suspiciousRxLogClass suspiciousRxLogClass = returnData.Data.ObjToClass<suspiciousRxLogClass>();
             return suspiciousRxLogClass;
         }
-        static public List<suspiciousRxLogClass> get_by_order_PRI_KEY(string API_Server, string 藥袋條碼)
+        static public List<suspiciousRxLogClass> get_by_barcode(string API_Server, string 藥袋條碼)
         {
-            string url = $"{API_Server}/api/suspiciousRxLog/get_by_order_PRI_KEY";
+            string url = $"{API_Server}/api/suspiciousRxLog/get_by_barcode";
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(藥袋條碼);

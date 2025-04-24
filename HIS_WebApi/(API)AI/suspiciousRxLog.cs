@@ -117,12 +117,12 @@ namespace HIS_WebApi._API_AI
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("get_by_order_PRI_KEY")]
-        public string get_by_order_PRI_KEY([FromBody] returnData returnData)
+        [HttpPost("get_by_barcode")]
+        public string get_by_barcode([FromBody] returnData returnData)
         {
             init();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_by_order_PRI_KEY";
+            returnData.Method = "get_by_barcode";
             try
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
@@ -232,7 +232,7 @@ namespace HIS_WebApi._API_AI
                 }
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
-                List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_order_PRI_KEY(API_Server, 藥袋條碼);
+                List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
                 if (suspiciousRxLoges.Count > 0)
                 {
                     suspiciousRxLoges[0].辨識註記 = "Y";
