@@ -70,5 +70,34 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("REMARK")]
         public string 備註 { get; set; }
+
+        static public patientDxClass add(string API_Server, patientDxClass patientDxClasses)
+        {
+            string url = $"{API_Server}/api/patientDx/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = patientDxClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            patientDxClass patientDxClass = returnData.Data.ObjToClass<patientDxClass>();
+            return patientDxClass;
+        }
+        static public List<patientDxClass> get_by_barcode(string API_Server, string 藥袋條碼)
+        {
+            string url = $"{API_Server}/api/patientDx/get_by_barcode";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(藥袋條碼);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<patientDxClass> patientDxClasses = returnData.Data.ObjToClass<List<patientDxClass>>();
+            return patientDxClasses;
+        }
     }
 }
