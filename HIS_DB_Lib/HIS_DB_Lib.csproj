@@ -111,7 +111,7 @@
     <Compile Include="BasicClass.cs" />
     <Compile Include="batch_inventory_exportClass.cs" />
     <Compile Include="batch_inventory_importClass.cs" />
-    <Compile Include="bedStatusClass.cs" />
+    <Compile Include="住院藥車\bedStatusClass.cs" />
     <Compile Include="drugStotreArea.cs" />
     <Compile Include="formularyClass.cs" />
     <Compile Include="DrugHFTagClass.cs" />
