@@ -86,7 +86,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
 
-        [JsonPropertyName("藥袋條碼")]
+        [JsonPropertyName("MED_BAG_SN")]
         public string 藥袋條碼 { get; set; }
 
         [JsonPropertyName("PATCODE")]
