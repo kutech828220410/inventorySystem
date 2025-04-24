@@ -42,7 +42,7 @@ namespace HIS_DB_Lib
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-        [JsonPropertyName("CODE")]
+        [JsonPropertyName("MED_BAG_SN")]
         public string 藥袋條碼 { get; set; }
         [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
@@ -70,6 +70,13 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("REMARK")]
         public string 備註 { get; set; }
+
+        [JsonPropertyName("ICD")]
+        public List<MedicalCodeItem> 診斷紀錄 { get; set; }
+        [JsonPropertyName("ALLERGY")]
+        public List<MedicalCodeItem> 過敏紀錄 { get; set; }
+        [JsonPropertyName("INTERACT")]
+        public List<MedicalCodeItem> 交互作用紀錄 { get; set; }
 
         static public patientDxClass add(string API_Server, patientDxClass patientDxClasses)
         {
@@ -99,5 +106,10 @@ namespace HIS_DB_Lib
             List<patientDxClass> patientDxClasses = returnData.Data.ObjToClass<List<patientDxClass>>();
             return patientDxClasses;
         }
+    }
+    public class MedicalCodeItem
+    {
+        public string code { get; set; }
+        public string name { get; set; }
     }
 }

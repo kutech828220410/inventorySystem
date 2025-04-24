@@ -124,7 +124,7 @@ namespace HIS_WebApi._API_醫令資料
             try
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-
+                init();
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
@@ -139,6 +139,51 @@ namespace HIS_WebApi._API_醫令資料
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_patientDx = sQLControl.GetRowsByDefult(null, (int)enum_patientDx.藥袋條碼, 藥袋條碼);
                 List<patientDxClass> patientDxClasses = list_patientDx.SQLToClass<patientDxClass, enum_patientDx>();
+                if(patientDxClasses.Count == 0)
+                {
+                    returnData.Code = 200;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Data = patientDxClasses;
+                    returnData.Result = $"取得{patientDxClasses.Count}筆資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<MedicalCodeItem> 診斷紀錄 = new List<MedicalCodeItem>();
+                List<MedicalCodeItem> 過敏紀錄 = new List<MedicalCodeItem>();
+                List<MedicalCodeItem> 交互作用紀錄 = new List<MedicalCodeItem>();
+
+                List<string> list_診斷碼 = patientDxClasses[0].診斷碼.Split(";").ToList();
+                List<string> list_診斷疾病 = patientDxClasses[0].診斷內容.Split(";").ToList();
+                List<string> list_過敏藥碼 = patientDxClasses[0].過敏藥碼.Split(";").ToList();
+                List<string> list_過敏藥名 = patientDxClasses[0].過敏藥名.Split(";").ToList();
+                List<string> list_交互作用藥碼 = patientDxClasses[0].交互作用藥碼.Split(";").ToList();
+                List<string> list_交互作用 = patientDxClasses[0].交互作用.Split(";").ToList();
+                for(int i = 0; i < list_診斷碼.Count; i++)
+                {
+                    診斷紀錄.Add(new MedicalCodeItem
+                    {
+                        code = list_診斷碼[i],
+                        name = list_診斷疾病[i]
+                    }) ;
+                }
+                for (int i = 0; i < list_過敏藥碼.Count; i++)
+                {
+                    過敏紀錄.Add(new MedicalCodeItem
+                    {
+                        code = list_過敏藥碼[i],
+                        name = list_過敏藥名[i]
+                    });
+                }
+                for (int i = 0; i < list_交互作用藥碼.Count; i++)
+                {
+                    交互作用紀錄.Add(new MedicalCodeItem
+                    {
+                        code = list_交互作用藥碼[i],
+                        name = list_交互作用[i]
+                    });
+                }
+                patientDxClasses[0].診斷紀錄 = 診斷紀錄;
+                patientDxClasses[0].過敏紀錄 = 過敏紀錄;
+                patientDxClasses[0].交互作用紀錄 = 交互作用紀錄;
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
