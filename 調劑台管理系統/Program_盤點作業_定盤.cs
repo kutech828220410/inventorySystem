@@ -178,7 +178,7 @@ namespace 調劑台管理系統
                     {
                         List<string> 儲位_TYPE = new List<string>();
                         List<object> 儲位 = new List<object>();
-                        this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥碼), ref 儲位_TYPE, ref 儲位);
+                        Function_從雲端資料取得儲位(Function_藥品碼檢查(藥碼), ref 儲位_TYPE, ref 儲位);
                         Funnction_交易記錄查詢_取得指定藥碼批號期效期(藥碼, ref list_效期, ref list_批號);
                         if (list_效期.Count == 0)
                         {
@@ -257,7 +257,7 @@ namespace 調劑台管理系統
                     {
                         List<string> 儲位_TYPE = new List<string>();
                         List<object> 儲位 = new List<object>();
-                        this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥碼), ref 儲位_TYPE, ref 儲位);
+                        Function_從雲端資料取得儲位(Function_藥品碼檢查(藥碼), ref 儲位_TYPE, ref 儲位);
                         Funnction_交易記錄查詢_取得指定藥碼批號期效期(藥碼, ref list_效期, ref list_批號);
                         if (list_效期.Count == 0)
                         {

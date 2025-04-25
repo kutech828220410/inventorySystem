@@ -1456,14 +1456,15 @@ namespace 調劑台管理系統
             if (cnt_Program_領藥台_01_刷新領藥內容 == 2) cnt_Program_領藥台_01_刷新領藥內容_初始化(ref cnt_Program_領藥台_01_刷新領藥內容);
             if (cnt_Program_領藥台_01_刷新領藥內容 == 3) cnt_Program_領藥台_01_刷新領藥內容_取得資料(ref cnt_Program_領藥台_01_刷新領藥內容);
             if (cnt_Program_領藥台_01_刷新領藥內容 == 4) cnt_Program_領藥台_01_刷新領藥內容_檢查雙人覆核(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 5) cnt_Program_領藥台_01_刷新領藥內容_檢查盲盤作業(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 6) cnt_Program_領藥台_01_刷新領藥內容_檢查複盤作業(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 7) cnt_Program_領藥台_01_刷新領藥內容_檢查作業完成(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 8) cnt_Program_領藥台_01_刷新領藥內容_檢查是否需輸入效期(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 9) cnt_Program_領藥台_01_刷新領藥內容_檢查是否需選擇效期(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 10) cnt_Program_領藥台_01_刷新領藥內容_檢查自動登出(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 11) cnt_Program_領藥台_01_刷新領藥內容_等待刷新間隔(ref cnt_Program_領藥台_01_刷新領藥內容);
-            if (cnt_Program_領藥台_01_刷新領藥內容 == 12) cnt_Program_領藥台_01_刷新領藥內容 = 65500;
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 5) cnt_Program_領藥台_01_刷新領藥內容_檢查RFID使用(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 6) cnt_Program_領藥台_01_刷新領藥內容_檢查盲盤作業(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 7) cnt_Program_領藥台_01_刷新領藥內容_檢查複盤作業(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 8) cnt_Program_領藥台_01_刷新領藥內容_檢查作業完成(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 9) cnt_Program_領藥台_01_刷新領藥內容_檢查是否需輸入效期(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 10) cnt_Program_領藥台_01_刷新領藥內容_檢查是否需選擇效期(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 11) cnt_Program_領藥台_01_刷新領藥內容_檢查自動登出(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 12) cnt_Program_領藥台_01_刷新領藥內容_等待刷新間隔(ref cnt_Program_領藥台_01_刷新領藥內容);
+            if (cnt_Program_領藥台_01_刷新領藥內容 == 13) cnt_Program_領藥台_01_刷新領藥內容 = 65500;
             if (cnt_Program_領藥台_01_刷新領藥內容 > 1) cnt_Program_領藥台_01_刷新領藥內容_檢查放開(ref cnt_Program_領藥台_01_刷新領藥內容);
 
             if (cnt_Program_領藥台_01_刷新領藥內容 == 65500)
@@ -1714,6 +1715,59 @@ namespace 調劑台管理系統
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.覆核藥師ID] = dialog_使用者登入.UserID;
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                 Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核, false);
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
+                list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
+            }
+            if (list_取藥堆疊母資料_replace.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_replace, false);
+                cnt = 1;
+            }
+            if (list_取藥堆疊母資料_delete.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                cnt = 1;
+            }
+            if (cnt == 1) return;
+            cnt++;
+
+        }
+        void cnt_Program_領藥台_01_刷新領藥內容_檢查RFID使用(ref int cnt)
+        {
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
+            List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
+
+            list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
+            if (list_取藥堆疊母資料.Count > 0 && rfidReader.IsOpen == false)
+            {
+                this.voice.SpeakOnTask("RFID讀取器未開啟");
+                return;
+            }
+            for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
+            {
+                string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                Application.DoEvents();
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名);
+                this.Invoke(new Action(delegate
+                {
+
+                    //dialog_使用者登入.Location = new Point(this.rJ_Lable_領藥台_01_Title.PointToScreen(Point.Empty).X + this.rJ_Lable_領藥台_01_Title.Width + 20, 1);
+                }));
+
+                if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
+                {
+                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
+                    this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    Fuction_領藥台_01_時間重置();
+                    continue;
+                }
+                Fuction_領藥台_01_時間重置();
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.覆核藥師姓名] = dialog_使用者登入.UserName;
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.覆核藥師ID] = dialog_使用者登入.UserID;
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
+                Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用, false);
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
                 list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
             }

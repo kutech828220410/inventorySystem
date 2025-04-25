@@ -303,6 +303,69 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 取得所有Tag中最新一筆且狀態為「入庫註記」的標籤資料
+        /// </summary>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_latest_stockin_tag")]
+        [HttpPost]
+        public string get_latest_stockin_tag([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_latest_stockin_tag";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
+                List<object[]> list_value = new List<object[]>();
+                string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
+                string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
+                string statusCol = enum_DrugHFTag.狀態.GetEnumName();
+
+                string command = $@"
+                        SELECT * FROM {DB}.{TableName} t1
+                        WHERE t1.{statusCol} = '入庫註記'
+                          AND t1.{timeCol} = (
+                            SELECT MAX(t2.{timeCol})
+                            FROM {DB}.{TableName} t2
+                            WHERE UPPER(t2.{tagCol}) = UPPER(t1.{tagCol})
+                          )";
+
+                DataTable dataTable = sQLControl_drugHFTag.WtrteCommandAndExecuteReader(command);
+                list_value = dataTable.DataTableToRowList();
+                List<DrugHFTagClass> drugHFTagClasses = list_value.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = drugHFTagClasses;
+                returnData.Result = $"取得最新'入庫註記'標籤資料成功，共<{drugHFTagClasses.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {

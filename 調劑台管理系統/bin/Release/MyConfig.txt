@@ -4,7 +4,7 @@
   "RFID使用": false,
   "掃碼槍COM通訊": true,
   "RFID_COMPort": "COM1",
-  "HFRFID_COMPort": "COM3",
+  "HFRFID_COMPort": "COM14",
   "Scanner01_COMPort": "COM2",
   "Scanner02_COMPort": "",
   "Scanner03_COMPort": "",

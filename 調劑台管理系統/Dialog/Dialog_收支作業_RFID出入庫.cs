@@ -12,27 +12,42 @@ using MyUI;
 using HIS_DB_Lib;
 using SQLUI;
 using H_Pannel_lib;
+using static 調劑台管理系統.Dialog_收支作業_RFID出入庫;
 
 namespace 調劑台管理系統
 {
     public partial class Dialog_收支作業_RFID出入庫 : MyDialog
     {
+        public enum enum_import_export
+        {
+            入庫,
+            出庫
+        }
+        public enum_import_export _Import_Export = enum_import_export.入庫;
         public List<StockClass> stockClasses = new List<StockClass>();
         private MyThread myThread = new MyThread();
-        public Dialog_收支作業_RFID出入庫()
+        public Dialog_收支作業_RFID出入庫(enum_import_export enum_Import_Export)
         {
             form.Invoke(new Action(delegate 
             {
                 InitializeComponent();
             }));
-          
+            _Import_Export = enum_Import_Export;
+            this.Text = _Import_Export == enum_import_export.入庫 ? "RFID入庫" : "RFID出庫";
             this.LoadFinishedEvent += Dialog_收支作業_RFID出入庫_LoadFinishedEvent;
             this.FormClosing += Dialog_收支作業_RFID出入庫_FormClosing;
+
+            dateTimeIntervelPicker_更新時間.SetDateTime(DateTime.Now.AddYears(-1).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
         }
 
         private void Dialog_收支作業_RFID出入庫_FormClosing(object sender, FormClosingEventArgs e)
         {
-          
+            if(myThread != null)
+            {
+                myThread.Abort();
+                myThread = null;
+            }
+         
         }
 
         private void Dialog_收支作業_RFID出入庫_LoadFinishedEvent(EventArgs e)
@@ -43,8 +58,7 @@ namespace 調劑台管理系統
                 return;
             }
 
-            dateTimeIntervelPicker_更新時間.StartTime = DateTime.Now.AddDays(0).GetStartDate();
-            dateTimeIntervelPicker_更新時間.EndTime = DateTime.Now.AddDays(0).GetEndDate();
+           
 
          
 
@@ -69,6 +83,8 @@ namespace 調劑台管理系統
             myThread.Add_Method(Program_HFRFID);
             myThread.SetSleepTime(100);
             myThread.Trigger();
+
+            this.Refresh();
         }
 
        
@@ -77,7 +93,9 @@ namespace 調劑台管理系統
         {
             for(int i = 0; i < this.sqL_DataGridView_TagList.Rows.Count; i++)
             {
-                if (this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_DrugHFTag.狀態].Value.ToString() == enum_DrugHFTagStatus.入庫註記.GetEnumName())
+                string 狀態 = "";
+                狀態 = this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_DrugHFTag.狀態].Value.ToString();
+                if ((狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName() && _Import_Export == enum_import_export.入庫) || (狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName() && _Import_Export == enum_import_export.出庫))
                 {
                     this.sqL_DataGridView_TagList.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
@@ -92,7 +110,9 @@ namespace 調劑台管理系統
         {
             if (Main_Form.rfidReader.IsOpen == true)
             {
-                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_reset_tag(Main_Form.API_Server);
+                List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
+                if (_Import_Export == enum_import_export.入庫) drugHFTagClasses = DrugHFTagClass.get_latest_reset_tag(Main_Form.API_Server);
+                if (_Import_Export == enum_import_export.出庫) drugHFTagClasses = DrugHFTagClass.get_latest_stockin_tag(Main_Form.API_Server);
                 if (drugHFTagClasses == null) return;
 
                 drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.更新時間.StringToDateTime() >= dateTimeIntervelPicker_更新時間.StartTime && drugHFTagClass.更新時間.StringToDateTime() <= dateTimeIntervelPicker_更新時間.EndTime).ToList();
@@ -105,7 +125,8 @@ namespace 調劑台管理系統
                 {
                     if (uids.Contains(list_drugHFTagClasses[i][(int)enum_DrugHFTag.TagSN].ObjectToString()))
                     {
-                        list_drugHFTagClasses[i][(int)enum_DrugHFTag.狀態] = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                        if (_Import_Export == enum_import_export.入庫) list_drugHFTagClasses[i][(int)enum_DrugHFTag.狀態] = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                        if (_Import_Export == enum_import_export.出庫) list_drugHFTagClasses[i][(int)enum_DrugHFTag.狀態] = enum_DrugHFTagStatus.出庫註記.GetEnumName();
                     }
                 }
 
@@ -122,16 +143,37 @@ namespace 調劑台管理系統
                 return;
             }
             List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
-            drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()).ToList();
+            if (_Import_Export == enum_import_export.入庫) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()).ToList();
+            if (_Import_Export == enum_import_export.出庫) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()).ToList();
 
             stockClasses = drugHFTagClasses.GetStockClasses();
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"入庫藥品品項：{stockClasses.Count}");
+            if (_Import_Export == enum_import_export.入庫) sb.AppendLine($"入庫藥品品項：{stockClasses.Count}");
+            if (_Import_Export == enum_import_export.出庫)
+            {
+                sb.AppendLine($"出庫藥品品項：{stockClasses.Count}");
+               
+            }
             sb.AppendLine(new string('-', 30)); // 分隔線
 
             for (int i = 0; i < stockClasses.Count; i++)
             {
+                if (_Import_Export == enum_import_export.出庫)
+                {
+                    StockClass stockClass = Main_Form.Function_取得庫存值從雲端資料(stockClasses[i].Code, stockClasses[i].Validity_period);
+                    if (stockClass == null)
+                    {
+                        MyMessageBox.ShowDialog($"藥品：{stockClasses[i].Code} 無法取得庫存資訊");
+                        return;
+                    }
+                    if(stockClass.Qty.StringToDouble() < stockClasses[i].Qty.StringToDouble())
+                    {
+                        MyMessageBox.ShowDialog($"藥品 : {stockClasses[i].Code} (效期 : {stockClasses[i].Validity_period}) 庫存不足，無法出庫");
+                        return;
+                    }
+                }
+                  
                 sb.AppendLine($"[{i + 1}]");
                 sb.AppendLine($"藥碼：{stockClasses[i].Code}");
                 sb.AppendLine($"藥名：{stockClasses[i].Name}");
@@ -148,8 +190,7 @@ namespace 調劑台管理系統
             LoadingForm.CloseLoadingForm();
 
             this.DialogResult = DialogResult.Yes;
-            myThread.Abort();
-            myThread = null;
+      
             this.Close();
 
         }

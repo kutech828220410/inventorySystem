@@ -36,7 +36,7 @@ namespace HIS_DB_Lib
         新增資料,
         DC處方,
         NEW處方,
-
+        RFID使用,
     }
     public enum enum_取藥堆疊母資料_作業模式
     {
@@ -46,6 +46,7 @@ namespace HIS_DB_Lib
         雙人覆核,
         獨立作業,
         庫存不足語音提示,
+        RFID使用,
     }
     [EnumDescription("take_medicine_stack_new")]
     public enum enum_取藥堆疊母資料

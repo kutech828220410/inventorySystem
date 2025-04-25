@@ -711,7 +711,7 @@ namespace 調劑台管理系統
             double 庫存 = 0;
             List<object> list_value = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從入賬資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
+            this.Function_從入賬資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
 
             for (int i = 0; i < list_value.Count; i++)
             {
@@ -779,7 +779,7 @@ namespace 調劑台管理系統
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從入賬資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+            this.Function_從入賬資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
             if (儲位.Count == 0)
@@ -1117,7 +1117,7 @@ namespace 調劑台管理系統
 
             return list_value;
         }
-        public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
+        static public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
         {
             List<object> list_value = Function_從雲端資料取得儲位(藥品碼);
             TYPE.Clear();
@@ -1138,7 +1138,7 @@ namespace 調劑台管理系統
             double 庫存 = 0;
             List<object> list_value = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref list_value);
 
             for (int i = 0; i < list_value.Count; i++)
             {
@@ -1150,11 +1150,11 @@ namespace 調劑台管理系統
             if (list_value.Count == 0) return -999;
             return 庫存;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期, string IP)
+        static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期, string IP)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
             for (int k = 0; k < 儲位.Count; k++)
@@ -1183,11 +1183,58 @@ namespace 調劑台管理系統
             }
             return 儲位資訊;
         }
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期)
+        static public StockClass Function_取得庫存值從雲端資料(string 藥品碼, string 效期)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+
+            int totalQty = 0;
+            string lotNumber = null;
+            string name = null;
+            string validityPeriod = null;
+
+            for (int k = 0; k < 儲位.Count; k++)
+            {
+                object value_device = 儲位[k];
+                if (value_device is Device device)
+                {
+                    for (int i = 0; i < device.List_Validity_period.Count; i++)
+                    {
+                        if (device.List_Validity_period[i].StringToDateTime().ToDateString() == 效期.StringToDateTime().ToDateString())
+                        {
+                            int.TryParse(device.List_Inventory[i], out int qty);
+                            totalQty += qty;
+
+                            // 只記錄第一次找到的 lotNumber / name / validity
+                            if (lotNumber == null) lotNumber = device.List_Lot_number[i];
+                            if (name == null) name = device.Name;
+                            if (validityPeriod == null) validityPeriod = device.List_Validity_period[i];
+                        }
+                    }
+                }
+            }
+
+            if (totalQty > 0)
+            {
+                return new StockClass()
+                {
+                    Code = 藥品碼,
+                    Name = name ?? "",  // 若找不到則用空字串
+                    Validity_period = validityPeriod ?? 效期,
+                    Lot_number = lotNumber ?? "",
+                    Qty = totalQty.ToString()
+                };
+            }
+
+            return null; // 如果完全沒找到符合的效期，就回傳 null
+        }
+
+        static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期)
+        {
+            List<object> 儲位 = new List<object>();
+            List<string> 儲位_TYPE = new List<string>();
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
             for (int k = 0; k < 儲位.Count; k++)
@@ -1220,7 +1267,7 @@ namespace 調劑台管理系統
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
-            this.Function_從雲端資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
             if (儲位.Count == 0) return 儲位資訊_buf;
@@ -1283,7 +1330,7 @@ namespace 調劑台管理系統
             List<string> TYPE = new List<string>();
             List<object> values = new List<object>();
             string IP = "";
-            this.Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
+            Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
             string Type_str = "";
             for (int k = 0; k < values.Count; k++)
             {
@@ -2205,7 +2252,7 @@ namespace 調劑台管理系統
 
             }
         }
-        public string Function_藥品碼檢查(string Code)
+        static public string Function_藥品碼檢查(string Code)
         {
 
             return Code;

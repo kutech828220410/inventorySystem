@@ -65,7 +65,7 @@ namespace 調劑台管理系統
        
             List<object[]> list_value_buf = list_value.GetRows((int)enum_medConfig.藥碼, 藥品碼);
             if (list_value_buf.Count == 0) return false;
-            if (list_value_buf[0][(int)enum_medConfig.自定義].StringToBool() == false) return false;
+            if (list_value_buf[0][(int)enum_medConfig.自定義].StringToBool() == false && _enum_medConfig != enum_medConfig.使用RFID) return false;
             return list_value_buf[0][(int)_enum_medConfig].StringToBool();
         }
         #endregion

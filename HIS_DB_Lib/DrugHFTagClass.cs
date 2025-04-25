@@ -196,6 +196,39 @@ namespace HIS_DB_Lib
             List<DrugHFTagClass> DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
+        /// <summary>
+        /// 取得所有Tag中最新一筆且狀態為「入庫註記」的標籤資料（僅回傳資料）
+        /// </summary>
+        static public List<DrugHFTagClass> get_latest_stockin_tag(string API_Server)
+        {
+            var (code, result, list) = get_latest_stockin_tag_full(API_Server);
+            return list;
+        }
+
+        /// <summary>
+        /// 取得所有Tag中最新一筆且狀態為「入庫註記」的標籤資料（完整資訊）
+        /// </summary>
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockin_tag_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/get_latest_stockin_tag";
+
+            returnData returnData = new returnData(); // 空殼傳入即可
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            List<DrugHFTagClass> DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
 
 
     }
