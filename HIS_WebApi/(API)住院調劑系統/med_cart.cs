@@ -246,9 +246,10 @@ namespace HIS_WebApi
                         }
                         else
                         {
-                            List<patientInfoClass> patient = patientInfos.Where(temp => temp.占床狀態 == enum_bed_status_string.已佔床.GetEnumName()).ToList();
+                            //List<patientInfoClass> patient = patientInfos.Where(temp => temp.占床狀態 == enum_bed_status_string.已佔床.GetEnumName()).ToList();
+                            List<patientInfoClass> patient = patientInfos.OrderByDescending(p => DateTime.Parse(p.更新時間)).ToList();
 
-                            if(patient.Count > 0) targetPatient = patient[0];
+                            if (patient.Count > 0) targetPatient = patient[0];
 
                         }
 
@@ -265,23 +266,20 @@ namespace HIS_WebApi
                         {
                             if (patientInfoClass.PRI_KEY != targetPatient.PRI_KEY)
                             {                         
-                                if (patientInfoClass.PRI_KEY.StringIsEmpty() == false) 
+                                if (targetPatient.PRI_KEY.StringIsEmpty()) //原本是空床，後來有人進來
                                 {
-                                    if (targetPatient.PRI_KEY.StringIsEmpty()) //原本是空床，後來有人進來
-                                    {
-                                        patientInfoClass.GUID = targetPatient.GUID;
-                                        patientInfoClass.異動 = "Y";
-                                        medCart_sql_replace.LockAdd(patientInfoClass);
-                                    }
-                                    else //原本有人，但已出院，又有新的人
-                                    {
-                                        patientInfoClass.GUID = Guid.NewGuid().ToString();
-                                        patientInfoClass.異動 = "Y";
-                                        targetPatient.占床狀態 = enum_bed_status_string.已出院.GetEnumName();
-                                        medCart_sql_delete_buff.LockAdd(targetPatient);
-                                        medCart_sql_add.LockAdd(patientInfoClass);
-                                    }   
-                                }                              
+                                    patientInfoClass.GUID = targetPatient.GUID;
+                                    patientInfoClass.異動 = "Y";
+                                    medCart_sql_replace.LockAdd(patientInfoClass);
+                                }
+                                else //原本有人，但已出院，又有新的人或是空床
+                                {
+                                    patientInfoClass.GUID = Guid.NewGuid().ToString();
+                                    if(patientInfoClass.PRI_KEY.StringIsEmpty() ==false) patientInfoClass.異動 = "Y";
+                                    targetPatient.占床狀態 = enum_bed_status_string.已出院.GetEnumName();
+                                    medCart_sql_delete_buff.LockAdd(targetPatient);
+                                    medCart_sql_add.LockAdd(patientInfoClass);
+                                }   
                             }
                             else
                             {
@@ -2487,14 +2485,14 @@ namespace HIS_WebApi
                 
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
-                string date_st_str = DateTime.Now.GetStartDate().ToDateTimeString_6();
-                string date_end_str = DateTime.Now.GetEndDate().ToDateTimeString_6();
+               
                 (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
                 string API = Method.GetServerAPI("Main", "網頁", "API01");
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
                 //List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
-                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, date_st_str, date_end_str);
+                (string StartTime, string Endtime) = GetToday();
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
                 settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");

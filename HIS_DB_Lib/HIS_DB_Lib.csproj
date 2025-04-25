@@ -111,7 +111,7 @@
     <Compile Include="BasicClass.cs" />
     <Compile Include="batch_inventory_exportClass.cs" />
     <Compile Include="batch_inventory_importClass.cs" />
-    <Compile Include="bedStatusClass.cs" />
+    <Compile Include="住院藥車\bedStatusClass.cs" />
     <Compile Include="drugStotreArea.cs" />
     <Compile Include="formularyClass.cs" />
     <Compile Include="DrugHFTagClass.cs" />
@@ -173,6 +173,7 @@
     <Compile Include="化療排程\udnoectc.cs" />
     <Compile Include="化療排程\udphnoph.cs" />
     <Compile Include="sys_updateVersionClass.cs" />
+    <Compile Include="處方資料\patientDxClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
