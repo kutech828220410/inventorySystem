@@ -52,16 +52,8 @@ namespace 調劑台管理系統
 
         private void Dialog_收支作業_RFID出入庫_LoadFinishedEvent(EventArgs e)
         {
-            if (Main_Form.rfidReader.IsOpen == false)
-            {
-                MyMessageBox.ShowDialog("RFID讀取器無法開啟，請檢查連接");
-                return;
-            }
-
-           
-
-         
-
+ 
+        
             Table table = DrugHFTagClass.init(Main_Form.API_Server);
             this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(table);
@@ -78,6 +70,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_TagList.DataGridRefreshEvent += SqL_DataGridView_TagList_DataGridRefreshEvent;
 
             this.plC_RJ_Button_確認送出.MouseDownEvent += PlC_RJ_Button_確認送出_MouseDownEvent;
+            this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
 
             myThread.AutoRun(true);
             myThread.Add_Method(Program_HFRFID);
@@ -85,10 +78,8 @@ namespace 調劑台管理系統
             myThread.Trigger();
 
             this.Refresh();
+            Main_Form.Function_外門片解鎖();
         }
-
-       
-
         private void SqL_DataGridView_TagList_DataGridRefreshEvent()
         {
             for(int i = 0; i < this.sqL_DataGridView_TagList.Rows.Count; i++)
@@ -108,32 +99,43 @@ namespace 調劑台管理系統
 
         private void Program_HFRFID()
         {
-            if (Main_Form.rfidReader.IsOpen == true)
+            List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
+            if (_Import_Export == enum_import_export.入庫) drugHFTagClasses = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
+            if (_Import_Export == enum_import_export.出庫) drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
+            if (drugHFTagClasses == null) return;
+
+            drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.更新時間.StringToDateTime() >= dateTimeIntervelPicker_更新時間.StartTime && drugHFTagClass.更新時間.StringToDateTime() <= dateTimeIntervelPicker_更新時間.EndTime).ToList();
+
+            List<object[]> list_drugHFTagClasses = new List<object[]>();
+
+            List<string> uids = Main_Form.rfidReader_TagUID;
+
+            for (int i = 0; i < drugHFTagClasses.Count; i++)
             {
-                List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
-                if (_Import_Export == enum_import_export.入庫) drugHFTagClasses = DrugHFTagClass.get_latest_reset_tag(Main_Form.API_Server);
-                if (_Import_Export == enum_import_export.出庫) drugHFTagClasses = DrugHFTagClass.get_latest_stockin_tag(Main_Form.API_Server);
-                if (drugHFTagClasses == null) return;
-
-                drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.更新時間.StringToDateTime() >= dateTimeIntervelPicker_更新時間.StartTime && drugHFTagClass.更新時間.StringToDateTime() <= dateTimeIntervelPicker_更新時間.EndTime).ToList();
-
-                List<object[]> list_drugHFTagClasses = drugHFTagClasses.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
-
-                List<string> uids = Main_Form.rfidReader_TagUID;
-
-                for (int i = 0; i < list_drugHFTagClasses.Count; i++)
+                if (uids.Contains(drugHFTagClasses[i].TagSN))
                 {
-                    if (uids.Contains(list_drugHFTagClasses[i][(int)enum_DrugHFTag.TagSN].ObjectToString()))
+                    if (_Import_Export == enum_import_export.入庫)
                     {
-                        if (_Import_Export == enum_import_export.入庫) list_drugHFTagClasses[i][(int)enum_DrugHFTag.狀態] = enum_DrugHFTagStatus.入庫註記.GetEnumName();
-                        if (_Import_Export == enum_import_export.出庫) list_drugHFTagClasses[i][(int)enum_DrugHFTag.狀態] = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                        drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                        list_drugHFTagClasses.Add(drugHFTagClasses[i].ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
                     }
                 }
-
-                this.sqL_DataGridView_TagList.RefreshGrid(list_drugHFTagClasses);
+                else
+                {
+                    if (_Import_Export == enum_import_export.出庫)
+                    {
+                        drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                        list_drugHFTagClasses.Add(drugHFTagClasses[i].ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
+                    }                  
+                }
             }
-        }
 
+            this.sqL_DataGridView_TagList.RefreshGrid(list_drugHFTagClasses);
+        }
+        private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Main_Form.Function_外門片解鎖();
+        }
         private void PlC_RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();

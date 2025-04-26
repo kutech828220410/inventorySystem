@@ -1697,12 +1697,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
                 Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名);
-                this.Invoke(new Action(delegate
-                {
-
-                    //dialog_使用者登入.Location = new Point(this.rJ_Lable_領藥台_01_Title.PointToScreen(Point.Empty).X + this.rJ_Lable_領藥台_01_Title.Width + 20, 1);
-                }));
-
+       
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
                 {
                     list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
@@ -1739,7 +1734,7 @@ namespace 調劑台管理系統
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
-            if (list_取藥堆疊母資料.Count > 0 && rfidReader.IsOpen == false)
+            if (list_取藥堆疊母資料.Count > 0 && (rfidReader_1.IsOpen == false || rfidReader_2.IsOpen == false))
             {
                 this.voice.SpeakOnTask("RFID讀取器未開啟");
                 return;
@@ -1750,12 +1745,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
                 Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名);
-                this.Invoke(new Action(delegate
-                {
-
-                    //dialog_使用者登入.Location = new Point(this.rJ_Lable_領藥台_01_Title.PointToScreen(Point.Empty).X + this.rJ_Lable_領藥台_01_Title.Width + 20, 1);
-                }));
-
+          
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
                 {
                     list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);

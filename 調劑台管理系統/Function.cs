@@ -2330,6 +2330,13 @@ namespace 調劑台管理系統
             if (list_locker_table_value_replace.Count > 0) _sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
 
         }
+        public static void Function_外門片解鎖()
+        {
+            List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+            List<string> list_IP = (from temp in list_locker_table_value
+                                    select temp[(int)enum_Locker_Index_Table.IP].ObjectToString()).ToList();
+            Function_外門片解鎖(list_IP);
+        }
         public static void Function_外門片解鎖(List<string> list_IP)
         {
             List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
