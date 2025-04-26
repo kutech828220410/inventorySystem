@@ -1516,10 +1516,10 @@ namespace 調劑台管理系統
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
             {
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
                 {
                     this.voice.SpeakOnTask("庫存不足");
-                    this.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
+                    Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
                     list_取藥堆疊資料_replace.Add(list_取藥堆疊資料[i]);
                 }
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -1538,7 +1538,7 @@ namespace 調劑台管理系統
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
                 盤點量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
                 {
                     庫存量 = "無";
                     結存量 = "無";
@@ -2258,7 +2258,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -2356,7 +2356,7 @@ namespace 調劑台管理系統
                 }
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
                 Console.Write($"新增退藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -2457,7 +2457,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -2544,7 +2544,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -3400,10 +3400,10 @@ namespace 調劑台管理系統
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
             {
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
                 {
                     this.voice.SpeakOnTask("庫存不足");
-                    this.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
+                    Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
                     list_取藥堆疊資料_replace.Add(list_取藥堆疊資料[i]);
                 }
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -3421,7 +3421,7 @@ namespace 調劑台管理系統
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
                 {
                     庫存量 = "無";
                     結存量 = "無";
@@ -4165,7 +4165,7 @@ namespace 調劑台管理系統
                     }
                     if (flag_雙人覆核)
                     {
-                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                        Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                         continue;
                     }
 
@@ -4178,7 +4178,7 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -4276,7 +4276,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -4375,7 +4375,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -4476,7 +4476,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -4563,7 +4563,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -5397,10 +5397,10 @@ namespace 調劑台管理系統
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
             {
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
                 {
                     this.voice.SpeakOnTask("庫存不足");
-                    this.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
+                    Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
                     list_取藥堆疊資料_replace.Add(list_取藥堆疊資料[i]);
                 }
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -5418,7 +5418,7 @@ namespace 調劑台管理系統
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
                 {
                     庫存量 = "無";
                     結存量 = "無";
@@ -6163,7 +6163,7 @@ namespace 調劑台管理系統
                     }
                     if (flag_雙人覆核)
                     {
-                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                        Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                         continue;
                     }
 
@@ -6176,7 +6176,7 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -6275,7 +6275,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -6374,7 +6374,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -6475,7 +6475,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -6562,7 +6562,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -7375,10 +7375,10 @@ namespace 調劑台管理系統
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
             {
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示))
                 {
                     this.voice.SpeakOnTask("庫存不足");
-                    this.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
+                    Function_取藥堆疊資料_設定作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示, false);
                     list_取藥堆疊資料_replace.Add(list_取藥堆疊資料[i]);
                 }
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -7396,7 +7396,7 @@ namespace 調劑台管理系統
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
-                if (this.Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
+                if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊資料[i], enum_取藥堆疊母資料_作業模式.盲盤))
                 {
                     庫存量 = "無";
                     結存量 = "無";
@@ -8140,7 +8140,7 @@ namespace 調劑台管理系統
                     }
                     if (flag_雙人覆核)
                     {
-                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                        Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                         continue;
                     }
 
@@ -8153,7 +8153,7 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -8250,7 +8250,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -8349,7 +8349,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
 
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
@@ -8450,7 +8450,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -8537,7 +8537,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.ID = ID;
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
@@ -8967,7 +8967,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.ID = ID;
 
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 List_領藥_入出庫資料檢查.RemoveAt(i);
                 this.voice.SpeakOnTask("成功");
                 break;
@@ -9144,14 +9144,14 @@ namespace 調劑台管理系統
                 }
                 if (flag_雙人覆核)
                 {
-                    this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                    Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                     continue;
                 }
 
                 takeMedicineStackClasses.Add(takeMedicineStackClass);
 
             }
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
         }
         private void PlC_RJ_Button_條碼輸入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -9259,7 +9259,7 @@ namespace 調劑台管理系統
 
                     if (flag_雙人覆核)
                     {
-                        this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                        Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                         continue;
                     }
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
@@ -9270,7 +9270,7 @@ namespace 調劑台管理系統
 
                 taskList.Add(Task.Run(new Action(delegate
                 {
-                    this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                    Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
                 })));
                 Task.WhenAll(taskList).Wait();
 

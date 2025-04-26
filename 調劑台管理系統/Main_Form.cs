@@ -42,7 +42,7 @@ namespace 調劑台管理系統
         {
             get
             {
-                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
                 else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S01";
 
             }
@@ -51,7 +51,7 @@ namespace 調劑台管理系統
         {
             get
             {
-                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
                 else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S02";
             }
         }
@@ -59,7 +59,7 @@ namespace 調劑台管理系統
         {
             get
             {
-                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
                 else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S03";
             }
         }
@@ -67,7 +67,7 @@ namespace 調劑台管理系統
         {
             get
             {
-                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
                 else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S04";
             }
         }
@@ -88,12 +88,12 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_導引模式 = new PLC_Device("S3105");
         static public PLC_Device PLC_Device_掃碼顏色固定 = new PLC_Device("S3112");
         static public PLC_Device PLC_Device_AI處方核對啟用 = new PLC_Device("S3120");
-        PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
-        PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
-        PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
-        PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
-        PLC_Device PLC_Device_S800 = new PLC_Device("S800");
-        PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
+        static public PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
+        static public PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
+        static public PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
+        static public PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
+        static public PLC_Device PLC_Device_S800 = new PLC_Device("S800");
+        static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";

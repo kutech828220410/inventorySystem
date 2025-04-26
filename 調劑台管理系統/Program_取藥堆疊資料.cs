@@ -99,22 +99,22 @@ namespace 調劑台管理系統
             }
         }
 
-        private void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
+        static private void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
         {
             Function_取藥堆疊資料_設定作業模式(value, enum_value, true);
         }
-        private void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value, bool state)
+        static private void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value, bool state)
         {
             UInt32 temp = value[(int)enum_取藥堆疊母資料.作業模式].StringToUInt32();
             temp.SetBit((int)enum_value, state);
             value[(int)enum_取藥堆疊母資料.作業模式] = temp.ToString();
         }
-        private bool Function_取藥堆疊資料_取得作業模式(takeMedicineStackClass takeMedicineStackClass, enum_取藥堆疊母資料_作業模式 enum_value)
+        static private bool Function_取藥堆疊資料_取得作業模式(takeMedicineStackClass takeMedicineStackClass, enum_取藥堆疊母資料_作業模式 enum_value)
         {
             object[] value = takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
             return Function_取藥堆疊資料_取得作業模式(value, enum_value);
         }
-        private bool Function_取藥堆疊資料_取得作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
+        static private bool Function_取藥堆疊資料_取得作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
         {
             UInt32 temp = value[(int)enum_取藥堆疊母資料.作業模式].StringToUInt32();
             return temp.GetBit((int)enum_value);
@@ -161,19 +161,19 @@ namespace 調劑台管理系統
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             takeMedicineStackClasses.Add(takeMedicineStackClass);
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
         }
-        public void Function_取藥堆疊資料_新增母資料(List<takeMedicineStackClass> takeMedicineStackClasses)
+        static public void Function_取藥堆疊資料_新增母資料(List<takeMedicineStackClass> takeMedicineStackClasses)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses_buf = new List<takeMedicineStackClass>();
             List<Task> taskList = new List<Task>();
             MyTimer myTimer = new MyTimer(500000);
             MyTimer myTimer_total = new MyTimer(500000);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = _sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_藥品設定表 = medConfigClass.get_all(Main_Form.API_Server).ClassToSQL<medConfigClass, enum_medConfig>();
-            List<object[]> list_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
-            List<object[]> list_堆疊母資料 = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品管制方式設定 = _sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
+            List<object[]> list_堆疊母資料 = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
             List<object[]> list_堆疊母資料_add = new List<object[]>();
             bool flag_複盤 = false;
             bool flag_盲盤 = false;
@@ -314,10 +314,7 @@ namespace 調劑台管理系統
                         Task.Run(new Action(delegate
                         {
                             Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
-                            this.Invoke(new Action(delegate
-                            {
-                                MyMessageBox.ShowDialog(msg);
-                            }));
+                            MyMessageBox.ShowDialog(msg);
                         }));
 
 
@@ -361,14 +358,14 @@ namespace 調劑台管理系統
                         commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
                     }));
 
-                    this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
+                    _sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
                 }
 
                 List<object[]> list_value_delete = new List<object[]>();
                 for (int i = 0; i < takeMedicineStackClasses.Count; i++)
                 {
                     string 藥品碼 = takeMedicineStackClasses[i].藥品碼;
-                    List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+                    List<object[]> list_value = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
                     List<object[]> list_value_buf = new List<object[]>();
 
                     list_value_buf = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
@@ -378,12 +375,12 @@ namespace 調劑台管理系統
                         list_value_delete.Add(list_value_buf[0]);
                     }
                 }
-                if (list_value_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
+                if (list_value_delete.Count > 0) _sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
                 Console.WriteLine($" 新增取藥資料 (耗時){myTimer_total.ToString()} ");
             }
             else
             {
-                this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
+                _sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
             }
 
 
@@ -2382,9 +2379,9 @@ namespace 調劑台管理系統
                     總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
                     庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
                     結存量 = (庫存量 + 總異動量);
-                    flag_獨立作業 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
-                    flag_雙人覆核 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
-                    flag_RFID使用 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用);
+                    flag_獨立作業 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
+                    flag_雙人覆核 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
+                    flag_RFID使用 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用);
                     if (庫存量 == -999)
                     {
 
@@ -2403,7 +2400,7 @@ namespace 調劑台管理系統
                     {
                         if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()) continue;
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
-                        this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
+                        Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
                         this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
                         return;
                     }
@@ -2669,13 +2666,13 @@ namespace 調劑台管理系統
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
                         if (!plC_CheckBox_無庫存自動補足.Bool) Function_儲位亮燈_Ex(new LightOn(藥品碼, Color.Black, 0));
-                        // this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
+                        // Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
                         flag_取藥堆疊母資料_Update = true;
                     }
                     //更新取藥子堆疊資料
                     else if (總異動量 == 0 || 庫存量 >= 0)
                     {
-                        if (this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.效期管控) && 效期.StringIsEmpty())
+                        if (Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.效期管控) && 效期.StringIsEmpty())
                         {
                             this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName();
                             flag_取藥堆疊母資料_Update = true;

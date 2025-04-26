@@ -120,8 +120,6 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
-
-
         private bool flag_Program_收支作業_換頁 = false;
         private bool flag_Program_收支作業_換頁離開 = false;
         private void sub_Program_收支作業()
@@ -758,7 +756,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.批號 = 批號;
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);           
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);           
           
         }
 
@@ -871,11 +869,11 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.批號 = batch_Inventory_ImportClass.批號;
                 takeMedicineStackClasses.Add(takeMedicineStackClass);
             }
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
         }
         private void PlC_RJ_Button_收支作業_RFID出庫_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_收支作業_RFID出入庫 dialog_收支作業_RFID出入庫 = new Dialog_收支作業_RFID出入庫(Dialog_收支作業_RFID出入庫.enum_import_export.出庫);
+            Dialog_收支作業_RFID收支作業 dialog_收支作業_RFID出入庫 = new Dialog_收支作業_RFID收支作業(IncomeOutcomeMode.支出);
             if (dialog_收支作業_RFID出入庫.ShowDialog() != DialogResult.Yes) return;
 
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
@@ -899,11 +897,11 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.批號 = stockClass.Lot_number;
                 takeMedicineStackClasses.Add(takeMedicineStackClass);
             }
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
         }
         private void PlC_RJ_Button_收支作業_RFID入庫_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_收支作業_RFID出入庫 dialog_收支作業_RFID出入庫 = new Dialog_收支作業_RFID出入庫(Dialog_收支作業_RFID出入庫.enum_import_export.入庫);
+            Dialog_收支作業_RFID收支作業 dialog_收支作業_RFID出入庫 = new Dialog_收支作業_RFID收支作業(IncomeOutcomeMode.收入);
             if (dialog_收支作業_RFID出入庫.ShowDialog() != DialogResult.Yes) return;
 
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
@@ -927,7 +925,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.批號 = stockClass.Lot_number;
                 takeMedicineStackClasses.Add(takeMedicineStackClass);
             }
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
         }
         #endregion

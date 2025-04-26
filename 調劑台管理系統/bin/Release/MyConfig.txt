@@ -4,7 +4,6 @@
   "RFID使用": false,
   "掃碼槍COM通訊": true,
   "RFID_COMPort": "COM1",
-  "HFRFID_COMPort": "COM14",
   "Scanner01_COMPort": "COM2",
   "Scanner02_COMPort": "",
   "Scanner03_COMPort": "",
@@ -29,5 +28,7 @@
   "Pannel35_Port": 29020,
   "ControlMode": false,
   "舊版晶片": false,
-  "聲紋辨識_IP": ""
+  "聲紋辨識_IP": "",
+  "HFRFID_1_COMPort": "COM3",
+  "HFRFID_2_COMPort": ""
 }

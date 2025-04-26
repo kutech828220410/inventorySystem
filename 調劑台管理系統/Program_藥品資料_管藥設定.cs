@@ -21,6 +21,7 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        static public SQL_DataGridView _sqL_DataGridView_藥品管制方式設定;
         private void Program_藥品資料_管藥設定_Init()
         {
             Table table = medGeneralConfigClass.init(API_Server);
@@ -29,7 +30,8 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"[管藥設定表]建立失敗");
                 return;
             }
-            sqL_DataGridView_藥品管制方式設定.Init(table);
+            _sqL_DataGridView_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定;
+            this.sqL_DataGridView_藥品管制方式設定.Init(table);
 
             this.comboBox_藥品資料_管藥設定_類型.SelectedIndexChanged += ComboBox_藥品資料_管藥設定_類型_SelectedIndexChanged;
 

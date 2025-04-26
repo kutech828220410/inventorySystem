@@ -462,7 +462,7 @@ namespace 調劑台管理系統
 
             taskList.Add(Task.Run(new Action(delegate
             {
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
             })));
 
             Task.WhenAll(taskList).Wait();
@@ -655,7 +655,7 @@ namespace 調劑台管理系統
 
             taskList.Add(Task.Run(new Action(delegate
             {
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
             })));
 
             Task.WhenAll(taskList).Wait();
@@ -934,7 +934,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.調劑台名稱 = "更新資料";
             takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None.GetEnumName();
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+            Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
         }
         public void Function_從SQL取得儲位到雲端資料()
         {

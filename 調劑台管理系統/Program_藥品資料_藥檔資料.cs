@@ -101,11 +101,11 @@ namespace 調劑台管理系統
         群組序號,
         群組名稱,
     }
-
+   
     public partial class Main_Form : Form
     {
         private DeviceBasicClass DeviceBasicClass_儲位庫存 = new DeviceBasicClass();
-
+        static public SQL_DataGridView _sqL_DataGridView_藥品資料_藥檔資料;
         private void Program_藥品資料_藥檔資料_Init()
         {
             Table table = medClass.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.StoreType.調劑台);
@@ -117,7 +117,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-       
+            _sqL_DataGridView_藥品資料_藥檔資料 = this.sqL_DataGridView_藥品資料_藥檔資料;
             this.sqL_DataGridView_藥品資料_藥檔資料.Init(table);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);

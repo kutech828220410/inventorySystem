@@ -520,11 +520,11 @@
     <Compile Include="Dialog_AI\Dialog_醫師疑義處方紀錄表.Designer.cs">
       <DependentUpon>Dialog_醫師疑義處方紀錄表.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID出入庫.cs">
+    <Compile Include="Dialog\Dialog_收支作業_RFID收支作業.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID出入庫.Designer.cs">
-      <DependentUpon>Dialog_收支作業_RFID出入庫.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_收支作業_RFID收支作業.Designer.cs">
+      <DependentUpon>Dialog_收支作業_RFID收支作業.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_HFRFID調劑作業.cs">
       <SubType>Form</SubType>
@@ -734,8 +734,8 @@
     <EmbeddedResource Include="Dialog\Dialog_指紋登入.resx">
       <DependentUpon>Dialog_指紋登入.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID出入庫.resx">
-      <DependentUpon>Dialog_收支作業_RFID出入庫.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID收支作業.resx">
+      <DependentUpon>Dialog_收支作業_RFID收支作業.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>

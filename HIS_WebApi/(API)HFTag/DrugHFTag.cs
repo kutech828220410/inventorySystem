@@ -492,6 +492,317 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 依指定日期範圍，並可選擇指定藥碼或藥名關鍵字，統計HF標籤的入庫/未入庫/狀態分類數量（數量型別為double）
+        /// </summary>
+        /// <remarks>
+        /// <para>ValueAry 傳入資料說明：</para>
+        /// <list type="bullet">
+        /// <item><description>ValueAry[0]: 起始時間 (必填，例如："2025-04-01 00:00:00")</description></item>
+        /// <item><description>ValueAry[1]: 結束時間 (必填，例如："2025-04-30 23:59:59")</description></item>
+        /// <item><description>ValueAry[2]: 指定藥碼 (可選填)</description></item>
+        /// <item><description>ValueAry[3]: 藥名關鍵字 (可選填)</description></item>
+        /// </list>
+        /// </remarks>
+        /// <param name="returnData">共用資料結構，包含 ValueAry 參數</param>
+        /// <returns>回傳統計結果（double型態數量）</returns>
+        [Route("get_stockin_status_detail_count_in_range_with_filter")]
+        [HttpPost]
+        public string get_stockin_status_detail_count_in_range_with_filter([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_stockin_status_detail_count_in_range_with_filter";
+
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                if (returnData.ValueAry.Count < 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤，至少包含 start_date, end_date";
+                    return returnData.JsonSerializationt();
+                }
+
+                string start_date = returnData.ValueAry[0];
+                string end_date = returnData.ValueAry[1];
+
+                string filterDrugCode = returnData.ValueAry.Count > 2 ? returnData.ValueAry[2] : "";
+                string filterDrugName = returnData.ValueAry.Count > 3 ? returnData.ValueAry[3] : "";
+
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
+                string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
+                string command = $@"
+            SELECT * FROM {DB}.{TableName}
+            WHERE {timeCol} >= '{start_date}'
+              AND {timeCol} <= '{end_date}'
+        ";
+
+                DataTable dataTable = sQLControl_drugHFTag.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_value = dataTable.DataTableToRowList();
+                List<DrugHFTagClass> allTags = list_value.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+
+                if (!string.IsNullOrEmpty(filterDrugCode))
+                {
+                    allTags = allTags.Where(t => t.藥碼 != null && t.藥碼.Contains(filterDrugCode, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+                if (!string.IsNullOrEmpty(filterDrugName))
+                {
+                    allTags = allTags.Where(t => t.藥名 != null && t.藥名.Contains(filterDrugName, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+
+                var grouped = allTags.GroupBy(tag => tag.TagSN);
+
+                double 已重置數量 = 0;
+                double 入庫註記數量 = 0;
+                double 出庫註記數量 = 0;
+                double 進入儲位數量 = 0;
+                double 離開儲位數量 = 0;
+                double 已入庫數量 = 0;
+                double 未入庫數量 = 0;
+
+                foreach (var group in grouped)
+                {
+                    var tags = group.OrderByDescending(t => t.更新時間.StringToDateTime()).ToList();
+
+                    bool hasReset = tags.Any(t => t.狀態 == enum_DrugHFTagStatus.已重置.ToString());
+                    if (!hasReset) continue;
+
+                    var latestTag = tags.FirstOrDefault();
+                    if (latestTag != null)
+                    {
+                        double qty = latestTag.數量.StringToDouble();
+
+                        switch (latestTag.狀態)
+                        {
+                            case "已重置":
+                                已重置數量 += qty;
+                                break;
+                            case "入庫註記":
+                                入庫註記數量 += qty;
+                                break;
+                            case "出庫註記":
+                                出庫註記數量 += qty;
+                                break;
+                            case "進入儲位":
+                                進入儲位數量 += qty;
+                                break;
+                            case "離開儲位":
+                                離開儲位數量 += qty;
+                                break;
+                        }
+
+                        if (latestTag.狀態 == enum_DrugHFTagStatus.入庫註記.ToString())
+                        {
+                            已入庫數量 += qty;
+                        }
+                        else
+                        {
+                            未入庫數量 += qty;
+                        }
+                    }
+                }
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = new
+                {
+                    已重置數量 = 已重置數量,
+                    入庫註記數量 = 入庫註記數量,
+                    出庫註記數量 = 出庫註記數量,
+                    進入儲位數量 = 進入儲位數量,
+                    離開儲位數量 = 離開儲位數量,
+                    已入庫數量 = 已入庫數量,
+                    未入庫數量 = 未入庫數量,
+                    總數量 = 已入庫數量 + 未入庫數量
+                };
+                returnData.Result = $"條件細分統計完成";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 依藥碼陣列，統計各藥碼的標籤入庫/未入庫/狀態分類數量（數量型別為double）
+        /// </summary>
+        /// <remarks>
+        /// ValueAry[0]：起始時間 (yyyy-MM-dd HH:mm:ss)
+        /// ValueAry[1]：結束時間 (yyyy-MM-dd HH:mm:ss)
+        /// Data：藥碼陣列 List&lt;string&gt;
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>回傳各藥碼對應的 DrugHFTagStatusSummaryByCode 列表</returns>
+        [Route("get_stockin_status_detail_summary_by_codes")]
+        [HttpPost]
+        public string get_stockin_status_detail_summary_by_codes([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_stockin_status_detail_summary_by_codes";
+
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                if (returnData.ValueAry.Count < 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤，至少需包含 startDate 與 endDate";
+                    return returnData.JsonSerializationt();
+                }
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤，需包含藥碼陣列";
+                    return returnData.JsonSerializationt();
+                }
+
+                string startDate = returnData.ValueAry[0];
+                string endDate = returnData.ValueAry[1];
+                List<string> drugCodes = returnData.Data.ObjToClass<List<string>>();
+                if (drugCodes == null || drugCodes.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入藥碼陣列為空";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
+                string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
+                string drugCodeCol = enum_DrugHFTag.藥碼.GetEnumName();
+                string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
+
+                string sqlList = string.Join(",", drugCodes.Select(code => $"'{code}'"));
+
+                string command = $@"
+            SELECT * FROM {DB}.{TableName}
+            WHERE {timeCol} >= '{startDate}'
+              AND {timeCol} <= '{endDate}'
+              AND {drugCodeCol} IN ({sqlList})
+        ";
+
+                DataTable dataTable = sQLControl_drugHFTag.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_value = dataTable.DataTableToRowList();
+                List<DrugHFTagClass> allTags = list_value.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+
+                var groupedByDrugCode = allTags.GroupBy(t => t.藥碼);
+                List<DrugHFTagStatusSummaryByCode> summaryList = new List<DrugHFTagStatusSummaryByCode>();
+
+                foreach (var group in groupedByDrugCode)
+                {
+                    var groupedByTagSN = group.GroupBy(t => t.TagSN);
+
+                    double 已重置數量 = 0;
+                    double 入庫註記數量 = 0;
+                    double 出庫註記數量 = 0;
+                    double 進入儲位數量 = 0;
+                    double 離開儲位數量 = 0;
+                    double 已入庫數量 = 0;
+                    double 未入庫數量 = 0;
+
+                    foreach (var tagGroup in groupedByTagSN)
+                    {
+                        var latestTag = tagGroup.OrderByDescending(t => t.更新時間.StringToDateTime()).FirstOrDefault();
+                        if (latestTag == null) continue;
+
+                        bool hasReset = tagGroup.Any(t => t.狀態 == enum_DrugHFTagStatus.已重置.ToString());
+                        if (!hasReset) continue;
+
+                        double qty = latestTag.數量.StringToDouble();
+
+                        switch (latestTag.狀態)
+                        {
+                            case "已重置":
+                                已重置數量 += qty;
+                                break;
+                            case "入庫註記":
+                                入庫註記數量 += qty;
+                                break;
+                            case "出庫註記":
+                                出庫註記數量 += qty;
+                                break;
+                            case "進入儲位":
+                                進入儲位數量 += qty;
+                                break;
+                            case "離開儲位":
+                                離開儲位數量 += qty;
+                                break;
+                        }
+
+                        if (latestTag.狀態 == enum_DrugHFTagStatus.入庫註記.ToString())
+                        {
+                            已入庫數量 += qty;
+                        }
+                        else
+                        {
+                            未入庫數量 += qty;
+                        }
+                    }
+
+                    summaryList.Add(new DrugHFTagStatusSummaryByCode
+                    {
+                        藥碼 = group.Key,
+                        已重置數量 = 已重置數量,
+                        入庫註記數量 = 入庫註記數量,
+                        出庫註記數量 = 出庫註記數量,
+                        進入儲位數量 = 進入儲位數量,
+                        離開儲位數量 = 離開儲位數量,
+                        已入庫數量 = 已入庫數量,
+                        未入庫數量 = 未入庫數量,
+                        總數量 = 已入庫數量 + 未入庫數量
+                    });
+                }
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = summaryList;
+                returnData.Result = $"取得各藥碼統計成功，共<{summaryList.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
 
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)

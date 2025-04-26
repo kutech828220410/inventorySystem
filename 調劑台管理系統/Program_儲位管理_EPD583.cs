@@ -1403,7 +1403,7 @@ namespace 調劑台管理系統
             foreach (object[] value in list_value)
             {
                 IP = value[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                // this.Function_取藥堆疊資料_新增母資料(Guid.NewGuid().ToString(), this.textBox_工程模式_領藥台_01_名稱.Text, enum_取藥堆疊_TYPE.EPD_5_83鎖控, "", IP, 登入者名稱, Color.Lime.ToColorString(), 0);
+                // Function_取藥堆疊資料_新增母資料(Guid.NewGuid().ToString(), this.textBox_工程模式_領藥台_01_名稱.Text, enum_取藥堆疊_TYPE.EPD_5_83鎖控, "", IP, 登入者名稱, Color.Lime.ToColorString(), 0);
                 List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetRows(enum_Locker_Index_Table.IP.GetEnumName(), IP, false);
                 if (list_locker_table_value.Count > 0)
                 {

@@ -155,7 +155,7 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
-        private bool Function_藥品管制方式設定_取得管制方式(List<object[]> list_藥品管制方式設定, enum_medGeneralConfig _enum_medGeneralConfig, string 代號)
+        static private bool Function_藥品管制方式設定_取得管制方式(List<object[]> list_藥品管制方式設定, enum_medGeneralConfig _enum_medGeneralConfig, string 代號)
         {
             List<object[]> list_value = list_藥品管制方式設定.GetRows((int)enum_medGeneralConfig.代號, 代號);
             if (list_value.Count == 0) return false;

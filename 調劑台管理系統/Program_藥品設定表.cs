@@ -52,15 +52,15 @@ namespace 調劑台管理系統
         }
 
         #region Function
-        
-        private bool Function_藥品設定表_取得是否自訂義(List<object[]> list_value ,string 藥品碼)
+
+        static private bool Function_藥品設定表_取得是否自訂義(List<object[]> list_value ,string 藥品碼)
         {
        
             List<object[]> list_value_buf = list_value.GetRows((int)enum_medConfig.藥碼, 藥品碼);
             if (list_value_buf.Count == 0) return false;
             return list_value_buf[0][(int)enum_medConfig.自定義].StringToBool();
         }
-        private bool Function_藥品設定表_取得管制方式(List<object[]> list_value, enum_medConfig _enum_medConfig, string 藥品碼)
+        static private bool Function_藥品設定表_取得管制方式(List<object[]> list_value, enum_medConfig _enum_medConfig, string 藥品碼)
         {
        
             List<object[]> list_value_buf = list_value.GetRows((int)enum_medConfig.藥碼, 藥品碼);
