@@ -2498,11 +2498,11 @@ namespace HIS_WebApi
                 settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
                 if (settingPage.設定值 == true.ToString())
                 {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.DC確認.StringIsEmpty()).ToList();
+                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false&& temp.DC確認.StringIsEmpty()).ToList();
                 }
                 else
                 {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty()).ToList();
+                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false).ToList();
                 }
 
                 List<medClass> medClasses = new List<medClass>();
