@@ -29,6 +29,10 @@
   "ControlMode": false,
   "ÂÂª©´¹¤ù": false,
   "Án¯¾¿ëÃÑ_IP": "",
+<<<<<<< HEAD
   "HFRFID_1_COMPort": "COM3",
+=======
+  "HFRFID_1_COMPort": "",
+>>>>>>> Anna
   "HFRFID_2_COMPort": ""
 }

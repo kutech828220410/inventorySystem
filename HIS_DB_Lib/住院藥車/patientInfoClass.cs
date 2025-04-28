@@ -377,14 +377,26 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
-
         public class ICP_By_bedNum : IComparer<patientInfoClass>
         {
+            
             public int Compare(patientInfoClass x, patientInfoClass y)
             {
-                return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+                int result = string.Compare(x.床號, y.床號);
+                if (result == 0)
+                {
+                    result = x.更新時間.CompareTo(y.更新時間) * -1;
+                }
+                return result;
             }
         }
+        //public class ICP_By_bedNum : IComparer<patientInfoClass>
+        //{
+        //    public int Compare(patientInfoClass x, patientInfoClass y)
+        //    {
+        //        return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+        //    }
+        //}
         static public returnData update_patientInfo(string API_Server, List<patientInfoClass> patientInfoClasses)
         {
             string url = $"{API_Server}/api/med_cart/update_patientInfo";

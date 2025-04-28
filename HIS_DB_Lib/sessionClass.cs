@@ -18,6 +18,43 @@ namespace HIS_DB_Lib
         loginTime,
         verifyTime,
     }
+    public enum enum_login_data
+    {
+        GUID,
+        權限等級,
+        Data01,
+        Data02,
+        Data03,
+        Data04
+    }
+    public class loginDataClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("level")]
+        public string 權限等級 { get; set; }
+        [JsonPropertyName("Data01")]
+        public string Data01 { get; set; }
+        [JsonPropertyName("Data02")]
+        public string Data02 { get; set; }
+        [JsonPropertyName("Data03")]
+        public string Data03 { get; set; }
+        [JsonPropertyName("Data04")]
+        public string Data04 { get; set; }
+        static public List<loginDataClass> get_permission_index(string API_Server)
+        {
+            string url = $"{API_Server}/api/session/get_permission_index";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<loginDataClass> loginDataClasses = returnData.Data.ObjToClass<List<loginDataClass>>();
+            return loginDataClasses;
+        }
+    }
     public class PermissionsClass
     {
         [JsonPropertyName("name")]

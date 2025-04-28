@@ -18,8 +18,9 @@ namespace HIS_WebApi
     public class sessionController : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        static string API = Method.GetServerAPI("Main", "網頁", "API01");
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-
+        
         [HttpGet]
         public string Get(string level)
         {
@@ -422,7 +423,143 @@ namespace HIS_WebApi
             }
            
         }
+        [Route("get_setting_by_type")]
+        [HttpPost]
+        public string get_setting_by_type([FromBody] returnData returnData)
+        {
+            try
+            {
 
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry應為[\"權限等級\",\"調劑台or藥庫\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                int level = returnData.ValueAry[0].StringToInt32();
+                string 類別 = returnData.ValueAry[1];
+                List<PermissionsClass> PermissionsClasses = GetPermissions(level);
+
+                PermissionsClasses = PermissionsClasses.Where(item => item.類別 == 類別).ToList();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = PermissionsClasses;
+                returnData.Result = $"取得{類別}權限設定，共{PermissionsClasses.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [Route("update_setting")]
+        [HttpPost]
+        public string update_setting([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry應為[\"權限等級\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<PermissionsClass> update_permiss = returnData.Data.ObjToClass<List<PermissionsClass>>();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string level = returnData.ValueAry[0];
+                List<PermissionsClass> PermissionsClasses = GetPermissions(level.StringToInt32());
+
+                foreach(var item in PermissionsClasses)
+                {
+                    if(update_permiss.Any(item => item.索引 == item.索引))
+                    {
+                        PermissionsClass permissionsClasses = update_permiss.Where(item => item.索引 == item.索引).FirstOrDefault();
+                        if(permissionsClasses != null)
+                        {
+                            item.狀態 = permissionsClasses.狀態;
+                        }
+                        
+                    }
+                }
+                List<loginDataClass> loginDataClasses = HIS_DB_Lib.loginDataClass.get_permission_index(API);
+                loginDataClass loginData = loginDataClasses.Where(item => item.權限等級 == level).FirstOrDefault();
+                if(loginData == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無{level}權限";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<loginDataClass> loginDataClass = PackPermissionBitsToLongs(loginData,PermissionsClasses);
+                List<object[]> update_login_data = loginDataClass.ClassToSQL<loginDataClass, enum_login_data>();
+                SQLControl sQLControl_login_data = new SQLControl(Server, DB, "login_data", UserName, Password, Port, SSLMode);
+                sQLControl_login_data.UpdateByDefulteExtra(null, update_login_data);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = update_permiss;
+                returnData.Result = $"更新權限設定，共{update_permiss.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [Route("get_permission_index")]
+        [HttpPost]
+        public string get_permission_index([FromBody] returnData returnData)
+        {
+            try
+            {
+                
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_login_data = new SQLControl(Server, DB, "login_data", UserName, Password, Port, SSLMode);
+                List<object[]> session_data = sQLControl_login_data.GetAllRows(null);
+                List<loginDataClass> loginDataClasses = session_data.SQLToClass<loginDataClass, enum_login_data>();
+                
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = loginDataClasses;
+                returnData.Result = $"取得權限表單，共{loginDataClasses.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
         private List<PermissionsClass> GetPermissions(int level)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -493,6 +630,48 @@ namespace HIS_WebApi
             }
             return result;
         }
+        private List<loginDataClass> PackPermissionBitsToLongs(loginDataClass loginDataClass,List<PermissionsClass> permissions)
+        {
+            bool[] data = new bool[256];
+
+            // 轉成 bool[256]，注意型別是 string，要處理
+            foreach (var permission in permissions)
+            {
+                int index = permission.索引;
+                if (index >= 0 && index < 256)
+                {
+                    data[index] = permission.狀態;
+                }
+            }
+
+            List<long> packedLongs = new List<long>();
+
+            for (int section = 0; section < 4; section++)
+            {
+                long value = 0;
+                for (int bit = 0; bit < 64; bit++)
+                {
+                    if (data[section * 64 + bit])
+                    {
+                        value |= 1L << bit;
+                    }
+                }
+                packedLongs.Add(value);
+            }
+
+            loginDataClass loginData = new loginDataClass
+            {
+                GUID = loginDataClass.GUID,
+                權限等級 = loginDataClass.權限等級,
+                Data01 = packedLongs[0].ToString(),
+                Data02 = packedLongs[1].ToString(),
+                Data03 = packedLongs[2].ToString(),
+                Data04 = packedLongs[3].ToString()
+            };
+
+            return new List<loginDataClass> { loginData };
+        }
+
         private void Check_Table()
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
