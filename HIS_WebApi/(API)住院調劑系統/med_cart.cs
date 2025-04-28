@@ -1252,10 +1252,18 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, tableName_patient_info, UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                settingPageClass settingPage_public = settingPageClasses.myFind("medicine_cart", "顯示公藥");
+
+                bool flag_DC = settingPage_DC.設定值 == true.ToString() ? true : false;
+                bool flag_public = settingPage_public.設定值 == true.ToString() ? false : true;
 
                 (string StartTime, string Endtime) = GetToday();
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+               
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == flag_public && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false && temp.DC確認.StringIsEmpty() == flag_DC).ToList();
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
 
                 //string command = $"SELECT * FROM {DB}.{tableName_patient_info} WHERE 更新時間 BETWEEN '{StartTime}' AND '{Endtime}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' AND 占床狀態 != '{enum_bed_status_string.已出院.GetEnumName()}';";
@@ -2495,15 +2503,21 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
-                if (settingPage.設定值 == true.ToString())
-                {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false&& temp.DC確認.StringIsEmpty()).ToList();
-                }
-                else
-                {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false).ToList();
-                }
+                settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                settingPageClass settingPage_public = settingPageClasses.myFind("medicine_cart", "顯示公藥");
+
+                bool flag_DC = settingPage_DC.設定值 == true.ToString() ? true : false;
+                bool flag_public = settingPage_public.設定值 == true.ToString() ? false : true;
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == flag_public && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false && temp.DC確認.StringIsEmpty() == flag_DC).ToList();
+
+                //if (settingPage_DC.設定值 == true.ToString())
+                //{
+                //    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false&& temp.DC確認.StringIsEmpty()).ToList();
+                //}
+                //else
+                //{
+                //    sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false).ToList();
+                //}
 
                 List<medClass> medClasses = new List<medClass>();
                 Dictionary<string, List<medClass>> medClassDict = new Dictionary<string, List<medClass>>();
