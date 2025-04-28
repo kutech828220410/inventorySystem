@@ -27,6 +27,34 @@ namespace HIS_DB_Lib
         Data03,
         Data04
     }
+    public enum enum_login_data_index
+    {
+        GUID,
+        索引,
+        Name,
+        Type,
+    }
+    public class loginDataIndexClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("index")]
+        public string 索引 { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        public class ICP_By_index : IComparer<loginDataIndexClass>
+        {
+            public int Compare(loginDataIndexClass x, loginDataIndexClass y)
+            {
+                int xIndex = x.索引.StringToInt32();
+                int yIndex = y.索引.StringToInt32();
+
+                return xIndex.CompareTo(yIndex);
+            }
+        }
+    }
     public class loginDataClass
     {
         [JsonPropertyName("GUID")]

@@ -86,7 +86,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
 
-        [JsonPropertyName("MED_BAG_SN")]
+        [JsonPropertyName("Barcode")]
         public string 藥袋條碼 { get; set; }
 
         [JsonPropertyName("PATCODE")]
@@ -156,6 +156,13 @@ namespace HIS_DB_Lib
         public string error { get; set; }
         public List<string> error_type { get; set; }
         public string response { get; set; }
+        public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
+        {
+            public int Compare(suspiciousRxLogClass x, suspiciousRxLogClass y)
+            {
+                return x.加入時間.CompareTo(y.加入時間) * -1;
+            }
+        }
         static public suspiciousRxLogClass add(string API_Server, suspiciousRxLogClass suspiciousRxLogClasses)
         {
             string url = $"{API_Server}/api/suspiciousRxLog/add";

@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 using HIS_DB_Lib;
+using Microsoft.AspNetCore.Hosting.Server;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -423,6 +424,115 @@ namespace HIS_WebApi
             }
            
         }
+        /// <summary>
+        /// 以權限等級取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["權限等級"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_login_data_index")]
+        [HttpPost]
+        public string get_login_data_index([FromBody] returnData returnData)
+        {
+            try
+            {
+                
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                returnData.Method = "get_login_data_index";
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
+                List<object[]> login_data_index = sQLControl_login_data_index.GetAllRows(null);
+                List<loginDataIndexClass> loginDataIndexClasses = login_data_index.SQLToClass<loginDataIndexClass, enum_login_data_index>();
+                loginDataIndexClasses.Sort(new loginDataIndexClass.ICP_By_index());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = loginDataIndexClasses;
+                returnData.Result = $"取得權限設定，共{loginDataIndexClasses.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新權限資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": [
+        ///     {
+        ///         "name":"交班對點頁面"
+        ///         "index":0,
+        ///         "type":"調劑台",
+        ///         "state": true or false
+        ///     }],
+        ///     "ValueAry":["權限等級"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_login_data_index")]
+        [HttpPost]
+        public string update_login_data_index([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                
+                List<loginDataIndexClass> update_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
+                List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
+
+
+                sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = update_loginDataIndex;
+                returnData.Result = $"更新權限表，共{update_loginDataIndex.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以權限等級和類別取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["權限等級","類別(調劑台\藥庫\網頁)"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("get_setting_by_type")]
         [HttpPost]
         public string get_setting_by_type([FromBody] returnData returnData)
@@ -463,6 +573,26 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 更新權限資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": [
+        ///     {
+        ///         "name":"交班對點頁面"
+        ///         "index":0,
+        ///         "type":"調劑台",
+        ///         "state": true or false
+        ///     }],
+        ///     "ValueAry":["權限等級"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("update_setting")]
         [HttpPost]
         public string update_setting([FromBody] returnData returnData)
@@ -497,15 +627,11 @@ namespace HIS_WebApi
 
                 foreach(var item in PermissionsClasses)
                 {
-                    if(update_permiss.Any(item => item.索引 == item.索引))
+                    PermissionsClass permissionsClasses = update_permiss.Where(temp => temp.索引 == item.索引).FirstOrDefault();
+                    if(permissionsClasses != null)
                     {
-                        PermissionsClass permissionsClasses = update_permiss.Where(item => item.索引 == item.索引).FirstOrDefault();
-                        if(permissionsClasses != null)
-                        {
-                            item.狀態 = permissionsClasses.狀態;
-                        }
-                        
-                    }
+                        item.狀態 = permissionsClasses.狀態;
+                    }                        
                 }
                 List<loginDataClass> loginDataClasses = HIS_DB_Lib.loginDataClass.get_permission_index(API);
                 loginDataClass loginData = loginDataClasses.Where(item => item.權限等級 == level).FirstOrDefault();
@@ -515,7 +641,7 @@ namespace HIS_WebApi
                     returnData.Result = $"無{level}權限";
                     return returnData.JsonSerializationt(true);
                 }
-                List<loginDataClass> loginDataClass = PackPermissionBitsToLongs(loginData,PermissionsClasses);
+                List<loginDataClass> loginDataClass = PackPermissionBitsToLongs(loginData, PermissionsClasses);
                 List<object[]> update_login_data = loginDataClass.ClassToSQL<loginDataClass, enum_login_data>();
                 SQLControl sQLControl_login_data = new SQLControl(Server, DB, "login_data", UserName, Password, Port, SSLMode);
                 sQLControl_login_data.UpdateByDefulteExtra(null, update_login_data);
@@ -532,6 +658,18 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 取得權限
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("get_permission_index")]
         [HttpPost]
         public string get_permission_index([FromBody] returnData returnData)
@@ -634,7 +772,6 @@ namespace HIS_WebApi
         {
             bool[] data = new bool[256];
 
-            // 轉成 bool[256]，注意型別是 string，要處理
             foreach (var permission in permissions)
             {
                 int index = permission.索引;

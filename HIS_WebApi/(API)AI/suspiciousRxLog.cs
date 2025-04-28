@@ -14,6 +14,10 @@ using Org.BouncyCastle.Bcpg.OpenPgp;
 using NPOI.HPSF;
 using NPOI.HSSF.Util;
 using System.Text.RegularExpressions;
+using System.Data;
+using MyOffice;
+using MyUI;
+using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -142,6 +146,66 @@ namespace HIS_WebApi._API_AI
                 List<object[]> list_suspiciousRxLog = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
 
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"取得{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 以操作時間取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["起始時間","結束時間"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_op_time")]
+        public string get_by_op_time([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_op_time";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"起始時間\",\"結束時間\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string 起始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+                DateTime date_st = 起始時間.StringToDateTime();
+                DateTime date_end = 結束時間.StringToDateTime();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "suspiciousRxLog";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE 加入時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 != '{enum_suspiciousRxLog_status.無異狀.GetEnumName()}';";
+                DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
+
+                List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClasses;
@@ -344,6 +408,55 @@ namespace HIS_WebApi._API_AI
                 returnData.Result = $"Exception:{ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
+        }
+        /// <summary>
+        /// 取得交易紀錄明細(Excel)(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        List(suspiciousRxLogClass)
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("download_datas_excel")]
+        [HttpPost]
+        public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
+
+                List<object[]> list_suspiciousRxLogClasses = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                System.Data.DataTable dataTable = list_suspiciousRxLogClasses.ToDataTable(new enum_suspiciousRxLog());
+                dataTable = dataTable.ReorderTable(new enum_suspiciousRxLog());
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx, new[] { (int)enum_suspiciousRxLog.備註 });
+                //Stream stream = new MemoryStream(excelData);
+                //byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}處方疑義.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses)
         {

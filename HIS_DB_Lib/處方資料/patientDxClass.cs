@@ -77,7 +77,7 @@ namespace HIS_DB_Lib
         public List<MedicalCodeItem> 過敏紀錄 { get; set; }
         [JsonPropertyName("INTERACT")]
         public List<MedicalCodeItem> 交互作用紀錄 { get; set; }
-
+        
         static public patientDxClass add(string API_Server, patientDxClass patientDxClasses)
         {
             string url = $"{API_Server}/api/patientDx/add";
