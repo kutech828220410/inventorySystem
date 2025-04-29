@@ -365,6 +365,18 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
+        public class ICP_By_bedNum : IComparer<medCpoeClass>
+        {
+            public int Compare(medCpoeClass x, medCpoeClass y)
+            {
+                int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+                if (result == 0)
+                {
+                    result = string.Compare(x.更新時間, y.更新時間) * -1;
+                }
+                return result;
+            }
+        }
         static public returnData debit(string API_Server, string 操作人, string 調劑台, string GUID)
         {
             string url = $"{API_Server}/api/med_cart/debit";

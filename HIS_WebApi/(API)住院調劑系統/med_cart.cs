@@ -470,19 +470,51 @@ namespace HIS_WebApi
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        foreach (medCpoeClass medCpoeClass in Cpoe_old)
+                        
+                    })));
+                    Task.WhenAll(tasks).Wait();
+                    tasks.Clear();
+                    List<string> replace_list = new List<string>();
+                    foreach (var add in medCpoe_sql_add)
+                    {
+                        medCpoeClass doubleCpoe = Cpoe_old
+                            .Where(temp => temp.藥碼 == add.藥碼 && temp.途徑 == add.途徑 && temp.頻次 == add.頻次 && temp.數量 == add.數量)
+                            .FirstOrDefault();
+                        if (doubleCpoe != null)
                         {
-                            medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                            if (cpoe == null)
+                            add.調劑狀態 = doubleCpoe.調劑狀態;
+                            replace_list.Add(doubleCpoe.PRI_KEY);
+                        }
+                    }
+                    foreach (medCpoeClass medCpoeClass in Cpoe_old)
+                    {
+                        medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
+                        if (cpoe == null)
+                        {
+                            if (medCpoeClass.PRI_KEY.Contains("[DC]") == false)
                             {
-                                if (medCpoeClass.PRI_KEY.Contains("[DC]") == false)
+                                if (replace_list.Contains(medCpoeClass.PRI_KEY))
+                                {
+                                    medCpoeClass.數量 = $"-{medCpoeClass.數量}";
+                                    medCpoeClass.劑量 = "--";
+                                    //medCpoeClass.頻次 = "--";
+                                    //medCpoeClass.途徑 = "--";
+                                    medCpoeClass.單位 = "--";
+                                    medCpoeClass.調劑狀態 = "";
+                                    medCpoeClass.狀態 = "DC";
+                                    medCpoeClass.調劑異動 = "Y";
+                                    medCpoeClass.PRI_KEY += "-[DC]系統";
+                                    medCpoeClass.DC確認 = "Y";
+                                    medCpoe_sql_replace.Add(medCpoeClass);
+                                }
+                                else
                                 {
                                     if (medCpoeClass.調劑狀態 == "Y")
                                     {
                                         medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                                         medCpoeClass.劑量 = "--";
                                         //medCpoeClass.頻次 = "--";
-                                        medCpoeClass.途徑 = "--";
+                                        //medCpoeClass.途徑 = "--";
                                         medCpoeClass.單位 = "--";
                                         medCpoeClass.調劑狀態 = "";
                                         medCpoeClass.狀態 = "DC";
@@ -492,24 +524,22 @@ namespace HIS_WebApi
                                     }
                                     else
                                     {
-                                        medCpoe_sql_delete.LockAdd(medCpoeClass);
+                                        medCpoeClass.數量 = $"-{medCpoeClass.數量}";
+                                        medCpoeClass.劑量 = "--";
+                                        //medCpoeClass.頻次 = "--";
+                                        //medCpoeClass.途徑 = "--";
+                                        medCpoeClass.單位 = "--";
+                                        medCpoeClass.調劑狀態 = "Y";
+                                        medCpoeClass.狀態 = "DC";
+                                        medCpoeClass.調劑異動 = "";
+                                        medCpoeClass.PRI_KEY += "-[DC]系統";
+                                        medCpoeClass.DC確認 = "Y";
+                                        medCpoe_sql_replace.Add(medCpoeClass);
                                     }
                                 }
                             }
                         }
-                    })));
-                    Task.WhenAll(tasks).Wait();
-                    tasks.Clear();
-                    foreach ( var add in medCpoe_sql_add)
-                    {
-                        medCpoeClass doubleCpoe = medCpoe_sql_delete
-                            .Where(temp => temp.藥碼 == add.藥碼 && temp.途徑 == add.途徑 && temp.頻次 == add.頻次)
-                            .FirstOrDefault();
-                        if(doubleCpoe != null)
-                        {
-                            add.調劑狀態 = doubleCpoe.調劑狀態;
-                        }
-                    }
+                    }     
                 }
 
                 
@@ -1444,20 +1474,29 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("get_medCpoe")]
+        [HttpPost("get_medCpoe_by_cart")]
         public string get_medCpoe([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "get_medCpoe";
+            returnData.Method = "get_medCpoe_by_cart";
             try
             {
-                string GUID = returnData.ValueAry[0];
-                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
-                string API = Method.GetServerAPI("Main", "網頁", "API01");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                
+                string 藥局 = returnData.ValueAry[0];
+                string 護理站 = returnData.ValueAry[1];
+
+                (string StartTime, string Endtime) = GetToday();
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
-                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
-                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();                
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
+
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
+                sql_medCpoe.Sort(new medCpoeClass.ICP_By_bedNum());
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -2508,7 +2547,15 @@ namespace HIS_WebApi
 
                 bool flag_DC = settingPage_DC.設定值 == true.ToString() ? true : false;
                 bool flag_public = settingPage_public.設定值 == true.ToString() ? false : true;
-                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == flag_public && temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false && temp.DC確認.StringIsEmpty() == flag_DC).ToList();
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站 && temp.公藥.StringIsEmpty() == flag_public　&& temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false).ToList();
+                if(flag_DC == true)
+                {
+                    sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty() == true).ToList();
+                }
+                
+                //sql_medCpoe = sql_medCpoe.Where(temp => temp.公藥.StringIsEmpty() == flag_public).ToList();
+                //sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains(enum_bed_status_string.已出院.GetEnumName()) == false).ToList();
+                //sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty() == flag_DC).ToList();
 
                 //if (settingPage_DC.設定值 == true.ToString())
                 //{
@@ -3142,6 +3189,14 @@ namespace HIS_WebApi
                     foreach(var item in sql_medCpoe)
                     {
                         item.更新時間 = DateTime.Now.ToDateTimeString();
+                        if (item.PRI_KEY.Contains("[DC]") && item.調劑狀態 == "Y")
+                        {
+                            item.DC確認 = "Y";
+                        }
+                        else
+                        {
+                            item.DC確認 = "";
+                        }
                     }
                 })));
                 Task.WhenAll(tasks).Wait();
