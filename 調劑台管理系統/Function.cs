@@ -48,7 +48,7 @@ namespace 調劑台管理系統
                 medPicClass medPicClass = new medPicClass();
                 images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
                 medPicClass.藥碼 = Code;
-                if (images.Count == null)
+                if (images == null)
                 {
                     medPicClasses.Add(medPicClass);
                     return images;

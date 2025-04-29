@@ -354,11 +354,14 @@ namespace 調劑台管理系統
                     string Code = value[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     int col_width = 0;
                     List<Image> images = Main_Form.Function_取得藥品圖片(Code);
-                    if (images.Count > 0)
+                    if(images != null)
                     {
-                        if (images[0] != null) e.Graphics.DrawImage(images[0], x + 2, y + 2, image_width - 2, height - 2);
+                        if (images.Count > 0)
+                        {
+                            if (images[0] != null) e.Graphics.DrawImage(images[0], x + 2, y + 2, image_width - 2, height - 2);
+                        }
                     }
-
+               
 
                     //font = sQL_DataGridView.Get_ColumnFont(enum_取藥堆疊母資料.藥品碼.GetEnumName());
                     //string 藥碼 = $"({Code})";
