@@ -29,6 +29,27 @@ namespace HIS_DB_Lib
         H重複用藥,
         Z其他,
     }
+    public enum enum_suspiciousRxLog_export
+    {            
+        病歷號,
+        科別,
+        醫生姓名,
+        開方時間,
+        加入時間,
+        藥袋類型,
+        錯誤類別,
+        簡述事件,
+        狀態,
+        調劑人員,
+        調劑時間,
+        提報人員,
+        提報等級,
+        提報時間,
+        處理人員,
+        處理時間,
+        通報TPR,
+        備註,
+    }
     /// <summary>
     /// 醫師處方疑義紀錄表
     /// </summary>
@@ -160,7 +181,7 @@ namespace HIS_DB_Lib
         {
             public int Compare(suspiciousRxLogClass x, suspiciousRxLogClass y)
             {
-                return x.加入時間.CompareTo(y.加入時間) * -1;
+                return x.加入時間.CompareTo(y.加入時間);
             }
         }
         static public suspiciousRxLogClass add(string API_Server, suspiciousRxLogClass suspiciousRxLogClasses)

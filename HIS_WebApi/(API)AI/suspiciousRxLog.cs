@@ -429,8 +429,7 @@ namespace HIS_WebApi._API_AI
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
-        [Route("download_datas_excel")]
-        [HttpPost]
+        [HttpPost("download_datas_excel")]
         public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
         {
             try
@@ -439,18 +438,16 @@ namespace HIS_WebApi._API_AI
                 myTimer.StartTickTime(50000);
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
 
-                List<object[]> list_suspiciousRxLogClasses = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                System.Data.DataTable dataTable = list_suspiciousRxLogClasses.ToDataTable(new enum_suspiciousRxLog());
-                dataTable = dataTable.ReorderTable(new enum_suspiciousRxLog());
+                List<object[]> list_transactionsClasses = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_suspiciousRxLog());
+                dataTable = dataTable.ReorderTable(new enum_suspiciousRxLog_export());
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
                 List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
                 dataTables.Add(dataTable);
-                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx, new[] { (int)enum_suspiciousRxLog.備註 });
-                //Stream stream = new MemoryStream(excelData);
-                //byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}處方疑義.xlsx"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_醫師處方疑義紀錄表.xlsx"));
             }
             catch
             {
@@ -458,6 +455,7 @@ namespace HIS_WebApi._API_AI
             }
 
         }
+
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses)
         {
             List<medClass> medClasses = medClass.get_med_cloud(API_Server);

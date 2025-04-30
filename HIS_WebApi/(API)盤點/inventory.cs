@@ -21,6 +21,7 @@ using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Text;
+using System.Data;
 
 namespace HIS_WebApi
 {
@@ -514,17 +515,21 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+                //inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
 
-                sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                //sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 if (returnData.Value.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = $"搜尋內容空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
-                list_inventory_creat = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, returnData.Value);
+                string command = $"SELECT * FROM {DB}.inventory_creat WHERE {enum_盤點單號.盤點單號.GetEnumName()} = '{returnData.Value}';";
+                DataTable dataTable = sQLControl_inventory_creat.WtrteCommandAndExecuteReader(command);
+
+                List<object[]> list_inventory_creat = dataTable.DataTableToRowList();
+                //List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+                //list_inventory_creat = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, returnData.Value);
                 if (list_inventory_creat.Count == 0)
                 {
                     returnData.Code = -5;
@@ -2306,15 +2311,24 @@ namespace HIS_WebApi
                                           where temp.Name == 操作人
                                           select temp).ToList();
                     }
-                    value = new object[new enum_盤點定盤_Excel().GetLength()];
-                    value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
-                    value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
-                    value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
-                    value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
-                    value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
-                    sheetTemps_buf[0].list_value.Add(value);
-                }
+                    List<object[]> list_value_buff = sheetTemps_buf[0].list_value.GetRows((int)enum_盤點定盤_Excel.藥碼, creat.Contents[i].藥品碼);
+                    if(list_value_buff.Count == 0)
+                    {
+                        value = new object[new enum_盤點定盤_Excel().GetLength()];
+                        value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
+                        value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
+                        value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
+                        value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
+                        value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
+                        sheetTemps_buf[0].list_value.Add(value);
+                    }
+                    else if(list_value_buff.Count > 0)
+                    {
+                        list_value_buff[0][(int)enum_盤點定盤_Excel.盤點量] = (list_value_buff[0][(int)enum_盤點定盤_Excel.盤點量].StringToInt32() + creat.Contents[i].Sub_content[k].盤點量.StringToInt32()).ToString();
 
+                        sheetTemps_buf[0].list_value = list_value_buff;
+                    }    
+                }
             }
   
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
