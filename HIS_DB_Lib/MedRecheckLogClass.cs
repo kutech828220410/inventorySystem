@@ -10,12 +10,25 @@ using System.Reflection;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_medRecheckLog_ICDT_TYPE
+    {
+        [Description("交班對點")]
+        交班對點,
+        [Description("過期藥品")]
+        過期藥品,
+        [Description("RFID入庫異常")]
+        RFID入庫異常,
+        [Description("RFID出庫異常")]
+        RFID出庫異常,
+        [Description("RFID調劑異常")]
+        RFID調劑異常
+    }
     public enum enum_medRecheckLog_State
     {
         未排除,
         已排除
     }
-    [EnumDescription("med_recheck_log_new")] 
+    [EnumDescription("med_recheck_log_new")]
     public enum enum_medRecheckLog
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
@@ -58,112 +71,97 @@ namespace HIS_DB_Lib
         異常原因,
         [Description("狀態,VARCHAR,20,INDEX")]
         狀態,
+        [Description("事件描述,VARCHAR,500,NONE")]
+        事件描述,
+        [Description("通知註記,VARCHAR,50,INDEX")]
+        通知註記,
+        [Description("通知時間,DATETIME,300,INDEX")]
+        通知時間,
+        [Description("參數1,VARCHAR,300,NONE")]
+        參數1,
+        [Description("參數2,VARCHAR,300,NONE")]
+        參數2,
     }
+
     /// <summary>
     /// 表示藥品覆盤日志的數據類別。
     /// </summary>
     public class medRecheckLogClass
     {
-        /// <summary>
-        /// 獨特的標識符。
-        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-        /// <summary>
-        /// 發生類別。
-        /// </summary>
+
         [JsonPropertyName("ICDT_TYPE")]
         public string 發生類別 { get; set; }
-        /// <summary>
-        /// 藥品的代碼。
-        /// </summary>
+
         [JsonPropertyName("CODE")]
         public string 藥碼 { get; set; }
-        /// <summary>
-        /// 藥品的名稱。
-        /// </summary>
+
         [JsonPropertyName("NAME")]
         public string 藥名 { get; set; }
-        /// <summary>
-        /// 庫存值。
-        /// </summary>
+
         [JsonPropertyName("INV_QTY")]
         public string 庫存值 { get; set; }
-        /// <summary>
-        /// 盤點值。
-        /// </summary>
+
         [JsonPropertyName("CHECK_QTY")]
         public string 盤點值 { get; set; }
-        /// <summary>
-        /// 差異值。
-        /// </summary>
+
         [JsonPropertyName("UPDATE_QTY")]
         public string 差異值 { get; set; }
-        /// <summary>
-        /// 批號。
-        /// </summary>
+
         [JsonPropertyName("LOT")]
         public string 批號 { get; set; }
-        /// <summary>
-        /// 效期。
-        /// </summary>
+
         [JsonPropertyName("VAL")]
         public string 效期 { get; set; }
-        /// <summary>
-        /// 醫令的唯一標識符。
-        /// </summary>
+
         [JsonPropertyName("ORDER_GUID")]
         public string 醫令_GUID { get; set; }
-        /// <summary>
-        /// 交易紀錄的唯一標識符。
-        /// </summary>
+
         [JsonPropertyName("TRADING_GUID")]
         public string 交易紀錄_GUID { get; set; }
-        /// <summary>
-        /// 盤點藥師。
-        /// </summary>
+
         [JsonPropertyName("CHECK_OP1")]
         public string 盤點藥師1 { get; set; }
-        /// <summary>
-        /// 盤點藥師ID2。
-        /// </summary>
+
         [JsonPropertyName("CHECK_OP_ID1")]
         public string 盤點藥師ID1 { get; set; }
-        /// <summary>
-        /// 盤點藥師。
-        /// </summary>
+
         [JsonPropertyName("CHECK_OP2")]
         public string 盤點藥師2 { get; set; }
-        /// <summary>
-        /// 盤點藥師ID2。
-        /// </summary>
+
         [JsonPropertyName("CHECK_OP_ID2")]
         public string 盤點藥師ID2 { get; set; }
-        /// <summary>
-        /// 排除藥師。
-        /// </summary>
+
         [JsonPropertyName("TROUBLE_OP")]
         public string 排除藥師 { get; set; }
-        /// <summary>
-        /// 發生時間。
-        /// </summary>
+
         [JsonPropertyName("occurrence_time")]
         public string 發生時間 { get; set; }
-        /// <summary>
-        /// 排除時間。
-        /// </summary>
+
         [JsonPropertyName("troubleshooting_time")]
         public string 排除時間 { get; set; }
-        /// <summary>
-        /// 異常原因。
-        /// </summary>
+
         [JsonPropertyName("ALRM_REASON")]
         public string 異常原因 { get; set; }
-        /// <summary>
-        /// 狀態。
-        /// </summary>
+
         [JsonPropertyName("state")]
         public string 狀態 { get; set; }
+
+        [JsonPropertyName("EVENT_DESC")]
+        public string 事件描述 { get; set; }
+
+        [JsonPropertyName("NOTICE_FLAG")]
+        public string 通知註記 { get; set; }
+
+        [JsonPropertyName("NOTICE_TIME")]
+        public string 通知時間 { get; set; }
+
+        [JsonPropertyName("PARAM_1")]
+        public string 參數1 { get; set; }
+
+        [JsonPropertyName("PARAM_2")]
+        public string 參數2 { get; set; }
 
 
 
@@ -365,6 +363,27 @@ namespace HIS_DB_Lib
 
         }
 
+        static public (int code, string result) set_unresolved_data_by_guid(string API_Server, string guid, string pharmacist)
+        {
+            string url = $"{API_Server}/api/medRecheckLog/set_unresolved_data_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(guid);
+            returnData.ValueAry.Add(pharmacist);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null");
+            }
+
+            return (returnData_out.Code, returnData_out.Result);
+        }
+
+
         public class ICP_By_occurrence_time : IComparer<medRecheckLogClass>
         {
             //實作Compare方法
@@ -392,6 +411,45 @@ namespace HIS_DB_Lib
             }
         }
     }
+    static public class medRecheckLogClassMethod
+    {
+        /// <summary>
+        /// 根據狀態與（可選）發生類別過濾資料。
+        /// </summary>
+        public static List<medRecheckLogClass> FilterByStateAndType(this List<medRecheckLogClass> list, enum_medRecheckLog_State 狀態, enum_medRecheckLog_ICDT_TYPE? 發生類別 = null)
+        {
+            if (list == null) return new List<medRecheckLogClass>();
 
+            string 狀態描述 = 狀態.GetEnumDescription();
+            string 類別描述 = 發生類別?.GetEnumDescription();
+
+            var result = list
+                .Where(x => x.狀態 == 狀態描述 &&
+                            (string.IsNullOrEmpty(類別描述) || x.發生類別 == 類別描述))
+                .ToList();
+
+            return result;
+        }
+        /// <summary>
+        /// 只根據狀態過濾資料。
+        /// </summary>
+        public static List<medRecheckLogClass> FilterByState(this List<medRecheckLogClass> list, enum_medRecheckLog_State 狀態)
+        {
+            return FilterByStateAndType(list, 狀態, null);
+        }
+
+        /// <summary>
+        /// 只根據發生類別過濾資料。
+        /// </summary>
+        public static List<medRecheckLogClass> FilterByType(this List<medRecheckLogClass> list, enum_medRecheckLog_ICDT_TYPE 發生類別)
+        {
+            if (list == null) return new List<medRecheckLogClass>();
+
+            string 類別描述 = 發生類別.GetEnumDescription();
+            return list
+                .Where(x => x.發生類別 == 類別描述)
+                .ToList();
+        }
+    }
 
 }

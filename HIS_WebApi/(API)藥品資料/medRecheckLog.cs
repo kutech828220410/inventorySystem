@@ -97,11 +97,11 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("add")]
         [HttpPost]
-        public string POST_add([FromBody] returnData returnData)
+        public string add([FromBody] returnData returnData)
         {
             try
             {
-                returnData.Method = "POST_add";
+                returnData.Method = "add";
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (sys_serverSettingClasses.Count == 0)
@@ -175,11 +175,11 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("replace_by_guid")]
         [HttpPost]
-        public string POST_replace_by_guid([FromBody] returnData returnData)
+        public string replace_by_guid([FromBody] returnData returnData)
         {
             try
             {
-                returnData.Method = "POST_replace_by_guid";
+                returnData.Method = "replace_by_guid";
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (sys_serverSettingClasses.Count == 0)
@@ -256,7 +256,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_by_occurrence_time_st_end")]
         [HttpPost]
-        public string POST_get_by_occurrence_time_st_end([FromBody] returnData returnData)
+        public string get_by_occurrence_time_st_end([FromBody] returnData returnData)
         {
             try
             {
@@ -333,7 +333,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_by_troubleshooting_time_st_end")]
         [HttpPost]
-        public string POST_get_by_troubleshooting_time_st_end([FromBody] returnData returnData)
+        public string get_by_troubleshooting_time_st_end([FromBody] returnData returnData)
         {
             try
             {
@@ -410,7 +410,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_ng_state_data")]
         [HttpPost]
-        public string POST_get_ng_state_data([FromBody] returnData returnData)
+        public string get_ng_state_data([FromBody] returnData returnData)
         {
             try
             {
@@ -472,7 +472,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_unresolved_qty_by_code")]
         [HttpPost]
-        public string POST_get_unresolved_qty_by_code([FromBody] returnData returnData)
+        public string get_unresolved_qty_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -549,7 +549,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("set_unresolved_data_by_code")]
         [HttpPost]
-        public string POST_set_unresolved_data_by_code([FromBody] returnData returnData)
+        public string set_unresolved_data_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -598,6 +598,82 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 設定指定 GUID 的盤點異常紀錄為已排除
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例 JSON：
+        ///
+        /// <code>
+        /// {
+        ///   "ServerName": "管藥",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     "guid",
+        ///     "排除藥師姓名"
+        ///   ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>API 回應 JSON</returns>
+        [Route("set_unresolved_data_by_guid")]
+        [HttpPost]
+        public string set_unresolved_data_by_guid([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "set_unresolved_data_by_guid";
+
+                var settings = ServerSettingController.GetAllServerSetting()
+                                .MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+
+                if (settings.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 內容應為 [GUID, 排除藥師姓名]";
+                    return returnData.JsonSerializationt();
+                }
+
+                string guid = returnData.ValueAry[0];
+                string pharmacist = returnData.ValueAry[1];
+
+                var db = settings[0];
+                SQLControl sql = new SQLControl(db.Server, db.DBName, "med_recheck_log_new", db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
+
+                List<object[]> rows = sql.GetRowsByDefult(null, (int)enum_medRecheckLog.GUID, guid);
+                if (rows.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找不到對應 GUID: {guid}";
+                    return returnData.JsonSerializationt();
+                }
+
+                rows[0][(int)enum_medRecheckLog.狀態] = enum_medRecheckLog_State.已排除.GetEnumName();
+                rows[0][(int)enum_medRecheckLog.排除時間] = DateTime.Now.ToDateTimeString_6();
+                rows[0][(int)enum_medRecheckLog.排除藥師] = pharmacist;
+
+                sql.UpdateByDefulteExtra(null, rows);
+
+                returnData.Code = 200;
+                returnData.Result = $"成功排除紀錄 GUID: {guid}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
             Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_medRecheckLog());

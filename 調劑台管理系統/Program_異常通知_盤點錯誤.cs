@@ -105,6 +105,7 @@ namespace 調劑台管理系統
             DateTime dateTime_st = rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Value.GetStartDate();
             DateTime dateTime_end = rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.Value.GetEndDate();
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_by_occurrence_time_st_end(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, dateTime_st, dateTime_end);
+            medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
             List<object[]> list_med_recheck = medRecheckLogClasses.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
             this.sqL_DataGridView_異常通知_盤點錯誤.RefreshGrid(list_med_recheck);
         }
@@ -113,6 +114,7 @@ namespace 調劑台管理系統
             DateTime dateTime_st = rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Value.GetStartDate(); 
             DateTime dateTime_end = rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.Value.GetEndDate();
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_by_occurrence_time_st_end(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, dateTime_st, dateTime_end);
+            medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
             List<object[]> list_med_recheck = medRecheckLogClasses.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
             this.sqL_DataGridView_異常通知_盤點錯誤.RefreshGrid(list_med_recheck);
         }
@@ -120,6 +122,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_異常通知_盤點錯誤_未排除顯示_MouseDownEvent(MouseEventArgs mevent)
         {
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_ng_state_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
+            medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
             if (medRecheckLogClasses == null) return;
             List<object[]> list_med_recheck = medRecheckLogClasses.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
             this.sqL_DataGridView_異常通知_盤點錯誤.RefreshGrid(list_med_recheck);

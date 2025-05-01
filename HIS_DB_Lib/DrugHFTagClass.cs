@@ -47,13 +47,15 @@ namespace HIS_DB_Lib
     public class DrugHFTagStatusSummaryByCode
     {
         public string 藥碼 { get; set; }
-        public double 已重置數量 { get; set; }
-        public double 入庫註記數量 { get; set; }
-        public double 出庫註記數量 { get; set; }
-        public double 進入儲位數量 { get; set; }
-        public double 離開儲位數量 { get; set; }
+
         public double 已入庫數量 { get; set; }
-        public double 未入庫數量 { get; set; }
+
+        public double 已出庫數量 { get; set; }
+
+        public double 可出庫數量 { get; set; } // 新增：狀態為「入庫註記」
+
+        public double 可入庫數量 { get; set; } // 新增：狀態為「出庫註記」或「已重置」
+
         public double 總數量 { get; set; }
     }
 
@@ -69,6 +71,7 @@ namespace HIS_DB_Lib
         public double 離開儲位數量 { get; set; }
         public double 已入庫數量 { get; set; }
         public double 未入庫數量 { get; set; }
+        public double 可出庫數量 { get; set; }
         public double 總數量 { get; set; }
     }
     public class DrugHFTagClass
