@@ -9276,7 +9276,7 @@ namespace 調劑台管理系統
                     Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
                 })));
                 Task.WhenAll(taskList).Wait();
-
+       
             }));
         }
         private void PlC_RJ_Button_藥品調入_MouseDownEvent(MouseEventArgs mevent)

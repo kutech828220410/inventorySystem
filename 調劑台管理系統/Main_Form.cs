@@ -730,6 +730,9 @@ namespace 調劑台管理系統
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
 
+                //panel_領藥台01_處方資訊.Visible = true;
+                //panel_領藥台01_處方資訊.Height = 240;
+
                 pictureBox_領藥台_01_藥品圖片01.Width = panel_領藥台_01_藥品圖片.Width / 2;
                 pictureBox_領藥台_01_藥品圖片02.Width = panel_領藥台_01_藥品圖片.Width / 2;
 

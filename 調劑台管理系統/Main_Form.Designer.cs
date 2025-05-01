@@ -47,6 +47,19 @@
             this.sqL_DataGridView_領藥台_01_領藥內容 = new SQLUI.SQL_DataGridView();
             this.contextMenuStrip_調劑畫面 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem_調劑畫面_顯示設定 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel_領藥台01_處方資訊 = new System.Windows.Forms.Panel();
+            this.rJ_Lable111 = new MyUI.RJ_Lable();
+            this.rJ_Lable74 = new MyUI.RJ_Lable();
+            this.rJ_Lable58 = new MyUI.RJ_Lable();
+            this.panel56 = new System.Windows.Forms.Panel();
+            this.rJ_Lable51 = new MyUI.RJ_Lable();
+            this.rJ_Lable54 = new MyUI.RJ_Lable();
+            this.rJ_Lable49 = new MyUI.RJ_Lable();
+            this.rJ_Lable50 = new MyUI.RJ_Lable();
+            this.rJ_Lable46 = new MyUI.RJ_Lable();
+            this.rJ_Lable47 = new MyUI.RJ_Lable();
+            this.rJ_Lable39 = new MyUI.RJ_Lable();
+            this.rJ_Lable35 = new MyUI.RJ_Lable();
             this.panel_領藥台_01_藥品資訊 = new System.Windows.Forms.Panel();
             this.panel_領藥台_01_藥品圖片 = new System.Windows.Forms.Panel();
             this.pictureBox_領藥台_01_藥品圖片01 = new System.Windows.Forms.PictureBox();
@@ -1632,6 +1645,8 @@
             this.panel113.SuspendLayout();
             this.rJ_Pannel_領藥台_01.SuspendLayout();
             this.contextMenuStrip_調劑畫面.SuspendLayout();
+            this.panel_領藥台01_處方資訊.SuspendLayout();
+            this.panel56.SuspendLayout();
             this.panel_領藥台_01_藥品資訊.SuspendLayout();
             this.panel_領藥台_01_藥品圖片.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_領藥台_01_藥品圖片01)).BeginInit();
@@ -2214,7 +2229,7 @@
             this.panel113.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel113.Location = new System.Drawing.Point(0, 0);
             this.panel113.Name = "panel113";
-            this.panel113.Size = new System.Drawing.Size(805, 520);
+            this.panel113.Size = new System.Drawing.Size(881, 520);
             this.panel113.TabIndex = 14;
             // 
             // rJ_Pannel_領藥台_01
@@ -2225,6 +2240,7 @@
             this.rJ_Pannel_領藥台_01.BorderRadius = 10;
             this.rJ_Pannel_領藥台_01.BorderSize = 2;
             this.rJ_Pannel_領藥台_01.Controls.Add(this.sqL_DataGridView_領藥台_01_領藥內容);
+            this.rJ_Pannel_領藥台_01.Controls.Add(this.panel_領藥台01_處方資訊);
             this.rJ_Pannel_領藥台_01.Controls.Add(this.panel_領藥台_01_藥品資訊);
             this.rJ_Pannel_領藥台_01.Controls.Add(this.panel114);
             this.rJ_Pannel_領藥台_01.Dock = System.Windows.Forms.DockStyle.Left;
@@ -2235,7 +2251,7 @@
             this.rJ_Pannel_領藥台_01.Padding = new System.Windows.Forms.Padding(5, 5, 10, 10);
             this.rJ_Pannel_領藥台_01.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel_領藥台_01.ShadowSize = 3;
-            this.rJ_Pannel_領藥台_01.Size = new System.Drawing.Size(815, 520);
+            this.rJ_Pannel_領藥台_01.Size = new System.Drawing.Size(875, 520);
             this.rJ_Pannel_領藥台_01.TabIndex = 2;
             // 
             // sqL_DataGridView_領藥台_01_領藥內容
@@ -2280,9 +2296,9 @@
             this.sqL_DataGridView_領藥台_01_領藥內容.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_領藥台_01_領藥內容.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_領藥台_01_領藥內容.Server = "127.0.0.0";
-            this.sqL_DataGridView_領藥台_01_領藥內容.Size = new System.Drawing.Size(800, 155);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Size = new System.Drawing.Size(860, 26);
             this.sqL_DataGridView_領藥台_01_領藥內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_領藥台_01_領藥內容.TabIndex = 134;
+            this.sqL_DataGridView_領藥台_01_領藥內容.TabIndex = 135;
             this.sqL_DataGridView_領藥台_01_領藥內容.UserName = "root";
             this.sqL_DataGridView_領藥台_01_領藥內容.可拖曳欄位寬度 = false;
             this.sqL_DataGridView_領藥台_01_領藥內容.可選擇多列 = false;
@@ -2310,16 +2326,287 @@
             this.toolStripMenuItem_調劑畫面_顯示設定.Size = new System.Drawing.Size(142, 24);
             this.toolStripMenuItem_調劑畫面_顯示設定.Text = "顯示設定";
             // 
+            // panel_領藥台01_處方資訊
+            // 
+            this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable111);
+            this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable74);
+            this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable58);
+            this.panel_領藥台01_處方資訊.Controls.Add(this.panel56);
+            this.panel_領藥台01_處方資訊.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_領藥台01_處方資訊.Location = new System.Drawing.Point(5, 107);
+            this.panel_領藥台01_處方資訊.Name = "panel_領藥台01_處方資訊";
+            this.panel_領藥台01_處方資訊.Size = new System.Drawing.Size(860, 193);
+            this.panel_領藥台01_處方資訊.TabIndex = 134;
+            this.panel_領藥台01_處方資訊.Visible = false;
+            // 
+            // rJ_Lable111
+            // 
+            this.rJ_Lable111.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable111.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable111.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable111.BorderRadius = 10;
+            this.rJ_Lable111.BorderSize = 0;
+            this.rJ_Lable111.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable111.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable111.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable111.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable111.GUID = "";
+            this.rJ_Lable111.Location = new System.Drawing.Point(0, 150);
+            this.rJ_Lable111.Name = "rJ_Lable111";
+            this.rJ_Lable111.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable111.ShadowSize = 0;
+            this.rJ_Lable111.Size = new System.Drawing.Size(860, 50);
+            this.rJ_Lable111.TabIndex = 9;
+            this.rJ_Lable111.Text = "  交互:";
+            this.rJ_Lable111.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable111.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable74
+            // 
+            this.rJ_Lable74.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable74.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable74.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable74.BorderRadius = 10;
+            this.rJ_Lable74.BorderSize = 0;
+            this.rJ_Lable74.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable74.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable74.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable74.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable74.GUID = "";
+            this.rJ_Lable74.Location = new System.Drawing.Point(0, 100);
+            this.rJ_Lable74.Name = "rJ_Lable74";
+            this.rJ_Lable74.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable74.ShadowSize = 0;
+            this.rJ_Lable74.Size = new System.Drawing.Size(860, 50);
+            this.rJ_Lable74.TabIndex = 8;
+            this.rJ_Lable74.Text = "  支氣管炎、未明示急性或慢性者、過敏性鼻炎";
+            this.rJ_Lable74.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable74.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable58
+            // 
+            this.rJ_Lable58.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable58.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable58.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable58.BorderRadius = 10;
+            this.rJ_Lable58.BorderSize = 0;
+            this.rJ_Lable58.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable58.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable58.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable58.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable58.GUID = "";
+            this.rJ_Lable58.Location = new System.Drawing.Point(0, 50);
+            this.rJ_Lable58.Name = "rJ_Lable58";
+            this.rJ_Lable58.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable58.ShadowSize = 0;
+            this.rJ_Lable58.Size = new System.Drawing.Size(860, 50);
+            this.rJ_Lable58.TabIndex = 7;
+            this.rJ_Lable58.Text = "  診斷:";
+            this.rJ_Lable58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable58.TextColor = System.Drawing.Color.Black;
+            // 
+            // panel56
+            // 
+            this.panel56.Controls.Add(this.rJ_Lable51);
+            this.panel56.Controls.Add(this.rJ_Lable54);
+            this.panel56.Controls.Add(this.rJ_Lable49);
+            this.panel56.Controls.Add(this.rJ_Lable50);
+            this.panel56.Controls.Add(this.rJ_Lable46);
+            this.panel56.Controls.Add(this.rJ_Lable47);
+            this.panel56.Controls.Add(this.rJ_Lable39);
+            this.panel56.Controls.Add(this.rJ_Lable35);
+            this.panel56.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel56.Location = new System.Drawing.Point(0, 0);
+            this.panel56.Name = "panel56";
+            this.panel56.Size = new System.Drawing.Size(860, 50);
+            this.panel56.TabIndex = 0;
+            // 
+            // rJ_Lable51
+            // 
+            this.rJ_Lable51.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable51.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable51.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable51.BorderRadius = 10;
+            this.rJ_Lable51.BorderSize = 0;
+            this.rJ_Lable51.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable51.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable51.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable51.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable51.GUID = "";
+            this.rJ_Lable51.Location = new System.Drawing.Point(803, 0);
+            this.rJ_Lable51.Name = "rJ_Lable51";
+            this.rJ_Lable51.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable51.ShadowSize = 0;
+            this.rJ_Lable51.Size = new System.Drawing.Size(137, 50);
+            this.rJ_Lable51.TabIndex = 13;
+            this.rJ_Lable51.Text = "1144";
+            this.rJ_Lable51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable51.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable54
+            // 
+            this.rJ_Lable54.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable54.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable54.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable54.BorderRadius = 10;
+            this.rJ_Lable54.BorderSize = 0;
+            this.rJ_Lable54.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable54.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable54.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable54.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable54.GUID = "";
+            this.rJ_Lable54.Location = new System.Drawing.Point(705, 0);
+            this.rJ_Lable54.Name = "rJ_Lable54";
+            this.rJ_Lable54.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable54.ShadowSize = 0;
+            this.rJ_Lable54.Size = new System.Drawing.Size(98, 50);
+            this.rJ_Lable54.TabIndex = 12;
+            this.rJ_Lable54.Text = "領藥號:";
+            this.rJ_Lable54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable54.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable49
+            // 
+            this.rJ_Lable49.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable49.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable49.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable49.BorderRadius = 10;
+            this.rJ_Lable49.BorderSize = 0;
+            this.rJ_Lable49.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable49.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable49.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable49.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable49.GUID = "";
+            this.rJ_Lable49.Location = new System.Drawing.Point(568, 0);
+            this.rJ_Lable49.Name = "rJ_Lable49";
+            this.rJ_Lable49.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable49.ShadowSize = 0;
+            this.rJ_Lable49.Size = new System.Drawing.Size(137, 50);
+            this.rJ_Lable49.TabIndex = 11;
+            this.rJ_Lable49.Text = "000708968";
+            this.rJ_Lable49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable49.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable50
+            // 
+            this.rJ_Lable50.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable50.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable50.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable50.BorderRadius = 10;
+            this.rJ_Lable50.BorderSize = 0;
+            this.rJ_Lable50.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable50.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable50.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable50.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable50.GUID = "";
+            this.rJ_Lable50.Location = new System.Drawing.Point(470, 0);
+            this.rJ_Lable50.Name = "rJ_Lable50";
+            this.rJ_Lable50.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable50.ShadowSize = 0;
+            this.rJ_Lable50.Size = new System.Drawing.Size(98, 50);
+            this.rJ_Lable50.TabIndex = 10;
+            this.rJ_Lable50.Text = "病歷號:";
+            this.rJ_Lable50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable50.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable46
+            // 
+            this.rJ_Lable46.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable46.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable46.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable46.BorderRadius = 10;
+            this.rJ_Lable46.BorderSize = 0;
+            this.rJ_Lable46.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable46.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable46.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable46.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable46.GUID = "";
+            this.rJ_Lable46.Location = new System.Drawing.Point(333, 0);
+            this.rJ_Lable46.Name = "rJ_Lable46";
+            this.rJ_Lable46.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable46.ShadowSize = 0;
+            this.rJ_Lable46.Size = new System.Drawing.Size(137, 50);
+            this.rJ_Lable46.TabIndex = 9;
+            this.rJ_Lable46.Text = "46歲/男";
+            this.rJ_Lable46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable46.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable47
+            // 
+            this.rJ_Lable47.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable47.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable47.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable47.BorderRadius = 10;
+            this.rJ_Lable47.BorderSize = 0;
+            this.rJ_Lable47.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable47.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable47.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable47.GUID = "";
+            this.rJ_Lable47.Location = new System.Drawing.Point(235, 0);
+            this.rJ_Lable47.Name = "rJ_Lable47";
+            this.rJ_Lable47.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable47.ShadowSize = 0;
+            this.rJ_Lable47.Size = new System.Drawing.Size(98, 50);
+            this.rJ_Lable47.TabIndex = 8;
+            this.rJ_Lable47.Text = "年齡:";
+            this.rJ_Lable47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable47.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable39
+            // 
+            this.rJ_Lable39.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable39.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable39.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable39.BorderRadius = 10;
+            this.rJ_Lable39.BorderSize = 0;
+            this.rJ_Lable39.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable39.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable39.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable39.GUID = "";
+            this.rJ_Lable39.Location = new System.Drawing.Point(98, 0);
+            this.rJ_Lable39.Name = "rJ_Lable39";
+            this.rJ_Lable39.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable39.ShadowSize = 0;
+            this.rJ_Lable39.Size = new System.Drawing.Size(137, 50);
+            this.rJ_Lable39.TabIndex = 7;
+            this.rJ_Lable39.Text = "葉忠豪";
+            this.rJ_Lable39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable39.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable35
+            // 
+            this.rJ_Lable35.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable35.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable35.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable35.BorderRadius = 10;
+            this.rJ_Lable35.BorderSize = 0;
+            this.rJ_Lable35.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable35.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable35.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable35.GUID = "";
+            this.rJ_Lable35.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable35.Name = "rJ_Lable35";
+            this.rJ_Lable35.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable35.ShadowSize = 0;
+            this.rJ_Lable35.Size = new System.Drawing.Size(98, 50);
+            this.rJ_Lable35.TabIndex = 6;
+            this.rJ_Lable35.Text = "姓名:";
+            this.rJ_Lable35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable35.TextColor = System.Drawing.Color.Black;
+            // 
             // panel_領藥台_01_藥品資訊
             // 
             this.panel_領藥台_01_藥品資訊.Controls.Add(this.panel_領藥台_01_藥品圖片);
             this.panel_領藥台_01_藥品資訊.Controls.Add(this.panel130);
             this.panel_領藥台_01_藥品資訊.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel_領藥台_01_藥品資訊.ForeColor = System.Drawing.Color.Black;
-            this.panel_領藥台_01_藥品資訊.Location = new System.Drawing.Point(5, 236);
+            this.panel_領藥台_01_藥品資訊.Location = new System.Drawing.Point(5, 300);
             this.panel_領藥台_01_藥品資訊.Name = "panel_領藥台_01_藥品資訊";
             this.panel_領藥台_01_藥品資訊.Padding = new System.Windows.Forms.Padding(3);
-            this.panel_領藥台_01_藥品資訊.Size = new System.Drawing.Size(800, 274);
+            this.panel_領藥台_01_藥品資訊.Size = new System.Drawing.Size(860, 210);
             this.panel_領藥台_01_藥品資訊.TabIndex = 133;
             // 
             // panel_領藥台_01_藥品圖片
@@ -2330,7 +2617,7 @@
             this.panel_領藥台_01_藥品圖片.Location = new System.Drawing.Point(3, 3);
             this.panel_領藥台_01_藥品圖片.Name = "panel_領藥台_01_藥品圖片";
             this.panel_領藥台_01_藥品圖片.Padding = new System.Windows.Forms.Padding(2);
-            this.panel_領藥台_01_藥品圖片.Size = new System.Drawing.Size(649, 268);
+            this.panel_領藥台_01_藥品圖片.Size = new System.Drawing.Size(709, 204);
             this.panel_領藥台_01_藥品圖片.TabIndex = 4;
             // 
             // pictureBox_領藥台_01_藥品圖片01
@@ -2341,7 +2628,7 @@
             this.pictureBox_領藥台_01_藥品圖片01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox_領藥台_01_藥品圖片01.Location = new System.Drawing.Point(2, 2);
             this.pictureBox_領藥台_01_藥品圖片01.Name = "pictureBox_領藥台_01_藥品圖片01";
-            this.pictureBox_領藥台_01_藥品圖片01.Size = new System.Drawing.Size(351, 264);
+            this.pictureBox_領藥台_01_藥品圖片01.Size = new System.Drawing.Size(411, 200);
             this.pictureBox_領藥台_01_藥品圖片01.TabIndex = 6;
             this.pictureBox_領藥台_01_藥品圖片01.TabStop = false;
             // 
@@ -2351,9 +2638,9 @@
             this.pictureBox_領藥台_01_藥品圖片02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox_領藥台_01_藥品圖片02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_領藥台_01_藥品圖片02.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox_領藥台_01_藥品圖片02.Location = new System.Drawing.Point(353, 2);
+            this.pictureBox_領藥台_01_藥品圖片02.Location = new System.Drawing.Point(413, 2);
             this.pictureBox_領藥台_01_藥品圖片02.Name = "pictureBox_領藥台_01_藥品圖片02";
-            this.pictureBox_領藥台_01_藥品圖片02.Size = new System.Drawing.Size(294, 264);
+            this.pictureBox_領藥台_01_藥品圖片02.Size = new System.Drawing.Size(294, 200);
             this.pictureBox_領藥台_01_藥品圖片02.TabIndex = 5;
             this.pictureBox_領藥台_01_藥品圖片02.TabStop = false;
             // 
@@ -2364,10 +2651,10 @@
             this.panel130.Controls.Add(this.panel131);
             this.panel130.Controls.Add(this.panel154);
             this.panel130.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel130.Location = new System.Drawing.Point(652, 3);
+            this.panel130.Location = new System.Drawing.Point(712, 3);
             this.panel130.Name = "panel130";
             this.panel130.Padding = new System.Windows.Forms.Padding(3);
-            this.panel130.Size = new System.Drawing.Size(145, 268);
+            this.panel130.Size = new System.Drawing.Size(145, 204);
             this.panel130.TabIndex = 3;
             // 
             // panel132
@@ -2508,7 +2795,7 @@
             this.panel114.Location = new System.Drawing.Point(5, 5);
             this.panel114.Name = "panel114";
             this.panel114.Padding = new System.Windows.Forms.Padding(3);
-            this.panel114.Size = new System.Drawing.Size(800, 76);
+            this.panel114.Size = new System.Drawing.Size(860, 76);
             this.panel114.TabIndex = 0;
             // 
             // panel121
@@ -2518,7 +2805,7 @@
             this.panel121.Location = new System.Drawing.Point(3, 3);
             this.panel121.Name = "panel121";
             this.panel121.Padding = new System.Windows.Forms.Padding(2);
-            this.panel121.Size = new System.Drawing.Size(360, 70);
+            this.panel121.Size = new System.Drawing.Size(420, 70);
             this.panel121.TabIndex = 142;
             // 
             // rJ_Lable_領藥台_01_Title
@@ -2537,7 +2824,7 @@
             this.rJ_Lable_領藥台_01_Title.Name = "rJ_Lable_領藥台_01_Title";
             this.rJ_Lable_領藥台_01_Title.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_領藥台_01_Title.ShadowSize = 3;
-            this.rJ_Lable_領藥台_01_Title.Size = new System.Drawing.Size(356, 66);
+            this.rJ_Lable_領藥台_01_Title.Size = new System.Drawing.Size(416, 66);
             this.rJ_Lable_領藥台_01_Title.TabIndex = 1;
             this.rJ_Lable_領藥台_01_Title.Text = "01. -------";
             this.rJ_Lable_領藥台_01_Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2548,7 +2835,7 @@
             this.panel119.Controls.Add(this.textBox_領藥台_01_帳號);
             this.panel119.Controls.Add(this.textBox_領藥台_01_密碼);
             this.panel119.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel119.Location = new System.Drawing.Point(363, 3);
+            this.panel119.Location = new System.Drawing.Point(423, 3);
             this.panel119.Name = "panel119";
             this.panel119.Size = new System.Drawing.Size(134, 70);
             this.panel119.TabIndex = 141;
@@ -2619,7 +2906,7 @@
             this.plC_RJ_Button_領藥台_01_登入.GUID = "";
             this.plC_RJ_Button_領藥台_01_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_領藥台_01_登入.Image_padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
-            this.plC_RJ_Button_領藥台_01_登入.Location = new System.Drawing.Point(497, 3);
+            this.plC_RJ_Button_領藥台_01_登入.Location = new System.Drawing.Point(557, 3);
             this.plC_RJ_Button_領藥台_01_登入.Name = "plC_RJ_Button_領藥台_01_登入";
             this.plC_RJ_Button_領藥台_01_登入.OFF_文字內容 = "登入";
             this.plC_RJ_Button_領藥台_01_登入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2673,7 +2960,7 @@
             this.plC_Button_領藥台_01_領.GUID = "";
             this.plC_Button_領藥台_01_領.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_Button_領藥台_01_領.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_01_領.Location = new System.Drawing.Point(581, 3);
+            this.plC_Button_領藥台_01_領.Location = new System.Drawing.Point(641, 3);
             this.plC_Button_領藥台_01_領.Name = "plC_Button_領藥台_01_領";
             this.plC_Button_領藥台_01_領.OFF_文字內容 = "領";
             this.plC_Button_領藥台_01_領.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -2726,7 +3013,7 @@
             this.plC_Button_領藥台_01_退.GUID = "";
             this.plC_Button_領藥台_01_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_Button_領藥台_01_退.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_01_退.Location = new System.Drawing.Point(655, 3);
+            this.plC_Button_領藥台_01_退.Location = new System.Drawing.Point(715, 3);
             this.plC_Button_領藥台_01_退.Name = "plC_Button_領藥台_01_退";
             this.plC_Button_領藥台_01_退.OFF_文字內容 = "退";
             this.plC_Button_領藥台_01_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -2779,7 +3066,7 @@
             this.plC_RJ_Button_領藥台_01_取消作業.GUID = "";
             this.plC_RJ_Button_領藥台_01_取消作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_領藥台_01_取消作業.Image_padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
-            this.plC_RJ_Button_領藥台_01_取消作業.Location = new System.Drawing.Point(729, 3);
+            this.plC_RJ_Button_領藥台_01_取消作業.Location = new System.Drawing.Point(789, 3);
             this.plC_RJ_Button_領藥台_01_取消作業.Name = "plC_RJ_Button_領藥台_01_取消作業";
             this.plC_RJ_Button_領藥台_01_取消作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 10F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_領藥台_01_取消作業.OFF_文字顏色 = System.Drawing.Color.Black;
@@ -2824,12 +3111,12 @@
             this.rJ_Pannel_領藥台_02.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Pannel_領藥台_02.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel_領藥台_02.IsSelected = false;
-            this.rJ_Pannel_領藥台_02.Location = new System.Drawing.Point(805, 0);
+            this.rJ_Pannel_領藥台_02.Location = new System.Drawing.Point(881, 0);
             this.rJ_Pannel_領藥台_02.Name = "rJ_Pannel_領藥台_02";
             this.rJ_Pannel_領藥台_02.Padding = new System.Windows.Forms.Padding(5, 5, 10, 10);
             this.rJ_Pannel_領藥台_02.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel_領藥台_02.ShadowSize = 3;
-            this.rJ_Pannel_領藥台_02.Size = new System.Drawing.Size(830, 520);
+            this.rJ_Pannel_領藥台_02.Size = new System.Drawing.Size(754, 520);
             this.rJ_Pannel_領藥台_02.TabIndex = 13;
             // 
             // sqL_DataGridView_領藥台_02_領藥內容
@@ -2874,7 +3161,7 @@
             this.sqL_DataGridView_領藥台_02_領藥內容.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_領藥台_02_領藥內容.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_領藥台_02_領藥內容.Server = "127.0.0.0";
-            this.sqL_DataGridView_領藥台_02_領藥內容.Size = new System.Drawing.Size(815, 155);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Size = new System.Drawing.Size(739, 155);
             this.sqL_DataGridView_領藥台_02_領藥內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_領藥台_02_領藥內容.TabIndex = 134;
             this.sqL_DataGridView_領藥台_02_領藥內容.UserName = "root";
@@ -2899,7 +3186,7 @@
             this.panel_領藥台_02_藥品資訊.Location = new System.Drawing.Point(5, 236);
             this.panel_領藥台_02_藥品資訊.Name = "panel_領藥台_02_藥品資訊";
             this.panel_領藥台_02_藥品資訊.Padding = new System.Windows.Forms.Padding(3);
-            this.panel_領藥台_02_藥品資訊.Size = new System.Drawing.Size(815, 274);
+            this.panel_領藥台_02_藥品資訊.Size = new System.Drawing.Size(739, 274);
             this.panel_領藥台_02_藥品資訊.TabIndex = 1;
             // 
             // panel_領藥台_02_藥品圖片
@@ -2910,7 +3197,7 @@
             this.panel_領藥台_02_藥品圖片.Location = new System.Drawing.Point(3, 3);
             this.panel_領藥台_02_藥品圖片.Name = "panel_領藥台_02_藥品圖片";
             this.panel_領藥台_02_藥品圖片.Padding = new System.Windows.Forms.Padding(2);
-            this.panel_領藥台_02_藥品圖片.Size = new System.Drawing.Size(664, 268);
+            this.panel_領藥台_02_藥品圖片.Size = new System.Drawing.Size(588, 268);
             this.panel_領藥台_02_藥品圖片.TabIndex = 7;
             // 
             // pictureBox_領藥台_02_藥品圖片01
@@ -2921,7 +3208,7 @@
             this.pictureBox_領藥台_02_藥品圖片01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox_領藥台_02_藥品圖片01.Location = new System.Drawing.Point(2, 2);
             this.pictureBox_領藥台_02_藥品圖片01.Name = "pictureBox_領藥台_02_藥品圖片01";
-            this.pictureBox_領藥台_02_藥品圖片01.Size = new System.Drawing.Size(366, 264);
+            this.pictureBox_領藥台_02_藥品圖片01.Size = new System.Drawing.Size(290, 264);
             this.pictureBox_領藥台_02_藥品圖片01.TabIndex = 9;
             this.pictureBox_領藥台_02_藥品圖片01.TabStop = false;
             // 
@@ -2931,7 +3218,7 @@
             this.pictureBox_領藥台_02_藥品圖片02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox_領藥台_02_藥品圖片02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_領藥台_02_藥品圖片02.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox_領藥台_02_藥品圖片02.Location = new System.Drawing.Point(368, 2);
+            this.pictureBox_領藥台_02_藥品圖片02.Location = new System.Drawing.Point(292, 2);
             this.pictureBox_領藥台_02_藥品圖片02.Name = "pictureBox_領藥台_02_藥品圖片02";
             this.pictureBox_領藥台_02_藥品圖片02.Size = new System.Drawing.Size(294, 264);
             this.pictureBox_領藥台_02_藥品圖片02.TabIndex = 8;
@@ -2944,7 +3231,7 @@
             this.panel136.Controls.Add(this.panel153);
             this.panel136.Controls.Add(this.panel155);
             this.panel136.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel136.Location = new System.Drawing.Point(667, 3);
+            this.panel136.Location = new System.Drawing.Point(591, 3);
             this.panel136.Name = "panel136";
             this.panel136.Padding = new System.Windows.Forms.Padding(3);
             this.panel136.Size = new System.Drawing.Size(145, 268);
@@ -3088,7 +3375,7 @@
             this.panel120.Location = new System.Drawing.Point(5, 5);
             this.panel120.Name = "panel120";
             this.panel120.Padding = new System.Windows.Forms.Padding(3);
-            this.panel120.Size = new System.Drawing.Size(815, 76);
+            this.panel120.Size = new System.Drawing.Size(739, 76);
             this.panel120.TabIndex = 0;
             // 
             // panel122
@@ -3098,7 +3385,7 @@
             this.panel122.Location = new System.Drawing.Point(3, 3);
             this.panel122.Name = "panel122";
             this.panel122.Padding = new System.Windows.Forms.Padding(2);
-            this.panel122.Size = new System.Drawing.Size(375, 70);
+            this.panel122.Size = new System.Drawing.Size(299, 70);
             this.panel122.TabIndex = 142;
             // 
             // rJ_Lable_領藥台_02_Title
@@ -3117,7 +3404,7 @@
             this.rJ_Lable_領藥台_02_Title.Name = "rJ_Lable_領藥台_02_Title";
             this.rJ_Lable_領藥台_02_Title.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_領藥台_02_Title.ShadowSize = 3;
-            this.rJ_Lable_領藥台_02_Title.Size = new System.Drawing.Size(371, 66);
+            this.rJ_Lable_領藥台_02_Title.Size = new System.Drawing.Size(295, 66);
             this.rJ_Lable_領藥台_02_Title.TabIndex = 1;
             this.rJ_Lable_領藥台_02_Title.Text = "02. -------";
             this.rJ_Lable_領藥台_02_Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3128,7 +3415,7 @@
             this.panel123.Controls.Add(this.textBox_領藥台_02_帳號);
             this.panel123.Controls.Add(this.textBox_領藥台_02_密碼);
             this.panel123.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel123.Location = new System.Drawing.Point(378, 3);
+            this.panel123.Location = new System.Drawing.Point(302, 3);
             this.panel123.Name = "panel123";
             this.panel123.Size = new System.Drawing.Size(134, 70);
             this.panel123.TabIndex = 141;
@@ -3199,7 +3486,7 @@
             this.plC_RJ_Button_領藥台_02_登入.GUID = "";
             this.plC_RJ_Button_領藥台_02_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_領藥台_02_登入.Image_padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
-            this.plC_RJ_Button_領藥台_02_登入.Location = new System.Drawing.Point(512, 3);
+            this.plC_RJ_Button_領藥台_02_登入.Location = new System.Drawing.Point(436, 3);
             this.plC_RJ_Button_領藥台_02_登入.Name = "plC_RJ_Button_領藥台_02_登入";
             this.plC_RJ_Button_領藥台_02_登入.OFF_文字內容 = "登入";
             this.plC_RJ_Button_領藥台_02_登入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -3253,7 +3540,7 @@
             this.plC_Button_領藥台_02_領.GUID = "";
             this.plC_Button_領藥台_02_領.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_Button_領藥台_02_領.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_02_領.Location = new System.Drawing.Point(596, 3);
+            this.plC_Button_領藥台_02_領.Location = new System.Drawing.Point(520, 3);
             this.plC_Button_領藥台_02_領.Name = "plC_Button_領藥台_02_領";
             this.plC_Button_領藥台_02_領.OFF_文字內容 = "領";
             this.plC_Button_領藥台_02_領.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -3306,7 +3593,7 @@
             this.plC_Button_領藥台_02_退.GUID = "";
             this.plC_Button_領藥台_02_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_Button_領藥台_02_退.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_02_退.Location = new System.Drawing.Point(670, 3);
+            this.plC_Button_領藥台_02_退.Location = new System.Drawing.Point(594, 3);
             this.plC_Button_領藥台_02_退.Name = "plC_Button_領藥台_02_退";
             this.plC_Button_領藥台_02_退.OFF_文字內容 = "退";
             this.plC_Button_領藥台_02_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -3359,7 +3646,7 @@
             this.plC_RJ_Button_領藥台_02_取消作業.GUID = "";
             this.plC_RJ_Button_領藥台_02_取消作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_領藥台_02_取消作業.Image_padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
-            this.plC_RJ_Button_領藥台_02_取消作業.Location = new System.Drawing.Point(744, 3);
+            this.plC_RJ_Button_領藥台_02_取消作業.Location = new System.Drawing.Point(668, 3);
             this.plC_RJ_Button_領藥台_02_取消作業.Name = "plC_RJ_Button_領藥台_02_取消作業";
             this.plC_RJ_Button_領藥台_02_取消作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 10F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_領藥台_02_取消作業.OFF_文字顏色 = System.Drawing.Color.Black;
@@ -44787,6 +45074,8 @@
             this.panel113.ResumeLayout(false);
             this.rJ_Pannel_領藥台_01.ResumeLayout(false);
             this.contextMenuStrip_調劑畫面.ResumeLayout(false);
+            this.panel_領藥台01_處方資訊.ResumeLayout(false);
+            this.panel56.ResumeLayout(false);
             this.panel_領藥台_01_藥品資訊.ResumeLayout(false);
             this.panel_領藥台_01_藥品圖片.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_領藥台_01_藥品圖片01)).EndInit();
@@ -46542,7 +46831,6 @@
         private System.Windows.Forms.Panel panel128;
         private System.Windows.Forms.Panel panel129;
         private MyUI.RJ_TextBox rJ_TextBox_登入者顏色;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_領藥台_01_領藥內容;
         private System.Windows.Forms.Panel panel_領藥台_01_藥品資訊;
         private SQLUI.SQL_DataGridView sqL_DataGridView_領藥台_02_領藥內容;
         private System.Windows.Forms.Panel panel_領藥台_02_藥品資訊;
@@ -46912,6 +47200,20 @@
         private MyUI.PLC_CheckBox plC_CheckBox6;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_RFID入庫;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_RFID出庫;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_領藥台_01_領藥內容;
+        private System.Windows.Forms.Panel panel_領藥台01_處方資訊;
+        private System.Windows.Forms.Panel panel56;
+        private MyUI.RJ_Lable rJ_Lable51;
+        private MyUI.RJ_Lable rJ_Lable54;
+        private MyUI.RJ_Lable rJ_Lable49;
+        private MyUI.RJ_Lable rJ_Lable50;
+        private MyUI.RJ_Lable rJ_Lable46;
+        private MyUI.RJ_Lable rJ_Lable47;
+        private MyUI.RJ_Lable rJ_Lable39;
+        private MyUI.RJ_Lable rJ_Lable35;
+        private MyUI.RJ_Lable rJ_Lable58;
+        private MyUI.RJ_Lable rJ_Lable74;
+        private MyUI.RJ_Lable rJ_Lable111;
     }
 }
 
