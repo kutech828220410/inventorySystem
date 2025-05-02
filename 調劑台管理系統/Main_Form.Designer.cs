@@ -1634,6 +1634,7 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.rJ_Lable112 = new MyUI.RJ_Lable();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -2296,7 +2297,7 @@
             this.sqL_DataGridView_領藥台_01_領藥內容.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_領藥台_01_領藥內容.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_領藥台_01_領藥內容.Server = "127.0.0.0";
-            this.sqL_DataGridView_領藥台_01_領藥內容.Size = new System.Drawing.Size(860, 26);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Size = new System.Drawing.Size(860, 3);
             this.sqL_DataGridView_領藥台_01_領藥內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_領藥台_01_領藥內容.TabIndex = 135;
             this.sqL_DataGridView_領藥台_01_領藥內容.UserName = "root";
@@ -2328,14 +2329,15 @@
             // 
             // panel_領藥台01_處方資訊
             // 
+            this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable112);
             this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable111);
             this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable74);
             this.panel_領藥台01_處方資訊.Controls.Add(this.rJ_Lable58);
             this.panel_領藥台01_處方資訊.Controls.Add(this.panel56);
             this.panel_領藥台01_處方資訊.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_領藥台01_處方資訊.Location = new System.Drawing.Point(5, 107);
+            this.panel_領藥台01_處方資訊.Location = new System.Drawing.Point(5, 84);
             this.panel_領藥台01_處方資訊.Name = "panel_領藥台01_處方資訊";
-            this.panel_領藥台01_處方資訊.Size = new System.Drawing.Size(860, 193);
+            this.panel_領藥台01_處方資訊.Size = new System.Drawing.Size(860, 216);
             this.panel_領藥台01_處方資訊.TabIndex = 134;
             this.panel_領藥台01_處方資訊.Visible = false;
             // 
@@ -2379,7 +2381,7 @@
             this.rJ_Lable74.ShadowSize = 0;
             this.rJ_Lable74.Size = new System.Drawing.Size(860, 50);
             this.rJ_Lable74.TabIndex = 8;
-            this.rJ_Lable74.Text = "  支氣管炎、未明示急性或慢性者、過敏性鼻炎";
+            this.rJ_Lable74.Text = "  夜尿、攝護腺增大伴有下泌尿道症狀、急迫性尿失禁";
             this.rJ_Lable74.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable74.TextColor = System.Drawing.Color.Black;
             // 
@@ -2439,7 +2441,7 @@
             this.rJ_Lable51.ShadowSize = 0;
             this.rJ_Lable51.Size = new System.Drawing.Size(137, 50);
             this.rJ_Lable51.TabIndex = 13;
-            this.rJ_Lable51.Text = "1144";
+            this.rJ_Lable51.Text = "599";
             this.rJ_Lable51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable51.TextColor = System.Drawing.Color.Black;
             // 
@@ -2483,7 +2485,7 @@
             this.rJ_Lable49.ShadowSize = 0;
             this.rJ_Lable49.Size = new System.Drawing.Size(137, 50);
             this.rJ_Lable49.TabIndex = 11;
-            this.rJ_Lable49.Text = "000708968";
+            this.rJ_Lable49.Text = "000886602";
             this.rJ_Lable49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable49.TextColor = System.Drawing.Color.Black;
             // 
@@ -2527,7 +2529,7 @@
             this.rJ_Lable46.ShadowSize = 0;
             this.rJ_Lable46.Size = new System.Drawing.Size(137, 50);
             this.rJ_Lable46.TabIndex = 9;
-            this.rJ_Lable46.Text = "46歲/男";
+            this.rJ_Lable46.Text = "58歲/女";
             this.rJ_Lable46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable46.TextColor = System.Drawing.Color.Black;
             // 
@@ -2571,7 +2573,7 @@
             this.rJ_Lable39.ShadowSize = 0;
             this.rJ_Lable39.Size = new System.Drawing.Size(137, 50);
             this.rJ_Lable39.TabIndex = 7;
-            this.rJ_Lable39.Text = "葉忠豪";
+            this.rJ_Lable39.Text = "陳依林";
             this.rJ_Lable39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable39.TextColor = System.Drawing.Color.Black;
             // 
@@ -45050,6 +45052,28 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // rJ_Lable112
+            // 
+            this.rJ_Lable112.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable112.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable112.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable112.BorderRadius = 10;
+            this.rJ_Lable112.BorderSize = 0;
+            this.rJ_Lable112.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable112.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable112.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable112.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable112.GUID = "";
+            this.rJ_Lable112.Location = new System.Drawing.Point(0, 200);
+            this.rJ_Lable112.Name = "rJ_Lable112";
+            this.rJ_Lable112.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable112.ShadowSize = 0;
+            this.rJ_Lable112.Size = new System.Drawing.Size(860, 50);
+            this.rJ_Lable112.TabIndex = 10;
+            this.rJ_Lable112.Text = "  ORCE <--> OMGOO reduced efficacy ofrosuvastain";
+            this.rJ_Lable112.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable112.TextColor = System.Drawing.Color.Black;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -47214,6 +47238,7 @@
         private MyUI.RJ_Lable rJ_Lable58;
         private MyUI.RJ_Lable rJ_Lable74;
         private MyUI.RJ_Lable rJ_Lable111;
+        private MyUI.RJ_Lable rJ_Lable112;
     }
 }
 
