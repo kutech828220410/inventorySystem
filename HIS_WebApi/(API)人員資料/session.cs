@@ -495,13 +495,28 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                
-                List<loginDataIndexClass> update_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
-                List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
-
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
+                List<loginDataIndexClass> input_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
 
+                List<object[]> loginDataIndex = sQLControl_login_data_index.GetAllRows(null);
+                List<loginDataIndexClass> sql_loginDataIndex = loginDataIndex.SQLToClass<loginDataIndexClass, enum_login_data_index>();
+                List<loginDataIndexClass> update_loginDataIndex = new List<loginDataIndexClass>();
+
+                foreach (var item in input_loginDataIndex)
+                {
+                    string index = item.索引;
+                    loginDataIndexClass loginDataIndexClass = sql_loginDataIndex.Where(temp => temp.索引 == index).FirstOrDefault();
+                    if(loginDataIndexClass != null)
+                    {
+                        loginDataIndexClass.Name = item.Name;
+                        loginDataIndexClass.Type = item.Type;
+                        update_loginDataIndex.Add(loginDataIndexClass);
+                    }
+                }
+
+
+                List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
 
                 sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
                 returnData.Code = 200;
@@ -616,7 +631,7 @@ namespace HIS_WebApi
                 if(returnData.Data == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"ValueAry不得為空";
+                    returnData.Result = $"Data不得為空";
                     return returnData.JsonSerializationt(true);
                 }
                 List<PermissionsClass> update_permiss = returnData.Data.ObjToClass<List<PermissionsClass>>();
