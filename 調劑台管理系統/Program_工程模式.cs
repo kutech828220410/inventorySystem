@@ -19,13 +19,24 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        public static Panel _panel_工程模式_領藥台_01_顏色;
+        public static Panel _panel_工程模式_領藥台_02_顏色;
+        public static Panel _panel_工程模式_領藥台_03_顏色;
+        public static Panel _panel_工程模式_領藥台_04_顏色;
 
         private void Program_工程模式_Init()
         {
+            _panel_工程模式_領藥台_01_顏色 = this.panel_工程模式_領藥台_01_顏色;
+            _panel_工程模式_領藥台_02_顏色 = this.panel_工程模式_領藥台_02_顏色;
+            _panel_工程模式_領藥台_03_顏色 = this.panel_工程模式_領藥台_03_顏色;
+            _panel_工程模式_領藥台_04_顏色 = this.panel_工程模式_領藥台_04_顏色;
+
             this.plC_Button_工程模式_全部開鎖.btnClick += PlC_Button_工程模式_全部開鎖_btnClick;
             this.button_工程模式_調劑台名稱儲存.Click += Button_工程模式_調劑台名稱儲存_Click;
             this.plC_UI_Init.Add_Method(this.sub_Program_工程模式);
 
+            panel_工程模式_領藥台_01_顏色.Click += Panel_工程模式_領藥台_01_顏色_Click;
+            panel_工程模式_領藥台_02_顏色.Click += Panel_工程模式_領藥台_02_顏色_Click;
             panel_工程模式_領藥台_03_顏色.Click += Panel_工程模式_領藥台_03_顏色_Click;
             panel_工程模式_領藥台_04_顏色.Click += Panel_工程模式_領藥台_04_顏色_Click;
         }
@@ -47,7 +58,7 @@ namespace 調劑台管理系統
                 if (!this.flag_工程模式_頁面更新)
                 {
                     this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(true);
-                    this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.操作工程模式, this.登入者名稱, "");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.操作工程模式, this.登入者名稱, "");
                     this.Function_工程模式_鎖控按鈕更新();
                     this.flag_工程模式_頁面更新 = true;
                 }
@@ -212,18 +223,18 @@ namespace 調劑台管理系統
 
         private void Button_工程模式_調劑台名稱儲存_Click(object sender, EventArgs e)
         {
-            this.SaveConfig工程模式();
+            SaveConfig工程模式();
             PLC.properties.Device.Set_Device("S8", true);
             MyMessageBox.ShowDialog("儲存成功!");
         }
-        private void panel_工程模式_領藥台_01_顏色_Click(object sender, EventArgs e)
+        private void Panel_工程模式_領藥台_01_顏色_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 this.panel_工程模式_領藥台_01_顏色.BackColor = colorDialog.Color;
             }
         }
-        private void panel_工程模式_領藥台_02_顏色_Click(object sender, EventArgs e)
+        private void Panel_工程模式_領藥台_02_顏色_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
@@ -293,16 +304,16 @@ namespace 調劑台管理系統
             public bool flah_圖文辨識樣式03 = false;
             public bool flah_圖文辨識樣式04 = false;
         }
-        public void SaveConfig工程模式()
+        static public void SaveConfig工程模式()
         {
             
             string StreamName = $@"{currentDirectory}\adminConfig.pro";
             SaveConfig工程模式Class saveConfig = new SaveConfig工程模式Class();
 
-            saveConfig.領藥台_01_Color = this.panel_工程模式_領藥台_01_顏色.BackColor;
-            saveConfig.領藥台_02_Color = this.panel_工程模式_領藥台_02_顏色.BackColor;
-            saveConfig.領藥台_03_Color = this.panel_工程模式_領藥台_03_顏色.BackColor;
-            saveConfig.領藥台_04_Color = this.panel_工程模式_領藥台_04_顏色.BackColor;
+            saveConfig.領藥台_01_Color = _panel_工程模式_領藥台_01_顏色.BackColor;
+            saveConfig.領藥台_02_Color = _panel_工程模式_領藥台_02_顏色.BackColor;
+            saveConfig.領藥台_03_Color = _panel_工程模式_領藥台_03_顏色.BackColor;
+            saveConfig.領藥台_04_Color = _panel_工程模式_領藥台_04_顏色.BackColor;
 
             saveConfig.領藥台_01_columns_jsonStr = _sqL_DataGridView_領藥台_01_領藥內容.GetColumnsJsonStr();
             saveConfig.領藥台_02_columns_jsonStr = _sqL_DataGridView_領藥台_02_領藥內容.GetColumnsJsonStr();
@@ -376,16 +387,16 @@ namespace 調劑台管理系統
 
                         if (_sqL_DataGridView_領藥台_01_領藥內容.CustomEnable)
                         {
-                            this.sqL_DataGridView_領藥台_01_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
-                            panel_領藥台_01_藥品資訊.Visible = false;
+                            uC_調劑作業_TypeA_1.sqL_DataGridView_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                            uC_調劑作業_TypeA_1.panel_藥品資訊.Visible = false;
                         }
                         if (_sqL_DataGridView_領藥台_02_領藥內容.CustomEnable)
                         {
-                            this.sqL_DataGridView_領藥台_02_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
-                            panel_領藥台_02_藥品資訊.Visible = false;
+                            uC_調劑作業_TypeA_2.sqL_DataGridView_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                            uC_調劑作業_TypeA_2.panel_藥品資訊.Visible = false;
                         }
-                        if (_sqL_DataGridView_領藥台_03_領藥內容.CustomEnable) this.sqL_DataGridView_領藥台_03_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
-                        if (_sqL_DataGridView_領藥台_04_領藥內容.CustomEnable) this.sqL_DataGridView_領藥台_04_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                        if (_sqL_DataGridView_領藥台_03_領藥內容.CustomEnable) _sqL_DataGridView_領藥台_03_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
+                        if (_sqL_DataGridView_領藥台_04_領藥內容.CustomEnable) _sqL_DataGridView_領藥台_04_領藥內容.RowPostPaintingEventEx += SqL_DataGridView_領藥內容_RowPostPaintingEventEx;
 
                         if (saveConfig.領藥台_01_藥品資訊_Height == 0) saveConfig.領藥台_01_藥品資訊_Height = 275;
                         if (saveConfig.領藥台_02_藥品資訊_Height == 0) saveConfig.領藥台_02_藥品資訊_Height = 275;

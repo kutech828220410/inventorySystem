@@ -535,7 +535,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_隔板亮燈_CheckStateChanged(object sender, EventArgs e)
         {
-            if (this.PLC_Device_最高權限.Bool == false) return;
+            if (PLC_Device_最高權限.Bool == false) return;
             this.Invoke(new Action(delegate
             {
                 string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
@@ -552,7 +552,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_警報_CheckStateChanged(object sender, EventArgs e)
         {
-            if (this.PLC_Device_最高權限.Bool == false) return;
+            if (PLC_Device_最高權限.Bool == false) return;
             this.Invoke(new Action(delegate
             {
                 string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
@@ -570,7 +570,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_輸出_CheckStateChanged(object sender, EventArgs e)
         {
-            if (this.PLC_Device_最高權限.Bool == false) return;
+            if (PLC_Device_最高權限.Bool == false) return;
             string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
             Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
             if (drawer == null) return;
@@ -578,7 +578,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_輸入方向_CheckStateChanged(object sender, EventArgs e)
         {
-            if (this.PLC_Device_最高權限.Bool == false) return;
+            if (PLC_Device_最高權限.Bool == false) return;
             string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
             Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
             if (drawer == null) return;
@@ -586,7 +586,7 @@ namespace 調劑台管理系統
         }
         private void PlC_CheckBox_儲位管理_EPD583_輸出方向_CheckStateChanged(object sender, EventArgs e)
         {
-            if (this.PLC_Device_最高權限.Bool == false) return;
+            if (PLC_Device_最高權限.Bool == false) return;
             string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
             Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
             if (drawer == null) return;

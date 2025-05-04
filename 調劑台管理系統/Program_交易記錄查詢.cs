@@ -216,7 +216,7 @@ namespace 調劑台管理系統
             }
         }
 
-        private void Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作 enum_交易記錄查詢動作, string 操作人, string 備註)
+        static public void Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作 enum_交易記錄查詢動作, string 操作人, string 備註)
         {
             if (操作人.StringIsEmpty()) return;
             string GUID = Guid.NewGuid().ToString();
@@ -247,7 +247,7 @@ namespace 調劑台管理系統
             value[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
             value[(int)enum_交易記錄查詢資料.備註] = 備註;
 
-            this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
+            _sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
         }
 
 

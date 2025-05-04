@@ -347,7 +347,7 @@ namespace 調劑台管理系統
 
             IsShown = true;
             this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
-            Main_Form.領藥台_01_卡號 = "";
+            Main_Form._uC_調劑作業_TypeA_1.卡號 = "";
 
         }
 

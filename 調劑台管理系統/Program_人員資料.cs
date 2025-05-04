@@ -698,7 +698,7 @@ namespace 調劑台管理系統
                 this.List_PLC_Device_權限管理[i].Bool = false;
             }
             PLC_Device_最高權限.Bool = false;
-            this.PLC_Device_最高權限 = this.PLC_Device_最高權限;
+            PLC_Device_最高權限 = PLC_Device_最高權限;
 
         }
       

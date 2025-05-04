@@ -39,8 +39,8 @@ namespace 調劑台管理系統
             {
                 if (!this.flag_批次領藥_頁面更新)
                 {
-                    //this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
-                    //this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+                    //Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+                    //Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
                     this.sqL_DataGridView_批次領藥_領藥總量清單.ClearGrid();
             
 

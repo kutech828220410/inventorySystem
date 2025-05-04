@@ -295,11 +295,11 @@ namespace 調劑台管理系統
         {
             領藥 = 0, 退藥 = 1
         }
-        private List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, double value)
+        static public List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, double value)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
+            List<OrderClass> orderClasses = Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
             List<OrderClass> orderClasses_buf = new List<OrderClass>();
             List<string> pri_keys = orderClasses.Select(x => x.PRI_KEY).Distinct().ToList();
             List<object[]> list_value = new List<object[]>();
@@ -311,11 +311,11 @@ namespace 調劑台管理系統
             Console.Write($"醫令資料搜尋共<{orderClasses_buf.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return orderClasses_buf;
         }
-        private List<object[]> Function_醫令資料_API呼叫(string barcode , double value)
+        static public List<object[]> Function_醫令資料_API呼叫(string barcode , double value)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
+            List<OrderClass> orderClasses = Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode, value);
             List<OrderClass> orderClasses_buf = new List<OrderClass>();
             List<string> pri_keys = orderClasses.Select(x => x.PRI_KEY).Distinct().ToList();
             List<object[]> list_value = new List<object[]>();
@@ -328,32 +328,32 @@ namespace 調劑台管理系統
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, bool 單醫令模式 , OrderAction orderAction)
+        static public List<OrderClass> Function_醫令資料_API呼叫_Ex(string barcode, bool 單醫令模式 , OrderAction orderAction)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             string url = "";
             if (單醫令模式) url = dBConfigClass.OrderByCodeApiURL;
             else url = dBConfigClass.OrderApiURL;
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode, orderAction);
+            List<OrderClass> orderClasses = Function_醫令資料_API呼叫(url, barcode, orderAction);
 
             Console.Write($"醫令資料搜尋共<{orderClasses.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return orderClasses;
         }
-        private List<object[]> Function_醫令資料_API呼叫(string barcode , bool 單醫令模式)
+        static public List<object[]> Function_醫令資料_API呼叫(string barcode , bool 單醫令模式)
         {   
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             string url = "";
             if (單醫令模式) url = dBConfigClass.OrderByCodeApiURL;
             else url = dBConfigClass.OrderApiURL;
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode, OrderAction.領藥);
+            List<OrderClass> orderClasses = Function_醫令資料_API呼叫(url, barcode, OrderAction.領藥);
             List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
       
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, double num)
+        static public List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, double num)
         {
             barcode = barcode.Replace("\r\n", "");
             barcode = Uri.EscapeDataString(barcode);
@@ -368,7 +368,7 @@ namespace 調劑台管理系統
             Console.Write($"耗時 {myTimer.ToString()}ms\n");
             if (jsonString.StringIsEmpty())
             {
-                this.voice.SpeakOnTask("網路異常");
+                voice.SpeakOnTask("網路異常");
                 Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"呼叫串接資料失敗!請檢查網路連線...", 2000);
                 dialog_錯誤提示.ShowDialog();
                 //MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
@@ -377,7 +377,7 @@ namespace 調劑台管理系統
             returnData returnData = jsonString.JsonDeserializet<returnData>();
             if (returnData == null)
             {
-                this.voice.SpeakOnTask("藥單條碼錯誤");
+                voice.SpeakOnTask("藥單條碼錯誤");
                 Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"藥單條碼錯誤:{jsonString}", 2000);
                 dialog_錯誤提示.ShowDialog();
                 //MyMessageBox.ShowDialog(jsonString);
@@ -387,14 +387,14 @@ namespace 調劑台管理系統
             if (orderClasses == null)
             {
                 Console.WriteLine($"串接資料傳回格式錯誤!");
-                this.voice.SpeakOnTask("回傳資料錯誤");
+                voice.SpeakOnTask("回傳資料錯誤");
                 orderClasses = new List<OrderClass>();
 
             }
 
             return orderClasses;
         }
-        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, OrderAction action)
+        static public List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode, OrderAction action)
         {
             barcode = barcode.Replace("\r\n", "");
             barcode = Uri.EscapeDataString(barcode);
@@ -409,7 +409,7 @@ namespace 調劑台管理系統
             Console.Write($"耗時 {myTimer.ToString()}ms\n");
             if (jsonString.StringIsEmpty())
             {
-                this.voice.SpeakOnTask("網路異常");
+                voice.SpeakOnTask("網路異常");
                 Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"呼叫串接資料失敗!請檢查網路連線", 2000);
                 dialog_錯誤提示.ShowDialog();
                 //MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
@@ -418,7 +418,7 @@ namespace 調劑台管理系統
             returnData returnData = jsonString.JsonDeserializet<returnData>();
             if(returnData == null)
             {
-                this.voice.SpeakOnTask("藥單條碼錯誤");
+                voice.SpeakOnTask("藥單條碼錯誤");
                 Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"藥單條碼錯誤:{jsonString}", 2000);
                 dialog_錯誤提示.ShowDialog();
                 //MyMessageBox.ShowDialog(jsonString);
@@ -436,7 +436,7 @@ namespace 調劑台管理系統
             if (orderClasses == null)
             {
                 Console.WriteLine($"串接資料傳回格式錯誤!");
-                this.voice.SpeakOnTask("資料錯誤");
+                voice.SpeakOnTask("資料錯誤");
                 orderClasses = new List<OrderClass>();
 
             }
@@ -677,7 +677,7 @@ namespace 調劑台管理系統
                 LoadingForm.ShowLoadingForm();
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, this.rJ_TextBox_醫令資料_搜尋_藥袋條碼.Texts, OrderAction.領藥);
+                List<OrderClass> orderClasses = Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, this.rJ_TextBox_醫令資料_搜尋_藥袋條碼.Texts, OrderAction.領藥);
                 Console.Write($"醫令API回傳共<{orderClasses.Count}>筆,耗時{myTimer.ToString()}ms\n");
                 List<object[]> list_value = new List<object[]>();
                 for (int i = 0; i < orderClasses.Count; i++)
