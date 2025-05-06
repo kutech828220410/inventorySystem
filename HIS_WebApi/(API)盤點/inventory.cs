@@ -2311,26 +2311,17 @@ namespace HIS_WebApi
                                           where temp.Name == 操作人
                                           select temp).ToList();
                     }
-                    List<object[]> list_value_buff = sheetTemps_buf[0].list_value.GetRows((int)enum_盤點定盤_Excel.藥碼, creat.Contents[i].藥品碼);
-                    if(list_value_buff.Count == 0)
-                    {
-                        value = new object[new enum_盤點定盤_Excel().GetLength()];
-                        value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
-                        value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
-                        value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
-                        value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
-                        value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
-                        sheetTemps_buf[0].list_value.Add(value);
-                    }
-                    else if(list_value_buff.Count > 0)
-                    {
-                        list_value_buff[0][(int)enum_盤點定盤_Excel.盤點量] = (list_value_buff[0][(int)enum_盤點定盤_Excel.盤點量].StringToInt32() + creat.Contents[i].Sub_content[k].盤點量.StringToInt32()).ToString();
-
-                        sheetTemps_buf[0].list_value = list_value_buff;
-                    }    
+                    value = new object[new enum_盤點定盤_Excel().GetLength()];
+                    value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
+                    value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
+                    value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
+                    value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
+                    value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
+                    sheetTemps_buf[0].list_value.Add(value);
                 }
+
             }
-  
+
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
             Enum[] enums = new Enum[] {  enum_盤點定盤_Excel.庫存量, enum_盤點定盤_Excel .盤點量 ,enum_盤點定盤_Excel .單價 ,enum_盤點定盤_Excel .庫存金額 ,enum_盤點定盤_Excel .消耗量 ,
                 enum_盤點定盤_Excel.結存金額, enum_盤點定盤_Excel .誤差量 ,enum_盤點定盤_Excel.誤差金額,enum_盤點定盤_Excel.覆盤量 };
