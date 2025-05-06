@@ -22,7 +22,8 @@ namespace 癌症備藥機
         private SQL_DataGridView _sQL_DataGridView_藥品資料;
         public Dialog_手動選擇備藥品(SQL_DataGridView sQL_DataGridView_藥品資料)
         {
-            InitializeComponent();
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+           
 
             this._sQL_DataGridView_藥品資料 = sQL_DataGridView_藥品資料;
       

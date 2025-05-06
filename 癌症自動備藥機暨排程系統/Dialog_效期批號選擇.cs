@@ -48,17 +48,50 @@ namespace 癌症備藥機
         private void Dialog_效期批號選擇_Load(object sender, EventArgs e)
         {
             this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
-            string url = $"{Main_Form.API_Server}/api/transactions/get_stock_by_code";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = this._藥碼;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            List<StockClass> stockClasses = returnData.Data.ObjToClass<List<StockClass>>();
+            //string url = $"{Main_Form.API_Server}/api/transactions/get_stock_by_code";
+            //returnData returnData = new returnData();
+            //returnData.ServerName = "cheom";
+            //returnData.ServerType = "癌症備藥機";
+            //returnData.Value = this._藥碼;
+            //string json_in = returnData.JsonSerializationt();
+            //string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            //returnData = json_out.JsonDeserializet<returnData>();
+            //List<StockClass> stockClasses = returnData.Data.ObjToClass<List<StockClass>>();
+
+            List<StockClass> stockClasses = new List<StockClass>();
+            List<StockClass> stockClasses_buf = new List<StockClass>();
             if (stockClasses == null) stockClasses = new List<StockClass>();
+
             List<object[]> list_value = new List<object[]>();
+           
+            List<object> list_obj = Main_Form.Function_從SQL取得儲位到本地資料(this._藥碼);
+            for (int i = 0; i < list_obj.Count; i++)
+            {
+                if(list_obj[i] is Device)
+                {
+                    Device device = (Device)list_obj[i];
+                    for (int k = 0; k < device.List_Validity_period.Count; k++)
+                    {
+                        string val = device.List_Validity_period[i];
+                        string lot = device.List_Lot_number[i];
+
+                        stockClasses_buf = (from temp in stockClasses
+                                            where temp.Validity_period == val
+                                            where temp.Lot_number == lot
+                                            select temp).ToList();
+                        if (stockClasses_buf.Count == 0)
+                        {
+                            StockClass stockClass = new StockClass();
+                            stockClass.Code = this._藥碼;
+                            stockClass.Validity_period = val;
+                            stockClass.Lot_number = lot;
+                            stockClasses.Add(stockClass);
+                        }
+                    }
+                }
+              
+            }
+
             for (int i = 0; i < stockClasses.Count; i++)
             {
                 object[] value = new object[] { stockClasses[i].JsonSerializationt() };

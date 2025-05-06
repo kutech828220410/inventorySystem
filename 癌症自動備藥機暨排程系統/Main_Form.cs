@@ -22,8 +22,8 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.13")]
-[assembly: AssemblyFileVersion("1.0.0.13")]
+[assembly: AssemblyVersion("1.0.0.19")]
+[assembly: AssemblyFileVersion("1.0.0.19")]
 namespace 癌症備藥機
 {
     public partial class Main_Form : Form
@@ -34,6 +34,7 @@ namespace 癌症備藥機
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public LadderConnection.Properties PLC;
         static public PLC_Device PLC_Device_更新往前第幾天醫令 = new PLC_Device("D210");
+      
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();

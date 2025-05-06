@@ -60,13 +60,37 @@ namespace 癌症備藥機
             this.sqL_DataGridView_儲位選擇.RefreshGrid(list_value);
             this.sqL_DataGridView_儲位選擇.SetSelectRow(0);
             this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
+            this.FormClosingEvent += Dialog_儲位選擇_FormClosingEvent;
         }
 
-       
+        private void Dialog_儲位選擇_FormClosingEvent(object sender, CancelEventArgs e)
+        {
+            Device device;
+            List<object[]> list_value = this.sqL_DataGridView_儲位選擇.GetAllRows();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                device = list_value[i][0].ObjectToString().JsonDeserializet<Storage>();
+                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                    || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
+                {
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(device.IP, device.Port, Color.Black);
+                }
+                if (device.DeviceType == DeviceType.RowsLED)
+                {
+                    RowsDevice rowsDevice = Main_Form.List_RowsLED_本地資料.GetRowsDevice(device.GUID);
+                    RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                    rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, Color.Black);
+                    Main_Form._rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                }
+
+
+
+            }
+        }
 
         private void Dialog_儲位選擇_Load(object sender, EventArgs e)
         {
-        
+          
         }
 
         #region Event
@@ -115,9 +139,10 @@ namespace 癌症備藥機
             for (int i = 0; i < list_value.Count; i++)
             {
                 device = list_value[i][0].ObjectToString().JsonDeserializet<Storage>();
-                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                    || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
                 {
-                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP((Storage)device, Color.Black);
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(device.IP, device.Port, Color.Black);
                 }
                 if (device.DeviceType == DeviceType.RowsLED)
                 {
@@ -133,9 +158,10 @@ namespace 癌症備藥機
             device = RowValue[0].ObjectToString().JsonDeserializet<Device>();
             if(device != null)
             {
-                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                     || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
                 {
-                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP((Storage)device, Color.Blue);
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(device.IP, device.Port, Color.Blue);
                 }
                 if (device.DeviceType == DeviceType.RFID_Device)
                 {

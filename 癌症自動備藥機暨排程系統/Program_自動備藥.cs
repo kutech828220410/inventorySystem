@@ -531,6 +531,12 @@ namespace 癌症備藥機
                 cnt = 65500;
                 return;
             }
+            if (flag_復歸完成 == false)
+            {
+                MyMessageBox.ShowDialog("機器未復位,無法作業");
+                cnt = 65500;
+                return;
+            }
             this.Invoke(new Action(delegate
             {
                 panel_備藥狀態.Visible = true;
@@ -631,6 +637,11 @@ namespace 癌症備藥機
         #region Event    
         private void PlC_RJ_Button_開始備藥_MouseDownEvent(MouseEventArgs mevent)
         {
+            if(flag_復歸完成 == false)
+            {
+                MyMessageBox.ShowDialog("機器未復位,無法作業");
+                return;
+            }
             List<object[]> list_value = this.uc_備藥通知處方.GetSelectedRows();
             if (list_value.Count == 0)
             {
@@ -689,6 +700,11 @@ namespace 癌症備藥機
         }
         private void PlC_RJ_Button_自動備藥_手動選擇備藥_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (flag_復歸完成 == false)
+            {
+                MyMessageBox.ShowDialog("機器未復位,無法作業");
+                return;
+            }
             Dialog_手動選擇備藥品 dialog_手動選擇備藥 = new Dialog_手動選擇備藥品(this.sqL_DataGridView_出入庫作業);
             dialog_手動選擇備藥.ShowDialog();
             if (dialog_手動選擇備藥.DialogResult != DialogResult.Yes) return;

@@ -101,7 +101,7 @@ namespace 癌症備藥機
 
             return list_value;
         }
-
+    
         static public List<object[]> Function_取得異動儲位資訊從本地資料(List<StockClass> stockClasses, ref List<object[]> list_value_常溫, ref List<object[]> list_value_冷藏)
         {
             Function_取得本地儲位();

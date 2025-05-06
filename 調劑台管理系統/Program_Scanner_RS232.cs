@@ -77,19 +77,35 @@ namespace 調劑台管理系統
                 return index;
             }
         }
+        //private enum enum_Scanner_陣列內容
+        //{
+        //    病人姓名 = 10,
+        //    藥品碼 = 14,
+        //    藥袋序號 = 15,
+        //    使用數量 = 9,
+        //    病歷號 = 10,
+        //    開方日期 = 11,
+        //    開方時間 = 13,
+        //    藥品名稱 = 0,
+        //    中文名稱 = 1,
+        //    頻次 = 7,
+        //    包裝單位 = 8,
+
+        //}
+        //20250227更新
         private enum enum_Scanner_陣列內容
         {
-            病人姓名 = 10,
             藥品碼 = 14,
-            藥袋序號 = 15,
-            使用數量 = 9,
-            病歷號 = 10,
+            藥品名稱 = 18,
+            包裝單位 = 19,
+            使用數量 = 15,
+            頻次 = 6,
+            藥袋序號 = 0,
+            病人姓名 = 4,
+            病歷號 = 1,        
             開方日期 = 11,
             開方時間 = 13,
-            藥品名稱 = 0,
-            中文名稱 = 1,
-            頻次 = 7,
-            包裝單位 = 8,
+             
 
         }
         void Program_Scanner_RS232_Init()
@@ -239,6 +255,13 @@ namespace 調劑台管理系統
                     if (!plC_RJ_Button_掃碼測試.Bool) text = MySerialPort_Scanner01.ReadString();
                     else text = "1;T221212947;0024;1974-01-24;賴姿尹;AC57779100;1       ;BID     ;PO ;0056;197159;2023-06-06;12;1117;08243;1324;\r\n";
                     text = text.Replace("\0", "");
+
+                    /*20250227更新
+                     * 1;S220230333;;1974-12-17;莊瑞慈　　;AC446051G0;1.5;HS;PO;23;642773;2025-02-26;;10:02;08528;006;;A52-059;ZOLNOXFCTab10mg(Zolpidem);粒;;;洪緯欣　　
+                     * 
+                     * 
+                     * 
+                     */
                     Console.WriteLine($"接收資料長度 : {text.Length} ");
                     MySerialPort_Scanner01.ClearReadByte();
 
@@ -371,7 +394,6 @@ namespace 調劑台管理系統
                         return;
                     }
                     array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                    array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                     array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                     for (int i = 0; i < array.Length; i++)
@@ -632,7 +654,6 @@ namespace 調劑台管理系統
                         return;
                     }
                     array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                    array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                     array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                     for (int i = 0; i < array.Length; i++)
@@ -893,7 +914,6 @@ namespace 調劑台管理系統
                         return;
                     }
                     array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                    array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                     array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                     for (int i = 0; i < array.Length; i++)
@@ -1155,7 +1175,6 @@ namespace 調劑台管理系統
                         return;
                     }
                     array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                    array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                     array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                     for (int i = 0; i < array.Length; i++)
