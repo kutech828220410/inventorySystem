@@ -102,6 +102,22 @@ namespace HIS_DB_Lib
         備註,
 
     }
+    [EnumDescription("suspiciousRxLog_rule")]
+    public enum enum_suspiciousRxLog_rule
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("規則,VARCHAR,100,NONE")]
+        規則,
+        [Description("規則描述,VARCHAR,200,NONE")]
+        規則描述,
+        [Description("軟體,VARCHAR,20,NONE")]
+        軟體,
+        [Description("類別,VARCHAR,20,NONE")]
+        類別,
+        [Description("狀態,VARCHAR,10,NONE")]
+        狀態,
+    }
     public class suspiciousRxLogClass
     {
         [JsonPropertyName("GUID")]
@@ -297,6 +313,25 @@ namespace HIS_DB_Lib
 
         }
     }
+    public class suspiciousRxLog_ruleClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("index")]
+        public string index { get; set; }
+        [JsonPropertyName("rule")]
+        public string 規則 { get; set; }
+        [JsonPropertyName("rule_detail")]
+        public string 規則描述 { get; set; }
+        [JsonPropertyName("software")]
+        public string 軟體 { get; set; }
+        [JsonPropertyName("type")]
+        public string 類別 { get; set; }
+        [JsonPropertyName("state")]
+        public string 狀態 { get; set; }
+
+    }
+
     public class PrescriptionSet
     {
         [JsonPropertyName("eff_order")]

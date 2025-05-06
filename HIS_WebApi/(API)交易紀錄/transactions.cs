@@ -1184,7 +1184,7 @@ namespace HIS_WebApi
         {
             try
             {
-                string VM_API = Method.GetServerAPI("Main", "網頁", "med_cart_vm_api");
+                string VM_API = Method.GetServerAPI("Main", "網頁", "cdmi_excel_download_api");
                 if (VM_API.StringIsEmpty() == false)
                 {
                     string json_in = returnData.JsonSerializationt();
