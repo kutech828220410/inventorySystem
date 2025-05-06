@@ -902,7 +902,7 @@ namespace HIS_WebApi
         private void loadData()
         {
             init_login_data_index();
-            string data = Basic.MyFileStream.LoadFileAllText(@"C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\login_data_index.txt", "utf-8");
+            string data = Basic.MyFileStream.LoadFileAllText(@"./login_data_index.txt", "utf-8");
             //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
 
             List<loginDataIndexClass> loginDataIndexClasses = loginDataIndexClass.update_login_data_index(API,data);

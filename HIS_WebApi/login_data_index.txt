@@ -1,0 +1,2017 @@
+{
+  "Data":  [
+    {
+      "index": "00",
+      "name": "交班對點頁面",
+      "type": "調劑台",
+      "group": "交班作業",
+      "description": "交班對點頁面開啟"
+    },
+    {
+      "index": "01",
+      "name": "交易紀錄查詢頁面",
+      "type": "調劑台",
+      "group": "交易紀錄查詢",
+      "description": "交易紀錄查詢頁面開啟"
+    },
+    {
+      "index": "02",
+      "name": "藥品資料頁面",
+      "type": "調劑台",
+      "group": "藥品資料",
+      "description": "藥品資料頁面開啟"
+    },
+    {
+      "index": "03",
+      "name": "交班對點功能",
+      "type": "調劑台",
+      "group": "交班作業",
+      "description": "交班對點功能開啟"
+    },
+    {
+      "index": "04",
+      "name": "人員資料頁面",
+      "type": "調劑台",
+      "group": "人員資料",
+      "description": "人員資料頁面開啟"
+    },
+    {
+      "index": "05",
+      "name": "儲位管理頁面",
+      "type": "調劑台",
+      "group": "儲位管理",
+      "description": "儲位管理頁面開啟"
+    },
+    {
+      "index": "06",
+      "name": "工程模式頁面",
+      "type": "調劑台",
+      "group": "工程模式",
+      "description": "工程模式頁面面開啟"
+    },
+    {
+      "index": "07",
+      "name": "藥品資料更動",
+      "type": "調劑台",
+      "group": "藥品資料",
+      "description": "藥品資料更動功能開啟"
+    },
+    {
+      "index": "08",
+      "name": "管制結存表匯出",
+      "type": "調劑台",
+      "group": "交班作業",
+      "description": "管制結存表匯出功能開啟"
+    },
+    {
+      "index": "09",
+      "name": "管制結存表列印",
+      "type": "調劑台",
+      "group": "交班作業",
+      "description": "管制結存表列印功能開啟"
+    },
+    {
+      "index": "10",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+\      "index": "11",
+      "name": "儲位刪除",
+      "type": "調劑台",
+      "group": "儲位管理",
+      "description": "儲位刪除功能開啟"
+    },
+    {
+      "index": "12",
+      "name": "儲位庫存效期異動",
+      "type": "調劑台",
+      "group": "儲位管理",
+      "description": "儲位庫存效期異動功能開啟"
+    },
+    {
+      "index": "13",
+      "name": "面板資訊更改",
+      "type": "調劑台",
+      "group": "儲位管理",
+      "description": "儲位面板資訊更改功能開啟"
+    },
+    {
+      "index": "14",
+      "name": "人員基本資料更動",
+      "type": "調劑台",
+      "group": "人員資料",
+      "description": "人員基本資料更動功能開啟"
+    },
+    {
+      "index": "15",
+      "name": "儲位效期表",
+      "type": "調劑台",
+      "group": "儲位管理",
+      "description": "儲位庫存效期異動功能開啟"
+    },
+    {
+      "index": "16",
+      "name": "儲位總庫存表",
+      "type": "調劑台",
+      "group": "藥品資料",
+      "description": "儲位總庫存表顯示開啟"
+    },
+    {
+      "index": "17",
+      "name": "權限內容更動",
+      "type": "調劑台",
+      "group": "人員資料",
+      "description": "人員權限內容更動功能開啟"
+    },
+    {
+      "index": "18",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "19",
+      "name": "線上更新",
+      "type": "調劑台",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "20",
+      "name": "批次領藥權限",
+      "type": "調劑台",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "21",
+      "name": "藥品群組修改",
+      "type": "調劑台",
+      "group": "藥品資料",
+      "description": "藥品群組修改功能開啟"
+    },
+    {
+      "index": "22",
+      "name": "醫囑資料頁面",
+      "type": "調劑台",
+      "group": "醫令資料",
+      "description": "醫囑資料頁面顯示"
+    },
+    {
+      "GUID": "30e84cae-db73-4743-b888-c7ba55927353",
+      "index": "23",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "74f2bf49-80c8-4986-be27-a9c07b01c8df",
+      "index": "24",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "188eb87e-b7e8-454f-9335-809e8bec6891",
+      "index": "25",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "26",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "27",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "28",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "29",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "30",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "31",
+      "name": "",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "index": "32",
+      "name": "收支作業頁面",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "收支作業頁面功能開啟"
+    },
+    {
+      "index": "33",
+      "name": "入庫功能",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "入庫功能開啟"
+    },
+    {
+      "index": "34",
+      "name": "出庫功能",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "收支功能開啟"
+    },
+    {
+      "index": "35",
+      "name": "調入功能",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "調入功能開啟"
+    },
+    {
+      "index": "36",
+      "name": "調出功能",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "調出功能開啟"
+    },
+    {
+      "index": "37",
+      "name": "收支原因維護",
+      "type": "調劑台",
+      "group": "收支作業",
+      "description": "收支原因維護功能開啟"
+    },
+    {
+      "GUID": "85f68aaf-ed28-447c-8744-24ab048c2b89",
+      "index": "38",
+      "name": "交易紀錄匯出",
+      "type": "調劑台",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "d98a27fe-4a69-460b-b821-065cb9fed2a4",
+      "index": "39",
+      "name": "管制藥設定",
+      "type": "調劑台",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c8066b05-dadd-48c1-94cf-ce9ce15c0102",
+      "index": "40",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4af9e86f-3f4e-4a3e-ba28-862001e3d49d",
+      "index": "41",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4dfc6a9d-a504-445b-b5a0-3bd93d19a80c",
+      "index": "42",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a86ee78b-71f0-4004-b1d3-40f6df998a1d",
+      "index": "43",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e380e084-cc06-4d91-8330-32bc4b372f25",
+      "index": "44",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ec6d5dba-1f26-4ad8-b47c-4fb27eba1162",
+      "index": "45",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "828b640a-eb2c-456d-bae2-80ec1cc041ec",
+      "index": "46",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "39d6077a-8b99-49a5-8d78-ebac94a9ce84",
+      "index": "47",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4c41012f-3012-4602-ad2d-bf366a1970c2",
+      "index": "48",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c06f775f-05cd-4e2e-89bf-326771d548ec",
+      "index": "49",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3aa35363-d4e1-440f-a0bd-2bf2626f7509",
+      "index": "50",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "f4a77127-6b19-40f3-a237-e0e6ce106a98",
+      "index": "51",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "13abd002-0ba1-4f93-ad07-5b1773a1a69a",
+      "index": "52",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4c1927a7-913a-462f-9f37-f64f7b0000b1",
+      "index": "53",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "14fd6b14-ea3d-4f4d-9f3d-b80e35c99fd2",
+      "index": "54",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "227be06e-7fae-462e-ab27-cc7a48cb3564",
+      "index": "55",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8bae9e49-de1a-4868-8520-cf9bcd722887",
+      "index": "56",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "fe980108-f434-4118-8964-2be6c53f2840",
+      "index": "57",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "de719ccd-0d0f-4040-99af-25cb1eb6c974",
+      "index": "58",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8f79abd2-0e3f-4d2f-a60a-a30f0fbf8d62",
+      "index": "59",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "80496a2e-ac74-461a-986b-4e5edbfefd81",
+      "index": "60",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "01adfb47-92c0-426b-aa4b-dac8269be9f8",
+      "index": "61",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "798fc623-18c5-4d74-a94a-aca98ac3fdb0",
+      "index": "62",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a0c2569d-48c1-4a17-886a-8abcd615b5ff",
+      "index": "63",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7c694364-a480-4afe-94a7-b0d512f8ffbe",
+      "index": "64",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "cd5ff250-858d-486c-a48a-0e0025fac99f",
+      "index": "65",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4271cce0-56c9-4185-80e4-3e5d6f705011",
+      "index": "66",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "492c9ed6-5208-4f7f-8074-38f39683b416",
+      "index": "67",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "65930c55-fcb1-451d-97e2-d3c3837de0a2",
+      "index": "68",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b021857c-622b-42dc-9398-09182805e971",
+      "index": "69",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c43dbe01-84fc-4a3a-ada2-c27053f002d5",
+      "index": "70",
+      "name": "批次過帳頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "dc8d8b52-b567-44ea-9ddc-3dabb46f72a0",
+      "index": "71",
+      "name": "藥庫頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e9e43ddc-3385-4338-81d2-419ec8ba6045",
+      "index": "72",
+      "name": "藥局頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "1174d924-3c5f-4d58-811e-4647ab73467d",
+      "index": "73",
+      "name": "盤點作業頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "864dc1b9-13d7-4110-aa07-55425b2a897a",
+      "index": "74",
+      "name": "盤點報表下載",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "947aa380-3815-4f1e-abe4-541dbe8b11c1",
+      "index": "75",
+      "name": "盤點報表鎖定",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ab576de7-c50c-4814-b6c8-d7cfd6ac9060",
+      "index": "76",
+      "name": "盤點報表刪除",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "761ffacc-447d-4c09-9843-79c0e19d10be",
+      "index": "77",
+      "name": "周面設備頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "2e71aaf6-a0c5-49d1-a208-b01d526496d7",
+      "index": "78",
+      "name": "戰情白版設定",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a2b9105d-0dff-488f-8e01-b671451f36e3",
+      "index": "79",
+      "name": "藥品資料頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b8e06ff6-83ca-47cb-9e34-f894b13f2202",
+      "index": "80",
+      "name": "人員資料頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "f84e1981-9a79-49e7-a1ce-6837147332b4",
+      "index": "81",
+      "name": "儲位管理頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ccc60e3c-2eec-4b83-9687-9f83507177ff",
+      "index": "82",
+      "name": "工程模式頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "003a8c97-834d-4125-b9d4-8b6ed9404fe7",
+      "index": "83",
+      "name": "藥品資料更動",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "980ebae3-0f9e-4795-a78c-53405ec3eec4",
+      "index": "84",
+      "name": "儲位庫存效期異動",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5c49595c-8de5-4da9-b3c3-d385461466b6",
+      "index": "85",
+      "name": "人員基本資料更動",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "aceff1b3-d8ab-499b-836e-15a68b2f4998",
+      "index": "86",
+      "name": "權限內容更動",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3db683be-8b1a-45f3-85b2-438997c6ee26",
+      "index": "87",
+      "name": "交易紀錄查詢頁面",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "42f0e328-b068-4017-8161-0cd90256f011",
+      "index": "88",
+      "name": "訂單管理",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "307e6a77-d004-434f-94c0-c88ad5282d2a",
+      "index": "89",
+      "name": "撥補功能",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b83c945e-4009-4ae1-9259-ed9b97cb1019",
+      "index": "90",
+      "name": "驗收入庫管理",
+      "type": "藥庫",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "db54eb67-ee08-4683-83b3-9b66e23edd91",
+      "index": "91",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "2d757e0b-8a6d-4ecf-b990-556149b7f093",
+      "index": "92",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "645a68bd-7316-4c71-b0e6-8b24e0cdf71a",
+      "index": "93",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "95b4a189-ba98-447c-bff1-0ad20d4fb7bb",
+      "index": "94",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8f54d4c2-60c5-44d8-9e2c-2751e5a6211c",
+      "index": "95",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "abbe211c-c097-44cb-a3ec-99ec71b1892f",
+      "index": "96",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c8722913-6a9d-4888-9f12-ae3936e52ce4",
+      "index": "97",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "1f668b55-a48c-4d01-b0b9-e8369ba0368d",
+      "index": "98",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "24347532-a2e7-4364-bbd9-226d5b43313e",
+      "index": "99",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3ea0ad0c-f163-4f11-8333-bfe7641a7e22",
+      "index": "100",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3f491b4a-2bf4-4102-8aed-baac05ad6d60",
+      "index": "101",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "60da04c9-d8c5-47cc-97d6-e24f8f073541",
+      "index": "102",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "86bfdc3f-cf26-4e74-b400-5cc8c8a4c739",
+      "index": "103",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "1e33b1e2-152f-4a6e-82ed-3f2ff26729a3",
+      "index": "104",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "dcf90289-ba0c-4d6a-8a8a-2b4f5069ac87",
+      "index": "105",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "164f8660-1d65-4ad8-8d0e-9c8a3fec110c",
+      "index": "106",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "9a555d0a-dfae-4066-86bb-6ce215025fbd",
+      "index": "107",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "f72a7721-4fe8-45be-b9fb-e1aac1cbbbc9",
+      "index": "108",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a35a2035-aa23-48e2-b0b4-74dc7ed85510",
+      "index": "109",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "9c857007-9bba-492f-847e-dc17625fd133",
+      "index": "110",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "92720adf-064f-433e-b0b7-3414974a6f38",
+      "index": "111",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "84db413a-31e5-4e92-a01e-9ee652c80234",
+      "index": "112",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "2a62b03d-7f1e-469e-9149-85f007c14a9d",
+      "index": "113",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "d155252e-059b-4501-bb6f-4c2ca5aa0586",
+      "index": "114",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "40b8cf19-1620-4b74-8ea1-cacfaa12b997",
+      "index": "115",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8510c606-a226-4702-aa40-eb7240150dbf",
+      "index": "116",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "026d359b-4ebd-41d4-ae56-24aa3ce606cf",
+      "index": "117",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "45925c76-a6aa-4caa-9823-4499d83fea1b",
+      "index": "118",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "0f1e6e98-dee2-48ab-9300-beeefc4f9727",
+      "index": "119",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8b36e9a1-8f0b-4c06-b771-328042829af1",
+      "index": "120",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "d70ba298-f89f-4b32-8931-80237e8d8d55",
+      "index": "121",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a81c3326-53eb-4aff-a332-8e1861c30642",
+      "index": "122",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "997a9357-c63f-40d0-9da4-2a405e341014",
+      "index": "123",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7315d101-ea42-470f-9998-accad9f1dcff",
+      "index": "124",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a022710d-95ac-403d-9c27-5366fcad9037",
+      "index": "125",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "99de7e3c-1f34-40ff-a5a7-6d7cc31af40d",
+      "index": "126",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "53c80942-069a-43ff-b1f8-05fc1226254a",
+      "index": "127",
+      "name": "盤點管理",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "1f06c131-a8ee-4246-863d-a4cefaa9441b",
+      "index": "128",
+      "name": "條碼建置",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ae6d4e8b-f986-47a7-a566-4b7a899a24d1",
+      "index": "129",
+      "name": "藥品管理",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a9fc7a47-0424-48c6-882d-f458ece6cf64",
+      "index": "130",
+      "name": "庫存清單",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "0dbdb651-f664-4127-bb53-c65345bc83f3",
+      "index": "131",
+      "name": "人員管理",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "481d6bff-2323-4ab4-9904-ef2059a4e6b2",
+      "index": "132",
+      "name": "頁面設定",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "35737d65-861d-4864-a3b2-59725c45f0ed",
+      "index": "133",
+      "name": "驗收管理",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "206a4353-1a13-4333-9658-6d501fd5b45c",
+      "index": "134",
+      "name": "揀貨指引",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "80530114-5539-4e8d-9015-3e1faa5a1791",
+      "index": "135",
+      "name": "申領核撥",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a7e8c698-79f2-4729-9712-7f04548d5e9f",
+      "index": "136",
+      "name": "撥補核撥",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "bf490ba0-a309-4a6f-bc48-af7798ac23d2",
+      "index": "137",
+      "name": "撥補建單",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "41cb5500-7fbe-442a-914a-f0cb3ae6fcf1",
+      "index": "138",
+      "name": "單據辨識(批次)",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "59406e2e-c8e1-4fb0-a83d-1bebd454badf",
+      "index": "139",
+      "name": "單據辨識",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "975f9f2a-4818-481f-9d00-54b654b26bca",
+      "index": "140",
+      "name": "管制結存",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5f2d2cee-c226-461f-b37d-c2d06d847bac",
+      "index": "141",
+      "name": "交易紀錄",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "de586b24-e713-465c-9d3a-8f7eabc6f32d",
+      "index": "142",
+      "name": "批次入庫",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b2936191-957b-42f9-9bbe-a7a18acca09a",
+      "index": "143",
+      "name": "住院調劑",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "226829a3-91d6-4464-8d9e-ea468313eb42",
+      "index": "144",
+      "name": "申領建單",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7e12fbe2-2800-4d33-b907-6af04b457bb6",
+      "index": "145",
+      "name": "藥品指引",
+      "type": "網頁",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b3b4ede2-aeeb-4087-973a-94fef57aad14",
+      "index": "146",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c13402de-0a0f-4631-adf7-515f42dde3a1",
+      "index": "147",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "02964aba-b0b1-4019-94ce-f1c0d99704f4",
+      "index": "148",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "caec1df9-1a5f-4f47-80a8-c31964ae6604",
+      "index": "149",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "15441cb3-30bf-445e-b2d3-29bf7c3e3aa0",
+      "index": "150",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c07aad06-cdad-4500-a458-4a7f71412fc7",
+      "index": "151",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e7a03ad1-c167-453a-a140-14423bca7b08",
+      "index": "152",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "233f3fdb-fce7-4667-93fc-90e9ed8dc594",
+      "index": "153",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e2c6c646-1244-47a7-8ee2-6135df0b90f0",
+      "index": "154",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a10aa19a-bf22-4c80-aab7-1b2691be809d",
+      "index": "155",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "508fa0b4-cb08-4ab7-96ab-1cc33353160d",
+      "index": "156",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "76a2ebf2-883c-4561-be67-cd6cf7147c5c",
+      "index": "157",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "9ebff61e-733d-46b1-8ab9-90f543fc7f6c",
+      "index": "158",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e354b02e-bcf1-4186-8cac-7a17ad72fd91",
+      "index": "159",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e3dc4c33-c333-402a-a99a-865beb5cea93",
+      "index": "160",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "23a3badd-cf5c-4300-ab85-8549a0a42ba5",
+      "index": "161",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "564d728a-395e-487b-a77f-c22c23bbc79a",
+      "index": "162",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "06cc90f5-eaa6-4a4f-97ff-756cef3b3a17",
+      "index": "163",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c1206089-ce43-4101-94b7-bb887bae1efd",
+      "index": "164",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "eefc0203-8ccb-47b6-aaa9-5103acbee1bc",
+      "index": "165",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ed237ba6-3d7a-45cd-afe0-9349af64214a",
+      "index": "166",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "0d09aab4-ff64-4d50-90c7-5bd6c77228b4",
+      "index": "167",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "cee3affc-77c7-4691-bdfa-c031984a30d9",
+      "index": "168",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "17a83f19-abd5-44df-90e7-3cb49fa83cd0",
+      "index": "169",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5fd8174f-0e6a-4ab5-bef4-0ce2321c00e6",
+      "index": "170",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8bd96925-f89b-43a4-94d3-ed774eb2466c",
+      "index": "171",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "f4cdf9cf-9a50-4330-95c0-eb71c2b4e0bf",
+      "index": "172",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "273ccc98-82f5-4a5f-a8e9-792bc727c7e1",
+      "index": "173",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "48a6b2fd-3382-431b-92dc-212ef640cd94",
+      "index": "174",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3764cd75-e84e-446f-bfc8-966ccdf6bad4",
+      "index": "175",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5440706f-f3ce-4f27-832b-09183f2cbcb2",
+      "index": "176",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "08d1647d-815b-4ca1-aabb-e7e0c812b5ac",
+      "index": "177",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "357e7eb7-e1cf-44c3-9057-48651dda0315",
+      "index": "178",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "abd68b8e-88cd-46b5-a354-bf1acfb84961",
+      "index": "179",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5ed55e49-92ca-47c3-90c5-859022b87976",
+      "index": "180",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "1580052d-6329-4ecc-bc99-280498d224f0",
+      "index": "181",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7c1a9420-59f3-4b34-807e-a4d308cca749",
+      "index": "182",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e3b0b36d-d15d-4ac2-a775-4eccf0f272b3",
+      "index": "183",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a102c984-479a-49cf-9f3a-2886663b34ec",
+      "index": "184",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "55a8ca71-09a9-48f9-a266-f05eb780086c",
+      "index": "185",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c347dcf1-eddb-4f59-a02e-9e1ba9f043a2",
+      "index": "186",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "dd5f003c-ac63-4f91-9d8e-18b4d5fe07fd",
+      "index": "187",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5bf46482-68fa-41ad-8959-53ff742d3bca",
+      "index": "188",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "90f46fe4-51b9-4abd-a60b-8ec1e9e04403",
+      "index": "189",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "51b8d54d-ec90-4686-81e6-2110d2ba9b4b",
+      "index": "190",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a89a25d6-3165-4123-b6e3-aaf915a2a0e5",
+      "index": "191",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "bddf6bbd-da7b-452f-be5b-2076db2c9ec2",
+      "index": "192",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "bf4ad4b9-a0d8-49b9-b8ca-bd6cb0a3e56a",
+      "index": "193",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "a4a2741f-2637-435a-8d15-3e9f289e5a6e",
+      "index": "194",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "132acb74-0d4c-472b-995f-7407d01c2e52",
+      "index": "195",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "91c18d7a-149a-4260-8804-13ade6ae49d3",
+      "index": "196",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "850f4bce-10b9-4c5f-bcef-4ea2a6ea9d03",
+      "index": "197",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e45b3c24-55ab-46f7-aa90-58711c206d64",
+      "index": "198",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "02b3a068-53c3-4f17-9d5e-ccb5137ff588",
+      "index": "199",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3fcdb507-f265-4b09-8abc-90b9aa4f92b1",
+      "index": "200",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "0bbe59fb-3ecd-4d05-88c8-e7d51b682d3d",
+      "index": "201",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "20a63613-fea8-4b54-8b69-c1eb8b616c37",
+      "index": "202",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "418b1a85-727f-437e-b55d-ff2da6a52524",
+      "index": "203",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "71efb38e-7dd2-4122-8576-8fe9dc32df6c",
+      "index": "204",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "136c4778-eeea-49b5-ad94-8d2495327066",
+      "index": "205",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "fb9fb725-13df-460d-b120-c1bcbd38ba06",
+      "index": "206",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8c71f540-c582-4778-80d2-2ab418ff4eb6",
+      "index": "207",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "8f3efc51-9371-43d4-be4d-10613c05bed4",
+      "index": "208",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e11fd743-3360-4942-95ee-e1f750db984f",
+      "index": "209",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "3896b506-652e-48a7-9698-b8d43ab2f753",
+      "index": "210",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "795a52be-ef44-4cd6-b66b-d603271f134d",
+      "index": "211",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "23c92fde-bc10-4423-b398-d0a89c03a50a",
+      "index": "212",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "57963316-f484-4671-9cc2-3571c5cb7f69",
+      "index": "213",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "be330c6f-d541-42ef-80c2-b749b6fe5800",
+      "index": "214",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7dea04de-8fb9-4128-87bd-f078c5e3d4b2",
+      "index": "215",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "da8b6d5e-30d2-4183-b234-2b63157c5987",
+      "index": "216",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b0254d51-d712-45eb-9a38-6d735d8e37ad",
+      "index": "217",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ab0e56b5-d3fe-44e0-95bc-85d0222a486a",
+      "index": "218",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "98ff6777-4318-4d42-9187-41078aca3ab3",
+      "index": "219",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "e590fb5f-10dc-409a-b498-e516536ad18d",
+      "index": "220",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "73825b4b-1d31-43f2-8858-348a0fcfbf2e",
+      "index": "221",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "9faaf0e7-8e10-4873-9e52-1adc56744482",
+      "index": "222",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "06e6de4b-0ad4-4b4e-b5f3-bc98c47267b1",
+      "index": "223",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "99dbd8ea-88c8-4048-9ae2-93c912767a5d",
+      "index": "224",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b23f2b73-a640-4cbb-958e-446c15d03ff5",
+      "index": "225",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "0952a126-ec32-41f2-aa95-080cb5c0e2d9",
+      "index": "226",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "141b8d5d-0f7c-4df8-9ee7-987c923d7252",
+      "index": "227",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "251b58eb-28b8-4870-9c4c-f623251f257d",
+      "index": "228",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "56823b5a-827c-454a-9a06-b4ea1a899760",
+      "index": "229",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "cd651081-d765-42a1-b1c1-336498866895",
+      "index": "230",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "fe9c3200-48fe-4aed-b59c-a02dc47757d2",
+      "index": "231",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "fcca01fa-92a5-40a1-baea-7d37e07fbdf4",
+      "index": "232",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "96a4dac4-526d-4404-ae59-045f9c84e7d8",
+      "index": "233",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "239930ae-0449-4283-9501-4cf8b20934e3",
+      "index": "234",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c4202740-4885-4995-92b9-93d0a987bfe4",
+      "index": "235",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "c4ceae50-b682-48f0-9d4d-4d37c9a2aaba",
+      "index": "236",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "6664c242-30a8-4f6a-b570-535b54174f79",
+      "index": "237",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "ea2193c3-d7b8-465e-85ca-a9afec8cd9cb",
+      "index": "238",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "08370a82-a368-41f0-9c29-895402c45090",
+      "index": "239",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "2059ef8d-83ab-45d8-ae76-cf4c7b8318a1",
+      "index": "240",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "6b7cfc53-f36b-41f0-a678-43533c117e6b",
+      "index": "241",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "5d25818d-16c2-4ec8-8371-0c47b3e5ccf3",
+      "index": "242",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "57e08fb7-ee83-4396-a4f0-82f998941b18",
+      "index": "243",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "fe0a2b9c-a35d-4599-9017-d3d632f5cbb3",
+      "index": "244",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "eb6eb5b6-ff4f-4503-b081-3aba7d416a52",
+      "index": "245",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "951efabb-89c4-4f32-bfd8-0f72c2aab79f",
+      "index": "246",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "92bfdbc2-43fd-4ad9-aa36-746ded88737c",
+      "index": "247",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "203c2ff3-cb0e-497a-9751-d72ab1647954",
+      "index": "248",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "44aec76a-f34a-493b-b65c-13f1ea33f14e",
+      "index": "249",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "149a234e-5b3d-413e-bf8a-6b09ae4a4c27",
+      "index": "250",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "2369be71-b721-4f6f-9e61-747d1b3b9539",
+      "index": "251",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "b9110553-140c-4df6-92b0-d0ab6a57d886",
+      "index": "252",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "4a552e58-c13f-4d73-9788-fd3a3441fdf5",
+      "index": "253",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "7ee311af-db8c-4306-a4a2-1e2bd6a1a25f",
+      "index": "254",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    },
+    {
+      "GUID": "85a26302-7059-434a-96dd-668f9ca1ec91",
+      "index": "255",
+      "name": "None",
+      "type": "",
+      "group": "",
+      "description": ""
+    }
+  ]
+}
