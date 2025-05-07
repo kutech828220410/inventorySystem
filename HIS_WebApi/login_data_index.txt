@@ -78,7 +78,7 @@
       "description": ""
     },
     {
-\      "index": "11",
+      "index": "11",
       "name": "儲位刪除",
       "type": "調劑台",
       "group": "儲位管理",
@@ -270,23 +270,20 @@
       "description": "收支原因維護功能開啟"
     },
     {
-      "GUID": "85f68aaf-ed28-447c-8744-24ab048c2b89",
       "index": "38",
       "name": "交易紀錄匯出",
       "type": "調劑台",
-      "group": "",
-      "description": ""
+      "group": "交易紀錄查詢",
+      "description": "交易紀錄匯出功能開啟"
     },
     {
-      "GUID": "d98a27fe-4a69-460b-b821-065cb9fed2a4",
       "index": "39",
       "name": "管制藥設定",
       "type": "調劑台",
-      "group": "",
-      "description": ""
+      "group": "藥品資料",
+      "description": "管制藥品設定功能開啟"
     },
     {
-      "GUID": "c8066b05-dadd-48c1-94cf-ce9ce15c0102",
       "index": "40",
       "name": "None",
       "type": "",
@@ -294,7 +291,6 @@
       "description": ""
     },
     {
-      "GUID": "4af9e86f-3f4e-4a3e-ba28-862001e3d49d",
       "index": "41",
       "name": "None",
       "type": "",
@@ -302,7 +298,6 @@
       "description": ""
     },
     {
-      "GUID": "4dfc6a9d-a504-445b-b5a0-3bd93d19a80c",
       "index": "42",
       "name": "None",
       "type": "",
@@ -310,7 +305,6 @@
       "description": ""
     },
     {
-      "GUID": "a86ee78b-71f0-4004-b1d3-40f6df998a1d",
       "index": "43",
       "name": "None",
       "type": "",
@@ -318,7 +312,6 @@
       "description": ""
     },
     {
-      "GUID": "e380e084-cc06-4d91-8330-32bc4b372f25",
       "index": "44",
       "name": "None",
       "type": "",
@@ -326,7 +319,6 @@
       "description": ""
     },
     {
-      "GUID": "ec6d5dba-1f26-4ad8-b47c-4fb27eba1162",
       "index": "45",
       "name": "None",
       "type": "",
@@ -334,7 +326,6 @@
       "description": ""
     },
     {
-      "GUID": "828b640a-eb2c-456d-bae2-80ec1cc041ec",
       "index": "46",
       "name": "None",
       "type": "",
@@ -342,7 +333,6 @@
       "description": ""
     },
     {
-      "GUID": "39d6077a-8b99-49a5-8d78-ebac94a9ce84",
       "index": "47",
       "name": "None",
       "type": "",
@@ -350,7 +340,6 @@
       "description": ""
     },
     {
-      "GUID": "4c41012f-3012-4602-ad2d-bf366a1970c2",
       "index": "48",
       "name": "None",
       "type": "",
@@ -358,7 +347,6 @@
       "description": ""
     },
     {
-      "GUID": "c06f775f-05cd-4e2e-89bf-326771d548ec",
       "index": "49",
       "name": "None",
       "type": "",
@@ -366,7 +354,6 @@
       "description": ""
     },
     {
-      "GUID": "3aa35363-d4e1-440f-a0bd-2bf2626f7509",
       "index": "50",
       "name": "None",
       "type": "",
@@ -374,7 +361,6 @@
       "description": ""
     },
     {
-      "GUID": "f4a77127-6b19-40f3-a237-e0e6ce106a98",
       "index": "51",
       "name": "None",
       "type": "",
@@ -382,7 +368,6 @@
       "description": ""
     },
     {
-      "GUID": "13abd002-0ba1-4f93-ad07-5b1773a1a69a",
       "index": "52",
       "name": "None",
       "type": "",
@@ -390,7 +375,6 @@
       "description": ""
     },
     {
-      "GUID": "4c1927a7-913a-462f-9f37-f64f7b0000b1",
       "index": "53",
       "name": "None",
       "type": "",
@@ -986,7 +970,7 @@
       "index": "127",
       "name": "盤點管理",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -994,7 +978,7 @@
       "index": "128",
       "name": "條碼建置",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -1002,7 +986,7 @@
       "index": "129",
       "name": "藥品管理",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -1010,7 +994,7 @@
       "index": "130",
       "name": "庫存清單",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -1018,7 +1002,7 @@
       "index": "131",
       "name": "人員管理",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -1026,7 +1010,7 @@
       "index": "132",
       "name": "頁面設定",
       "type": "網頁",
-      "group": "",
+      "group": "共同管理",
       "description": ""
     },
     {
@@ -1034,7 +1018,7 @@
       "index": "133",
       "name": "驗收管理",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1042,7 +1026,7 @@
       "index": "134",
       "name": "揀貨指引",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1050,7 +1034,7 @@
       "index": "135",
       "name": "申領核撥",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1058,7 +1042,7 @@
       "index": "136",
       "name": "撥補核撥",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1066,7 +1050,7 @@
       "index": "137",
       "name": "撥補建單",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1074,7 +1058,7 @@
       "index": "138",
       "name": "單據辨識(批次)",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1082,7 +1066,7 @@
       "index": "139",
       "name": "單據辨識",
       "type": "網頁",
-      "group": "",
+      "group": "藥庫",
       "description": ""
     },
     {
@@ -1090,7 +1074,7 @@
       "index": "140",
       "name": "管制結存",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
@@ -1098,7 +1082,7 @@
       "index": "141",
       "name": "交易紀錄",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
@@ -1106,7 +1090,7 @@
       "index": "142",
       "name": "批次入庫",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
@@ -1114,7 +1098,7 @@
       "index": "143",
       "name": "住院調劑",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
@@ -1122,7 +1106,7 @@
       "index": "144",
       "name": "申領建單",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
@@ -1130,7 +1114,7 @@
       "index": "145",
       "name": "藥品指引",
       "type": "網頁",
-      "group": "",
+      "group": "藥局",
       "description": ""
     },
     {
