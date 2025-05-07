@@ -526,6 +526,8 @@ namespace HIS_WebApi
                 List<object[]> loginDataIndex = sQLControl_login_data_index.GetAllRows(null);
                 List<loginDataIndexClass> sql_loginDataIndex = loginDataIndex.SQLToClass<loginDataIndexClass, enum_login_data_index>();
                 List<loginDataIndexClass> update_loginDataIndex = new List<loginDataIndexClass>();
+                List<loginDataIndexClass> add_loginDataIndex = new List<loginDataIndexClass>();
+
 
                 foreach (var item in input_loginDataIndex)
                 {
@@ -540,16 +542,29 @@ namespace HIS_WebApi
 
                         update_loginDataIndex.Add(loginDataIndexClass);
                     }
+                    else
+                    {
+                        loginDataIndexClass.GUID = Guid.NewGuid().ToString();
+                        loginDataIndexClass.Name = item.Name;
+                        loginDataIndexClass.Type = item.Type;
+                        loginDataIndexClass.群組 = item.群組;
+                        loginDataIndexClass.描述 = item.描述;
+
+                        add_loginDataIndex.Add(loginDataIndexClass);
+                    }
                 }
 
 
                 List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
+                List<object[]> add = add_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
 
-                sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
+                if(update.Count > 0) sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
+                if (add.Count > 0) sQLControl_login_data_index.AddRows(null, add);
+                add_loginDataIndex.AddRange(update_loginDataIndex);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = update_loginDataIndex;
-                returnData.Result = $"更新權限表，共{update_loginDataIndex.Count}筆";
+                returnData.Data = add_loginDataIndex;
+                returnData.Result = $"更新權限表，共{add_loginDataIndex.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

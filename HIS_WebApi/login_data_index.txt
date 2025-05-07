@@ -137,15 +137,15 @@
       "index": "19",
       "name": "線上更新",
       "type": "調劑台",
-      "group": "",
-      "description": ""
+      "group": "藥品資料",
+      "description": "線上更新功能開啟"
     },
     {
       "index": "20",
       "name": "批次領藥權限",
       "type": "調劑台",
-      "group": "",
-      "description": ""
+      "group": "收支作業",
+      "description": "批次領藥功能開啟"
     },
     {
       "index": "21",
