@@ -12,6 +12,7 @@ using System.Text.Json.Serialization;
 using System.Configuration;
 using HIS_DB_Lib;
 using Microsoft.AspNetCore.Hosting.Server;
+using System.Net;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -21,7 +22,30 @@ namespace HIS_WebApi
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static string API = Method.GetServerAPI("Main", "網頁", "API01");
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-        
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///     
+        /// }
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("init_login_data_index")]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(suspiciousRxLogClass))]
+        [HttpPost]
+        public string init_login_data_index()
+        {
+            try
+            {
+                return CheckCreatTable(new enum_login_data_index());
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         [HttpGet]
         public string Get(string level)
         {
@@ -495,19 +519,52 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                
-                List<loginDataIndexClass> update_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
-                List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
-
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
+                List<loginDataIndexClass> input_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
+
+                List<object[]> loginDataIndex = sQLControl_login_data_index.GetAllRows(null);
+                List<loginDataIndexClass> sql_loginDataIndex = loginDataIndex.SQLToClass<loginDataIndexClass, enum_login_data_index>();
+                List<loginDataIndexClass> update_loginDataIndex = new List<loginDataIndexClass>();
+                List<loginDataIndexClass> add_loginDataIndex = new List<loginDataIndexClass>();
 
 
-                sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
+                foreach (var item in input_loginDataIndex)
+                {
+                    string index = item.索引;
+                    loginDataIndexClass loginDataIndexClass = sql_loginDataIndex.Where(temp => temp.索引 == index).FirstOrDefault();
+                    if(loginDataIndexClass != null)
+                    {
+                        loginDataIndexClass.Name = item.Name;
+                        loginDataIndexClass.Type = item.Type;
+                        loginDataIndexClass.群組 = item.群組;
+                        loginDataIndexClass.描述 = item.描述;
+
+                        update_loginDataIndex.Add(loginDataIndexClass);
+                    }
+                    else
+                    {
+                        loginDataIndexClass.GUID = Guid.NewGuid().ToString();
+                        loginDataIndexClass.Name = item.Name;
+                        loginDataIndexClass.Type = item.Type;
+                        loginDataIndexClass.群組 = item.群組;
+                        loginDataIndexClass.描述 = item.描述;
+
+                        add_loginDataIndex.Add(loginDataIndexClass);
+                    }
+                }
+
+
+                List<object[]> update = update_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
+                List<object[]> add = add_loginDataIndex.ClassToSQL<loginDataIndexClass, enum_login_data_index>();
+
+                if(update.Count > 0) sQLControl_login_data_index.UpdateByDefulteExtra(null, update);
+                if (add.Count > 0) sQLControl_login_data_index.AddRows(null, add);
+                add_loginDataIndex.AddRange(update_loginDataIndex);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = update_loginDataIndex;
-                returnData.Result = $"更新權限表，共{update_loginDataIndex.Count}筆";
+                returnData.Data = add_loginDataIndex;
+                returnData.Result = $"更新權限表，共{add_loginDataIndex.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -556,6 +613,7 @@ namespace HIS_WebApi
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 int level = returnData.ValueAry[0].StringToInt32();
                 string 類別 = returnData.ValueAry[1];
+                loadData();
                 List<PermissionsClass> PermissionsClasses = GetPermissions(level);
 
                 PermissionsClasses = PermissionsClasses.Where(item => item.類別 == 類別).ToList();
@@ -616,7 +674,7 @@ namespace HIS_WebApi
                 if(returnData.Data == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"ValueAry不得為空";
+                    returnData.Result = $"Data不得為空";
                     return returnData.JsonSerializationt(true);
                 }
                 List<PermissionsClass> update_permiss = returnData.Data.ObjToClass<List<PermissionsClass>>();
@@ -748,6 +806,9 @@ namespace HIS_WebApi
                             permissionsClass.類別 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Type].ObjectToString();
                             permissionsClass.索引 = i;
                             permissionsClass.狀態 = true;
+                            permissionsClass.群組 = login_data_index_buf[0][(int)enum_login_data_index.群組].ObjectToString();
+                            permissionsClass.描述 = login_data_index_buf[0][(int)enum_login_data_index.描述].ObjectToString();
+
                             result.Add(permissionsClass);
                         }
                     }
@@ -760,6 +821,8 @@ namespace HIS_WebApi
                             permissionsClass.類別 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Type].ObjectToString();
                             permissionsClass.索引 = i;
                             permissionsClass.狀態 = false;
+                            permissionsClass.群組 = login_data_index_buf[0][(int)enum_login_data_index.群組].ObjectToString();
+                            permissionsClass.描述 = login_data_index_buf[0][(int)enum_login_data_index.描述].ObjectToString();
                             result.Add(permissionsClass);
                         }
                     }
@@ -837,5 +900,28 @@ namespace HIS_WebApi
                 sQLControl_login_session.CreatTable(table);
             }
         }
+        private string CheckCreatTable(Enum Enum)
+        {
+            //string TableName = returnData.TableName;
+            SQLUI.Table table = new SQLUI.Table(Enum.GetEnumDescription());
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+            if (sys_serverSettingClasses.Count == 0)
+            {
+                return $"找無Server資料!";
+            }
+            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum);
+
+            return table.JsonSerializationt(true);
+        }
+        private void loadData()
+        {
+            init_login_data_index();
+            string data = Basic.MyFileStream.LoadFileAllText(@"./login_data_index.txt", "utf-8");
+            //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
+
+            List<loginDataIndexClass> loginDataIndexClasses = loginDataIndexClass.update_login_data_index(API,data);
+        }
+
     }
 }

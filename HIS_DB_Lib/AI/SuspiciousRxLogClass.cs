@@ -29,6 +29,27 @@ namespace HIS_DB_Lib
         H重複用藥,
         Z其他,
     }
+    public enum enum_suspiciousRxLog_export
+    {            
+        病歷號,
+        科別,
+        醫生姓名,
+        開方時間,
+        加入時間,
+        藥袋類型,
+        錯誤類別,
+        簡述事件,
+        狀態,
+        調劑人員,
+        調劑時間,
+        提報人員,
+        提報等級,
+        提報時間,
+        處理人員,
+        處理時間,
+        通報TPR,
+        備註,
+    }
     /// <summary>
     /// 醫師處方疑義紀錄表
     /// </summary>
@@ -80,6 +101,22 @@ namespace HIS_DB_Lib
         [Description("備註,VARCHAR,500,NONE")]
         備註,
 
+    }
+    [EnumDescription("suspiciousRxLog_rule")]
+    public enum enum_suspiciousRxLog_rule
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("規則,VARCHAR,100,NONE")]
+        規則,
+        [Description("規則描述,VARCHAR,200,NONE")]
+        規則描述,
+        [Description("軟體,VARCHAR,20,NONE")]
+        軟體,
+        [Description("類別,VARCHAR,20,NONE")]
+        類別,
+        [Description("狀態,VARCHAR,10,NONE")]
+        狀態,
     }
     public class suspiciousRxLogClass
     {
@@ -160,7 +197,7 @@ namespace HIS_DB_Lib
         {
             public int Compare(suspiciousRxLogClass x, suspiciousRxLogClass y)
             {
-                return x.加入時間.CompareTo(y.加入時間) * -1;
+                return x.加入時間.CompareTo(y.加入時間);
             }
         }
         static public suspiciousRxLogClass add(string API_Server, suspiciousRxLogClass suspiciousRxLogClasses)
@@ -276,6 +313,25 @@ namespace HIS_DB_Lib
 
         }
     }
+    public class suspiciousRxLog_ruleClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("index")]
+        public string index { get; set; }
+        [JsonPropertyName("rule")]
+        public string 規則 { get; set; }
+        [JsonPropertyName("rule_detail")]
+        public string 規則描述 { get; set; }
+        [JsonPropertyName("software")]
+        public string 軟體 { get; set; }
+        [JsonPropertyName("type")]
+        public string 類別 { get; set; }
+        [JsonPropertyName("state")]
+        public string 狀態 { get; set; }
+
+    }
+
     public class PrescriptionSet
     {
         [JsonPropertyName("eff_order")]

@@ -38,8 +38,11 @@ namespace 調劑台管理系統
 
         private void Dialog_醫師疑義處方紀錄表_LoadFinishedEvent(EventArgs e)
         {
-            List<OrderClass> orderClasses = OrderClass.get_by_barcode(Main_Form.API_Server, _suspiciousRxLogClass.藥袋條碼);
-            if (orderClasses == null)
+            //List<OrderClass> orderClasses = OrderClass.get_by_barcode(Main_Form.API_Server, _suspiciousRxLogClass.藥袋條碼);
+            List<OrderClass> orderClasses = OrderClass.get_by_PATCODE(Main_Form.API_Server, _suspiciousRxLogClass.病歷號);
+
+            if (orderClasses == null || orderClasses.Count == 0)
+
             {
                 MyMessageBox.ShowDialog("錯誤:找無醫令資料");
                 this.Close();

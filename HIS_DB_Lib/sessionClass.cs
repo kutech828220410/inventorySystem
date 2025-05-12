@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
 
 
 namespace HIS_DB_Lib
@@ -27,12 +28,21 @@ namespace HIS_DB_Lib
         Data03,
         Data04
     }
+    [EnumDescription("login_data_index")]
     public enum enum_login_data_index
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("索引,VARCHAR,50,NONE")]
         索引,
+        [Description("Name,VARCHAR,50,NONE")]
         Name,
+        [Description("Type,VARCHAR,50,NONE")]
         Type,
+        [Description("群組,VARCHAR,50,NONE")]
+        群組,
+        [Description("描述,VARCHAR,200,NONE")]
+        描述,
     }
     public class loginDataIndexClass
     {
@@ -44,6 +54,10 @@ namespace HIS_DB_Lib
         public string Name { get; set; }
         [JsonPropertyName("type")]
         public string Type { get; set; }
+        [JsonPropertyName("group")]
+        public string 群組 { get; set; }
+        [JsonPropertyName("description")]
+        public string 描述 { get; set; }
         public class ICP_By_index : IComparer<loginDataIndexClass>
         {
             public int Compare(loginDataIndexClass x, loginDataIndexClass y)
@@ -53,6 +67,20 @@ namespace HIS_DB_Lib
 
                 return xIndex.CompareTo(yIndex);
             }
+        }
+        static public List<loginDataIndexClass> update_login_data_index(string API_Server, string data)
+        {
+            string url = $"{API_Server}/api/session/update_login_data_index";
+
+            returnData returnData = new returnData();
+
+            string json_in = data;
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
+            List<loginDataIndexClass> loginDataIndexClasses = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
+            return loginDataIndexClasses;
         }
     }
     public class loginDataClass
@@ -93,6 +121,10 @@ namespace HIS_DB_Lib
         public string 類別 { get; set; }
         [JsonPropertyName("state")]
         public bool 狀態 { get; set; }
+        [JsonPropertyName("group")]
+        public string 群組 { get; set; }
+        [JsonPropertyName("description")]
+        public string 描述 { get; set; }
     }
     public class sessionClass
     {

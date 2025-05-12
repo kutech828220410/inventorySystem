@@ -21,6 +21,7 @@ using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Text;
+using System.Data;
 
 namespace HIS_WebApi
 {
@@ -514,17 +515,21 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+                //inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
 
-                sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                //sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 if (returnData.Value.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = $"搜尋內容空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
-                list_inventory_creat = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, returnData.Value);
+                string command = $"SELECT * FROM {DB}.inventory_creat WHERE {enum_盤點單號.盤點單號.GetEnumName()} = '{returnData.Value}';";
+                DataTable dataTable = sQLControl_inventory_creat.WtrteCommandAndExecuteReader(command);
+
+                List<object[]> list_inventory_creat = dataTable.DataTableToRowList();
+                //List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+                //list_inventory_creat = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, returnData.Value);
                 if (list_inventory_creat.Count == 0)
                 {
                     returnData.Code = -5;
@@ -2316,7 +2321,7 @@ namespace HIS_WebApi
                 }
 
             }
-  
+
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
             Enum[] enums = new Enum[] {  enum_盤點定盤_Excel.庫存量, enum_盤點定盤_Excel .盤點量 ,enum_盤點定盤_Excel .單價 ,enum_盤點定盤_Excel .庫存金額 ,enum_盤點定盤_Excel .消耗量 ,
                 enum_盤點定盤_Excel.結存金額, enum_盤點定盤_Excel .誤差量 ,enum_盤點定盤_Excel.誤差金額,enum_盤點定盤_Excel.覆盤量 };

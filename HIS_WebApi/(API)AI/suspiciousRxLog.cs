@@ -39,14 +39,57 @@ namespace HIS_WebApi._API_AI
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [Route("init")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(suspiciousRxLogClass))]
-        [HttpPost]
+        [HttpPost("init")]
         public string init()
         {
             try
             {
-                return CheckCreatTable(new enum_suspiciousRxLog());
+                return CheckCreatTable(null, new enum_suspiciousRxLog());
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///     
+        /// }
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("init_suspiciousRxLog_rule")]
+        public string init_suspiciousRxLog_rule()
+        {
+            try
+            {
+                return CheckCreatTable(null, new enum_suspiciousRxLog_rule());
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///     
+        /// }
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("init_suspiciousRxLog_rule_local")]
+        public string init_suspiciousRxLog_rule_local()
+        {
+            try
+            {
+                return CheckCreatTable("suspiciousRxLog_rule_local",new enum_suspiciousRxLog_rule());
             }
             catch (Exception ex)
             {
@@ -104,7 +147,124 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 取得規則
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_rule")]
+        public string get_rule([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_rule";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+                init_suspiciousRxLog_rule();
+                init_suspiciousRxLog_rule_local();
 
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                List<Task> tasks = new List<Task>();
+                List<suspiciousRxLog_ruleClass> suspiciousRxLogRule = new List<suspiciousRxLog_ruleClass>();
+                List<suspiciousRxLog_ruleClass> suspiciousRxLogRule_locals = new List<suspiciousRxLog_ruleClass>();
+
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    string TableName = "suspiciousRxLog_rule";
+                    SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule", UserName, Password, Port, SSLMode);
+                    List<object[]> list_suspiciousRxLog = sQLControl.GetAllRows(null);
+                    suspiciousRxLogRule = list_suspiciousRxLog.SQLToClass<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    string TableName = "suspiciousRxLog_rule_local";
+                    SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule_local", UserName, Password, Port, SSLMode);
+                    List<object[]> list_suspiciousRxLog = sQLControl.GetAllRows(null);
+                    suspiciousRxLogRule_locals = list_suspiciousRxLog.SQLToClass<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+                })));
+                Task.WhenAll(tasks).Wait();
+                suspiciousRxLogRule.AddRange(suspiciousRxLogRule_locals);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogRule;
+                returnData.Result = $"取得{suspiciousRxLogRule.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得規則
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("add_rule_local")]
+        public string add_rule_local([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add_rule_local";
+            try
+            {
+                List<suspiciousRxLog_ruleClass> suspiciousRxLogRule_locals = returnData.Data.ObjToClass<List<suspiciousRxLog_ruleClass>>();
+                if (suspiciousRxLogRule_locals == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule_local", UserName, Password, Port, SSLMode);
+                foreach(var item in suspiciousRxLogRule_locals)
+                {
+                    item.GUID = Guid.NewGuid().ToString();
+                    item.類別 = "local";
+                }
+                List<object[]> list_suspiciousRxLogRule = suspiciousRxLogRule_locals.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+                sQLControl.AddRows(null, list_suspiciousRxLogRule);               
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogRule_locals;
+                returnData.Result = $"增加{suspiciousRxLogRule_locals.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         /// <summary>
         /// 以order_PRI_KEY(藥袋條碼)取得資料
         /// </summary>
@@ -429,8 +589,7 @@ namespace HIS_WebApi._API_AI
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為交易紀錄結構</returns>
-        [Route("download_datas_excel")]
-        [HttpPost]
+        [HttpPost("download_datas_excel")]
         public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
         {
             try
@@ -439,18 +598,16 @@ namespace HIS_WebApi._API_AI
                 myTimer.StartTickTime(50000);
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
 
-                List<object[]> list_suspiciousRxLogClasses = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                System.Data.DataTable dataTable = list_suspiciousRxLogClasses.ToDataTable(new enum_suspiciousRxLog());
-                dataTable = dataTable.ReorderTable(new enum_suspiciousRxLog());
+                List<object[]> list_transactionsClasses = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_suspiciousRxLog());
+                dataTable = dataTable.ReorderTable(new enum_suspiciousRxLog_export());
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
                 List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
                 dataTables.Add(dataTable);
-                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx, new[] { (int)enum_suspiciousRxLog.備註 });
-                //Stream stream = new MemoryStream(excelData);
-                //byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}處方疑義.xlsx"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_醫師處方疑義紀錄表.xlsx"));
             }
             catch
             {
@@ -458,6 +615,7 @@ namespace HIS_WebApi._API_AI
             }
 
         }
+
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses)
         {
             List<medClass> medClasses = medClass.get_med_cloud(API_Server);
@@ -512,10 +670,15 @@ namespace HIS_WebApi._API_AI
             return cpoeList;
 
         }
-        private string CheckCreatTable(Enum Enum)
+       
+        private string CheckCreatTable(string tableName, Enum Enum)
         {
-            //string TableName = returnData.TableName;
-            SQLUI.Table table = new SQLUI.Table(Enum.GetEnumName());
+            
+            if (tableName == null)
+            {
+                tableName = Enum.GetEnumDescription();
+            }
+            SQLUI.Table table = new SQLUI.Table(tableName);
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
             if (sys_serverSettingClasses.Count == 0)

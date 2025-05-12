@@ -13,6 +13,7 @@ using System.IO;
 using System.Reflection;
 using System.Globalization;
 using SkiaSharp;
+using System.Data;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HIS_WebApi
@@ -1181,7 +1182,7 @@ namespace HIS_WebApi
                     textVisionClass.Result = "未辨識";
                     if (textVisionClass.圖片.StringIsEmpty())
                     {
-                        string filPath = @"C:\Users\Administrator\Desktop\測試單據\久裕 20250318-0_1140313001-55.jpg";
+                        string filPath = @"C:\Users\Administrator\OneDrive - 鴻森智能科技有限公司\軟體部\0.醫院客戶資料\3.衛服部立台北醫院\請購單辨識\測試單據\登銓\20250424-0 1140422003-37.jpg";
                         byte[] imageBytes = System.IO.File.ReadAllBytes(filPath);
                         string base64 = Convert.ToBase64String(imageBytes);
                         base64 = $"data:image/jpeg;base64,{base64}";
@@ -1329,16 +1330,19 @@ namespace HIS_WebApi
                 string 操作者ID = returnData.ValueAry[0];
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 //List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.操作者ID, 操作者ID);
-                DateTime today = DateTime.Now.AddDays(-9);
+                DateTime today = DateTime.Now;
+
                 string start = today.GetStartDate().ToDateTimeString();
                 string end = today.GetEndDate().ToDateTimeString();
-
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByBetween(null,(int)enum_textVision.操作時間, start, end);
+                string command = $"SELECT * FROM {DB}.textVision WHERE 操作時間 BETWEEN '{start}' AND '{end}' AND 操作者ID = '{操作者ID}';";
+                DataTable dataTable_patient_info = sQLControl_textVision.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_textVision = dataTable_patient_info.DataTableToRowList();
+                //List<object[]> list_textVision = sQLControl_textVision.GetRowsByBetween(null,(int)enum_textVision.操作時間, start, end);
 
                 //List<object[]> list_textVision = sQLControl_textVision.GetAllRows(null);
 
                 List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
-                textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
+                //textVisionClasses = textVisionClasses.Where(temp => temp.操作者ID == 操作者ID).ToList();
                 Dictionary<string, List<textVisionClass>> dicTextVision = textVisionClass.ToDicByBatchID(textVisionClasses);
                 if (dicTextVision.Count == 0)
                 {
