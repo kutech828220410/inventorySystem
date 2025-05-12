@@ -530,6 +530,7 @@ namespace HIS_WebApi._API_AI
                         狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
+                        提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName(),
                         提報時間 = DateTime.MinValue.ToDateTimeString(),
                         處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
