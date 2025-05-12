@@ -39,7 +39,7 @@ namespace 調劑台管理系統
                 return index + 1;
             }
         }
-
+        public suspiciousRxLogClass suspiciousRxLog = null;
         MyTimer MyTimer_閒置登出時間 = new MyTimer("D100");
         PLC_Device PLC_Device_閒置登出時間 = new PLC_Device("D100");
         MyTimer MyTimer_入賬完成時間 = new MyTimer("D101");
@@ -92,7 +92,11 @@ namespace 調劑台管理系統
 
             plC_RJ_Button_登入.MouseDownEvent += PlC_RJ_Button_登入_MouseDownEvent;
             plC_RJ_Button_取消作業.MouseDownEvent += PlC_RJ_Button_取消作業_MouseDownEvent;
-
+            if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
+            {
+                pictureBox_藥品圖片01.Click += PictureBox_藥品圖片_Click;
+                rJ_Lable_MedGPT_Title.Visible = true;
+            }
 
             myThread_program = new MyThread();
             myThread_program.Add_Method(sub_program);
@@ -248,7 +252,7 @@ namespace 調劑台管理系統
                 personPageClass.藥師證字號 = "";
                 personPageClass.顏色 = this.顏色;
 
-                if (Main_Form.Function_醫令領藥(scanner_text, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool))
+                if (Main_Form.Function_醫令領藥(scanner_text, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool) == null)
                 {
                     cnt = 65500;
                     return;
@@ -509,7 +513,7 @@ namespace 調劑台管理系統
             }
             if (plC_Button_領.Bool)
             {
-                Function_醫令領藥(醫令條碼);
+               Function_醫令領藥(醫令條碼);
             }
             else if (plC_Button_退.Bool)
             {
@@ -527,10 +531,76 @@ namespace 調劑台管理系統
             personPageClass.姓名 = 登入者姓名;
             personPageClass.藥師證字號 = 藥師證字號;
             personPageClass.顏色 = 顏色;
-            Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+            List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+            if(orderClasses != null)
+            {
+                if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
+                {
+                    Task.Run(new Action(delegate
+                    {
+                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
+                        if (code == -200)
+                        {
+                            return;
+                        }
+                        suspiciousRxLog = suspiciousRxLogClass;
 
+                        if (suspiciousRxLog == null) return;
+                        string 提報等級 = this.suspiciousRxLog?.提報等級;
+                        string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
+                        string 簡述事件 = this.suspiciousRxLog?.簡述事件;
+                        if (this.suspiciousRxLog?.狀態 != "無異狀") 提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
+                        if (!string.IsNullOrEmpty(提報等級))
+                        {
+                            int pbWidth = pictureBox_藥品圖片01.Width;
+                            int pbHeight = pictureBox_藥品圖片01.Height;
+
+                            if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
+                            {
+                                if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
+
+                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                pictureBox_藥品圖片01.Visible = true;
+                            }
+                            else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
+                            {
+                                if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
+
+                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                pictureBox_藥品圖片01.Visible = true;
+                            }
+                        }
+                     
+                    }));
+                }
+            }
 
         }
+
+        private void PictureBox_藥品圖片_Click(object sender, EventArgs e)
+        {
+            if(suspiciousRxLog == null)
+            {
+                return;
+            }
+            if (suspiciousRxLog.狀態 != enum_suspiciousRxLog_status.無異狀.GetEnumName())
+            {
+                Voice.GoogleSpeaker("處方有疑義,請審核", $@"{Main_Form.currentDirectory}/gooler_speaker_temp.mp3");
+                Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(suspiciousRxLog, 登入者姓名);
+
+                if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
+
+                (int code, string resuult, suspiciousRxLogClass _suspiciousRxLog) = suspiciousRxLogClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
+                if (code != 200)
+                {
+                    MyMessageBox.ShowDialog(resuult);
+                    return;
+                }
+            }
+        }
+
         public void Function_醫令退藥(string BarCode)
         {
             personPageClass personPageClass = new personPageClass();
@@ -781,10 +851,12 @@ namespace 調劑台管理系統
                 {
                     string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                    string 姓名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
+                    string 年齡 = "";
                     string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
                     病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
                     開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
-                    Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間);
+                    Function_調劑作業_醫令資訊更新(藥碼, 藥名, 姓名, 年齡, 領藥號, 病歷號, 開方時間);
                 }
             }
             catch
@@ -1284,10 +1356,12 @@ namespace 調劑台管理系統
         {
             string 藥碼 = RowValue[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
             string 藥名 = RowValue[(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+            string 姓名 = RowValue[(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
+            string 年齡 = "";
             string 領藥號 = RowValue[(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
             string 病歷號 = RowValue[(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
             string 開方時間 = RowValue[(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
-            Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間);
+            Function_調劑作業_醫令資訊更新(藥碼, 藥名, 姓名, 年齡, 領藥號, 病歷號, 開方時間);
         }
         private void SqL_DataGridView_領藥內容_DataGridRefreshEvent()
         {
@@ -1468,50 +1542,68 @@ namespace 調劑台管理系統
                 if (pictureBox_藥品圖片02.BackgroundImage != null) pictureBox_藥品圖片02.BackgroundImage.Dispose();
                 pictureBox_藥品圖片02.BackgroundImage = null;
 
-                this.rJ_Lable_領藥號.Text = "-----------------";
-                this.rJ_Lable_病歷號.Text = "-----------------";
+                suspiciousRxLog = null;
+
+                this.rJ_Lable_姓名.Text = "---------";
+                this.rJ_Lable_年齡.Text = "----";
+                this.rJ_Lable_領藥號.Text = "-----";
+                this.rJ_Lable_病歷號.Text = "---------";
             }));
 
         }
-        public void Function_調劑作業_醫令資訊更新(string 藥碼, string 藥名, string 領藥住院號, string 病歷號, string 開方時間)
+        public void Function_調劑作業_醫令資訊更新(string 藥碼, string 藥名,string 姓名,string 年齡, string 領藥住院號, string 病歷號, string 開方時間)
         {
 
             Task.Run(new Action(delegate
             {
-                List<Image> images = Main_Form.Function_取得藥品圖片(藥碼);
+                List<Image> images = new List<Image>();
+                if (Main_Form.PLC_Device_AI處方核對啟用.Bool == false) images = Main_Form.Function_取得藥品圖片(藥碼);
                 this.Invoke(new Action(delegate
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
-                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-----------------";
-                    if (病歷號.StringIsEmpty()) 病歷號 = "-----------------";
-                    if (開方時間.Check_Date_String() == false) 開方時間 = "-----------------";
+                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-----";
+                    if (病歷號.StringIsEmpty()) 病歷號 = "---------";
+                    if (開方時間.Check_Date_String() == false) 開方時間 = "---------";
                     else 開方時間 = 開方時間.StringToDateTime().ToDateTimeString();
-                    if (images.Count >= 2)
+                    if (姓名.StringIsEmpty()) 姓名 = "---------";
+                    if (年齡.StringIsEmpty()) 年齡 = "----";
+                    if (Main_Form.PLC_Device_AI處方核對啟用.Bool == false)
                     {
-                        if (pictureBox_藥品圖片01.BackgroundImage != null) pictureBox_藥品圖片01.BackgroundImage.Dispose();
-                        if (pictureBox_藥品圖片02.BackgroundImage != null) pictureBox_藥品圖片02.BackgroundImage.Dispose();
-                        if (images[0] != null && images[1] != null)
+                        if (images.Count >= 2)
                         {
-                            pictureBox_藥品圖片01.BackgroundImage = images[0];
-                            pictureBox_藥品圖片02.BackgroundImage = images[1];
-                            pictureBox_藥品圖片01.Visible = true;
-                            pictureBox_藥品圖片02.Visible = true;
-                        }
-                        else if (images[0] == null && images[1] != null)
-                        {
-                            pictureBox_藥品圖片01.BackgroundImage = images[1];
-                            pictureBox_藥品圖片01.Visible = true;
-                            pictureBox_藥品圖片02.Visible = false;
-                        }
-                        else if (images[0] != null && images[1] == null)
-                        {
-                            pictureBox_藥品圖片01.BackgroundImage = images[0];
-                            pictureBox_藥品圖片01.Visible = true;
-                            pictureBox_藥品圖片02.Visible = false;
+                            if (pictureBox_藥品圖片01.BackgroundImage != null) pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                            if (pictureBox_藥品圖片02.BackgroundImage != null) pictureBox_藥品圖片02.BackgroundImage.Dispose();
+                            if (images[0] != null && images[1] != null)
+                            {
+                                pictureBox_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_藥品圖片02.BackgroundImage = images[1];
+                                pictureBox_藥品圖片01.Visible = true;
+                                pictureBox_藥品圖片02.Visible = true;
+                            }
+                            else if (images[0] == null && images[1] != null)
+                            {
+                                pictureBox_藥品圖片01.BackgroundImage = images[1];
+                                pictureBox_藥品圖片01.Visible = true;
+                                pictureBox_藥品圖片02.Visible = false;
+                            }
+                            else if (images[0] != null && images[1] == null)
+                            {
+                                pictureBox_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_藥品圖片01.Visible = true;
+                                pictureBox_藥品圖片02.Visible = false;
+                            }
                         }
                     }
+                    else
+                    {
+                        // 範例欄位（你應從某處傳入這些屬性）
+                      
+                    }
+                       
 
 
+                    this.rJ_Lable_姓名.Text = 姓名;
+                    this.rJ_Lable_年齡.Text = 年齡;
                     this.rJ_Lable_領藥號.Text = 領藥住院號;
                     this.rJ_Lable_病歷號.Text = 病歷號;
 
@@ -1520,6 +1612,39 @@ namespace 調劑台管理系統
                 }));
             }));
         }
+        public static Image DrawSimpleWarningImage(string level, string errorType, string eventDesc, int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.White);
+
+                // 設定字型
+                Font titleFont = new Font("Arial", 14, FontStyle.Bold);
+                Font labelFont = new Font("Arial", 12, FontStyle.Bold);
+                Font textFont = new Font("Arial", 12, FontStyle.Regular);
+
+                // 上方：警示色塊（固定高 35）
+                int topHeight = 35;
+                Brush headerBrush = level == "Critical" ? Brushes.Red : Brushes.Yellow;
+                g.FillRectangle(headerBrush, 0, 0, width, topHeight);
+                g.DrawString($"{level} Warning", titleFont, Brushes.Black, new PointF(5, 5));
+
+                // 中段：錯誤類別（量測後畫）
+                string errorTypeText = "錯誤類別: " + errorType;
+                SizeF errorSize = g.MeasureString(errorTypeText, labelFont, width - 10);
+                float errorTop = topHeight + 5;
+                g.DrawString(errorTypeText, labelFont, Brushes.Black, new RectangleF(5, errorTop, width - 10, errorSize.Height));
+
+                // 下方：簡述事件（多行顯示）
+                float eventTop = errorTop + errorSize.Height + 5;
+                float eventHeight = height - eventTop - 5;
+                g.DrawString(eventDesc, textFont, Brushes.Black, new RectangleF(5, eventTop, width - 10, eventHeight));
+            }
+
+            return bmp;
+        }
+
         public void Fuction_時間重置()
         {
             MyTimer_閒置登出時間.TickStop();

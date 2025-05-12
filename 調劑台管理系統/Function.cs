@@ -70,7 +70,7 @@ namespace 調劑台管理系統
         }
 
       
-        static public bool Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+        static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
@@ -84,7 +84,7 @@ namespace 調劑台管理系統
             if (barcode.StringIsEmpty())
             {
                 Console.WriteLine("barcode is empty");
-                return false;
+                return null;
             }
 
 
@@ -188,31 +188,7 @@ namespace 調劑台管理系統
                 List<medClass> medClasses_buf = new List<medClass>();
                 Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
-                if(PLC_Device_AI處方核對啟用.Bool)
-                {
-                    Task.Run(new Action(delegate
-                    {
-                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
-                        if(code == -200)
-                        {
-                            return;
-                        }
-                        if(suspiciousRxLogClass.狀態 != enum_suspiciousRxLog_status.無異狀.GetEnumName())
-                        {
-                            Voice.GoogleSpeaker("處方有疑義,請審核", $@"{currentDirectory}/gooler_speaker_temp.mp3");
-                            Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(suspiciousRxLogClass, 操作人);
-
-                            if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
-
-                            (code, resuult, suspiciousRxLogClass) = suspiciousRxLogClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
-                            if(code != 200)
-                            {
-                                MyMessageBox.ShowDialog(resuult);
-                                return;
-                            }
-                        }
-                    }));
-                }
+              
              
 
                 for (int i = 0; i < orderClasses.Count; i++)
@@ -338,7 +314,7 @@ namespace 調劑台管理系統
                 {
                     Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
                     dialog_使用者登入.ShowDialog();
-                    if(dialog_使用者登入.DialogResult != DialogResult.Yes) return false;
+                    if(dialog_使用者登入.DialogResult != DialogResult.Yes) return null;
                     personPageClass = dialog_使用者登入.personPageClass;
                     ID = personPageClass.ID;
                     操作人 = personPageClass.姓名;
@@ -363,7 +339,7 @@ namespace 調劑台管理系統
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
-            return true;
+            return orderClasses;
         }
         static public void Function_醫令退藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
