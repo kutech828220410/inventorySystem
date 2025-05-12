@@ -72,8 +72,8 @@ namespace 癌症備藥機
                     Device device = (Device)list_obj[i];
                     for (int k = 0; k < device.List_Validity_period.Count; k++)
                     {
-                        string val = device.List_Validity_period[i];
-                        string lot = device.List_Lot_number[i];
+                        string val = device.List_Validity_period[k];
+                        string lot = device.List_Lot_number[k];
 
                         stockClasses_buf = (from temp in stockClasses
                                             where temp.Validity_period == val

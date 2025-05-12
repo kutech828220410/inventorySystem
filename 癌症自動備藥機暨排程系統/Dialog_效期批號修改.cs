@@ -128,10 +128,16 @@ namespace 癌症備藥機
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < stockClasses.Count; i++)
             {
-                object[] value = new object[] { stockClasses[i].JsonSerializationt() };
+                StockClass stock = stockClasses[i];
+
+                // 印出資料至 Console
+                Console.WriteLine($"[{i + 1}] 藥碼: {stock.Code}, 藥名: {stock.Name}, 數量: {stock.Qty}, 效期: {stock.Validity_period}, 批號: {stock.Lot_number}");
+
+                object[] value = new object[] { stock.JsonSerializationt() };
                 list_value.Add(value);
             }
             this.sqL_DataGridView_效期批號.RefreshGrid(list_value);
+
         }
 
         private void SqL_DataGridView_效期批號_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)

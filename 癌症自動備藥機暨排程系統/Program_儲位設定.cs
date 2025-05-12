@@ -608,16 +608,35 @@ namespace 癌症備藥機
             Dialog_AlarmForm dialog_AlarmForm;
             if (list_面板_儲位列表.Count == 0)
             {
+                Console.WriteLine("未選擇任何儲位！");
                 dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
+
+            // 取得選取儲位的 IP
             string IP = list_面板_儲位列表[0][(int)enum_面板_儲位列表.IP].ObjectToString();
-            Storage storage = storageUI_EPD_266.SQL_GetStorage(IP);
+            Console.WriteLine($"選取儲位 IP: {IP}");
+
+            // 從資料庫取得儲位資料
+            Storage storage = List_EPD266_本地資料.SortByIP(IP);
+            if (storage == null)
+            {
+                Console.WriteLine("無法從資料庫取得儲位資料！");
+            }
+            else
+            {
+                Console.WriteLine($"取得儲位資訊：藥碼={storage.Code}, 名稱={storage.Name}");
+            }
+
+            // 開啟效期批號修改視窗
             Dialog_效期批號修改 dialog_效期批號修改 = new Dialog_效期批號修改(storage, storageUI_EPD_266);
             dialog_效期批號修改.ShowDialog();
 
+            // 重新整理儲位畫面
+            Console.WriteLine("執行 Function_儲位設定_重新整理()");
             Function_儲位設定_重新整理();
+
         }
 
         private void SqL_DataGridView_RowsLED_燈條列表_RowEnterEvent(object[] RowValue)

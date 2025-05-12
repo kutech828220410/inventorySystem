@@ -979,23 +979,24 @@ namespace 癌症備藥機
 
         void cnt_Program_冷藏區X軸復歸_向前JOG(ref int cnt)
         {
+         
             if (plC_Button_冷藏區X軸_正極限.Bool)
             {
                 Console.WriteLine("[冷藏區X軸復歸] 已達正極限，跳過向前 JOG");
                 cnt++;
                 return;
             }
-            cnt++;
-            return;
+
             Console.WriteLine("[冷藏區X軸復歸] 啟動向前 JOG");
             Servo_JOG(enum_軸號.冷藏區_X軸, 100);
             MyTimer_冷藏區X軸復歸_向前JOG時間.TickStop();
-            MyTimer_冷藏區X軸復歸_向前JOG時間.StartTickTime(2000);
+            MyTimer_冷藏區X軸復歸_向前JOG時間.StartTickTime(500);
             cnt++;
         }
 
         void cnt_Program_冷藏區X軸復歸_向前JOG時間到達(ref int cnt)
         {
+
             if (plC_Button_冷藏區X軸_正極限.Bool)
             {
                 Console.WriteLine("[冷藏區X軸復歸] 已碰到正極限，開始反向 JOG");
@@ -1003,18 +1004,20 @@ namespace 癌症備藥機
                 cnt++;
                 return;
             }
-            cnt++;
-            return;
+         
             if (MyTimer_冷藏區X軸復歸_向前JOG時間.IsTimeOut())
             {
                 Console.WriteLine("[冷藏區X軸復歸] 向前 JOG 超時，停止");
                 Servo_Stop(enum_軸號.冷藏區_X軸);
+               
                 cnt++;
             }
         }
 
         void cnt_Program_冷藏區X軸復歸_離開正極限(ref int cnt)
         {
+            cnt++;
+            return;
             if (!plC_Button_冷藏區X軸_正極限.Bool)
             {
                 Console.WriteLine("[冷藏區X軸復歸] 已離開正極限，停止馬達");
@@ -1057,7 +1060,6 @@ namespace 癌症備藥機
                 Console.WriteLine("[冷藏區X軸復歸] 復歸完成 ✅");
                 plC_RJ_Button_冷藏區X軸_已完成復歸.Bool = true;
                 PLC_Device_冷藏區X軸復歸.Bool = false;
-                System.Threading.Thread.Sleep(500);
                 cnt++;
             }
         }
@@ -1141,6 +1143,7 @@ namespace 癌症備藥機
         }
         void cnt_Program_冷藏區Z軸復歸_向前JOG(ref int cnt)
         {
+           
             if (plC_Button_冷藏區Z軸_正極限.Bool)
             {
                 cnt++;
@@ -1153,6 +1156,7 @@ namespace 癌症備藥機
         }
         void cnt_Program_冷藏區Z軸復歸_向前JOG時間到達(ref int cnt)
         {
+           
             if (plC_Button_冷藏區Z軸_正極限.Bool)
             {
                 Servo_JOG(enum_軸號.冷藏區_Z軸, -100);
@@ -1168,6 +1172,7 @@ namespace 癌症備藥機
         }
         void cnt_Program_冷藏區Z軸復歸_離開正極限(ref int cnt)
         {
+      
             if (!plC_Button_冷藏區Z軸_正極限.Bool)
             {
                 Servo_Stop(enum_軸號.冷藏區_Z軸);
@@ -1838,17 +1843,16 @@ namespace 癌症備藥機
                 cnt++;
                 return;
             }
-            cnt++;
-            return;
             Console.WriteLine("[常溫區X軸復歸] 開始向前 JOG");
             Servo_JOG(enum_軸號.常溫區_X軸, 100);
             MyTimer_常溫區X軸復歸_向前JOG時間.TickStop();
-            MyTimer_常溫區X軸復歸_向前JOG時間.StartTickTime(2000);
+            MyTimer_常溫區X軸復歸_向前JOG時間.StartTickTime(500);
             cnt++;
         }
 
         void cnt_Program_常溫區X軸復歸_向前JOG時間到達(ref int cnt)
         {
+
             if (plC_Button_常溫區X軸_正極限.Bool)
             {
                 Console.WriteLine("[常溫區X軸復歸] 碰到正極限，反向 JOG");
@@ -1856,8 +1860,7 @@ namespace 癌症備藥機
                 cnt++;
                 return;
             }
-            cnt++;
-            return;
+        
             if (MyTimer_常溫區X軸復歸_向前JOG時間.IsTimeOut())
             {
                 Console.WriteLine("[常溫區X軸復歸] 向前 JOG 超時，停止");
@@ -1868,6 +1871,8 @@ namespace 癌症備藥機
 
         void cnt_Program_常溫區X軸復歸_離開正極限(ref int cnt)
         {
+            cnt++;
+            return;
             if (!plC_Button_常溫區X軸_正極限.Bool)
             {
                 Console.WriteLine("[常溫區X軸復歸] 已離開正極限，停止馬達");

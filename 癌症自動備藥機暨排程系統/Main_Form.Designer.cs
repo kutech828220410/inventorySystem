@@ -3995,7 +3995,7 @@ namespace 癌症備藥機
             this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_儲位設定_效期批號修正.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_儲位設定_效期批號修正.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ShowLoadingForm = true;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位設定_效期批號修正.Size = new System.Drawing.Size(184, 71);
             this.plC_RJ_Button_儲位設定_效期批號修正.State = false;
             this.plC_RJ_Button_儲位設定_效期批號修正.TabIndex = 106;
