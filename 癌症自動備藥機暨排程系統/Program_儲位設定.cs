@@ -628,10 +628,13 @@ namespace 癌症備藥機
             {
                 Console.WriteLine($"取得儲位資訊：藥碼={storage.Code}, 名稱={storage.Name}");
             }
-
-            // 開啟效期批號修改視窗
-            Dialog_效期批號修改 dialog_效期批號修改 = new Dialog_效期批號修改(storage, storageUI_EPD_266);
-            dialog_效期批號修改.ShowDialog();
+            this.Invoke(new Action(delegate 
+            {
+                // 開啟效期批號修改視窗
+                Dialog_效期批號修改 dialog_效期批號修改 = new Dialog_效期批號修改(storage, storageUI_EPD_266);
+                dialog_效期批號修改.ShowDialog();
+            }));
+ 
 
             // 重新整理儲位畫面
             Console.WriteLine("執行 Function_儲位設定_重新整理()");

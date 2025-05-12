@@ -24,9 +24,8 @@ namespace 癌症備藥機
    
         public Dialog_效期批號選擇(string 藥碼)
         {
-            InitializeComponent();
-
-    
+            this.Invoke(new Action(delegate { InitializeComponent(); }));
+          
             this._藥碼 = 藥碼;
 
             Table table = new Table("");
