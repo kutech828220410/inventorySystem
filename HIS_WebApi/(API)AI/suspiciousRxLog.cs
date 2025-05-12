@@ -501,7 +501,8 @@ namespace HIS_WebApi._API_AI
                     有效處方 = eff_cpoe,
                     歷史處方 = old_cpoe
                 };
-                string url = @"https://www.kutech.tw:3000/medgpt";
+                string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
+                //string url = @"https://www.kutech.tw:3000/medgpt";
                 suspiciousRxLogClass suspiciousRxLogClasses = new suspiciousRxLogClass();
                 
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
