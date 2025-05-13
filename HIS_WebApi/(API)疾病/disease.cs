@@ -127,6 +127,49 @@ namespace HIS_WebApi._API_疾病
                 return ex.Message;
             }
         }
+        [HttpPost("load_txt")]
+        public string load_txt([FromBody] returnData returnData)
+        {
+            try
+            {
+                string loadText = Basic.MyFileStream.LoadFileAllText(@"./ICD10-CM.txt", "utf-8");
+                List<diseaseClass> list_value = loadText.JsonDeserializet<List<diseaseClass>>();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "disease", UserName, Password, Port, SSLMode);
+                List<object[]> sqlData = sQLControl.GetAllRows(null);
+                List<diseaseClass> diseases = sqlData.SQLToClass<diseaseClass, enum_disease>();
+                Dictionary<string, List<diseaseClass>> dict = diseaseClass.ToDictByICD(diseases);
+                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
+
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    diseaseClass diseaseClass = diseaseClass.GetByICD(dict, list_value[i].疾病代碼).FirstOrDefault();
+                    if (diseaseClass != null) continue;
+
+                    diseaseClass add_diseaseClass = new diseaseClass
+                    {
+                        GUID = Guid.NewGuid().ToString(),
+                        疾病代碼 = list_value[i].疾病代碼,
+                        中文說明 = list_value[i].中文說明,
+                        英文說明 = list_value[i].英文說明
+                    };
+                    diseaseClasses.Add(add_diseaseClass);
+                }
+
+                List<object[]> add = diseaseClasses.ClassToSQL<diseaseClass, enum_disease>();
+                sQLControl.AddRows(null, add);
+
+                returnData.Data = diseaseClasses;
+                return returnData.JsonSerializationt(true);
+
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         [HttpPost("get_by_ICD")]
         public string get_by_ICD([FromBody] returnData returnData)
         {

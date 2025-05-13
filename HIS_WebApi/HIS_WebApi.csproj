@@ -182,6 +182,9 @@
     <None Update="ICD10-CM.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="ICD10-CM.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
 
     <None Update="excel_inspection.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
