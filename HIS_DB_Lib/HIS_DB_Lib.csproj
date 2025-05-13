@@ -143,6 +143,7 @@
     <Compile Include="inventoryResultClass.cs" />
     <Compile Include="inv_combinelistClass.cs" />
     <Compile Include="lockerIndexClass.cs" />
+    <Compile Include="疾病\diseaseClass.cs" />
     <Compile Include="藥品基本檔\medClass.cs" />
     <Compile Include="藥品基本檔\medConfigClass.cs" />
     <Compile Include="藥品基本檔\medCouldClass.cs" />
