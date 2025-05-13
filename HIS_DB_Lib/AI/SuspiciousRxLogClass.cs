@@ -113,11 +113,14 @@ namespace HIS_DB_Lib
         備註,
 
     }
-    [EnumDescription("suspiciousRxLog_rule")]
     public enum enum_suspiciousRxLog_rule
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("索引,VARCHAR,50,NONE")]
+        索引,
+        [Description("群組,VARCHAR,50,NONE")]
+        群組,
         [Description("規則,VARCHAR,100,NONE")]
         規則,
         [Description("規則描述,VARCHAR,200,NONE")]
@@ -329,7 +332,9 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         [JsonPropertyName("index")]
-        public string index { get; set; }
+        public string 索引 { get; set; }
+        [JsonPropertyName("group")]
+        public string 群組 { get; set; }
         [JsonPropertyName("rule")]
         public string 規則 { get; set; }
         [JsonPropertyName("rule_detail")]
@@ -340,7 +345,14 @@ namespace HIS_DB_Lib
         public string 類別 { get; set; }
         [JsonPropertyName("state")]
         public string 狀態 { get; set; }
-
+        public class ICP_By_index : IComparer<suspiciousRxLog_ruleClass>
+        {
+            public int Compare(suspiciousRxLog_ruleClass x, suspiciousRxLog_ruleClass y)
+            {
+                int result = (x.索引).CompareTo(y.索引);
+                return result;
+            }
+        }
     }
 
     public class PrescriptionSet
@@ -396,5 +408,6 @@ namespace HIS_DB_Lib
         public string 科別 { get; set; }
         [JsonPropertyName("order")]
         public List<DrugOrder> 處方 { get; set; }
+
     }
 }

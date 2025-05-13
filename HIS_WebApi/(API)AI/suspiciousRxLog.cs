@@ -196,7 +196,7 @@ namespace HIS_WebApi._API_AI
                 })));
                 Task.WhenAll(tasks).Wait();
                 suspiciousRxLogRule.AddRange(suspiciousRxLogRule_locals);
-
+                suspiciousRxLogRule.Sort(new suspiciousRxLog_ruleClass.ICP_By_index());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogRule;
@@ -229,7 +229,7 @@ namespace HIS_WebApi._API_AI
         [HttpPost("add_rule_local")]
         public string add_rule_local([FromBody] returnData returnData)
         {
-            init();
+            init_suspiciousRxLog_rule_local();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "add_rule_local";
             try
@@ -687,7 +687,7 @@ namespace HIS_WebApi._API_AI
             {
                 return $"找無Server資料!";
             }
-            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum);
+            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum, tableName);
 
             return table.JsonSerializationt(true);
         }
