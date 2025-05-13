@@ -19,6 +19,7 @@ namespace 調劑台管理系統
     public partial class Dialog_收支作業_RFID收支作業 : MyDialog
     {
         private string 調劑台名稱 = $"{Main_Form.ServerName}";
+        List<DrugHFTagClass> errorTags = new List<DrugHFTagClass>();
 
         DrugHFTag_IncomeOutcomeListClass _drugHFTag_IncomeOutcomeList = null;
         DrugHFTag_IncomeOutcomeListClass drugHFTag_IncomeOutcomeList
@@ -60,11 +61,11 @@ namespace 調劑台管理系統
                 InitializeComponent();
             }));
             _Import_Export = IncomeOutcomeMode;
-            this.Text = _Import_Export == IncomeOutcomeMode.收入 ? "RFID收入" : "RFID出庫";
+            this.Text = _Import_Export == IncomeOutcomeMode.收入 ? "RFID收入" : "RFID支出";
             this.LoadFinishedEvent += Dialog_收支作業_RFID出收入_LoadFinishedEvent;
             this.FormClosing += Dialog_收支作業_RFID出收入_FormClosing;
 
-            dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(0).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
+            dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(-90).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
         }
 
         private void Dialog_收支作業_RFID出收入_FormClosing(object sender, FormClosingEventArgs e)
@@ -194,23 +195,21 @@ namespace 調劑台管理系統
         private void Program_HFRFID()
         {
             List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
-            List<DrugHFTagClass> drugHFTagClasses_others = new List<DrugHFTagClass>();
-
-            // 取得可以入庫 or 出庫的標籤
             if (_Import_Export == IncomeOutcomeMode.收入)
                 drugHFTagClasses = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
             if (_Import_Export == IncomeOutcomeMode.支出)
                 drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
 
-            if (drugHFTagClasses == null || drugHFTagClasses.Count == 0) return;
+            drugHFTagClasses = drugHFTagClasses
+                .Where(d => d.更新時間.StringToDateTime() >= dateTimeIntervelPicker_報表時間.StartTime &&
+                            d.更新時間.StringToDateTime() <= dateTimeIntervelPicker_報表時間.EndTime)
+                .ToList();
 
-            // 產生收支清單
+            if (drugHFTagClasses.Count == 0) return;
+
             List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses = drugHFTagClasses.ToIncomeOutcomeList(_Import_Export);
-
-            // 抓取要統計的藥碼清單
             List<string> drugCodes = drugHFTag_IncomeOutcomeListClasses.Select(x => x.藥碼).Distinct().ToList();
 
-            // 使用新的批次API取得統計資訊
             var (code, result, summaries) = DrugHFTagClass.GetStockinStatusSummariesByCodes(
                 Main_Form.API_Server,
                 dateTimeIntervelPicker_報表時間.StartTime,
@@ -218,7 +217,6 @@ namespace 調劑台管理系統
                 drugCodes
             );
 
-            // 更新每個收支清單內的報表數量、收支數量
             if (code == 200 && summaries != null)
             {
                 foreach (var item in drugHFTag_IncomeOutcomeListClasses)
@@ -226,70 +224,71 @@ namespace 調劑台管理系統
                     var summary = summaries.FirstOrDefault(s => s.藥碼 == item.藥碼);
                     if (summary != null)
                     {
-                        item.報表數量 = (summary.已重置數量 + summary.入庫註記數量).ToString("0.###");
+                        if (_Import_Export == IncomeOutcomeMode.收入)
+                            item.報表數量 = (summary.可入庫數量).ToString("0.###");
+                        else if (_Import_Export == IncomeOutcomeMode.支出)
+                            item.報表數量 = (summary.可出庫數量).ToString("0.###");
 
                         if (_Import_Export == IncomeOutcomeMode.收入)
-                        {
-                            item.收支數量 = (summary.入庫註記數量).ToString("0.###");
-                        }
+                            item.收支數量 = summary.已入庫數量.ToString("0.###");
                         else if (_Import_Export == IncomeOutcomeMode.支出)
-                        {
-                            item.收支數量 = (summary.出庫註記數量).ToString("0.###");
-                        }
+                            item.收支數量 = summary.已出庫數量.ToString("0.###");
                     }
                 }
             }
 
-            // 更新收支清單顯示
             this.sqL_DataGridView_收支清單.RefreshGrid(drugHFTag_IncomeOutcomeListClasses.ToObjectList());
-
             if (drugHFTag_IncomeOutcomeList == null) return;
 
-            // 分類資料：選定藥碼 vs 其他藥碼
-            drugHFTagClasses_others = drugHFTagClasses
-                .Where(drugHFTagClass => drugHFTagClass.藥碼 != drugHFTag_IncomeOutcomeList.藥碼)
-                .ToList();
-            drugHFTagClasses = drugHFTagClasses
-                .Where(drugHFTagClass => drugHFTagClass.藥碼 == drugHFTag_IncomeOutcomeList.藥碼)
-                .ToList();
-
-            List<object[]> list_drugHFTagClasses = new List<object[]>();
+            string selectedDrugCode = drugHFTag_IncomeOutcomeList.藥碼;
             List<string> uids = Main_Form.rfidReader_TagUID;
 
-            // 更新標籤狀態（依UID是否包含）
-            for (int i = 0; i < drugHFTagClasses.Count; i++)
+            List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
+            errorTags.Clear();
+            foreach (var tag in drugHFTagClasses)
             {
-                if (uids.Contains(drugHFTagClasses[i].TagSN))
+                bool isUIDMatch = uids.Contains(tag.TagSN);
+                bool isSameCode = tag.藥碼 == selectedDrugCode;
+
+                if (_Import_Export == IncomeOutcomeMode.收入)
                 {
-                    if (_Import_Export == IncomeOutcomeMode.收入)
+                    if (isUIDMatch && isSameCode)
                     {
-                        drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                        tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                        tagDisplayList.Add(tag);
                     }
                 }
-                else
+                else if (_Import_Export == IncomeOutcomeMode.支出)
                 {
-                    if (_Import_Export == IncomeOutcomeMode.支出)
+                    if (!isUIDMatch && isSameCode)
                     {
-                        drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                        tag.狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                        tagDisplayList.Add(tag);
+                    }
+                    else if (!isUIDMatch && !isSameCode)
+                    {
+                        // ⚠ 異常資料：不處理狀態，但加入顯示
+                        errorTags.Add(tag);
                     }
                 }
             }
 
-            // 🔥重點：計算目前標記為「入庫註記」的總數量
-            double stockinQty = drugHFTagClasses
-                .Where(t => t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName())
+            // 計算收支數量（只包含已標記的入庫註記或出庫註記）
+            double qty = tagDisplayList
+                .Where(t =>
+                    (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
+                    (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
                 .Sum(t => t.數量.StringToDouble());
 
-            // 更新 rJ_Lable_數量
-            form.Invoke(new Action(delegate
+            form.Invoke(new Action(() =>
             {
-                rJ_Lable_數量.Text = stockinQty.ToString("0.###");
+                rJ_Lable_數量.Text = qty.ToString("0.###");
+                rJ_Lable_異常.Text = errorTags.Count.ToString("0.###");
             }));
 
-            // 更新Tag清單畫面
-            list_drugHFTagClasses.LockAdd(drugHFTagClasses.ToObjectList());
-            this.sqL_DataGridView_TagList.RefreshGrid(list_drugHFTagClasses);
+            this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
         }
+
 
         private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -318,6 +317,65 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未讀取到RFID標籤");
                 return;
             }
+
+            if (errorTags.Count > 0)
+            {
+                // 統計每種藥品異常筆數
+                var groupedErrors = errorTags
+                    .GroupBy(t => new { t.藥碼, t.藥名 })
+                    .Select(g => new
+                    {
+                        藥碼 = g.Key.藥碼,
+                        藥名 = g.Key.藥名,
+                        筆數 = g.Count()
+                    })
+                    .ToList();
+
+                // 組合顯示訊息
+                StringBuilder sb_temp = new StringBuilder();
+                sb_temp.AppendLine($"偵測到 {errorTags.Count} 筆異常標籤：\n");
+                foreach (var group in groupedErrors)
+                {
+                    sb_temp.AppendLine($"• {group.藥名} ({group.藥碼})：{group.筆數} 筆");
+                }
+                sb_temp.AppendLine("\n是否新增為異常記錄？");
+
+                if (MyMessageBox.ShowDialog(sb_temp.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                {
+                    List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
+                    foreach (var tag in errorTags)
+                    {
+                        var log = new medRecheckLogClass
+                        {
+                            GUID = Guid.NewGuid().ToString(),
+                            發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? "RFID入庫異常" : "RFID出庫異常",
+                            藥碼 = tag.藥碼,
+                            藥名 = tag.藥名,
+                            效期 = tag.效期,
+                            批號 = tag.批號,
+                            庫存值 = "0",
+                            盤點值 = tag.數量.ToString(),
+                            差異值 = tag.數量.ToString(),
+                            發生時間 = DateTime.Now.ToDateTimeString_6(),
+                            排除時間 = DateTime.MinValue.ToDateTimeString(),
+                            狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
+                            事件描述 = "標籤未註記為入/出庫",
+                            通知註記 = "未通知",
+                            通知時間 = DateTime.MinValue.ToDateTimeString(),
+                            參數1 = tag.TagSN,
+                            參數2 = ""
+                        };
+                        errorLogs.Add(log);
+                    }
+
+                    LoadingForm.ShowLoadingForm();
+                    medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
+                    LoadingForm.CloseLoadingForm();
+
+                    MyMessageBox.ShowDialog($"✅ 已新增 {errorLogs.Count} 筆異常記錄！");
+                }
+            }
+
             List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.ToDrugHFTagClassList();
             if (_Import_Export == IncomeOutcomeMode.收入) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()).ToList();
             stockClasses = drugHFTagClasses.GetStockClasses();
@@ -360,7 +418,7 @@ namespace 調劑台管理系統
                 StockClass stockClass = stockClasses[i];
                 takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                 takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
+                takeMedicineStackClass.動作 = ((_Import_Export == IncomeOutcomeMode.收入) ? enum_交易記錄查詢動作.入庫作業.GetEnumName() : enum_交易記錄查詢動作.出庫作業.GetEnumName());
                 takeMedicineStackClass.藥品碼 = stockClass.Code;
                 takeMedicineStackClass.藥品名稱 = stockClass.Name;
                 takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
@@ -369,6 +427,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = Main_Form._登入者ID;
                 takeMedicineStackClass.顏色 = Color.Blue.ToColorString();
                 takeMedicineStackClass.總異動量 = stockClass.Qty;
+                if (_Import_Export == IncomeOutcomeMode.支出) takeMedicineStackClass.總異動量 = (stockClass.Qty.StringToDouble() * -1).ToString();
                 takeMedicineStackClass.效期 = stockClass.Validity_period;
                 takeMedicineStackClass.批號 = stockClass.Lot_number;
                 takeMedicineStackClasses.Add(takeMedicineStackClass);

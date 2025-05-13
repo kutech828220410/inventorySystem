@@ -69,115 +69,8 @@ namespace 調劑台管理系統
             }
         }
 
-        public void Function_調劑作業_醫令資訊更新(int 台號)
-        {
-            this.Invoke(new Action(delegate
-            {
-                if (台號 == 1)
-                {
-                    if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
-                    pictureBox_領藥台_01_藥品圖片01.BackgroundImage = null;
-
-                    if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
-                    pictureBox_領藥台_01_藥品圖片02.BackgroundImage = null;
-
-                    this.rJ_Lable_領藥台_01_領藥住院號.Text = "-----------------";
-                    this.rJ_Lable_領藥台_01_病歷號.Text = "-----------------";
-                }
-                if (台號 == 2)
-                {
-                    if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
-                    pictureBox_領藥台_02_藥品圖片01.BackgroundImage = null;
-
-                    if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
-                    pictureBox_領藥台_02_藥品圖片02.BackgroundImage = null;
-
-                    this.rJ_Lable_領藥台_02_領藥住院號.Text = "-------------------------";
-                    this.rJ_Lable_領藥台_02_病歷號.Text = "-----------------";
-                }
-            }));
-
-        }
-        public void Function_調劑作業_醫令資訊更新(string 藥碼, string 藥名, string 領藥住院號, string 病歷號, string 開方時間, int 台號)
-        {
-
-            Task.Run(new Action(delegate
-            {
-                List<Image> images = Function_取得藥品圖片(藥碼);
-                this.Invoke(new Action(delegate
-                {
-                    if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
-                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-----------------";
-                    if (病歷號.StringIsEmpty()) 病歷號 = "-----------------";
-                    if (開方時間.Check_Date_String() == false) 開方時間 = "-----------------";
-                    else 開方時間 = 開方時間.StringToDateTime().ToDateTimeString();
-
-                    if (台號 == 1)
-                    {
-                        if (images.Count >= 2)
-                        {
-                            if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
-                            if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
-                            if (images[0] != null && images[1] != null)
-                            {
-                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
-                                pictureBox_領藥台_01_藥品圖片02.BackgroundImage = images[1];
-                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_01_藥品圖片02.Visible = true;
-                            }
-                            else if (images[0] == null && images[1] != null)
-                            {
-                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[1];
-                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_01_藥品圖片02.Visible = false;
-                            }
-                            else if (images[0] != null && images[1] == null)
-                            {
-                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
-                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_01_藥品圖片02.Visible = false;
-                            }
-                        }
-
-
-                        this.rJ_Lable_領藥台_01_領藥住院號.Text = 領藥住院號;
-                        this.rJ_Lable_領藥台_01_病歷號.Text = 病歷號;
-                    }
-                    if (台號 == 2)
-                    {
-                        if (images.Count >= 2)
-                        {
-                            if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
-                            if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
-                            if (images[0] != null && images[1] != null)
-                            {
-                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
-                                pictureBox_領藥台_02_藥品圖片02.BackgroundImage = images[1];
-                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_02_藥品圖片02.Visible = true;
-                            }
-                            else if (images[0] == null && images[1] != null)
-                            {
-                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[1];
-                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_02_藥品圖片02.Visible = false;
-                            }
-                            else if (images[0] != null && images[1] == null)
-                            {
-                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
-                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
-                                pictureBox_領藥台_02_藥品圖片02.Visible = false;
-                            }
-                        }
-
-                        this.rJ_Lable_領藥台_02_領藥住院號.Text = 領藥住院號;
-                        this.rJ_Lable_領藥台_02_病歷號.Text = 病歷號;
-                    }
-                }));
-
-            }));
-        }
-        private bool Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+      
+        static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
@@ -191,11 +84,11 @@ namespace 調劑台管理系統
             if (barcode.StringIsEmpty())
             {
                 Console.WriteLine("barcode is empty");
-                return false;
+                return null;
             }
 
 
-            int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
+            int daynum = PLC_Device_醫令檢查範圍.Value;
             if (daynum == 7) daynum = 7;
             if (daynum == 8) daynum = 14;
             if (daynum == 9) daynum = 21;
@@ -212,9 +105,9 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_CheckBox_多醫令模式.Bool)
+                if (!single_order)
                 {
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
+                    Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
                 }
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             });
@@ -222,20 +115,22 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (plC_Button_手輸數量.Bool)
+                if (PLC_Device_手輸數量.Bool)
                 {
 
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入領藥數量");
                     DialogResult dialogResult = dialog_NumPannel.ShowDialog();
+
                     Fuction_領藥台_時間重置();
+
                     if (dialogResult != DialogResult.Yes) return;
                     手輸數量 = dialog_NumPannel.Value * 1;
 
-                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
+                    orderClasses = Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
                 }
                 else
                 {
-                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order, OrderAction.領藥);
+                    orderClasses = Function_醫令資料_API呼叫_Ex(barcode, single_order, OrderAction.領藥);
                 }
                 if (orderClasses.Count == 0)
                 {
@@ -261,7 +156,7 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
 
 
-                if (plC_CheckBox_領藥處方選取.Checked)
+                if (PLC_Device_領藥處方選取.Bool)
                 {
                     List<OrderClass> orderClasses_buf = new List<OrderClass>();
                     for (int i = 0; i < orderClasses.Count; i++)
@@ -293,31 +188,7 @@ namespace 調劑台管理系統
                 List<medClass> medClasses_buf = new List<medClass>();
                 Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
-                if(PLC_Device_AI處方核對啟用.Bool)
-                {
-                    Task.Run(new Action(delegate
-                    {
-                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
-                        if(code == -200)
-                        {
-                            return;
-                        }
-                        if(suspiciousRxLogClass.狀態 != enum_suspiciousRxLog_status.無異狀.GetEnumName())
-                        {
-                            Voice.GoogleSpeaker("處方有疑義,請審核", $@"{currentDirectory}/gooler_speaker_temp.mp3");
-                            Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(suspiciousRxLogClass, 操作人);
-
-                            if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
-
-                            (code, resuult, suspiciousRxLogClass) = suspiciousRxLogClass.update_full(Main_Form.API_Server, dialog_醫師疑義處方紀錄表.Value);
-                            if(code != 200)
-                            {
-                                MyMessageBox.ShowDialog(resuult);
-                                return;
-                            }
-                        }
-                    }));
-                }
+              
              
 
                 for (int i = 0; i < orderClasses.Count; i++)
@@ -354,9 +225,8 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
 
-                    PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
 
-                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
+                    if (PLC_Device_領藥不檢查是否掃碼領藥過.Bool == false || flag_檢查過帳 == true)
                     {
                         if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
@@ -390,7 +260,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = orderClass.病房;
                     takeMedicineStackClass.診別 = orderClass.藥局代碼;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
+                    if (list_堆疊資料_buf.Count > 0 && PLC_Device_同藥碼同時取藥亮紫色.Bool)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -444,7 +314,7 @@ namespace 調劑台管理系統
                 {
                     Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
                     dialog_使用者登入.ShowDialog();
-                    if(dialog_使用者登入.DialogResult != DialogResult.Yes) return false;
+                    if(dialog_使用者登入.DialogResult != DialogResult.Yes) return null;
                     personPageClass = dialog_使用者登入.personPageClass;
                     ID = personPageClass.ID;
                     操作人 = personPageClass.姓名;
@@ -469,9 +339,9 @@ namespace 調劑台管理系統
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
-            return true;
+            return orderClasses;
         }
-        private void Function_醫令退藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+        static public void Function_醫令退藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
@@ -488,7 +358,7 @@ namespace 調劑台管理系統
             }
 
 
-            int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
+            int daynum = PLC_Device_醫令檢查範圍.Value;
             if (daynum == 7) daynum = 7;
             if (daynum == 8) daynum = 14;
             if (daynum == 9) daynum = 21;
@@ -505,9 +375,9 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_CheckBox_多醫令模式.Bool)
+                if (!single_order)
                 {
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
+                    Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
                 }
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             });
@@ -515,21 +385,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (plC_Button_手輸數量.Bool)
-                {
-
-                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入退藥數量");
-                    DialogResult dialogResult = dialog_NumPannel.ShowDialog();
-                    Fuction_領藥台_時間重置();
-                    if (dialogResult != DialogResult.Yes) return;
-                    手輸數量 = dialog_NumPannel.Value * 1;
-
-                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, 手輸數量);
-                }
-                else
-                {
-                    orderClasses = this.Function_醫令資料_API呼叫_Ex(barcode, single_order , OrderAction.退藥);
-                }
+                orderClasses = Function_醫令資料_API呼叫_Ex(barcode, single_order, OrderAction.退藥);
                 if (orderClasses.Count == 0)
                 {
                     Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
@@ -618,7 +474,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病房號 = orderClass.病房;
                     takeMedicineStackClass.診別 = orderClass.藥局代碼;
                     takeMedicineStackClass.顏色 = 顏色;
-                    if (list_堆疊資料_buf.Count > 0 && plC_CheckBox_同藥碼同時取藥亮紫色.Checked)
+                    if (list_堆疊資料_buf.Count > 0 && PLC_Device_同藥碼同時取藥亮紫色.Bool)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
                     }
@@ -2421,65 +2277,119 @@ namespace 調劑台管理系統
                                    select temp).ToList();
             return transactionsClasses.Count > 0;
         }
-
+        public static byte[] Function_ReadBacodeScanner_pre(int index)
+        {
+            if (index == 0) return Main_Form.MySerialPort_Scanner01.ReadByte();
+            if (index == 1) return Main_Form.MySerialPort_Scanner02.ReadByte();
+            if (index == 2) return Main_Form.MySerialPort_Scanner03.ReadByte();
+            if (index == 3) return Main_Form.MySerialPort_Scanner04.ReadByte();
+            return null;
+        }
+        public static string Function_ReadBacodeScanner(int index)
+        {
+            if(index == 0) return Function_ReadBacodeScanner01();
+            if (index == 1) return Function_ReadBacodeScanner02();
+            if (index == 2) return Function_ReadBacodeScanner03();
+            if (index == 3) return Function_ReadBacodeScanner04();
+            return null;
+        }
         public static string Function_ReadBacodeScanner01()
         {
-            if (MySerialPort_Scanner01.IsConnected == false && myConfigClass.鍵盤掃碼模式 == false) return null;
-            string text = MySerialPort_Scanner01.ReadString();
-            if (text == null) return null;
-            System.Threading.Thread.Sleep(20);
-            text = text.Replace("\0", "");
-            if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
-            MySerialPort_Scanner01.ClearReadByte();
-            text = text.Replace("\r\n", "");
-            return text;
+            try
+            {
+                if (MySerialPort_Scanner01.IsConnected == false && myConfigClass.鍵盤掃碼模式 == false) return null;
+                System.Threading.Thread.Sleep(50);
+                string text = MySerialPort_Scanner01.ReadString();
+                if (text == null) return null;       
+                text = text.Replace("\0", "");
+                if (text.StringIsEmpty()) return null;
+                if (text.Length <= 2 || text.Length > 200) return null;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+                MySerialPort_Scanner01.ClearReadByte();
+                text = text.Replace("\r\n", "");
+                return text;
+            }
+            catch(Exception ex)
+            {
+                Logger.Log("error", $"Function_ReadBacodeScanner01 : {ex.Message}");
+                return null;
+            }
+          
         }
         public static string Function_ReadBacodeScanner02()
         {
-            if (MySerialPort_Scanner02.IsConnected == false) return null;
+            try
+            {
+                if (MySerialPort_Scanner02.IsConnected == false) return null;
 
-            string text = MySerialPort_Scanner02.ReadString();
-            if (text == null) return null;
-            System.Threading.Thread.Sleep(20);
-            text = text.Replace("\0", "");
-            if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
-            MySerialPort_Scanner02.ClearReadByte();
-            text = text.Replace("\r\n", "");
-            return text;
+                string text = MySerialPort_Scanner02.ReadString();
+                if (text == null) return null;
+                System.Threading.Thread.Sleep(50);
+                text = MySerialPort_Scanner02.ReadString();
+                text = text.Replace("\0", "");
+                if (text.StringIsEmpty()) return null;
+                if (text.Length <= 2 || text.Length > 200) return null;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+                MySerialPort_Scanner02.ClearReadByte();
+                text = text.Replace("\r\n", "");
+                return text;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("error", $"Function_ReadBacodeScanner01 : {ex.Message}");
+                return null;
+            }
+           
         }
         public static string Function_ReadBacodeScanner03()
         {
-            if (MySerialPort_Scanner03.IsConnected == false) return null;
+            try
+            {
+                if (MySerialPort_Scanner03.IsConnected == false) return null;
 
-            string text = MySerialPort_Scanner03.ReadString();
-            if (text == null) return null;
-            System.Threading.Thread.Sleep(20);
-            text = text.Replace("\0", "");
-            if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
-            MySerialPort_Scanner03.ClearReadByte();
-            text = text.Replace("\r\n", "");
-            return text;
+                string text = MySerialPort_Scanner03.ReadString();
+                if (text == null) return null;
+                System.Threading.Thread.Sleep(50);
+                text = MySerialPort_Scanner03.ReadString();
+                text = text.Replace("\0", "");
+                if (text.StringIsEmpty()) return null;
+                if (text.Length <= 2 || text.Length > 200) return null;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+                MySerialPort_Scanner03.ClearReadByte();
+                text = text.Replace("\r\n", "");
+                return text;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("error", $"Function_ReadBacodeScanner01 : {ex.Message}");
+                return null;
+            }
+            
         }
         public static string Function_ReadBacodeScanner04()
         {
-            if (MySerialPort_Scanner04.IsConnected == false) return null;
+            try
+            {
+                if (MySerialPort_Scanner04.IsConnected == false) return null;
 
-            string text = MySerialPort_Scanner04.ReadString();
-            if (text == null) return null;
-            System.Threading.Thread.Sleep(20);
-            text = text.Replace("\0", "");
-            if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
-            MySerialPort_Scanner04.ClearReadByte();
-            text = text.Replace("\r\n", "");
-            return text;
+                string text = MySerialPort_Scanner04.ReadString();
+                if (text == null) return null;
+                System.Threading.Thread.Sleep(50);
+                text = MySerialPort_Scanner04.ReadString();
+                text = text.Replace("\0", "");
+                if (text.StringIsEmpty()) return null;
+                if (text.Length <= 2 || text.Length > 200) return null;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+                MySerialPort_Scanner04.ClearReadByte();
+                text = text.Replace("\r\n", "");
+                return text;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("error", $"Function_ReadBacodeScanner01 : {ex.Message}");
+                return null;
+            }
+       
         }
 
         public static string[] Function_ReadBacodeScanner()
@@ -2511,6 +2421,7 @@ namespace 調劑台管理系統
             // 使用正則表達式替換括號及其內部的內容
             return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\(.*\)", ""); ;
         }
+
 
 
         public static StockClass convert_note(string 備註)

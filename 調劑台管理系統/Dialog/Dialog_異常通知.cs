@@ -40,6 +40,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_異常通知.RowsHeight = 60;
             this.sqL_DataGridView_異常通知.Init(table);
             this.sqL_DataGridView_異常通知.Set_ColumnVisible(false, new enum_notifyException().GetEnumNames());
+            this.sqL_DataGridView_異常通知.Set_ColumnFont(new Font("微軟正黑體", 16F), enum_notifyException.類別);
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.類別);
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(1100, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.內容);
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.發生時間);

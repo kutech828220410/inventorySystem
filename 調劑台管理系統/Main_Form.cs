@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.04291")]
-[assembly: AssemblyFileVersion("1.0.25.04291")]
+[assembly: AssemblyVersion("1.0.25.05131")]
+[assembly: AssemblyFileVersion("1.0.25.05131")]
 namespace 調劑台管理系統
 {
 
@@ -38,37 +38,41 @@ namespace 調劑台管理系統
         public static string OrderByCodeApi_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         public static RFID_FX600lib.RFID_FX600_UI _RFID_FX600_UI = null;
-        public string 領藥台_01名稱
+        public static System.Windows.Forms.TextBox _textBox_工程模式_領藥台_名稱;
+        public static Pannel_Locker_Design _pannel_Locker_Design;
+        public static PLC_ScreenPage _plC_ScreenPage_Main;
+
+        public static string 領藥台_01名稱
         {
             get
             {
-                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S01";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{_textBox_工程模式_領藥台_名稱.Text}_01";
+                else return $"{_textBox_工程模式_領藥台_名稱.Text}_S01";
 
             }
         }
-        public string 領藥台_02名稱
+        public static string 領藥台_02名稱
         {
             get
             {
-                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S02";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{_textBox_工程模式_領藥台_名稱.Text}_02";
+                else return $"{_textBox_工程模式_領藥台_名稱.Text}_S02";
             }
         }
-        public string 領藥台_03名稱
+        public static string 領藥台_03名稱
         {
             get
             {
-                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S03";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{_textBox_工程模式_領藥台_名稱.Text}_03";
+                else return $"{_textBox_工程模式_領藥台_名稱.Text}_S03";
             }
         }
-        public string 領藥台_04名稱
+        public static string 領藥台_04名稱
         {
             get
             {
-                if (PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S04";
+                if (PLC_Device_主機扣賬模式.Bool == true) return $"{_textBox_工程模式_領藥台_名稱.Text}_04";
+                else return $"{_textBox_工程模式_領藥台_名稱.Text}_S04";
             }
         }
 
@@ -92,6 +96,12 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         static public PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
         static public PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
+        static public PLC_Device PLC_Device_醫令檢查範圍 = new PLC_Device("D4020");
+        static public PLC_Device PLC_Device_手輸數量 = new PLC_Device("S4067");
+        static public PLC_Device PLC_Device_領藥處方選取 = new PLC_Device("S5027");
+        static public PLC_Device PLC_Device_領藥不檢查是否掃碼領藥過 = new PLC_Device("S5010");
+        static public PLC_Device PLC_Device_同藥碼同時取藥亮紫色 = new PLC_Device("S5033");
+        static public PLC_Device PLC_Device_調劑畫面合併相同藥品 = new PLC_Device("S5011");
         static public PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
 
@@ -361,6 +371,11 @@ namespace 調劑台管理系統
         {
             CloseProcessByName("batch_StackDataAccounting");
 
+            _textBox_工程模式_領藥台_名稱 = this.textBox_工程模式_領藥台_名稱;
+            _pannel_Locker_Design = this.pannel_Locker_Design;
+            _plC_ScreenPage_Main = this.plC_ScreenPage_Main;
+
+
             H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
             if (this.DesignMode == false)
@@ -546,6 +561,7 @@ namespace 調劑台管理系統
 
             this.Program_LCD114_索引表_Init();
             this.Program_取藥堆疊資料_Init();
+            RFID_Iint();
             if (!this.ControlMode) this.Program_調劑作業_Init();
 
 
@@ -588,8 +604,8 @@ namespace 調劑台管理系統
             this.Program_聲紋辨識_Init();
             this.LoadConfig工程模式();
 
-            if (!this.ControlMode) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
-            if (!this.ControlMode) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_02名稱);
+            if (!this.ControlMode) Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
+            if (!this.ControlMode) Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_02名稱);
 
             this.drawerUI_EPD_1020.Set_UDP_WriteTime(10);
             this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
@@ -608,7 +624,7 @@ namespace 調劑台管理系統
             if (!this.ControlMode) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
 
 
-            RFID_Iint();
+         
 
 
             flag_Init = true;
@@ -668,12 +684,15 @@ namespace 調劑台管理系統
             int basic_width = 1660;
             int offset_width = (control.Width - basic_width) / 2;
 
+            uC_調劑作業_TypeA_3.panel_藥品資訊.Visible = false;
+            uC_調劑作業_TypeA_4.panel_藥品資訊.Visible = false;
+
             if (NumOfConnectedScanner > 1)
             {
-                if (flag_Init && this.sqL_DataGridView_領藥台_01_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init && this.sqL_DataGridView_領藥台_02_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init && this.sqL_DataGridView_領藥台_03_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-                if (flag_Init && this.sqL_DataGridView_領藥台_04_領藥內容.CustomEnable == false) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && uC_調劑作業_TypeA_1.sqL_DataGridView_領藥內容.CustomEnable == false) this.uC_調劑作業_TypeA_1.sqL_DataGridView_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && uC_調劑作業_TypeA_2.sqL_DataGridView_領藥內容.CustomEnable == false) this.uC_調劑作業_TypeA_2.sqL_DataGridView_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && uC_調劑作業_TypeA_3.sqL_DataGridView_領藥內容.CustomEnable == false) this.uC_調劑作業_TypeA_3.sqL_DataGridView_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init && uC_調劑作業_TypeA_4.sqL_DataGridView_領藥內容.CustomEnable == false) this.uC_調劑作業_TypeA_4.sqL_DataGridView_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             }
             if (NumOfConnectedScanner == 4)
             {
@@ -686,8 +705,8 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
-                panel_領藥台_01_藥品資訊.Visible = false;
-                panel_領藥台_02_藥品資訊.Visible = false;
+                uC_調劑作業_TypeA_1.panel_藥品資訊.Visible = false;
+                uC_調劑作業_TypeA_2.panel_藥品資訊.Visible = false;
             }
             else if (NumOfConnectedScanner == 3)
             {
@@ -699,8 +718,8 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
-                panel_領藥台_01_藥品資訊.Visible = false;
-                panel_領藥台_02_藥品資訊.Visible = false;
+                uC_調劑作業_TypeA_1.panel_藥品資訊.Visible = false;
+                uC_調劑作業_TypeA_2.panel_藥品資訊.Visible = false;
             }
             else if (NumOfConnectedScanner == 2)
             {
@@ -713,11 +732,11 @@ namespace 調劑台管理系統
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
 
-                pictureBox_領藥台_01_藥品圖片01.Width = panel_領藥台_01_藥品圖片.Width / 2;
-                pictureBox_領藥台_01_藥品圖片02.Width = panel_領藥台_01_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_1.pictureBox_藥品圖片01.Width = uC_調劑作業_TypeA_1.panel_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_1.pictureBox_藥品圖片02.Width = uC_調劑作業_TypeA_1.panel_藥品圖片.Width / 2;
 
-                pictureBox_領藥台_02_藥品圖片01.Width = panel_領藥台_02_藥品圖片.Width / 2;
-                pictureBox_領藥台_02_藥品圖片02.Width = panel_領藥台_02_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_2.pictureBox_藥品圖片01.Width = uC_調劑作業_TypeA_2.panel_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_2.pictureBox_藥品圖片02.Width = uC_調劑作業_TypeA_2.panel_藥品圖片.Width / 2;
             }
             else if (NumOfConnectedScanner == 1)
             {
@@ -730,11 +749,14 @@ namespace 調劑台管理系統
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
 
-                pictureBox_領藥台_01_藥品圖片01.Width = panel_領藥台_01_藥品圖片.Width / 2;
-                pictureBox_領藥台_01_藥品圖片02.Width = panel_領藥台_01_藥品圖片.Width / 2;
+                //panel_領藥台01_處方資訊.Visible = true;
+                //panel_領藥台01_處方資訊.Height = 240;
 
-                pictureBox_領藥台_02_藥品圖片01.Width = panel_領藥台_02_藥品圖片.Width / 2;
-                pictureBox_領藥台_02_藥品圖片02.Width = panel_領藥台_02_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_1.pictureBox_藥品圖片01.Width = uC_調劑作業_TypeA_1.panel_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_1.pictureBox_藥品圖片02.Width = uC_調劑作業_TypeA_1.panel_藥品圖片.Width / 2;
+
+                uC_調劑作業_TypeA_2.pictureBox_藥品圖片01.Width = uC_調劑作業_TypeA_2.panel_藥品圖片.Width / 2;
+                uC_調劑作業_TypeA_2.pictureBox_藥品圖片02.Width = uC_調劑作業_TypeA_2.panel_藥品圖片.Width / 2;
             }
         }
         private void ToolStripMenuItem_顯示主控台_Click(object sender, EventArgs e)

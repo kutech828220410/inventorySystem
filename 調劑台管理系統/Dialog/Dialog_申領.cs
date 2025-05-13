@@ -65,8 +65,8 @@ namespace 調劑台管理系統
                 materialRequisitionClass.包裝量 = medClass.包裝數量;
                 materialRequisitionClass.申領類別 = Fucintion_取得申領類別();
                 materialRequisitionClass.申領量 = 申領量.ToString();
-                materialRequisitionClass.申領人員 = Main_Form.領藥台_01_登入者姓名;
-                materialRequisitionClass.申領人員ID = Main_Form.領藥台_01_ID;
+                materialRequisitionClass.申領人員 = Main_Form._uC_調劑作業_TypeA_1.登入者姓名;
+                materialRequisitionClass.申領人員ID = Main_Form._uC_調劑作業_TypeA_1.ID;
                 materialRequisitionClass.申領單位 = Main_Form.ServerName;
                 materialRequisitionClass.申領庫庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼).ToString();
                 object[] value = materialRequisitionClass.ClassToSQL<materialRequisitionClass,enum_materialRequisition>();
@@ -83,8 +83,8 @@ namespace 調劑台管理系統
                 materialRequisitionClass.包裝量 = medClass.包裝數量;
                 materialRequisitionClass.申領類別 = Fucintion_取得申領類別();
                 materialRequisitionClass.申領量 = 申領量.ToString();
-                materialRequisitionClass.申領人員 = Main_Form.領藥台_01_登入者姓名;
-                materialRequisitionClass.申領人員ID = Main_Form.領藥台_01_ID;
+                materialRequisitionClass.申領人員 = Main_Form._uC_調劑作業_TypeA_1.登入者姓名;
+                materialRequisitionClass.申領人員ID = Main_Form._uC_調劑作業_TypeA_1.ID;
                 materialRequisitionClass.申領單位 = Main_Form.ServerName;
                 materialRequisitionClass.申領庫庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼).ToString();
                 object[] value = materialRequisitionClass.ClassToSQL<materialRequisitionClass, enum_materialRequisition>();

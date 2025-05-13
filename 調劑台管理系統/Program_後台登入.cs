@@ -16,30 +16,30 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-        readonly private string Admin_ID = "admin";
-        readonly private string Admoin_Password = "66437068";
+        static readonly public string Admin_ID = "admin";
+        static readonly public string Admoin_Password = "66437068";
         private bool flag_後台登入_頁面更新 = false;
         private MyTimer myTimer_登出計時 = new MyTimer();
         private PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
 
-        private PLC_Device pLC_Device_最高權限 = new PLC_Device("S4077");
-        private PLC_Device PLC_Device_最高權限
+        static public PLC_Device pLC_Device_最高權限 = new PLC_Device("S4077");
+        static public PLC_Device PLC_Device_最高權限
         {
             get
             {
-                return this.pLC_Device_最高權限;
+                return pLC_Device_最高權限;
             }
             set
             {
                 if (value.Bool)
                 {
-                    this.pannel_Locker_Design.ShowControlPannel = true;
+                    _pannel_Locker_Design.ShowControlPannel = true;
                 }
                 else
                 {
-                    this.pannel_Locker_Design.ShowControlPannel = false;
+                    _pannel_Locker_Design.ShowControlPannel = false;
                 }
-                this.pLC_Device_最高權限 = value;
+                pLC_Device_最高權限 = value;
             }
         }
 

@@ -57,7 +57,7 @@ namespace 調劑台管理系統
             {
                 if (!this.flag_管制抽屜_頁面更新)
                 {
-                    //if(this.PLC_Device_最高權限.Bool == false)
+                    //if(PLC_Device_最高權限.Bool == false)
                     //{
                     //    this.Function_登出();
                     //}
@@ -322,7 +322,7 @@ namespace 調劑台管理系統
             Pannel_Locker pannel_Locker = sender as Pannel_Locker;
             if (pannel_Locker != null)
             {
-                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜開啟, this.登入者名稱, $"{pannel_Locker.StorageName}");
+                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜開啟, this.登入者名稱, $"{pannel_Locker.StorageName}");
             }
         }
         private void Pannel_Locker_Design_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
@@ -330,7 +330,7 @@ namespace 調劑台管理系統
             Pannel_Locker pannel_Locker = sender as Pannel_Locker;
             if (pannel_Locker != null)
             {
-                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜關閉, this.登入者名稱, "");
+                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜關閉, this.登入者名稱, "");
             }
         }
         #endregion

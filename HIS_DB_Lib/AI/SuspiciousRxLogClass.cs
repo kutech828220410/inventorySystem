@@ -11,6 +11,17 @@ using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_suspiciousRxLog_ReportLevel
+    {
+        [Description("None")]
+        None,       // 一般
+        [Description("Normal")]
+        Normal,       // 一般
+        [Description("Important")]
+        Important,    // 重要
+        [Description("Critical")]
+        Critical      // 緊急
+    }
     public enum enum_suspiciousRxLog_status
     {
         無異狀,

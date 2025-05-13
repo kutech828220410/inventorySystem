@@ -154,7 +154,7 @@ namespace 調劑台管理系統
                 {
                     Function_從SQL取得儲位到本地資料();
                     Function_從SQL取得儲位到雲端資料();
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+                    Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
 
                     flag_Program_收支作業_換頁 = false;
                 }
@@ -163,7 +163,7 @@ namespace 調劑台管理系統
             {
                 if(flag_Program_收支作業_換頁 == false)
                 {
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+                    Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
                 }
                 flag_Program_收支作業_換頁 = true;
             }
@@ -335,7 +335,7 @@ namespace 調劑台管理系統
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
-                        this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
@@ -421,7 +421,7 @@ namespace 調劑台管理系統
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
-                        this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
@@ -799,7 +799,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_收支作業_入庫狀態_清除所有資料_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
         }
         private void PlC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬_MouseDownEvent(MouseEventArgs mevent)
         {

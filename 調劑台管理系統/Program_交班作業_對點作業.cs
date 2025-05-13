@@ -328,8 +328,8 @@ namespace 調劑台管理系統
             try
             {
                 if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text != "等待登入") return;
-                string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_01_RFID站號);
-                string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_02_RFID站號);
+                string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_1.RFID站號);
+                string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_2.RFID站號);
                 if (plC_RJ_Button_交班作業_對點作業_測試登入.Bool)
                 {
                     UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
@@ -467,8 +467,8 @@ namespace 調劑台管理系統
             try
             {
                 if (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text != "等待登入") return;
-                string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_01_RFID站號);
-                string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_02_RFID站號);
+                string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_1.RFID站號);
+                string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_2.RFID站號);
                 if (plC_RJ_Button_交班作業_對點作業_測試登入.Bool)
                 {
                     UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
@@ -499,8 +499,8 @@ namespace 調劑台管理系統
 
             //if (!plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool) return;
             //if (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text != "等待登入") return;
-            //string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_01_RFID站號);
-            //string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_02_RFID站號);
+            //string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_1.RFID站號);
+            //string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(uC_調劑作業_TypeA_2.RFID站號);
             //if (!UID_01.StringIsEmpty() && UID_01.StringToInt32() != 0)
             //{
             //    Console.WriteLine($"成功讀取RFID  {UID_01}");

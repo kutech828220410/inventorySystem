@@ -501,7 +501,8 @@ namespace HIS_WebApi._API_AI
                     有效處方 = eff_cpoe,
                     歷史處方 = old_cpoe
                 };
-                string url = @"https://www.kutech.tw:3000/medgpt";
+                string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
+                //string url = @"https://www.kutech.tw:3000/medgpt";
                 suspiciousRxLogClass suspiciousRxLogClasses = new suspiciousRxLogClass();
                 
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
@@ -529,6 +530,7 @@ namespace HIS_WebApi._API_AI
                         狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName(),
                         調劑人員 = orders[0].藥師姓名,
                         調劑時間 = orders[0].過帳時間,
+                        提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName(),
                         提報時間 = DateTime.MinValue.ToDateTimeString(),
                         處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
