@@ -165,8 +165,8 @@ namespace 調劑台管理系統
         }
 
         #region PLC_醫令資料_掃碼
-        PLC_Device PLC_Device_醫令資料_掃碼 = new PLC_Device("S300");
-        PLC_Device PLC_Device_醫令資料_掃碼_OK = new PLC_Device("S301");
+        PLC_Device PLC_Device_醫令資料_掃碼 = new PLC_Device("");
+        PLC_Device PLC_Device_醫令資料_掃碼_OK = new PLC_Device("");
         int cnt_Program_醫令資料_掃碼 = 65534;
         void sub_Program_醫令資料_掃碼()
         {

@@ -94,6 +94,11 @@ namespace 調劑台管理系統
             //    this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.狀態);
             //}
             _uC_調劑作業_TypeA_1 = uC_調劑作業_TypeA_1;
+            if (PLC_Device_掃碼顏色固定.Bool)
+            {
+                uC_調劑作業_TypeA_1.固定顏色 = panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+            }
+
             uC_調劑作業_TypeA_1.調劑台名稱 = 領藥台_01名稱;
             uC_調劑作業_TypeA_1.PLC_Device_已登入 = new PLC_Device(PLC_Device_領藥台_01_已登入.GetAdress());
             uC_調劑作業_TypeA_1.PLC_Device_單醫令模式 = new PLC_Device(PLC_Device_領藥台_01_單醫令模式.GetAdress());
@@ -104,6 +109,11 @@ namespace 調劑台管理系統
         private void Program_調劑作業_領藥台_02_Init()
         {
             _uC_調劑作業_TypeA_2 = uC_調劑作業_TypeA_2;
+            if (PLC_Device_掃碼顏色固定.Bool)
+            {
+                uC_調劑作業_TypeA_2.固定顏色 = panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+            }
+
             uC_調劑作業_TypeA_2.調劑台名稱 = 領藥台_02名稱;
             uC_調劑作業_TypeA_2.PLC_Device_已登入 = PLC_Device_領藥台_02_已登入;
             uC_調劑作業_TypeA_2.PLC_Device_單醫令模式 = PLC_Device_領藥台_02_單醫令模式;
@@ -112,6 +122,11 @@ namespace 調劑台管理系統
         private void Program_調劑作業_領藥台_03_Init()
         {
             _uC_調劑作業_TypeA_3 = uC_調劑作業_TypeA_3;
+            if (PLC_Device_掃碼顏色固定.Bool)
+            {
+                uC_調劑作業_TypeA_3.固定顏色 = panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+            }
+
             uC_調劑作業_TypeA_3.調劑台名稱 = 領藥台_03名稱;
             uC_調劑作業_TypeA_3.PLC_Device_已登入 = PLC_Device_領藥台_03_已登入;
             uC_調劑作業_TypeA_3.PLC_Device_單醫令模式 = PLC_Device_領藥台_03_單醫令模式;
@@ -120,6 +135,11 @@ namespace 調劑台管理系統
         private void Program_調劑作業_領藥台_04_Init()
         {
             _uC_調劑作業_TypeA_4 = uC_調劑作業_TypeA_4;
+            if (PLC_Device_掃碼顏色固定.Bool)
+            {
+                uC_調劑作業_TypeA_4.固定顏色 = panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+            }
+
             uC_調劑作業_TypeA_4.調劑台名稱 = 領藥台_04名稱;
             uC_調劑作業_TypeA_4.PLC_Device_已登入 = PLC_Device_領藥台_04_已登入;
             uC_調劑作業_TypeA_4.PLC_Device_單醫令模式 = PLC_Device_領藥台_04_單醫令模式;
@@ -343,7 +363,6 @@ namespace 調劑台管理系統
             }
             this.sub_Program_領藥_RFID_檢查刷卡();
         }
-
         private void sub_Program_DHT()
         {
             StorageUI_EPD_266.UDP_READ uDP_READ_266 = this.storageUI_EPD_266.Get_UDP_READ("192.168.0.50");
@@ -382,6 +401,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_領藥台_03_單醫令模式 = new PLC_Device("S310");
         PLC_Device PLC_Device_領藥台_04_已登入 = new PLC_Device("S400");
         PLC_Device PLC_Device_領藥台_04_單醫令模式 = new PLC_Device("S410");
+
         private void PLC_Device_領藥台_已登入_ValueChangeEvent(object Value)
         {
             if ((bool)Value == true)
@@ -392,8 +412,6 @@ namespace 調劑台管理系統
                 }));
             }
         }
-
-  
 
         #region PLC_領藥_RFID_檢查刷卡
         PLC_Device PLC_Device_領藥_RFID_檢查刷卡 = new PLC_Device("");

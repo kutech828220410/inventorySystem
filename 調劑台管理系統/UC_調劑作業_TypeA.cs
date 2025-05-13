@@ -26,6 +26,7 @@ namespace 調劑台管理系統
         public string 卡號 = "";
         public string ID = "";
         public string 顏色 = "";
+        public string 固定顏色 = "";
         public string 藥師證字號 = "";
         public string 一維碼 = "";
         public string 醫令條碼 = "";
@@ -286,22 +287,34 @@ namespace 調劑台管理系統
             else if (Main_Form.Function_ReadBacodeScanner_pre(index) != null && !PLC_Device_已登入.Bool)
             {
                 string scanner_text = Main_Form.Function_ReadBacodeScanner(index);
+                Console.WriteLine($"[掃描器 {index}] 一維碼讀取 = {scanner_text}");
+
                 一維碼 = scanner_text;
                 List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 一維碼, false);
+                Console.WriteLine($"[掃描器 {index}] 人員資料查詢結果 = {list_人員資料.Count} 筆");
+
                 if (list_人員資料.Count == 0)
                 {
+                    Console.WriteLine($"[掃描器 {index}] 查無此一維碼，播放提示音");
                     Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\查無此一維碼.wav");
                     return;
                 }
+
                 this.Invoke(new Action(delegate
                 {
-                    textBox_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-                    textBox_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                    string id = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                    string pwd = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                    Console.WriteLine($"[掃描器 {index}] 登入資訊 - ID: {id}, 密碼: {pwd}");
+                    textBox_帳號.Texts = id;
+                    textBox_密碼.Texts = pwd;
                     Login();
                 }));
 
+                Console.WriteLine($"[掃描器 {index}] 動作紀錄新增 - 一維碼登入");
                 Main_Form.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 登入者姓名, "01.號使用者");
+
                 cnt++;
+                Console.WriteLine($"[掃描器 {index}] 流程結束，cnt = {cnt}");
                 return;
             }
             else if (Main_Form.VoiceSample != null && !PLC_Device_已登入.Bool)
@@ -522,62 +535,7 @@ namespace 調劑台管理系統
             cnt++;
 
         }
-
-
-        public void Function_醫令領藥(string BarCode)
-        {
-            personPageClass personPageClass = new personPageClass();
-            personPageClass.ID = ID;
-            personPageClass.姓名 = 登入者姓名;
-            personPageClass.藥師證字號 = 藥師證字號;
-            personPageClass.顏色 = 顏色;
-            List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
-            if(orderClasses != null)
-            {
-                if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
-                {
-                    Task.Run(new Action(delegate
-                    {
-                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
-                        if (code == -200)
-                        {
-                            return;
-                        }
-                        suspiciousRxLog = suspiciousRxLogClass;
-
-                        if (suspiciousRxLog == null) return;
-                        string 提報等級 = this.suspiciousRxLog?.提報等級;
-                        string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
-                        string 簡述事件 = this.suspiciousRxLog?.簡述事件;
-                        if (this.suspiciousRxLog?.狀態 != "無異狀") 提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
-                        if (!string.IsNullOrEmpty(提報等級))
-                        {
-                            int pbWidth = pictureBox_藥品圖片01.Width;
-                            int pbHeight = pictureBox_藥品圖片01.Height;
-
-                            if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
-                            {
-                                if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
-
-                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
-                                pictureBox_藥品圖片01.Visible = true;
-                            }
-                            else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
-                            {
-                                if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
-
-                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
-                                pictureBox_藥品圖片01.Visible = true;
-                            }
-                        }
-                     
-                    }));
-                }
-            }
-
-        }
+   
 
         private void PictureBox_藥品圖片_Click(object sender, EventArgs e)
         {
@@ -600,16 +558,7 @@ namespace 調劑台管理系統
                 }
             }
         }
-
-        public void Function_醫令退藥(string BarCode)
-        {
-            personPageClass personPageClass = new personPageClass();
-            personPageClass.ID = ID;
-            personPageClass.姓名 = 登入者姓名;
-            personPageClass.藥師證字號 = 藥師證字號;
-            personPageClass.顏色 = 顏色;
-            Main_Form.Function_醫令退藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
-        }
+   
         #endregion
         #region PLC_刷新領藥內容
         PLC_Device PLC_Device_刷新領藥內容 = new PLC_Device("");
@@ -1496,7 +1445,14 @@ namespace 調劑台管理系統
             }
             登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
             ID = list_value[0][(int)enum_人員資料.ID].ObjectToString();
-            顏色 = list_value[0][(int)enum_人員資料.顏色].ObjectToString();
+            if (Main_Form.PLC_Device_掃碼顏色固定.Bool)
+            {
+                if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+                if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+                if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+                if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+            }
+            else 顏色 = list_value[0][(int)enum_人員資料.顏色].ObjectToString();
             藥師證字號 = list_value[0][(int)enum_人員資料.藥師證字號].ObjectToString();
             this.PLC_Device_已登入.Bool = true;
             if (mevent != null) Main_Form.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.密碼登入, 登入者姓名, 調劑台名稱);
@@ -1644,7 +1600,69 @@ namespace 調劑台管理系統
 
             return bmp;
         }
+        public void Function_醫令領藥(string BarCode)
+        {
+            personPageClass personPageClass = new personPageClass();
+            personPageClass.ID = ID;
+            personPageClass.姓名 = 登入者姓名;
+            personPageClass.藥師證字號 = 藥師證字號;
+            personPageClass.顏色 = 顏色;
+            List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+            if (orderClasses != null)
+            {
+                if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
+                {
+                    Task.Run(new Action(delegate
+                    {
+                        (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
+                        if (code == -200)
+                        {
+                            return;
+                        }
+                        suspiciousRxLog = suspiciousRxLogClass;
 
+                        if (suspiciousRxLog == null) return;
+                        string 提報等級 = this.suspiciousRxLog?.提報等級;
+                        string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
+                        string 簡述事件 = this.suspiciousRxLog?.簡述事件;
+                        if (this.suspiciousRxLog?.狀態 != "無異狀") 提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
+                        if (!string.IsNullOrEmpty(提報等級))
+                        {
+                            int pbWidth = pictureBox_藥品圖片01.Width;
+                            int pbHeight = pictureBox_藥品圖片01.Height;
+
+                            if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
+                            {
+                                if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
+
+                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                pictureBox_藥品圖片01.Visible = true;
+                            }
+                            else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
+                            {
+                                if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                    pictureBox_藥品圖片01.BackgroundImage.Dispose();
+
+                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                pictureBox_藥品圖片01.Visible = true;
+                            }
+                        }
+
+                    }));
+                }
+            }
+
+        }
+        public void Function_醫令退藥(string BarCode)
+        {
+            personPageClass personPageClass = new personPageClass();
+            personPageClass.ID = ID;
+            personPageClass.姓名 = 登入者姓名;
+            personPageClass.藥師證字號 = 藥師證字號;
+            personPageClass.顏色 = 顏色;
+            Main_Form.Function_醫令退藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+        }
         public void Fuction_時間重置()
         {
             MyTimer_閒置登出時間.TickStop();
