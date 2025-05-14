@@ -11,6 +11,14 @@ using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_medBag_type
+    {
+        OPD,      
+        ER,       
+        ST,    
+        MBD,
+        UD
+    }
     public enum enum_suspiciousRxLog_ReportLevel
     {
         [Description("None")]
@@ -24,6 +32,7 @@ namespace HIS_DB_Lib
     }
     public enum enum_suspiciousRxLog_status
     {
+        未辨識,
         無異狀,
         未更改,
         已更改
@@ -38,7 +47,7 @@ namespace HIS_DB_Lib
         F數量錯誤,
         G多種藥物組合,
         H重複用藥,
-        Z其他,
+        I其他,
     }
     public enum enum_suspiciousRxLog_export
     {            
@@ -85,8 +94,10 @@ namespace HIS_DB_Lib
         開方時間,
         [Description("加入時間,DATETIME,30,NONE")]
         加入時間,
-        [Description("藥袋類型,VARCHAR,20,NONE")]
+        [Description("藥袋類型,VARCHAR,20,NONE")] 
         藥袋類型,
+        [Description("識別規則依據,VARCHAR,200,NONE")]
+        識別規則依據,
         [Description("錯誤類別,VARCHAR,20,NONE")]
         錯誤類別,
         [Description("簡述事件,VARCHAR,2000,NONE")]
@@ -129,6 +140,8 @@ namespace HIS_DB_Lib
         軟體,
         [Description("類別,VARCHAR,20,NONE")]
         類別,
+        [Description("提報等級,VARCHAR,20,NONE")]
+        提報等級,
         [Description("狀態,VARCHAR,10,NONE")]
         狀態,
     }
@@ -163,6 +176,8 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
+        [JsonPropertyName("rule")]
+        public string 識別規則依據 { get; set; }
 
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
@@ -202,6 +217,7 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("identified")]
         public string 辨識註記 { get; set; }
+        public List<diseaseClass> diseaseClasses { get; set; }
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
@@ -326,6 +342,7 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses);
 
         }
+        
     }
     public class suspiciousRxLog_ruleClass
     {
@@ -343,6 +360,8 @@ namespace HIS_DB_Lib
         public string 軟體 { get; set; }
         [JsonPropertyName("type")]
         public string 類別 { get; set; }
+        [JsonPropertyName("level")]
+        public string 提報等級 { get; set; }
         [JsonPropertyName("state")]
         public string 狀態 { get; set; }
         public class ICP_By_index : IComparer<suspiciousRxLog_ruleClass>
@@ -351,6 +370,33 @@ namespace HIS_DB_Lib
             {
                 int result = (x.索引).CompareTo(y.索引);
                 return result;
+            }
+        }
+        static public Dictionary<string, List<suspiciousRxLog_ruleClass>> ToDictByGroup(List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses)
+        {
+            Dictionary<string, List<suspiciousRxLog_ruleClass>> dictionary = new Dictionary<string, List<suspiciousRxLog_ruleClass>>();
+            foreach (var item in suspiciousRxLog_ruleClasses)
+            {
+                if (dictionary.TryGetValue(item.群組, out List<suspiciousRxLog_ruleClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.群組] = new List<suspiciousRxLog_ruleClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<suspiciousRxLog_ruleClass> GetByGroup(Dictionary<string, List<suspiciousRxLog_ruleClass>> dict, string groupName)
+        {
+            if (dict.TryGetValue(groupName, out List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses))
+            {
+                return suspiciousRxLog_ruleClasses;
+            }
+            else
+            {
+                return new List<suspiciousRxLog_ruleClass>();
             }
         }
     }

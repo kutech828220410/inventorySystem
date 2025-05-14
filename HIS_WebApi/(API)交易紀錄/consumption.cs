@@ -359,7 +359,8 @@ namespace HIS_WebApi
                     returnData.Result = "輸入日期格式錯誤!";
                     return returnData.JsonSerializationt();
                 }
-
+                起始時間 = 起始時間.StringToDateTime().GetStartDate().ToDateTimeString();
+                結束時間 = 結束時間.StringToDateTime().GetEndDate().ToDateTimeString();
                 DateTime date_st = 起始時間.StringToDateTime();
                 DateTime date_end = 結束時間.StringToDateTime();
 
@@ -410,6 +411,7 @@ namespace HIS_WebApi
                                                || temp.動作.Contains("領藥")
                                                || temp.動作.Contains("入庫")
                                                || temp.動作.Contains("出庫")
+                                               || temp.動作.Contains("效期庫存異動")
                                                select temp).ToList();
                         List<transactionsClass> transactionsClasses_buf = new List<transactionsClass>();
                         System.Collections.Generic.Dictionary<string, List<transactionsClass>> keyValues_transactionsClass = transactionsClass.CoverToDictionaryByCode(transactionsClasses);
