@@ -22,7 +22,7 @@ namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class consumptionController : Controller
+    public class consumption : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -738,6 +738,56 @@ namespace HIS_WebApi
             catch (Exception ex)
             {
                 return BadRequest("錯誤訊息：" + ex.Message);
+            }
+
+        }
+        /// <summary>
+        /// 取得庫存清單(Excel)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        List(consumptionClass)
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [HttpPost("download_datas_excel")]
+        public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<consumptionClass> consumptionClasses = returnData.Data.ObjToClass<List<consumptionClass>>();
+                if(consumptionClasses == null)
+                {
+                    return BadRequest("returnData.Data不能是空的");
+                }
+                List<object[]> list_transactionsClasses = consumptionClasses.ClassToSQL<consumptionClass, enum_consumption>();
+                System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_consumption());
+                dataTable.RemoveColumn(enum_consumption.結存量);
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx, (int)enum_consumption.消耗量, (int)enum_consumption.實調量, (int)enum_consumption.庫存量);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_庫存清單.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"系統錯誤：{ex.Message}");
             }
 
         }

@@ -126,6 +126,33 @@ namespace HIS_DB_Lib
                 return new List<bedStatusClass>();
             }
         }
+        static public Dictionary<string, List<bedStatusClass>> ToDictByID(List<bedStatusClass> bedStatusClasses)
+        {
+            Dictionary<string, List<bedStatusClass>> dictionary = new Dictionary<string, List<bedStatusClass>>();
+            foreach (var item in bedStatusClasses)
+            {
+                if (dictionary.TryGetValue(item.病歷號, out List<bedStatusClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.病歷號] = new List<bedStatusClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<bedStatusClass> GetByID(Dictionary<string, List<bedStatusClass>> dict, string ID)
+        {
+            if (dict.TryGetValue(ID, out List<bedStatusClass> bedStatusClasses))
+            {
+                return bedStatusClasses;
+            }
+            else
+            {
+                return new List<bedStatusClass>();
+            }
+        }
         static public List<bedStatusClass> update_med_CpoeRec(string API_Server, List<bedStatusClass> bedStatusClasses)
         {
             List<bedStatusClass> out_bedStatusClass = new List<bedStatusClass>();

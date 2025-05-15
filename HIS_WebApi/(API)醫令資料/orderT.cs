@@ -11,6 +11,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 using HIS_DB_Lib;
+using MyOffice;
+using MyUI;
+using System.IO;
 
 namespace HIS_WebApi
 {
@@ -807,7 +810,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以領藥號取得中藥醫令病患列表
         /// </summary>
@@ -1075,6 +1077,55 @@ namespace HIS_WebApi
                 returnData.Code = -200;
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
+        /// 取得庫存清單(Excel)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        List(OrderTClass)
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [HttpPost("download_datas_excel")]
+        public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<OrderTClass> OrderTClasses = returnData.Data.ObjToClass<List<OrderTClass>>();
+                if (OrderTClasses == null)
+                {
+                    return BadRequest("returnData.Data不能是空的");
+                }
+                List<object[]> list_orderTClasses = OrderTClasses.ClassToSQL<OrderTClass, enum_OrderT>();
+                System.Data.DataTable dataTable = list_orderTClasses.ToDataTable(new enum_OrderT());
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx, (int)enum_OrderT.交易量, (int)enum_OrderT.實際調劑量);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_中藥醫令.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"系統錯誤：{ex.Message}");
             }
 
         }

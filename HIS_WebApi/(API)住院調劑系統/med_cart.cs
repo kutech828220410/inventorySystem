@@ -764,13 +764,13 @@ namespace HIS_WebApi
                 List<object[]> sql_bedStatusClass = sQLControl.GetRowsByBetween(null, (int)enum_bed_status.轉床時間, StartTime, Endtime);
                 List<bedStatusClass> list_bedStatusClass = sql_bedStatusClass.SQLToClass<bedStatusClass, enum_bed_status>();
 
-                Dictionary<string, List<bedStatusClass>> inputBedStatusDict = bedStatusClass.ToDictByMasterGUID(input_bedStatus);
-                Dictionary<string, List<bedStatusClass>> sqlBedStatusDict = bedStatusClass.ToDictByMasterGUID(list_bedStatusClass);
+                Dictionary<string, List<bedStatusClass>> inputBedStatusDict = bedStatusClass.ToDictByID(input_bedStatus);
+                Dictionary<string, List<bedStatusClass>> sqlBedStatusDict = bedStatusClass.ToDictByID(list_bedStatusClass);
                 List<bedStatusClass> add_bedStatusClass = new List<bedStatusClass>();
                 foreach (var Master_GUID in inputBedStatusDict.Keys)
                 {
-                    List<bedStatusClass> input = bedStatusClass.GetByMasterGUID(inputBedStatusDict, Master_GUID);
-                    List<bedStatusClass> sql = bedStatusClass.GetByMasterGUID(sqlBedStatusDict, Master_GUID);
+                    List<bedStatusClass> input = bedStatusClass.GetByID(inputBedStatusDict, Master_GUID);
+                    List<bedStatusClass> sql = bedStatusClass.GetByID(sqlBedStatusDict, Master_GUID);
 
                     List<bedStatusClass> result = input
                         .Where(inputItem => !sql.Any(sqlItem => sqlItem.PRI_KEY == inputItem.PRI_KEY))
