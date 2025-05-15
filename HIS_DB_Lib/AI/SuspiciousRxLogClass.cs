@@ -217,7 +217,50 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("identified")]
         public string 辨識註記 { get; set; }
-        public List<diseaseClass> diseaseClasses { get; set; }
+
+        public List<diseaseClass> diseaseClasses
+        {
+            get
+            {
+                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
+
+                List<string> list_診斷碼 = new List<string>();
+                List<string> list_診斷內容 = new List<string>();
+                if (this.診斷碼.StringIsEmpty() == false && this.診斷內容.StringIsEmpty() == false)
+                {
+                    list_診斷碼 = this.診斷碼.Split(';').ToList();
+                    list_診斷內容 = this.診斷內容.Split(';').ToList();
+                    if (list_診斷碼.Count == list_診斷內容.Count)
+                    {
+                        for (int i = 0; i < list_診斷碼.Count; i++)
+                        {
+                            diseaseClasses.Add(new diseaseClass()
+                            {
+                                疾病代碼 = list_診斷碼[i],
+                                中文說明 = list_診斷內容[i],
+                            });
+                        }
+                    }
+                }
+                return diseaseClasses;
+            }
+            set
+            {
+                if (value == null) return;
+                List<string> list_診斷碼 = new List<string>();
+                List<string> list_中文說明 = new List<string>();
+
+                foreach (var item in value)
+                {
+                    list_診斷碼.Add(item.疾病代碼);
+                    if(item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
+                    else list_中文說明.Add(item.英文說明);
+                }
+
+                this.診斷碼 = string.Join(";", list_診斷碼);
+                this.診斷內容 = string.Join(";", list_中文說明);
+            }
+        }
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }

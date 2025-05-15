@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using HIS_DB_Lib;
 using Basic;
@@ -211,18 +212,33 @@ namespace HIS_WebApi._API_疾病
                 }
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);           
                 List<object[]> list_diseaseClass = dataTable.DataTableToRowList();
-                List<diseaseClass> suspiciousRxLogClasses = list_diseaseClass.SQLToClass<diseaseClass, enum_disease>();
-                if(suspiciousRxLogClasses == null)
+                List<diseaseClass> diseaseClasses = list_diseaseClass.SQLToClass<diseaseClass, enum_disease>();
+                if (diseaseClasses == null) diseaseClasses = new List<diseaseClass>();
+                if (diseaseClasses.Count == 0)
                 {
-                    returnData.Data = new List<diseaseClass>();
+
+                    string icd10_url = $"https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?df=code,name&terms={疾病代碼}";
+
+                    string icd10_json = Basic.Net.WEBApiGet(icd10_url);
+                    CodeDescription iCD10Data = CodeDescription.ParseCodeDescription(icd10_json);
+                    diseaseClass diseaseClass = new diseaseClass();
+                    diseaseClass.GUID = Guid.NewGuid().ToString();
+                    diseaseClass.疾病代碼 = iCD10Data.Code;
+                    diseaseClass.英文說明 = iCD10Data.Description;
+
+                    diseaseClasses.Add(diseaseClass);
+                    List<object[]> add = diseaseClasses.ClassToSQL<diseaseClass, enum_disease>();
+                    sQLControl.AddRows(null, add);
+                    returnData.Data = diseaseClasses;
+
                 }
                 else
                 {
-                    returnData.Data = suspiciousRxLogClasses;
+                    returnData.Data = diseaseClasses;
                 }
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"取得疾病資料共<{suspiciousRxLogClasses.Count}>筆";
+                returnData.Result = $"取得疾病資料共<{diseaseClasses.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -250,7 +266,49 @@ namespace HIS_WebApi._API_疾病
 
             return table.JsonSerializationt(true);
         }
-        
-        
+
+        public class CodeDescription
+        {
+            public string Code { get; set; }
+            public string Description { get; set; }
+
+            public CodeDescription() { }
+
+            public CodeDescription(string code, string description)
+            {
+                Code = code;
+                Description = description;
+            }
+
+            // 若來源為 string[] 陣列
+            public CodeDescription(string[] array)
+            {
+                if (array?.Length == 2)
+                {
+                    Code = array[0];
+                    Description = array[1];
+                }
+            }
+
+            public static CodeDescription ParseCodeDescription(string json)
+            {
+                using (JsonDocument doc = JsonDocument.Parse(json))
+                {
+                    var root = doc.RootElement;
+                    var lastArray = root[3]; // 第四個元素是 [["R05.9", "Cough, unspecified"]]
+
+                    if (lastArray.GetArrayLength() > 0)
+                    {
+                        var item = lastArray[0];
+                        return new CodeDescription
+                        {
+                            Code = item[0].GetString(),
+                            Description = item[1].GetString()
+                        };
+                    }
+                }
+                return null;
+            }
+        }
     }
 }

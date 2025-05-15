@@ -41,6 +41,11 @@ namespace HIS_DB_Lib
         public string 中文說明 { get; set; }
         [JsonPropertyName("EN")]
         public string 英文說明 { get; set; }
+        static public List<diseaseClass> get_by_ICD(string API_Server, List<string> ICDs)
+        {
+            string disease = string.Join(";", ICDs);
+            return get_by_ICD(API_Server, disease);
+        }
         static public List<diseaseClass> get_by_ICD(string API_Server, string ICD)
         {
             string url = $"{API_Server}/api/disease/get_by_ICD";

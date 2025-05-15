@@ -96,7 +96,13 @@ namespace 調劑台管理系統
             if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
             {
                 pictureBox_藥品圖片01.Click += PictureBox_藥品圖片_Click;
+                pictureBox_藥品圖片02.Click += PictureBox_藥品圖片_Click;
                 rJ_Lable_MedGPT_Title.Visible = true;
+                panel_診斷資訊.Height = 100;
+            }
+            else
+            {
+                panel_診斷資訊.Height = 0;
             }
 
             myThread_program = new MyThread();
@@ -545,7 +551,6 @@ namespace 調劑台管理系統
             }
             if (suspiciousRxLog.狀態 != enum_suspiciousRxLog_status.無異狀.GetEnumName())
             {
-                Voice.GoogleSpeaker("處方有疑義,請審核", $@"{Main_Form.currentDirectory}/gooler_speaker_temp.mp3");
                 Dialog_醫師疑義處方紀錄表 dialog_醫師疑義處方紀錄表 = new Dialog_醫師疑義處方紀錄表(suspiciousRxLog, 登入者姓名);
 
                 if (dialog_醫師疑義處方紀錄表.ShowDialog() != DialogResult.Yes) return;
@@ -1504,6 +1509,7 @@ namespace 調劑台管理系統
                 this.rJ_Lable_年齡.Text = "----";
                 this.rJ_Lable_領藥號.Text = "-----";
                 this.rJ_Lable_病歷號.Text = "---------";
+                rJ_Lable_診斷.Text = "";
             }));
 
         }
@@ -1614,6 +1620,8 @@ namespace 調劑台管理系統
                 {
                     Task.Run(new Action(delegate
                     {
+                        rJ_Lable_診斷.Text = "";
+
                         (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
                         if (code == -200)
                         {
@@ -1622,12 +1630,22 @@ namespace 調劑台管理系統
                         suspiciousRxLog = suspiciousRxLogClass;
 
                         if (suspiciousRxLog == null) return;
+                        string text = "";
+                        for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
+                        {
+                            text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
+                            if (i != suspiciousRxLog.diseaseClasses.Count - 1) text += "\n";
+                        }
+                        rJ_Lable_診斷.Text = text;
+                        panel_診斷資訊.Visible = true;
                         string 提報等級 = this.suspiciousRxLog?.提報等級;
                         string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
                         string 簡述事件 = this.suspiciousRxLog?.簡述事件;
                         if (this.suspiciousRxLog?.狀態 != "無異狀") 提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
                         if (!string.IsNullOrEmpty(提報等級))
                         {
+                            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\處方有疑義,請審核.wav");
+
                             int pbWidth = pictureBox_藥品圖片01.Width;
                             int pbHeight = pictureBox_藥品圖片01.Height;
 

@@ -543,54 +543,24 @@ namespace HIS_WebApi._API_AI
                     {
                         suspiciousRxLog.response = suspiciousRxLog.response.Replace("None科別", $"{orders[0].科別}");
                     }
-                    suspiciousRxLogClasses = new suspiciousRxLogClass()
-                    {
-                        //GUID = Guid.NewGuid().ToString(),
-                        //藥袋條碼 = orders[0].藥袋條碼,
-                        //加入時間 = DateTime.Now.ToDateTimeString(),
-                        //病歷號 = 病歷號,
-                        //科別 = orders[0].科別,
-                        //醫生姓名 = orders[0].醫師代碼,
-                        //開方時間 = orders[0].開方日期,
-                        //藥袋類型 = orders[0].藥袋類型,
-                        錯誤類別 = string.Join(",", suspiciousRxLog.error_type),
-                        簡述事件 = suspiciousRxLog.response,
-                        狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName(),
-                        //調劑人員 = orders[0].藥師姓名,
-                        //調劑時間 = orders[0].過帳時間,
-                        提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName(),
-                        //提報時間 = DateTime.MinValue.ToDateTimeString(),
-                        //處理時間 = DateTime.MinValue.ToDateTimeString(),
-                    };
+
+                    suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
+                    suspiciousRxLogClasses.簡述事件 = suspiciousRxLog.response;
+                    suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
+                    suspiciousRxLogClasses.提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
+
+                    
                     
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
                 else
                 {
-                    suspiciousRxLogClasses = new suspiciousRxLogClass()
-                    {
-                        狀態 = enum_suspiciousRxLog_status.無異狀.GetEnumName(),
-                    };
+
+                    suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.無異狀.GetEnumName();
+                    
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
-                if(suspiciousRxLogClasses.診斷碼.StringIsEmpty() == false && suspiciousRxLogClasses.診斷內容.StringIsEmpty() == false)
-                {
-                    List<string> list_診斷碼 = suspiciousRxLogClasses.診斷碼.Split(";").ToList();
-                    List<string> list_診斷內容 = suspiciousRxLogClasses.診斷內容.Split(";").ToList();
-                    if(list_診斷碼.Count == list_診斷內容.Count)
-                    {
-                        List<diseaseClass> diseaseClasses = new List<diseaseClass>();
-                        for (int i = 0; i < list_診斷碼.Count; i++)
-                        {
-                            diseaseClasses.Add(new diseaseClass()
-                            {
-                                疾病代碼 = list_診斷碼[i],
-                                中文說明 = list_診斷內容[i],
-                            });
-                        }
-                        suspiciousRxLogClasses.diseaseClasses = diseaseClasses;
-                    }
-                }
+                
                 returnData.Data = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";

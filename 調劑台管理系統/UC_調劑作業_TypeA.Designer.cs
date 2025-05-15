@@ -41,6 +41,9 @@
             this.plC_RJ_Button_取消作業 = new MyUI.PLC_RJ_Button();
             this.panel_藥品資訊 = new System.Windows.Forms.Panel();
             this.panel_藥品圖片 = new System.Windows.Forms.Panel();
+            this.pictureBox_藥品圖片01 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_藥品圖片02 = new System.Windows.Forms.PictureBox();
+            this.rJ_Lable_MedGPT_Title = new MyUI.RJ_Lable();
             this.panel_領藥台01_處方資訊 = new System.Windows.Forms.Panel();
             this.panel_病患資訊 = new System.Windows.Forms.Panel();
             this.rJ_Lable_領藥號 = new MyUI.RJ_Lable();
@@ -54,24 +57,20 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel_診斷資訊 = new System.Windows.Forms.Panel();
             this.rJ_Lable_診斷 = new MyUI.RJ_Lable();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_領藥內容 = new SQLUI.SQL_DataGridView();
             this.contextMenuStrip_調劑畫面 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem_調劑畫面_顯示設定 = new System.Windows.Forms.ToolStripMenuItem();
-            this.rJ_Lable_MedGPT_Title = new MyUI.RJ_Lable();
-            this.pictureBox_藥品圖片01 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_藥品圖片02 = new System.Windows.Forms.PictureBox();
             this.panel114.SuspendLayout();
             this.panel121.SuspendLayout();
             this.panel119.SuspendLayout();
             this.panel_藥品資訊.SuspendLayout();
             this.panel_藥品圖片.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).BeginInit();
             this.panel_領藥台01_處方資訊.SuspendLayout();
             this.panel_病患資訊.SuspendLayout();
             this.panel_診斷資訊.SuspendLayout();
             this.contextMenuStrip_調劑畫面.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).BeginInit();
             this.SuspendLayout();
             // 
             // panel114
@@ -412,6 +411,53 @@
             this.panel_藥品圖片.Size = new System.Drawing.Size(874, 204);
             this.panel_藥品圖片.TabIndex = 4;
             // 
+            // pictureBox_藥品圖片01
+            // 
+            this.pictureBox_藥品圖片01.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_藥品圖片01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_藥品圖片01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_藥品圖片01.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_藥品圖片01.Location = new System.Drawing.Point(2, 42);
+            this.pictureBox_藥品圖片01.Name = "pictureBox_藥品圖片01";
+            this.pictureBox_藥品圖片01.Size = new System.Drawing.Size(438, 160);
+            this.pictureBox_藥品圖片01.TabIndex = 8;
+            this.pictureBox_藥品圖片01.TabStop = false;
+            // 
+            // pictureBox_藥品圖片02
+            // 
+            this.pictureBox_藥品圖片02.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_藥品圖片02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_藥品圖片02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_藥品圖片02.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox_藥品圖片02.Location = new System.Drawing.Point(440, 42);
+            this.pictureBox_藥品圖片02.Name = "pictureBox_藥品圖片02";
+            this.pictureBox_藥品圖片02.Size = new System.Drawing.Size(432, 160);
+            this.pictureBox_藥品圖片02.TabIndex = 7;
+            this.pictureBox_藥品圖片02.TabStop = false;
+            // 
+            // rJ_Lable_MedGPT_Title
+            // 
+            this.rJ_Lable_MedGPT_Title.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_MedGPT_Title.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.rJ_Lable_MedGPT_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_MedGPT_Title.BorderRadius = 10;
+            this.rJ_Lable_MedGPT_Title.BorderSize = 0;
+            this.rJ_Lable_MedGPT_Title.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable_MedGPT_Title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_MedGPT_Title.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_MedGPT_Title.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_MedGPT_Title.GUID = "";
+            this.rJ_Lable_MedGPT_Title.Location = new System.Drawing.Point(2, 2);
+            this.rJ_Lable_MedGPT_Title.Name = "rJ_Lable_MedGPT_Title";
+            this.rJ_Lable_MedGPT_Title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_MedGPT_Title.ShadowSize = 0;
+            this.rJ_Lable_MedGPT_Title.Size = new System.Drawing.Size(870, 40);
+            this.rJ_Lable_MedGPT_Title.TabIndex = 0;
+            this.rJ_Lable_MedGPT_Title.Text = "MedGPT 處方核對";
+            this.rJ_Lable_MedGPT_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_MedGPT_Title.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_MedGPT_Title.Visible = false;
+            // 
             // panel_領藥台01_處方資訊
             // 
             this.panel_領藥台01_處方資訊.Controls.Add(this.panel_病患資訊);
@@ -625,43 +671,32 @@
             // panel_診斷資訊
             // 
             this.panel_診斷資訊.Controls.Add(this.rJ_Lable_診斷);
-            this.panel_診斷資訊.Controls.Add(this.panel4);
             this.panel_診斷資訊.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_診斷資訊.Location = new System.Drawing.Point(0, 76);
             this.panel_診斷資訊.Name = "panel_診斷資訊";
-            this.panel_診斷資訊.Size = new System.Drawing.Size(880, 76);
+            this.panel_診斷資訊.Size = new System.Drawing.Size(880, 100);
             this.panel_診斷資訊.TabIndex = 136;
-            this.panel_診斷資訊.Visible = false;
             // 
             // rJ_Lable_診斷
             // 
             this.rJ_Lable_診斷.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_診斷.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_診斷.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_診斷.BorderRadius = 10;
-            this.rJ_Lable_診斷.BorderSize = 0;
+            this.rJ_Lable_診斷.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_診斷.BorderRadius = 0;
+            this.rJ_Lable_診斷.BorderSize = 2;
             this.rJ_Lable_診斷.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_診斷.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_診斷.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_診斷.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_診斷.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_診斷.GUID = "";
-            this.rJ_Lable_診斷.Location = new System.Drawing.Point(10, 0);
+            this.rJ_Lable_診斷.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_診斷.Name = "rJ_Lable_診斷";
             this.rJ_Lable_診斷.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_診斷.ShadowSize = 0;
-            this.rJ_Lable_診斷.Size = new System.Drawing.Size(870, 76);
+            this.rJ_Lable_診斷.Size = new System.Drawing.Size(880, 100);
             this.rJ_Lable_診斷.TabIndex = 10;
-            this.rJ_Lable_診斷.Text = "  夜尿、攝護腺增大伴有下泌尿道症狀、急迫性尿失禁";
             this.rJ_Lable_診斷.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_診斷.TextColor = System.Drawing.Color.Black;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(10, 76);
-            this.panel4.TabIndex = 0;
             // 
             // sqL_DataGridView_領藥內容
             // 
@@ -688,7 +723,7 @@
             this.sqL_DataGridView_領藥內容.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_領藥內容.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_領藥內容.ImageBox = false;
-            this.sqL_DataGridView_領藥內容.Location = new System.Drawing.Point(0, 152);
+            this.sqL_DataGridView_領藥內容.Location = new System.Drawing.Point(0, 176);
             this.sqL_DataGridView_領藥內容.Name = "sqL_DataGridView_領藥內容";
             this.sqL_DataGridView_領藥內容.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_領藥內容.Password = "user82822040";
@@ -705,7 +740,7 @@
             this.sqL_DataGridView_領藥內容.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_領藥內容.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_領藥內容.Server = "127.0.0.0";
-            this.sqL_DataGridView_領藥內容.Size = new System.Drawing.Size(880, 226);
+            this.sqL_DataGridView_領藥內容.Size = new System.Drawing.Size(880, 202);
             this.sqL_DataGridView_領藥內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_領藥內容.TabIndex = 137;
             this.sqL_DataGridView_領藥內容.UserName = "root";
@@ -735,53 +770,6 @@
             this.toolStripMenuItem_調劑畫面_顯示設定.Size = new System.Drawing.Size(142, 24);
             this.toolStripMenuItem_調劑畫面_顯示設定.Text = "顯示設定";
             // 
-            // rJ_Lable_MedGPT_Title
-            // 
-            this.rJ_Lable_MedGPT_Title.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_MedGPT_Title.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.rJ_Lable_MedGPT_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_MedGPT_Title.BorderRadius = 10;
-            this.rJ_Lable_MedGPT_Title.BorderSize = 0;
-            this.rJ_Lable_MedGPT_Title.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable_MedGPT_Title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_MedGPT_Title.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_MedGPT_Title.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_MedGPT_Title.GUID = "";
-            this.rJ_Lable_MedGPT_Title.Location = new System.Drawing.Point(2, 2);
-            this.rJ_Lable_MedGPT_Title.Name = "rJ_Lable_MedGPT_Title";
-            this.rJ_Lable_MedGPT_Title.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_MedGPT_Title.ShadowSize = 0;
-            this.rJ_Lable_MedGPT_Title.Size = new System.Drawing.Size(870, 40);
-            this.rJ_Lable_MedGPT_Title.TabIndex = 0;
-            this.rJ_Lable_MedGPT_Title.Text = "MedGPT 處方核對";
-            this.rJ_Lable_MedGPT_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable_MedGPT_Title.TextColor = System.Drawing.Color.Black;
-            this.rJ_Lable_MedGPT_Title.Visible = false;
-            // 
-            // pictureBox_藥品圖片01
-            // 
-            this.pictureBox_藥品圖片01.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_藥品圖片01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_藥品圖片01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_藥品圖片01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_藥品圖片01.Location = new System.Drawing.Point(2, 42);
-            this.pictureBox_藥品圖片01.Name = "pictureBox_藥品圖片01";
-            this.pictureBox_藥品圖片01.Size = new System.Drawing.Size(438, 160);
-            this.pictureBox_藥品圖片01.TabIndex = 8;
-            this.pictureBox_藥品圖片01.TabStop = false;
-            // 
-            // pictureBox_藥品圖片02
-            // 
-            this.pictureBox_藥品圖片02.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_藥品圖片02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_藥品圖片02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_藥品圖片02.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox_藥品圖片02.Location = new System.Drawing.Point(440, 42);
-            this.pictureBox_藥品圖片02.Name = "pictureBox_藥品圖片02";
-            this.pictureBox_藥品圖片02.Size = new System.Drawing.Size(432, 160);
-            this.pictureBox_藥品圖片02.TabIndex = 7;
-            this.pictureBox_藥品圖片02.TabStop = false;
-            // 
             // UC_調劑作業_TypeA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -799,12 +787,12 @@
             this.panel119.ResumeLayout(false);
             this.panel_藥品資訊.ResumeLayout(false);
             this.panel_藥品圖片.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).EndInit();
             this.panel_領藥台01_處方資訊.ResumeLayout(false);
             this.panel_病患資訊.ResumeLayout(false);
             this.panel_診斷資訊.ResumeLayout(false);
             this.contextMenuStrip_調劑畫面.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -822,7 +810,6 @@
         private MyUI.RJ_Lable rJ_Lable6;
         private MyUI.RJ_Lable rJ_Lable8;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
         public MyUI.RJ_TextBox textBox_帳號;
         public MyUI.RJ_TextBox textBox_密碼;
         public MyUI.PLC_RJ_Button plC_RJ_Button_登入;

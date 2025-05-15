@@ -300,6 +300,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
+        public List<diseaseClass> diseaseClasses { get; set; }
 
         static public SQLUI.Table init(string API_Server)
         {
@@ -631,6 +632,24 @@ namespace HIS_DB_Lib
                             select temp).ToList();
             return OrderClasses;
         }
+        static public List<diseaseClass> get_ICD_by_barcode(string API_Server, string barcode)
+        {
+            string url = $"{API_Server}/api/suspiciousRxLog/get_by_barcode";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(barcode);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>().FirstOrDefault();
+            if (suspiciousRxLogClasses == null)
+            {
+                return null;
+            }
+            return suspiciousRxLogClasses.diseaseClasses;
+        }
+
 
 
         static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime dateTime)
