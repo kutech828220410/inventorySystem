@@ -38,6 +38,7 @@ namespace 調劑台管理系統
                         rJ_Lable_數量.Text = "----";
                         rJ_Lable_異常.Text = "----";
                     }));
+                    _drugHFTag_IncomeOutcomeList = value;
                     return;
                 }
                 form.Invoke(new Action(delegate
@@ -52,8 +53,11 @@ namespace 調劑台管理系統
         }
         public IncomeOutcomeMode _Import_Export = IncomeOutcomeMode.收入;
         public List<StockClass> stockClasses = new List<StockClass>();
+        private double qty = 0;
+
         private MyThread myThread_HFRFID = new MyThread();
         private MyThread myThread_UI = new MyThread();
+
         public Dialog_收支作業_RFID收支作業(IncomeOutcomeMode IncomeOutcomeMode)
         {
             form.Invoke(new Action(delegate 
@@ -81,7 +85,6 @@ namespace 調劑台管理系統
                 myThread_UI = null;
             }
         }
-
         private void Dialog_收支作業_RFID出收入_LoadFinishedEvent(EventArgs e)
         {
  
@@ -131,7 +134,7 @@ namespace 調劑台管理系統
             this.rJ_Button_選擇.MouseDownEvent += RJ_Button_選擇_MouseDownEvent;
             this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
-
+            this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
             myThread_HFRFID.AutoRun(true);
             myThread_HFRFID.Add_Method(Program_HFRFID);
             myThread_HFRFID.SetSleepTime(100);
@@ -289,217 +292,293 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
         }
 
-
         private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
         {
-            Main_Form.Function_外門片解鎖();
+            try
+            {
+                Logger.Log($"dialog_HRFID", $"[PlC_RJ_Button_解鎖_MouseDownEvent] 使用者 : {Main_Form._登入者名稱}");
+
+                Main_Form.Function_外門片解鎖();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("dialog_HRFID", $"[錯誤] {ex.Message} | {ex.StackTrace}");
+            }
+            finally
+            {
+                Logger.Log("dialog_HRFID", $"[PlC_RJ_Button_解鎖_MouseDownEvent] 結束執行流程");
+
+            }
+
         }
         private void RJ_Button_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_收支清單 = this.sqL_DataGridView_收支清單.Get_All_Select_RowsValues();
-            if(list_收支清單.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("請選擇要作業的藥品");
-                return;
+                Logger.Log("dialog_HRFID", $"[RJ_Button_選擇_MouseDownEvent] 使用者: {Main_Form._登入者名稱}");
+
+                List<object[]> list_收支清單 = this.sqL_DataGridView_收支清單.Get_All_Select_RowsValues();
+                Logger.Log("dialog_HRFID", $"取得收支清單筆數: {list_收支清單.Count}");
+
+                if (list_收支清單.Count == 0)
+                {
+                    Logger.Log("dialog_HRFID", "使用者未選擇任何藥品，顯示提示視窗");
+                    MyMessageBox.ShowDialog("請選擇要作業的藥品");
+                    return;
+                }
+
+                if (_Import_Export == IncomeOutcomeMode.支出)
+                {
+                    Logger.Log("dialog_HRFID", "目前為【支出】模式，顯示數量輸入面板");
+                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入支出數量");
+
+                    if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
+                    {
+                        Logger.Log("dialog_HRFID", "使用者取消輸入支出數量");
+                        return;
+                    }
+
+                    qty = dialog_NumPannel.Value;
+                    Logger.Log("dialog_HRFID", $"使用者輸入支出數量: {qty}");
+
+                    if (qty <= 0)
+                    {
+                        Logger.Log("dialog_HRFID", "支出數量為 0 或負數，阻止繼續執行");
+                        MyMessageBox.ShowDialog("請輸入正確的數量");
+                        return;
+                    }
+
+                    double 報表數量 = list_收支清單[0][(int)enum_DrugHFTag_IncomeOutcomeList.報表數量].ObjectToString().StringToDouble();
+                    if (qty > 報表數量)
+                    {
+                        Logger.Log("dialog_HRFID", $"輸入支出數量 {qty} 大於報表數量 {報表數量}，阻止執行");
+                        MyMessageBox.ShowDialog("支出數量大於報表數量");
+                        return;
+                    }
+                }
+
+                string 藥碼 = list_收支清單[0][(int)enum_DrugHFTag_IncomeOutcomeList.藥碼].ObjectToString();
+                Logger.Log("dialog_HRFID", $"取得藥碼: {藥碼}，執行亮燈與解鎖程序");
+
+                Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
+
+                List<string> list_ip = Main_Form.Function_取得抽屜以藥品碼解鎖IP(藥碼);
+                Logger.Log("dialog_HRFID", $"取得 IP 清單，共 {list_ip.Count} 筆: {string.Join(", ", list_ip)}");
+
+                Main_Form.Function_抽屜解鎖(list_ip);
+                Logger.Log("dialog_HRFID", "完成抽屜解鎖");
+
+                drugHFTag_IncomeOutcomeList = list_收支清單[0].ToIncomeOutcomeClass();
+                Logger.Log("dialog_HRFID", $"完成 drugHFTag_IncomeOutcomeList 建立，藥品名稱: {drugHFTag_IncomeOutcomeList.藥名}");
             }
-            string 藥碼 = list_收支清單[0][(int)enum_DrugHFTag_IncomeOutcomeList.藥碼].ObjectToString();
-            Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
-            List<string> list_ip = Main_Form.Function_取得抽屜以藥品碼解鎖IP(藥碼);
-            Main_Form.Function_抽屜解鎖(list_ip);
-            drugHFTag_IncomeOutcomeList = list_收支清單[0].ToIncomeOutcomeClass();
+            catch (Exception ex)
+            {
+                Logger.Log("dialog_HRFID", $"[錯誤] {ex.Message} | {ex.StackTrace}");
+                MyMessageBox.ShowDialog("發生例外錯誤，請檢查 Log 或聯繫工程人員");
+            }
+            finally
+            {
+                Logger.Log("dialog_HRFID", $"[RJ_Button_選擇_MouseDownEvent] 結束執行流程");
+            }
+
+
 
         }
         private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
-            if (list_drugHFTagClasses.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("未讀取到RFID標籤");
-                return;
-            }
+                Logger.Log("dialog_HRFID", $"[RJ_Button_確認_MouseDownEvent] 使用者: {Main_Form._登入者名稱}");
 
-            if (errorTags.Count > 0)
-            {
-                // 統計每種藥品異常筆數
-                var groupedErrors = errorTags
-                    .GroupBy(t => new { t.藥碼, t.藥名 })
-                    .Select(g => new
-                    {
-                        藥碼 = g.Key.藥碼,
-                        藥名 = g.Key.藥名,
-                        筆數 = g.Count()
-                    })
-                    .ToList();
+                List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
+                Logger.Log("dialog_HRFID", $"取得標籤筆數: {list_drugHFTagClasses.Count}");
 
-                // 組合顯示訊息
-                StringBuilder sb_temp = new StringBuilder();
-                sb_temp.AppendLine($"偵測到 {errorTags.Count} 筆異常標籤：\n");
-                foreach (var group in groupedErrors)
+                if (list_drugHFTagClasses.Count == 0)
                 {
-                    sb_temp.AppendLine($"• {group.藥名} ({group.藥碼})：{group.筆數} 筆");
+                    Logger.Log("dialog_HRFID", "未讀取到任何 RFID 標籤");
+                    MyMessageBox.ShowDialog("未讀取到RFID標籤");
+                    return;
                 }
-                sb_temp.AppendLine("\n是否新增為異常記錄？");
 
-                if (MyMessageBox.ShowDialog(sb_temp.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                if (_Import_Export == IncomeOutcomeMode.支出 && rJ_Lable_數量.Text.StringToDouble() != qty)
                 {
-                    List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
-                    foreach (var tag in errorTags)
+                    Logger.Log("dialog_HRFID", $"標籤數量 ({rJ_Lable_數量.Text}) 不等於輸入支出數量 ({qty})");
+                    MyMessageBox.ShowDialog("RFID標籤數量與支出數量不符");
+                    return;
+                }
+
+                if (errorTags.Count > 0)
+                {
+                    Logger.Log("dialog_HRFID", $"偵測到 {errorTags.Count} 筆異常標籤，彙整後將提示新增");
+
+                    var groupedErrors = errorTags
+                        .GroupBy(t => new { t.藥碼, t.藥名 })
+                        .Select(g => new { 藥碼 = g.Key.藥碼, 藥名 = g.Key.藥名, 筆數 = g.Count() })
+                        .ToList();
+
+                    StringBuilder sb_temp = new StringBuilder();
+                    sb_temp.AppendLine($"偵測到 {errorTags.Count} 筆異常標籤：\n");
+                    foreach (var group in groupedErrors)
                     {
-                        var log = new medRecheckLogClass
+                        sb_temp.AppendLine($"• {group.藥名} ({group.藥碼})：{group.筆數} 筆");
+                    }
+                    sb_temp.AppendLine("\n是否新增為異常記錄？");
+
+                    if (MyMessageBox.ShowDialog(sb_temp.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                    {
+                        List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
+                        foreach (var tag in errorTags)
                         {
-                            GUID = Guid.NewGuid().ToString(),
-                            發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? "RFID入庫異常" : "RFID出庫異常",
-                            藥碼 = tag.藥碼,
-                            藥名 = tag.藥名,
-                            效期 = tag.效期,
-                            批號 = tag.批號,
-                            庫存值 = "0",
-                            盤點值 = tag.數量.ToString(),
-                            差異值 = tag.數量.ToString(),
-                            發生時間 = DateTime.Now.ToDateTimeString_6(),
-                            排除時間 = DateTime.MinValue.ToDateTimeString(),
-                            狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
-                            事件描述 = "標籤未註記為入/出庫",
-                            通知註記 = "未通知",
-                            通知時間 = DateTime.MinValue.ToDateTimeString(),
-                            參數1 = tag.TagSN,
-                            參數2 = ""
-                        };
-                        errorLogs.Add(log);
+                            var log = new medRecheckLogClass
+                            {
+                                GUID = Guid.NewGuid().ToString(),
+                                發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? "RFID入庫異常" : "RFID出庫異常",
+                                藥碼 = tag.藥碼,
+                                藥名 = tag.藥名,
+                                效期 = tag.效期,
+                                批號 = tag.批號,
+                                庫存值 = "0",
+                                盤點值 = tag.數量.ToString(),
+                                差異值 = tag.數量.ToString(),
+                                發生時間 = DateTime.Now.ToDateTimeString_6(),
+                                排除時間 = DateTime.MinValue.ToDateTimeString(),
+                                狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
+                                事件描述 = "標籤未註記為入/出庫",
+                                通知註記 = "未通知",
+                                通知時間 = DateTime.MinValue.ToDateTimeString(),
+                                參數1 = tag.TagSN,
+                                參數2 = ""
+                            };
+                            errorLogs.Add(log);
+                        }
+
+                        Logger.Log("dialog_HRFID", $"準備寫入 {errorLogs.Count} 筆異常記錄");
+
+                        LoadingForm.ShowLoadingForm();
+                        medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
+                        LoadingForm.CloseLoadingForm();
+
+                        Logger.Log("dialog_HRFID", $"已寫入異常記錄成功");
+                        MyMessageBox.ShowDialog($"✅ 已新增 {errorLogs.Count} 筆異常記錄！");
                     }
-
-                    LoadingForm.ShowLoadingForm();
-                    medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
-                    LoadingForm.CloseLoadingForm();
-
-                    MyMessageBox.ShowDialog($"✅ 已新增 {errorLogs.Count} 筆異常記錄！");
                 }
-            }
 
-            List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.ToDrugHFTagClassList();
-            if (_Import_Export == IncomeOutcomeMode.收入) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()).ToList();
-            stockClasses = drugHFTagClasses.GetStockClasses();
-            StringBuilder sb = new StringBuilder();
-            if (_Import_Export == IncomeOutcomeMode.收入) sb.AppendLine($"收入藥品品項：{stockClasses.Count}");
-            if (_Import_Export == IncomeOutcomeMode.支出) sb.AppendLine($"支出藥品品項：{stockClasses.Count}");
-            sb.AppendLine(new string('-', 30)); // 分隔線
+                List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.ToDrugHFTagClassList();
 
-            for (int i = 0; i < stockClasses.Count; i++)
-            {
-                if (_Import_Export == IncomeOutcomeMode.支出)
+                if (_Import_Export == IncomeOutcomeMode.收入)
                 {
-                    StockClass stockClass = Main_Form.Function_取得庫存值從雲端資料(stockClasses[i].Code, stockClasses[i].Validity_period);
-                    if (stockClass == null)
-                    {
-                        MyMessageBox.ShowDialog($"藥品：{stockClasses[i].Code} 無法取得庫存資訊");
-                        return;
-                    }
-                    if (stockClass.Qty.StringToDouble() < stockClasses[i].Qty.StringToDouble())
-                    {
-                        MyMessageBox.ShowDialog($"藥品 : {stockClasses[i].Code} (效期 : {stockClasses[i].Validity_period}) 庫存不足，無法出庫");
-                        return;
-                    }
+                    drugHFTagClasses = drugHFTagClasses
+                        .Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName())
+                        .ToList();
                 }
 
-                sb.AppendLine($"[{i + 1}]");
-                sb.AppendLine($"藥碼：{stockClasses[i].Code}");
-                sb.AppendLine($"藥名：{stockClasses[i].Name}");
-                sb.AppendLine($"數量：{stockClasses[i].Qty}");
-                sb.AppendLine($"效期：{stockClasses[i].Validity_period}");
-                sb.AppendLine($"批號：{stockClasses[i].Lot_number}");
-                sb.AppendLine(); // 空一行
+                stockClasses = drugHFTagClasses.GetStockClasses();
+                Logger.Log("dialog_HRFID", $"取得有效標籤轉為 StockClass，共 {stockClasses.Count} 筆");
+
+                StringBuilder sb = new StringBuilder();
+                if (_Import_Export == IncomeOutcomeMode.收入) sb.AppendLine($"收入藥品品項：{stockClasses.Count}");
+                if (_Import_Export == IncomeOutcomeMode.支出) sb.AppendLine($"支出藥品品項：{stockClasses.Count}");
+                sb.AppendLine(new string('-', 30));
+
+                for (int i = 0; i < stockClasses.Count; i++)
+                {
+                    if (_Import_Export == IncomeOutcomeMode.支出)
+                    {
+                        StockClass stockClass = Main_Form.Function_取得庫存值從雲端資料(stockClasses[i].Code, stockClasses[i].Validity_period);
+                        if (stockClass == null)
+                        {
+                            Logger.Log("dialog_HRFID", $"雲端查無藥品庫存資料：{stockClasses[i].Code}");
+                            MyMessageBox.ShowDialog($"藥品：{stockClasses[i].Code} 無法取得庫存資訊");
+                            return;
+                        }
+                        if (stockClass.Qty.StringToDouble() < stockClasses[i].Qty.StringToDouble())
+                        {
+                            Logger.Log("dialog_HRFID", $"庫存不足：{stockClasses[i].Code} 效期 {stockClasses[i].Validity_period}，庫存 {stockClass.Qty} < 需求 {stockClasses[i].Qty}");
+                            MyMessageBox.ShowDialog($"藥品 : {stockClasses[i].Code} (效期 : {stockClasses[i].Validity_period}) 庫存不足，無法出庫");
+                            return;
+                        }
+                    }
+
+                    sb.AppendLine($"[{i + 1}]");
+                    sb.AppendLine($"藥碼：{stockClasses[i].Code}");
+                    sb.AppendLine($"藥名：{stockClasses[i].Name}");
+                    sb.AppendLine($"數量：{stockClasses[i].Qty}");
+                    sb.AppendLine($"效期：{stockClasses[i].Validity_period}");
+                    sb.AppendLine($"批號：{stockClasses[i].Lot_number}");
+                    sb.AppendLine();
+                }
+
+                if (MyMessageBox.ShowDialog(sb.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
+                {
+                    Logger.Log("dialog_HRFID", "使用者取消確認提交操作");
+                    return;
+                }
+
+                List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+                for (int i = 0; i < stockClasses.Count; i++)
+                {
+                    StockClass stockClass = stockClasses[i];
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass
+                    {
+                        調劑台名稱 = 調劑台名稱,
+                        動作 = ((_Import_Export == IncomeOutcomeMode.收入) ? enum_交易記錄查詢動作.入庫作業.GetEnumName() : enum_交易記錄查詢動作.出庫作業.GetEnumName()),
+                        藥品碼 = stockClass.Code,
+                        藥品名稱 = stockClass.Name,
+                        開方時間 = DateTime.Now.ToDateTimeString_6(),
+                        收支原因 = "",
+                        操作人 = Main_Form._登入者名稱,
+                        ID = Main_Form._登入者ID,
+                        顏色 = Color.Blue.ToColorString(),
+                        總異動量 = (_Import_Export == IncomeOutcomeMode.支出) ? (stockClass.Qty.StringToDouble() * -1).ToString() : stockClass.Qty,
+                        效期 = stockClass.Validity_period,
+                        批號 = stockClass.Lot_number
+                    };
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
+                }
+
+                Logger.Log("dialog_HRFID", $"準備新增母資料筆數: {takeMedicineStackClasses.Count}");
+                Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+
+                Logger.Log("dialog_HRFID", $"呼叫 API 寫入 DrugHFTag 標籤資料，共 {drugHFTagClasses.Count} 筆");
+                LoadingForm.ShowLoadingForm();
+                DrugHFTagClass.add(Main_Form.API_Server, drugHFTagClasses);
+                LoadingForm.CloseLoadingForm();
+                Logger.Log("dialog_HRFID", $"完成 API 寫入與畫面清除");
+
+                drugHFTag_IncomeOutcomeList = null;
+                this.sqL_DataGridView_TagList.ClearGrid();
             }
-
-            if (MyMessageBox.ShowDialog(sb.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-
-            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
-            for (int i = 0; i < stockClasses.Count; i++)
+            catch (Exception ex)
             {
-                StockClass stockClass = stockClasses[i];
-                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
-                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                takeMedicineStackClass.動作 = ((_Import_Export == IncomeOutcomeMode.收入) ? enum_交易記錄查詢動作.入庫作業.GetEnumName() : enum_交易記錄查詢動作.出庫作業.GetEnumName());
-                takeMedicineStackClass.藥品碼 = stockClass.Code;
-                takeMedicineStackClass.藥品名稱 = stockClass.Name;
-                takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
-                takeMedicineStackClass.收支原因 = "";
-                takeMedicineStackClass.操作人 = Main_Form._登入者名稱;
-                takeMedicineStackClass.ID = Main_Form._登入者ID;
-                takeMedicineStackClass.顏色 = Color.Blue.ToColorString();
-                takeMedicineStackClass.總異動量 = stockClass.Qty;
-                if (_Import_Export == IncomeOutcomeMode.支出) takeMedicineStackClass.總異動量 = (stockClass.Qty.StringToDouble() * -1).ToString();
-                takeMedicineStackClass.效期 = stockClass.Validity_period;
-                takeMedicineStackClass.批號 = stockClass.Lot_number;
-                takeMedicineStackClasses.Add(takeMedicineStackClass);
+                Logger.Log("dialog_HRFID", $"[例外] {ex.Message}\n{ex.StackTrace}");
+                MyMessageBox.ShowDialog("發生例外錯誤，請查看 log 或聯絡工程人員！");
             }
-            Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            finally
+            {
+                Logger.Log("dialog_HRFID", $"[RJ_Button_確認_MouseDownEvent] 結束執行流程");
+            }
 
-            LoadingForm.ShowLoadingForm();
-            DrugHFTagClass.add(Main_Form.API_Server, drugHFTagClasses);
-            LoadingForm.CloseLoadingForm();
-
-            drugHFTag_IncomeOutcomeList = null;
-            this.sqL_DataGridView_TagList.ClearGrid();
 
         }
-        private void PlC_RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
+        private void RJ_Button_取消_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
-            if (list_drugHFTagClasses.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("未讀取到RFID標籤");
-                return;
+                Logger.Log($"dialog_HRFID", $"[RJ_Button_取消_MouseDownEvent] 使用者 : {Main_Form._登入者名稱}");
+
+                drugHFTag_IncomeOutcomeList = null;
+                this.sqL_DataGridView_TagList.ClearGrid();
             }
-            List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
-            if (_Import_Export == IncomeOutcomeMode.收入) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()).ToList();
-            if (_Import_Export == IncomeOutcomeMode.支出) drugHFTagClasses = drugHFTagClasses.Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()).ToList();
-
-            stockClasses = drugHFTagClasses.GetStockClasses();
-
-            StringBuilder sb = new StringBuilder();
-            if (_Import_Export == IncomeOutcomeMode.收入) sb.AppendLine($"收入藥品品項：{stockClasses.Count}");
-            if (_Import_Export == IncomeOutcomeMode.支出)
+            catch (Exception ex)
             {
-                sb.AppendLine($"出庫藥品品項：{stockClasses.Count}");
-               
-            }
-            sb.AppendLine(new string('-', 30)); // 分隔線
+                Logger.Log("dialog_HRFID", $"[錯誤] {ex.Message} | {ex.StackTrace}");
 
-            for (int i = 0; i < stockClasses.Count; i++)
+            }
+            finally
             {
-                if (_Import_Export == IncomeOutcomeMode.支出)
-                {
-                    StockClass stockClass = Main_Form.Function_取得庫存值從雲端資料(stockClasses[i].Code, stockClasses[i].Validity_period);
-                    if (stockClass == null)
-                    {
-                        MyMessageBox.ShowDialog($"藥品：{stockClasses[i].Code} 無法取得庫存資訊");
-                        return;
-                    }
-                    if(stockClass.Qty.StringToDouble() < stockClasses[i].Qty.StringToDouble())
-                    {
-                        MyMessageBox.ShowDialog($"藥品 : {stockClasses[i].Code} (效期 : {stockClasses[i].Validity_period}) 庫存不足，無法出庫");
-                        return;
-                    }
-                }
-                  
-                sb.AppendLine($"[{i + 1}]");
-                sb.AppendLine($"藥碼：{stockClasses[i].Code}");
-                sb.AppendLine($"藥名：{stockClasses[i].Name}");
-                sb.AppendLine($"數量：{stockClasses[i].Qty}");
-                sb.AppendLine($"效期：{stockClasses[i].Validity_period}");
-                sb.AppendLine($"批號：{stockClasses[i].Lot_number}");
-                sb.AppendLine(); // 空一行
+                Logger.Log("dialog_HRFID", $"[RJ_Button_取消_MouseDownEvent] 結束執行流程");
+
             }
-
-            if (MyMessageBox.ShowDialog(sb.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-
-            LoadingForm.ShowLoadingForm();
-            DrugHFTagClass.add(Main_Form.API_Server, drugHFTagClasses);
-            LoadingForm.CloseLoadingForm();
-
-            this.DialogResult = DialogResult.Yes;
-      
-            this.Close();
 
         }
     }

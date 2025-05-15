@@ -71,6 +71,7 @@ namespace 調劑台管理系統
                 _登入者ID = value;
             }
         }
+        public static string _登入者顏色 = "";
         private string 登入者顏色
         {
             get
@@ -83,6 +84,7 @@ namespace 調劑台管理系統
                 this.rJ_TextBox_登入者顏色.ForeColor = color;
                 this.rJ_TextBox_登入者顏色.BackColor = color;
                 this.rJ_TextBox_登入者顏色.Text = color.ToColorString();
+                _登入者顏色 = color.ToColorString();
             }
         }
         private string 登入者藥師證字號 = "";
