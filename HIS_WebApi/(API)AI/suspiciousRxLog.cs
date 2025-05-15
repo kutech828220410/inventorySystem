@@ -97,7 +97,7 @@ namespace HIS_WebApi._API_AI
             }
         }
         /// <summary>
-        /// 新增或修改藥品設定
+        /// 新增資料
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -139,6 +139,61 @@ namespace HIS_WebApi._API_AI
                 returnData.Data = suspiciousRxLogClasses;
                 returnData.Result = $"新增一筆資料";
                 return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [suspiciousRxLogClass陣列]
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update")]
+        public string update([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
+                if (suspiciousRxLogClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "suspiciousRxLog";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"更新{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
             {
@@ -196,7 +251,7 @@ namespace HIS_WebApi._API_AI
                 })));
                 Task.WhenAll(tasks).Wait();
                 suspiciousRxLogRule.AddRange(suspiciousRxLogRule_locals);
-
+                suspiciousRxLogRule.Sort(new suspiciousRxLog_ruleClass.ICP_By_index());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogRule;
@@ -229,7 +284,7 @@ namespace HIS_WebApi._API_AI
         [HttpPost("add_rule_local")]
         public string add_rule_local([FromBody] returnData returnData)
         {
-            init();
+            init_suspiciousRxLog_rule_local();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "add_rule_local";
             try
@@ -244,17 +299,51 @@ namespace HIS_WebApi._API_AI
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule_local", UserName, Password, Port, SSLMode);
-                foreach(var item in suspiciousRxLogRule_locals)
+                List<object[]> sql_ruleLocal = sQLControl.GetAllRows(null);
+                List<suspiciousRxLog_ruleClass> sql_ruleLocals = sql_ruleLocal.SQLToClass<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+                Dictionary<string ,List<suspiciousRxLog_ruleClass>> dic_ruleLocals = suspiciousRxLog_ruleClass.ToDictByGroup(sql_ruleLocals);
+                string alarm = string.Empty;
+                List<suspiciousRxLog_ruleClass> add = new List<suspiciousRxLog_ruleClass>();
+                List<suspiciousRxLog_ruleClass> error = new List<suspiciousRxLog_ruleClass>();
+
+                foreach (var item in suspiciousRxLogRule_locals)
                 {
-                    item.GUID = Guid.NewGuid().ToString();
-                    item.類別 = "local";
+                    List<suspiciousRxLog_ruleClass> suspiciousRxLog_RuleClasses = suspiciousRxLog_ruleClass.GetByGroup(dic_ruleLocals, item.群組);
+                    if (suspiciousRxLog_RuleClasses.Count > 0)
+                    {
+                        suspiciousRxLog_ruleClass suspiciousRxLog_Rule = suspiciousRxLog_RuleClasses.Where(temp => temp.索引 == item.索引).FirstOrDefault();
+                        if(suspiciousRxLog_Rule == null)
+                        {
+                            item.GUID = Guid.NewGuid().ToString();
+                            item.類別 = "local";
+                            add.Add(item);
+                        }
+                        else
+                        {
+                            error.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        item.GUID = Guid.NewGuid().ToString();
+                        item.類別 = "local";
+                        add.Add(item);
+                    }
+                    
                 }
-                List<object[]> list_suspiciousRxLogRule = suspiciousRxLogRule_locals.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+                if(error.Count > 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"已存在重複索引值";
+                    returnData.Data = error;
+                    return returnData.JsonSerializationt();
+                }
+                List<object[]> list_suspiciousRxLogRule = add.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
                 sQLControl.AddRows(null, list_suspiciousRxLogRule);               
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = suspiciousRxLogRule_locals;
+                returnData.Data = add;
                 returnData.Result = $"增加{suspiciousRxLogRule_locals.Count}筆資料";
                 return returnData.JsonSerializationt(true);
             }
@@ -379,67 +468,6 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
-        /// <summary>
-        /// 以order_PRI_KEY(藥袋條碼)取得資料
-        /// </summary>
-        /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "Data": 
-        ///     {
-        ///         [suspiciousRxLogClass陣列]
-        ///     },
-        ///     "ValueAry":[""]
-        ///   }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
-        [HttpPost("update")]
-        public string update([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update";
-            try
-            {
-                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-
-                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
-                if (suspiciousRxLogClasses == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料異常";
-                    return returnData.JsonSerializationt();
-                }
-                if (suspiciousRxLogClasses.Count != 1)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data筆數超過1筆";
-                    return returnData.JsonSerializationt();
-                }
-                string GUID = suspiciousRxLogClasses[0].GUID;
-
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-
-                string TableName = "suspiciousRxLog";
-                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
-
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = suspiciousRxLogClasses;
-                returnData.Result = $"更新{suspiciousRxLogClasses.Count}筆資料";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Result = e.Message;
-                return returnData.JsonSerializationt();
-            }
-        }
         [HttpPost("medGPT")]
         public string medGPT(returnData returnData)
         {
@@ -457,7 +485,7 @@ namespace HIS_WebApi._API_AI
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
-                if (suspiciousRxLoges.Count > 0)
+                if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
                     suspiciousRxLoges[0].辨識註記 = "Y";
                     returnData.Code = 200;
@@ -503,7 +531,7 @@ namespace HIS_WebApi._API_AI
                 };
                 string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
                 //string url = @"https://www.kutech.tw:3000/medgpt";
-                suspiciousRxLogClass suspiciousRxLogClasses = new suspiciousRxLogClass();
+                suspiciousRxLogClass suspiciousRxLogClasses = suspiciousRxLoges[0];
                 
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
                 returnData.Data = suspiciousRxLog;
@@ -517,48 +545,52 @@ namespace HIS_WebApi._API_AI
                     }
                     suspiciousRxLogClasses = new suspiciousRxLogClass()
                     {
-                        GUID = Guid.NewGuid().ToString(),
-                        藥袋條碼 = orders[0].藥袋條碼,
-                        加入時間 = DateTime.Now.ToDateTimeString(),
-                        病歷號 = 病歷號,
-                        科別 = orders[0].科別,
-                        醫生姓名 = orders[0].醫師代碼,
-                        開方時間 = orders[0].開方日期,
-                        藥袋類型 = orders[0].藥袋類型,
+                        //GUID = Guid.NewGuid().ToString(),
+                        //藥袋條碼 = orders[0].藥袋條碼,
+                        //加入時間 = DateTime.Now.ToDateTimeString(),
+                        //病歷號 = 病歷號,
+                        //科別 = orders[0].科別,
+                        //醫生姓名 = orders[0].醫師代碼,
+                        //開方時間 = orders[0].開方日期,
+                        //藥袋類型 = orders[0].藥袋類型,
                         錯誤類別 = string.Join(",", suspiciousRxLog.error_type),
                         簡述事件 = suspiciousRxLog.response,
                         狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName(),
-                        調劑人員 = orders[0].藥師姓名,
-                        調劑時間 = orders[0].過帳時間,
+                        //調劑人員 = orders[0].藥師姓名,
+                        //調劑時間 = orders[0].過帳時間,
                         提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName(),
-                        提報時間 = DateTime.MinValue.ToDateTimeString(),
-                        處理時間 = DateTime.MinValue.ToDateTimeString(),
+                        //提報時間 = DateTime.MinValue.ToDateTimeString(),
+                        //處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
+                    
+                    suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
                 else
                 {
                     suspiciousRxLogClasses = new suspiciousRxLogClass()
                     {
-                        GUID = Guid.NewGuid().ToString(),
-                        藥袋條碼 = orders[0].藥袋條碼,
-                        加入時間 = DateTime.Now.ToDateTimeString(),
-                        病歷號 = 病歷號,
-                        科別 = orders[0].科別,
-                        醫生姓名 = orders[0].醫師代碼,
-                        開方時間 = orders[0].開方日期,
-                        藥袋類型 = orders[0].藥袋類型,
-                        錯誤類別 = string.Join(",", suspiciousRxLog.error_type),
-                        簡述事件 = suspiciousRxLog.response,
                         狀態 = enum_suspiciousRxLog_status.無異狀.GetEnumName(),
-                        調劑人員 = orders[0].藥師姓名,
-                        調劑時間 = orders[0].過帳時間,
-                        提報時間 = DateTime.MinValue.ToDateTimeString(),
-                        處理時間 = DateTime.MinValue.ToDateTimeString(),
                     };
-                    suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
+                    suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
-
+                if(suspiciousRxLogClasses.診斷碼.StringIsEmpty() == false && suspiciousRxLogClasses.診斷內容.StringIsEmpty() == false)
+                {
+                    List<string> list_診斷碼 = suspiciousRxLogClasses.診斷碼.Split(";").ToList();
+                    List<string> list_診斷內容 = suspiciousRxLogClasses.診斷內容.Split(";").ToList();
+                    if(list_診斷碼.Count == list_診斷內容.Count)
+                    {
+                        List<diseaseClass> diseaseClasses = new List<diseaseClass>();
+                        for (int i = 0; i < list_診斷碼.Count; i++)
+                        {
+                            diseaseClasses.Add(new diseaseClass()
+                            {
+                                疾病代碼 = list_診斷碼[i],
+                                中文說明 = list_診斷內容[i],
+                            });
+                        }
+                        suspiciousRxLogClasses.diseaseClasses = diseaseClasses;
+                    }
+                }
                 returnData.Data = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
@@ -617,7 +649,96 @@ namespace HIS_WebApi._API_AI
             }
 
         }
+        [HttpPost("download_document")]
+        public async Task<ActionResult> download_document([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"GUID\"]";
+                    //return returnData.JsonSerializationt();
+                }
+                string GUID = returnData.ValueAry[0];
+                string TableName = "suspiciousRxLog";
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_suspiciousRxLog = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.GUID, GUID);
+                suspiciousRxLogClass suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>().FirstOrDefault();
+                if(suspiciousRxLogClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無此GUID資料";
+                }
+                string 藥袋類型 = suspiciousRxLogClasses.藥袋類型;
+                List<string> 錯誤類別 = suspiciousRxLogClasses.錯誤類別.Split(",").ToList();
 
+
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "處方疑義紀錄表.xlsx");
+                string loadText = MyOffice.ExcelClass.NPOI_LoadSheetsToJson_PreserveStyle(path);
+                List<SheetClass> sheetClasslist = loadText.JsonDeserializet<List<SheetClass>>();
+                SheetClass sheetClass = sheetClasslist[0];
+                returnData.Data = sheetClass;
+                Logger.Log("sheetClass", $"{returnData.JsonSerializationt(true)}");
+                string today = DateTime.Now.ToDateString();
+                sheetClass.Rows[1].Cell[2].Text = DateTime.Now.ToDateString();
+                sheetClass.Rows[1].Cell[6].Text = suspiciousRxLogClasses.開方時間;
+                if (藥袋類型 == enum_medBag_type.OPD.GetEnumName()) sheetClass.Rows[6].Cell[2].Text = "■";
+                if (藥袋類型 == enum_medBag_type.ER.GetEnumName()) sheetClass.Rows[7].Cell[2].Text = "■";
+                if (藥袋類型 == enum_medBag_type.ST.GetEnumName()) sheetClass.Rows[8].Cell[2].Text = "■";
+                if (藥袋類型 == enum_medBag_type.MBD.GetEnumName()) sheetClass.Rows[9].Cell[2].Text = "■";
+                if (藥袋類型 == enum_medBag_type.UD.GetEnumName()) sheetClass.Rows[10].Cell[2].Text = "■";
+
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.A藥名錯誤.GetEnumName())) sheetClass.Rows[5].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.B途徑錯誤.GetEnumName())) sheetClass.Rows[6].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.C劑量錯誤.GetEnumName())) sheetClass.Rows[7].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.D頻率錯誤.GetEnumName())) sheetClass.Rows[8].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.E劑型錯誤.GetEnumName())) sheetClass.Rows[9].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.F數量錯誤.GetEnumName())) sheetClass.Rows[10].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.G多種藥物組合.GetEnumName())) sheetClass.Rows[11].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.H重複用藥.GetEnumName())) sheetClass.Rows[12].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.I其他.GetEnumName())) sheetClass.Rows[13].Cell[6].Text = "■";
+                sheetClass.Rows[15].Cell[2].Text = suspiciousRxLogClasses.醫生姓名;
+                sheetClass.Rows[15].Cell[6].Text = suspiciousRxLogClasses.病歷號;
+                sheetClass.Rows[18].Cell[2].Text = suspiciousRxLogClasses.簡述事件;
+                foreach (var item in sheetClass.CellValues)
+                {
+                    if (item.RowStart == 6 && item.RowStart == 6 && item.ColStart == 2 && item.ColStart == 2) item.Text = sheetClass.Rows[6].Cell[2].Text;
+                    if (item.RowStart == 7 && item.RowStart == 7 && item.ColStart == 2 && item.ColStart == 2) item.Text = sheetClass.Rows[7].Cell[2].Text;
+                    if (item.RowStart == 8 && item.RowStart == 8 && item.ColStart == 2 && item.ColStart == 2) item.Text = sheetClass.Rows[8].Cell[2].Text;
+                    if (item.RowStart == 9 && item.RowStart == 9 && item.ColStart == 2 && item.ColStart == 2) item.Text = sheetClass.Rows[9].Cell[2].Text;
+                    if (item.RowStart == 10 && item.RowStart == 10 && item.ColStart == 2 && item.ColStart == 2) item.Text = sheetClass.Rows[10].Cell[2].Text;
+
+                    if (item.RowStart == 5 && item.RowStart == 5 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[5].Cell[6].Text;
+                    if (item.RowStart == 6 && item.RowStart == 6 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[6].Cell[6].Text;
+                    if (item.RowStart == 7 && item.RowStart == 7 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[7].Cell[6].Text;
+                    if (item.RowStart == 8 && item.RowStart == 8 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[8].Cell[6].Text;
+                    if (item.RowStart == 9 && item.RowStart == 9 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[9].Cell[6].Text;
+                    if (item.RowStart == 10 && item.RowStart == 10 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[10].Cell[6].Text;
+                    if (item.RowStart == 11 && item.RowStart == 11 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[11].Cell[6].Text;
+                    if (item.RowStart == 12 && item.RowStart == 12 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[12].Cell[6].Text;
+                    if (item.RowStart == 13 && item.RowStart == 13 && item.ColStart == 6 && item.ColStart == 6) item.Text = sheetClass.Rows[13].Cell[6].Text;
+
+                    if (item.RowStart == 15 && item.RowStart == 16 && item.ColStart == 2 && item.ColStart == 3) item.Text = sheetClass.Rows[15].Cell[2].Text;
+                    if (item.RowStart == 15 && item.RowStart == 16 && item.ColStart == 6 && item.ColStart == 7) item.Text = sheetClass.Rows[15].Cell[6].Text;
+                    if (item.RowStart == 18 && item.RowStart == 37 && item.ColStart == 2 && item.ColStart == 9) item.Text = sheetClass.Rows[18].Cell[2].Text;
+                }
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                sheetClasslist[0] = sheetClass;
+                byte[] excelData = sheetClasslist.NPOI_GenerateExcelWithPreservedStyle(Excel_Type.xlsx);
+
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_醫師處方疑義紀錄表(個別).xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses)
         {
             List<medClass> medClasses = medClass.get_med_cloud(API_Server);
@@ -672,7 +793,6 @@ namespace HIS_WebApi._API_AI
             return cpoeList;
 
         }
-       
         private string CheckCreatTable(string tableName, Enum Enum)
         {
             
@@ -687,7 +807,7 @@ namespace HIS_WebApi._API_AI
             {
                 return $"找無Server資料!";
             }
-            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum);
+            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum, tableName);
 
             return table.JsonSerializationt(true);
         }
