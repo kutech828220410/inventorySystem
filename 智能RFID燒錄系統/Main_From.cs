@@ -130,7 +130,6 @@ namespace 智能RFID燒錄系統
             if (IsComConnected)
             {
                 List<string> uids = _rfidReader.ReadMultipleUIDs();
-
                 this.Invoke(new Action(delegate
                 {
                     rJ_Lable_標籤數量.Text = $"標籤數量 : {uids.Count.ToString()}";
