@@ -869,47 +869,67 @@ namespace 調劑台管理系統
         void cnt_Program_刷新領藥內容_檢查RFID使用(ref int cnt)
         {
             List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱);
+            List<object[]> list_取藥堆疊母資料_add = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
-            if (list_取藥堆疊母資料.Count > 0 && (Main_Form.rfidReader_1.IsOpen == false || Main_Form.rfidReader_2.IsOpen == false))
+            if (list_取藥堆疊母資料.Count > 0 && (Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false))
             {
                 Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
                 return;
             }
             for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
             {
+                takeMedicineStackClass takeMedicineStackClass = list_取藥堆疊母資料[i].SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(ID, 藥名);
-
-                if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
+                string 效期 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
+                if(效期.StringIsEmpty())
                 {
-                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
-                    Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    Application.DoEvents();
+                    Dialog_HFRFID調劑作業 dialog_HFRFID調劑作業 = new Dialog_HFRFID調劑作業(takeMedicineStackClass);
+
+                    if (dialog_HFRFID調劑作業.ShowDialog() != DialogResult.Yes)
+                    {
+                        list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
+                        Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                        Fuction_時間重置();
+                        continue;
+                    }
                     Fuction_時間重置();
-                    continue;
+
+                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
+                    List<takeMedicineStackClass> takeMedicineStackClasses = dialog_HFRFID調劑作業.takeMedicineStackClasses;
+                    list_取藥堆疊母資料_add.LockAdd(takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass , enum_取藥堆疊母資料>());
+
+                    //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
+
                 }
-                Fuction_時間重置();
-                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.覆核藥師姓名] = dialog_使用者登入.UserName;
-                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.覆核藥師ID] = dialog_使用者登入.UserID;
-                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
-                Main_Form.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用, false);
-                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
-                list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
-            }
-            if (list_取藥堆疊母資料_replace.Count > 0)
-            {
-                Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_replace, false);
-                cnt = 1;
+                else
+                {
+                    Main_Form.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用, false);
+                    list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
+                }
+
+
             }
             if (list_取藥堆疊母資料_delete.Count > 0)
             {
                 Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
                 cnt = 1;
             }
+            if (list_取藥堆疊母資料_add.Count > 0)
+            {
+                Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_取藥堆疊母資料_add, false);
+                cnt = 1;
+            }
+            if (list_取藥堆疊母資料_replace.Count > 0)
+            {
+                Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_replace, false);
+                cnt = 1;
+            }
+         
             if (cnt == 1) return;
             cnt++;
 

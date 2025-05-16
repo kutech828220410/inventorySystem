@@ -174,7 +174,6 @@ namespace 調劑台管理系統
                 }
             }
         }
-
         private void SqL_DataGridView_TagList_DataGridRefreshEvent()
         {
             for(int i = 0; i < this.sqL_DataGridView_TagList.Rows.Count; i++)

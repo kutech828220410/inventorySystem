@@ -245,6 +245,7 @@ namespace HIS_DB_Lib
         }
     }
 
+    [Serializable]
     /// <summary>
     /// 藥物取用堆疊類別
     /// </summary>
