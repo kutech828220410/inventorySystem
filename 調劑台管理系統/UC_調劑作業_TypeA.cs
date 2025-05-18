@@ -1519,10 +1519,10 @@ namespace 調劑台管理系統
             {
                 if (pictureBox_藥品圖片01.BackgroundImage != null) pictureBox_藥品圖片01.BackgroundImage.Dispose();
                 pictureBox_藥品圖片01.BackgroundImage = null;
-
+                pictureBox_藥品圖片01.Visible = false;
                 if (pictureBox_藥品圖片02.BackgroundImage != null) pictureBox_藥品圖片02.BackgroundImage.Dispose();
                 pictureBox_藥品圖片02.BackgroundImage = null;
-
+                pictureBox_藥品圖片02.Visible = false;
                 suspiciousRxLog = null;
 
                 this.rJ_Lable_姓名.Text = "---------";
@@ -1605,20 +1605,29 @@ namespace 調劑台管理系統
                 Font titleFont = new Font("Arial", 14, FontStyle.Bold);
                 Font labelFont = new Font("Arial", 12, FontStyle.Bold);
                 Font textFont = new Font("Arial", 12, FontStyle.Regular);
+                Font exclamationFont = new Font("Arial", 24, FontStyle.Bold);
 
                 // 上方：警示色塊（固定高 35）
                 int topHeight = 35;
                 Brush headerBrush = level == "Critical" ? Brushes.Red : Brushes.Yellow;
                 g.FillRectangle(headerBrush, 0, 0, width, topHeight);
-                g.DrawString($"{level} Warning", titleFont, Brushes.Black, new PointF(5, 5));
 
-                // 中段：錯誤類別（量測後畫）
+                // 顯示 "Critical Warning" 或 "Warning"
+                g.DrawString($"{level} Warning", titleFont, Brushes.Black, new PointF(35, 5));
+
+                // 若為 Critical，加入驚嘆號圖示（❗）
+                if (level == "Critical")
+                {
+                    g.DrawString("❗", exclamationFont, Brushes.White, new PointF(5, 0));
+                }
+
+                // 中段：錯誤類別
                 string errorTypeText = "錯誤類別: " + errorType;
                 SizeF errorSize = g.MeasureString(errorTypeText, labelFont, width - 10);
                 float errorTop = topHeight + 5;
                 g.DrawString(errorTypeText, labelFont, Brushes.Black, new RectangleF(5, errorTop, width - 10, errorSize.Height));
 
-                // 下方：簡述事件（多行顯示）
+                // 下方：簡述事件
                 float eventTop = errorTop + errorSize.Height + 5;
                 float eventHeight = height - eventTop - 5;
                 g.DrawString(eventDesc, textFont, Brushes.Black, new RectangleF(5, eventTop, width - 10, eventHeight));
@@ -1679,11 +1688,18 @@ namespace 調劑台管理系統
                             }
                             else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
                             {
+                                if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                    pictureBox_藥品圖片02.BackgroundImage.Dispose();
+
+                                pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                pictureBox_藥品圖片02.Visible = true;
+                            }
+                            else
+                            {
                                 if (pictureBox_藥品圖片01.BackgroundImage != null)
                                     pictureBox_藥品圖片01.BackgroundImage.Dispose();
-
-                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
-                                pictureBox_藥品圖片01.Visible = true;
+                                if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                    pictureBox_藥品圖片02.BackgroundImage.Dispose();
                             }
                         }
 
