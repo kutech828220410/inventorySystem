@@ -1958,10 +1958,7 @@ namespace HIS_WebApi
                     }
                 }
             }
-            foreach (System.Data.DataTable dt in dataTables)
-            {
-                dt.Columns.Remove(enum_盤點定盤_Excel.GUID.GetEnumName());
-            }
+      
             returnData.Data = dataTables.JsonSerializeDataTable();
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"成功轉換表單<{dataTables.Count}>張";
