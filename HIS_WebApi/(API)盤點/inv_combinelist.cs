@@ -21,6 +21,7 @@ using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Text;
+using System.Text.RegularExpressions;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -242,8 +243,8 @@ namespace HIS_WebApi
             inv_CombinelistClass.消耗量起始時間 = DateTime.MinValue.ToDateTimeString();
             inv_CombinelistClass.消耗量結束時間 = DateTime.MinValue.ToDateTimeString();
             object[] value;
-            value = inv_CombinelistClass.ClassToSQL<inv_combinelistClass , enum_inv_combinelist>();
-   
+            value = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
+
             list_inv_Combinelist_add.Add(value);
 
             for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
@@ -333,7 +334,7 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.Value [GUID]不得為空白";
                     return returnData.JsonSerializationt(true);
                 }
-     
+
 
 
                 string Server = sys_serverSettingClasses[0].Server;
@@ -345,7 +346,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_inv_combinelist.GUID, GUID);
-                if(list_inv_combinelist.Count == 0)
+                if (list_inv_combinelist.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
@@ -367,13 +368,13 @@ namespace HIS_WebApi
                 returnData.Result = $"更新盤點日庫存單號成功!";
                 return returnData.JsonSerializationt(true);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 returnData.Code = -200;
                 returnData.Result = $"{e.Message}";
                 return returnData.JsonSerializationt();
             }
-            
+
         }
         /// <summary>
         /// 以GUID更新 消耗量計算起始及結束日期
@@ -554,10 +555,10 @@ namespace HIS_WebApi
                 {
                     string 單號 = inv_Sub_CombinelistClasses[k].單號;
                     string 類型 = inv_Sub_CombinelistClasses[k].類型;
-                    if(類型 == "盤點單")
+                    if (類型 == "盤點單")
                     {
                         list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, 單號);
-                        if(list_inventory_creat_buf.Count > 0)
+                        if (list_inventory_creat_buf.Count > 0)
                         {
                             inv_Sub_CombinelistClasses[k].名稱 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點名稱].ObjectToString();
                             inv_Sub_CombinelistClasses[k].單號 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點單號].ObjectToString();
@@ -623,7 +624,7 @@ namespace HIS_WebApi
             List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
 
             List<inv_records_Class> inv_Records_Classes = new List<inv_records_Class>();
-            for(int i = 0; i < list_inventory_creat.Count; i++)
+            for (int i = 0; i < list_inventory_creat.Count; i++)
             {
                 inv_records_Class inv_Records_Class = new inv_records_Class();
                 inv_Records_Class.GUID = list_inventory_creat[i][(int)enum_盤點單號.GUID].ObjectToString();
@@ -765,7 +766,7 @@ namespace HIS_WebApi
             uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
             string json_get_all_inv = POST_get_all_inv(returnData);
             returnData returnData_get_all_inv = json_get_all_inv.JsonDeserializet<returnData>();
-            if(returnData_get_all_inv == null)
+            if (returnData_get_all_inv == null)
             {
                 returnData.Code = -200;
                 return returnData.JsonSerializationt();
@@ -780,7 +781,7 @@ namespace HIS_WebApi
             List<inv_combinelistClass> inv_CombinelistClasses_buf = (from temp in inv_CombinelistClasses
                                                                      where temp.合併單號 == returnData.Value
                                                                      select temp).ToList();
-            if(inv_CombinelistClasses_buf.Count == 0)
+            if (inv_CombinelistClasses_buf.Count == 0)
             {
                 returnData.Code = -200;
                 returnData.Result = $"找無此合併單號! {returnData.Value} ";
@@ -817,19 +818,19 @@ namespace HIS_WebApi
                 inventoryClass.creat creat = inv_CombinelistClass.Records_Ary[i].Creat;
                 for (int k = 0; k < creat.Contents.Count; k++)
                 {
-               
+
                     藥品碼 = creat.Contents[k].藥品碼;
                     contents_buf = (from temp in contents
                                     where temp.藥品碼 == 藥品碼
                                     select temp).ToList();
                     if (contents_buf.Count == 0)
                     {
-                        inventoryClass.content content =new inventoryClass.content();
+                        inventoryClass.content content = new inventoryClass.content();
                         content.藥品碼 = creat.Contents[k].藥品碼;
                         content.料號 = creat.Contents[k].料號;
                         content.廠牌 = creat.Contents[k].廠牌;
                         content.藥品名稱 = creat.Contents[k].藥品名稱;
-                        content.中文名稱= creat.Contents[k].中文名稱;
+                        content.中文名稱 = creat.Contents[k].中文名稱;
                         content.盤點量 = creat.Contents[k].盤點量;
                         contents.Add(content);
                     }
@@ -1020,7 +1021,7 @@ namespace HIS_WebApi
                     inv_Combinelist_Stock_Class.數量 = "0";
                     inv_Combinelist_Stock_Class.加入時間 = DateTime.Now.ToDateTimeString_6();
                     for (int k = 0; k < inv_Combinelist_Stock_Classes_buf.Count; k++)
-                    {            
+                    {
                         if (inv_Combinelist_Stock_Classes_buf[k].數量.StringToInt32() > 0)
                         {
                             inv_Combinelist_Stock_Class.數量 = (inv_Combinelist_Stock_Class.數量.StringToInt32() + inv_Combinelist_Stock_Classes_buf[k].數量.StringToInt32()).ToString();
@@ -1029,7 +1030,7 @@ namespace HIS_WebApi
                     inv_Combinelist_Stock_Classes_add.Add(inv_Combinelist_Stock_Class);
                 }
                 List<object[]> list_vlaue = inv_Combinelist_Stock_Classes_add.ClassToSQL<inv_combinelist_stock_Class, enum_inv_combinelist_stock>();
-                sQLControl_inv_Combinelist_Stock.AddRows(null , list_vlaue);
+                sQLControl_inv_Combinelist_Stock.AddRows(null, list_vlaue);
                 returnData.Data = inv_Combinelist_Stock_Classes_add;
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
@@ -1047,7 +1048,7 @@ namespace HIS_WebApi
             {
 
             }
-           
+
         }
         /// <summary>
         /// 以合併單號取得參考庫存
@@ -1095,7 +1096,7 @@ namespace HIS_WebApi
                     returnData.Result = "returnData.Value 空白,請輸入合併單號";
                     return returnData.JsonSerializationt();
                 }
-             
+
                 Table table = new Table(new enum_inv_combinelist_stock());
                 table.DBName = sys_serverSettingClasses[0].DBName;
                 table.Server = sys_serverSettingClasses[0].Server;
@@ -1104,7 +1105,7 @@ namespace HIS_WebApi
                 table.Password = sys_serverSettingClasses[0].Password;
                 SQLControl sQLControl_inv_Combinelist_Stock = new SQLControl(table);
                 List<object[]> list_value = sQLControl_inv_Combinelist_Stock.GetRowsByDefult(null, (int)enum_inv_combinelist_stock.合併單號, returnData.Value);
-                List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = list_value.SQLToClass<inv_combinelist_stock_Class , enum_inv_combinelist_stock>();
+                List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = list_value.SQLToClass<inv_combinelist_stock_Class, enum_inv_combinelist_stock>();
                 returnData.Data = inv_Combinelist_Stock_Classes;
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
@@ -1212,7 +1213,7 @@ namespace HIS_WebApi
                     inv_Combinelist_Price_Class.藥碼 = 藥碼;
                     inv_Combinelist_Price_Class.藥名 = 藥名;
                     inv_Combinelist_Price_Class.加入時間 = DateTime.Now.ToDateTimeString_6();
-             
+
                     inv_Combinelist_Price_Classes_add.Add(inv_Combinelist_Price_Class);
                 }
                 List<object[]> list_vlaue = inv_Combinelist_Price_Classes_add.ClassToSQL<inv_combinelist_price_Class, enum_inv_combinelist_price>();
@@ -1562,8 +1563,8 @@ namespace HIS_WebApi
                     returnData.Result = $"Data 傳入資料無效";
                     return returnData.JsonSerializationt();
                 }
-    
-                sQLControl_inv_Combinelist_review.DeleteByDefult(null, new string[] { enum_inv_combinelist_review.合併單號.GetEnumName() , enum_inv_combinelist_review.藥碼.GetEnumName() }
+
+                sQLControl_inv_Combinelist_review.DeleteByDefult(null, new string[] { enum_inv_combinelist_review.合併單號.GetEnumName(), enum_inv_combinelist_review.藥碼.GetEnumName() }
                 , new string[] { returnData.Value, inv_Combinelist_Review_Class.藥碼 });
 
                 if (inv_Combinelist_Review_Class.數量.StringIsEmpty())
@@ -1781,6 +1782,7 @@ namespace HIS_WebApi
                 System.Data.DataTable dataTable_buf = new System.Data.DataTable();
                 for (int k = 0; k < creats[i].Contents.Count; k++)
                 {
+                    if (creats[i].Contents[k].Sub_content.Count == 0) continue;
                     藥品碼 = creats[i].Contents[k].藥品碼;
                     medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(藥品碼);
                     if (medClasses_cloud_buf.Count > 0)
@@ -1793,8 +1795,8 @@ namespace HIS_WebApi
                     value[(int)enum_盤點定盤_Excel.藥碼] = creats[i].Contents[k].藥品碼;
                     value[(int)enum_盤點定盤_Excel.料號] = creats[i].Contents[k].料號;
                     value[(int)enum_盤點定盤_Excel.藥名] = creats[i].Contents[k].藥品名稱;
-                    //value[(int)enum_盤點定盤_Excel.庫存量] = creats[i].Contents[k].理論值;
-                    //value[(int)enum_盤點定盤_Excel.盤點量] = creats[i].Contents[k].盤點量;
+                    value[(int)enum_盤點定盤_Excel.庫存量] = creats[i].Contents[k].理論值;
+                    value[(int)enum_盤點定盤_Excel.盤點量] = creats[i].Contents[k].盤點量;
 
 
 
@@ -1821,7 +1823,15 @@ namespace HIS_WebApi
                     }
                 }
                 dataTable_buf = list_creat_buf.ToDataTable(new enum_盤點定盤_Excel());
-                dataTable_buf.TableName = $"{i}.{creats[i].盤點名稱}";
+
+                string tableName = $"{i}.{creats[i].盤點名稱}";
+
+                // 移除或替換非法字元
+                string safeFileName = Regex.Replace(tableName, @"[\\/:*?""<>|]", "_");
+
+                // 指定為合法的檔案名稱
+                dataTable_buf.TableName = safeFileName;
+
                 dataTables_creat.Add(dataTable_buf);
             }
 
@@ -1868,7 +1878,7 @@ namespace HIS_WebApi
 
                 if (inv_Combinelist_Price_Class != null)
                 {
-                    if(inv_Combinelist_Price_Class.單價.StringIsDouble()) value[(int)enum_盤點定盤_Excel.單價] = inv_Combinelist_Price_Class.單價;
+                    if (inv_Combinelist_Price_Class.單價.StringIsDouble()) value[(int)enum_盤點定盤_Excel.單價] = inv_Combinelist_Price_Class.單價;
                 }
                 value[(int)enum_盤點定盤_Excel.庫存金額] = value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
 
@@ -1891,10 +1901,10 @@ namespace HIS_WebApi
 
                 if (value[(int)enum_盤點定盤_Excel.消耗量].StringToInt32() > 0)
                 {
-                    value[(int)enum_盤點定盤_Excel.誤差百分率] =( (value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble() / value[(int)enum_盤點定盤_Excel.消耗量].StringToDouble()) * 100).ToString("0.00");
+                    value[(int)enum_盤點定盤_Excel.誤差百分率] = ((value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble() / value[(int)enum_盤點定盤_Excel.消耗量].StringToDouble()) * 100).ToString("0.00");
                 }
 
-                if(inv_CombinelistClass.誤差總金額致能.StringToBool())
+                if (inv_CombinelistClass.誤差總金額致能.StringToBool())
                 {
                     double 上限 = inv_CombinelistClass.誤差總金額上限.StringToDouble();
                     double 下限 = inv_CombinelistClass.誤差總金額下限.StringToDouble();
@@ -1925,7 +1935,7 @@ namespace HIS_WebApi
                         flag_覆盤 = true;
                     }
                 }
-                if(flag_覆盤) value[(int)enum_盤點定盤_Excel.註記] = "覆盤";
+                if (flag_覆盤) value[(int)enum_盤點定盤_Excel.註記] = "覆盤";
                 list_value.Add(value);
             }
             List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
@@ -1947,6 +1957,10 @@ namespace HIS_WebApi
                         dt.Columns.Remove(returnData.ValueAry[i]);
                     }
                 }
+            }
+            foreach (System.Data.DataTable dt in dataTables)
+            {
+                dt.Columns.Remove(enum_盤點定盤_Excel.GUID.GetEnumName());
             }
             returnData.Data = dataTables.JsonSerializeDataTable();
             returnData.TimeTaken = myTimer.ToString();
@@ -1980,20 +1994,20 @@ namespace HIS_WebApi
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API01");
             List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
-            if(dataTables == null)
+            if (dataTables == null)
             {
                 return null;
             }
-          
+
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
 
             Enum[] enums = new Enum[] {  enum_盤點定盤_Excel.庫存量, enum_盤點定盤_Excel .盤點量 ,enum_盤點定盤_Excel .單價 ,enum_盤點定盤_Excel .庫存金額 ,enum_盤點定盤_Excel .消耗量 ,
                 enum_盤點定盤_Excel.結存金額, enum_盤點定盤_Excel .誤差量 ,enum_盤點定盤_Excel.誤差金額,enum_盤點定盤_Excel.覆盤量 };
-            byte[] excelData =  ExcelClass.NPOI_GetBytes(dataTables, Excel_Type.xlsx, enums);
-           
+            byte[] excelData = ExcelClass.NPOI_GetBytes(dataTables, Excel_Type.xlsx, enums);
+
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, xlsx_command, $"{returnData.Value}_合併總表.xlsx"));
+            return await Task.FromResult(File(stream, xlsx_command, $"{returnData.Value}_InventorySummary.xlsx"));
         }
         /// <summary>
         /// 以單號取得(盤點單/消耗單)Excel
@@ -2038,7 +2052,7 @@ namespace HIS_WebApi
                 return null;
             }
             string[] str_ary = returnData.Value.Split(",");
-            if(str_ary.Length != 2)
+            if (str_ary.Length != 2)
             {
                 return null;
             }
@@ -2111,6 +2125,6 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_review()));
             return tables.JsonSerializationt(true);
         }
-      
+
     }
 }
