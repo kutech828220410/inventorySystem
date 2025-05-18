@@ -1650,7 +1650,11 @@ namespace 調劑台管理系統
                     Task.Run(new Action(delegate
                     {
                         rJ_Lable_診斷.Text = "";
-
+                        for (int i = 0; i < orderClasses.Count; i++)
+                        {
+                            orderClasses[i].藥師姓名 = 登入者姓名;
+                            orderClasses[i].藥師ID = ID;
+                        }
                         (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
                         if (code == -200)
                         {

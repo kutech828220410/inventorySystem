@@ -122,6 +122,13 @@ namespace HIS_WebApi._API_AI
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<suspiciousRxLogClass>();
+                if(suspiciousRxLogClasses.藥袋條碼.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥袋條碼空白";
+                    Logger.Log("suspiciousRxLog-add", $"{returnData.JsonSerializationt(true)}");
+                    return returnData.JsonSerializationt();
+                }
                 if (suspiciousRxLogClasses == null)
                 {
                     returnData.Code = -200;
@@ -548,14 +555,15 @@ namespace HIS_WebApi._API_AI
                     suspiciousRxLogClasses.簡述事件 = suspiciousRxLog.response;
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
                     suspiciousRxLogClasses.提報等級 = enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName();
+                    suspiciousRxLogClasses.調劑人員 = orders[0].藥師姓名;
 
-                    
-                    
+
+
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
                 else
                 {
-
+                    suspiciousRxLogClasses.調劑人員 = orders[0].藥師姓名;
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.無異狀.GetEnumName();
                     
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
