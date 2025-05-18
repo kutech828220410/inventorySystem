@@ -1675,22 +1675,27 @@ namespace 調劑台管理系統
                         {
                             Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\處方有疑義,請審核.wav");
 
-                            int pbWidth = pictureBox_藥品圖片01.Width;
-                            int pbHeight = pictureBox_藥品圖片01.Height;
+                          
 
                             if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
                             {
                                 if (pictureBox_藥品圖片01.BackgroundImage != null)
                                     pictureBox_藥品圖片01.BackgroundImage.Dispose();
-
-                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
                                 pictureBox_藥品圖片01.Visible = true;
+                                pictureBox_藥品圖片01.Invalidate();
+                                int pbWidth = pictureBox_藥品圖片01.Width;
+                                int pbHeight = pictureBox_藥品圖片01.Height;
+                                pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                    
                             }
                             else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
                             {
                                 if (pictureBox_藥品圖片02.BackgroundImage != null)
                                     pictureBox_藥品圖片02.BackgroundImage.Dispose();
-
+                                pictureBox_藥品圖片02.Visible = true;
+                                pictureBox_藥品圖片02.Invalidate();
+                                int pbWidth = pictureBox_藥品圖片02.Width;
+                                int pbHeight = pictureBox_藥品圖片02.Height;
                                 pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
                                 pictureBox_藥品圖片02.Visible = true;
                             }
