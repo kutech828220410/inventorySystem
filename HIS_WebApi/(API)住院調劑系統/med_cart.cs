@@ -481,15 +481,17 @@ namespace HIS_WebApi
                     Task.WhenAll(tasks).Wait();
                     tasks.Clear();
                     List<string> replace_list = new List<string>();
+                    List<string> GUID_buff = new List<string>();
                     foreach (var add in medCpoe_sql_add)
                     {
                         medCpoeClass doubleCpoe = medCpoe_sql_delete_buff
                             .Where(temp => temp.藥碼 == add.藥碼 && temp.途徑 == add.途徑 && temp.頻次 == add.頻次 && temp.數量 == add.數量)
                             .FirstOrDefault();
-                        if (doubleCpoe != null)
+                        if (doubleCpoe != null && GUID_buff.Contains(doubleCpoe.GUID) == false)
                         {
                             add.調劑狀態 = doubleCpoe.調劑狀態;
                             replace_list.Add(doubleCpoe.PRI_KEY);
+                            GUID_buff.Add(doubleCpoe.GUID);
                         }
                     }
                     foreach (medCpoeClass medCpoeClass in medCpoe_sql_delete_buff)
@@ -505,7 +507,7 @@ namespace HIS_WebApi
                             //medCpoeClass.頻次 = "--";
                             //medCpoeClass.途徑 = "--";
                             medCpoeClass.單位 = "--";
-                            medCpoeClass.調劑狀態 = "";
+                            medCpoeClass.調劑狀態 = "Y";
                             medCpoeClass.狀態 = "DC";
                             medCpoeClass.調劑異動 = "Y";
                             medCpoeClass.PRI_KEY += "-[DC]系統";
@@ -1470,7 +1472,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("get_medCpoe_by_cart")]
-        public string get_medCpoe([FromBody] returnData returnData)
+        public string get_medCpoe_by_cart([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_medCpoe_by_cart";
