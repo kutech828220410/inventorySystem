@@ -72,7 +72,7 @@ namespace HIS_DB_Lib
         [Description("單位,VARCHAR,10,NONE")]
         單位,
         [Description("儲位,VARCHAR,50,NONE")]
-        儲位,      
+        儲位,
         [Description("自購,VARCHAR,10,NONE")]
         自購,
         [Description("處方醫師,VARCHAR,10,NONE")]
@@ -450,7 +450,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<medQtyClass>  out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
+            List<medQtyClass> out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
             Console.WriteLine($"{returnData}");
             return out_medQtyClass;
         }
@@ -503,20 +503,20 @@ namespace HIS_DB_Lib
         static public Dictionary<string, List<medCpoeClass>> ToDictByMasterGUID(List<medCpoeClass> medCpoeClasses)
         {
             Dictionary<string, List<medCpoeClass>> dictionary = new Dictionary<string, List<medCpoeClass>>();
-            foreach( var item in medCpoeClasses)
+            foreach (var item in medCpoeClasses)
             {
-                if(dictionary.TryGetValue(item.Master_GUID, out List<medCpoeClass> list))
+                if (dictionary.TryGetValue(item.Master_GUID, out List<medCpoeClass> list))
                 {
                     list.Add(item);
                 }
                 else
                 {
                     dictionary[item.Master_GUID] = new List<medCpoeClass> { item };
-                }          
+                }
             }
             return dictionary;
         }
-        static public List<medCpoeClass> GetByMasterGUID (Dictionary<string, List<medCpoeClass>> dict, string master_GUID)
+        static public List<medCpoeClass> GetByMasterGUID(Dictionary<string, List<medCpoeClass>> dict, string master_GUID)
         {
             if (dict.TryGetValue(master_GUID, out List<medCpoeClass> medCpoeClasses))
             {
@@ -602,5 +602,5 @@ namespace HIS_DB_Lib
         [JsonPropertyName("server_type")]
         public string ServerType { get; set; }
     }
-    
+
 }

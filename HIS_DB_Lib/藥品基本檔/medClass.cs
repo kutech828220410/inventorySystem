@@ -189,7 +189,7 @@ namespace HIS_DB_Lib
         /// 藥庫庫存。
         /// </summary>
         [JsonPropertyName("DRUG_QTY")]
-        public string 藥庫庫存 { get; set; }   
+        public string 藥庫庫存 { get; set; }
         /// <summary>
         /// 總庫存。
         /// </summary>
@@ -278,7 +278,7 @@ namespace HIS_DB_Lib
         }
     }
 
-  
+
     public class medClass : medClassBasic
     {
         /// <summary>
@@ -303,11 +303,11 @@ namespace HIS_DB_Lib
             模糊,
             前綴,
         }
- 
+
         [JsonIgnore]
         private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
         {
-          // PropertyNameCaseInsensitive = true,
+            // PropertyNameCaseInsensitive = true,
         };
         [JsonPropertyName("BARCODE")]
         public List<string> Barcode
@@ -366,7 +366,7 @@ namespace HIS_DB_Lib
             returnData.ServerName = "Main";
             returnData.ServerType = "網頁";
             string tableName = "medicine_page_cloud";
-    
+
             returnData.TableName = tableName;
 
             string json_in = returnData.JsonSerializationt();
@@ -375,7 +375,7 @@ namespace HIS_DB_Lib
             return table;
         }
 
-        static public SQLUI.Table init(string API_Server, string ServerName, string ServerType , StoreType storeType)
+        static public SQLUI.Table init(string API_Server, string ServerName, string ServerType, StoreType storeType)
         {
             string url = $"{API_Server}/api/MED_page/init";
 
@@ -402,7 +402,7 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
- 
+
 
         static public List<medClass> get_by_apiserver(string API_Server, string ServerName, string ServerType, StoreType storeType)
         {
@@ -445,7 +445,7 @@ namespace HIS_DB_Lib
 
             returnData returnData = new returnData();
             returnData.ServerName = ServerName;
-   
+
 
 
             string json_in = returnData.JsonSerializationt();
@@ -464,7 +464,7 @@ namespace HIS_DB_Lib
             Codes.Add(Code);
             return get_dps_medClass_by_code(API_Server, ServerName, Codes);
         }
-        static public List<medClass> get_dps_medClass_by_code(string API_Server, string ServerName ,List<string> Codes)
+        static public List<medClass> get_dps_medClass_by_code(string API_Server, string ServerName, List<string> Codes)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/get_dps_medClass_by_code";
@@ -663,7 +663,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return;
             if (returnData.Code != 200) return;
- 
+
             Console.WriteLine($"{returnData}");
             return;
         }
@@ -764,7 +764,7 @@ namespace HIS_DB_Lib
         {
             return get_med_clouds_by_name(API_Server, name, SerchType.模糊);
         }
-        static public List<medClass> get_med_clouds_by_name(string API_Server, string name , SerchType serchType)
+        static public List<medClass> get_med_clouds_by_name(string API_Server, string name, SerchType serchType)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/get_med_clouds_by_name";
@@ -905,7 +905,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             return returnData;
         }
-        static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)
+        static public List<medClass> serch_by_BarCode(string API_Server, string barcode)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/serch_by_BarCode";
@@ -923,7 +923,7 @@ namespace HIS_DB_Lib
             return medClasses;
         }
 
-    
+
         static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(List<medClass> medClasses)
         {
             Dictionary<string, List<medClass>> dictionary = new Dictionary<string, List<medClass>>();
@@ -1025,7 +1025,7 @@ namespace HIS_DB_Lib
             medClass_src.最小包裝數量 = medClass_dst.最小包裝數量;
         }
 
-        static public medClass SerchByBarcode(this List<medClass> medClasses , string barcode)
+        static public medClass SerchByBarcode(this List<medClass> medClasses, string barcode)
         {
             for (int i = 0; i < medClasses.Count; i++)
             {
@@ -1048,5 +1048,5 @@ namespace HIS_DB_Lib
             return null;
         }
     }
- 
+
 }

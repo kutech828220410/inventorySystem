@@ -108,7 +108,7 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-           
+
 
         }
 
@@ -139,12 +139,12 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_cloud";
-           returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<sys_serverSettingClass> sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
-                if(sys_serverSettingClasses_buf.Count == 0)
+                if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     if (sys_serverSettingClasses.Count == 0)
                     {
@@ -362,7 +362,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_name";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -385,7 +385,7 @@ namespace HIS_WebApi
                 sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses_buf[0];
                 string text = returnData.ValueAry[0];
 
-       
+
                 string Server = sys_serverSettingClass.Server;
                 string DB = sys_serverSettingClass.DBName;
                 string UserName = sys_serverSettingClass.User;
@@ -410,7 +410,7 @@ namespace HIS_WebApi
                     returnData.Result = $"藥檔取得失敗!";
                     return returnData.JsonSerializationt();
                 }
-          
+
 
                 returnData.Data = medClasses;
                 returnData.Code = 200;
@@ -456,7 +456,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_dianame";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -550,7 +550,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_dianame";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -650,7 +650,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_clouds_by_durgkind";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -745,7 +745,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "add_med_clouds";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -788,7 +788,7 @@ namespace HIS_WebApi
 
 
                 List<medClass> medClasses_cloud = medClass.get_med_cloud("http://127.0.0.1:4433");
-                Dictionary<string, List<medClass>>  keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+                Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
                 List<medClass> medClasses_cloud_buf = new List<medClass>();
                 List<medClass> medClasses_add = new List<medClass>();
                 List<medClass> medClasses_replace = new List<medClass>();
@@ -1057,7 +1057,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_med_clouds_by_guid";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1082,7 +1082,7 @@ namespace HIS_WebApi
                 //returnData.ServerType = "網頁";
                 //returnData.TableName = "medicine_page_cloud";
                 //init(returnData);
-                List<object[]> list_value_replace = medClasses.ClassToSQL<medClass,enum_雲端藥檔>();
+                List<object[]> list_value_replace = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
 
 
                 string Server = sys_serverSettingClasses_buf[0].Server;
@@ -1137,7 +1137,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_med_clouds_status_by_guid";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1151,11 +1151,11 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
                 }
-                if(returnData.ValueAry == null)
-                {                
+                if (returnData.ValueAry == null)
+                {
                     returnData.Code = -200;
                     returnData.Result = $"ValueAry 不得為空";
-                    return returnData.JsonSerializationt();                  
+                    return returnData.JsonSerializationt();
                 }
                 if (returnData.ValueAry.Count != 2)
                 {
@@ -1164,7 +1164,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 string GUID = returnData.ValueAry[0];
-                string Status = returnData.ValueAry[1]; 
+                string Status = returnData.ValueAry[1];
 
                 string Server = sys_serverSettingClasses_buf[0].Server;
                 string DB = sys_serverSettingClasses_buf[0].DBName;
@@ -1233,7 +1233,7 @@ namespace HIS_WebApi
             returnData.Method = "get_ds_pharma_med";
             returnData.TableName = "medicine_page_phar";
             returnData.ServerType = "藥庫";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1266,7 +1266,7 @@ namespace HIS_WebApi
                 List<medClass> medClasses_cloud_buf = new List<medClass>();
 
 
-          
+
 
 
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_phar", UserName, Password, Port, SSLMode);
@@ -1329,8 +1329,8 @@ namespace HIS_WebApi
                     }
 
                 }
-   
-             
+
+
                 DeviceBasicMethod.SQL_AddDeviceBasic(sQLControl_device, deviceBasics_add);
                 returnData.Data = "";
                 returnData.Code = 200;
@@ -1376,7 +1376,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_ds_pharma_med";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1428,7 +1428,7 @@ namespace HIS_WebApi
                 {
                     MyTimerBasic myTimerBasic1 = new MyTimerBasic();
                     deviceBasics_藥局 = deviceController.Function_Get_device(sys_serverSettingClasses_buf[0], "sd0_device_jsonstring");
-                    dictionary_藥局 = deviceBasics_藥局.CoverToDictionaryByCode();                
+                    dictionary_藥局 = deviceBasics_藥局.CoverToDictionaryByCode();
                     TaskTime_藥局 = myTimerBasic1.ToString();
 
                 })));
@@ -1436,13 +1436,13 @@ namespace HIS_WebApi
                 {
                     MyTimerBasic myTimerBasic1 = new MyTimerBasic();
                     deviceBasics_藥庫 = deviceController.Function_Get_device(sys_serverSettingClasses_buf[0], "firstclass_device_jsonstring");
-                    dictionary_藥庫 = deviceBasics_藥庫.CoverToDictionaryByCode();          
+                    dictionary_藥庫 = deviceBasics_藥庫.CoverToDictionaryByCode();
                     TaskTime_藥庫 = myTimerBasic1.ToString();
                 })));
                 Task.WhenAll(tasks.ToArray()).Wait();
                 List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
                 string 藥碼 = "";
-                double inventory = 0;        
+                double inventory = 0;
                 List<medClassBasic> medClasses = list_med.SQLToClass<medClassBasic, enum_medPharmacy>();
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -1482,7 +1482,7 @@ namespace HIS_WebApi
                         inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
                     medClasses[i].藥庫庫存 = inventory.ToString();
-                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToDouble() + medClasses[i].藥庫庫存.StringToDouble()).ToString();                  
+                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToDouble() + medClasses[i].藥庫庫存.StringToDouble()).ToString();
                 }
 
                 returnData.Data = medClasses;
@@ -1528,7 +1528,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_ds_pharma_by_guid";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1549,7 +1549,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料錯誤";
                     return returnData.JsonSerializationt();
                 }
- 
+
                 List<object[]> list_value_replace = medClasses.ClassToSQL<medClass, enum_medPharmacy>();
 
 
@@ -1610,7 +1610,7 @@ namespace HIS_WebApi
             returnData.Method = "get_ds_pharma_med";
             returnData.TableName = "medicine_page_firstclass";
             returnData.ServerType = "藥庫";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1753,7 +1753,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_ds_drugstore_med";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1844,7 +1844,7 @@ namespace HIS_WebApi
                     {
                         inventory += deviceBasics_buf[k].Inventory.StringToDouble();
                     }
-          
+
                     medClasses[i].藥局庫存 = inventory.ToString();
 
                     deviceBasics_buf = new List<DeviceBasic>();
@@ -1907,7 +1907,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "update_ds_drugstore_by_guid";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1992,11 +1992,11 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = returnData.TableName;
             returnData.Method = "get_by_apiserver";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
-            {        
+            {
                 if (TableName == "medicine_page_cloud")
-                {                  
+                {
                     string json_out = get_med_cloud(returnData);
                     return json_out;
                 }
@@ -2083,7 +2083,7 @@ namespace HIS_WebApi
                 //藥局藥品資料
                 if (TableName == "medicine_page_phar")
                 {
-                   
+
                     List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                     sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
 
@@ -2106,9 +2106,9 @@ namespace HIS_WebApi
                     List<object[]> list_med_buf = new List<object[]>();
                     List<H_Pannel_lib.DeviceSimple> deviceBasics_藥局 = new List<H_Pannel_lib.DeviceSimple>();
                     List<H_Pannel_lib.DeviceSimple> deviceBasics_藥庫 = new List<H_Pannel_lib.DeviceSimple>();
-           
+
                     List<Task> tasks = new List<Task>();
-    
+
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         MyTimerBasic myTimerBasic1 = new MyTimerBasic();
@@ -2141,10 +2141,10 @@ namespace HIS_WebApi
                         MyTimerBasic myTimerBasic1 = new MyTimerBasic();
                         deviceBasics_藥庫 = deviceController.Function_Get_deviceSimple(sys_serverSettingClasses[0], "firstclass_device_jsonstring");
                         List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
-                        Dictionary<string,List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥庫);
+                        Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥庫);
                         string 藥碼 = "";
                         double inventory = 0;
-                
+
                         for (int i = 0; i < list_med.Count; i++)
                         {
                             inventory = 0;
@@ -2156,7 +2156,7 @@ namespace HIS_WebApi
                             if (dictionary.ContainsKey(藥碼))
                             {
                                 deviceBasics_buf = dictionary[藥碼];
-                            }                              
+                            }
                             if (deviceBasics_buf == null) continue;
                             for (int k = 0; k < deviceBasics_buf.Count; k++)
                             {
@@ -2169,7 +2169,7 @@ namespace HIS_WebApi
                     Task.WhenAll(tasks.ToArray()).Wait();
 
 
-                                    
+
                     returnData.Data = list_med.SQLToClass<medClassBasic, enum_medDrugstore>();
                     returnData.Code = 200;
                     returnData.Result = $"藥局藥檔取得成功,藥局庫存取得耗時[{TaskTime_藥局}],藥庫庫存取得耗時[{TaskTime_藥庫}]";
@@ -2230,7 +2230,7 @@ namespace HIS_WebApi
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                 
+
 
                     })));
                     Task.WhenAll(tasks).Wait();
@@ -2267,8 +2267,8 @@ namespace HIS_WebApi
                         medClasses[i].庫存 = inventory.ToString();
                     }
 
-               
-          
+
+
                     returnData.Data = medClasses;
                     returnData.Code = 200;
                     returnData.Result = $"調劑台藥檔取得成功!新增<{list_med_add.Count}>筆資料!";
@@ -2281,13 +2281,13 @@ namespace HIS_WebApi
                 returnData.Result = "藥檔取得失敗!";
                 return returnData.JsonSerializationt();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 returnData.Code = -200;
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-          
+
         }
 
         /// <summary>
@@ -2318,7 +2318,7 @@ namespace HIS_WebApi
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medclass";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2510,7 +2510,7 @@ namespace HIS_WebApi
                     {
                         medClasses_cloud = Get_med_cloud(sys_serverSettingClasses_med);
                     }
-               
+
                     keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
                 })));
                 tasks.Add(Task.Run(new Action(delegate
@@ -2522,9 +2522,9 @@ namespace HIS_WebApi
                     }
                     else
                     {
-                  
+
                         list_med_src = sQLControl_med.GetAllRows(null);
-                        List<medClass> medClasses_src = list_med_src.SQLToClass<medClass , enum_藥品資料_藥檔資料>();
+                        List<medClass> medClasses_src = list_med_src.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                         List<medClass> medClasses_src_buf = new List<medClass>();
                         List<medClass> medClasses_src_temp = new List<medClass>();
                         keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
@@ -2539,15 +2539,15 @@ namespace HIS_WebApi
                         list_med = medClasses_src_temp.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                     }
 
-   
-          
+
+
                     medClasses_src = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
                 })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     string[] Codes = returnData.ValueAry[0].Split(",");
-                    if(Codes.Length == 1)
+                    if (Codes.Length == 1)
                     {
                         deviceBasics = deviceController.Function_讀取儲位_By_Code(sys_serverSettingClasses[0], Codes[0]);
                         keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
@@ -2558,7 +2558,7 @@ namespace HIS_WebApi
 
                         keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
                     }
-              
+
                 })));
 
                 Task.WhenAll(tasks).Wait();
@@ -2627,7 +2627,7 @@ namespace HIS_WebApi
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_name";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2670,7 +2670,7 @@ namespace HIS_WebApi
                 Dictionary<string, List<DeviceBasic>> keyValuePairs_deviceBasics = new Dictionary<string, List<DeviceBasic>>();
 
                 List<Task> tasks = new List<Task>();
-      
+
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     list_med_src = sQLControl_med.GetAllRows(null);
@@ -2769,7 +2769,7 @@ namespace HIS_WebApi
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_chtname";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2911,7 +2911,7 @@ namespace HIS_WebApi
             string TableName = "medicine_page";
             returnData.ServerType = "調劑台";
             returnData.Method = "get_dps_medClass_by_dianame";
-              returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -3070,7 +3070,7 @@ namespace HIS_WebApi
                 //取得雲端藥檔資料
                 medClass medClass_cloud = Get_med_cloud(sys_serverSettingClasses_med, 藥碼);
                 medClass[] medClasses = new medClass[ServerNames.Length];
-                if(medClass_cloud == null)
+                if (medClass_cloud == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"線上藥檔查無資料";
@@ -3129,7 +3129,7 @@ namespace HIS_WebApi
 
 
 
-         
+
                 returnData.Data = medClasses;
                 returnData.Code = 200;
                 returnData.Result = $"藥碼 : {returnData.ValueAry[0]} ,藥檔取得成功 ,共<{medClasses.Length}>筆資料";
@@ -3156,7 +3156,7 @@ namespace HIS_WebApi
                 string TableName = returnData.TableName;
                 returnData.Method = "get_by_code";
                 string Code = returnData.Value;
-                if(Code.StringIsEmpty())
+                if (Code.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "Code空白!";
@@ -3283,8 +3283,8 @@ namespace HIS_WebApi
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 string TableName = returnData.TableName;
                 returnData.Method = "upadte_by_guid";
-     
-      
+
+
                 List<medClass> medClasses = new List<medClass>();
                 medClasses = returnData.Data.ObjToListClass<medClass>();
                 if (medClasses == null)
@@ -3328,7 +3328,7 @@ namespace HIS_WebApi
                     {
                         string Code = medClasses[i].藥品碼;
                         list_value_buf = list_value.GetRows((int)enum_雲端藥檔.藥品碼, Code);
-                        if(list_value_buf.Count == 0)
+                        if (list_value_buf.Count == 0)
                         {
                             object[] value = medClasses[i].ClassToSQL<medClass, enum_雲端藥檔>();
                             value[(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
@@ -3339,7 +3339,7 @@ namespace HIS_WebApi
                             object[] value = medClasses[i].ClassToSQL<medClass, enum_雲端藥檔>();
                             value[(int)enum_雲端藥檔.GUID] = list_value_buf[0][(int)enum_雲端藥檔.GUID].ObjectToString();
                             list_value_replace.Add(value);
-                        }    
+                        }
 
                     }
 
@@ -3439,7 +3439,7 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-         
+
         }
 
         [Route("serch_by_BarCode")]
@@ -3459,16 +3459,16 @@ namespace HIS_WebApi
 
                 returnData.Method = "serch_by_BarCode";
                 string BarCode = returnData.Value;
-                if(BarCode.StringIsEmpty())
+                if (BarCode.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "BarCode空白!";
                     return returnData.JsonSerializationt();
                 }
-    
+
                 List<medClass> medClasses_buf = new List<medClass>();
 
-                for(int i = 0; i < medClasses.Count; i++)
+                for (int i = 0; i < medClasses.Count; i++)
                 {
                     if (BarCode == medClasses[i].藥品碼)
                     {
@@ -3489,7 +3489,7 @@ namespace HIS_WebApi
                         }
                     }
                 }
-                if(medClasses_buf.Count == 0)
+                if (medClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "查無資料";
@@ -3520,7 +3520,7 @@ namespace HIS_WebApi
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
-              
+
                 returnData.Method = "excel_upload";
                 var formFile = Request.Form.Files.FirstOrDefault();
 
@@ -3537,7 +3537,7 @@ namespace HIS_WebApi
                 string error = "";
                 List<medClass> medClasses = new List<medClass>();
                 string str = "";
-                List<string> 中西藥 = new List<string> {"中藥","西藥"};
+                List<string> 中西藥 = new List<string> { "中藥", "西藥" };
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     await formFile.CopyToAsync(memoryStream);
@@ -3550,13 +3550,13 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt(true);
                     }
                     List<object[]> list_value = dt.DataTableToRowList();
-                    if(list_value.Count == 0)
+                    if (list_value.Count == 0)
                     {
                         returnData.Code = -200;
                         returnData.Result = $"文件內容不得為空";
                         return returnData.JsonSerializationt(true);
                     }
-                
+
                     for (int i = 0; i < list_value.Count; i++)
                     {
                         string 中西藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString();
@@ -3566,7 +3566,7 @@ namespace HIS_WebApi
                             str += $"藥品 :{藥品名稱} 未加入成功，中西藥欄位需填入\"中藥\"或\"西藥\"，";
                             continue;
                         }
-                    
+
                         medClass medClass = new medClass
                         {
                             藥品碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥碼].ObjectToString(),
@@ -3584,11 +3584,11 @@ namespace HIS_WebApi
                             廠牌 = list_value[i][(int)enum_雲端藥檔_EXCEL.廠牌].ObjectToString(),
                             藥品許可證號 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品許可證號].ObjectToString(),
                             中西藥 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString()
-                        };                       
+                        };
                         medClasses.Add(medClass);
                     }
                 }
-                if(medClasses.Count > 0) 
+                if (medClasses.Count > 0)
                 {
                     medClass.add_med_clouds("http://127.0.0.1:4433", medClasses);
                     returnData.Data = medClasses;
@@ -3605,7 +3605,7 @@ namespace HIS_WebApi
                     returnData.Result = $"{str}";
                     return returnData.JsonSerializationt(true);
                 }
-                
+
             }
 
             catch (Exception e)
@@ -3623,21 +3623,21 @@ namespace HIS_WebApi
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Sheet1");
-                worksheet.Cells[1,1].Value = "藥碼" ;
-                worksheet.Cells[1,2].Value = "中文名";
-                worksheet.Cells[1,3].Value = "藥名";
-                worksheet.Cells[1,4].Value = "藥品學名";
-                worksheet.Cells[1,5].Value = "健保碼";
-                worksheet.Cells[1,6].Value = "包裝單位";
-                worksheet.Cells[1,7].Value = "庫存";
-                worksheet.Cells[1,8].Value = "安全庫存";
-                worksheet.Cells[1,9].Value = "警訊藥品";
-                worksheet.Cells[1,10].Value = "高價藥品";
-                worksheet.Cells[1,11].Value = "管制級別";
-                worksheet.Cells[1,12].Value = "類別";
-                worksheet.Cells[1,13].Value = "廠牌";
-                worksheet.Cells[1,14].Value = "藥品許可證號";
-                worksheet.Cells[1,15].Value = "中西藥";
+                worksheet.Cells[1, 1].Value = "藥碼";
+                worksheet.Cells[1, 2].Value = "中文名";
+                worksheet.Cells[1, 3].Value = "藥名";
+                worksheet.Cells[1, 4].Value = "藥品學名";
+                worksheet.Cells[1, 5].Value = "健保碼";
+                worksheet.Cells[1, 6].Value = "包裝單位";
+                worksheet.Cells[1, 7].Value = "庫存";
+                worksheet.Cells[1, 8].Value = "安全庫存";
+                worksheet.Cells[1, 9].Value = "警訊藥品";
+                worksheet.Cells[1, 10].Value = "高價藥品";
+                worksheet.Cells[1, 11].Value = "管制級別";
+                worksheet.Cells[1, 12].Value = "類別";
+                worksheet.Cells[1, 13].Value = "廠牌";
+                worksheet.Cells[1, 14].Value = "藥品許可證號";
+                worksheet.Cells[1, 15].Value = "中西藥";
 
 
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
@@ -3652,7 +3652,7 @@ namespace HIS_WebApi
                 return File(stream, contentType, fileName);
             }
         }
-        static public Dictionary<string, List<H_Pannel_lib.DeviceSimple>> ConvertToDictionary(List<H_Pannel_lib.DeviceSimple>  deviceSimples)
+        static public Dictionary<string, List<H_Pannel_lib.DeviceSimple>> ConvertToDictionary(List<H_Pannel_lib.DeviceSimple> deviceSimples)
         {
             Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = new Dictionary<string, List<H_Pannel_lib.DeviceSimple>>();
 
@@ -3684,12 +3684,12 @@ namespace HIS_WebApi
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                 returnData.Method = "get_init";
-                
+
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     return $"找無Server資料!";
                 }
-                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_雲端藥檔());        
+                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_雲端藥檔());
             }
             if (TableName == "medicine_page_firstclass")
             {
@@ -3703,7 +3703,7 @@ namespace HIS_WebApi
                 }
 
 
-                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medDrugstore());            
+                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medDrugstore());
             }
             if (TableName == "medicine_page_phar")
             {
@@ -3716,7 +3716,7 @@ namespace HIS_WebApi
                     return $"找無Server資料!";
                 }
 
-                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medPharmacy());         
+                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medPharmacy());
             }
 
             if (TableName == "medicine_page")
@@ -3730,7 +3730,7 @@ namespace HIS_WebApi
                     return $"找無Server資料!";
                 }
 
-                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_藥品資料_藥檔資料());            
+                table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_藥品資料_藥檔資料());
             }
 
 
@@ -3742,7 +3742,7 @@ namespace HIS_WebApi
             if (medClasses.Count == 0) return null;
             return medClasses[0];
         }
-        static public List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass , string[] Codes)
+        static public List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass, string[] Codes)
         {
             try
             {
@@ -3759,7 +3759,7 @@ namespace HIS_WebApi
                 string command = $"select * from {DB}.{"medicine_page_cloud"} where UPPER({enum_雲端藥檔.藥品碼.GetEnumName()}) in ({sqlList});";
                 DataTable dataTable = sQLControl_med.WtrteCommandAndExecuteReader(command);
                 list_med = dataTable.DataTableToRowList();
-               
+
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
 
                 return medClasses;
@@ -3786,9 +3786,9 @@ namespace HIS_WebApi
             catch
             {
                 return null;
-            }  
+            }
         }
-      
+
         public class Icp_藥品資料_藥檔資料 : IComparer<object[]>
         {
             public int Compare(object[] x, object[] y)

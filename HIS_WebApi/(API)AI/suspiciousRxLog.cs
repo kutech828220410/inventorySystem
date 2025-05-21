@@ -89,7 +89,7 @@ namespace HIS_WebApi._API_AI
         {
             try
             {
-                return CheckCreatTable("suspiciousRxLog_rule_local",new enum_suspiciousRxLog_rule());
+                return CheckCreatTable("suspiciousRxLog_rule_local", new enum_suspiciousRxLog_rule());
             }
             catch (Exception ex)
             {
@@ -289,7 +289,7 @@ namespace HIS_WebApi._API_AI
             returnData.Method = "get_rule_by_index";
             try
             {
-                if(returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry應該為[\"索引值\"]";
@@ -372,7 +372,7 @@ namespace HIS_WebApi._API_AI
                 SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule_local", UserName, Password, Port, SSLMode);
                 List<object[]> sql_ruleLocal = sQLControl.GetAllRows(null);
                 List<suspiciousRxLog_ruleClass> sql_ruleLocals = sql_ruleLocal.SQLToClass<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
-                Dictionary<string ,List<suspiciousRxLog_ruleClass>> dic_ruleLocals = suspiciousRxLog_ruleClass.ToDictByGroup(sql_ruleLocals);
+                Dictionary<string, List<suspiciousRxLog_ruleClass>> dic_ruleLocals = suspiciousRxLog_ruleClass.ToDictByGroup(sql_ruleLocals);
                 string alarm = string.Empty;
                 List<suspiciousRxLog_ruleClass> add = new List<suspiciousRxLog_ruleClass>();
                 List<suspiciousRxLog_ruleClass> error = new List<suspiciousRxLog_ruleClass>();
@@ -383,7 +383,7 @@ namespace HIS_WebApi._API_AI
                     if (suspiciousRxLog_RuleClasses.Count > 0)
                     {
                         suspiciousRxLog_ruleClass suspiciousRxLog_Rule = suspiciousRxLog_RuleClasses.Where(temp => temp.索引 == item.索引).FirstOrDefault();
-                        if(suspiciousRxLog_Rule == null)
+                        if (suspiciousRxLog_Rule == null)
                         {
                             item.GUID = Guid.NewGuid().ToString();
                             item.類別 = "local";
@@ -400,9 +400,9 @@ namespace HIS_WebApi._API_AI
                         item.類別 = "local";
                         add.Add(item);
                     }
-                    
+
                 }
-                if(error.Count > 0)
+                if (error.Count > 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"已存在重複索引值";
@@ -410,7 +410,7 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt();
                 }
                 List<object[]> list_suspiciousRxLogRule = add.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
-                sQLControl.AddRows(null, list_suspiciousRxLogRule);               
+                sQLControl.AddRows(null, list_suspiciousRxLogRule);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -547,7 +547,7 @@ namespace HIS_WebApi._API_AI
             try
             {
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
-                if(orders.Count == 0)
+                if (orders.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.Data應為List<OrderClass>";
@@ -565,12 +565,12 @@ namespace HIS_WebApi._API_AI
                     returnData.Result = $"條碼{藥袋條碼}已辨識過";
                     return returnData.JsonSerializationt(true);
                 }
-                
+
                 suspiciousRxLogClass suspiciousRxLogClasses = suspiciousRxLoges[0];
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
-    
+
                 string 病歷號 = orders[0].病歷號;
 
                 if (orders == null)
@@ -613,7 +613,7 @@ namespace HIS_WebApi._API_AI
                 string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
-                if(suspiciousRxLog == null)
+                if (suspiciousRxLog == null)
                 {
                     returnData.Url = url;
                     returnData.Data = result;
@@ -622,8 +622,8 @@ namespace HIS_WebApi._API_AI
                     Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));
                     return returnData.JsonSerializationt(true);
                 }
-              
-                if(suspiciousRxLog.rule_type == null || suspiciousRxLog.rule_type.Count == 0)
+
+                if (suspiciousRxLog.rule_type == null || suspiciousRxLog.rule_type.Count == 0)
                 {
                     returnData.Url = url;
                     returnData.Data = result;
@@ -635,7 +635,7 @@ namespace HIS_WebApi._API_AI
                 List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses = suspiciousRxLog_ruleClass.get_rule_by_index(API_Server, suspiciousRxLog.rule_type);
                 suspiciousRxLog_ruleClass buff_suspiciousRxLog_ruleClass = new suspiciousRxLog_ruleClass();
                 buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName()).FirstOrDefault();
-                if(buff_suspiciousRxLog_ruleClass == null) buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName()).FirstOrDefault();
+                if (buff_suspiciousRxLog_ruleClass == null) buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName()).FirstOrDefault();
                 if (buff_suspiciousRxLog_ruleClass == null) buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName()).FirstOrDefault();
 
                 if (suspiciousRxLog.error == true.ToString())
@@ -717,7 +717,7 @@ namespace HIS_WebApi._API_AI
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                if(returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry應該為[\"GUID\"]";
@@ -729,7 +729,7 @@ namespace HIS_WebApi._API_AI
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_suspiciousRxLog = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.GUID, GUID);
                 suspiciousRxLogClass suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>().FirstOrDefault();
-                if(suspiciousRxLogClasses == null)
+                if (suspiciousRxLogClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"無此GUID資料";
@@ -860,7 +860,7 @@ namespace HIS_WebApi._API_AI
         }
         private string CheckCreatTable(string tableName, Enum Enum)
         {
-            
+
             if (tableName == null)
             {
                 tableName = Enum.GetEnumDescription();
@@ -888,9 +888,9 @@ namespace HIS_WebApi._API_AI
                 List<diseaseClass> diseaseClasses = new List<diseaseClass>();
                 if (ICD1.StringIsEmpty() == false) disease_list.Add(ICD1);
                 if (ICD2.StringIsEmpty() == false) disease_list.Add(ICD2);
-                if (ICD3.StringIsEmpty() == false) disease_list.Add(ICD3);                  
-                if(disease_list.Count > 0) diseaseClasses = diseaseClass.get_by_ICD(API_Server, disease_list);
-               
+                if (ICD3.StringIsEmpty() == false) disease_list.Add(ICD3);
+                if (disease_list.Count > 0) diseaseClasses = diseaseClass.get_by_ICD(API_Server, disease_list);
+
                 suspiciousRxLogClasses = new suspiciousRxLogClass()
                 {
                     GUID = Guid.NewGuid().ToString(),

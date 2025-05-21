@@ -13,9 +13,9 @@ namespace HIS_DB_Lib
 {
     public enum enum_medBag_type
     {
-        OPD,      
-        ER,       
-        ST,    
+        OPD,
+        ER,
+        ST,
         MBD,
         UD
     }
@@ -47,11 +47,10 @@ namespace HIS_DB_Lib
         F數量錯誤,
         G多種藥物組合,
         H重複用藥,
-        I適應症錯誤,
-        O其他,
+        I其他,
     }
     public enum enum_suspiciousRxLog_export
-    {            
+    {
         病歷號,
         科別,
         醫生姓名,
@@ -95,7 +94,7 @@ namespace HIS_DB_Lib
         開方時間,
         [Description("加入時間,DATETIME,30,NONE")]
         加入時間,
-        [Description("藥袋類型,VARCHAR,20,NONE")] 
+        [Description("藥袋類型,VARCHAR,20,NONE")]
         藥袋類型,
         [Description("識別規則依據,VARCHAR,200,NONE")]
         識別規則依據,
@@ -178,7 +177,17 @@ namespace HIS_DB_Lib
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
         [JsonPropertyName("rule")]
-        public string 識別規則依據 { get; set; }
+        public string 識別規則依據
+        {
+            get
+            {
+                if (rule_type != null && rule_type.Count > 0)
+                    return string.Join(";", rule_type);
+                else
+                    return string.Empty;
+            }
+        }
+        //public string 識別規則依據 { get; set; }
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
 
@@ -253,7 +262,7 @@ namespace HIS_DB_Lib
                 foreach (var item in value)
                 {
                     list_診斷碼.Add(item.疾病代碼);
-                    if(item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
+                    if (item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
                     else list_中文說明.Add(item.英文說明);
                 }
 
@@ -265,28 +274,7 @@ namespace HIS_DB_Lib
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
-        //public List<string> rule_type { get; set; }
-        public List<string> rule_type
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(識別規則依據))
-                    return new List<string>();
-
-                return 識別規則依據.Split(';').ToList();
-            }
-            set
-            {
-                if (value == null)
-                {
-                    識別規則依據 = string.Empty;
-                }
-                else
-                {
-                    識別規則依據 = string.Join(";", value);
-                }
-            }
-        }
+        public List<string> rule_type { get; set; }
 
         public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
@@ -408,7 +396,7 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses);
 
         }
-        
+
     }
     public class suspiciousRxLog_ruleClass
     {
@@ -483,7 +471,7 @@ namespace HIS_DB_Lib
         {
             string url = $"{API_Server}/api/suspiciousRxLog/get_rule_by_index";
             string 索引值 = string.Join(";", list_索引值);
-            return get_rule_by_index(API_Server, 索引值);  
+            return get_rule_by_index(API_Server, 索引值);
         }
     }
 
