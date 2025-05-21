@@ -1673,7 +1673,69 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }        
+        }
+        /// <summary>
+        ///以GUID取得藥品更動紀錄
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":["病床GUID"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medChange_by_ST_EN")]
+        public string get_medChange_by_ST_EN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_medChange_by_ST_EN";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 4)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"UC02\",\"C039\",\"2025-05-19 00:00:00\",\"2025-05-19 23:59:59\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 藥局 = returnData.ValueAry[0];
+                string 護理站 = returnData.ValueAry[1];
+                string 開始時間 = returnData.ValueAry[2];
+                string 結束時間 = returnData.ValueAry[3];
+                string tableName = "med_cpoe_rec";
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM {DB}.{tableName} WHERE 更新時間 BETWEEN '{開始時間}' AND '{結束時間}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' AND 狀態 = 'DC';";
+                DataTable dataTable_med_cpoe_rec = sQLControl_med_cpoe_rec.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_med_cpoe_rec = dataTable_med_cpoe_rec.DataTableToRowList();       
+
+                List<medCpoeRecClass> sql_medCpoeRec = list_med_cpoe_rec.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
+                sql_medCpoeRec.Sort(new medCpoeRecClass.ICP_By_UP_BedNum());
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoeRec;
+                returnData.Result = $"處方異動資料共{sql_medCpoeRec.Count}筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
         /// <summary>
         ///逐床確認藥品調劑狀態
         /// </summary>
