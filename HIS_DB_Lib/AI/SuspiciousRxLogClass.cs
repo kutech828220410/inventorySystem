@@ -21,8 +21,8 @@ namespace HIS_DB_Lib
     }
     public enum enum_suspiciousRxLog_ReportLevel
     {
-        [Description("None")]
-        None,       // 一般
+        //[Description("None")]
+        //None,       // 一般
         [Description("Normal")]
         Normal,       // 一般
         [Description("Important")]
@@ -47,7 +47,8 @@ namespace HIS_DB_Lib
         F數量錯誤,
         G多種藥物組合,
         H重複用藥,
-        I其他,
+        I適應症錯誤,
+        O其他,
     }
     public enum enum_suspiciousRxLog_export
     {            
@@ -178,7 +179,6 @@ namespace HIS_DB_Lib
         public string 藥袋類型 { get; set; }
         [JsonPropertyName("rule")]
         public string 識別規則依據 { get; set; }
-
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
 
@@ -261,10 +261,33 @@ namespace HIS_DB_Lib
                 this.診斷內容 = string.Join(";", list_中文說明);
             }
         }
-
+        public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
+        //public List<string> rule_type { get; set; }
+        public List<string> rule_type
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(識別規則依據))
+                    return new List<string>();
+
+                return 識別規則依據.Split(';').ToList();
+            }
+            set
+            {
+                if (value == null)
+                {
+                    識別規則依據 = string.Empty;
+                }
+                else
+                {
+                    識別規則依據 = string.Join(";", value);
+                }
+            }
+        }
+
         public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
         {
@@ -442,6 +465,26 @@ namespace HIS_DB_Lib
                 return new List<suspiciousRxLog_ruleClass>();
             }
         }
+        static public List<suspiciousRxLog_ruleClass> get_rule_by_index(string API_Server, string 索引值)
+        {
+            string url = $"{API_Server}/api/suspiciousRxLog/get_rule_by_index";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(索引值);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses = returnData.Data.ObjToClass<List<suspiciousRxLog_ruleClass>>();
+            return suspiciousRxLog_ruleClasses;
+        }
+        static public List<suspiciousRxLog_ruleClass> get_rule_by_index(string API_Server, List<string> list_索引值)
+        {
+            string url = $"{API_Server}/api/suspiciousRxLog/get_rule_by_index";
+            string 索引值 = string.Join(";", list_索引值);
+            return get_rule_by_index(API_Server, 索引值);  
+        }
     }
 
     public class PrescriptionSet
@@ -497,6 +540,52 @@ namespace HIS_DB_Lib
         public string 科別 { get; set; }
         [JsonPropertyName("order")]
         public List<DrugOrder> 處方 { get; set; }
+        [JsonPropertyName("ICD_CODE")]
+        public string 診斷碼 { get; set; }
+        [JsonPropertyName("ICD_DESC")]
+        public string 診斷內容 { get; set; }
+        public List<diseaseClass> diseaseClasses
+        {
+            get
+            {
+                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
 
+                List<string> list_診斷碼 = new List<string>();
+                List<string> list_診斷內容 = new List<string>();
+                if (this.診斷碼.StringIsEmpty() == false && this.診斷內容.StringIsEmpty() == false)
+                {
+                    list_診斷碼 = this.診斷碼.Split(';').ToList();
+                    list_診斷內容 = this.診斷內容.Split(';').ToList();
+                    if (list_診斷碼.Count == list_診斷內容.Count)
+                    {
+                        for (int i = 0; i < list_診斷碼.Count; i++)
+                        {
+                            diseaseClasses.Add(new diseaseClass()
+                            {
+                                疾病代碼 = list_診斷碼[i],
+                                中文說明 = list_診斷內容[i],
+                            });
+                        }
+                    }
+                }
+                return diseaseClasses;
+            }
+            set
+            {
+                if (value == null) return;
+                List<string> list_診斷碼 = new List<string>();
+                List<string> list_中文說明 = new List<string>();
+
+                foreach (var item in value)
+                {
+                    list_診斷碼.Add(item.疾病代碼);
+                    if (item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
+                    else list_中文說明.Add(item.英文說明);
+                }
+
+                this.診斷碼 = string.Join(";", list_診斷碼);
+                this.診斷內容 = string.Join(";", list_中文說明);
+            }
+        }
     }
 }

@@ -892,7 +892,19 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             return returnData;
         }
-        
+        static public returnData add_med_clouds_barcode(string API_Server, List<medClass> medClasses)
+        {
+            string url = $"{API_Server}/api/MED_page/add_med_clouds_barcode";
+
+            returnData returnData = new returnData();
+            returnData.Data = medClasses;
+            if (medClasses.Count == 0) return null;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
         static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)
         {
             List<medClass> medClasses = new List<medClass>();

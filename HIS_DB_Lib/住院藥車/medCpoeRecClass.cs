@@ -212,6 +212,18 @@ namespace HIS_DB_Lib
                 return x.更新時間.CompareTo(y.更新時間) * -1;
             }
         }
+        public class ICP_By_UP_BedNum : IComparer<medCpoeRecClass>
+        {
+            public int Compare(medCpoeRecClass x, medCpoeRecClass y)
+            {
+                int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+                if (result == 0)
+                {
+                    result = string.Compare(x.更新時間, y.更新時間) * -1;
+                }
+                return result;
+            }
+        }
         static public List<medCpoeRecClass> update_med_CpoeRec(string API_Server, List<medCpoeRecClass> medCpoeRecClasses)
         {
             List<medCpoeRecClass> out_medCpoeRecClass = new List<medCpoeRecClass>();

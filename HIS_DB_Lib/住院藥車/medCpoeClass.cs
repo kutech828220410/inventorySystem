@@ -555,6 +555,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("store_position")]
         public string 儲位 { get; set; }
+        [JsonPropertyName("CHT_NAME")]
+        public string 中文名稱 { get; set; }
         [JsonPropertyName("bed_list")]
         public List<bedListClass> 病床清單 { get; set; }
     }

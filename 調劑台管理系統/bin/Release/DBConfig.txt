@@ -1,4 +1,9 @@
 {
+<<<<<<< HEAD
   "Name": "A6",
   "Api_Server": "http://220.135.128.247:4433"
+=======
+  "Name": "A7",
+  "Api_Server": "https://www.kutech.tw:4443"
+>>>>>>> cdebda659e5fe20741d1271056f391efc9830697
 }
