@@ -1551,7 +1551,7 @@ namespace HIS_WebApi
                 DateTime today = DateTime.Now;
                 string starttime = today.GetStartDate().ToDateString();
                 string endtime = today.GetEndDate().ToDateString();
-                SQLControl sQLControl_order_list = new SQLControl(Server, "dbvm_tp", "order_list", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
                 //List<object[]> list_order_list = sQLControl_order_list.GetRowsByBetween(null, (int)enum_醫囑資料.展藥時間, starttime, endtime);
                 //List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();

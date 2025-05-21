@@ -633,7 +633,6 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt(true);
                 }
                 List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses = suspiciousRxLog_ruleClass.get_rule_by_index(API_Server, suspiciousRxLog.rule_type);
-                //enum_suspiciousRxLog_ReportLevel
                 suspiciousRxLog_ruleClass buff_suspiciousRxLog_ruleClass = new suspiciousRxLog_ruleClass();
                 buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName()).FirstOrDefault();
                 if(buff_suspiciousRxLog_ruleClass == null) buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName()).FirstOrDefault();
