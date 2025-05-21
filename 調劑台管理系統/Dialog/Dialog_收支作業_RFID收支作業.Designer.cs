@@ -41,15 +41,17 @@
             this.rJ_Button_選擇 = new MyUI.RJ_Button();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.rJ_Pannel3 = new MyUI.RJ_Pannel();
-            this.rJ_Lable_異常 = new MyUI.RJ_Lable();
-            this.rJ_Lable8 = new MyUI.RJ_Lable();
-            this.rJ_Lable_數量 = new MyUI.RJ_Lable();
-            this.rJ_Lable5 = new MyUI.RJ_Lable();
+            this.rJ_Lable_實收入 = new MyUI.RJ_Lable();
+            this.rJ_Lable_實收入_title = new MyUI.RJ_Lable();
+            this.rJ_Lable_應收入 = new MyUI.RJ_Lable();
+            this.rJ_Lable_應收入_title = new MyUI.RJ_Lable();
             this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
             this.rJ_Lable2 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_TagList = new SQLUI.SQL_DataGridView();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
             this.sqL_DataGridView_取藥狀態 = new SQLUI.SQL_DataGridView();
+            this.rJ_Lable_異常 = new MyUI.RJ_Lable();
+            this.rJ_Lable6 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
@@ -372,10 +374,10 @@
             this.rJ_Pannel3.BorderColor = System.Drawing.Color.DarkGray;
             this.rJ_Pannel3.BorderRadius = 10;
             this.rJ_Pannel3.BorderSize = 2;
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_異常);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable8);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_數量);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable5);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_實收入);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_實收入_title);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_應收入);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_應收入_title);
             this.rJ_Pannel3.Controls.Add(this.rJ_Lable_藥名);
             this.rJ_Pannel3.Controls.Add(this.rJ_Lable2);
             this.rJ_Pannel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -389,93 +391,93 @@
             this.rJ_Pannel3.Size = new System.Drawing.Size(843, 87);
             this.rJ_Pannel3.TabIndex = 155;
             // 
-            // rJ_Lable_異常
+            // rJ_Lable_實收入
             // 
-            this.rJ_Lable_異常.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_異常.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Lable_異常.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_異常.BorderRadius = 5;
-            this.rJ_Lable_異常.BorderSize = 0;
-            this.rJ_Lable_異常.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable_異常.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_異常.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_異常.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_異常.GUID = "";
-            this.rJ_Lable_異常.Location = new System.Drawing.Point(712, 10);
-            this.rJ_Lable_異常.Name = "rJ_Lable_異常";
-            this.rJ_Lable_異常.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_異常.ShadowSize = 0;
-            this.rJ_Lable_異常.Size = new System.Drawing.Size(82, 67);
-            this.rJ_Lable_異常.TabIndex = 164;
-            this.rJ_Lable_異常.Text = "----";
-            this.rJ_Lable_異常.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable_異常.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_實收入.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_實收入.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_實收入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_實收入.BorderRadius = 5;
+            this.rJ_Lable_實收入.BorderSize = 0;
+            this.rJ_Lable_實收入.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_實收入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_實收入.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_實收入.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_實收入.GUID = "";
+            this.rJ_Lable_實收入.Location = new System.Drawing.Point(712, 10);
+            this.rJ_Lable_實收入.Name = "rJ_Lable_實收入";
+            this.rJ_Lable_實收入.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_實收入.ShadowSize = 0;
+            this.rJ_Lable_實收入.Size = new System.Drawing.Size(82, 67);
+            this.rJ_Lable_實收入.TabIndex = 164;
+            this.rJ_Lable_實收入.Text = "----";
+            this.rJ_Lable_實收入.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_實收入.TextColor = System.Drawing.Color.Black;
             // 
-            // rJ_Lable8
+            // rJ_Lable_實收入_title
             // 
-            this.rJ_Lable8.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable8.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Lable8.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable8.BorderRadius = 5;
-            this.rJ_Lable8.BorderSize = 0;
-            this.rJ_Lable8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable8.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable8.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable8.GUID = "";
-            this.rJ_Lable8.Location = new System.Drawing.Point(630, 10);
-            this.rJ_Lable8.Name = "rJ_Lable8";
-            this.rJ_Lable8.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable8.ShadowSize = 0;
-            this.rJ_Lable8.Size = new System.Drawing.Size(82, 67);
-            this.rJ_Lable8.TabIndex = 163;
-            this.rJ_Lable8.Text = "異常:";
-            this.rJ_Lable8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable8.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_實收入_title.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_實收入_title.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_實收入_title.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_實收入_title.BorderRadius = 5;
+            this.rJ_Lable_實收入_title.BorderSize = 0;
+            this.rJ_Lable_實收入_title.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_實收入_title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_實收入_title.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_實收入_title.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_實收入_title.GUID = "";
+            this.rJ_Lable_實收入_title.Location = new System.Drawing.Point(630, 10);
+            this.rJ_Lable_實收入_title.Name = "rJ_Lable_實收入_title";
+            this.rJ_Lable_實收入_title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_實收入_title.ShadowSize = 0;
+            this.rJ_Lable_實收入_title.Size = new System.Drawing.Size(82, 67);
+            this.rJ_Lable_實收入_title.TabIndex = 163;
+            this.rJ_Lable_實收入_title.Text = "實收:";
+            this.rJ_Lable_實收入_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_實收入_title.TextColor = System.Drawing.Color.Black;
             // 
-            // rJ_Lable_數量
+            // rJ_Lable_應收入
             // 
-            this.rJ_Lable_數量.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_數量.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Lable_數量.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_數量.BorderRadius = 5;
-            this.rJ_Lable_數量.BorderSize = 0;
-            this.rJ_Lable_數量.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable_數量.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_數量.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_數量.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_數量.GUID = "";
-            this.rJ_Lable_數量.Location = new System.Drawing.Point(548, 10);
-            this.rJ_Lable_數量.Name = "rJ_Lable_數量";
-            this.rJ_Lable_數量.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_數量.ShadowSize = 0;
-            this.rJ_Lable_數量.Size = new System.Drawing.Size(82, 67);
-            this.rJ_Lable_數量.TabIndex = 162;
-            this.rJ_Lable_數量.Text = "----";
-            this.rJ_Lable_數量.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable_數量.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_應收入.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_應收入.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_應收入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_應收入.BorderRadius = 5;
+            this.rJ_Lable_應收入.BorderSize = 0;
+            this.rJ_Lable_應收入.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_應收入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_應收入.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_應收入.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_應收入.GUID = "";
+            this.rJ_Lable_應收入.Location = new System.Drawing.Point(548, 10);
+            this.rJ_Lable_應收入.Name = "rJ_Lable_應收入";
+            this.rJ_Lable_應收入.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_應收入.ShadowSize = 0;
+            this.rJ_Lable_應收入.Size = new System.Drawing.Size(82, 67);
+            this.rJ_Lable_應收入.TabIndex = 162;
+            this.rJ_Lable_應收入.Text = "----";
+            this.rJ_Lable_應收入.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_應收入.TextColor = System.Drawing.Color.Black;
             // 
-            // rJ_Lable5
+            // rJ_Lable_應收入_title
             // 
-            this.rJ_Lable5.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable5.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Lable5.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable5.BorderRadius = 5;
-            this.rJ_Lable5.BorderSize = 0;
-            this.rJ_Lable5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable5.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable5.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable5.GUID = "";
-            this.rJ_Lable5.Location = new System.Drawing.Point(466, 10);
-            this.rJ_Lable5.Name = "rJ_Lable5";
-            this.rJ_Lable5.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable5.ShadowSize = 0;
-            this.rJ_Lable5.Size = new System.Drawing.Size(82, 67);
-            this.rJ_Lable5.TabIndex = 161;
-            this.rJ_Lable5.Text = "數量:";
-            this.rJ_Lable5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable5.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_應收入_title.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_應收入_title.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_應收入_title.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_應收入_title.BorderRadius = 5;
+            this.rJ_Lable_應收入_title.BorderSize = 0;
+            this.rJ_Lable_應收入_title.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_應收入_title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_應收入_title.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_應收入_title.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_應收入_title.GUID = "";
+            this.rJ_Lable_應收入_title.Location = new System.Drawing.Point(466, 10);
+            this.rJ_Lable_應收入_title.Name = "rJ_Lable_應收入_title";
+            this.rJ_Lable_應收入_title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_應收入_title.ShadowSize = 0;
+            this.rJ_Lable_應收入_title.Size = new System.Drawing.Size(82, 67);
+            this.rJ_Lable_應收入_title.TabIndex = 161;
+            this.rJ_Lable_應收入_title.Text = "應收:";
+            this.rJ_Lable_應收入_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_應收入_title.TextColor = System.Drawing.Color.Black;
             // 
             // rJ_Lable_藥名
             // 
@@ -670,6 +672,50 @@
             this.sqL_DataGridView_取藥狀態.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_取藥狀態.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // rJ_Lable_異常
+            // 
+            this.rJ_Lable_異常.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_異常.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_異常.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_異常.BorderRadius = 5;
+            this.rJ_Lable_異常.BorderSize = 0;
+            this.rJ_Lable_異常.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_異常.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_異常.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_異常.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_異常.GUID = "";
+            this.rJ_Lable_異常.Location = new System.Drawing.Point(885, 796);
+            this.rJ_Lable_異常.Name = "rJ_Lable_異常";
+            this.rJ_Lable_異常.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_異常.ShadowSize = 0;
+            this.rJ_Lable_異常.Size = new System.Drawing.Size(82, 98);
+            this.rJ_Lable_異常.TabIndex = 166;
+            this.rJ_Lable_異常.Text = "----";
+            this.rJ_Lable_異常.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_異常.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable6
+            // 
+            this.rJ_Lable6.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable6.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable6.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable6.BorderRadius = 5;
+            this.rJ_Lable6.BorderSize = 0;
+            this.rJ_Lable6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable6.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable6.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable6.GUID = "";
+            this.rJ_Lable6.Location = new System.Drawing.Point(803, 796);
+            this.rJ_Lable6.Name = "rJ_Lable6";
+            this.rJ_Lable6.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable6.ShadowSize = 0;
+            this.rJ_Lable6.Size = new System.Drawing.Size(82, 98);
+            this.rJ_Lable6.TabIndex = 165;
+            this.rJ_Lable6.Text = "異常:";
+            this.rJ_Lable6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable6.TextColor = System.Drawing.Color.Black;
+            // 
             // Dialog_收支作業_RFID收支作業
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -679,6 +725,8 @@
             this.ClientSize = new System.Drawing.Size(1650, 898);
             this.CloseBoxSize = new System.Drawing.Size(40, 40);
             this.ControlBox = true;
+            this.Controls.Add(this.rJ_Lable_異常);
+            this.Controls.Add(this.rJ_Lable6);
             this.Controls.Add(this.sqL_DataGridView_取藥狀態);
             this.Controls.Add(this.rJ_Button_確認);
             this.Controls.Add(this.sqL_DataGridView_TagList);
@@ -715,12 +763,14 @@
         private MyUI.RJ_Pannel rJ_Pannel3;
         private MyUI.RJ_Lable rJ_Lable2;
         private SQLUI.SQL_DataGridView sqL_DataGridView_TagList;
-        private MyUI.RJ_Lable rJ_Lable5;
         private MyUI.RJ_Lable rJ_Lable_藥名;
-        private MyUI.RJ_Lable rJ_Lable_異常;
-        private MyUI.RJ_Lable rJ_Lable8;
-        private MyUI.RJ_Lable rJ_Lable_數量;
+        private MyUI.RJ_Lable rJ_Lable_實收入;
+        private MyUI.RJ_Lable rJ_Lable_實收入_title;
+        private MyUI.RJ_Lable rJ_Lable_應收入;
         private MyUI.RJ_Button rJ_Button_確認;
         private SQLUI.SQL_DataGridView sqL_DataGridView_取藥狀態;
+        private MyUI.RJ_Lable rJ_Lable_異常;
+        private MyUI.RJ_Lable rJ_Lable6;
+        private MyUI.RJ_Lable rJ_Lable_應收入_title;
     }
 }

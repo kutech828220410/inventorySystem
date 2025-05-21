@@ -13,12 +13,15 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using SQLUI;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
         Basic.MyThread MyThread_輸出入檢查;
         Basic.MyThread 輸出入檢查_蜂鳴器輸出;
+        public delegate void LockClosingEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
+        static public event LockClosingEventHandler LockClosingEvent;
         private void Program_輸出入檢查_Init()
         {
             for (int i = 0; i < 鎖控列表01.Controls.Count; i++)
@@ -81,110 +84,122 @@ namespace 調劑台管理系統
         }
         private void Loker_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string Master_GUID)
         {
-            //Master_GUID 為取藥堆疊母資料
-            List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
-            if (list_locker_table_value.Count == 0) return;
-            string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-            string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
-            string 調劑台名稱 = "";
-         
-            if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
+            try
             {
-                object value_device = this.Fucnction_從雲端資料取得儲位(IP);
-                if (value_device == null) return;
-                if (value_device is Storage)
+                //Master_GUID 為取藥堆疊母資料
+                List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+                list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+                if (list_locker_table_value.Count == 0) return;
+                string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
+                string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+                string 調劑台名稱 = "";
+
+                if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
                 {
-
-                    Storage storage = value_device as Storage;
-                    if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock
-                        || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock
-                        || storage.DeviceType == DeviceType.EPD420 || storage.DeviceType == DeviceType.EPD420_lock)
+                    object value_device = this.Fucnction_從雲端資料取得儲位(IP);
+                    if (value_device == null) return;
+                    if (value_device is Storage)
                     {
 
-                        Console.WriteLine($"{IP},{Num},<抽屜關閉> {storage.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
-
-                        this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                        storage.ActionDone = true;
-                        if (plC_CheckBox_同藥品全部亮燈.Bool) return;
-                 
-                        //List_EPD266_雲端資料.Add_NewStorage(storage);
-                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                    }
-                    else if (storage.DeviceType == DeviceType.Pannel35 || storage.DeviceType == DeviceType.Pannel35_lock)
-                    {
-                        this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
-                        storage.ActionDone = true;
-                        if (plC_CheckBox_同藥品全部亮燈.Bool) return;
-              
-                        //List_Pannel35_雲端資料.Add_NewStorage(storage);
-                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                    }
-           
-                }
-                else if (value_device is Drawer)
-                {
-                    Drawer drawer = value_device as Drawer;
-                    if (drawer.DeviceType == DeviceType.EPD583 || drawer.DeviceType == DeviceType.EPD583_lock || drawer.DeviceType == DeviceType.EPD420_D || drawer.DeviceType == DeviceType.EPD420_D_lock)
-                    {
-                        Console.WriteLine($"{IP},{Num},<抽屜關閉> {drawer.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
-                        if(plC_CheckBox_同藥品全部亮燈.Bool == false)
+                        Storage storage = value_device as Storage;
+                        if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock
+                            || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock
+                            || storage.DeviceType == DeviceType.EPD420 || storage.DeviceType == DeviceType.EPD420_lock)
                         {
-                            if (this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num) == false) return;
+
+                            Console.WriteLine($"{IP},{Num},<抽屜關閉> {storage.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
+
+                            this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                            storage.ActionDone = true;
+                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+
+                            //List_EPD266_雲端資料.Add_NewStorage(storage);
+                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                         }
-                     
-                        drawer = List_EPD583_本地資料.SortByIP(IP);
-                        if (drawer == null) return;
-                        if (this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
+                        else if (storage.DeviceType == DeviceType.Pannel35 || storage.DeviceType == DeviceType.Pannel35_lock)
                         {
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
-                            drawer.ActionDone = true;
-                        
-                            this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
-                            drawer.SetAllBoxes_LightOff();
-                            List_EPD583_本地資料.Add_NewDrawer(drawer);
-                        }
-                        string index_IP = Funcion_取得LCD114索引表_index_IP(IP);
-                        if (index_IP.StringIsEmpty() == false)
-                        {
-                            Task.Run(new Action(delegate { storageUI_LCD_114.ClearCanvas(index_IP, 29008); }));
-                   
-                        }
-                        //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+                            this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
+                            storage.ActionDone = true;
+                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
 
-                        //List_EPD583_雲端資料.Add_NewDrawer(drawer);
-                
+                            //List_Pannel35_雲端資料.Add_NewStorage(storage);
+                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                        }
+
                     }
-                    else
+                    else if (value_device is Drawer)
                     {
-                        List<Box> boxes = drawer.GetAllBoxes();
-                        if (boxes.Count > 0)
+                        Drawer drawer = value_device as Drawer;
+                        if (drawer.DeviceType == DeviceType.EPD583 || drawer.DeviceType == DeviceType.EPD583_lock || drawer.DeviceType == DeviceType.EPD420_D || drawer.DeviceType == DeviceType.EPD420_D_lock)
                         {
-
-                            if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
+                            Console.WriteLine($"{IP},{Num},<抽屜關閉> {drawer.DeviceType.GetEnumName()} {DateTime.Now.ToDateTimeString()}");
+                            if (plC_CheckBox_同藥品全部亮燈.Bool == false)
                             {
-                                drawer.ActionDone = true;
-                                this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
-                                //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
-
-                                //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
-                                this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                                if (this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num) == false) return;
                             }
 
-                        }
-                    }
-                   
-    
-                  
-                }
-                else if (value_device is RFIDClass)
-                {
-                    RFIDClass rFIDClass = value_device as RFIDClass;
-                    this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
-                }
+                            drawer = List_EPD583_本地資料.SortByIP(IP);
+                            if (drawer == null) return;
+                            if (this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
+                            {
+                                drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
+                                drawer.ActionDone = true;
 
+                                this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                                drawer.SetAllBoxes_LightOff();
+                                List_EPD583_本地資料.Add_NewDrawer(drawer);
+                            }
+                            string index_IP = Funcion_取得LCD114索引表_index_IP(IP);
+                            if (index_IP.StringIsEmpty() == false)
+                            {
+                                Task.Run(new Action(delegate { storageUI_LCD_114.ClearCanvas(index_IP, 29008); }));
+
+                            }
+                            //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+
+                            //List_EPD583_雲端資料.Add_NewDrawer(drawer);
+
+                        }
+                        else
+                        {
+                            List<Box> boxes = drawer.GetAllBoxes();
+                            if (boxes.Count > 0)
+                            {
+
+                                if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
+                                {
+                                    drawer.ActionDone = true;
+                                    this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
+                                    //if (plC_CheckBox_同藥品全部亮燈.Bool) return;
+
+                                    //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                                    this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                                }
+
+                            }
+                        }
+
+
+
+                    }
+                    else if (value_device is RFIDClass)
+                    {
+                        RFIDClass rFIDClass = value_device as RFIDClass;
+                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
+                    }
+
+                }
             }
+            catch(Exception e) 
+            {
+                Logger.Log("operate", $"Exception : {e.Message}");
+            }
+            finally
+            {
+                if (LockClosingEvent != null) LockClosingEvent(sender, PLC_Device_Input, PLC_Device_Output, Master_GUID);
+            }
+           
         
         }
         private void Loker_LockOpeningEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)

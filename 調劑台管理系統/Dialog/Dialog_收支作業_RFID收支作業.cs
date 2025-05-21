@@ -35,7 +35,8 @@ namespace 調劑台管理系統
                     form.Invoke(new Action(delegate
                     {
                         rJ_Lable_藥名.Text = "--------------------------";
-                        rJ_Lable_數量.Text = "----";
+                        rJ_Lable_應收入.Text = "----";
+                        rJ_Lable_實收入.Text = "----";
                         rJ_Lable_異常.Text = "----";
                     }));
                     _drugHFTag_IncomeOutcomeList = value;
@@ -44,9 +45,9 @@ namespace 調劑台管理系統
                 form.Invoke(new Action(delegate
                 {
                     rJ_Lable_藥名.Text = value.藥名;
-                    rJ_Lable_數量.Text = "----";
+                    rJ_Lable_應收入.Text = "----";
+                    rJ_Lable_實收入.Text = "----";
                     rJ_Lable_異常.Text = "----";
-
                 }));
                 _drugHFTag_IncomeOutcomeList = value;
             }
@@ -72,19 +73,7 @@ namespace 調劑台管理系統
             dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(-90).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
         }
 
-        private void Dialog_收支作業_RFID出收入_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(myThread_HFRFID != null)
-            {
-                myThread_HFRFID.Abort();
-                myThread_HFRFID = null;
-            }
-            if (myThread_UI != null)
-            {
-                myThread_UI.Abort();
-                myThread_UI = null;
-            }
-        }
+    
         private void Dialog_收支作業_RFID出收入_LoadFinishedEvent(EventArgs e)
         {
  
@@ -130,7 +119,16 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_取藥狀態.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_取藥狀態.DataGridRefreshEvent += SqL_DataGridView_取藥狀態_DataGridRefreshEvent;
 
-
+            if(_Import_Export == IncomeOutcomeMode.收入)
+            {
+                rJ_Lable_應收入_title.Text = "應收";
+                rJ_Lable_實收入_title.Text = "實收";
+            }
+            if (_Import_Export == IncomeOutcomeMode.支出)
+            {
+                rJ_Lable_應收入_title.Text = "應出";
+                rJ_Lable_實收入_title.Text = "實出";
+            }
             this.rJ_Button_選擇.MouseDownEvent += RJ_Button_選擇_MouseDownEvent;
             this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
@@ -145,11 +143,30 @@ namespace 調劑台管理系統
             myThread_UI.SetSleepTime(100);
             myThread_UI.Trigger();
 
+            Main_Form.LockClosingEvent += Main_Form_LockClosingEvent;
             this.Refresh();
             Main_Form.Function_外門片解鎖();
         }
+        private void Dialog_收支作業_RFID出收入_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (myThread_HFRFID != null)
+            {
+                myThread_HFRFID.Abort();
+                myThread_HFRFID = null;
+            }
+            if (myThread_UI != null)
+            {
+                myThread_UI.Abort();
+                myThread_UI = null;
+            }
+            Main_Form.LockClosingEvent -= Main_Form_LockClosingEvent;
+        }
 
-    
+        private void Main_Form_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
+        {
+            List<object[]> list_locker_table_value = Main_Form._sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+
+        }
 
         private void SqL_DataGridView_取藥狀態_DataGridRefreshEvent()
         {
@@ -284,7 +301,7 @@ namespace 調劑台管理系統
 
             form.Invoke(new Action(() =>
             {
-                rJ_Lable_數量.Text = qty.ToString("0.###");
+                rJ_Lable_實收入.Text = qty.ToString("0.###");
                 rJ_Lable_異常.Text = errorTags.Count.ToString("0.###");
             }));
 
@@ -367,8 +384,20 @@ namespace 調劑台管理系統
                 Main_Form.Function_抽屜解鎖(list_ip);
                 Logger.Log("dialog_HRFID", "完成抽屜解鎖");
 
+          
                 drugHFTag_IncomeOutcomeList = list_收支清單[0].ToIncomeOutcomeClass();
                 Logger.Log("dialog_HRFID", $"完成 drugHFTag_IncomeOutcomeList 建立，藥品名稱: {drugHFTag_IncomeOutcomeList.藥名}");
+
+                if (_Import_Export == IncomeOutcomeMode.收入)
+                {
+                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門入庫.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門入庫", 3000);
+                }
+                if (_Import_Export == IncomeOutcomeMode.支出)
+                {
+                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門取藥.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門取藥", 3000);
+                }
             }
             catch (Exception ex)
             {
@@ -399,9 +428,9 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                if (_Import_Export == IncomeOutcomeMode.支出 && rJ_Lable_數量.Text.StringToDouble() != qty)
+                if (_Import_Export == IncomeOutcomeMode.支出 && rJ_Lable_應收入.Text.StringToDouble() != qty)
                 {
-                    Logger.Log("dialog_HRFID", $"標籤數量 ({rJ_Lable_數量.Text}) 不等於輸入支出數量 ({qty})");
+                    Logger.Log("dialog_HRFID", $"標籤數量 ({rJ_Lable_應收入.Text}) 不等於輸入支出數量 ({qty})");
                     MyMessageBox.ShowDialog("RFID標籤數量與支出數量不符");
                     return;
                 }
@@ -546,6 +575,7 @@ namespace 調劑台管理系統
 
                 drugHFTag_IncomeOutcomeList = null;
                 this.sqL_DataGridView_TagList.ClearGrid();
+
             }
             catch (Exception ex)
             {
@@ -564,7 +594,11 @@ namespace 調劑台管理系統
             try
             {
                 Logger.Log($"dialog_HRFID", $"[RJ_Button_取消_MouseDownEvent] 使用者 : {Main_Form._登入者名稱}");
-
+                if (drugHFTag_IncomeOutcomeList != null)
+                {
+                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(drugHFTag_IncomeOutcomeList.藥碼, Color.Black));
+                }
+        
                 drugHFTag_IncomeOutcomeList = null;
                 this.sqL_DataGridView_TagList.ClearGrid();
             }
