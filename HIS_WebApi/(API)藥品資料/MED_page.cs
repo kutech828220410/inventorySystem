@@ -874,6 +874,163 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 新增及修改雲端藥檔含藥品條碼資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        [medclass陣列]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("add_med_clouds_barcode")]
+        [HttpPost]
+        public string add_med_clouds_barcode(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "add_med_clouds_barcode";
+            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses_buf = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (sys_serverSettingClasses_buf.Count == 0)
+                {
+                    if (sys_serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                List<medClass> medClasses_src = returnData.Data.ObjToClass<List<medClass>>();
+                if (medClasses_src == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+                List<string> codes = (from temp in medClasses_src
+                                      select temp.藥品碼).Distinct().ToList();
+
+                Dictionary<string, List<medClass>> keyValuePairs = medClasses_src.CoverToDictionaryByCode();
+                List<medClass> medClasses_src_buf = new List<medClass>();
+                List<medClass> medClasses_temp = new List<medClass>();
+
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    medClasses_temp = keyValuePairs.SortDictionaryByCode(codes[i]);
+                    if (medClasses_temp.Count > 0)
+                    {
+                        medClasses_src_buf.Add(medClasses_temp[0]);
+                    }
+                }
+
+
+                List<object[]> list_value_add_buf = new List<object[]>();
+                List<object[]> list_value_update_buf = new List<object[]>();
+
+
+                List<medClass> medClasses_cloud = medClass.get_med_cloud("http://127.0.0.1:4433");
+                Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+                List<medClass> medClasses_add = new List<medClass>();
+                List<medClass> medClasses_replace = new List<medClass>();
+
+
+                for (int i = 0; i < medClasses_src_buf.Count; i++)
+                {
+                    string 藥碼 = medClasses_src_buf[i].藥品碼;
+                    medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(藥碼);
+                    if (medClasses_cloud_buf.Count == 0)
+                    {
+                        medClasses_src_buf[i].GUID = Guid.NewGuid().ToString();
+                        medClasses_add.Add(medClasses_src_buf[i]);
+                    }
+                    else
+                    {
+                        medClass medClass_update = medClasses_cloud_buf[0];
+                        medClass_update.藥品碼 = medClasses_src_buf[i].藥品碼;
+                        medClass_update.料號 = medClasses_src_buf[i].料號;
+                        medClass_update.藥品名稱 = medClasses_src_buf[i].藥品名稱;
+                        medClass_update.藥品學名 = medClasses_src_buf[i].藥品學名;
+                        medClass_update.管制級別 = medClasses_src_buf[i].管制級別;
+                        medClass_update.包裝單位 = medClasses_src_buf[i].包裝單位;
+                        medClass_update.建議劑量 = medClasses_src_buf[i].建議劑量;
+                        medClass_update.建議頻次 = medClasses_src_buf[i].建議頻次;
+                        medClass_update.適應症 = medClasses_src_buf[i].適應症;
+                        medClass_update.使用說明 = medClasses_src_buf[i].使用說明;
+                        medClass_update.警訊藥品 = medClasses_src_buf[i].警訊藥品;
+                        medClass_update.懷孕用藥級別 = medClasses_src_buf[i].懷孕用藥級別;
+                        medClass_update.高價藥品 = medClasses_src_buf[i].高價藥品;
+                        medClass_update.冷藏藥品 = medClasses_src_buf[i].冷藏藥品;
+                        medClass_update.自費藥品 = medClasses_src_buf[i].自費藥品;
+                        medClass_update.生物製劑 = medClasses_src_buf[i].生物製劑;
+                        medClass_update.健保碼 = medClasses_src_buf[i].健保碼;
+                        medClass_update.健保規範 = medClasses_src_buf[i].健保規範;
+                        medClass_update.廠牌 = medClasses_src_buf[i].廠牌;
+                        medClass_update.治療分類名 = medClasses_src_buf[i].治療分類名;
+                        medClass_update.治療分類代碼 = medClasses_src_buf[i].治療分類代碼;
+                        medClass_update.開檔狀態 = medClasses_src_buf[i].開檔狀態;
+                        medClass_update.ATC = medClasses_src_buf[i].ATC;
+                        medClass_update.中文名稱 = medClasses_src_buf[i].中文名稱;
+                        medClass_update.儲位描述 = medClasses_src_buf[i].儲位描述;
+                        medClass_update.圖片網址 = medClasses_src_buf[i].圖片網址;
+                        medClass_update.仿單網址 = medClasses_src_buf[i].仿單網址;
+                        medClass_update.說明書網址 = medClasses_src_buf[i].說明書網址;
+                        medClass_update.類別 = medClasses_src_buf[i].類別;
+                        medClass_update.中西藥 = medClasses_src_buf[i].中西藥;
+                        medClass_update.最小包裝單位 = medClasses_src_buf[i].最小包裝單位;
+                        medClass_update.備註 = medClasses_src_buf[i].備註;
+                        medClass_update.藥品條碼2 = medClasses_src_buf[i].藥品條碼2;
+
+                        medClasses_replace.Add(medClass_update);
+                    }
+                }
+                string Server = sys_serverSettingClasses_buf[0].Server;
+                string DB = sys_serverSettingClasses_buf[0].DBName;
+                string UserName = sys_serverSettingClasses_buf[0].User;
+                string Password = sys_serverSettingClasses_buf[0].Password;
+                uint Port = (uint)sys_serverSettingClasses_buf[0].Port.StringToDouble();
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
+                list_value_add_buf = medClasses_add.ClassToSQL<medClass, enum_雲端藥檔>();
+                list_value_update_buf = medClasses_replace.ClassToSQL<medClass, enum_雲端藥檔>();
+                List<medClass> result = new List<medClass>();
+                result.AddRange(medClasses_add);
+                result.AddRange(medClasses_replace);
+                sQLControl.AddRows(null, list_value_add_buf);
+                sQLControl.UpdateByDefulteExtra(null, list_value_update_buf);
+
+                returnData.Code = 200;
+                returnData.Data = result;
+                returnData.Result = $"更新雲端藥檔成功,共新增<{list_value_add_buf.Count}>筆資料,共修改<{list_value_update_buf.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] {returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 以GUID更新雲端藥檔資料
         /// </summary>
         /// <remarks>
