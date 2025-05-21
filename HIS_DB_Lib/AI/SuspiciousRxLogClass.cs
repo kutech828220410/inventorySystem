@@ -47,7 +47,8 @@ namespace HIS_DB_Lib
         F數量錯誤,
         G多種藥物組合,
         H重複用藥,
-        I其他,
+        I適應症錯誤,
+        O其他,
     }
     public enum enum_suspiciousRxLog_export
     {            
@@ -177,17 +178,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
         [JsonPropertyName("rule")]
-        public string 識別規則依據
-        {
-            get
-            {
-                if (rule_type != null && rule_type.Count > 0)
-                    return string.Join(";", rule_type);
-                else
-                    return string.Empty;
-            }
-        }
-        //public string 識別規則依據 { get; set; }
+        public string 識別規則依據 { get; set; }
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
 
@@ -274,7 +265,28 @@ namespace HIS_DB_Lib
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
-        public List<string> rule_type { get; set; }
+        //public List<string> rule_type { get; set; }
+        public List<string> rule_type
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(識別規則依據))
+                    return new List<string>();
+
+                return 識別規則依據.Split(';').ToList();
+            }
+            set
+            {
+                if (value == null)
+                {
+                    識別規則依據 = string.Empty;
+                }
+                else
+                {
+                    識別規則依據 = string.Join(";", value);
+                }
+            }
+        }
 
         public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
