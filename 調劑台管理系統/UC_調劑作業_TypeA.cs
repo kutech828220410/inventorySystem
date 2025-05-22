@@ -1649,7 +1649,18 @@ namespace 調劑台管理系統
                 {
                     Task.Run(new Action(delegate
                     {
-                        rJ_Lable_診斷.Text = "";
+                        //rJ_Lable_診斷.Text = "";
+                        if (rJ_Lable_診斷.InvokeRequired)
+                        {
+                            rJ_Lable_診斷.Invoke(new Action(() =>
+                            {
+                                rJ_Lable_診斷.Text = "";
+                            }));
+                        }
+                        else
+                        {
+                            rJ_Lable_診斷.Text = "";
+                        }
                         for (int i = 0; i < orderClasses.Count; i++)
                         {
                             orderClasses[i].藥師姓名 = 登入者姓名;
@@ -1689,7 +1700,7 @@ namespace 調劑台管理系統
                                     pictureBox_藥品圖片01.Visible = true;
                                     pictureBox_藥品圖片02.Visible = false;
                                     pictureBox_藥品圖片01.Invalidate();
-                                    panel_藥品圖片.Refresh();
+                                    //panel_藥品圖片.Refresh();
                                     int pbWidth = pictureBox_藥品圖片01.Width;
                                     int pbHeight = pictureBox_藥品圖片01.Height;
                                     pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
@@ -1702,7 +1713,7 @@ namespace 調劑台管理系統
                                     pictureBox_藥品圖片01.Visible = false;
                                     pictureBox_藥品圖片02.Visible = true;
                                     pictureBox_藥品圖片02.Invalidate();
-                                    panel_藥品圖片.Refresh();
+                                    //panel_藥品圖片.Refresh();
                                     int pbWidth = pictureBox_藥品圖片02.Width;
                                     int pbHeight = pictureBox_藥品圖片02.Height;
                                     pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
