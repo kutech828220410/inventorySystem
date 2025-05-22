@@ -376,7 +376,7 @@ namespace HIS_WebApi._API_AI
                 string alarm = string.Empty;
                 List<suspiciousRxLog_ruleClass> add = new List<suspiciousRxLog_ruleClass>();
                 List<suspiciousRxLog_ruleClass> error = new List<suspiciousRxLog_ruleClass>();
-
+                string flag = true.ToString();
                 foreach (var item in suspiciousRxLogRule_locals)
                 {
                     List<suspiciousRxLog_ruleClass> suspiciousRxLog_RuleClasses = suspiciousRxLog_ruleClass.GetByGroup(dic_ruleLocals, item.群組);
@@ -385,6 +385,8 @@ namespace HIS_WebApi._API_AI
                         suspiciousRxLog_ruleClass suspiciousRxLog_Rule = suspiciousRxLog_RuleClasses.Where(temp => temp.索引 == item.索引).FirstOrDefault();
                         if (suspiciousRxLog_Rule == null)
                         {
+                            if (item.狀態.ToLower() == "true") item.狀態 = true.ToString();
+                            if (item.狀態.ToLower() == "false") item.狀態 = false.ToString();
                             item.GUID = Guid.NewGuid().ToString();
                             item.類別 = "local";
                             add.Add(item);
@@ -416,6 +418,57 @@ namespace HIS_WebApi._API_AI
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = add;
                 returnData.Result = $"增加{suspiciousRxLogRule_locals.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得規則
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update_rule_local")]
+        public string update_rule_local([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_rule_local";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+                List<suspiciousRxLog_ruleClass> suspiciousRxLogRule_locals = returnData.Data.ObjToClass<List<suspiciousRxLog_ruleClass>>();
+                if (suspiciousRxLogRule_locals == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                List<object[]> list_suspiciousRxLogRule = suspiciousRxLogRule_locals.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog_rule_local", UserName, Password, Port, SSLMode);
+
+                sQLControl.UpdateByDefulteExtra(null, list_suspiciousRxLogRule);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogRule_locals;
+                returnData.Result = $"更新{suspiciousRxLogRule_locals.Count}筆資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
