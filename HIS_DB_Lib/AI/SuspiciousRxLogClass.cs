@@ -177,17 +177,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
         [JsonPropertyName("rule")]
-        public string 識別規則依據
-        {
-            get
-            {
-                if (rule_type != null && rule_type.Count > 0)
-                    return string.Join(";", rule_type);
-                else
-                    return string.Empty;
-            }
-        }
-        //public string 識別規則依據 { get; set; }
+        public string 識別規則依據 { get; set; }
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
 
@@ -274,7 +264,28 @@ namespace HIS_DB_Lib
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
-        public List<string> rule_type { get; set; }
+        public List<string> rule_type
+        {
+            get
+            {
+                if (this.識別規則依據.StringIsEmpty())
+                    return new List<string>();
+
+                return 識別規則依據.Split(';').ToList();
+            }
+            set
+            {
+                if (value == null)
+                {
+                    識別規則依據 = string.Empty;
+                }
+                else
+                {
+                    識別規則依據 = string.Join(";", value);
+                }
+            }
+
+        }
 
         public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
@@ -532,6 +543,8 @@ namespace HIS_DB_Lib
         public string 診斷碼 { get; set; }
         [JsonPropertyName("ICD_DESC")]
         public string 診斷內容 { get; set; }
+        [JsonPropertyName("BRYPE")]
+        public string 藥袋類型 { get; set; }
         public List<diseaseClass> diseaseClasses
         {
             get

@@ -198,6 +198,10 @@
     <None Update="excel_MedShift.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="處方疑義紀錄表.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+
   </ItemGroup>
 
   <ItemGroup>
