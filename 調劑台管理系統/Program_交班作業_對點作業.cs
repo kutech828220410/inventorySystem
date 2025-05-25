@@ -671,7 +671,7 @@ namespace 調劑台管理系統
 
                     for (int i = 0; i < dialog_抽屜選擇.Value.Count; i++)
                     {
-                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, dialog_抽屜選擇.Value[i]);
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, dialog_抽屜選擇.Value[i]);
                         if (list_locker_table_value_buf.Count > 0)
                         {
                             list_locker_table_value_result.Add(list_locker_table_value_buf[0]);
@@ -679,7 +679,7 @@ namespace 調劑台管理系統
                     }
                     for (int i = 0; i < list_locker_table_value_result.Count; i++)
                     {
-                        list_locker_table_value_result[i][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                        list_locker_table_value_result[i][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                     }
                     this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_result, false);
                 }

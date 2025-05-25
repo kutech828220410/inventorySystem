@@ -1404,10 +1404,10 @@ namespace 調劑台管理系統
             {
                 IP = value[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
                 // Function_取藥堆疊資料_新增母資料(Guid.NewGuid().ToString(), this.textBox_工程模式_領藥台_01_名稱.Text, enum_取藥堆疊_TYPE.EPD_5_83鎖控, "", IP, 登入者名稱, Color.Lime.ToColorString(), 0);
-                List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetRows(enum_Locker_Index_Table.IP.GetEnumName(), IP, false);
+                List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetRows(enum_lockerIndex.IP.GetEnumName(), IP, false);
                 if (list_locker_table_value.Count > 0)
                 {
-                    list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    list_locker_table_value[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                     this.sqL_DataGridView_Locker_Index_Table.SQL_Replace(list_locker_table_value[0], false);
                 }
                 string GUID = Guid.NewGuid().ToString();

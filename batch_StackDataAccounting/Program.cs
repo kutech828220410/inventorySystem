@@ -807,7 +807,7 @@ namespace batch_StackDataAccounting
             table = OrderClass.init(API_Server);
             sQLControl_醫令資料.Init(table);
 
-            table = new Table(new enum_Locker_Index_Table());
+            table = new Table(new enum_lockerIndex());
             table.Server = sys_serverSettingClass.Server;
             table.Username = sys_serverSettingClass.User;
             table.Password = sys_serverSettingClass.Password;
@@ -906,15 +906,15 @@ namespace batch_StackDataAccounting
                 List<object[]> list_locker_table_value_replace = new List<object[]>();
                 for (int i = 0; i < list_locker_table_value.Count; i++)
                 {
-                    string IP = list_locker_table_value[i][(int)enum_Locker_Index_Table.IP].ObjectToString();
+                    string IP = list_locker_table_value[i][(int)enum_lockerIndex.IP].ObjectToString();
 
               
                     if (IP.Check_IP_Adress() == false) continue;
-                    if (list_locker_table_value[i][(int)enum_Locker_Index_Table.輸出狀態].ObjectToString() != true.ToString()) continue;
+                    if (list_locker_table_value[i][(int)enum_lockerIndex.輸出狀態].ObjectToString() != true.ToString()) continue;
    
                     Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                     if (drawer == null) continue;
-                    list_locker_table_value[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
+                    list_locker_table_value[i][(int)enum_lockerIndex.輸出狀態] = false.ToString();
                     list_locker_table_value_replace.Add(list_locker_table_value[i]);
 
                     Console.WriteLine($"抽屜[{drawer.IP}] 【鎖控開啟】....");
@@ -3779,7 +3779,7 @@ namespace batch_StackDataAccounting
                         drawerUI_EPD_583.Set_LED_UDP(drawer);
                         list_已亮燈藥碼.Add(藥品碼);
 
-                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
                     }
 
                     if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName()
@@ -3790,7 +3790,7 @@ namespace batch_StackDataAccounting
                         Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                         storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                         list_已亮燈藥碼.Add(藥品碼);
-                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
                     }
 
                 }
@@ -3800,13 +3800,13 @@ namespace batch_StackDataAccounting
                     Function_儲位亮燈(new LightOn(藥品碼, color), ref list_lock_IP); list_已亮燈藥碼.Add(藥品碼);
                     for (int k = 0; k < list_lock_IP.Count; k++)
                     {
-                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, list_lock_IP[k]);
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, list_lock_IP[k]);
                         if (list_locker_table_value_buf.Count > 0)
                         {
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                            list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                            list_locker_table_value_buf[0][(int)enum_lockerIndex.Master_GUID] = Master_GUID;
+                            list_locker_table_value_buf[0][(int)enum_lockerIndex.Device_GUID] = Device_GUID;
+                            list_locker_table_value_buf[0][(int)enum_lockerIndex.Slave_GUID] = Slave_GUID;
+                            list_locker_table_value_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                             list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
                         }
                     }
@@ -3822,16 +3822,16 @@ namespace batch_StackDataAccounting
                     storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
                     list_已亮燈藥碼.Add(藥品碼);
 
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
                 }
 
 
 
                 if (list_locker_table_value_buf.Count == 0) continue;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                list_locker_table_value_buf[0][(int)enum_lockerIndex.Master_GUID] = Master_GUID;
+                list_locker_table_value_buf[0][(int)enum_lockerIndex.Device_GUID] = Device_GUID;
+                list_locker_table_value_buf[0][(int)enum_lockerIndex.Slave_GUID] = Slave_GUID;
+                list_locker_table_value_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                 list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
                 Console.WriteLine($"開啟抽屜致能,藥品碼:{藥品碼} {DateTime.Now.ToDateTimeString()}");
             }

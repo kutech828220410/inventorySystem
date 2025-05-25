@@ -25,7 +25,7 @@ namespace 調劑台管理系統
     
         #region Locker_Index_Table
   
-        enum enum_Locker_Index_Table_匯出
+        enum enum_lockerIndex_匯出
         {
             IP,
             Num,
@@ -33,7 +33,7 @@ namespace 調劑台管理系統
             輸出位置,
             同步輸出,
         }
-        enum enum_Locker_Index_Table_匯入
+        enum enum_lockerIndex_匯入
         {
             IP,
             Num,
@@ -100,7 +100,7 @@ namespace 調劑台管理系統
         private void Program_系統_Init()
         {
             Table table = new Table("");
-            table = new Table(new enum_Locker_Index_Table());
+            table = new Table(new enum_lockerIndex());
             _sqL_DataGridView_Locker_Index_Table = this.sqL_DataGridView_Locker_Index_Table;
             this.sqL_DataGridView_Locker_Index_Table.Init(table);
 
@@ -458,7 +458,7 @@ namespace 調劑台管理系統
                 {
                     DataTable datatable = new DataTable();
                     datatable = sqL_DataGridView_Locker_Index_Table.GetDataTable();
-                    datatable = datatable.ReorderTable(new enum_Locker_Index_Table_匯出());
+                    datatable = datatable.ReorderTable(new enum_lockerIndex_匯出());
                     CSVHelper.SaveFile(datatable, saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
@@ -470,7 +470,7 @@ namespace 調劑台管理系統
                     this.Cursor = Cursors.WaitCursor;
                     DataTable dataTable = new DataTable();
                     CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
-                    DataTable datatable_buf = dataTable.ReorderTable(new enum_Locker_Index_Table_匯入());
+                    DataTable datatable_buf = dataTable.ReorderTable(new enum_lockerIndex_匯入());
                     if (datatable_buf == null)
                     {
                         MyMessageBox.ShowDialog("匯入檔案,資料錯誤!");
@@ -488,9 +488,9 @@ namespace 調劑台管理系統
                     for (int i = 0; i < list_LoadValue.Count; i++)
                     {
                         object[] value_load = list_LoadValue[i];
-                        value_load = value_load.CopyRow(new enum_Locker_Index_Table_匯入(), new enum_Locker_Index_Table());
-                        list_SQL_Value_buf = list_SQL_Value.GetRows((int)enum_Locker_Index_Table.IP, value_load[(int)enum_Locker_Index_Table.IP].ObjectToString());
-                        value_load[(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
+                        value_load = value_load.CopyRow(new enum_lockerIndex_匯入(), new enum_lockerIndex());
+                        list_SQL_Value_buf = list_SQL_Value.GetRows((int)enum_lockerIndex.IP, value_load[(int)enum_lockerIndex.IP].ObjectToString());
+                        value_load[(int)enum_lockerIndex.輸出狀態] = false.ToString();
                         if (list_SQL_Value_buf.Count > 0)
                         {
                             object[] value_SQL = list_SQL_Value_buf[0];
@@ -502,7 +502,7 @@ namespace 調劑台管理系統
                         }
                         else
                         {
-                            value_load[(int)enum_Locker_Index_Table.GUID] = Guid.NewGuid().ToString();
+                            value_load[(int)enum_lockerIndex.GUID] = Guid.NewGuid().ToString();
                             list_Add.Add(value_load);
                         }
                     }
@@ -601,10 +601,10 @@ namespace 調劑台管理系統
         {
             public int Compare(object[] x, object[] y)
             {
-                string IP_0 = x[(int)enum_Locker_Index_Table.IP].ObjectToString();
-                string IP_1 = y[(int)enum_Locker_Index_Table.IP].ObjectToString();
-                string Num_0 = x[(int)enum_Locker_Index_Table.Num].ObjectToString();
-                string Num_1 = y[(int)enum_Locker_Index_Table.Num].ObjectToString();
+                string IP_0 = x[(int)enum_lockerIndex.IP].ObjectToString();
+                string IP_1 = y[(int)enum_lockerIndex.IP].ObjectToString();
+                string Num_0 = x[(int)enum_lockerIndex.Num].ObjectToString();
+                string Num_1 = y[(int)enum_lockerIndex.Num].ObjectToString();
                 string[] IP_0_Array = IP_0.Split('.');
                 string[] IP_1_Array = IP_1.Split('.');
                 if (!IP_0.Check_IP_Adress()) return 0;

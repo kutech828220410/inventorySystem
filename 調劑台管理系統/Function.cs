@@ -2173,11 +2173,11 @@ namespace 調劑台管理系統
             {
                 string IP = list_IP[i];
 
-                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
                 if (list_locker_table_value_buf.Count > 0)
                 {
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.Master_GUID] = "";
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
 
                     list_locker_table_value_replace.Add(list_locker_table_value_buf[0]);
 
@@ -2190,7 +2190,7 @@ namespace 調劑台管理系統
         {
             List<object[]> list_locker_table_value = _sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<string> list_IP = (from temp in list_locker_table_value
-                                    select temp[(int)enum_Locker_Index_Table.IP].ObjectToString()).ToList();
+                                    select temp[(int)enum_lockerIndex.IP].ObjectToString()).ToList();
             Function_外門片解鎖(list_IP);
         }
         public static void Function_外門片解鎖(List<string> list_IP)
@@ -2203,16 +2203,16 @@ namespace 調劑台管理系統
             {
                 string IP = list_IP[i];
 
-                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
                 if (list_locker_table_value_buf.Count > 0)
                 {
-                    string 同步輸出 = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
+                    string 同步輸出 = list_locker_table_value_buf[0][(int)enum_lockerIndex.同步輸出].ObjectToString();
                     if (同步輸出.StringIsEmpty()) continue;
-                    list_locker_table_value_外門片_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
+                    list_locker_table_value_外門片_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, 同步輸出);
                     if (list_locker_table_value_外門片_buf.Count > 0)
                     {
-                        list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = "";
-                        list_locker_table_value_外門片_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                        list_locker_table_value_外門片_buf[0][(int)enum_lockerIndex.Master_GUID] = "";
+                        list_locker_table_value_外門片_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
 
                         list_locker_table_value_replace.Add(list_locker_table_value_外門片_buf[0]);
                     }

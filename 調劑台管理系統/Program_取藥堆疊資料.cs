@@ -2417,15 +2417,15 @@ namespace 調劑台管理系統
                                 return;
                             }
                         }
-                        if(flag_RFID使用)
-                        {
-                            if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName())
-                            {
-                                this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName();
-                                this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
-                                return;
-                            }
-                        }
+                        //if(flag_RFID使用)
+                        //{
+                        //    if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName())
+                        //    {
+                        //        this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName();
+                        //        this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
+                        //        return;
+                        //    }
+                        //}
                         bool flag_單循環取藥 = false;
                         if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()) flag_單循環取藥 = true;
                         if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()) flag_單循環取藥 = true;
@@ -2869,14 +2869,14 @@ namespace 調劑台管理系統
                     RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
                     RFIDDevice rFIDDevice = rFIDClass.SortByGUID(Device_GUID);
                     Num = rFIDDevice.MasterIndex.ToString();
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
-                    list_locker_table_value_buf = list_locker_table_value_buf.GetRows((int)enum_Locker_Index_Table.Num, Num.ToString());
+                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, IP);
+                    list_locker_table_value_buf = list_locker_table_value_buf.GetRows((int)enum_lockerIndex.Num, Num.ToString());
                     if (list_locker_table_value_buf.Count > 0)
                     {
-                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                        list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                        list_locker_table_value_buf[0][(int)enum_lockerIndex.Master_GUID] = Master_GUID;
+                        list_locker_table_value_buf[0][(int)enum_lockerIndex.Device_GUID] = Device_GUID;
+                        list_locker_table_value_buf[0][(int)enum_lockerIndex.Slave_GUID] = Slave_GUID;
+                        list_locker_table_value_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                         list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
                         Console.WriteLine($"開啟RFID抽屜致能,IP:{IP} {DateTime.Now.ToDateTimeString()}");
                     }
@@ -2891,13 +2891,13 @@ namespace 調劑台管理系統
                             select temp).Distinct().ToList();
             for (int k = 0; k < list_lock_IP.Count; k++)
             {
-                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, list_lock_IP[k]);
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, list_lock_IP[k]);
                 if (list_locker_table_value_buf.Count > 0)
                 {
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Master_GUID] = Master_GUID;
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Device_GUID] = Device_GUID;
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
-                    list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.Master_GUID] = Master_GUID;
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.Device_GUID] = Device_GUID;
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.Slave_GUID] = Slave_GUID;
+                    list_locker_table_value_buf[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                     list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
 
                     Console.WriteLine($"開啟抽屜致能,IP:{list_lock_IP[k]} {DateTime.Now.ToDateTimeString()}");
@@ -3040,6 +3040,7 @@ namespace 調劑台管理系統
                     {
                         if (Function_取藥堆疊資料_取得作業模式(_list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.複盤)) 狀態_buf = enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName();
                         else if (Function_取藥堆疊資料_取得作業模式(_list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤)) 狀態_buf = enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName();
+                        else if (Function_取藥堆疊資料_取得作業模式(_list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用)) 狀態_buf = enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName();
                         else 狀態_buf = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                     }
                     if (_list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString().Contains("系統"))
@@ -3179,6 +3180,7 @@ namespace 調劑台管理系統
                     bool flag_remove = false;
                     if (_list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName()) flag_remove = true;
                     if (_list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName()) flag_remove = true;
+                    if (_list_取藥母堆疊資料_buf[0][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()) flag_remove = true;
                     if (flag_remove)
                     {
                         list_取藥母堆疊資料.RemoveByGUID(_list_取藥母堆疊資料_buf[0]);

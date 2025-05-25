@@ -35,15 +35,33 @@ namespace HIS_WebApi
         [Route("init_login_data_index")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(suspiciousRxLogClass))]
         [HttpPost]
-        public string init_login_data_index()
+        public string init_login_data_index([FromBody] returnData returnData)
         {
             try
             {
-                return CheckCreatTable(new enum_login_data_index());
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(sys_serverSettingClasses[0]);
+
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return ex.Message;
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
             }
         }
         [HttpGet]
@@ -75,7 +93,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
-                Check_Table();
+                CheckCreatTable(sys_serverSettingClasses[0]);
                 sessionClass data = returnData.Data.ObjToClass<sessionClass>();
                 List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
                 List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
@@ -235,7 +253,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
-                Check_Table();
+                CheckCreatTable(sys_serverSettingClasses[0]);
                 sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
                 List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
                 list_login_session = list_login_session.GetRows((int)enum_login_session.ID, sessionClass.ID);
@@ -284,7 +302,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
-                Check_Table();
+                                CheckCreatTable(sys_serverSettingClasses[0]);
 
                 sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
                 List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
@@ -356,7 +374,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
-                Check_Table();
+                                CheckCreatTable(sys_serverSettingClasses[0]);
 
                 sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
                 List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
@@ -403,7 +421,7 @@ namespace HIS_WebApi
 
                 SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
-                Check_Table();
+                                CheckCreatTable(sys_serverSettingClasses[0]);
                 sessionClass data = returnData.Data.ObjToClass<sessionClass>();
                 List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
                 List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
@@ -872,51 +890,22 @@ namespace HIS_WebApi
             return new List<loginDataClass> { loginData };
         }
 
-        private void Check_Table()
+    
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
-            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
-            if (sys_serverSettingClasses.Count == 0)
-            {
-                return;
-            }
-            string IP = sys_serverSettingClasses[0].Server;
-            string DataBaseName = sys_serverSettingClasses[0].DBName;
-            string UserName = sys_serverSettingClasses[0].User;
-            string Password = sys_serverSettingClasses[0].Password;
-            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
-
-            SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
-
-            if (sQLControl_login_session.IsTableCreat() == false)
-            {
-                Table table = new Table("login_session");
-                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-                table.AddColumnList("ID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-                table.AddColumnList("Name", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-                table.AddColumnList("Employer", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-                table.AddColumnList("loginTime", Table.DateType.DATETIME, 50, Table.IndexType.None);
-                table.AddColumnList("verlifyTime", Table.DateType.DATETIME, 50, Table.IndexType.None);
-                sQLControl_login_session.CreatTable(table);
-            }
-        }
-        private string CheckCreatTable(Enum Enum)
-        {
-            //string TableName = returnData.TableName;
-            SQLUI.Table table = new SQLUI.Table(Enum.GetEnumDescription());
-            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
-            if (sys_serverSettingClasses.Count == 0)
-            {
-                return $"找無Server資料!";
-            }
-            table = MethodClass.CheckCreatTable(sys_serverSettingClasses[0], Enum);
-
-            return table.JsonSerializationt(true);
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+            List<Table> tables = new List<Table>();
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_login_session()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_login_data_index()));
+            return tables.JsonSerializationt(true);
         }
         private void loadData()
         {
-            init_login_data_index();
+            init_login_data_index(new returnData());
             string data = Basic.MyFileStream.LoadFileAllText(@"./login_data_index.txt", "utf-8");
             //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
 

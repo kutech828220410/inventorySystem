@@ -256,7 +256,7 @@ namespace HIS_DB_Lib
         {
             string jsonstring = Basic.Net.WEBApiGet(url);
             if (jsonstring.StringIsEmpty()) return null;
-            Console.WriteLine(jsonstring);
+            //Console.WriteLine(jsonstring);
             returnData returnData = jsonstring.JsonDeserializet<returnData>();
 
             List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
@@ -500,6 +500,15 @@ namespace HIS_DB_Lib
             sys_serverSettingClass value = returnData_out.Data.ObjToClass<sys_serverSettingClass>();
             if (value == null) return null;
             return value.Server;
+        }
+        static public DateTime GetServerTime(string API_Server)
+        {
+            string date_str = Basic.Net.WEBApiGet($"{API_Server}/api/time");
+            if(date_str.Check_Date_String())
+            {
+                return date_str.StringToDateTime();
+            }
+            return DateTime.MinValue;
         }
 
         static public SQLUI.Table Init(string API_Server)

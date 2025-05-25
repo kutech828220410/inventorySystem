@@ -49,9 +49,9 @@
             this.rJ_Lable2 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_TagList = new SQLUI.SQL_DataGridView();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
-            this.sqL_DataGridView_取藥狀態 = new SQLUI.SQL_DataGridView();
             this.rJ_Lable_異常 = new MyUI.RJ_Lable();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
+            this.sqL_DataGridView_取藥狀態 = new SQLUI.SQL_DataGridView();
             this.rJ_Pannel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
@@ -282,6 +282,7 @@
             this.rJ_Button_取消.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_取消.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_取消.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_取消.Enabled = false;
             this.rJ_Button_取消.FlatAppearance.BorderSize = 0;
             this.rJ_Button_取消.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -614,64 +615,6 @@
             this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
             // 
-            // sqL_DataGridView_取藥狀態
-            // 
-            this.sqL_DataGridView_取藥狀態.AutoSelectToDeep = false;
-            this.sqL_DataGridView_取藥狀態.backColor = System.Drawing.Color.WhiteSmoke;
-            this.sqL_DataGridView_取藥狀態.BorderColor = System.Drawing.Color.Transparent;
-            this.sqL_DataGridView_取藥狀態.BorderRadius = 0;
-            this.sqL_DataGridView_取藥狀態.BorderSize = 0;
-            this.sqL_DataGridView_取藥狀態.CellBorderColor = System.Drawing.Color.WhiteSmoke;
-            this.sqL_DataGridView_取藥狀態.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_取藥狀態.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_取藥狀態.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_取藥狀態.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_取藥狀態.columnHeaderBackColor = System.Drawing.Color.LightGray;
-            this.sqL_DataGridView_取藥狀態.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_取藥狀態.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_取藥狀態.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.columnHeadersHeight = 40;
-            this.sqL_DataGridView_取藥狀態.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.sqL_DataGridView_取藥狀態.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet;
-            this.sqL_DataGridView_取藥狀態.DataKeyEnable = false;
-            this.sqL_DataGridView_取藥狀態.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_取藥狀態.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_取藥狀態.ImageBox = false;
-            this.sqL_DataGridView_取藥狀態.Location = new System.Drawing.Point(803, 796);
-            this.sqL_DataGridView_取藥狀態.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.sqL_DataGridView_取藥狀態.Name = "sqL_DataGridView_取藥狀態";
-            this.sqL_DataGridView_取藥狀態.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_取藥狀態.Password = "user82822040";
-            this.sqL_DataGridView_取藥狀態.Port = ((uint)(3306u));
-            this.sqL_DataGridView_取藥狀態.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_取藥狀態.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_取藥狀態.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_取藥狀態.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.RowsColor = System.Drawing.SystemColors.Window;
-            this.sqL_DataGridView_取藥狀態.RowsHeight = 40;
-            this.sqL_DataGridView_取藥狀態.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_取藥狀態.selectedBorderSize = 2;
-            this.sqL_DataGridView_取藥狀態.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_取藥狀態.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_取藥狀態.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_取藥狀態.Server = "127.0.0.0";
-            this.sqL_DataGridView_取藥狀態.Size = new System.Drawing.Size(717, 98);
-            this.sqL_DataGridView_取藥狀態.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_取藥狀態.TabIndex = 161;
-            this.sqL_DataGridView_取藥狀態.UserName = "root";
-            this.sqL_DataGridView_取藥狀態.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_取藥狀態.可選擇多列 = false;
-            this.sqL_DataGridView_取藥狀態.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.自動換行 = true;
-            this.sqL_DataGridView_取藥狀態.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_取藥狀態.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.顯示CheckBox = false;
-            this.sqL_DataGridView_取藥狀態.顯示首列 = false;
-            this.sqL_DataGridView_取藥狀態.顯示首行 = true;
-            this.sqL_DataGridView_取藥狀態.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_取藥狀態.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            // 
             // rJ_Lable_異常
             // 
             this.rJ_Lable_異常.BackColor = System.Drawing.Color.White;
@@ -716,6 +659,64 @@
             this.rJ_Lable6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable6.TextColor = System.Drawing.Color.Black;
             // 
+            // sqL_DataGridView_取藥狀態
+            // 
+            this.sqL_DataGridView_取藥狀態.AutoSelectToDeep = false;
+            this.sqL_DataGridView_取藥狀態.backColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_取藥狀態.BorderColor = System.Drawing.Color.Transparent;
+            this.sqL_DataGridView_取藥狀態.BorderRadius = 0;
+            this.sqL_DataGridView_取藥狀態.BorderSize = 0;
+            this.sqL_DataGridView_取藥狀態.CellBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.sqL_DataGridView_取藥狀態.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_取藥狀態.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_取藥狀態.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_取藥狀態.checkedRowBackColor = System.Drawing.Color.YellowGreen;
+            this.sqL_DataGridView_取藥狀態.columnHeaderBackColor = System.Drawing.Color.LightGray;
+            this.sqL_DataGridView_取藥狀態.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_取藥狀態.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_取藥狀態.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.columnHeadersHeight = 40;
+            this.sqL_DataGridView_取藥狀態.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.sqL_DataGridView_取藥狀態.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet;
+            this.sqL_DataGridView_取藥狀態.DataKeyEnable = false;
+            this.sqL_DataGridView_取藥狀態.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_取藥狀態.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_取藥狀態.ImageBox = false;
+            this.sqL_DataGridView_取藥狀態.Location = new System.Drawing.Point(967, 796);
+            this.sqL_DataGridView_取藥狀態.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_取藥狀態.Name = "sqL_DataGridView_取藥狀態";
+            this.sqL_DataGridView_取藥狀態.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_取藥狀態.Password = "user82822040";
+            this.sqL_DataGridView_取藥狀態.Port = ((uint)(3306u));
+            this.sqL_DataGridView_取藥狀態.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
+            this.sqL_DataGridView_取藥狀態.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_取藥狀態.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
+            this.sqL_DataGridView_取藥狀態.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.RowsColor = System.Drawing.SystemColors.Window;
+            this.sqL_DataGridView_取藥狀態.RowsHeight = 40;
+            this.sqL_DataGridView_取藥狀態.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_取藥狀態.selectedBorderSize = 2;
+            this.sqL_DataGridView_取藥狀態.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_取藥狀態.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_取藥狀態.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_取藥狀態.Server = "127.0.0.0";
+            this.sqL_DataGridView_取藥狀態.Size = new System.Drawing.Size(553, 98);
+            this.sqL_DataGridView_取藥狀態.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_取藥狀態.TabIndex = 167;
+            this.sqL_DataGridView_取藥狀態.UserName = "root";
+            this.sqL_DataGridView_取藥狀態.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_取藥狀態.可選擇多列 = false;
+            this.sqL_DataGridView_取藥狀態.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.自動換行 = true;
+            this.sqL_DataGridView_取藥狀態.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_取藥狀態.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.顯示CheckBox = false;
+            this.sqL_DataGridView_取藥狀態.顯示首列 = false;
+            this.sqL_DataGridView_取藥狀態.顯示首行 = true;
+            this.sqL_DataGridView_取藥狀態.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_取藥狀態.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
             // Dialog_收支作業_RFID收支作業
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -725,9 +726,9 @@
             this.ClientSize = new System.Drawing.Size(1650, 898);
             this.CloseBoxSize = new System.Drawing.Size(40, 40);
             this.ControlBox = true;
+            this.Controls.Add(this.sqL_DataGridView_取藥狀態);
             this.Controls.Add(this.rJ_Lable_異常);
             this.Controls.Add(this.rJ_Lable6);
-            this.Controls.Add(this.sqL_DataGridView_取藥狀態);
             this.Controls.Add(this.rJ_Button_確認);
             this.Controls.Add(this.sqL_DataGridView_TagList);
             this.Controls.Add(this.rJ_Pannel3);
@@ -768,9 +769,9 @@
         private MyUI.RJ_Lable rJ_Lable_實收入_title;
         private MyUI.RJ_Lable rJ_Lable_應收入;
         private MyUI.RJ_Button rJ_Button_確認;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_取藥狀態;
         private MyUI.RJ_Lable rJ_Lable_異常;
         private MyUI.RJ_Lable rJ_Lable6;
         private MyUI.RJ_Lable rJ_Lable_應收入_title;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_取藥狀態;
     }
 }

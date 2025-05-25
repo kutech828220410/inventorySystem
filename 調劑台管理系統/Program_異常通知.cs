@@ -84,7 +84,11 @@ namespace 調劑台管理系統
                     }
                     if (medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.RFID入庫異常.GetEnumName() || medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.RFID出庫異常.GetEnumName())
                     {
-                        notifyExceptionClass.內容 = $"({medRecheckLogClasses[i].藥碼}){medRecheckLogClasses[i].藥名} ,Tag:{medRecheckLogClasses[i].參數1}";
+                        notifyExceptionClass.內容 = $"({medRecheckLogClasses[i].藥碼}){medRecheckLogClasses[i].藥名} ,{medRecheckLogClasses[i].事件描述}";
+                    }
+                    if (medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName())
+                    {
+                        notifyExceptionClass.內容 = $"({medRecheckLogClasses[i].藥碼}){medRecheckLogClasses[i].藥名} ,{medRecheckLogClasses[i].事件描述}";
                     }
                     notifyExceptionClasses.Add(notifyExceptionClass);
                 }
