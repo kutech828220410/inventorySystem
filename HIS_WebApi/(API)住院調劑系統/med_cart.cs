@@ -2921,7 +2921,8 @@ namespace HIS_WebApi
                             交易量 = item.交易量,
                             開方時間 = item.開方日期,
                             電腦名稱 = 調劑台,
-                            功能類型 = "-1" //掃碼領藥
+                            功能類型 = "-1", //掃碼領藥
+                            床號 = $"{item.病房}-{item.床號}",
                         };
                         outTakeMed_Datas.Add(outTakeMed_Data);
                     }
@@ -3026,6 +3027,7 @@ namespace HIS_WebApi
                             交易量 = item.交易量.Replace("-", ""),
                             開方時間 = item.開方日期,
                             電腦名稱 = 調劑台,
+                            床號 = $"{item.病房}-{item.床號}",
                             功能類型 = "-4" //退藥
                         };
                         outTakeMed_Datas.Add(outTakeMed_Data);
