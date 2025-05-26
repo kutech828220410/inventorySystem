@@ -52,6 +52,7 @@
             this.rJ_Lable_異常 = new MyUI.RJ_Lable();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_取藥狀態 = new SQLUI.SQL_DataGridView();
+            this.rJ_Lable_顯示狀態 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.rJ_Lable_顯示狀態);
             this.panel1.Controls.Add(this.plC_RJ_Button_解鎖);
             this.panel1.Controls.Add(this.rJ_Lable4);
             this.panel1.Controls.Add(this.dateTimeIntervelPicker_報表時間);
@@ -717,6 +719,28 @@
             this.sqL_DataGridView_取藥狀態.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_取藥狀態.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // rJ_Lable_顯示狀態
+            // 
+            this.rJ_Lable_顯示狀態.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_顯示狀態.BackgroundColor = System.Drawing.Color.Green;
+            this.rJ_Lable_顯示狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_顯示狀態.BorderRadius = 8;
+            this.rJ_Lable_顯示狀態.BorderSize = 0;
+            this.rJ_Lable_顯示狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_顯示狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_顯示狀態.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_顯示狀態.GUID = "";
+            this.rJ_Lable_顯示狀態.Location = new System.Drawing.Point(658, 18);
+            this.rJ_Lable_顯示狀態.Name = "rJ_Lable_顯示狀態";
+            this.rJ_Lable_顯示狀態.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_顯示狀態.ShadowSize = 0;
+            this.rJ_Lable_顯示狀態.Size = new System.Drawing.Size(567, 82);
+            this.rJ_Lable_顯示狀態.TabIndex = 160;
+            this.rJ_Lable_顯示狀態.Text = "rJ_Lable3";
+            this.rJ_Lable_顯示狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_顯示狀態.TextColor = System.Drawing.Color.White;
+            this.rJ_Lable_顯示狀態.Visible = false;
+            // 
             // Dialog_收支作業_RFID收支作業
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -773,5 +797,6 @@
         private MyUI.RJ_Lable rJ_Lable6;
         private MyUI.RJ_Lable rJ_Lable_應收入_title;
         private SQLUI.SQL_DataGridView sqL_DataGridView_取藥狀態;
+        private MyUI.RJ_Lable rJ_Lable_顯示狀態;
     }
 }

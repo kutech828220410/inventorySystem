@@ -440,15 +440,36 @@ namespace 調劑台管理系統
 
                 if (_Import_Export == IncomeOutcomeMode.收入)
                 {
-                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門入庫.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門入庫", 2000, Color.Green);
-                    dialog_AlarmForm.ShowDialog();
+                    Task.Run(new Action(delegate 
+                    {
+                        this.Invoke(new Action(delegate
+                        {
+                            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門入庫.wav");
+                            rJ_Lable_顯示狀態.Text = "請開門入庫";
+                            rJ_Lable_顯示狀態.Visible = true;                            
+                        }));
+                        System.Threading.Thread.Sleep(2000);
+                        this.Invoke(new Action(delegate
+                        {
+                            rJ_Lable_顯示狀態.Visible = false;
+                        }));
+
+                    }));
+                   
                 }
                 else if (_Import_Export == IncomeOutcomeMode.支出)
                 {
-                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門取藥.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門取藥", 2000, Color.Green);
-                    dialog_AlarmForm.ShowDialog();
+                    this.Invoke(new Action(delegate
+                    {
+                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門出庫.wav");
+                        rJ_Lable_顯示狀態.Text = "請開門出庫";
+                        rJ_Lable_顯示狀態.Visible = true;
+                    }));
+                    System.Threading.Thread.Sleep(2000);
+                    this.Invoke(new Action(delegate
+                    {
+                        rJ_Lable_顯示狀態.Visible = false;
+                    }));
                 }
                 form.Invoke(new Action(delegate 
                 {
@@ -558,7 +579,7 @@ namespace 調劑台管理系統
                 {
                     hasRetriedConfirmation = true;
                     Logger.Log("dialog_HRFID", $"第一次驗證失敗，提示使用者重新掃描");
-                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
+                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\logout.wav");
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("偵測到數量不符或異常標籤,請重新掃描標籤後再按一次確認", 2000);
                     dialog_AlarmForm.ShowDialog();
                     return;
