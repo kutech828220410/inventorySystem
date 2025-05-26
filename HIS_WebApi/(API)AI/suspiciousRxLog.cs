@@ -676,15 +676,7 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt(true);
                 }
 
-                if (suspiciousRxLog.rule_type == null || suspiciousRxLog.rule_type.Count == 0)
-                {
-                    returnData.Url = url;
-                    returnData.Data = result;
-                    returnData.Code = -200;
-                    returnData.Result = $"規則回傳不得為空";
-                    Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));
-                    return returnData.JsonSerializationt(true);
-                }
+                
                 List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses = suspiciousRxLog_ruleClass.get_rule_by_index(API_Server, suspiciousRxLog.rule_type);
                 suspiciousRxLog_ruleClass buff_suspiciousRxLog_ruleClass = new suspiciousRxLog_ruleClass();
                 buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName()).FirstOrDefault();
@@ -693,6 +685,15 @@ namespace HIS_WebApi._API_AI
 
                 if (suspiciousRxLog.error == true.ToString())
                 {
+                    if (suspiciousRxLog.rule_type == null || suspiciousRxLog.rule_type.Count == 0)
+                    {
+                        returnData.Url = url;
+                        returnData.Data = result;
+                        returnData.Code = -200;
+                        returnData.Result = $"規則回傳不得為空";
+                        Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));
+                        return returnData.JsonSerializationt(true);
+                    }
                     suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
                     suspiciousRxLogClasses.簡述事件 = suspiciousRxLog.response;
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
