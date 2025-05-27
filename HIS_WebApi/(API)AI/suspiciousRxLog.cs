@@ -885,6 +885,7 @@ namespace HIS_WebApi._API_AI
                             藥品學名 = med.藥品學名,
                             藥品許可證號 = med.藥品許可證號,
                             管制級別 = med.管制級別,
+                            懷孕用藥級別 = med.懷孕用藥級別
                         };
 
                     })
@@ -895,9 +896,9 @@ namespace HIS_WebApi._API_AI
                      item.病人姓名.StartsWith("朴") ||
                      item.病人姓名.StartsWith("崔") ||
                       Regex.IsMatch(item.病人姓名, @"^[A-Za-z]+$"));
-                    return new Prescription
+                    Prescription prescription =new Prescription
                     {
-
+                        懷孕 = false.ToString(),
                         藥袋條碼 = group.Key,
                         產出時間 = orderClass.產出時間,
                         醫師代碼 = group.Any(item => item.醫師代碼 == item.病人姓名).ToString(),
@@ -907,6 +908,8 @@ namespace HIS_WebApi._API_AI
                         診斷碼 = suspiciousRxLogClass.診斷碼,
                         診斷內容 = suspiciousRxLogClass.診斷內容
                     };
+                    if (orderClass.備註.Contains("懷孕")) prescription.懷孕 = true.ToString();
+                    return prescription;
                 }).ToList();
             return cpoeList;
 

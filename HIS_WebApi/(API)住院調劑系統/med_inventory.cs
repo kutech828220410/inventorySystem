@@ -103,7 +103,7 @@ namespace HIS_WebApi
         ///         "op_id":"",
         ///         "op_name":""
         ///         }]
-        ///         "Value":"調劑"or"覆核"
+        ///         "Value":"調劑"or"覆核 or "取消調劑"
         ///         "ValueAry":["處方GUID;處方GUID"]
         ///     }
         /// </code>
@@ -148,7 +148,7 @@ namespace HIS_WebApi
                 if (returnData.Value == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.Value 內容應為\"調劑\" OR \"覆核\"";
+                    returnData.Result = $"returnData.Value 內容應為\"調劑\" OR \"覆核\" OR \"取消調劑\"";
                     return returnData.JsonSerializationt(true);
                 }
                 List<medInventoryLogClass> input_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
