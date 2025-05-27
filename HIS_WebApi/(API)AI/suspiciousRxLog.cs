@@ -657,11 +657,11 @@ namespace HIS_WebApi._API_AI
                     有效處方 = eff_cpoe,
                     歷史處方 = old_cpoe
                 };
-                if (true)
-                {
-                    returnData.Data = result;
-                    return returnData.JsonSerializationt(true);
-                }
+                //if (true)
+                //{
+                //    returnData.Data = result;
+                //    return returnData.JsonSerializationt(true);
+                //}
                 string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
                 Logger.Log("suspiciousRxLog_input", returnData.JsonSerializationt(true));
