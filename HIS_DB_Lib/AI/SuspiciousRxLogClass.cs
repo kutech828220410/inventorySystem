@@ -524,6 +524,8 @@ namespace HIS_DB_Lib
         public string 單次劑量 { get; set; }
         [JsonPropertyName("DUNIT")]
         public string 劑量單位 { get; set; }
+        [JsonPropertyName("PREGNANCY_LEVEL")]
+        public string 懷孕用藥級別 { get; set; }
     }
     public class Prescription
     {
@@ -545,6 +547,8 @@ namespace HIS_DB_Lib
         public string 診斷內容 { get; set; }
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
+        [JsonPropertyName("PREGNANT")]
+        public string 懷孕 { get; set; }
         public List<diseaseClass> diseaseClasses
         {
             get
