@@ -75,9 +75,9 @@ namespace 調劑台管理系統
             string OutputAdress = pLC_Device_Output.GetAdress();
             if (OutputAdress.StringIsEmpty()) return;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, OutputAdress);
             if (list_locker_table_value.Count == 0) return;
-            list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+            list_locker_table_value[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
 
             this.sqL_DataGridView_Locker_Index_Table.SQL_Replace(list_locker_table_value[0], false);
 
@@ -88,10 +88,10 @@ namespace 調劑台管理系統
             {
                 //Master_GUID 為取藥堆疊母資料
                 List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-                list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+                list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, PLC_Device_Output.GetAdress());
                 if (list_locker_table_value.Count == 0) return;
-                string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-                string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+                string IP = list_locker_table_value[0][(int)enum_lockerIndex.IP].ObjectToString();
+                string Num = list_locker_table_value[0][(int)enum_lockerIndex.Num].ObjectToString();
                 string 調劑台名稱 = "";
 
                 if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
@@ -205,10 +205,10 @@ namespace 調劑台管理系統
         private void Loker_LockOpeningEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, PLC_Device_Output.GetAdress());
             if (list_locker_table_value.Count == 0) return;
-            string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-            string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+            string IP = list_locker_table_value[0][(int)enum_lockerIndex.IP].ObjectToString();
+            string Num = list_locker_table_value[0][(int)enum_lockerIndex.Num].ObjectToString();
             Console.WriteLine($"{IP},{Num},<抽屜開啟> {DateTime.Now.ToDateTimeString()}");
             //if (plC_ScreenPage_Main.PageText == "管制抽屜")
             //{
@@ -222,10 +222,10 @@ namespace 調劑台管理系統
             if (!plC_CheckBox_不檢查抽屜開啟異常.Checked) return true;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_replace = new List<object[]>();
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, PLC_Device_Output.GetAdress());
             if (list_locker_table_value.Count == 0) return true;
-            string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-            string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+            string IP = list_locker_table_value[0][(int)enum_lockerIndex.IP].ObjectToString();
+            string Num = list_locker_table_value[0][(int)enum_lockerIndex.Num].ObjectToString();
             Console.WriteLine($"{IP},{Num},<抽屜開啟異常!!!> {DateTime.Now.ToDateTimeString()}");
             List<object[]> list_value = sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
 
@@ -240,13 +240,13 @@ namespace 調劑台管理系統
         #region Function
         private void Function_輸出入檢查_搜尋輸出(object[] value)
         {
-            string IP = value[(int)enum_Locker_Index_Table.IP].ObjectToString();
-            string 輸出位置 = value[(int)enum_Locker_Index_Table.輸出位置].ObjectToString();
-            string 輸入位置 = value[(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
-            string 輸出狀態 = value[(int)enum_Locker_Index_Table.輸出狀態].ObjectToString();
-            string 同步輸出 = value[(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
-            string Master_GUID = value[(int)enum_Locker_Index_Table.Master_GUID].ObjectToString();
-            int Num = value[(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
+            string IP = value[(int)enum_lockerIndex.IP].ObjectToString();
+            string 輸出位置 = value[(int)enum_lockerIndex.輸出位置].ObjectToString();
+            string 輸入位置 = value[(int)enum_lockerIndex.輸入位置].ObjectToString();
+            string 輸出狀態 = value[(int)enum_lockerIndex.輸出狀態].ObjectToString();
+            string 同步輸出 = value[(int)enum_lockerIndex.同步輸出].ObjectToString();
+            string Master_GUID = value[(int)enum_lockerIndex.Master_GUID].ObjectToString();
+            int Num = value[(int)enum_lockerIndex.Num].ObjectToString().StringToInt32();
             this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
         }
         private void Function_輸出入檢查_搜尋輸出(string IP, int Num, string InputAdress, string OutputAdress, string Master_GUID)
@@ -408,12 +408,12 @@ namespace 調劑台管理系統
             list_locker_table_value_buf = list_locker_table_value;
             for (int i = 0; i < list_locker_table_value_buf.Count; i++)
             {
-                string IP = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.IP].ObjectToString();
-                string Input = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
-                string OutPut = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出位置].ObjectToString();
-                bool Input_state = (list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE");
+                string IP = list_locker_table_value_buf[i][(int)enum_lockerIndex.IP].ObjectToString();
+                string Input = list_locker_table_value_buf[i][(int)enum_lockerIndex.輸入位置].ObjectToString();
+                string OutPut = list_locker_table_value_buf[i][(int)enum_lockerIndex.輸出位置].ObjectToString();
+                bool Input_state = (list_locker_table_value_buf[i][(int)enum_lockerIndex.輸入狀態].ObjectToString().ToUpper() == "TRUE");
                 bool flag_state = false;
-                int Num = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
+                int Num = list_locker_table_value_buf[i][(int)enum_lockerIndex.Num].ObjectToString().StringToInt32();
                 bool AlarmEnable = false;
                 if (Input.StringIsEmpty()) continue;
                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
@@ -466,7 +466,7 @@ namespace 調劑台管理系統
                         this.PLC.properties.device_system.Set_Device(Input, flag_state);
                         if (flag_state != Input_state)
                         {
-                            list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag_state.ToString();
+                            list_locker_table_value_buf[i][(int)enum_lockerIndex.輸入狀態] = flag_state.ToString();
                             list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                         }
                         
@@ -475,7 +475,7 @@ namespace 調劑台管理系統
                 }
                 if (flag_state != Input_state)
                 {
-                    list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag_state.ToString();
+                    list_locker_table_value_buf[i][(int)enum_lockerIndex.輸入狀態] = flag_state.ToString();
                     list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                 }
                 if (!flag_Program_輸出入檢查_輸出刷新_Init || true)
@@ -500,15 +500,15 @@ namespace 調劑台管理系統
                 for (int k = 0; k < List_RFID_雲端資料[i].DeviceClasses.Length; k++)
                 {
                     List<object[]> list_locker_table_value_buf = new List<object[]>();
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, List_RFID_雲端資料[i].IP);
-                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.Num, k.ToString());
+                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.IP, List_RFID_雲端資料[i].IP);
+                    list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.Num, k.ToString());
                     if (List_RFID_雲端資料[i].DeviceClasses[k].UnlockTimeEnable)
                     {
                         if (Basic.TypeConvert.IsInDate(new DateTime(1900, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, 0), List_RFID_雲端資料[i].DeviceClasses[k].Unlock_start_dateTime, List_RFID_雲端資料[i].DeviceClasses[k].Unlock_end_dateTime))
                         {
                             if (list_locker_table_value_buf.Count > 0)
                             {
-                                string Input = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
+                                string Input = list_locker_table_value_buf[0][(int)enum_lockerIndex.輸入位置].ObjectToString();
                                 foreach (Pannel_Locker loker in this.List_Locker)
                                 {
                                     if (loker.Get_InputAdress() == Input)
@@ -529,7 +529,7 @@ namespace 調劑台管理系統
                     {
                         if (list_locker_table_value_buf.Count > 0)
                         {
-                            string Input = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
+                            string Input = list_locker_table_value_buf[0][(int)enum_lockerIndex.輸入位置].ObjectToString();
                             foreach (Pannel_Locker loker in this.List_Locker)
                             {
                                 if (loker.Get_InputAdress() == Input)
@@ -547,7 +547,7 @@ namespace 調劑台管理系統
         {
             List<object[]> list_locker_table_value_buf = new List<object[]>();
             List<object[]> list_locker_table_value_同步輸出_buf = new List<object[]>();
-            list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出狀態, true.ToString());
+            list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出狀態, true.ToString());
             List<object[]> list_locker_table_value_ReplaceValue = new List<object[]>();
             this.flag_輸出入檢查_輸出刷新_全部輸出完成 = true;
 
@@ -556,25 +556,25 @@ namespace 調劑台管理系統
                 list_locker_table_value_buf.Sort(new ICP_Locker_Index_Table());
                 for (int i = 0; i < list_locker_table_value_buf.Count; i++)
                 {
-                    string IP = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.IP].ObjectToString();
-                    string 輸出位置 = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出位置].ObjectToString();
-                    string 輸入位置 = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
-                    string 輸出狀態 = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態].ObjectToString();
-                    string 同步輸出 = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
-                    string Master_GUID = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Master_GUID].ObjectToString();
-                    int Num = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
-                    string Slave_GUID = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Slave_GUID].ObjectToString();
-                    string Device_GUID = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Device_GUID].ObjectToString();
+                    string IP = list_locker_table_value_buf[i][(int)enum_lockerIndex.IP].ObjectToString();
+                    string 輸出位置 = list_locker_table_value_buf[i][(int)enum_lockerIndex.輸出位置].ObjectToString();
+                    string 輸入位置 = list_locker_table_value_buf[i][(int)enum_lockerIndex.輸入位置].ObjectToString();
+                    string 輸出狀態 = list_locker_table_value_buf[i][(int)enum_lockerIndex.輸出狀態].ObjectToString();
+                    string 同步輸出 = list_locker_table_value_buf[i][(int)enum_lockerIndex.同步輸出].ObjectToString();
+                    string Master_GUID = list_locker_table_value_buf[i][(int)enum_lockerIndex.Master_GUID].ObjectToString();
+                    int Num = list_locker_table_value_buf[i][(int)enum_lockerIndex.Num].ObjectToString().StringToInt32();
+                    string Slave_GUID = list_locker_table_value_buf[i][(int)enum_lockerIndex.Slave_GUID].ObjectToString();
+                    string Device_GUID = list_locker_table_value_buf[i][(int)enum_lockerIndex.Device_GUID].ObjectToString();
                     string 調劑台名稱 = this.Function_取藥堆疊母資料_取得指定Master_GUID調劑台名稱(Master_GUID);
 
                     if (輸出狀態 == true.ToString())
                     {
                         this.flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
-                        list_locker_table_value_同步輸出_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
+                        list_locker_table_value_同步輸出_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, 同步輸出);
                         if (輸出位置 != "") this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
                         if (list_locker_table_value_同步輸出_buf.Count > 0) this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
 
-                        list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
+                        list_locker_table_value_buf[i][(int)enum_lockerIndex.輸出狀態] = false.ToString();
                         //this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString());
                         list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[i]);
 
@@ -674,8 +674,8 @@ namespace 調劑台管理系統
             List<Pannel_Locker> lockers_buf = new List<Pannel_Locker>();
             for (int i = 0; i < list_locker_table_value.Count; i++)
             {
-                string Input = list_locker_table_value[i][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
-                bool Input_state = (list_locker_table_value[i][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE");
+                string Input = list_locker_table_value[i][(int)enum_lockerIndex.輸入位置].ObjectToString();
+                bool Input_state = (list_locker_table_value[i][(int)enum_lockerIndex.輸入狀態].ObjectToString().ToUpper() == "TRUE");
                 if (Input.StringIsEmpty()) continue;
                 this.PLC.properties.device_system.Set_Device(Input, Input_state);
 

@@ -1649,18 +1649,11 @@ namespace 調劑台管理系統
                 {
                     Task.Run(new Action(delegate
                     {
-                        //rJ_Lable_診斷.Text = "";
-                        if (rJ_Lable_診斷.InvokeRequired)
-                        {
-                            rJ_Lable_診斷.Invoke(new Action(() =>
-                            {
-                                rJ_Lable_診斷.Text = "";
-                            }));
-                        }
-                        else
+                        this.Invoke(new Action(delegate 
                         {
                             rJ_Lable_診斷.Text = "";
-                        }
+                        }));
+                  
                         for (int i = 0; i < orderClasses.Count; i++)
                         {
                             orderClasses[i].藥師姓名 = 登入者姓名;

@@ -63,7 +63,7 @@ namespace HIS_WebApi
                 List<object[]> list_value = sQLControl_unlock.GetAllRows(null);
                 for(int i = 0; i < list_value.Count; i++) 
                 {
-                    list_value[i][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    list_value[i][(int)enum_lockerIndex.輸出狀態] = true.ToString();
                 }
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Code = 200;

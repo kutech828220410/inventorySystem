@@ -234,15 +234,15 @@ namespace 調劑台管理系統
             {
                 
                 OutputAdress = pannel_Lockers[i].Get_OutputAdress();
-                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, OutputAdress);
             
                 if (list_locker_table_value_buf.Count == 0)
                 {
                     continue;
                 }
-                bool inputState = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE";
-                IP = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-                Num = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
+                bool inputState = list_locker_table_value_buf[0][(int)enum_lockerIndex.輸入狀態].ObjectToString().ToUpper() == "TRUE";
+                IP = list_locker_table_value_buf[0][(int)enum_lockerIndex.IP].ObjectToString();
+                Num = list_locker_table_value_buf[0][(int)enum_lockerIndex.Num].ObjectToString().StringToInt32();
                 object device = Fucnction_從本地資料取得儲位(IP);
                 if (device == null)
                 {
@@ -302,9 +302,9 @@ namespace 調劑台管理系統
             string OutputAdress = pLC_Device_Output.GetAdress();
             if (OutputAdress.StringIsEmpty()) return;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, OutputAdress);
             if (list_locker_table_value.Count == 0) return;
-            list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+            list_locker_table_value[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
 
             this.sqL_DataGridView_Locker_Index_Table.SQL_Replace(list_locker_table_value[0], false);
 
@@ -314,9 +314,9 @@ namespace 調劑台管理系統
             string OutputAdress = PLC_Device_Output.GetAdress();
             if (OutputAdress.StringIsEmpty()) return;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, OutputAdress);
             if (list_locker_table_value.Count == 0) return;
-            list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+            list_locker_table_value[0][(int)enum_lockerIndex.輸出狀態] = true.ToString();
 
             this.sqL_DataGridView_Locker_Index_Table.SQL_Replace(list_locker_table_value[0], false);
             Pannel_Locker pannel_Locker = sender as Pannel_Locker;

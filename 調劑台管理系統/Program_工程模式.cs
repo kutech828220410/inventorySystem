@@ -160,14 +160,14 @@ namespace 調劑台管理系統
             for (int i = 0; i < this.List_Locker.Count; i++)
             {
                 OutputAdress = List_Locker[i].Get_OutputAdress();
-                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+                list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_lockerIndex.輸出位置, OutputAdress);
                 if (list_locker_table_value_buf.Count == 0)
                 {
                     List_Locker[i].Visible = false;
                     continue;
                 }
-                IP = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
-                Num = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
+                IP = list_locker_table_value_buf[0][(int)enum_lockerIndex.IP].ObjectToString();
+                Num = list_locker_table_value_buf[0][(int)enum_lockerIndex.Num].ObjectToString().StringToInt32();
                 object device = Fucnction_從本地資料取得儲位(IP);
                 if (device == null)
                 {
@@ -266,7 +266,7 @@ namespace 調劑台管理系統
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             for (int i = 0; i < list_locker_table_value.Count; i++)
             {
-                list_locker_table_value[i][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                list_locker_table_value[i][(int)enum_lockerIndex.輸出狀態] = true.ToString();
             }
             this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value, false);
         }

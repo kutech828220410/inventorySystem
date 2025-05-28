@@ -10,13 +10,20 @@ using System.ComponentModel;
 
 namespace HIS_DB_Lib
 {
+    [EnumDescription("login_session")]
     public enum enum_login_session
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("ID,VARCHAR,50,NONE")]
         ID,
+        [Description("Name,VARCHAR,50,NONE")]
         Name,
+        [Description("Employer,VARCHAR,50,NONE")]
         Employer,
+        [Description("loginTime,VARCHAR,50,NONE")]
         loginTime,
+        [Description("verifyTime,VARCHAR,50,NONE")]
         verifyTime,
     }
     public enum enum_login_data

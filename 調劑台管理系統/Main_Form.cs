@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.05222")]
-[assembly: AssemblyFileVersion("1.0.25.05222")]
+[assembly: AssemblyVersion("1.0.25.05262")]
+[assembly: AssemblyFileVersion("1.0.25.052262")]
 namespace 調劑台管理系統
 {
 
@@ -617,9 +617,31 @@ namespace 調劑台管理系統
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
 
+            DateTime dateTime = sys_serverSettingClass.GetServerTime(API_Server);
+            Console.WriteLine($"從伺服器取得時間: {dateTime:yyyy/MM/dd HH:mm:ss}");
+
+            if (dateTime != DateTime.MinValue)
+            {
+                if (NTP_ServerLib.NTPServerClass.SyncTime(dateTime))
+                {
+                    Console.WriteLine("已同步系統時間。");
+                }
+                else
+                {
+                    Console.WriteLine("同步系統時間失敗。");
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("取得伺服器時間失敗，未進行同步。");
+            }
+
             Task task = Task.Run(new Action(delegate
             {
                 if (!this.ControlMode) Function_從SQL取得儲位到本地資料();
+
+              
             }));
             if (!this.ControlMode) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
 
@@ -945,7 +967,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("API Server 連結失敗!");
                 return;
             }
-            Console.WriteLine(json_result);
+            //Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<HIS_DB_Lib.sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass;

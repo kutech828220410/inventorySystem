@@ -191,7 +191,8 @@ namespace 調劑台管理系統
                         }
                         else
                         {
-                            medConfigClass = new medConfigClass();               
+                            medConfigClass = new medConfigClass();
+                            medConfigClass.藥碼 = code;
                         }
                         if (text == "調劑註記") medConfigClass.調劑註記 = (medClass_checked != null).ToString();
                         if (text == "形狀相似") medConfigClass.形狀相似 = (medClass_checked != null).ToString();

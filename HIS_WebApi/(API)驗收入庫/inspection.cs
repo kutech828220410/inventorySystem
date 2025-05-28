@@ -2211,6 +2211,9 @@ namespace HIS_WebApi
                     medClasses_buf = (from temp in medClasses
                                       where (temp.藥品碼 == content.藥品碼 || temp.料號 == content.藥品碼)
                                       select temp).ToList();
+                    //medClasses_buf = medClasses_buf.Where(temp => temp.開檔狀態.StringIsEmpty() || temp.開檔狀態 == "開檔中").ToList();
+                    medClasses_buf = medClasses_buf.Where(temp => temp.開檔狀態.Contains("關檔中") == false).ToList();
+
                     if (medClasses_buf.Count > 0)
                     {
                         content.藥品碼 = medClasses_buf[0].藥品碼;

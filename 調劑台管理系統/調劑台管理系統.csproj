@@ -161,6 +161,9 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\0.DLL\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="NTP_ServerLib">
+      <HintPath>..\0.DLL\NTP_ServerLib.dll</HintPath>
+    </Reference>
     <Reference Include="RfidReaderLib">
       <HintPath>..\0.DLL\RfidReaderLib.dll</HintPath>
     </Reference>
