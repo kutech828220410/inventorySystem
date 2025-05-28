@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Globalization;
 using SkiaSharp;
 using System.Data;
+using NPOI.SS.Formula.Functions;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HIS_WebApi
@@ -26,6 +27,7 @@ namespace HIS_WebApi
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         private static string project = "PO_vision";
         private static string Message = "---------------------------------------------------------------------------";
+
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "textVisionClass物件", typeof(textVisionClass))]
         [HttpPost("init_textVision")]
         public string init_textVision([FromBody] returnData returnData)
@@ -42,54 +44,6 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 return CheckCreatTable(sys_serverSettingClasses[0], new enum_textVision());
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                return returnData.JsonSerializationt(true);
-            }
-
-        }
-        [HttpPost("init_sub_textVision")]
-        public string init_sub_textVision([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            try
-            {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                return CheckCreatTable(sys_serverSettingClasses[0], new enum_sub_textVision());
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                return returnData.JsonSerializationt(true);
-            }
-
-        }
-        [HttpPost("init_med_code_srch")]
-        public string init_med_code_srch([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            try
-            {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                return CheckCreatTable(sys_serverSettingClasses[0], new enum_med_code_srch());
             }
             catch (Exception ex)
             {
@@ -489,6 +443,155 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        //[HttpPost("analyze_new")]
+        //public string analyze_new([FromBody] returnData returnData)
+        //{
+        //    MyTimerBasic myTimerBasic = new MyTimerBasic();
+        //    returnData.Method = "api/pcmpo/analyze_new";
+        //    try
+        //    {
+        //        if (returnData.ValueAry == null )
+        //        {
+        //            returnData.Result = "returnData.ValueAry無傳入資料";
+        //            returnData.Code = -200;
+        //            return returnData.JsonSerializationt(true);
+        //        }
+        //        if (returnData.ValueAry.Count != 1)
+        //        {
+        //            returnData.Result = "returnData.ValueAry應為[\"GUID\"]";
+        //            returnData.Code = -200;
+        //            return returnData.JsonSerializationt(true);
+        //        }
+
+        //        string GUID = returnData.ValueAry[0];
+        //        (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+        //        string API_AI = GetServerAPI("Main", "網頁", "po_vision_api");
+        //        string API = GetServerAPI("Main", "網頁", "API01");
+        //        SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+        //        List<object[]> getDateByGuid = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+        //        List<textVisionClass> textVisionClasses = getDateByGuid.SQLToClass<textVisionClass, enum_textVision>();
+        //        if (textVisionClasses.Count == 0)
+        //        {
+        //            returnData.Code = -200;
+        //            returnData.Result = $"查無此 GUID {GUID}";
+        //            Logger.Log(project, returnData.JsonSerializationt());
+        //            Logger.Log(project, Message);
+        //            return returnData.JsonSerializationt(true);
+        //        }
+
+        //        List<object[]> update_textVisionClass = new List<object[]>();
+        //        poVision return_poVision = poVision.ai_analyze(API_AI, textVisionClasses);
+
+        //        if (return_poVision == null)
+        //        {
+        //            returnData.Result = $"AI連線失敗 url:{API_AI}";
+        //            returnData.Code = -200;
+        //            textVisionClasses[0].Code = "-3";
+        //            textVisionClasses[0].Result = returnData.Result;
+
+        //            update_textVisionClass = textVisionClasses.ClassToSQL<textVisionClass, enum_textVision>();
+        //            sQLControl_textVision.UpdateByDefulteExtra(null, update_textVisionClass);
+
+        //            returnData.Data = clearLongData(textVisionClasses[0]);
+        //            return returnData.JsonSerializationt(true);
+        //        }
+        //        List<textVisionClass> textVisions = return_poVision.Data.ObjToClass<List<textVisionClass>>();
+               
+        //        bool flag = false;
+        //        if(textVisions.Count > 1) flag = true;
+        //        if (return_poVision.Result == "False") // 批號或效期壞辨識失敗
+        //        {
+        //            textVisionClass textVision = textVisions[0];
+        //            if (textVision.效期.StringIsEmpty()) textVision.效期 = textVisionClasses[0].效期;
+        //            string base64 = textVision.圖片;
+        //            string fileName = "";
+        //            if (textVision.單號.StringIsEmpty())
+        //            {
+        //                fileName = $"{DateTime.Now.ToString("yyyyMMdd")}{DateTime.Now.ToString("HHmmss")}.txt";
+        //                SavePic(base64, project);
+        //            }
+        //            else
+        //            {
+        //                fileName = $"{textVision.單號}.txt";
+        //                SavePic(textVision.單號, base64, project);
+        //            }
+
+        //            returnData.Data = textVision;
+        //            Logger.Log(fileName, project, returnData.JsonSerializationt());
+        //        }
+        //        else
+        //        {
+
+        //        }
+        //        for (int i = 0; i < textVisions.Count; i++)
+        //        {
+
+        //            textVisions[i].批次ID = textVisionClasses[0].批次ID;
+        //            textVisions[i].操作時間 = textVisionClasses[0].操作時間;
+        //            textVisions[i].確認 = textVisionClasses[0].確認;
+        //            textVisions[i].驗收單號 = textVisionClasses[0].驗收單號;
+        //            textVisions[i].Code = textVisionClasses[0].Code;
+        //            textVisions[i].Result = textVisionClasses[0].Result;
+        //            textVisions[i].操作者ID = textVisionClasses[0].操作者ID;
+        //            textVisions[i].操作者姓名 = textVisionClasses[0].操作者姓名;
+        //            textVisions[i].圖片 = textVisionClasses[0].圖片;
+        //            if (textVisions[i].效期.StringIsEmpty())
+        //            {
+        //                textVisions[i].效期 = textVisionClasses[0].效期;
+        //            }
+        //            if (flag) //多張辨識
+        //            {
+        //                textVisions[i].PRI_KEY = $"{textVisions[i].驗收單號}_{textVisions[i].單號}_{i}";
+        //                if (i != 0)
+        //                {
+        //                    textVisions[i].GUID = Guid.NewGuid().ToString();
+        //                }
+        //                else
+        //                {
+        //                    textVisions[i].GUID = textVisionClasses[0].GUID;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                textVisions[i].PRI_KEY = $"{textVisions[i].驗收單號}_{textVisions[i].單號}";
+        //                textVisions[i].GUID = textVisionClasses[0].GUID;
+        //            }
+
+        //            //換API
+        //            if (returnData.Value == "Y")
+        //            {
+        //                returnData.Code = 200;
+        //                returnData.TimeTaken = $"{myTimerBasic}";
+        //                returnData.Result = $"AI 辨識完成";
+        //                returnData.Data = textVision;
+        //                return returnData.JsonSerializationt(true);
+        //            }
+        //            else
+        //            {
+        //                returnData returnData_poNum = textVisionClass.analyze_by_po_num(API, textVision);
+        //                return returnData_poNum.JsonSerializationt(true);
+        //            }
+
+        //        }
+                
+                
+               
+
+                
+
+
+
+        //        //return returnData.JsonSerializationt(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        returnData.Code = -200;
+        //        returnData.Result = $"Exception : {ex.Message}";
+        //        Logger.Log(project, returnData.JsonSerializationt());
+        //        Logger.Log(project, Message);
+        //        return returnData.JsonSerializationt(true);
+        //    }
+        //}
         /// <summary>
         /// 執行文字辨識
         /// </summary>
@@ -913,84 +1016,7 @@ namespace HIS_WebApi
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
-        [HttpPost("update_med_code_srch")]
-        public string update_med_code_srch([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_med_code_srch";
-            try
-            {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> sys_serverSettingClass_main = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = sys_serverSettingClass_main[0].Server;
-                string DB = sys_serverSettingClass_main[0].DBName;
-                string UserName = sys_serverSettingClass_main[0].User;
-                string Password = sys_serverSettingClass_main[0].Password;
-                uint Port = (uint)sys_serverSettingClass_main[0].Port.StringToInt32();
-
-                List<sys_serverSettingClass> sys_serverSettingClass_API = sys_serverSettingClasses.MyFind("Main", "網頁", "API01");
-                string API = sys_serverSettingClass_API[0].Server;
-
-                if (returnData.Data == null)
-                {
-                    returnData.Data = -200;
-                    returnData.Result = "returnData.Date 空白，請輸入對應欄位資料!";
-                    return returnData.JsonSerializationt();
-                }
-                List<medCodeSrchClass> input_medCodeSrch = returnData.Data.ObjToClass<List<medCodeSrchClass>>();
-
-                string 辨識中文名 = input_medCodeSrch[0].辨識中文名;
-                string 辨識藥名 = input_medCodeSrch[0].辨識藥名;
-                string code = input_medCodeSrch[0].藥品碼;
-
-                SQLControl sQLControl_medCodeSrch = new SQLControl(Server, DB, "med_code_srch", UserName, Password, Port, SSLMode);
-                List<object[]> list_medCodeSrchClass = sQLControl_medCodeSrch.GetAllRows(null);
-                List<medCodeSrchClass> medCodeSrchClasses = list_medCodeSrchClass.SQLToClass<medCodeSrchClass, enum_med_code_srch>();
-                List<medCodeSrchClass> buff_medCodeSrch = medCodeSrchClasses
-                    .Where(temp => temp.辨識中文名 == 辨識中文名 || temp.辨識藥名 == 辨識藥名).ToList();
-                if (buff_medCodeSrch.Count != 0)
-                {
-                    returnData.Data = "";
-                    returnData.Code = 200;
-                    returnData.Result = "藥名已存在";
-                    return returnData.JsonSerializationt(true);
-                }
-                medClass medClass = medClass.get_med_clouds_by_code(API, code);
-                if (medClass == null)
-                {
-                    returnData.Code = 200;
-                    returnData.Result = "藥碼不存在";
-                    return returnData.JsonSerializationt(true);
-                }
-
-                input_medCodeSrch[0].GUID = Guid.NewGuid().ToString();
-                input_medCodeSrch[0].藥名 = medClass.藥品名稱;
-                input_medCodeSrch[0].中文名 = medClass.中文名稱;
-                input_medCodeSrch[0].操作時間 = DateTime.Now.ToDateTimeString();
-
-                List<object[]> add_medCodeSrchClass = input_medCodeSrch.ClassToSQL<medCodeSrchClass, enum_med_code_srch>();
-                sQLControl_medCodeSrch.AddRows(null, add_medCodeSrchClass);
-
-                returnData.Data = input_medCodeSrch;
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"新增<{add_medCodeSrchClass.Count}>筆";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                return returnData.JsonSerializationt(true);
-            }
-        }
+        
         /// <summary>
         /// 以GUID刪除textVision資料
         /// </summary>
@@ -1469,11 +1495,11 @@ namespace HIS_WebApi
                 List<object[]> list_update_textVisionClass = update_textVisionClass.ClassToSQL<textVisionClass, enum_textVision>();
                 if (list_update_textVisionClass.Count > 0) sQLControl_textVision.UpdateByDefulteExtra(null, list_update_textVisionClass);
 
-                
-                
-                //tasks.Add(Task.Run(new Action(delegate 
+
+
+                //tasks.Add(Task.Run(new Action(delegate
                 //{
-                //    foreach(var textVisionClass in update_textVisionClass)
+                //    foreach (var textVisionClass in update_textVisionClass)
                 //    {
                 //        inspectionClass.sub_content sub_Content = new inspectionClass.sub_content
                 //        {
@@ -1484,7 +1510,7 @@ namespace HIS_WebApi
                 //            操作人 = textVisionClass.操作者姓名,
                 //        };
                 //        sub_Contents.Add(sub_Content);
-                //    }   
+                //    }
                 //})));
                 //Task.WhenAll(tasks).Wait();
                 //foreach (var item in sub_Contents)
@@ -1493,7 +1519,7 @@ namespace HIS_WebApi
                 //    Logger.Log($"{project}/sub_content_add", returnData_out.JsonSerializationt(true));
                 //    if (returnData_out.Code != 200 || returnData_out.Data == null) return returnData_out.JsonSerializationt(true);
                 //}
-                
+
                 returnData.Code = 200;
                 returnData.Data = clearLongData(update_textVisionClass);
                 returnData.TimeTaken = $"{myTimerBasic}";

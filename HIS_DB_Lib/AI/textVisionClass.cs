@@ -79,36 +79,8 @@ namespace HIS_DB_Lib
         [Description("圖片角度,VARCHAR,20,NONE")]
         圖片角度
     }
-    [EnumDescription("sub_textVision")]
-    public enum enum_sub_textVision
-    {
-        [Description("GUID,VARCHAR,50,PRIMARY")]
-        GUID,
-        [Description("Master_GUID,VARCHAR,50,INDEX")]
-        Master_GUID,
-        [Description("圖片,LONGTEXT,10,NONE")]
-        圖片,
-    }
-    [EnumDescription("med_code_srch")]
-    public enum enum_med_code_srch
-    {
-        [Description("GUID,VARCHAR,50,PRIMARY")]
-        GUID,
-        [Description("Master_GUID,VARCHAR,50,INDEX")]
-        Master_GUID,
-        [Description("辨識中文名,VARCHAR,50,INDEX")]
-        辨識中文名,
-        [Description("辨識藥名,VARCHAR,50,INDEX")]
-        辨識藥名,
-        [Description("藥品碼,VARCHAR,30,NONE")]
-        藥品碼,
-        [Description("藥名,VARCHAR,50,NONE")]
-        藥名,
-        [Description("中文名,VARCHAR,50,NONE")]
-        中文名,
-        [Description("操作時間,DATETIME,50,NONE")]
-        操作時間
-    }
+    
+    
     /// <summary>
     /// TextVision 資料
     /// </summary>
@@ -374,23 +346,7 @@ namespace HIS_DB_Lib
             return returnData;
         }
         
-        static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
-        {
-            //string url = $"{API}/PO_Vision";
-            string url = API;
-
-            returnData returnData = new returnData();
-            returnData.Data = textVisionClasses;
-
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData returnData_AI = json_out.JsonDeserializet<returnData>();
-            if (returnData_AI == null) return null;
-            //if (returnData_AI.Result == "False") return null;
-            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
-            Console.WriteLine($"{returnData}");
-            return returnData_AI;
-        }
+        
         static public List<textVisionClass> get_by_pri_key(string API, string pri_key)
         {
             string url = $"{API}/api/pcmpo/get_by_pri_key";
@@ -424,6 +380,23 @@ namespace HIS_DB_Lib
             }
             List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             return out_textVisionClass;
+        }
+        static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
+        {
+            //string url = $"{API}/PO_Vision";
+            string url = API;
+
+            returnData returnData = new returnData();
+            returnData.Data = textVisionClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_AI = json_out.JsonDeserializet<returnData>();
+            if (returnData_AI == null) return null;
+            //if (returnData_AI.Result == "False") return null;
+            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            Console.WriteLine($"{returnData}");
+            return returnData_AI;
         }
         public enum enum_point_type
         {
@@ -481,71 +454,29 @@ namespace HIS_DB_Lib
 
         
     }
-    public class medCodeSrchClass
+    
+    public class poVision
     {
-        /// <summary>
-        /// 唯一KEY
-        /// </summary>
-        [JsonPropertyName("GUID")]
-        public string GUID { get; set; }
-        /// <summary>
-        /// 辨識單GUID
-        /// </summary>
-        [JsonPropertyName("Master_GUID")]
-        public string Master_GUID { get; set; }
-        /// <summary>
-        /// 辨識中文名
-        /// </summary>
-        [JsonPropertyName("recog_cht_name")]
-        public string 辨識中文名 { get; set; }
-        /// <summary>
-        /// 辨識藥名
-        /// </summary>
-        [JsonPropertyName("recog_name")]
-        public string 辨識藥名 { get; set; }
-        /// <summary>
-        /// 藥品碼
-        /// </summary>
-        [JsonPropertyName("code")]
-        public string 藥品碼 { get; set; }
-        /// <summary>
-        /// 藥名
-        /// </summary>
-        [JsonPropertyName("name")]
-        public string 藥名 { get; set; }
-        /// <summary>
-        /// 中文名
-        /// </summary>
-        [JsonPropertyName("cht_name")]
-        public string 中文名 { get; set; }
-        /// <summary>
-        /// 操作時間
-        /// </summary>
-        [JsonPropertyName("op_time")]
-        public string 操作時間 { get; set; }
-    }
-    public class returnDataClass
-    {
+        public string Code { get; set; }
         public List<textVisionClass> Data { get; set; }
-        public int Code { get; set; }
+        public string Degree { get; set; }
         public string Result { get; set; }
-    }
-    public class sub_textVisionClass
-    {
-        /// <summary>
-        /// 唯一KEY
-        /// </summary>
-        [JsonPropertyName("GUID")]
-        public string GUID { get; set; }
-        /// <summary>
-        /// Master_GUID
-        /// </summary>
-        [JsonPropertyName("Master_GUID")]
-        public string Master_GUID { get; set; }
-        /// <summary>
-        /// base64
-        /// </summary>
-        [JsonPropertyName("base64")]
-        public string 圖片 { get; set; }
+
+        static public poVision ai_analyze(string API, List<textVisionClass> textVisionClasses)
+        {
+            //string url = $"{API}/PO_Vision";
+            string url = API;
+
+            returnData returnData = new returnData();
+            returnData.Data = textVisionClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            poVision poVision = json_out.JsonDeserializet<poVision>();
+            if (poVision == null) return null;
+            //if (returnData_AI.Result == "False") return null;
+            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return poVision;
+        }
     }
 }

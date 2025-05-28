@@ -173,7 +173,7 @@
     <Compile Include="stockRecordClass.cs" />
     <Compile Include="storagelistClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />
-    <Compile Include="textVisionClass.cs" />
+    <Compile Include="AI\textVisionClass.cs" />
     <Compile Include="transactionsClass.cs" />
     <Compile Include="化療排程\udnoectc.cs" />
     <Compile Include="化療排程\udphnoph.cs" />
