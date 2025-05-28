@@ -458,6 +458,11 @@ namespace HIS_WebApi._API_AI
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
+                foreach(var item in suspiciousRxLogRule_locals)
+                {
+                    if (item.狀態.ToLower() == "true") item.狀態 = true.ToString();
+                    if (item.狀態.ToLower() == "false") item.狀態 = false.ToString();
+                }
                 List<object[]> list_suspiciousRxLogRule = suspiciousRxLogRule_locals.ClassToSQL<suspiciousRxLog_ruleClass, enum_suspiciousRxLog_rule>();
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
