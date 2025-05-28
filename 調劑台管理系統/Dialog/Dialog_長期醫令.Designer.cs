@@ -31,12 +31,17 @@ namespace 調劑台管理系統
         {
             this.sqL_DataGridView_護理站列表 = new SQLUI.SQL_DataGridView();
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
+            this.rJ_Button_批次調劑 = new MyUI.RJ_Button();
+            this.checkBox_顯示有儲位藥品 = new System.Windows.Forms.CheckBox();
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.rJ_DatePicker_日期 = new MyUI.RJ_DatePicker();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
             this.sqL_DataGridView_用藥資訊 = new SQLUI.SQL_DataGridView();
-            this.checkBox_顯示有儲位藥品 = new System.Windows.Forms.CheckBox();
-            this.rJ_Button_批次調劑 = new MyUI.RJ_Button();
+            this.checkBox_管1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_管2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_管3 = new System.Windows.Forms.CheckBox();
+            this.checkBox_管4 = new System.Windows.Forms.CheckBox();
+            this.checkBox_N = new System.Windows.Forms.CheckBox();
             this.rJ_Pannel2.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +110,11 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel2.BorderRadius = 10;
             this.rJ_Pannel2.BorderSize = 2;
+            this.rJ_Pannel2.Controls.Add(this.checkBox_N);
+            this.rJ_Pannel2.Controls.Add(this.checkBox_管4);
+            this.rJ_Pannel2.Controls.Add(this.checkBox_管3);
+            this.rJ_Pannel2.Controls.Add(this.checkBox_管2);
+            this.rJ_Pannel2.Controls.Add(this.checkBox_管1);
             this.rJ_Pannel2.Controls.Add(this.rJ_Button_批次調劑);
             this.rJ_Pannel2.Controls.Add(this.checkBox_顯示有儲位藥品);
             this.rJ_Pannel2.Controls.Add(this.rJ_Lable4);
@@ -118,6 +128,51 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.ShadowSize = 3;
             this.rJ_Pannel2.Size = new System.Drawing.Size(1222, 97);
             this.rJ_Pannel2.TabIndex = 151;
+            // 
+            // rJ_Button_批次調劑
+            // 
+            this.rJ_Button_批次調劑.AutoResetState = false;
+            this.rJ_Button_批次調劑.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_批次調劑.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_批次調劑.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_批次調劑.BorderRadius = 22;
+            this.rJ_Button_批次調劑.BorderSize = 0;
+            this.rJ_Button_批次調劑.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_批次調劑.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_批次調劑.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_批次調劑.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_批次調劑.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rJ_Button_批次調劑.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_批次調劑.GUID = "";
+            this.rJ_Button_批次調劑.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_批次調劑.Location = new System.Drawing.Point(1078, 11);
+            this.rJ_Button_批次調劑.Name = "rJ_Button_批次調劑";
+            this.rJ_Button_批次調劑.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_批次調劑.ProhibitionLineWidth = 4;
+            this.rJ_Button_批次調劑.ProhibitionSymbolSize = 30;
+            this.rJ_Button_批次調劑.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_批次調劑.ShadowSize = 0;
+            this.rJ_Button_批次調劑.ShowLoadingForm = false;
+            this.rJ_Button_批次調劑.Size = new System.Drawing.Size(116, 67);
+            this.rJ_Button_批次調劑.State = false;
+            this.rJ_Button_批次調劑.TabIndex = 159;
+            this.rJ_Button_批次調劑.Text = "批次調劑";
+            this.rJ_Button_批次調劑.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_批次調劑.TextHeight = 0;
+            this.rJ_Button_批次調劑.UseVisualStyleBackColor = false;
+            // 
+            // checkBox_顯示有儲位藥品
+            // 
+            this.checkBox_顯示有儲位藥品.AutoSize = true;
+            this.checkBox_顯示有儲位藥品.Checked = true;
+            this.checkBox_顯示有儲位藥品.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_顯示有儲位藥品.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_顯示有儲位藥品.Location = new System.Drawing.Point(461, 31);
+            this.checkBox_顯示有儲位藥品.Name = "checkBox_顯示有儲位藥品";
+            this.checkBox_顯示有儲位藥品.Size = new System.Drawing.Size(178, 30);
+            this.checkBox_顯示有儲位藥品.TabIndex = 66;
+            this.checkBox_顯示有儲位藥品.Text = "顯示有儲位藥品";
+            this.checkBox_顯示有儲位藥品.UseVisualStyleBackColor = true;
             // 
             // rJ_Lable4
             // 
@@ -146,7 +201,7 @@ namespace 調劑台管理系統
             this.rJ_DatePicker_日期.BorderSize = 0;
             this.rJ_DatePicker_日期.CalendarFont = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_DatePicker_日期.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_DatePicker_日期.Location = new System.Drawing.Point(155, 21);
+            this.rJ_DatePicker_日期.Location = new System.Drawing.Point(144, 21);
             this.rJ_DatePicker_日期.MinimumSize = new System.Drawing.Size(250, 35);
             this.rJ_DatePicker_日期.Name = "rJ_DatePicker_日期";
             this.rJ_DatePicker_日期.PickerFont = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -232,50 +287,64 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_用藥資訊.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_用藥資訊.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // checkBox_顯示有儲位藥品
+            // checkBox_管1
             // 
-            this.checkBox_顯示有儲位藥品.AutoSize = true;
-            this.checkBox_顯示有儲位藥品.Checked = true;
-            this.checkBox_顯示有儲位藥品.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_顯示有儲位藥品.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_顯示有儲位藥品.Location = new System.Drawing.Point(497, 34);
-            this.checkBox_顯示有儲位藥品.Name = "checkBox_顯示有儲位藥品";
-            this.checkBox_顯示有儲位藥品.Size = new System.Drawing.Size(178, 30);
-            this.checkBox_顯示有儲位藥品.TabIndex = 66;
-            this.checkBox_顯示有儲位藥品.Text = "顯示有儲位藥品";
-            this.checkBox_顯示有儲位藥品.UseVisualStyleBackColor = true;
+            this.checkBox_管1.AutoSize = true;
+            this.checkBox_管1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_管1.Location = new System.Drawing.Point(655, 31);
+            this.checkBox_管1.Name = "checkBox_管1";
+            this.checkBox_管1.Size = new System.Drawing.Size(65, 30);
+            this.checkBox_管1.TabIndex = 160;
+            this.checkBox_管1.Text = "管1";
+            this.checkBox_管1.UseVisualStyleBackColor = true;
             // 
-            // rJ_Button_批次調劑
+            // checkBox_管2
             // 
-            this.rJ_Button_批次調劑.AutoResetState = false;
-            this.rJ_Button_批次調劑.BackColor = System.Drawing.Color.White;
-            this.rJ_Button_批次調劑.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_批次調劑.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_批次調劑.BorderRadius = 22;
-            this.rJ_Button_批次調劑.BorderSize = 0;
-            this.rJ_Button_批次調劑.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_批次調劑.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_批次調劑.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_批次調劑.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_批次調劑.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rJ_Button_批次調劑.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_批次調劑.GUID = "";
-            this.rJ_Button_批次調劑.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_批次調劑.Location = new System.Drawing.Point(1078, 11);
-            this.rJ_Button_批次調劑.Name = "rJ_Button_批次調劑";
-            this.rJ_Button_批次調劑.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_批次調劑.ProhibitionLineWidth = 4;
-            this.rJ_Button_批次調劑.ProhibitionSymbolSize = 30;
-            this.rJ_Button_批次調劑.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_批次調劑.ShadowSize = 0;
-            this.rJ_Button_批次調劑.ShowLoadingForm = false;
-            this.rJ_Button_批次調劑.Size = new System.Drawing.Size(116, 67);
-            this.rJ_Button_批次調劑.State = false;
-            this.rJ_Button_批次調劑.TabIndex = 159;
-            this.rJ_Button_批次調劑.Text = "批次調劑";
-            this.rJ_Button_批次調劑.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_批次調劑.TextHeight = 0;
-            this.rJ_Button_批次調劑.UseVisualStyleBackColor = false;
+            this.checkBox_管2.AutoSize = true;
+            this.checkBox_管2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_管2.Location = new System.Drawing.Point(726, 31);
+            this.checkBox_管2.Name = "checkBox_管2";
+            this.checkBox_管2.Size = new System.Drawing.Size(65, 30);
+            this.checkBox_管2.TabIndex = 161;
+            this.checkBox_管2.Text = "管2";
+            this.checkBox_管2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_管3
+            // 
+            this.checkBox_管3.AutoSize = true;
+            this.checkBox_管3.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_管3.Location = new System.Drawing.Point(797, 31);
+            this.checkBox_管3.Name = "checkBox_管3";
+            this.checkBox_管3.Size = new System.Drawing.Size(65, 30);
+            this.checkBox_管3.TabIndex = 162;
+            this.checkBox_管3.Text = "管3";
+            this.checkBox_管3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_管4
+            // 
+            this.checkBox_管4.AutoSize = true;
+            this.checkBox_管4.Checked = true;
+            this.checkBox_管4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_管4.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_管4.Location = new System.Drawing.Point(868, 31);
+            this.checkBox_管4.Name = "checkBox_管4";
+            this.checkBox_管4.Size = new System.Drawing.Size(65, 30);
+            this.checkBox_管4.TabIndex = 163;
+            this.checkBox_管4.Text = "管4";
+            this.checkBox_管4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_N
+            // 
+            this.checkBox_N.AutoSize = true;
+            this.checkBox_N.Checked = true;
+            this.checkBox_N.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_N.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_N.Location = new System.Drawing.Point(939, 31);
+            this.checkBox_N.Name = "checkBox_N";
+            this.checkBox_N.Size = new System.Drawing.Size(48, 30);
+            this.checkBox_N.TabIndex = 164;
+            this.checkBox_N.Text = "N";
+            this.checkBox_N.UseVisualStyleBackColor = true;
             // 
             // Dialog_長期醫令
             // 
@@ -309,5 +378,10 @@ namespace 調劑台管理系統
         private MyUI.RJ_Lable rJ_Lable4;
         private System.Windows.Forms.CheckBox checkBox_顯示有儲位藥品;
         private MyUI.RJ_Button rJ_Button_批次調劑;
+        private System.Windows.Forms.CheckBox checkBox_管4;
+        private System.Windows.Forms.CheckBox checkBox_管3;
+        private System.Windows.Forms.CheckBox checkBox_管2;
+        private System.Windows.Forms.CheckBox checkBox_管1;
+        private System.Windows.Forms.CheckBox checkBox_N;
     }
 }

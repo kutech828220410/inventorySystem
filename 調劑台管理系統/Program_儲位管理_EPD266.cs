@@ -129,7 +129,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_複製格式_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_儲位初始化_MouseDownEvent;
             this.rJ_TextBox_儲位管理_EPD266_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位名稱_KeyPress;
-
+            this.rJ_TextBox_儲位管理_EPD266_包裝數量.KeyPress += RJ_TextBox_儲位管理_EPD266_包裝數量_KeyPress;
 
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測_CheckStateChanged;
@@ -145,7 +145,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
-
+    
 
         private void StoragePanel_SizeChanged(object sender, EventArgs e)
         {
@@ -412,7 +412,7 @@ namespace 調劑台管理系統
 
 
             Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
-            rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts = storage.StorageName;
+          
             //storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {
@@ -420,6 +420,9 @@ namespace 調劑台管理系統
                 this.plC_CheckBox_儲位管理_EPD266_警報.CheckStateChanged -= PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged;
 
                 rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Texts = storage.Speaker;
+                rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts = storage.StorageName;
+                rJ_TextBox_儲位管理_EPD266_包裝數量.Texts = storage.Min_Package_Num;
+
                 this.Invoke(new Action(delegate { plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Checked = storage.TOFON; }));
                 plC_CheckBox_儲位管理_EPD266_警報.Checked = storage.AlarmEnable;
 
@@ -474,6 +477,22 @@ namespace 調劑台管理系統
                 this.storagePanel.DrawToPictureBox(storage);
                 this.Function_設定雲端資料更新();
                 PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
+                MyMessageBox.ShowDialog("[儲位名稱]更新成功");
+
+            }
+        }
+        private void RJ_TextBox_儲位管理_EPD266_包裝數量_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Storage storage = this.storagePanel.CurrentStorage;
+                if (storage == null) return;
+                storage.Min_Package_Num = this.rJ_TextBox_儲位管理_EPD266_包裝數量.Texts;
+                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                this.storagePanel.DrawToPictureBox(storage);
+                this.Function_設定雲端資料更新();
+                PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
+                MyMessageBox.ShowDialog("[包裝數量]更新成功");
             }
         }
         private void RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress(object sender, KeyPressEventArgs e)
@@ -486,6 +505,8 @@ namespace 調劑台管理系統
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 List_EPD266_本地資料.Add_NewStorage(storage);
                 this.Function_設定雲端資料更新();
+                MyMessageBox.ShowDialog("[語音內容]更新成功");
+
             }
         }
         private void PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -544,7 +565,12 @@ namespace 調劑台管理系統
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱] = storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = storage.GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-            //value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock || storage.DeviceType == DeviceType.EPD420_lock) ? true.ToString() : false.ToString();
+
+            storage.Speaker = this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Text;
+            storage.StorageName = this.rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts;
+            storage.Min_Package_Num = this.rJ_TextBox_儲位管理_EPD266_包裝數量.Texts;
+
+
             List_EPD266_本地資料.Add_NewStorage(storage);
             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
             this.storagePanel.DrawToPictureBox(storage);

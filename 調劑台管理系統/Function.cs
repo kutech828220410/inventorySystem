@@ -23,6 +23,7 @@ namespace 調劑台管理系統
     {
         IP,
         TYPE,
+        包裝量,
         效期,
         批號,
         庫存,
@@ -70,7 +71,7 @@ namespace 調劑台管理系統
         }
 
       
-        static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order)
+        static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order , UC_調劑作業_TypeA uC_depensing = null)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
@@ -324,6 +325,10 @@ namespace 調劑台管理系統
                         takeMedicineStackClasses[i].操作人 = 操作人;
                         takeMedicineStackClasses[i].ID = ID;
                         takeMedicineStackClasses[i].藥師證字號 = 藥師證字號;
+                    }
+                    if(uC_depensing != null)
+                    {
+                        uC_depensing.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{操作人}]";
                     }
                 }
             }
@@ -1119,27 +1124,37 @@ namespace 調劑台管理系統
             }
             return 儲位資訊;
         }
+
+
         public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
         {
+            Console.WriteLine($"[取得異動儲位資訊] 藥品碼={藥品碼}, 異動量={異動量}");
+
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
-            if (儲位.Count == 0) return 儲位資訊_buf;
 
-
+            if (儲位.Count == 0)
+            {
+                Console.WriteLine("[取得異動儲位資訊] 無儲位資料");
+                return 儲位資訊_buf;
+            }
+            // 組儲位資訊
             for (int k = 0; k < 儲位.Count; k++)
             {
                 object value_device = 儲位[k];
-                if (value_device is Device)
+                if (value_device is Device device)
                 {
-                    Device device = (Device)value_device;
                     for (int i = 0; i < device.List_Validity_period.Count; i++)
                     {
                         object[] value = new object[new enum_儲位資訊().GetLength()];
                         value[(int)enum_儲位資訊.IP] = device.IP;
                         value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
+                        if (device.Min_Package_Num.StringToDouble() < 1) device.Min_Package_Num = "1";
+                        value[(int)enum_儲位資訊.包裝量] = device.Min_Package_Num;
                         value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
                         value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
                         value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
@@ -1149,35 +1164,159 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
+            Console.WriteLine($"[儲位總數] {儲位資訊.Count} 筆");
 
-            if (異動量 == 0) return 儲位資訊;
-            double 使用數量 = 異動量;
-            double 庫存數量 = 0;
-            double 剩餘庫存數量 = 0;
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
-                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToDouble();
-                if ((使用數量 < 0 && 庫存數量 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
+                string ip = 儲位資訊[i][(int)enum_儲位資訊.IP].ObjectToString();
+                string type = 儲位資訊[i][(int)enum_儲位資訊.TYPE].ObjectToString();
+                string pack = 儲位資訊[i][(int)enum_儲位資訊.包裝量].ObjectToString();
+                string lot = 儲位資訊[i][(int)enum_儲位資訊.批號].ObjectToString();
+                string exp = 儲位資訊[i][(int)enum_儲位資訊.效期].ToDateString();
+                string stock = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString();
+
+                Console.WriteLine($"[儲位明細] IP={ip}, TYPE={type}, 包裝量={pack}, 效期={exp}, 批號={lot}, 庫存={stock}");
+            }
+
+            if (異動量 == 0)
+            {
+                Console.WriteLine("[異動量為0] 無需異動");
+                return 儲位資訊;
+            }
+
+            double 使用數量 = 異動量;
+            儲位資訊_buf.Clear();
+
+            // 分組
+            var 儲位_大包裝 = 儲位資訊
+                .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() > 1)
+                .OrderByDescending(r => r[(int)enum_儲位資訊.包裝量].StringToDouble())
+                .ThenBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString()))
+                .ToList();
+
+            var 儲位_單包裝 = 儲位資訊
+                .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() == 1)
+                .OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString()))
+                .ToList();
+
+            Console.WriteLine($"[大包裝儲位] {儲位_大包裝.Count} 筆");
+            Console.WriteLine($"[單包裝儲位] {儲位_單包裝.Count} 筆");
+
+            void 處理異動量(List<object[]> 儲位清單, string 類型)
+            {
+                for (int i = 0; i < 儲位清單.Count; i++)
                 {
-                    剩餘庫存數量 = 庫存數量 + 使用數量;
-                    if (剩餘庫存數量 >= 0)
+                    double 庫存數量 = 儲位清單[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToDouble();
+                    double 包裝量 = 儲位清單[i][(int)enum_儲位資訊.包裝量].ObjectToString().StringToDouble();
+                    string IP = 儲位清單[i][(int)enum_儲位資訊.IP].ObjectToString();
+                    string 效期 = 儲位清單[i][(int)enum_儲位資訊.效期].ObjectToString();
+
+                    if (包裝量 <= 0) 包裝量 = 1;
+
+                    int 可用包數 = (int)(庫存數量 / 包裝量);
+                    int 需異動包數 = (int)(Math.Abs(使用數量) / 包裝量);
+                    if (需異動包數 == 0 && Math.Abs(使用數量) > 0) 需異動包數 = 1;
+
+                    if ((使用數量 < 0 && 可用包數 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
                     {
-                        儲位資訊[i][(int)enum_儲位資訊.異動量] = (使用數量).ToString();
-                        儲位資訊_buf.Add(儲位資訊[i]);
-                        break;
-                    }
-                    else
-                    {
-                        儲位資訊[i][(int)enum_儲位資訊.異動量] = (庫存數量 * -1).ToString();
-                        使用數量 = 剩餘庫存數量;
-                        儲位資訊_buf.Add(儲位資訊[i]);
+                        int 實際異動包數 = Math.Min(可用包數, 需異動包數);
+                        double 異動量實值 = 實際異動包數 * 包裝量 * (使用數量 > 0 ? 1 : -1);
+
+                        if (實際異動包數 > 0)
+                        {
+                            儲位清單[i][(int)enum_儲位資訊.異動量] = 異動量實值.ToString("0.#####");
+                            儲位資訊_buf.Add(儲位清單[i]);
+
+                            Console.WriteLine($"[{類型}] IP={IP}, 效期={效期}, 包裝量={包裝量}, 庫存={庫存數量}, 異動量={異動量實值}, 剩餘異動={使用數量 - 異動量實值}");
+
+                            使用數量 -= 異動量實值;
+
+                            if ((異動量 > 0 && 使用數量 <= 0) || (異動量 < 0 && 使用數量 >= 0))
+                                break;
+                        }
                     }
                 }
             }
 
+            處理異動量(儲位_大包裝, "大包裝處理");
+
+            if ((異動量 > 0 && 使用數量 > 0) || (異動量 < 0 && 使用數量 < 0))
+            {
+                Console.WriteLine($"[進入單包裝處理] 剩餘異動量={使用數量}");
+                處理異動量(儲位_單包裝, "單包裝處理");
+            }
+
+            if ((異動量 > 0 && 使用數量 > 0) || (異動量 < 0 && 使用數量 < 0))
+            {
+                Console.WriteLine($"[異動不足警告] 剩餘未完成異動量={使用數量}");
+            }
+
+            Console.WriteLine($"[異動完成] 已異動儲位數={儲位資訊_buf.Count}");
             return 儲位資訊_buf;
         }
+
+
+        //public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
+        //{
+        //    List<object> 儲位 = new List<object>();
+        //    List<string> 儲位_TYPE = new List<string>();
+        //    Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+        //    List<object[]> 儲位資訊_buf = new List<object[]>();
+        //    List<object[]> 儲位資訊 = new List<object[]>();
+        //    if (儲位.Count == 0) return 儲位資訊_buf;
+
+
+        //    for (int k = 0; k < 儲位.Count; k++)
+        //    {
+        //        object value_device = 儲位[k];
+        //        if (value_device is Device)
+        //        {
+        //            Device device = (Device)value_device;
+        //            for (int i = 0; i < device.List_Validity_period.Count; i++)
+        //            {
+        //                object[] value = new object[new enum_儲位資訊().GetLength()];
+        //                value[(int)enum_儲位資訊.IP] = device.IP;
+        //                value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
+        //                if (device.Min_Package_Num.StringIsDouble() == false) device.Min_Package_Num = "1";
+        //                value[(int)enum_儲位資訊.包裝量] = device.Min_Package_Num;
+        //                value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
+        //                value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
+        //                value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
+        //                value[(int)enum_儲位資訊.異動量] = "0";
+        //                value[(int)enum_儲位資訊.Value] = value_device;
+        //                儲位資訊.Add(value);
+        //            }
+        //        }
+        //    }
+        //    儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
+
+        //    if (異動量 == 0) return 儲位資訊;
+        //    double 使用數量 = 異動量;
+        //    double 庫存數量 = 0;
+        //    double 剩餘庫存數量 = 0;
+        //    for (int i = 0; i < 儲位資訊.Count; i++)
+        //    {
+        //        庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToDouble();
+        //        if ((使用數量 < 0 && 庫存數量 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
+        //        {
+        //            剩餘庫存數量 = 庫存數量 + 使用數量;
+        //            if (剩餘庫存數量 >= 0)
+        //            {
+        //                儲位資訊[i][(int)enum_儲位資訊.異動量] = (使用數量).ToString();
+        //                儲位資訊_buf.Add(儲位資訊[i]);
+        //                break;
+        //            }
+        //            else
+        //            {
+        //                儲位資訊[i][(int)enum_儲位資訊.異動量] = (庫存數量 * -1).ToString();
+        //                使用數量 = 剩餘庫存數量;
+        //                儲位資訊_buf.Add(儲位資訊[i]);
+        //            }
+        //        }
+        //    }
+
+        //    return 儲位資訊_buf;
+        //}
 
         public List<object[]> Function_新增效期至雲端資料(string 藥品碼, double 異動量, string 效期, string 批號)
         {

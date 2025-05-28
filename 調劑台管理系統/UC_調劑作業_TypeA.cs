@@ -20,6 +20,17 @@ namespace 調劑台管理系統
 {
     public partial class UC_調劑作業_TypeA : UserControl
     {
+        public string Title
+        {
+            set
+            {
+                this.Invoke(new Action(delegate { this.rJ_Lable_Title.Text = value; }));             
+            }
+            get
+            {
+                return this.rJ_Lable_Title.Text;
+            }
+        }
         public int index = -1;
         public string 調劑台名稱 = "";
         public string 登入者姓名 = "";
@@ -84,6 +95,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥內容.RowEnterEvent += SqL_DataGridView_領藥內容_RowEnterEvent;
             this.sqL_DataGridView_領藥內容.DataGridClearGridEvent += SqL_DataGridView_領藥內容_DataGridClearGridEvent;
             toolStripMenuItem_調劑畫面_顯示設定.Click += ToolStripMenuItem_調劑畫面_顯示設定_Click;
+            rJ_Lable_Title.Text = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[未登入]";
 
             textBox_密碼.PassWordChar = true;
             textBox_帳號.KeyPress += TextBox_帳號_KeyPress;
@@ -240,15 +252,35 @@ namespace 調劑台管理系統
                 List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, scanner_text);
                 if (medClasses.Count > 0)
                 {
-                    Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
-                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
-                    takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
-                    takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                    takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
-                    takeMedicineStackClass.總異動量 = "0";
-                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                    takeMedicineStackClass.顏色 = this.顏色;
-                    Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                    List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
+                    if(medConfigClasses.Count > 0)
+                    {
+                        Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入【退藥】數量");
+                        if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+                        
+                        Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
+                        takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                        takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
+                        takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸退藥.GetEnumName();
+                        takeMedicineStackClass.總異動量 = dialog_NumPannel.Value.ToString();
+                        takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                        takeMedicineStackClass.顏色 = this.顏色;
+                        Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                    }
+                    else
+                    {
+                        Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
+                        takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                        takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
+                        takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸領藥.GetEnumName();
+                        takeMedicineStackClass.總異動量 = "0";
+                        takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                        takeMedicineStackClass.顏色 = this.顏色;
+                        Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                    }
+                    
                     cnt = 65500;
                     return;
                 }
@@ -259,7 +291,7 @@ namespace 調劑台管理系統
                 personPageClass.藥師證字號 = "";
                 personPageClass.顏色 = this.顏色;
 
-                if (Main_Form.Function_醫令領藥(scanner_text, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool) == null)
+                if (Main_Form.Function_醫令領藥(scanner_text, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool , this) == null)
                 {
                     cnt = 65500;
                     return;
@@ -483,7 +515,7 @@ namespace 調劑台管理系統
                         this.Invoke(new Action(delegate
                         {
 
-                            rJ_Lable_Title.Text = $" [{登入者姓名}] {text_temp}";
+                            rJ_Lable_Title.Text = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{登入者姓名}] {text_temp}";
                             rJ_Lable_Title.BackgroundColor = Color.GreenYellow;
                             rJ_Lable_Title.TextColor = Color.Black;
                         }));
@@ -1238,6 +1270,7 @@ namespace 調劑台管理系統
                                where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
                                where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
                                where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
+                               where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName()
                                select value
                                 ).ToList();
 
@@ -1363,6 +1396,11 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
                     this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName())
                 {
                     this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
@@ -1416,7 +1454,7 @@ namespace 調劑台管理系統
                 textBox_帳號.Texts = "";
                 textBox_密碼.Texts = "";
                 plC_RJ_Button_登入.Texts = "登入";
-                rJ_Lable_Title.Text = $" [未登入]";
+                rJ_Lable_Title.Text = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[未登入]";
                 this.rJ_Lable_Title.BorderColor = Color.DimGray;
                 this.rJ_Lable_Title.BackgroundColor = Color.DimGray;
                 this.rJ_Lable_Title.TextColor = Color.White;
@@ -1492,7 +1530,7 @@ namespace 調劑台管理系統
                 textBox_密碼.Texts = "";
                 plC_RJ_Button_登入.Texts = "登出";
                 string text_temp = PLC_Device_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
-                rJ_Lable_Title.Text = $" [{登入者姓名}] {text_temp}";
+                rJ_Lable_Title.Text = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{登入者姓名}] {text_temp}";
                 //this.rJ_Lable_Title.BorderColor = this.panel_工程模式_顏色.BackColor;
                 this.rJ_Lable_Title.BackgroundColor = Color.GreenYellow;
                 this.rJ_Lable_Title.TextColor = Color.Black;
@@ -1505,8 +1543,11 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_取消作業_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (!this.PLC_Device_已登入.Bool) return;
-          
+            if (this.PLC_Device_已登入.Bool == false && Main_Form.PLC_Device_導引模式.Bool == false) return;
+            if (this.PLC_Device_已登入.Bool == false && Main_Form.PLC_Device_導引模式.Bool == true)
+            {
+                rJ_Lable_Title.Text = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[未登入]";
+            }
             Main_Form.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.取消作業, 登入者姓名, 調劑台名稱);
             Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
             Function_調劑作業_醫令資訊更新();
@@ -1765,6 +1806,7 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName()));
             if (!Main_Form._plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
         }

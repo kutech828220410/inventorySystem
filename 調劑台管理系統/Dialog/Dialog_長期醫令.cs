@@ -17,6 +17,8 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_長期醫令 : MyDialog
     {
+        private List<medClass> medClasses_cloud = new List<medClass>();
+        Dictionary<string, List<medClass>> keyValuePairs_med_cloud;
         private MyThread myThread_program = null;
         public personPageClass personPageClass = new personPageClass();
         public string deviceName = "";
@@ -46,6 +48,7 @@ namespace 調劑台管理系統
             this.LoadFinishedEvent += Dialog_長期醫令_LoadFinishedEvent;
             this.FormClosing += Dialog_長期醫令_FormClosing;
             this.rJ_Button_批次調劑.MouseDownEvent += RJ_Button_批次調劑_MouseDownEvent;
+
         }
 
         private void Dialog_長期醫令_FormClosing(object sender, FormClosingEventArgs e)
@@ -53,7 +56,6 @@ namespace 調劑台管理系統
             myThread_program.Abort();
             myThread_program = null;
         }
-
         private void Dialog_長期醫令_LoadFinishedEvent(EventArgs e)
         {
             this.sqL_DataGridView_護理站列表.RowsHeight = 40;
@@ -79,11 +81,16 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_用藥資訊.RefreshGrid();
             Refresh();
 
+            medClasses_cloud = medClass.get_med_cloud($"{Main_Form.API_Server}");
+            keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+
             myThread_program = new MyThread();
             myThread_program.Add_Method(sub_program);
             myThread_program.AutoRun(true);
             myThread_program.SetSleepTime(1000);
             myThread_program.Trigger();
+
+
         }
         private void sub_program()
         {
@@ -110,6 +117,18 @@ namespace 調劑台管理系統
                         }
                     }
                     if (orderClasses_temp[0].藥品碼.StringIsEmpty()) continue;
+                    List<medClass> medClasses_buf = keyValuePairs_med_cloud.SortDictionaryByCode(orderClasses_temp[0].藥品碼);
+                    if (medClasses_buf.Count == 0) continue;
+                    else
+                    {
+                        string 管制級別 = medClasses_buf[0].管制級別;
+                        if (checkBox_管1.Checked == false && 管制級別 == "1") continue;
+                        if (checkBox_管2.Checked == false && 管制級別 == "2") continue;
+                        if (checkBox_管3.Checked == false && 管制級別 == "3") continue;
+                        if (checkBox_管4.Checked == false && 管制級別 == "4") continue;
+                        if (checkBox_N.Checked == false && (管制級別 == "N" || 管制級別.StringIsEmpty())) continue;
+                    }
+
                     value[(int)enum_用藥資訊_總量.GUID] = orderClasses_temp[0].藥品碼;
                     value[(int)enum_用藥資訊_總量.藥碼] = orderClasses_temp[0].藥品碼;
                     value[(int)enum_用藥資訊_總量.藥名] = orderClasses_temp[0].藥品名稱;
@@ -141,55 +160,9 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_護理站列表_RowClickEvent(object[] RowValue)
         {
 
-            //string 護理站代碼 = RowValue[(int)enum_nursingStation.代碼].ObjectToString();
-            //try
-            //{
-            //    LoadingForm.ShowLoadingForm();
-            //    List<object[]> list_value = new List<object[]>();
-            //    List<OrderClass> orderClasses = OrderClass.get_by_nursingstation_day(Main_Form.API_Server, 護理站代碼, rJ_DatePicker_日期.Value);
-            //    Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
-            //    foreach (string key in keyValuePairs_order.Keys)
-            //    {
-            //        List<OrderClass> orderClasses_temp = keyValuePairs_order[key];
-            //        object[] value = new object[new enum_用藥資訊_總量().GetLength()];
-            //        if (orderClasses_temp.Count == 0) continue;
-            //        if (checkBox_顯示有儲位藥品.Checked)
-            //        {
-            //            if (Main_Form.Function_從本地資料取得儲位(orderClasses_temp[0].藥品碼).Count == 0)
-            //            {
-            //                continue;
-            //            }
-            //        }
-            //        value[(int)enum_用藥資訊_總量.GUID] = orderClasses_temp[0].藥品碼;
-            //        value[(int)enum_用藥資訊_總量.藥碼] = orderClasses_temp[0].藥品碼;
-            //        value[(int)enum_用藥資訊_總量.藥名] = orderClasses_temp[0].藥品名稱;
-            //        double 總量 = 0;
-            //        double 實調量 = 0;
-            //        for (int i = 0; i < orderClasses_temp.Count; i++)
-            //        {
-            //            總量 += orderClasses_temp[i].交易量.StringToDouble();
-            //            if (orderClasses_temp[i].實際調劑量.StringIsInt32()) 實調量 += orderClasses_temp[i].實際調劑量.StringToDouble();
-            //        }
-            //        總量 *= -1;
-            //        實調量 *= -1;
-            //        value[(int)enum_用藥資訊_總量.處方數量] = orderClasses_temp.Count;
-            //        value[(int)enum_用藥資訊_總量.總量] = 總量;
-            //        value[(int)enum_用藥資訊_總量.已調量] = 實調量;
-            //        list_value.Add(value);
-            //    }
-            //    sqL_DataGridView_用藥資訊.RefreshGrid(list_value);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MyMessageBox.ShowDialog($"Exception : {ex.Message}");
-            //}
-            //finally
-            //{
-            //    LoadingForm.CloseLoadingForm();
-            //}
+          
 
         }
-
         private void SqL_DataGridView_護理站列表_RowEnterEvent(object[] RowValue)
         {
         
