@@ -141,6 +141,14 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
+        public class ICP_By_optime : IComparer<medInventoryLogClass>
+        {
+            public int Compare(medInventoryLogClass x, medInventoryLogClass y)
+            {
+                int result = string.Compare(x.操作時間, y.操作時間) * -1;
+                return result;
+            }
+        }
         static public List<medInventoryLogClass> get_logtime_by_master_GUID(string API_Server, string Master_GUID)
         {
             string url = $"{API_Server}/api/med_inventory/get_logtime_by_master_GUID";

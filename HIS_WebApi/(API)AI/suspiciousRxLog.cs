@@ -578,7 +578,7 @@ namespace HIS_WebApi._API_AI
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                string command = $"SELECT * FROM {DB}.{TableName} WHERE 加入時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 != '{enum_suspiciousRxLog_status.無異狀.GetEnumName()}';";
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE 加入時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 = '{enum_suspiciousRxLog_status.未更改.GetEnumName()}';";
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
