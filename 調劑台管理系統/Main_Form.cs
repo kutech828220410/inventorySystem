@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.05291")]
-[assembly: AssemblyFileVersion("1.0.25.052291")]
+[assembly: AssemblyVersion("1.0.25.05294")]
+[assembly: AssemblyFileVersion("1.0.25.052294")]
 namespace 調劑台管理系統
 {
 
@@ -88,6 +88,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
         static public PLC_Device PLC_Device_面板於調劑結束更新 = new PLC_Device("S5030");
         static public PLC_Device PLC_Device_面板於過帳後更新 = new PLC_Device("S5031");
+        static public PLC_Device PLC_Device_閒置登出要警示 = new PLC_Device("S5040");
         static public PLC_Device PLC_Device_未交班無法調劑 = new PLC_Device("S3104");
         static public PLC_Device PLC_Device_導引模式 = new PLC_Device("S3105");
         static public PLC_Device PLC_Device_掃碼顏色固定 = new PLC_Device("S3112");

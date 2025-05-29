@@ -24,7 +24,14 @@ namespace 調劑台管理系統
         {
             set
             {
-                this.Invoke(new Action(delegate { this.rJ_Lable_Title.Text = value; }));             
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(new Action(delegate { this.rJ_Lable_Title.Text = value; }));
+                }
+                else
+                {
+                    this.rJ_Lable_Title.Text = value;
+                }
             }
             get
             {
@@ -250,10 +257,28 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, scanner_text);
+                personPageClass personPageClass = new personPageClass();
+
                 if (medClasses.Count > 0)
                 {
+                    if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+                    if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+                    if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+                    if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+                
                     List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
-                    if(medConfigClasses.Count > 0)
+
+                    if (medConfigClasses.Count > 0)
+                    {
+                        Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
+                        dialog_使用者登入.ShowDialog();
+                        if (dialog_使用者登入.DialogResult != DialogResult.Yes) return;
+                        personPageClass = dialog_使用者登入.personPageClass;
+                        this.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{ personPageClass.姓名}]";
+
+                    }
+
+                    if (medConfigClasses.Count > 0)
                     {
                         Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入【退藥】數量");
                         if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
@@ -262,10 +287,13 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
                         takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸退藥.GetEnumName();
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統退藥.GetEnumName();
                         takeMedicineStackClass.總異動量 = dialog_NumPannel.Value.ToString();
                         takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                         takeMedicineStackClass.顏色 = this.顏色;
+                        takeMedicineStackClass.操作人 = personPageClass.姓名;
+                        takeMedicineStackClass.ID = personPageClass.ID;
+                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
                         Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                     }
                     else
@@ -274,10 +302,13 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
                         takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸領藥.GetEnumName();
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
                         takeMedicineStackClass.總異動量 = "0";
                         takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                         takeMedicineStackClass.顏色 = this.顏色;
+                        takeMedicineStackClass.操作人 = personPageClass.姓名;
+                        takeMedicineStackClass.ID = personPageClass.ID;
+                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
                         Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                     }
                     
@@ -285,7 +316,6 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                personPageClass personPageClass = new personPageClass();
                 personPageClass.ID = "";
                 personPageClass.姓名 = "導引模式";
                 personPageClass.藥師證字號 = "";
@@ -1298,24 +1328,28 @@ namespace 調劑台管理系統
                     MyTimer_入賬完成時間.StartTickTime();
                     if (PLC_Device_閒置登出時間.Value != 0)
                     {
-                        if ((PLC_Device_閒置登出時間.Value - (int)MyTimer_閒置登出時間.GetTickTime()) <= 20000)
+                        if(Main_Form.PLC_Device_閒置登出要警示.Bool == true)
                         {
-                            myTimer_Logout.StartTickTime(5000);
-                            if (myTimer_Logout.IsTimeOut())
+                            if ((PLC_Device_閒置登出時間.Value - (int)MyTimer_閒置登出時間.GetTickTime()) <= 20000)
                             {
-                                myTimer_Logout.TickStop();
-                                Task.Run(new Action(delegate
+                                myTimer_Logout.StartTickTime(5000);
+                                if (myTimer_Logout.IsTimeOut())
                                 {
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{Main_Form.currentDirectory}\logout.wav"))
+                                    myTimer_Logout.TickStop();
+                                    Task.Run(new Action(delegate
                                     {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
+                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{Main_Form.currentDirectory}\logout.wav"))
+                                        {
+                                            sp.Stop();
+                                            sp.Play();
+                                            sp.PlaySync();
+                                        }
 
-                                }));
+                                    }));
+                                }
                             }
                         }
+                       
                     }
 
                 }
