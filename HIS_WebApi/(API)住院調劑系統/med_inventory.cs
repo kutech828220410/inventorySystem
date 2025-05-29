@@ -159,13 +159,14 @@ namespace HIS_WebApi
                 DateTime today = DateTime.Now;
                 string strat = today.GetStartDate().ToDateTimeString();
                 string end = today.GetEndDate().ToDateTimeString();
+                (string StartTime, string Endtime) = GetToday();
 
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_inventoryLog = new SQLControl(Server, DB, "med_inventory_log", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
 
-                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
-                List<object[]> list_med_inventoryLog = sQLControl_med_inventoryLog.GetRowsByBetween(null, (int)enum_med_inventory_log.操作時間, strat, end);
+                List<object[]> list_med_inventoryLog = sQLControl_med_inventoryLog.GetRowsByBetween(null, (int)enum_med_inventory_log.操作時間, StartTime, Endtime);
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medInventoryLogClass> sql_med_inventoryLog = list_med_inventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();
@@ -597,6 +598,7 @@ namespace HIS_WebApi
                 {
                     if (medInvenDict.TryGetValue(master_GUID, out List<medInventoryLogClass> logs)) result.AddRange(logs);
                 }
+                result.Sort(new medInventoryLogClass.ICP_By_optime());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = result;
@@ -622,6 +624,40 @@ namespace HIS_WebApi
             Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, enumInstance);
             return table.JsonSerializationt(true);
         }
+        private (string StartTime, string Endtime) GetToday()
+        {
+            string API = Method.GetServerAPI("Main", "網頁", "API01");
+            List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+            settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "交車時間");
+
+            DateTime startTime_datetime = new DateTime();
+            DateTime endTime_datetime = new DateTime();
+
+            if (settingPage != null)
+            {
+                string 交車 = settingPage.設定值;
+                TimeSpan 交車時間 = TimeSpan.Parse(交車);
+
+                DateTime 現在 = DateTime.Now;
+                TimeSpan 現在時間 = 現在.TimeOfDay;
+                if (現在時間 >= 交車時間)
+                {
+                    // 現在時間已經過了交車時間：今天~明天
+                    startTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                    endTime_datetime = startTime_datetime.AddDays(1);
+                }
+                else
+                {
+                    // 現在時間還沒到交車時間：昨天~今天
+                    endTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                    startTime_datetime = endTime_datetime.AddDays(-1);
+                }
+            }
+            string startTime = startTime_datetime.ToDateTimeString_6().Replace("/", "-");
+            string endTime = endTime_datetime.ToDateTimeString_6().Replace("/", "-");
+            return (startTime, endTime);
+        }
+
 
 
     }

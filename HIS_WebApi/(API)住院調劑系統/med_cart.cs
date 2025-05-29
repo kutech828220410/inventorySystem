@@ -2173,6 +2173,7 @@ namespace HIS_WebApi
                 }
                 sql_medCpoe = sql_medCpoe.Where(temp => GUIDs.Contains(temp.GUID)).ToList();
                 List<string> patientGUID = new List<string>();
+                int buff = 0;
                 foreach (var item in sql_medCpoe)
                 {
                     patientGUID.Add(item.Master_GUID);
@@ -2188,7 +2189,6 @@ namespace HIS_WebApi
                     item.調劑狀態 = "Y";
                 }
 
-                int buff = 0;
                 //for (int i = 0; i < sql_medCpoe.Count; i++)
                 //{
                 //    if (GUIDs.Contains(sql_medCpoe[i].GUID))
@@ -2237,7 +2237,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoe;
-                returnData.Result = $"更新藥車: {護理站}處方紀錄共{buff}筆";
+                returnData.Result = $"更新藥車: {護理站}處方紀錄共{sql_medCpoe.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
