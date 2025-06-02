@@ -411,7 +411,7 @@ namespace HIS_WebApi
                 sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
-                List<medCpoeClass> medCpoe_sql_delete_buf = new List<medCpoeClass>();
+                //List<medCpoeClass> medCpoe_sql_delete_buf = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete = new List<medCpoeClass>();
                 //List<patientInfoClass> update_patInfo = new List<patientInfoClass>();
 
@@ -421,6 +421,8 @@ namespace HIS_WebApi
                 foreach (string Master_GUID in patInfoDict.Keys)
                 {
                     List<medCpoeClass> medCpoe_sql_add_buff = new List<medCpoeClass>();
+                    List<medCpoeClass> medCpoe_sql_replace_buff = new List<medCpoeClass>();
+
                     List<patientInfoClass> patientInfoClasses = patientInfoClass.GetDictByGUID(patInfoDict, Master_GUID);
                     DateTime 調劑時間 = patientInfoClasses[0].調劑時間.StringToDateTime();
                     DateTime 現在時間 = DateTime.Now;
@@ -464,93 +466,85 @@ namespace HIS_WebApi
                                     medCpoeClass.調劑異動 = "Y";
                                     medCpoeClass.狀態 = "NEW";
                                 }
-                                medCpoe_sql_add.LockAdd(medCpoeClass);
+                                medCpoe_sql_add_buff.LockAdd(medCpoeClass);
                             }
                         }
                     })));
-                    List<medCpoeClass> medCpoe_sql_delete_buff = new List<medCpoeClass>();
-
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         foreach (medCpoeClass medCpoeClass in Cpoe_old)
                         {
                             medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                            if (cpoe == null) medCpoe_sql_delete_buff.Add(medCpoeClass);
+                            if (cpoe == null)
+                            {
+                                if (medCpoeClass.PRI_KEY.Contains("[DC]") == false)
+                                {
+                                    if (medCpoeClass.調劑狀態.Contains("Y"))
+                                    {
+                                        medCpoeClass.數量 = $"-{medCpoeClass.數量}";                                    
+                                        medCpoeClass.途徑 = "--";
+                                        medCpoeClass.單位 = "--";
+                                        medCpoeClass.調劑狀態 = string.Empty;
+                                        medCpoeClass.狀態 = "DC";
+                                        medCpoeClass.調劑異動 = "Y";
+                                        //medCpoeClass.PRI_KEY += $"-[DC]-{DateTime.Now.ToDateTimeString()}";
+                                        medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
+                                    }
+                                    else
+                                    {
+                                        medCpoeClass.數量 = $"-{medCpoeClass.數量}";
+                                        medCpoeClass.途徑 = "--";
+                                        medCpoeClass.單位 = "--";
+                                        medCpoeClass.調劑狀態 = "Y";
+                                        medCpoeClass.狀態 = "DC";
+                                        medCpoeClass.調劑異動 = "Y";
+                                        medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
+                                        medCpoeClass.DC確認 += "Y";
+                                        medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
+                                    }
+                                }
+                            }
                         }
                     })));
                     Task.WhenAll(tasks).Wait();
                     tasks.Clear();
-                    List<string> replace_list = new List<string>();
                     List<string> GUID_buff = new List<string>();
-                    foreach (var add in medCpoe_sql_add)
+                    foreach (var add in medCpoe_sql_add_buff)
                     {
-                        medCpoeClass doubleCpoe = medCpoe_sql_delete_buff
-                            .Where(temp => temp.藥碼 == add.藥碼 && temp.途徑 == add.途徑 && temp.頻次 == add.頻次 && temp.數量 == add.數量)
-                            .FirstOrDefault();
+                        medCpoeClass doubleCpoe = medCpoe_sql_replace_buff
+                            .Where(temp => temp.藥碼 == add.藥碼 && temp.途徑 == add.途徑 && temp.頻次 == add.頻次 && temp.數量 == add.數量 && temp.調劑狀態.StringIsEmpty()).FirstOrDefault();
                         if (doubleCpoe != null && GUID_buff.Contains(doubleCpoe.GUID) == false)
                         {
-                            add.調劑狀態 = doubleCpoe.調劑狀態;
-                            replace_list.Add(doubleCpoe.PRI_KEY);
+                            add.調劑狀態 = "Y";
+                            add.PRI_KEY += "系統調劑";
                             GUID_buff.Add(doubleCpoe.GUID);
                         }
                     }
-                    foreach (medCpoeClass medCpoeClass in medCpoe_sql_delete_buff)
+                    foreach(var replace in medCpoe_sql_replace_buff)
                     {
-
-
-                        if (medCpoeClass.PRI_KEY.Contains("[DC]") == true) continue;
-
-                        if (replace_list.Contains(medCpoeClass.PRI_KEY))
+                        if (GUID_buff.Contains(replace.GUID))
                         {
-                            medCpoeClass.數量 = $"-{medCpoeClass.數量}";
-                            medCpoeClass.劑量 = "--";
-                            //medCpoeClass.頻次 = "--";
-                            //medCpoeClass.途徑 = "--";
-                            medCpoeClass.單位 = "--";
-                            medCpoeClass.調劑狀態 = "Y";
-                            medCpoeClass.狀態 = "DC";
-                            medCpoeClass.調劑異動 = "Y";
-                            medCpoeClass.PRI_KEY += "-[DC]系統";
-                            medCpoeClass.DC確認 = "Y";
-                            medCpoe_sql_replace.Add(medCpoeClass);
+                            replace.調劑狀態 = "Y";
+                            replace.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
+                            replace.DC確認 += "Y";
                         }
                         else
                         {
-                            if (medCpoeClass.調劑狀態 == "Y")
-                            {
-                                medCpoeClass.數量 = $"-{medCpoeClass.數量}";
-                                medCpoeClass.劑量 = "--";
-                                //medCpoeClass.頻次 = "--";
-                                //medCpoeClass.途徑 = "--";
-                                medCpoeClass.單位 = "--";
-                                medCpoeClass.調劑狀態 = "";
-                                medCpoeClass.狀態 = "DC";
-                                medCpoeClass.調劑異動 = "Y";
-                                medCpoeClass.PRI_KEY += "-[DC]";
-                                medCpoe_sql_replace.Add(medCpoeClass);
-                            }
-                            else
-                            {
-                                medCpoeClass.數量 = $"-{medCpoeClass.數量}";
-                                medCpoeClass.劑量 = "--";
-                                //medCpoeClass.頻次 = "--";
-                                //medCpoeClass.途徑 = "--";
-                                medCpoeClass.單位 = "--";
-                                medCpoeClass.調劑狀態 = "Y";
-                                medCpoeClass.狀態 = "DC";
-                                medCpoeClass.調劑異動 = "";
-                                medCpoeClass.PRI_KEY += "-[DC]系統";
-                                medCpoeClass.DC確認 = "Y";
-                                medCpoe_sql_replace.Add(medCpoeClass);
-                            }
+                            replace.PRI_KEY += $"-[DC]-{DateTime.Now.ToDateTimeString()}";
                         }
                     }
+                    medCpoe_sql_add.AddRange(medCpoe_sql_add_buff);
+                    medCpoe_sql_replace.AddRange(medCpoe_sql_replace_buff);
                 }
 
 
 
                 List<object[]> list_medCpoe_add = medCpoe_sql_add.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                returnData.Data = medCpoe_sql_add;
+                Logger.Log("medCpoe_add", $"{returnData.Data}");
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                returnData.Data = medCpoe_sql_replace;
+                Logger.Log("medCpoe_replace", $"{returnData.Data}");
                 List<object[]> list_medCpoe_delete = medCpoe_sql_delete.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 //List<object[]> list_patInfo_add = update_patInfo.ClassToSQL<patientInfoClass, enum_patient_info>();
 
