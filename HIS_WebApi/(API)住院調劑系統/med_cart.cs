@@ -315,19 +315,16 @@ namespace HIS_WebApi
                         if (item.PRI_KEY.Contains($"-[{enum_bed_status_string.已出院.GetEnumName()}]") == false)
                         {
                             item.PRI_KEY = item.PRI_KEY + $"-[{enum_bed_status_string.已出院.GetEnumName()}]";
-                            if (item.調劑狀態 == "Y")
+                            if (item.調劑狀態.Contains("Y") && item.DC確認.StringIsEmpty())
                             {
                                 item.數量 = $"-{item.數量}";
-                                item.劑量 = "--";
-                                //item.頻次 = "--";
                                 item.途徑 = "--";
                                 item.單位 = "--";
-                                item.調劑狀態 = "";
+                                item.調劑狀態 = string.Empty;
                                 item.狀態 = "DC";
                                 item.調劑異動 = "Y";
-                                item.PRI_KEY += "-[DC]";
+                                item.PRI_KEY += "-[DC]出院退藥";
                             }
-
                         }
                     }
                     List<object[]> list_medCpoe_delete_buff = filterCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -498,7 +495,7 @@ namespace HIS_WebApi
                                         medCpoeClass.調劑狀態 = "Y";
                                         medCpoeClass.狀態 = "DC";
                                         medCpoeClass.調劑異動 = "Y";
-                                        medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
+                                        //medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
                                         medCpoeClass.DC確認 += "Y";
                                         medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
                                     }
