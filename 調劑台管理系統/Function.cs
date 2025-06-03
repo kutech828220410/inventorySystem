@@ -1128,7 +1128,8 @@ namespace 調劑台管理系統
 
         public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
         {
-            Console.WriteLine($"[取得異動儲位資訊] 藥品碼={藥品碼}, 異動量={異動量}");
+            bool debug = false;
+            if (debug) Console.WriteLine($"[取得異動儲位資訊] 藥品碼={藥品碼}, 異動量={異動量}");
 
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -1139,7 +1140,7 @@ namespace 調劑台管理系統
 
             if (儲位.Count == 0)
             {
-                Console.WriteLine("[取得異動儲位資訊] 無儲位資料");
+                if (debug) Console.WriteLine("[取得異動儲位資訊] 無儲位資料");
                 return 儲位資訊_buf;
             }
             // 組儲位資訊
@@ -1164,7 +1165,7 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            Console.WriteLine($"[儲位總數] {儲位資訊.Count} 筆");
+            if (debug) Console.WriteLine($"[儲位總數] {儲位資訊.Count} 筆");
 
             for (int i = 0; i < 儲位資訊.Count; i++)
             {
@@ -1175,12 +1176,12 @@ namespace 調劑台管理系統
                 string exp = 儲位資訊[i][(int)enum_儲位資訊.效期].ToDateString();
                 string stock = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString();
 
-                Console.WriteLine($"[儲位明細] IP={ip}, TYPE={type}, 包裝量={pack}, 效期={exp}, 批號={lot}, 庫存={stock}");
+                if (debug) Console.WriteLine($"[儲位明細] IP={ip}, TYPE={type}, 包裝量={pack}, 效期={exp}, 批號={lot}, 庫存={stock}");
             }
 
             if (異動量 == 0)
             {
-                Console.WriteLine("[異動量為0] 無需異動");
+                if (debug) Console.WriteLine("[異動量為0] 無需異動");
                 return 儲位資訊;
             }
 
@@ -1199,8 +1200,8 @@ namespace 調劑台管理系統
                   .OrderBy(r => TryParseDateTimeOrMax(r[(int)enum_儲位資訊.效期].ToDateString()))
                   .ToList();
 
-            Console.WriteLine($"[大包裝儲位] {儲位_大包裝.Count} 筆");
-            Console.WriteLine($"[單包裝儲位] {儲位_單包裝.Count} 筆");
+            if (debug) Console.WriteLine($"[大包裝儲位] {儲位_大包裝.Count} 筆");
+            if (debug) Console.WriteLine($"[單包裝儲位] {儲位_單包裝.Count} 筆");
 
             void 處理異動量(List<object[]> 儲位清單, string 類型)
             {
@@ -1227,7 +1228,7 @@ namespace 調劑台管理系統
                             儲位清單[i][(int)enum_儲位資訊.異動量] = 異動量實值.ToString("0.#####");
                             儲位資訊_buf.Add(儲位清單[i]);
 
-                            Console.WriteLine($"[{類型}] IP={IP}, 效期={效期}, 包裝量={包裝量}, 庫存={庫存數量}, 異動量={異動量實值}, 剩餘異動={使用數量 - 異動量實值}");
+                            if (debug) Console.WriteLine($"[{類型}] IP={IP}, 效期={效期}, 包裝量={包裝量}, 庫存={庫存數量}, 異動量={異動量實值}, 剩餘異動={使用數量 - 異動量實值}");
 
                             使用數量 -= 異動量實值;
 
@@ -1242,16 +1243,16 @@ namespace 調劑台管理系統
 
             if ((異動量 > 0 && 使用數量 > 0) || (異動量 < 0 && 使用數量 < 0))
             {
-                Console.WriteLine($"[進入單包裝處理] 剩餘異動量={使用數量}");
+                if (debug) Console.WriteLine($"[進入單包裝處理] 剩餘異動量={使用數量}");
                 處理異動量(儲位_單包裝, "單包裝處理");
             }
 
             if ((異動量 > 0 && 使用數量 > 0) || (異動量 < 0 && 使用數量 < 0))
             {
-                Console.WriteLine($"[異動不足警告] 剩餘未完成異動量={使用數量}");
+                if (debug) Console.WriteLine($"[異動不足警告] 剩餘未完成異動量={使用數量}");
             }
 
-            Console.WriteLine($"[異動完成] 已異動儲位數={儲位資訊_buf.Count}");
+            if (debug) Console.WriteLine($"[異動完成] 已異動儲位數={儲位資訊_buf.Count}");
             return 儲位資訊_buf;
         }
         private static DateTime TryParseDateTimeOrMax(string dateStr)
@@ -2470,6 +2471,7 @@ namespace 調劑台管理系統
                 if (text == null) return null;
                 System.Threading.Thread.Sleep(50);
                 text = MySerialPort_Scanner02.ReadString();
+                      if (text == null) return null;       
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return null;
                 if (text.Length <= 2 || text.Length > 200) return null;

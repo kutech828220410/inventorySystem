@@ -517,6 +517,7 @@ namespace 調劑台管理系統
             if (Main_Form.Function_ReadBacodeScanner_pre(index) != null)
             {
                 醫令條碼 = Main_Form.Function_ReadBacodeScanner(index);
+                if (醫令條碼.StringIsEmpty()) return;
                 cnt++;
                 return;
             }
