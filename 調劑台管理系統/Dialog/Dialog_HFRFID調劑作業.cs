@@ -18,28 +18,41 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_HFRFID調劑作業 : MyDialog
     {
-        private string 調劑台名稱 = $"{Main_Form.ServerName}";
-        private List<DrugHFTagClass> errorTags = new List<DrugHFTagClass>();
-        private takeMedicineStackClass _takeMedicineStackClass = null;
+        public enum enum_TagList
+        {
+            [Description("GUID,VARCHAR,50,NONE")]
+            GUID,
+            [Description("藥碼,VARCHAR,50,NONE")]
+            藥碼,
+            [Description("藥名,VARCHAR,50,NONE")]
+            藥名,
+            [Description("應出,VARCHAR,50,NONE")]
+            應出,
+            [Description("實出,VARCHAR,50,NONE")]
+            實出,
+        }
+
+        private string _deviceName = $"{Main_Form.ServerName}";
+        private personPageClass _personPageClass = new personPageClass();
+        private List<DrugHFTagClass> DrugHFTags = new List<DrugHFTagClass>();
         public IncomeOutcomeMode _Import_Export = IncomeOutcomeMode.支出;
         public List<StockClass> stockClasses = new List<StockClass>();
         public List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
-
+        public List<takeMedicineStackClass> takeMedicineStackClasses_temp = new List<takeMedicineStackClass>();
+        private List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses;
         private bool hasRetriedConfirmation = false;
         private MyThread myThread_HFRFID = new MyThread();
         private double qty = 0;
         private int retry = 0;
-        public Dialog_HFRFID調劑作業(takeMedicineStackClass takeMedicineStackClass)
+        public Dialog_HFRFID調劑作業(string deviceName, IncomeOutcomeMode incomeOutcomeMode )
         {
             form.Invoke(new Action(delegate
             {
                 InitializeComponent();
             }));
-            if (takeMedicineStackClass.動作.Contains("退")) _Import_Export = IncomeOutcomeMode.收入;
-            _takeMedicineStackClass = takeMedicineStackClass;
-            label_藥碼.Text = takeMedicineStackClass.藥品碼;
-            label_藥名.Text = takeMedicineStackClass.藥品名稱;
-            label_交易量.Text = takeMedicineStackClass.總異動量;
+            _deviceName = deviceName;
+            _Import_Export = incomeOutcomeMode;
+
             this.Text = _Import_Export == IncomeOutcomeMode.收入 ? "高頻RFID調劑作業(退)" : "高頻RFID調劑作業(領)";
             this.LoadFinishedEvent += Dialog_HFRFID調劑作業_LoadFinishedEvent;
             this.FormClosing += Dialog_HFRFID調劑作業_FormClosing;
@@ -58,13 +71,16 @@ namespace 調劑台管理系統
         private void Main_Form_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
 
-
-            Logger.Log("dialog_main_HRFID", $"[Locker Check] 藥碼 = {label_藥碼.Text}，開始查詢解鎖 IP");
-
             List<object[]> list_locker_table_value = Main_Form._sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             Logger.Log("dialog_main_HRFID", $"[Locker Check] 取得 locker_index_table 筆數 = {list_locker_table_value.Count}");
 
-            List<string> ips = Main_Form.Function_取得抽屜以藥品碼解鎖IP(label_藥碼.Text);
+            List<string> ips = new List<string>();
+            for (int i = 0; i < takeMedicineStackClasses_temp.Count; i++)
+            {
+                ips.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(takeMedicineStackClasses_temp[i].藥品碼));
+            }
+            
+
             Logger.Log("dialog_main_HRFID", $"[Locker Check] 解鎖對應 IP 清單 = {string.Join(", ", ips)}");
 
             if (ips.Count == 0)
@@ -120,79 +136,100 @@ namespace 調劑台管理系統
 
         private void Program_HFRFID()
         {
+            List<object[]> list_value = new List<object[]>();
             List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
             if (_Import_Export == IncomeOutcomeMode.收入)
                 drugHFTagClasses = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
             if (_Import_Export == IncomeOutcomeMode.支出)
                 drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
 
+            List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
+            takeMedicineStackClasses_temp = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+            if (drugHFTagClasses.Count == 0 || takeMedicineStackClasses.Count == 0) return;
 
-            if (drugHFTagClasses.Count == 0) return;
+            List<(string 藥品碼, string 藥品名稱, double 交易量總和)> codeNameAmountList = takeMedicineStackClasses
+                  .Where(t => t.狀態 == "RFID使用")
+                  .GroupBy(t => t.藥品碼)
+                  .Select(g => (
+                      藥品碼: g.Key,
+                      藥品名稱: g.First().藥品名稱,
+                      交易量總和: g.Sum(x => Math.Abs(x.總異動量.StringToDouble()))
+                  ))
+                  .ToList();
 
-            List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses = drugHFTagClasses.ToIncomeOutcomeList(_Import_Export);
-            List<string> drugCodes = drugHFTag_IncomeOutcomeListClasses.Select(x => x.藥碼).Distinct().ToList();
-         
-            string selectedDrugCode = _takeMedicineStackClass.藥品碼;
-            List<string> uids = Main_Form.rfidReader_TagUID;
-
-            List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
-            errorTags.Clear();
-            foreach (var tag in drugHFTagClasses)
+            foreach (var item in codeNameAmountList)
             {
-                bool isUIDMatch = uids.Contains(tag.TagSN);
-                bool isSameCode = tag.藥碼 == selectedDrugCode;
+                Console.WriteLine($"藥品碼: {item.藥品碼}, 藥品名稱: {item.藥品名稱}, 交易量總和: {item.交易量總和}");
+     
+                drugHFTag_IncomeOutcomeListClasses = drugHFTagClasses.ToIncomeOutcomeList(_Import_Export);
+                List<string> drugCodes = drugHFTag_IncomeOutcomeListClasses.Select(x => x.藥碼).Distinct().ToList();
 
-                if (_Import_Export == IncomeOutcomeMode.收入)
+                string selectedDrugCode = item.藥品碼;
+                List<string> uids = Main_Form.rfidReader_TagUID;
+
+                List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
+                foreach (var tag in drugHFTagClasses)
                 {
-                    if (isUIDMatch && isSameCode)
+                    bool isUIDMatch = uids.Contains(tag.TagSN);
+                    bool isSameCode = tag.藥碼 == selectedDrugCode;
+
+                    if (_Import_Export == IncomeOutcomeMode.收入)
                     {
-                        tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
-                        tagDisplayList.Add(tag);
+                        if (isUIDMatch && isSameCode)
+                        {
+                            tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                            tagDisplayList.Add(tag);
+                        }
+                    }
+                    else if (_Import_Export == IncomeOutcomeMode.支出)
+                    {
+                        if (!isUIDMatch && isSameCode)
+                        {
+                            tag.狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                            tagDisplayList.Add(tag);
+                        }
+                 
                     }
                 }
-                else if (_Import_Export == IncomeOutcomeMode.支出)
-                {
-                    if (!isUIDMatch && isSameCode)
-                    {
-                        tag.狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
-                        tagDisplayList.Add(tag);
-                    }
-                    else if (!isUIDMatch && !isSameCode)
-                    {
-                        // ⚠ 異常資料：不處理狀態，但加入顯示
-                        errorTags.Add(tag);
-                    }
-                }
+
+                // 計算收支數量（只包含已標記的入庫註記或出庫註記）
+                qty = tagDisplayList
+                    .Where(t =>
+                        (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
+                        (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
+                    .Sum(t => t.數量.StringToDouble());
+
+                DrugHFTags = tagDisplayList;
+
+                object[] value = new object[new enum_TagList().GetLength()];
+                value[(int)enum_TagList.GUID] = item.藥品碼;
+                value[(int)enum_TagList.藥碼] = item.藥品碼;
+                value[(int)enum_TagList.藥名] = item.藥品名稱;
+                value[(int)enum_TagList.應出] = item.交易量總和;
+                value[(int)enum_TagList.實出] = qty;
+                list_value.Add(value);
             }
 
-            // 計算收支數量（只包含已標記的入庫註記或出庫註記）
-            qty = tagDisplayList
-                .Where(t =>
-                    (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
-                    (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
-                .Sum(t => t.數量.StringToDouble());
-
-       
-
-            this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
+            this.sqL_DataGridView_TagList.RefreshGrid(list_value);
         }
 
         private void Dialog_HFRFID調劑作業_LoadFinishedEvent(EventArgs e)
         {
-            this.sqL_DataGridView_TagList.RowsHeight = 50;
-            this.sqL_DataGridView_TagList.Init(DrugHFTagClass.init(Main_Form.API_Server));
-            this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
-            //this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
-            //this.sqL_DataGridView_TagList.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.狀態);
-            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.TagSN);
-            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.效期);
-            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.更新時間);
+            this.sqL_DataGridView_TagList.RowsHeight = 65;
+            this.sqL_DataGridView_TagList.Init(new Table(new enum_TagList()));
+            this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_TagList().GetEnumNames());
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_TagList.藥碼);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(700, DataGridViewContentAlignment.MiddleLeft, enum_TagList.藥名);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_TagList.應出);
+            this.sqL_DataGridView_TagList.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_TagList.實出);
+            this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 32), enum_TagList.應出);
+            this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 32), enum_TagList.實出);
+            if (_Import_Export == IncomeOutcomeMode.收入)
+            {
+                this.sqL_DataGridView_TagList.Set_ColumnText("應入", enum_TagList.應出);
+                this.sqL_DataGridView_TagList.Set_ColumnText("實入", enum_TagList.實出);
+            }
+
             this.sqL_DataGridView_TagList.DataGridRefreshEvent += SqL_DataGridView_TagList_DataGridRefreshEvent;
         }
         private void Dialog_HFRFID調劑作業_FormClosing(object sender, FormClosingEventArgs e)
@@ -214,114 +251,29 @@ namespace 調劑台管理系統
         {
             try
             {
-                bool 驗證失敗 = false;
+                List<object[]> list_TagList = this.sqL_DataGridView_TagList.GetAllRows();
+                List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
+
                 bool 數量異常 = false;
-
-                Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 使用者: {Main_Form._登入者名稱}");
-
-                List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
-                Logger.Log("dialog_main_HRFID", $"取得標籤筆數: {list_drugHFTagClasses.Count}");
-                if (list_drugHFTagClasses.Count == 0)
+                for (int i = 0; i < list_TagList.Count; i++)
                 {
-                    Logger.Log("dialog_main_HRFID", "未讀取到任何 RFID 標籤");
-                    MyMessageBox.ShowDialog("未讀取到RFID標籤");
-                    return;
-                }
-                if (_Import_Export == IncomeOutcomeMode.支出 && label_交易量.Text.StringToDouble() != qty)
-                {
-                    Logger.Log("dialog_main_HRFID", $"標籤數量 {label_交易量.Text} ≠ 輸入數量 {qty}");
-
-                    數量異常 = true;
-                }
-                if (errorTags.Count > 0)
-                {
-                    Logger.Log("dialog_main_HRFID", $"偵測到異常標籤 {errorTags.Count} 筆");
-                    驗證失敗 = true;
-                }
-                //if (_Import_Export == IncomeOutcomeMode.支出 && label_交易量.Text.StringToDouble() != qty)
-                //{
-                //    double temp = label_交易量.Text.StringToDouble() * -1;
-                //    if (temp != qty)
-                //    {
-                //        if(retry == 0)
-                //        {
-                //            Logger.Log("dialog_main_HRFID", $"標籤數量 ({qty}) 不等於輸入支出數量 ({temp})");
-                //            MyMessageBox.ShowDialog("RFID標籤數量與支出數量不符,請再次確認數量");
-                //            retry++;
-                //            return;
-                //        }
-                //        else if (retry > 0)
-                //        {
-                //            Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇();
-                //            if(dialog_收支原因選擇.ShowDialog() == DialogResult.Yes)
-                //            {
-                //                string reason = dialog_收支原因選擇.Value;
-                //                Logger.Log("dialog_main_HRFID", $"使用者輸入原因: {reason}");
-                //                _takeMedicineStackClass.收支原因 = reason;
-
-                //            }
-                //            else
-                //            {
-                //                Logger.Log("dialog_main_HRFID", "使用者取消輸入原因");
-                //                return;
-                //            }
-
-                //        }
-
-                //    }
-                //}
-
-                if (驗證失敗)
-                {
-                    if (!hasRetriedConfirmation)
+                    string 藥碼 = list_TagList[i][(int)enum_TagList.藥碼].ObjectToString();
+                    string 藥名 = list_TagList[i][(int)enum_TagList.藥名].ObjectToString();
+                    double 應出 = list_TagList[i][(int)enum_TagList.應出].StringToDouble();
+                    double 實出 = list_TagList[i][(int)enum_TagList.實出].StringToDouble();
+                    if (應出 != 實出)
                     {
-                        hasRetriedConfirmation = true;
-                        Logger.Log("dialog_main_HRFID", $"第一次驗證失敗，提示使用者重新掃描");
-                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("偵測到數量不符或異常標籤,請重新掃描標籤後再按一次確認", 2000);
-                        dialog_AlarmForm.ShowDialog();
-                        return;
-                    }
+                        數量異常 = true;
+                        Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 藥品碼: {藥碼}, 藥名: {藥名}, 應出: {應出}, 實出: {實出}");
 
-                    Logger.Log("dialog_main_HRFID", $"第二次驗證仍失敗，自動記錄異常");
-
-                    List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
-
-                    foreach (var tag in errorTags)
-                    {
-                        var log = new medRecheckLogClass
-                        {
-                            GUID = Guid.NewGuid().ToString(),
-                            發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName() : enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName(),
-                            藥碼 = tag.藥碼,
-                            藥名 = tag.藥名,
-                            效期 = tag.效期,
-                            批號 = tag.批號,
-                            庫存值 = "0",
-                            盤點值 = tag.數量.ToString(),
-                            差異值 = tag.數量.ToString(),
-                            發生時間 = DateTime.Now.ToDateTimeString_6(),
-                            排除時間 = DateTime.MinValue.ToDateTimeString(),
-                            狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
-                            事件描述 = "標籤未註記為入/出庫",
-                            通知註記 = "未通知",
-                            通知時間 = DateTime.MinValue.ToDateTimeString(),
-                            參數1 = tag.TagSN,
-                            參數2 = ""
-                        };
-                        errorLogs.Add(log);
-                    }
-
-                    if (數量異常)
-                    {
-                        double 實際標籤數量 = qty;
-                        double temp = label_交易量.Text.StringToDouble();
+                        double 實際標籤數量 = 實出;
+                        double temp = 應出;
                         var qtyLog = new medRecheckLogClass
                         {
                             GUID = Guid.NewGuid().ToString(),
                             發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName() : enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName(),
-                            藥碼 = label_藥碼.Text,
-                            藥名 = label_藥名.Text,
+                            藥碼 = 藥碼,
+                            藥名 = 藥名,
                             效期 = "",
                             批號 = "",
                             庫存值 = "0",
@@ -338,6 +290,20 @@ namespace 調劑台管理系統
                         };
                         errorLogs.Add(qtyLog);
                     }
+                }
+                if (數量異常)
+                {
+                    if (!hasRetriedConfirmation)
+                    {
+                        hasRetriedConfirmation = true;
+                        Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 偵測到數量異常，請確認標籤數量是否正確");
+                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("偵測到數量不符,請確認標籤數量是否正確", 2000);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+
+
 
                     if (errorLogs.Count > 0)
                     {
@@ -351,69 +317,132 @@ namespace 調劑台管理系統
                 }
 
                 hasRetriedConfirmation = false;
-
-                List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.ToDrugHFTagClassList();
-
-                if (_Import_Export == IncomeOutcomeMode.收入)
-                {
-                    drugHFTagClasses = drugHFTagClasses
-                        .Where(drugHFTagClass => drugHFTagClass.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName())
-                        .ToList();
-                }
-
-                stockClasses = drugHFTagClasses.GetStockClasses();
-                Logger.Log("dialog_main_HRFID", $"取得有效標籤轉為 StockClass，共 {stockClasses.Count} 筆");
-
                 StringBuilder sb = new StringBuilder();
-                if (_Import_Export == IncomeOutcomeMode.收入) sb.AppendLine($"收入藥品品項：{stockClasses.Count}");
-                if (_Import_Export == IncomeOutcomeMode.支出) sb.AppendLine($"支出藥品品項：{stockClasses.Count}");
-                sb.AppendLine(new string('-', 30));
+                List<object[]> list_drugHFTagClasses = DrugHFTags.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
+                List<DrugHFTagClass> drugHFTagClasses_replace = new List<DrugHFTagClass>();
 
-                for (int i = 0; i < stockClasses.Count; i++)
+                takeMedicineStackClasses.Clear();
+
+                for (int i = 0; i < list_TagList.Count; i++)
                 {
-                    sb.AppendLine($"[{i + 1}]");
-                    sb.AppendLine($"藥碼：{stockClasses[i].Code}");
-                    sb.AppendLine($"藥名：{stockClasses[i].Name}");
-                    sb.AppendLine($"數量：{stockClasses[i].Qty}");
-                    sb.AppendLine($"效期：{stockClasses[i].Validity_period}");
-                    sb.AppendLine($"批號：{stockClasses[i].Lot_number}");
-                    sb.AppendLine();
+                    string 藥碼 = list_TagList[i][(int)enum_TagList.藥碼].ObjectToString();
+                    string 藥名 = list_TagList[i][(int)enum_TagList.藥名].ObjectToString();
+                    double 應出 = list_TagList[i][(int)enum_TagList.應出].StringToDouble();
+                    double 實出 = list_TagList[i][(int)enum_TagList.實出].StringToDouble();
+                    List<DrugHFTagClass> drugHFTagClasses = (from temp in DrugHFTags
+                                                             where temp.藥碼 == 藥碼
+                                                             select temp).ToList();
+                    drugHFTagClasses_replace.LockAdd(drugHFTagClasses);
+
+                    stockClasses = drugHFTagClasses.GetStockClasses();
+                    Logger.Log("dialog_main_HRFID", $"取得有效標籤轉為 StockClass，共 {stockClasses.Count} 筆");
+
+              
+                    if (_Import_Export == IncomeOutcomeMode.收入) sb.AppendLine($"收入藥品品項：{stockClasses.Count}");
+                    if (_Import_Export == IncomeOutcomeMode.支出) sb.AppendLine($"支出藥品品項：{stockClasses.Count}");
+                    var groupedStocks = stockClasses
+                   .GroupBy(x => x.Code)
+                   .Select(g => new
+                   {
+                       藥碼 = g.Key,
+                       藥名 = g.First().Name,
+                       明細 = g.ToList()
+                   }).ToList();
+
+                    foreach (var group in groupedStocks)
+                    {
+                        sb.AppendLine($"藥碼：{group.藥碼}");
+                        sb.AppendLine($"藥名：{group.藥名}");
+                        sb.AppendLine($"明細：共 {group.明細.Count} 筆");
+                        for (int idx = 0; idx < group.明細.Count; idx++)
+                        {
+                            var item = group.明細[idx];
+                            sb.AppendLine($"  [{idx + 1}] 數量：{item.Qty}，效期：{item.Validity_period}，批號：{item.Lot_number}");
+                        }
+                        sb.AppendLine(new string('-', 30));
+                    }
+
+                    List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
+                    List<takeMedicineStackClass> takeMedicineStackClasses_org = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+
+                    foreach (var stock in stockClasses)
+                    {
+                        double stockQty = stock.Qty.StringToDouble();
+                        if (_Import_Export == IncomeOutcomeMode.支出) stockQty *= -1;
+
+                        string 動作 = (_Import_Export == IncomeOutcomeMode.收入) ?
+                            "退" :
+                            "領";
+
+                        double 剩餘量 = stockQty;
+
+                        var matchList = takeMedicineStackClasses_org
+                            .Where(x => x.動作.Contains(動作) && x.藥品碼 == stock.Code)
+                            .ToList();
+
+                        foreach (var org in matchList)
+                        {
+                            if (Math.Abs(剩餘量) < 0.0001) break;
+
+                            double orgQty = org.總異動量.StringToDouble();
+                            if (Math.Abs(orgQty) < 0.0001) continue;
+
+                            double 可用量 = Math.Min(Math.Abs(orgQty), Math.Abs(剩餘量));
+                            if (剩餘量 < 0) 可用量 *= -1;
+
+                            var clone = org.DeepClone();
+                            clone = Main_Form.Function_取藥堆疊資料_設定作業模式(clone, enum_取藥堆疊母資料_作業模式.RFID使用, false);
+                            clone.GUID = Guid.NewGuid().ToString();
+                            clone.總異動量 = 可用量.ToString("0.###");
+                            clone.效期 = stock.Validity_period;
+                            clone.批號 = stock.Lot_number;
+                            clone.狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
+
+                            takeMedicineStackClasses.Add(clone);
+                            剩餘量 -= 可用量;
+                        }
+
+                        // 若還有殘量未分配，補新增一筆
+                        if (Math.Abs(剩餘量) > 0.0001)
+                        {
+                            takeMedicineStackClass newItem = new takeMedicineStackClass
+                            {
+                                GUID = Guid.NewGuid().ToString(),
+                                動作 = 動作,
+                                調劑台名稱 = _deviceName,
+                                藥品碼 = stock.Code,
+                                藥品名稱 = stock.Name,
+                                總異動量 = 剩餘量.ToString("0.###"),
+                                效期 = stock.Validity_period,
+                                批號 = stock.Lot_number,
+                                狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName(),
+                                操作人 = takeMedicineStackClasses_org[0].操作人,
+                                ID = takeMedicineStackClasses_org[0].ID,
+                                顏色 = takeMedicineStackClasses_org[0].顏色
+                            };
+                            takeMedicineStackClasses.Add(newItem);
+                        }
+                    }
+
 
                 }
-
                 if (MyMessageBox.ShowDialog(sb.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
                 {
                     Logger.Log("dialog_main_HRFID", "使用者取消確認提交操作");
                     return;
                 }
 
-             
-
-                for (int i = 0; i < stockClasses.Count; i++)
-                {
-                    takeMedicineStackClass takeMedicineStackClass = _takeMedicineStackClass.DeepClone();
-                    double _qty = stockClasses[i].Qty.StringToDouble();
-                    if(_Import_Export == IncomeOutcomeMode.支出) _qty *= -1;
-                    takeMedicineStackClass.GUID = Guid.NewGuid().ToString();
-                    takeMedicineStackClass.藥品碼 = stockClasses[i].Code;
-                    takeMedicineStackClass.藥品名稱 = stockClasses[i].Name;
-                    takeMedicineStackClass.總異動量 = _qty.ToString();
-                    takeMedicineStackClass.效期 = stockClasses[i].Validity_period;
-                    takeMedicineStackClass.批號 = stockClasses[i].Lot_number;
-                    takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
-                    takeMedicineStackClasses.Add(takeMedicineStackClass);
-                }
-
-
-                Logger.Log("dialog_main_HRFID", $"呼叫 API 寫入 DrugHFTag 標籤資料，共 {drugHFTagClasses.Count} 筆");
+                Logger.Log("dialog_main_HRFID", $"呼叫 API 寫入 DrugHFTag 標籤資料，共 {drugHFTagClasses_replace.Count} 筆");
                 LoadingForm.ShowLoadingForm();
-                DrugHFTagClass.add(Main_Form.API_Server, drugHFTagClasses);
+                DrugHFTagClass.add(Main_Form.API_Server, drugHFTagClasses_replace);
                 LoadingForm.CloseLoadingForm();
                 Logger.Log("dialog_main_HRFID", $"完成 API 寫入與畫面清除");
 
                 this.sqL_DataGridView_TagList.ClearGrid();
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
+
+
             }
             catch (Exception ex)
             {
@@ -430,9 +459,9 @@ namespace 調劑台管理系統
         {
             for (int i = 0; i < this.sqL_DataGridView_TagList.Rows.Count; i++)
             {
-                string 狀態 = "";
-                狀態 = this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_DrugHFTag.狀態].Value.ToString();
-                if ((狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName() && _Import_Export == IncomeOutcomeMode.收入) || (狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName() && _Import_Export == IncomeOutcomeMode.支出))
+                string 應出 = this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_TagList.應出].Value.ToString();
+                string 實出 = this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_TagList.實出].Value.ToString();
+                if (應出 == 實出)
                 {
                     this.sqL_DataGridView_TagList.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }

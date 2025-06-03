@@ -283,10 +283,10 @@
     <Compile Include="Dialog\Dialog_輸入藥品碼.Designer.cs">
       <DependentUpon>Dialog_輸入藥品碼.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_RFID領退藥頁面.cs">
+    <Compile Include="Dialog_old\Dialog_RFID領退藥頁面.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_RFID領退藥頁面.Designer.cs">
+    <Compile Include="Dialog_old\Dialog_RFID領退藥頁面.Designer.cs">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_輸入批號.cs">
@@ -804,7 +804,7 @@
     <EmbeddedResource Include="Dialog\Dialog_輸入藥品碼.resx">
       <DependentUpon>Dialog_輸入藥品碼.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_RFID領退藥頁面.resx">
+    <EmbeddedResource Include="Dialog_old\Dialog_RFID領退藥頁面.resx">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_手輸醫令.resx">

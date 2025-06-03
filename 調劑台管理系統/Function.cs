@@ -1189,15 +1189,15 @@ namespace 調劑台管理系統
 
             // 分組
             var 儲位_大包裝 = 儲位資訊
-                .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() > 1)
-                .OrderByDescending(r => r[(int)enum_儲位資訊.包裝量].StringToDouble())
-                .ThenBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString()))
-                .ToList();
+                  .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() > 1)
+                  .OrderByDescending(r => r[(int)enum_儲位資訊.包裝量].StringToDouble())
+                  .ThenBy(r => TryParseDateTimeOrMax(r[(int)enum_儲位資訊.效期].ToDateString()))
+                  .ToList();
 
             var 儲位_單包裝 = 儲位資訊
-                .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() == 1)
-                .OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString()))
-                .ToList();
+                  .Where(r => r[(int)enum_儲位資訊.包裝量].StringToDouble() == 1)
+                  .OrderBy(r => TryParseDateTimeOrMax(r[(int)enum_儲位資訊.效期].ToDateString()))
+                  .ToList();
 
             Console.WriteLine($"[大包裝儲位] {儲位_大包裝.Count} 筆");
             Console.WriteLine($"[單包裝儲位] {儲位_單包裝.Count} 筆");
@@ -1254,7 +1254,12 @@ namespace 調劑台管理系統
             Console.WriteLine($"[異動完成] 已異動儲位數={儲位資訊_buf.Count}");
             return 儲位資訊_buf;
         }
-
+        private static DateTime TryParseDateTimeOrMax(string dateStr)
+        {
+            if (DateTime.TryParse(dateStr, out DateTime dt))
+                return dt;
+            return DateTime.MaxValue; // 無法解析的效期放在最後
+        }
 
         //public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
         //{

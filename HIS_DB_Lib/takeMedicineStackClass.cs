@@ -441,7 +441,7 @@ namespace HIS_DB_Lib
             returnData returnData = new returnData();
             returnData.ServerName = ServerName;
             returnData.ServerType = ServerType;
-            string tableName = "";     
+            string tableName = "";
             returnData.TableName = tableName;
 
             string json_in = returnData.JsonSerializationt();
@@ -473,6 +473,17 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_out}");
 
         }
-        
+
+    }
+    static public class takeMedicineStackClassMethod
+    {
+        static public List<takeMedicineStackClass> ToTakeMedicineStackClassList(this List<object[]> list_value)
+        {
+            List<takeMedicineStackClass> takeMedicineStackClasses = list_value.SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
+
+            return takeMedicineStackClasses;
+        }
     }
 }
+
+ 

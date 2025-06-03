@@ -99,16 +99,21 @@ namespace 調劑台管理系統
                 return 致能_B.CompareTo(致能_A);
             }
         }
-
-        static public void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
+        static public takeMedicineStackClass Function_取藥堆疊資料_設定作業模式(takeMedicineStackClass takeMedicineStackClass, enum_取藥堆疊母資料_作業模式 enum_value ,bool state)
         {
-            Function_取藥堆疊資料_設定作業模式(value, enum_value, true);
+            object[] value = Function_取藥堆疊資料_設定作業模式(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>(), enum_value, state);
+            return value.SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
         }
-        static public void Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value, bool state)
+        static public object[] Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value)
+        {
+            return Function_取藥堆疊資料_設定作業模式(value, enum_value, true);
+        }
+        static public object[] Function_取藥堆疊資料_設定作業模式(object[] value, enum_取藥堆疊母資料_作業模式 enum_value, bool state)
         {
             UInt32 temp = value[(int)enum_取藥堆疊母資料.作業模式].StringToUInt32();
             temp.SetBit((int)enum_value, state);
             value[(int)enum_取藥堆疊母資料.作業模式] = temp.ToString();
+            return value;
         }
         static public bool Function_取藥堆疊資料_取得作業模式(takeMedicineStackClass takeMedicineStackClass, enum_取藥堆疊母資料_作業模式 enum_value)
         {
@@ -376,7 +381,10 @@ namespace 調劑台管理系統
                         list_value_delete.Add(list_value_buf[0]);
                     }
                 }
-                if (list_value_delete.Count > 0) _sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
+                if (list_value_delete.Count > 0)
+                {
+                    _sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
+                }
                 Console.WriteLine($" 新增取藥資料 (耗時){myTimer_total.ToString()} ");
             }
             else
@@ -589,8 +597,7 @@ namespace 調劑台管理系統
         }
         static public List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
         {
-            List<object[]> list_values = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
-            list_values = list_values.Where(a => a[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() == 調劑台名稱).ToList();
+            List<object[]> list_values = _sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.調劑台名稱, 調劑台名稱, false);
             return list_values;
         }
         static public List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱, string 藥品碼)
@@ -2012,8 +2019,10 @@ namespace 調劑台管理系統
 
                 }
             }
-            if (list_取藥堆疊母資料_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
-
+            if (list_取藥堆疊母資料_delete.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+            }
             cnt++;
         }
         void cnt_Program_取藥堆疊資料_檢查資料_檢查儲位亮燈(ref int cnt)
@@ -2137,8 +2146,10 @@ namespace 調劑台管理系統
 
                 }
             }
-            if (list_取藥堆疊母資料_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
-
+            if (list_取藥堆疊母資料_delete.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+            }
             for (int i = 0; i < list_取藥堆疊母資料_delete.Count; i++)
             {
                 string code = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
@@ -2805,7 +2816,10 @@ namespace 調劑台管理系統
                     }
                 }
 
-                if (list_取藥堆疊母資料_DeleteValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_DeleteValue, false);
+                if (list_取藥堆疊母資料_DeleteValue.Count > 0)
+                {
+                    this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_DeleteValue, false);
+                }
                 if (list_取藥堆疊母資料_ReplaceValue.Count > 0)
                 {
                     this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);

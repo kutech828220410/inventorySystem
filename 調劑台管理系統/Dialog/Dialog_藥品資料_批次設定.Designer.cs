@@ -181,11 +181,6 @@
             // 
             this.comboBox_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_搜尋內容.FormattingEnabled = true;
-            this.comboBox_搜尋內容.Items.AddRange(new object[] {
-            "全部顯示",
-            "藥碼",
-            "藥名",
-            "中文名"});
             this.comboBox_搜尋內容.Location = new System.Drawing.Point(199, 18);
             this.comboBox_搜尋內容.Name = "comboBox_搜尋內容";
             this.comboBox_搜尋內容.Size = new System.Drawing.Size(319, 44);

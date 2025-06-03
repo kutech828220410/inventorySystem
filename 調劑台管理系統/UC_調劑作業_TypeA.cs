@@ -936,46 +936,30 @@ namespace 調劑台管理系統
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
-            if (list_取藥堆疊母資料.Count > 0 && (Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false))
+            if (list_取藥堆疊母資料.Count > 0 )
             {
-                Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
-                return;
-            }
-            for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
-            {
-                takeMedicineStackClass takeMedicineStackClass = list_取藥堆疊母資料[i].SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
-                string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                string 效期 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
-                if(效期.StringIsEmpty())
+                if(Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false)
                 {
-                    Application.DoEvents();
-                    Dialog_HFRFID調劑作業 dialog_HFRFID調劑作業 = new Dialog_HFRFID調劑作業(takeMedicineStackClass);
-
-                    if (dialog_HFRFID調劑作業.ShowDialog() != DialogResult.Yes)
-                    {
-                        list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
-                        Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
-                        Fuction_時間重置();
-                        continue;
-                    }
+                    Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料, false);
+                    Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
+                    cnt = 1;
+                    return;
+                }
+                List<takeMedicineStackClass> takeMedicineStackClasses = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+                Dialog_HFRFID調劑作業 dialog_HFRFID調劑作業 = new Dialog_HFRFID調劑作業(takeMedicineStackClasses[0].調劑台名稱 ,(takeMedicineStackClasses[0].動作.Contains("退")? IncomeOutcomeMode.收入 : IncomeOutcomeMode.支出));
+                if (dialog_HFRFID調劑作業.ShowDialog() != DialogResult.Yes)
+                {
+                    Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料, false);
                     Fuction_時間重置();
-
-                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
-                    List<takeMedicineStackClass> takeMedicineStackClasses = dialog_HFRFID調劑作業.takeMedicineStackClasses;
-                    list_取藥堆疊母資料_add.LockAdd(takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass , enum_取藥堆疊母資料>());
-
-                    //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
-
+                    cnt = 1;
+                    return;
                 }
-                else
-                {
-                    Main_Form.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用, false);
-                    list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
-                }
+                Fuction_時間重置();
 
-
+                list_取藥堆疊母資料_add = dialog_HFRFID調劑作業.takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
+                list_取藥堆疊母資料_delete.LockAdd(list_取藥堆疊母資料);
             }
+       
             if (list_取藥堆疊母資料_delete.Count > 0)
             {
                 Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
@@ -1841,6 +1825,7 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()));
             if (!Main_Form._plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
         }
