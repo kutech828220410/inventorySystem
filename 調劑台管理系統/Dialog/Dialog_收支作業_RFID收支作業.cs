@@ -12,7 +12,6 @@ using MyUI;
 using HIS_DB_Lib;
 using SQLUI;
 using H_Pannel_lib;
-using static 調劑台管理系統.Dialog_收支作業_RFID收支作業;
 
 namespace 調劑台管理系統
 {
