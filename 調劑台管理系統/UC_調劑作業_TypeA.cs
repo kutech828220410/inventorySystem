@@ -1733,8 +1733,15 @@ namespace 調劑台管理系統
                             text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
                             if (i != suspiciousRxLog.diseaseClasses.Count - 1) text += "\n";
                         }
-                        this.Invoke(new Action(delegate 
+                        this.Invoke(new Action(delegate
                         {
+                            if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                            if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                pictureBox_藥品圖片02.BackgroundImage.Dispose();
+
+                            pictureBox_藥品圖片01.Visible = false;
+                            pictureBox_藥品圖片02.Visible = false;
                             rJ_Lable_診斷.Text = text;
                             panel_診斷資訊.Visible = true;
                             string 提報等級 = this.suspiciousRxLog?.提報等級;
@@ -1772,13 +1779,13 @@ namespace 調劑台管理系統
                                     pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
                                     PictureBox_藥品圖片_Click(null, null);
                                 }
-                                else
-                                {
-                                    if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                        pictureBox_藥品圖片01.BackgroundImage.Dispose();
-                                    if (pictureBox_藥品圖片02.BackgroundImage != null)
-                                        pictureBox_藥品圖片02.BackgroundImage.Dispose();
-                                }
+                                //else
+                                //{
+                                //    if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                //        pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                                //    if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                //        pictureBox_藥品圖片02.BackgroundImage.Dispose();
+                                //}
                             }
                         }));
                       
