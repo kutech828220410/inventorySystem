@@ -15,6 +15,7 @@ using K4os.Compression.LZ4.Internal;
 using Google.Protobuf.WellKnownTypes;
 using System.Data;
 using NPOI.SS.Formula.Functions;
+using NPOI.XSSF.Streaming.Values;
 
 
 
@@ -2675,6 +2676,89 @@ namespace HIS_WebApi
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = medQtyClasses;
                 returnData.Result = $"{藥局} {護理站} 的藥品清單";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///以護理站取得藥品總量(同病床加總)
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":"長青樓U1"
+        ///         "ValueAry":[藥局, 護理站]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_med_qty_summary")]
+        public string get_med_qty_summary([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_med_qty_summary";
+            try
+            {
+                
+                returnData = get_med_qty(returnData).JsonDeserializet<returnData>();
+                if(returnData.Code != 200) return returnData.JsonSerializationt(true);
+
+                List<medQtyClass> medQtyClasses = returnData.Data.ObjToClass<List<medQtyClass>>();
+
+                foreach (var item in medQtyClasses)
+                {                    
+                    string 床號 = string.Empty;
+                    List<string> list_masterGUID = new List<string>();
+                    List<bedListClass> bedList_after = new List<bedListClass>();
+                    for (int i = 0; i < item.病床清單.Count; i++)
+                    {
+                        string Master_GUID = item.病床清單[i].Master_GUID;
+                        if (list_masterGUID.Contains(Master_GUID)) continue;
+                        string 調劑狀態 = item.病床清單[i].調劑狀態;
+                        string 覆核狀態 = item.病床清單[i].覆核狀態;
+                        List<bedListClass> bedList_before = item.病床清單.Where(temp => temp.Master_GUID == Master_GUID && temp.調劑狀態 == 調劑狀態 && temp.覆核狀態 == 覆核狀態).ToList();
+                        if (bedList_before.Count == 1)
+                        {
+                            bedList_after.AddRange(bedList_before);
+                            continue;
+                        }
+                        double 數量 = 0;
+                        List<string> guids = new List<string>();
+                        for (int j = 0; j < bedList_before.Count; j++)
+                        {
+                            guids.Add(bedList_before[j].GUID);
+                            數量 = 數量 + bedList_before[j].數量.StringToDouble();
+                        }
+                        
+                        bedListClass bedListClass = new bedListClass
+                        {
+                            GUID = string.Join(";", guids),
+                            Master_GUID = Master_GUID,
+                            床號 = item.病床清單[i].床號,
+                            數量 = 數量.ToString(),
+                            劑量 = item.病床清單[i].劑量,
+                            大瓶點滴 = item.病床清單[i].大瓶點滴,
+                            調劑狀態 = 調劑狀態,
+                            覆核狀態 = 覆核狀態,
+                            頻次 = item.病床清單[i].頻次,
+                            自費 = item.病床清單[i].自費,
+                            自費PRN = item.病床清單[i].自費PRN
+                        };
+                        bedList_after.Add(bedListClass);
+                    }
+                    item.病床清單 = bedList_after;
+                }
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medQtyClasses;
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
