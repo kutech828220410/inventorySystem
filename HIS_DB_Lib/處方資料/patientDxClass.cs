@@ -107,9 +107,5 @@ namespace HIS_DB_Lib
             return patientDxClasses;
         }
     }
-    public class MedicalCodeItem
-    {
-        public string code { get; set; }
-        public string name { get; set; }
-    }
+    
 }

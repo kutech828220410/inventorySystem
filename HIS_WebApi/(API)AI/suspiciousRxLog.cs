@@ -119,6 +119,7 @@ namespace HIS_WebApi._API_AI
             returnData.Method = "add";
             try
             {
+                init();
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<suspiciousRxLogClass>();
@@ -129,9 +130,18 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt();
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string 藥袋條碼 = suspiciousRxLogClasses.藥袋條碼;
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
+                if(data != null || data.Count != 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"此Barcode{藥袋條碼}已存在";
+                    returnData.Data = suspiciousRxLogClasses;
+                    return returnData.JsonSerializationt(true);
+                }
                 List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 sQLControl.AddRows(null, add_suspiciousRxLog);
                 returnData.Code = 200;

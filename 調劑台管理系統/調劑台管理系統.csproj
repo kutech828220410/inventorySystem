@@ -283,10 +283,10 @@
     <Compile Include="Dialog\Dialog_輸入藥品碼.Designer.cs">
       <DependentUpon>Dialog_輸入藥品碼.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_RFID領退藥頁面.cs">
+    <Compile Include="Dialog_old\Dialog_RFID領退藥頁面.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_RFID領退藥頁面.Designer.cs">
+    <Compile Include="Dialog_old\Dialog_RFID領退藥頁面.Designer.cs">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_輸入批號.cs">
@@ -541,6 +541,12 @@
     <Compile Include="Dialog\Dialog_用藥警示.Designer.cs">
       <DependentUpon>Dialog_用藥警示.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.Designer.cs">
+      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -752,6 +758,9 @@
     <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID收支作業.resx">
       <DependentUpon>Dialog_收支作業_RFID收支作業.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID盤點.resx">
+      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -804,7 +813,7 @@
     <EmbeddedResource Include="Dialog\Dialog_輸入藥品碼.resx">
       <DependentUpon>Dialog_輸入藥品碼.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_RFID領退藥頁面.resx">
+    <EmbeddedResource Include="Dialog_old\Dialog_RFID領退藥頁面.resx">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_手輸醫令.resx">
@@ -983,6 +992,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\RFID盤點.png" />
     <None Include="Resources\RFID出庫1.png" />
     <None Include="Resources\RFID入庫1.png" />
     <None Include="Resources\RFID入庫.png" />

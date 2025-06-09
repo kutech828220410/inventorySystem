@@ -30,6 +30,7 @@
         {
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rJ_Lable_顯示狀態 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_解鎖 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_報表時間 = new MyUI.DateTimeIntervelPicker();
@@ -52,7 +53,6 @@
             this.rJ_Lable_異常 = new MyUI.RJ_Lable();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_取藥狀態 = new SQLUI.SQL_DataGridView();
-            this.rJ_Lable_顯示狀態 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
@@ -90,6 +90,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1629, 114);
             this.panel1.TabIndex = 1;
+            // 
+            // rJ_Lable_顯示狀態
+            // 
+            this.rJ_Lable_顯示狀態.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_顯示狀態.BackgroundColor = System.Drawing.Color.Green;
+            this.rJ_Lable_顯示狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_顯示狀態.BorderRadius = 8;
+            this.rJ_Lable_顯示狀態.BorderSize = 0;
+            this.rJ_Lable_顯示狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_顯示狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_顯示狀態.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_顯示狀態.GUID = "";
+            this.rJ_Lable_顯示狀態.Location = new System.Drawing.Point(664, 19);
+            this.rJ_Lable_顯示狀態.Name = "rJ_Lable_顯示狀態";
+            this.rJ_Lable_顯示狀態.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_顯示狀態.ShadowSize = 0;
+            this.rJ_Lable_顯示狀態.Size = new System.Drawing.Size(567, 82);
+            this.rJ_Lable_顯示狀態.TabIndex = 160;
+            this.rJ_Lable_顯示狀態.Text = "rJ_Lable3";
+            this.rJ_Lable_顯示狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_顯示狀態.TextColor = System.Drawing.Color.White;
+            this.rJ_Lable_顯示狀態.Visible = false;
             // 
             // plC_RJ_Button_解鎖
             // 
@@ -201,7 +223,7 @@
             this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(5, 5, 8, 8);
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 3;
-            this.rJ_Pannel1.Size = new System.Drawing.Size(799, 723);
+            this.rJ_Pannel1.Size = new System.Drawing.Size(799, 725);
             this.rJ_Pannel1.TabIndex = 154;
             // 
             // sqL_DataGridView_收支清單
@@ -246,7 +268,7 @@
             this.sqL_DataGridView_收支清單.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_收支清單.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_收支清單.Server = "127.0.0.0";
-            this.sqL_DataGridView_收支清單.Size = new System.Drawing.Size(786, 577);
+            this.sqL_DataGridView_收支清單.Size = new System.Drawing.Size(786, 579);
             this.sqL_DataGridView_收支清單.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_收支清單.TabIndex = 161;
             this.sqL_DataGridView_收支清單.UserName = "root";
@@ -268,7 +290,7 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.rJ_Button_選擇);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(5, 647);
+            this.panel2.Location = new System.Drawing.Point(5, 649);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(786, 68);
             this.panel2.TabIndex = 156;
@@ -609,7 +631,7 @@
             this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_確認.ShadowSize = 0;
             this.rJ_Button_確認.ShowLoadingForm = false;
-            this.rJ_Button_確認.Size = new System.Drawing.Size(126, 98);
+            this.rJ_Button_確認.Size = new System.Drawing.Size(126, 100);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 160;
             this.rJ_Button_確認.Text = "確認";
@@ -633,7 +655,7 @@
             this.rJ_Lable_異常.Name = "rJ_Lable_異常";
             this.rJ_Lable_異常.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_異常.ShadowSize = 0;
-            this.rJ_Lable_異常.Size = new System.Drawing.Size(82, 98);
+            this.rJ_Lable_異常.Size = new System.Drawing.Size(82, 100);
             this.rJ_Lable_異常.TabIndex = 166;
             this.rJ_Lable_異常.Text = "----";
             this.rJ_Lable_異常.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -655,7 +677,7 @@
             this.rJ_Lable6.Name = "rJ_Lable6";
             this.rJ_Lable6.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable6.ShadowSize = 0;
-            this.rJ_Lable6.Size = new System.Drawing.Size(82, 98);
+            this.rJ_Lable6.Size = new System.Drawing.Size(82, 100);
             this.rJ_Lable6.TabIndex = 165;
             this.rJ_Lable6.Text = "異常:";
             this.rJ_Lable6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -703,7 +725,7 @@
             this.sqL_DataGridView_取藥狀態.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_取藥狀態.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_取藥狀態.Server = "127.0.0.0";
-            this.sqL_DataGridView_取藥狀態.Size = new System.Drawing.Size(553, 98);
+            this.sqL_DataGridView_取藥狀態.Size = new System.Drawing.Size(553, 100);
             this.sqL_DataGridView_取藥狀態.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_取藥狀態.TabIndex = 167;
             this.sqL_DataGridView_取藥狀態.UserName = "root";
@@ -719,35 +741,13 @@
             this.sqL_DataGridView_取藥狀態.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_取藥狀態.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // rJ_Lable_顯示狀態
-            // 
-            this.rJ_Lable_顯示狀態.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_顯示狀態.BackgroundColor = System.Drawing.Color.Green;
-            this.rJ_Lable_顯示狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_顯示狀態.BorderRadius = 8;
-            this.rJ_Lable_顯示狀態.BorderSize = 0;
-            this.rJ_Lable_顯示狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_顯示狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_顯示狀態.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_顯示狀態.GUID = "";
-            this.rJ_Lable_顯示狀態.Location = new System.Drawing.Point(658, 18);
-            this.rJ_Lable_顯示狀態.Name = "rJ_Lable_顯示狀態";
-            this.rJ_Lable_顯示狀態.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_顯示狀態.ShadowSize = 0;
-            this.rJ_Lable_顯示狀態.Size = new System.Drawing.Size(567, 82);
-            this.rJ_Lable_顯示狀態.TabIndex = 160;
-            this.rJ_Lable_顯示狀態.Text = "rJ_Lable3";
-            this.rJ_Lable_顯示狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable_顯示狀態.TextColor = System.Drawing.Color.White;
-            this.rJ_Lable_顯示狀態.Visible = false;
-            // 
             // Dialog_收支作業_RFID收支作業
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CaptionHeight = 40;
-            this.ClientSize = new System.Drawing.Size(1650, 898);
+            this.ClientSize = new System.Drawing.Size(1650, 900);
             this.CloseBoxSize = new System.Drawing.Size(40, 40);
             this.ControlBox = true;
             this.Controls.Add(this.sqL_DataGridView_取藥狀態);

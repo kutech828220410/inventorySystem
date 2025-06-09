@@ -90,6 +90,14 @@ namespace HIS_DB_Lib
         診斷碼,
         [Description("診斷內容,VARCHAR,1000,NONE")]
         診斷內容,
+        [Description("過敏藥碼,VARCHAR,30,NONE")]
+        過敏藥碼,
+        [Description("過敏藥名,VARCHAR,100,NONE")]
+        過敏藥名,
+        [Description("交互作用藥碼,VARCHAR,30,NONE")]
+        交互作用藥碼,
+        [Description("交互作用,VARCHAR,1000,NONE")]
+        交互作用,
         [Description("開方時間,DATETIME,30,NONE")]
         開方時間,
         [Description("加入時間,DATETIME,30,NONE")]
@@ -168,6 +176,18 @@ namespace HIS_DB_Lib
         [JsonPropertyName("ICD_DESC")]
         public string 診斷內容 { get; set; }
 
+        [JsonPropertyName("ALLERGY_CODE")]
+        public string 過敏藥碼 { get; set; }
+
+        [JsonPropertyName("ALLERGY_NAME")]
+        public string 過敏藥名 { get; set; }
+
+        [JsonPropertyName("INTERACT_DRUG_CODE")]
+        public string 交互作用藥碼 { get; set; }
+
+        [JsonPropertyName("INTERACTION_DESC")]
+        public string 交互作用 { get; set; }
+
         [JsonPropertyName("ORDER_TIME")]
         public string 開方時間 { get; set; }
 
@@ -176,8 +196,10 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
+
         [JsonPropertyName("rule")]
         public string 識別規則依據 { get; set; }
+
         [JsonPropertyName("ERROR_TYPE_STRING")]
         public string 錯誤類別 { get; set; }
 
@@ -261,6 +283,81 @@ namespace HIS_DB_Lib
             }
         }
         public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
+        [JsonPropertyName("ALLERGY")]
+        public List<MedicalCodeItem> 過敏紀錄
+        {
+            get
+            {
+                List<MedicalCodeItem> 過敏 = new List<MedicalCodeItem>();
+                if (this.過敏藥碼.StringIsEmpty() == false)
+                {
+                    List<string> list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
+                    List<string> list_過敏藥名 = this.過敏藥名.Split(';').ToList();
+                    for(int i = 0; i < list_過敏藥碼.Count; i++)
+                    {
+                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                        {
+                            code = list_過敏藥碼[i],
+                            name = list_過敏藥名[i]
+                        };
+                        過敏.Add(medicalCodeItem);
+                    }
+                }
+                return 過敏;
+            }
+            set
+            {
+                if (value == null) return;
+                List<string> list_過敏藥碼 = new List<string>();
+                List<string> list_過敏藥名 = new List<string>();
+
+                foreach (var item in value)
+                {
+                    list_過敏藥碼.Add(item.code);
+                    list_過敏藥名.Add(item.name);
+                }
+                this.過敏藥碼 = string.Join(";", list_過敏藥碼);
+                this.過敏藥名 = string.Join(";", list_過敏藥名);
+            }
+        }
+        [JsonPropertyName("INTERACT")]
+        public List<MedicalCodeItem> 交互作用紀錄
+        {
+            get
+            {
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
+                if (this.交互作用藥碼.StringIsEmpty() == false)
+                {
+                    List<string> list_交互作用藥碼 = this.交互作用藥碼.Split(';').ToList();
+                    List<string> list_交互作用 = this.交互作用.Split(';').ToList();
+                    for(int i = 0; i < list_交互作用藥碼.Count; i++)
+                    {
+                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                        {
+                            code = list_交互作用藥碼[i],
+                            name = list_交互作用[i]
+                        };
+                        交互作用.Add(medicalCodeItem);
+                    }
+                }
+                return 交互作用;
+            }
+            set
+            {
+                if (value == null) return;
+                List<string> list_交互作用藥碼 = new List<string>();
+                List<string> list_交互作用 = new List<string>();
+                foreach (var item in value)
+                {
+                    list_交互作用藥碼.Add(item.code);
+                    list_交互作用.Add(item.name);
+                }
+                this.交互作用藥碼 = string.Join(";", list_交互作用藥碼);
+                this.交互作用 = string.Join(";", list_交互作用);
+            }
+        }
+
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
         public List<string> error_type { get; set; }
@@ -592,5 +689,10 @@ namespace HIS_DB_Lib
                 this.診斷內容 = string.Join(";", list_中文說明);
             }
         }
+    }
+    public class MedicalCodeItem
+    {
+        public string code { get; set; }
+        public string name { get; set; }
     }
 }

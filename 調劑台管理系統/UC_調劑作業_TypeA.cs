@@ -24,7 +24,14 @@ namespace 調劑台管理系統
         {
             set
             {
-                this.Invoke(new Action(delegate { this.rJ_Lable_Title.Text = value; }));             
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(new Action(delegate { this.rJ_Lable_Title.Text = value; }));
+                }
+                else
+                {
+                    this.rJ_Lable_Title.Text = value;
+                }
             }
             get
             {
@@ -250,10 +257,28 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, scanner_text);
+                personPageClass personPageClass = new personPageClass();
+
                 if (medClasses.Count > 0)
                 {
+                    if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+                    if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+                    if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+                    if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+                
                     List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
-                    if(medConfigClasses.Count > 0)
+
+                    if (medConfigClasses.Count > 0)
+                    {
+                        Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
+                        dialog_使用者登入.ShowDialog();
+                        if (dialog_使用者登入.DialogResult != DialogResult.Yes) return;
+                        personPageClass = dialog_使用者登入.personPageClass;
+                        this.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{ personPageClass.姓名}]";
+
+                    }
+
+                    if (medConfigClasses.Count > 0)
                     {
                         Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入【退藥】數量");
                         if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
@@ -262,10 +287,13 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
                         takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸退藥.GetEnumName();
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統退藥.GetEnumName();
                         takeMedicineStackClass.總異動量 = dialog_NumPannel.Value.ToString();
                         takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                         takeMedicineStackClass.顏色 = this.顏色;
+                        takeMedicineStackClass.操作人 = personPageClass.姓名;
+                        takeMedicineStackClass.ID = personPageClass.ID;
+                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
                         Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                     }
                     else
@@ -274,10 +302,13 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
                         takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.手輸領藥.GetEnumName();
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
                         takeMedicineStackClass.總異動量 = "0";
                         takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                         takeMedicineStackClass.顏色 = this.顏色;
+                        takeMedicineStackClass.操作人 = personPageClass.姓名;
+                        takeMedicineStackClass.ID = personPageClass.ID;
+                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
                         Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                     }
                     
@@ -285,7 +316,6 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                personPageClass personPageClass = new personPageClass();
                 personPageClass.ID = "";
                 personPageClass.姓名 = "導引模式";
                 personPageClass.藥師證字號 = "";
@@ -487,6 +517,7 @@ namespace 調劑台管理系統
             if (Main_Form.Function_ReadBacodeScanner_pre(index) != null)
             {
                 醫令條碼 = Main_Form.Function_ReadBacodeScanner(index);
+                if (醫令條碼.StringIsEmpty()) return;
                 cnt++;
                 return;
             }
@@ -906,46 +937,30 @@ namespace 調劑台管理系統
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
-            if (list_取藥堆疊母資料.Count > 0 && (Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false))
+            if (list_取藥堆疊母資料.Count > 0 )
             {
-                Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
-                return;
-            }
-            for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
-            {
-                takeMedicineStackClass takeMedicineStackClass = list_取藥堆疊母資料[i].SQLToClass<takeMedicineStackClass, enum_取藥堆疊母資料>();
-                string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                string 效期 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
-                if(效期.StringIsEmpty())
+                if(Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false)
                 {
-                    Application.DoEvents();
-                    Dialog_HFRFID調劑作業 dialog_HFRFID調劑作業 = new Dialog_HFRFID調劑作業(takeMedicineStackClass);
-
-                    if (dialog_HFRFID調劑作業.ShowDialog() != DialogResult.Yes)
-                    {
-                        list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
-                        Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
-                        Fuction_時間重置();
-                        continue;
-                    }
+                    Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料, false);
+                    Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
+                    cnt = 1;
+                    return;
+                }
+                List<takeMedicineStackClass> takeMedicineStackClasses = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+                Dialog_HFRFID調劑作業 dialog_HFRFID調劑作業 = new Dialog_HFRFID調劑作業(takeMedicineStackClasses[0].調劑台名稱 ,(takeMedicineStackClasses[0].動作.Contains("退")? IncomeOutcomeMode.收入 : IncomeOutcomeMode.支出));
+                if (dialog_HFRFID調劑作業.ShowDialog() != DialogResult.Yes)
+                {
+                    Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料, false);
                     Fuction_時間重置();
-
-                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
-                    List<takeMedicineStackClass> takeMedicineStackClasses = dialog_HFRFID調劑作業.takeMedicineStackClasses;
-                    list_取藥堆疊母資料_add.LockAdd(takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass , enum_取藥堆疊母資料>());
-
-                    //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
-
+                    cnt = 1;
+                    return;
                 }
-                else
-                {
-                    Main_Form.Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.RFID使用, false);
-                    list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
-                }
+                Fuction_時間重置();
 
-
+                list_取藥堆疊母資料_add = dialog_HFRFID調劑作業.takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
+                list_取藥堆疊母資料_delete.LockAdd(list_取藥堆疊母資料);
             }
+       
             if (list_取藥堆疊母資料_delete.Count > 0)
             {
                 Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
@@ -1298,24 +1313,28 @@ namespace 調劑台管理系統
                     MyTimer_入賬完成時間.StartTickTime();
                     if (PLC_Device_閒置登出時間.Value != 0)
                     {
-                        if ((PLC_Device_閒置登出時間.Value - (int)MyTimer_閒置登出時間.GetTickTime()) <= 20000)
+                        if(Main_Form.PLC_Device_閒置登出要警示.Bool == true)
                         {
-                            myTimer_Logout.StartTickTime(5000);
-                            if (myTimer_Logout.IsTimeOut())
+                            if ((PLC_Device_閒置登出時間.Value - (int)MyTimer_閒置登出時間.GetTickTime()) <= 20000)
                             {
-                                myTimer_Logout.TickStop();
-                                Task.Run(new Action(delegate
+                                myTimer_Logout.StartTickTime(5000);
+                                if (myTimer_Logout.IsTimeOut())
                                 {
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{Main_Form.currentDirectory}\logout.wav"))
+                                    myTimer_Logout.TickStop();
+                                    Task.Run(new Action(delegate
                                     {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
+                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{Main_Form.currentDirectory}\logout.wav"))
+                                        {
+                                            sp.Stop();
+                                            sp.Play();
+                                            sp.PlaySync();
+                                        }
 
-                                }));
+                                    }));
+                                }
                             }
                         }
+                       
                     }
 
                 }
@@ -1714,8 +1733,15 @@ namespace 調劑台管理系統
                             text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
                             if (i != suspiciousRxLog.diseaseClasses.Count - 1) text += "\n";
                         }
-                        this.Invoke(new Action(delegate 
+                        this.Invoke(new Action(delegate
                         {
+                            if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                            if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                pictureBox_藥品圖片02.BackgroundImage.Dispose();
+
+                            pictureBox_藥品圖片01.Visible = false;
+                            pictureBox_藥品圖片02.Visible = false;
                             rJ_Lable_診斷.Text = text;
                             panel_診斷資訊.Visible = true;
                             string 提報等級 = this.suspiciousRxLog?.提報等級;
@@ -1753,13 +1779,13 @@ namespace 調劑台管理系統
                                     pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
                                     PictureBox_藥品圖片_Click(null, null);
                                 }
-                                else
-                                {
-                                    if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                        pictureBox_藥品圖片01.BackgroundImage.Dispose();
-                                    if (pictureBox_藥品圖片02.BackgroundImage != null)
-                                        pictureBox_藥品圖片02.BackgroundImage.Dispose();
-                                }
+                                //else
+                                //{
+                                //    if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                //        pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                                //    if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                //        pictureBox_藥品圖片02.BackgroundImage.Dispose();
+                                //}
                             }
                         }));
                       
@@ -1807,6 +1833,7 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()));
             if (!Main_Form._plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
         }

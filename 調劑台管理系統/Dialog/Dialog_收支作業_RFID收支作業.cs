@@ -12,7 +12,6 @@ using MyUI;
 using HIS_DB_Lib;
 using SQLUI;
 using H_Pannel_lib;
-using static 調劑台管理系統.Dialog_收支作業_RFID收支作業;
 
 namespace 調劑台管理系統
 {
@@ -126,11 +125,17 @@ namespace 調劑台管理系統
 
             if(_Import_Export == IncomeOutcomeMode.收入)
             {
+                this.sqL_DataGridView_收支清單.Set_ColumnText("未收入", enum_DrugHFTag_IncomeOutcomeList.報表數量);
+                this.sqL_DataGridView_收支清單.Set_ColumnText("已收入", enum_DrugHFTag_IncomeOutcomeList.收支數量);
+
                 rJ_Lable_應收入_title.Text = "應收";
                 rJ_Lable_實收入_title.Text = "實收";
             }
             if (_Import_Export == IncomeOutcomeMode.支出)
             {
+                this.sqL_DataGridView_收支清單.Set_ColumnText("可支出", enum_DrugHFTag_IncomeOutcomeList.報表數量);
+                this.sqL_DataGridView_收支清單.Set_ColumnText("未支出", enum_DrugHFTag_IncomeOutcomeList.收支數量);
+
                 rJ_Lable_應收入_title.Text = "應出";
                 rJ_Lable_實收入_title.Text = "實出";
             }

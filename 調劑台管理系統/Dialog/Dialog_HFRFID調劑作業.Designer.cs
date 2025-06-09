@@ -30,18 +30,12 @@ namespace 調劑台管理系統
         private void InitializeComponent()
         {
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
-            this.label_交易量 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label_藥名 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label_藥碼 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.plC_RJ_Button_解鎖 = new MyUI.PLC_RJ_Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rJ_Button_取消 = new MyUI.RJ_Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
             this.sqL_DataGridView_TagList = new SQLUI.SQL_DataGridView();
-            this.plC_RJ_Button_解鎖 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,12 +48,6 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.BorderRadius = 10;
             this.rJ_Pannel2.BorderSize = 2;
             this.rJ_Pannel2.Controls.Add(this.plC_RJ_Button_解鎖);
-            this.rJ_Pannel2.Controls.Add(this.label_交易量);
-            this.rJ_Pannel2.Controls.Add(this.label5);
-            this.rJ_Pannel2.Controls.Add(this.label_藥名);
-            this.rJ_Pannel2.Controls.Add(this.label4);
-            this.rJ_Pannel2.Controls.Add(this.label_藥碼);
-            this.rJ_Pannel2.Controls.Add(this.label1);
             this.rJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.rJ_Pannel2.ForeColor = System.Drawing.Color.Black;
             this.rJ_Pannel2.IsSelected = false;
@@ -71,64 +59,59 @@ namespace 調劑台管理系統
             this.rJ_Pannel2.Size = new System.Drawing.Size(1249, 117);
             this.rJ_Pannel2.TabIndex = 153;
             // 
-            // label_交易量
+            // plC_RJ_Button_解鎖
             // 
-            this.label_交易量.AutoSize = true;
-            this.label_交易量.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_交易量.Location = new System.Drawing.Point(1145, 44);
-            this.label_交易量.Name = "label_交易量";
-            this.label_交易量.Size = new System.Drawing.Size(61, 21);
-            this.label_交易量.TabIndex = 15;
-            this.label_交易量.Text = "-------";
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(1018, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 32);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "交易量:";
-            // 
-            // label_藥名
-            // 
-            this.label_藥名.AutoSize = true;
-            this.label_藥名.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_藥名.Location = new System.Drawing.Point(441, 44);
-            this.label_藥名.Name = "label_藥名";
-            this.label_藥名.Size = new System.Drawing.Size(574, 32);
-            this.label_藥名.TabIndex = 13;
-            this.label_藥名.Text = "--------------------------------------------------------";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(348, 44);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 32);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "藥名:";
-            // 
-            // label_藥碼
-            // 
-            this.label_藥碼.AutoSize = true;
-            this.label_藥碼.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_藥碼.Location = new System.Drawing.Point(212, 44);
-            this.label_藥碼.Name = "label_藥碼";
-            this.label_藥碼.Size = new System.Drawing.Size(84, 32);
-            this.label_藥碼.TabIndex = 11;
-            this.label_藥碼.Text = "-------";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(119, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 32);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "藥碼:";
+            this.plC_RJ_Button_解鎖.AutoResetState = true;
+            this.plC_RJ_Button_解鎖.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_解鎖.Bool = false;
+            this.plC_RJ_Button_解鎖.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_解鎖.BorderRadius = 15;
+            this.plC_RJ_Button_解鎖.BorderSize = 1;
+            this.plC_RJ_Button_解鎖.but_press = false;
+            this.plC_RJ_Button_解鎖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_解鎖.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_解鎖.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_解鎖.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_解鎖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_解鎖.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_解鎖.GUID = "";
+            this.plC_RJ_Button_解鎖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_解鎖.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_解鎖.Location = new System.Drawing.Point(5, 5);
+            this.plC_RJ_Button_解鎖.Name = "plC_RJ_Button_解鎖";
+            this.plC_RJ_Button_解鎖.OFF_文字內容 = "解鎖";
+            this.plC_RJ_Button_解鎖.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_解鎖.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_解鎖.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_解鎖.ON_BorderSize = 1;
+            this.plC_RJ_Button_解鎖.ON_文字內容 = "解鎖";
+            this.plC_RJ_Button_解鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_解鎖.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_解鎖.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_解鎖.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_解鎖.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_解鎖.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_解鎖.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_解鎖.ShadowSize = 3;
+            this.plC_RJ_Button_解鎖.ShowLoadingForm = false;
+            this.plC_RJ_Button_解鎖.Size = new System.Drawing.Size(108, 104);
+            this.plC_RJ_Button_解鎖.State = false;
+            this.plC_RJ_Button_解鎖.TabIndex = 160;
+            this.plC_RJ_Button_解鎖.Text = "解鎖";
+            this.plC_RJ_Button_解鎖.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_解鎖.TextHeight = 35;
+            this.plC_RJ_Button_解鎖.Texts = "解鎖";
+            this.plC_RJ_Button_解鎖.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_解鎖.字型鎖住 = false;
+            this.plC_RJ_Button_解鎖.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_解鎖.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_解鎖.文字鎖住 = false;
+            this.plC_RJ_Button_解鎖.背景圖片 = global::調劑台管理系統.Properties.Resources.a_padlock_unlocked__showing_an_open_lock_removebg_preview;
+            this.plC_RJ_Button_解鎖.讀取位元反向 = false;
+            this.plC_RJ_Button_解鎖.讀寫鎖住 = false;
+            this.plC_RJ_Button_解鎖.音效 = false;
+            this.plC_RJ_Button_解鎖.顯示 = false;
+            this.plC_RJ_Button_解鎖.顯示狀態 = false;
             // 
             // panel2
             // 
@@ -273,60 +256,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_TagList.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_TagList.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // plC_RJ_Button_解鎖
-            // 
-            this.plC_RJ_Button_解鎖.AutoResetState = true;
-            this.plC_RJ_Button_解鎖.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_解鎖.Bool = false;
-            this.plC_RJ_Button_解鎖.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_解鎖.BorderRadius = 15;
-            this.plC_RJ_Button_解鎖.BorderSize = 1;
-            this.plC_RJ_Button_解鎖.but_press = false;
-            this.plC_RJ_Button_解鎖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_解鎖.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_解鎖.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Button_解鎖.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_解鎖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_解鎖.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_解鎖.GUID = "";
-            this.plC_RJ_Button_解鎖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_解鎖.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button_解鎖.Location = new System.Drawing.Point(5, 5);
-            this.plC_RJ_Button_解鎖.Name = "plC_RJ_Button_解鎖";
-            this.plC_RJ_Button_解鎖.OFF_文字內容 = "解鎖";
-            this.plC_RJ_Button_解鎖.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_解鎖.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_解鎖.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_解鎖.ON_BorderSize = 1;
-            this.plC_RJ_Button_解鎖.ON_文字內容 = "解鎖";
-            this.plC_RJ_Button_解鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_解鎖.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_解鎖.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_解鎖.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_解鎖.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_解鎖.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_解鎖.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_解鎖.ShadowSize = 3;
-            this.plC_RJ_Button_解鎖.ShowLoadingForm = false;
-            this.plC_RJ_Button_解鎖.Size = new System.Drawing.Size(108, 104);
-            this.plC_RJ_Button_解鎖.State = false;
-            this.plC_RJ_Button_解鎖.TabIndex = 160;
-            this.plC_RJ_Button_解鎖.Text = "解鎖";
-            this.plC_RJ_Button_解鎖.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_解鎖.TextHeight = 35;
-            this.plC_RJ_Button_解鎖.Texts = "解鎖";
-            this.plC_RJ_Button_解鎖.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_解鎖.字型鎖住 = false;
-            this.plC_RJ_Button_解鎖.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_解鎖.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_解鎖.文字鎖住 = false;
-            this.plC_RJ_Button_解鎖.背景圖片 = global::調劑台管理系統.Properties.Resources.a_padlock_unlocked__showing_an_open_lock_removebg_preview;
-            this.plC_RJ_Button_解鎖.讀取位元反向 = false;
-            this.plC_RJ_Button_解鎖.讀寫鎖住 = false;
-            this.plC_RJ_Button_解鎖.音效 = false;
-            this.plC_RJ_Button_解鎖.顯示 = false;
-            this.plC_RJ_Button_解鎖.顯示狀態 = false;
-            // 
             // Dialog_HFRFID調劑作業
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -345,7 +274,6 @@ namespace 調劑台管理系統
             this.Name = "Dialog_HFRFID調劑作業";
             this.Text = "高頻RFID調劑作業";
             this.rJ_Pannel2.ResumeLayout(false);
-            this.rJ_Pannel2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -354,12 +282,6 @@ namespace 調劑台管理系統
         #endregion
 
         private MyUI.RJ_Pannel rJ_Pannel2;
-        private System.Windows.Forms.Label label_交易量;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label_藥名;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label_藥碼;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private MyUI.RJ_Button rJ_Button_取消;
         private System.Windows.Forms.Panel panel3;
