@@ -46,7 +46,7 @@ namespace HIS_DB_Lib
         藥名,
         [Description("批號,VARCHAR,50,NONE")]
         批號,
-        [Description("效期,DATETIME,20,NONE")]
+        [Description("效期,VARCHAR,20,NONE")]
         效期,
         [Description("包裝單位,VARCHAR,50,NONE")]
         包裝單位,
