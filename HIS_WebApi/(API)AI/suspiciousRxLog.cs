@@ -119,6 +119,7 @@ namespace HIS_WebApi._API_AI
             returnData.Method = "add";
             try
             {
+                init();
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<suspiciousRxLogClass>();
