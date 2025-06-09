@@ -40,37 +40,52 @@ namespace 調劑台管理系統
 
         public static List<Image> Function_取得藥品圖片(string Code)
         {
-            List<medPicClass> medPicClasse_buf = (from temp in medPicClasses
-                                                  where temp.藥碼 == Code
-                                                  select temp).ToList();
+            List<medPicClass> medPicClasse_buf = medPicClasses.Where(temp => temp.藥碼 == Code).ToList();
             List<Image> images = new List<Image>();
+
             if (medPicClasse_buf.Count == 0)
             {
                 medPicClass medPicClass = new medPicClass();
-                images = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
+                List<Image> loadedImages = medPicClass.get_images_by_code(Main_Form.API_Server, Code);
+
                 medPicClass.藥碼 = Code;
-                if (images == null)
+
+                if (loadedImages != null)
                 {
-                    medPicClasses.Add(medPicClass);
-                    return images;
+                    if (loadedImages.Count > 0 && IsValidImage(loadedImages[0]))
+                    {
+                        medPicClass.Image_0 = loadedImages[0];
+                        images.Add(loadedImages[0]);
+                    }
+                    if (loadedImages.Count > 1 && IsValidImage(loadedImages[1]))
+                    {
+                        medPicClass.Image_1 = loadedImages[1];
+                        images.Add(loadedImages[1]);
+                    }
                 }
-                for (int i = 0; i < images.Count; i++)
-                {
-                    if (i == 0) medPicClass.Image_0 = images[0];
-                    if (i == 1) medPicClass.Image_1 = images[1];
-                }
+
                 medPicClasses.Add(medPicClass);
                 return images;
             }
             else
             {
-                if (medPicClasse_buf[0].Image_0 != null) images.Add(medPicClasse_buf[0].Image_0);
-                if (medPicClasse_buf[0].Image_1 != null) images.Add(medPicClasse_buf[0].Image_1);
+                var cached = medPicClasse_buf[0];
+                if (IsValidImage(cached.Image_0)) images.Add(cached.Image_0);
+                if (IsValidImage(cached.Image_1)) images.Add(cached.Image_1);
                 return images;
             }
         }
 
-      
+        /// <summary>
+        /// 確保圖片不為 null 且寬高有效
+        /// </summary>
+        private static bool IsValidImage(Image img)
+        {
+            return img != null && img.Width > 0 && img.Height > 0;
+        }
+
+
+
         static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order , UC_調劑作業_TypeA uC_depensing = null)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();

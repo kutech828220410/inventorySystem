@@ -17,9 +17,10 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_用藥警示 : MyDialog
     {
-        public Dialog_用藥警示()
+        public Dialog_用藥警示(string text)
         {
             InitializeComponent();
+            this.textBox1.Text = text;
         }
     }
 }

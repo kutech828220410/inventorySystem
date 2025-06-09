@@ -55,7 +55,7 @@
             this.rJ_Lable_姓名 = new MyUI.RJ_Lable();
             this.rJ_Lable8 = new MyUI.RJ_Lable();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel_診斷資訊 = new System.Windows.Forms.Panel();
+            this.panel_診斷及交互資訊 = new System.Windows.Forms.Panel();
             this.rJ_Lable_診斷 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_領藥內容 = new SQLUI.SQL_DataGridView();
             this.contextMenuStrip_調劑畫面 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -69,7 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).BeginInit();
             this.panel_領藥台01_處方資訊.SuspendLayout();
             this.panel_病患資訊.SuspendLayout();
-            this.panel_診斷資訊.SuspendLayout();
+            this.panel_診斷及交互資訊.SuspendLayout();
             this.contextMenuStrip_調劑畫面.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -668,14 +668,14 @@
             this.panel3.Size = new System.Drawing.Size(10, 50);
             this.panel3.TabIndex = 0;
             // 
-            // panel_診斷資訊
+            // panel_診斷及交互資訊
             // 
-            this.panel_診斷資訊.Controls.Add(this.rJ_Lable_診斷);
-            this.panel_診斷資訊.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_診斷資訊.Location = new System.Drawing.Point(0, 76);
-            this.panel_診斷資訊.Name = "panel_診斷資訊";
-            this.panel_診斷資訊.Size = new System.Drawing.Size(880, 100);
-            this.panel_診斷資訊.TabIndex = 136;
+            this.panel_診斷及交互資訊.Controls.Add(this.rJ_Lable_診斷);
+            this.panel_診斷及交互資訊.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_診斷及交互資訊.Location = new System.Drawing.Point(0, 76);
+            this.panel_診斷及交互資訊.Name = "panel_診斷及交互資訊";
+            this.panel_診斷及交互資訊.Size = new System.Drawing.Size(880, 100);
+            this.panel_診斷及交互資訊.TabIndex = 136;
             // 
             // rJ_Lable_診斷
             // 
@@ -776,7 +776,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.sqL_DataGridView_領藥內容);
-            this.Controls.Add(this.panel_診斷資訊);
+            this.Controls.Add(this.panel_診斷及交互資訊);
             this.Controls.Add(this.panel_領藥台01_處方資訊);
             this.Controls.Add(this.panel_藥品資訊);
             this.Controls.Add(this.panel114);
@@ -791,7 +791,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_藥品圖片02)).EndInit();
             this.panel_領藥台01_處方資訊.ResumeLayout(false);
             this.panel_病患資訊.ResumeLayout(false);
-            this.panel_診斷資訊.ResumeLayout(false);
+            this.panel_診斷及交互資訊.ResumeLayout(false);
             this.contextMenuStrip_調劑畫面.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -804,7 +804,7 @@
         private System.Windows.Forms.Panel panel119;
         private System.Windows.Forms.Panel panel_領藥台01_處方資訊;
         private System.Windows.Forms.Panel panel_病患資訊;
-        private System.Windows.Forms.Panel panel_診斷資訊;
+        private System.Windows.Forms.Panel panel_診斷及交互資訊;
         private MyUI.RJ_Lable rJ_Lable2;
         private MyUI.RJ_Lable rJ_Lable4;
         private MyUI.RJ_Lable rJ_Lable6;

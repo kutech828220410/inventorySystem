@@ -135,7 +135,7 @@ namespace HIS_WebApi._API_AI
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
-                if(data != null || data.Count != 0)
+                if(data.Count != 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"此Barcode{藥袋條碼}已存在";
@@ -635,6 +635,27 @@ namespace HIS_WebApi._API_AI
                 }
 
                 suspiciousRxLogClass suspiciousRxLogClasses = suspiciousRxLoges[0];
+                suspiciousRxLogClasses.調劑人員 = orders[0].藥師姓名;
+
+                string url = "";
+                try
+                {
+                    url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
+                }
+                catch
+                {
+
+                }
+                if (url.StringIsEmpty())
+                {
+                    suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
+                    returnData.Data = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
+                    returnData.Code = 200;
+                    returnData.Result = $"取得病歷資訊成功(未連結AI判斷伺服器)";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "藥檔資料");
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
@@ -677,7 +698,6 @@ namespace HIS_WebApi._API_AI
                 //    returnData.Data = result;
                 //    return returnData.JsonSerializationt(true);
                 //}
-                string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
                 Logger.Log("suspiciousRxLog_input", returnData.JsonSerializationt(true));
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);

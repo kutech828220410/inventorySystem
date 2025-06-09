@@ -289,7 +289,6 @@ namespace 調劑台管理系統
                 Console.WriteLine($"[Row {e.RowIndex}] ❗繪圖區發生錯誤：{ex.Message}");
             }
         }
-
         private void Program_調劑作業_Init()
         {
             _plC_CheckBox_領藥無儲位不顯示 = this.plC_CheckBox_領藥無儲位不顯示;

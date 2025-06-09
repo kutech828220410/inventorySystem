@@ -117,11 +117,15 @@ namespace 調劑台管理系統
                 pictureBox_藥品圖片01.Click += PictureBox_藥品圖片_Click;
                 pictureBox_藥品圖片02.Click += PictureBox_藥品圖片_Click;
                 rJ_Lable_MedGPT_Title.Visible = true;
-                panel_診斷資訊.Height = 100;
+                Main_Form.PLC_Device_顯示診斷訊息.Bool = true;
+            }
+            if(Main_Form.PLC_Device_顯示診斷訊息.Bool)
+            {
+                panel_診斷及交互資訊.Height = 100;
             }
             else
             {
-                panel_診斷資訊.Height = 0;
+                panel_診斷及交互資訊.Height = 0;
             }
 
             myThread_program = new MyThread();
@@ -1705,15 +1709,15 @@ namespace 調劑台管理系統
             List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
             if (orderClasses != null)
             {
-                if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
+                if (Main_Form.PLC_Device_AI處方核對啟用.Bool || Main_Form.PLC_Device_顯示診斷訊息.Bool)
                 {
                     Task.Run(new Action(delegate
                     {
-                        this.Invoke(new Action(delegate 
+                        this.Invoke(new Action(delegate
                         {
                             rJ_Lable_診斷.Text = "";
                         }));
-                  
+
                         for (int i = 0; i < orderClasses.Count; i++)
                         {
                             orderClasses[i].藥師姓名 = 登入者姓名;
@@ -1722,17 +1726,42 @@ namespace 調劑台管理系統
                         (int code, string resuult, suspiciousRxLogClass suspiciousRxLogClass) = suspiciousRxLogClass.medGPT_full(Main_Form.API_Server, orderClasses);
                         if (code == -200)
                         {
+                            Logger.Log("error", resuult);
                             return;
                         }
                         suspiciousRxLog = suspiciousRxLogClass;
 
                         if (suspiciousRxLog == null) return;
                         string text = "";
+                        int text_height = 30;
+                        int text_height_basic = TextRenderer.MeasureText("測試", rJ_Lable_診斷.Font).Height;
+
                         for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
                         {
                             text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
-                            if (i != suspiciousRxLog.diseaseClasses.Count - 1) text += "\n";
+                            if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄.Count != 0) text += "\n";
+                            text_height += text_height_basic;
                         }
+                        for (int i = 0; i < suspiciousRxLog.交互作用紀錄.Count; i++)
+                        {
+                            text += $"  ※ [{suspiciousRxLog.交互作用紀錄[i].code.StringLength(0)}]{suspiciousRxLog.交互作用紀錄[i].name}";
+                            if (i != suspiciousRxLog.交互作用紀錄.Count - 1) text += "\n";
+                            text_height += text_height_basic;
+                        }
+                        string text_用藥警示 = "";
+                        for (int i = 0; i < suspiciousRxLog.過敏紀錄.Count; i++)
+                        {
+                            text_用藥警示 += $"  ※ [{suspiciousRxLog.過敏紀錄[i].code.StringLength(0)}]{suspiciousRxLog.過敏紀錄[i].name}";
+                            if (i != suspiciousRxLog.過敏紀錄.Count - 1) text_用藥警示 += "\n";
+                        }
+                        if(text_用藥警示.StringIsEmpty() == false)
+                        {
+                            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
+
+                            Dialog_用藥警示 dialog_用藥警示 = new Dialog_用藥警示(text_用藥警示);
+                            dialog_用藥警示.ShowDialog();
+                        }
+                       
                         this.Invoke(new Action(delegate
                         {
                             if (pictureBox_藥品圖片01.BackgroundImage != null)
@@ -1743,52 +1772,58 @@ namespace 調劑台管理系統
                             pictureBox_藥品圖片01.Visible = false;
                             pictureBox_藥品圖片02.Visible = false;
                             rJ_Lable_診斷.Text = text;
-                            panel_診斷資訊.Visible = true;
-                            string 提報等級 = this.suspiciousRxLog?.提報等級;
-                            string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
-                            string 簡述事件 = this.suspiciousRxLog?.簡述事件;
-                            if (!string.IsNullOrEmpty(提報等級))
+                            panel_診斷及交互資訊.Height = text_height;
+                            panel_診斷及交互資訊.Visible = true;
+
+                            if (Main_Form.PLC_Device_AI處方核對啟用.Bool)
                             {
-                                Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\處方有疑義,請審核.wav");
-
-
-
-                                if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
+                                string 提報等級 = this.suspiciousRxLog?.提報等級;
+                                string 錯誤類別 = this.suspiciousRxLog?.錯誤類別;
+                                string 簡述事件 = this.suspiciousRxLog?.簡述事件;
+                                if (!string.IsNullOrEmpty(提報等級))
                                 {
-                                    if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                        pictureBox_藥品圖片01.BackgroundImage.Dispose();
-                                    pictureBox_藥品圖片01.Visible = true;
-                                    pictureBox_藥品圖片02.Visible = false;
-                                    pictureBox_藥品圖片01.Invalidate();
-                                    //panel_藥品圖片.Refresh();
-                                    int pbWidth = pictureBox_藥品圖片01.Width;
-                                    int pbHeight = pictureBox_藥品圖片01.Height;
-                                    pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\處方有疑義,請審核.wav");
 
+
+
+                                    if (提報等級 == enum_suspiciousRxLog_ReportLevel.Normal.GetEnumName() || 提報等級 == enum_suspiciousRxLog_ReportLevel.Important.GetEnumName())
+                                    {
+                                        if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                            pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                                        pictureBox_藥品圖片01.Visible = true;
+                                        pictureBox_藥品圖片02.Visible = false;
+                                        pictureBox_藥品圖片01.Invalidate();
+                                        //panel_藥品圖片.Refresh();
+                                        int pbWidth = pictureBox_藥品圖片01.Width;
+                                        int pbHeight = pictureBox_藥品圖片01.Height;
+                                        pictureBox_藥品圖片01.BackgroundImage = DrawSimpleWarningImage("Normal", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+
+                                    }
+                                    else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
+                                    {
+                                        if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                            pictureBox_藥品圖片02.BackgroundImage.Dispose();
+                                        pictureBox_藥品圖片01.Visible = false;
+                                        pictureBox_藥品圖片02.Visible = true;
+                                        pictureBox_藥品圖片02.Invalidate();
+                                        //panel_藥品圖片.Refresh();
+                                        int pbWidth = pictureBox_藥品圖片02.Width;
+                                        int pbHeight = pictureBox_藥品圖片02.Height;
+                                        pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
+                                        PictureBox_藥品圖片_Click(null, null);
+                                    }
+                                    //else
+                                    //{
+                                    //    if (pictureBox_藥品圖片01.BackgroundImage != null)
+                                    //        pictureBox_藥品圖片01.BackgroundImage.Dispose();
+                                    //    if (pictureBox_藥品圖片02.BackgroundImage != null)
+                                    //        pictureBox_藥品圖片02.BackgroundImage.Dispose();
+                                    //}
                                 }
-                                else if (提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName())
-                                {
-                                    if (pictureBox_藥品圖片02.BackgroundImage != null)
-                                        pictureBox_藥品圖片02.BackgroundImage.Dispose();
-                                    pictureBox_藥品圖片01.Visible = false;
-                                    pictureBox_藥品圖片02.Visible = true;
-                                    pictureBox_藥品圖片02.Invalidate();
-                                    //panel_藥品圖片.Refresh();
-                                    int pbWidth = pictureBox_藥品圖片02.Width;
-                                    int pbHeight = pictureBox_藥品圖片02.Height;
-                                    pictureBox_藥品圖片02.BackgroundImage = DrawSimpleWarningImage("Critical", 錯誤類別, 簡述事件, pbWidth, pbHeight);
-                                    PictureBox_藥品圖片_Click(null, null);
-                                }
-                                //else
-                                //{
-                                //    if (pictureBox_藥品圖片01.BackgroundImage != null)
-                                //        pictureBox_藥品圖片01.BackgroundImage.Dispose();
-                                //    if (pictureBox_藥品圖片02.BackgroundImage != null)
-                                //        pictureBox_藥品圖片02.BackgroundImage.Dispose();
-                                //}
                             }
+                               
                         }));
-                      
+
 
                     }));
                 }
