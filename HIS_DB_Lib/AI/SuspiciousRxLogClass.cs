@@ -283,6 +283,7 @@ namespace HIS_DB_Lib
             }
         }
         public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
+        [JsonPropertyName("ALLERGY")]
         public List<MedicalCodeItem> 過敏紀錄
         {
             get
@@ -319,6 +320,7 @@ namespace HIS_DB_Lib
                 this.過敏藥名 = string.Join(";", list_過敏藥名);
             }
         }
+        [JsonPropertyName("INTERACT")]
         public List<MedicalCodeItem> 交互作用紀錄
         {
             get
@@ -352,7 +354,7 @@ namespace HIS_DB_Lib
                     list_交互作用.Add(item.name);
                 }
                 this.交互作用藥碼 = string.Join(";", list_交互作用藥碼);
-                this.交互作用 = string.Join(";", 交互作用);
+                this.交互作用 = string.Join(";", list_交互作用);
             }
         }
 
