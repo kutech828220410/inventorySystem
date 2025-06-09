@@ -44,6 +44,10 @@ namespace HIS_DB_Lib
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
+        [Description("批號,VARCHAR,50,NONE")]
+        批號,
+        [Description("效期,DATETIME,20,NONE")]
+        效期,
         [Description("包裝單位,VARCHAR,50,NONE")]
         包裝單位,
         [Description("包裝量,VARCHAR,300,NONE")]
@@ -112,6 +116,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("name")]
         public string 藥名 { get; set; }
+        /// <summary>
+        /// 批號
+        /// </summary>
+        [JsonPropertyName("LOT")]
+        public string 批號 { get; set; }
+        /// <summary>
+        /// 效期
+        /// </summary>
+        [JsonPropertyName("VAL")]
+        public string 效期 { get; set; }
         /// <summary>
         /// 包裝單位。
         /// </summary>
