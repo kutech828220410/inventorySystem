@@ -42151,7 +42151,6 @@
             // 
             // panel_Main
             // 
-            this.panel_Main.AnimationStep = 30;
             this.panel_Main.CollapsedSize = 30;
             // 
             // panel_Main.ContentsPanel

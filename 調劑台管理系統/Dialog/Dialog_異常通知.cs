@@ -44,7 +44,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.類別);
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(1100, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.內容);
             this.sqL_DataGridView_異常通知.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_notifyException.發生時間);
-
+            this.notifyExceptionClasses = this.notifyExceptionClasses.SortByOccurTimeDesc();
             List<object[]> list_value = this.notifyExceptionClasses.ClassToSQL<notifyExceptionClass , enum_notifyException>();
             this.sqL_DataGridView_異常通知.RefreshGrid(list_value);
 ;

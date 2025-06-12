@@ -44,4 +44,20 @@ namespace HIS_DB_Lib
         [JsonPropertyName("occur_time")]
         public string 發生時間 { get; set; }
     }
+    public static class notifyExceptionMethod
+    {
+        public static List<notifyExceptionClass> SortByOccurTimeDesc(this List<notifyExceptionClass> list)
+        {
+            var sortedList = list.OrderByDescending(item =>
+            {
+                DateTime dt;
+                if (DateTime.TryParse(item.發生時間, out dt))
+                    return dt;
+                else
+                    return DateTime.MinValue; // 無法解析的放最後
+            }).ToList();
+
+            return sortedList;
+        }
+    }
 }

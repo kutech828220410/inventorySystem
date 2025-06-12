@@ -271,7 +271,6 @@ namespace 智能藥庫系統
             // 
             // sidePanel1
             // 
-            this.sidePanel1.AnimationStep = 30;
             this.sidePanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.sidePanel1.CollapsedSize = 30;
             // 
