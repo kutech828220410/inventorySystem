@@ -20,7 +20,7 @@ namespace 調劑台管理系統
         private string 調劑台名稱 = $"{Main_Form.ServerName}";
         private List<DrugHFTagClass> errorTags = new List<DrugHFTagClass>();
         private bool hasRetriedConfirmation = false;
-
+        private bool showAlert = false;
         private DrugHFTag_IncomeOutcomeListClass _drugHFTag_IncomeOutcomeList = null;
         DrugHFTag_IncomeOutcomeListClass drugHFTag_IncomeOutcomeList
         {
@@ -79,8 +79,12 @@ namespace 調劑台管理系統
 
         private void Dialog_收支作業_RFID收支作業_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm((_Import_Export == IncomeOutcomeMode.收入 ? "入庫完成" : "出庫完成"), 2000, 0, 0, Color.LightGreen, Color.Black);
-            dialog_AlarmForm.ShowDialog();
+            if(showAlert)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm((_Import_Export == IncomeOutcomeMode.收入 ? "入庫完成" : "出庫完成"), 2000, 0, 0, Color.LightGreen, Color.Black);
+                dialog_AlarmForm.ShowDialog();
+            }
+         
         }
 
         private void Dialog_收支作業_RFID出收入_LoadFinishedEvent(EventArgs e)
@@ -742,7 +746,7 @@ namespace 調劑台管理系統
             Logger.Log("dialog_HRFID", $"完成 API 寫入與畫面清除");
             drugHFTag_IncomeOutcomeList = null;
             this.sqL_DataGridView_TagList.ClearGrid();
-
+            showAlert = true;
             this.Close();
         }
     }
