@@ -922,7 +922,8 @@ namespace HIS_WebApi._API_AI
                         處方 = drugOrders,
                         科別 = orderClass.科別,
                         診斷碼 = suspiciousRxLogClass.診斷碼,
-                        診斷內容 = suspiciousRxLogClass.診斷內容
+                        診斷內容 = suspiciousRxLogClass.診斷內容,
+                        藥袋類型 = orderClass.藥袋類型
                     };
                     if (orderClass.備註 != null && orderClass.備註.Contains("懷孕")) prescription.懷孕 = true.ToString();
                     return prescription;
