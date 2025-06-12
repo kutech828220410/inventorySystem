@@ -349,6 +349,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("med_inve_log")]
         public List<medInventoryLogClass> 調劑紀錄 { get; set; }
+        [JsonPropertyName("bed_list")]
+        public List<bedListClass> 病床清單 { get; set; }
 
         public class ICP_By_Rank : IComparer<medCpoeClass>
         {
@@ -439,7 +441,7 @@ namespace HIS_DB_Lib
             return out_medCpoeClass;
         }
 
-        static public List<medQtyClass> get_med_qty(string API_Server, string value, List<string> valueAry)
+        static public List<medCpoeClass> get_med_qty(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/get_med_qty";
             returnData returnData = new returnData();
@@ -450,7 +452,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<medQtyClass> out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
+            List<medCpoeClass> out_medQtyClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
             Console.WriteLine($"{returnData}");
             return out_medQtyClass;
         }
@@ -529,37 +531,6 @@ namespace HIS_DB_Lib
         }
 
     }
-    public class medQtyClass
-    {
-        [JsonPropertyName("code")]
-        public string 藥碼 { get; set; }
-        [JsonPropertyName("name")]
-        public string 藥品名 { get; set; }
-        [JsonPropertyName("dunit")]
-        public string 單位 { get; set; }
-        [JsonPropertyName("dispens_name")]
-        public string 調劑台 { get; set; }
-        [JsonPropertyName("large")]
-        public string 大瓶點滴 { get; set; }
-        [JsonPropertyName("injection")]
-        public string 針劑 { get; set; }
-        [JsonPropertyName("oral")]
-        public string 口服 { get; set; }
-        /// <summary>
-        /// 冷儲
-        /// </summary>
-        [JsonPropertyName("ice")]
-        public string 冷儲 { get; set; }
-        /// <summary>
-        /// 儲位
-        /// </summary>
-        [JsonPropertyName("store_position")]
-        public string 儲位 { get; set; }
-        [JsonPropertyName("CHT_NAME")]
-        public string 中文名稱 { get; set; }
-        [JsonPropertyName("bed_list")]
-        public List<bedListClass> 病床清單 { get; set; }
-    }
     public class bedListClass
     {
         [JsonPropertyName("GUID")]
@@ -584,6 +555,8 @@ namespace HIS_DB_Lib
         public string 自費 { get; set; }
         [JsonPropertyName("selfPRN")]
         public string 自費PRN { get; set; }
+        [JsonPropertyName("update_time")]
+        public string 更新時間 { get; set; }
 
         public class ICP_By_bedNum : IComparer<bedListClass>
         {

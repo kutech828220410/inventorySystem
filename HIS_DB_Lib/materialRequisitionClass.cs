@@ -257,6 +257,7 @@ namespace HIS_DB_Lib
             // PropertyNameCaseInsensitive = true,
         };
 
+
         /// <summary>
         /// 申領細節列表。
         /// </summary>
@@ -649,7 +650,7 @@ namespace HIS_DB_Lib
             /// <returns>比較結果。</returns>
             public int Compare(materialRequisitionClass x, materialRequisitionClass y)
             {
-                return x.申領時間.CompareTo(y.申領時間);
+                return x.申領時間.CompareTo(y.申領時間)* -1;
             }
         }
     }
