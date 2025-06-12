@@ -14,6 +14,13 @@ namespace 調劑台管理系統
         static public RfidReader rfidReader_1 = new RfidReader();
         static public RfidReader rfidReader_2 = new RfidReader();
         static public List<string> rfidReader_TagUID = new List<string>();
+        static bool RfidReaderEnable
+        {
+            get
+            {
+                return (myConfigClass.HFRFID_1_COMPort.StringIsEmpty() == false || myConfigClass.HFRFID_2_COMPort.StringIsEmpty() == false);
+            }
+        }
         private MyThread myThread_HFRFID = new MyThread();
         private void Program_HFRFID_Init()
         {
@@ -35,7 +42,7 @@ namespace 調劑台管理系統
                     MessageBox.Show("HFRFID(2)讀取器無法開啟，請檢查連接");
                 }
             }
-            if (myConfigClass.HFRFID_1_COMPort.StringIsEmpty() == false || myConfigClass.HFRFID_2_COMPort.StringIsEmpty() == false)
+            if (RfidReaderEnable)
             {
                 plC_RJ_Button_收支作業_RFID入庫.Visible = true;
                 plC_RJ_Button_收支作業_RFID出庫.Visible = true;

@@ -56,7 +56,7 @@ namespace 調劑台管理系統
             this.Text = _Import_Export == IncomeOutcomeMode.收入 ? "高頻RFID調劑作業(退)" : "高頻RFID調劑作業(領)";
             this.LoadFinishedEvent += Dialog_HFRFID調劑作業_LoadFinishedEvent;
             this.FormClosing += Dialog_HFRFID調劑作業_FormClosing;
-
+            this.FormClosed += Dialog_HFRFID調劑作業_FormClosed;
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
             this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
             this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
@@ -66,6 +66,12 @@ namespace 調劑台管理系統
             myThread_HFRFID.Add_Method(Program_HFRFID);
             myThread_HFRFID.SetSleepTime(100);
             myThread_HFRFID.Trigger();
+        }
+
+        private void Dialog_HFRFID調劑作業_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 2000, 0, 0, Color.LightGreen, Color.Black);
+            dialog_AlarmForm.ShowDialog();
         }
 
         private void Main_Form_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
@@ -107,7 +113,11 @@ namespace 調劑台管理系統
                 if (lockerIndexClasse_buf.Count > 0)
                 {
                     Logger.Log("dialog_main_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
-                    RJ_Button_確認_MouseDownEvent(null);
+                    Task.Run(new Action(delegate 
+                    {
+                        RJ_Button_確認_MouseDownEvent(null);
+                    }));
+                   
                     return;
                 }
             }
@@ -121,7 +131,13 @@ namespace 調劑台管理系統
             {
                 Logger.Log($"dialog_main_HRFID", $"[PlC_RJ_Button_解鎖_MouseDownEvent] 使用者 : {Main_Form._登入者名稱}");
 
-                Main_Form.Function_外門片解鎖();
+                List<string> ips = new List<string>();
+                for (int i = 0; i < takeMedicineStackClasses_temp.Count; i++)
+                {
+                    ips.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(takeMedicineStackClasses_temp[i].藥品碼));
+                }
+
+                Main_Form.Function_外門片解鎖(ips);
             }
             catch (Exception ex)
             {
@@ -256,6 +272,7 @@ namespace 調劑台管理系統
             }
 
             this.sqL_DataGridView_TagList.DataGridRefreshEvent += SqL_DataGridView_TagList_DataGridRefreshEvent;
+            PlC_RJ_Button_解鎖_MouseDownEvent(null);
         }
         private void Dialog_HFRFID調劑作業_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -276,9 +293,11 @@ namespace 調劑台管理系統
         {
             try
             {
+                Dialog_收支異常提示.CloseAllDialog();
+
                 List<object[]> list_TagList = this.sqL_DataGridView_TagList.GetAllRows();
                 List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
-
+                Dialog_AlarmForm dialog_AlarmForm = null;
                 bool 數量異常 = false;
                 for (int i = 0; i < list_TagList.Count; i++)
                 {
@@ -318,16 +337,13 @@ namespace 調劑台管理系統
                 }
                 if (數量異常)
                 {
-                    if (!hasRetriedConfirmation)
-                    {
-                        hasRetriedConfirmation = true;
-                        Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 偵測到數量異常，請確認標籤數量是否正確");
-                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("偵測到數量不符,請確認標籤數量是否正確", 2000);
-                        dialog_AlarmForm.ShowDialog();
-                        return;
-                    }
-
+                    Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 偵測到數量異常，請確認標籤數量是否正確");
+                    Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示();
+                    dialog_收支異常提示.IgnoreVisible = hasRetriedConfirmation;
+                    dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
+                    dialog_收支異常提示.ShowDialog();
+                    hasRetriedConfirmation = true;
+                    if (dialog_收支異常提示.DialogResult != DialogResult.Abort) return;
 
 
                     if (errorLogs.Count > 0)
@@ -421,6 +437,7 @@ namespace 調劑台管理系統
                             clone.總異動量 = 可用量.ToString("0.###");
                             clone.效期 = stock.Validity_period;
                             clone.批號 = stock.Lot_number;
+                            clone.顏色 = Color.Black.ToColorString();
                             clone.狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
 
                             takeMedicineStackClasses.Add(clone);
@@ -443,19 +460,16 @@ namespace 調劑台管理系統
                                 狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName(),
                                 操作人 = takeMedicineStackClasses_org[0].操作人,
                                 ID = takeMedicineStackClasses_org[0].ID,
-                                顏色 = takeMedicineStackClasses_org[0].顏色
-                            };
+                                顏色 = Color.Black.ToColorString()
+                        };
                             takeMedicineStackClasses.Add(newItem);
                         }
                     }
 
 
                 }
-                //if (MyMessageBox.ShowDialog(sb.ToString(), MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
-                //{
-                //    Logger.Log("dialog_main_HRFID", "使用者取消確認提交操作");
-                //    return;
-                //}
+          
+   
 
                 Logger.Log("dialog_main_HRFID", $"呼叫 API 寫入 DrugHFTag 標籤資料，共 {drugHFTagClasses_replace.Count} 筆");
                 LoadingForm.ShowLoadingForm();
@@ -465,6 +479,9 @@ namespace 調劑台管理系統
 
                 this.sqL_DataGridView_TagList.ClearGrid();
                 this.DialogResult = DialogResult.Yes;
+
+               
+         
                 this.Close();
 
 

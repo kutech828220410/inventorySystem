@@ -24,6 +24,8 @@ namespace 調劑台管理系統
         {
             [Description("GUID,VARCHAR,50,PRIMARY")]
             GUID,
+            [Description("儲位名稱,VARCHAR,300,NONE")]
+            儲位名稱,
             [Description("IP,VARCHAR,300,NONE")]
             IP,
             [Description("藥品碼,VARCHAR,300,NONE")]
@@ -32,12 +34,12 @@ namespace 調劑台管理系統
             藥品名稱,
             [Description("中文名稱,VARCHAR,300,NONE")]
             中文名稱,
-            [Description("儲位名稱,VARCHAR,300,NONE")]
-            儲位名稱,
             [Description("儲位型式,VARCHAR,300,NONE")]
             儲位型式,
             [Description("庫存,VARCHAR,300,NONE")]
             庫存,
+            [Description("實際庫存,VARCHAR,300,NONE")]
+            實際庫存,
             [Description("Value,VARCHAR,300,NONE")]
             Value,
         }
@@ -56,14 +58,24 @@ namespace 調劑台管理系統
             SQLUI.Table tables = json.JsonDeserializet<SQLUI.Table>();
 
             SQLUI.Table table = new SQLUI.Table(new enum_收支作業_單品入庫_儲位搜尋());
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowsHeight = 40;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Init(table);
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnVisible(false, new enum_收支作業_單品入庫_儲位搜尋().GetEnumNames());
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品碼);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(380, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位名稱);
             //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位型式);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
-
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
+            if (RfidReaderEnable)
+            {
+                this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.實際庫存);
+                sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("理論庫存", enum_收支作業_單品入庫_儲位搜尋.庫存);
+                this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.Texts = "自動盤點";
+                this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.OFF_文字顏色 = Color.Yellow;
+                this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ON_文字顏色 = Color.Yellow;
+                this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.OFF_文字字體 = new Font("微軟正黑體", 20, FontStyle.Bold);
+                this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ON_文字字體 = new Font("微軟正黑體", 20, FontStyle.Bold);
+            }
             sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("藥碼", enum_收支作業_單品入庫_儲位搜尋.藥品碼);
             sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("藥名", enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
 
@@ -156,7 +168,10 @@ namespace 調劑台管理系統
                     Function_從SQL取得儲位到本地資料();
                     Function_從SQL取得儲位到雲端資料();
                     Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
-
+                    if(RfidReaderEnable)
+                    {
+                        PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(null);
+                    }
                     flag_Program_收支作業_換頁 = false;
                 }
             }

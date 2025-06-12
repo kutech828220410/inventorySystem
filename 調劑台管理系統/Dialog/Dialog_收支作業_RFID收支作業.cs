@@ -73,11 +73,16 @@ namespace 調劑台管理系統
             this.Text = _Import_Export == IncomeOutcomeMode.收入 ? "RFID收入" : "RFID支出";
             this.LoadFinishedEvent += Dialog_收支作業_RFID出收入_LoadFinishedEvent;
             this.FormClosing += Dialog_收支作業_RFID出收入_FormClosing;
-
+            this.FormClosed += Dialog_收支作業_RFID收支作業_FormClosed;
             dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(-90).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
         }
 
-    
+        private void Dialog_收支作業_RFID收支作業_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm((_Import_Export == IncomeOutcomeMode.收入 ? "入庫完成" : "出庫完成"), 2000, 0, 0, Color.LightGreen, Color.Black);
+            dialog_AlarmForm.ShowDialog();
+        }
+
         private void Dialog_收支作業_RFID出收入_LoadFinishedEvent(EventArgs e)
         {
  
@@ -212,7 +217,11 @@ namespace 調劑台管理系統
                 if (lockerIndexClasse_buf.Count > 0)
                 {
                     Logger.Log("dialog_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
-                    Function_處理RFID確認流程();
+                    Task.Run(new Action(delegate
+                    {
+                        Function_處理RFID確認流程();
+                    }));
+                   
                     return;
                 }
             }
@@ -543,6 +552,8 @@ namespace 調劑台管理系統
         }
         private void Function_處理RFID確認流程()
         {
+            Dialog_收支異常提示.CloseAllDialog();
+
             Logger.Log("dialog_HRFID", $"[RJ_Button_確認_MouseDownEvent] 使用者: {Main_Form._登入者名稱}");
 
             List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
@@ -580,15 +591,12 @@ namespace 調劑台管理系統
 
             if (驗證失敗)
             {
-                if (!hasRetriedConfirmation)
-                {
-                    hasRetriedConfirmation = true;
-                    Logger.Log("dialog_HRFID", $"第一次驗證失敗，提示使用者重新掃描");
-                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\logout.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("偵測到數量不符或異常標籤,請重新掃描標籤後再按一次確認", 2000);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
+                Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示();
+                dialog_收支異常提示.IgnoreVisible = hasRetriedConfirmation;
+                dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
+                dialog_收支異常提示.ShowDialog();
+                hasRetriedConfirmation = true;
+                if (dialog_收支異常提示.DialogResult != DialogResult.Abort) return;
 
                 Logger.Log("dialog_HRFID", $"第二次驗證仍失敗，自動記錄異常");
 
@@ -716,7 +724,7 @@ namespace 調劑台管理系統
                     收支原因 = "",
                     操作人 = Main_Form._登入者名稱,
                     ID = Main_Form._登入者ID,
-                    顏色 = Color.Blue.ToColorString(),
+                    顏色 = Color.Black.ToColorString(),
                     總異動量 = (_Import_Export == IncomeOutcomeMode.支出) ? (stockClass.Qty.StringToDouble() * -1).ToString() : stockClass.Qty,
                     效期 = stockClass.Validity_period,
                     批號 = stockClass.Lot_number
@@ -734,6 +742,7 @@ namespace 調劑台管理系統
             Logger.Log("dialog_HRFID", $"完成 API 寫入與畫面清除");
             drugHFTag_IncomeOutcomeList = null;
             this.sqL_DataGridView_TagList.ClearGrid();
+
             this.Close();
         }
     }
