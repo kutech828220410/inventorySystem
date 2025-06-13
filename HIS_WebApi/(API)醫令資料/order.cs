@@ -1666,6 +1666,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
                 List<object[]> list_order_list = sQLControl_order_list.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, priKey);
                 List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
+                sql_order_list = sql_order_list.Where(item => item.批序.Contains("DC") == false).ToList();
                 List<OrderClass> add_order_list = new List<OrderClass>();
                 List<OrderClass> update_order_list = new List<OrderClass>();
                 List<OrderClass> result_order_list = new List<OrderClass>();
@@ -1688,29 +1689,27 @@ namespace HIS_WebApi
                     }
                     else
                     {
-                        result_order_list.Add(orderClass_db);
-                    }
+                        bool flag = false;
+                        if (orderClass_db.藥品碼 != orderClass.藥品碼) flag = true;
+                        if (orderClass_db.交易量 != orderClass.交易量) flag = true;
+                        if (flag)
+                        {
+                            orderClass.GUID = Guid.NewGuid().ToString();
+                            orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
+                            orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
+                            orderClass.狀態 = "未過帳";
+                            orderClass.批序 += "-[New]";
+                            add_order_list.Add(orderClass);
 
-                    //else if(orderClass.批序.Contains("[DC]"))
-                    //{
-                    //    if(orderClass_db == null)
-                    //    {
-                    //        orderClass.GUID = Guid.NewGuid().ToString();
-                    //        orderClass.產出時間 = DateTime.Now.ToDateTimeString_6();
-                    //        orderClass.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                    //        orderClass.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
-                    //        orderClass.狀態 = "未過帳";
-                    //        if (orderClass.備註.IndexOf("[DC]") == -1) orderClass.備註 = $"[DC]{orderClass.備註}";
-                    //        add_order_list.Add(orderClass);
-                    //    }
-                    //    else
-                    //    {
-                    //        orderClass_db.批序 = orderClass.批序;
-                    //        if (orderClass_db.備註.IndexOf("[DC]") == -1) orderClass_db.備註 = $"[DC]{orderClass_db.備註}";
-                    //        update_order_list.Add(orderClass_db);
-                    //        result_order_list.Add(orderClass_db);
-                    //    }
-                    //}
+                            orderClass_db.批序 += "-[DC]";
+                            update_order_list.Add(orderClass_db);
+                        }
+                        else
+                        {
+                            result_order_list.Add(orderClass_db);
+                        }
+                    }
                 }
 
 
