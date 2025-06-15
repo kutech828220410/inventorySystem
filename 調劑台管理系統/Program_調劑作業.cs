@@ -887,8 +887,16 @@ namespace 調劑台管理系統
                 dialog_手輸醫令.ShowDialog();
                 List<object[]> list_value = dialog_手輸醫令.Value;
                 if (list_value.Count == 0) return;
-                List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-                List<object[]> list_藥品資料_buf = new List<object[]>();
+
+                List<string> Codes = (from temp in list_value
+                                      select temp[(int)enum_選擇藥品.藥品碼].ObjectToString()).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
+
+                sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, uC_調劑作業_TypeA_1.ID, uC_調劑作業_TypeA_1.密碼);
+
+
                 bool flag_雙人覆核 = false;
                 List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
@@ -900,11 +908,11 @@ namespace 調劑台管理系統
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
                     string 床號 = dialog_手輸醫令.transactionsClass.病房號;
-                    list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
-                    if (list_藥品資料_buf.Count == 0) continue;
-                    string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_buf.Count == 0) continue;
+                    string 藥品名稱 = medClasses_buf[0].藥品名稱;
                     string 藥袋序號 = "";
-                    string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
+                    string 單位 = medClasses_buf[0].包裝單位;
                     string 病歷號 = dialog_手輸醫令.transactionsClass.病歷號;
                     string 領藥號 = dialog_手輸醫令.transactionsClass.領藥號;
                     string 病房號 = dialog_手輸醫令.transactionsClass.病房號;
@@ -949,6 +957,18 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.ID = ID;
+
+                    PermissionsClass permissionsClass = _sessionClass.GetPermission("調劑台", "禁止調劑1-3級管制藥品");
+                    if (permissionsClass != null)
+                    {
+                        if (_sessionClass.GetPermission("調劑台", "禁止調劑1-3級管制藥品").狀態)
+                        {
+                            if (medClasses_buf[0].管制級別 == "1" || medClasses_buf[0].管制級別 == "2" || medClasses_buf[0].管制級別 == "3")
+                            {
+                                takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.未授權.GetEnumName();
+                            }
+                        }
+                    }
 
                     if (flag_雙人覆核)
                     {
@@ -1126,29 +1146,7 @@ namespace 調劑台管理系統
             }
         }
 
-        private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
-        {
-            List<object[]> list_value_buf = new List<object[]>();
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.新增資料.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.盲盤完成.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.複盤完成.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待作業.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.作業完成.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
-            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()));
-            if (!plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
-            return list_value_buf;
-        }
+     
  
     }
 }

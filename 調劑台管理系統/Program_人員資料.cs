@@ -154,7 +154,9 @@ namespace 調劑台管理系統
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_盤點作業_報表刪除, 29);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_工程模式_頁面顯示, 6);
 
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_調劑作業_管1_3禁止調劑, 40);
 
+            
 
             this.plC_RJ_Button_人員資料_匯出.MouseDownEvent += PlC_RJ_Button_人員資料_匯出_MouseDownEvent;
             this.plC_RJ_Button_人員資料_匯入.MouseDownEvent += PlC_RJ_Button_人員資料_匯入_MouseDownEvent;

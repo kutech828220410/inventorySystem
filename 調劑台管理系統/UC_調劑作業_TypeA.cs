@@ -41,6 +41,7 @@ namespace 調劑台管理系統
         public int index = -1;
         public string 調劑台名稱 = "";
         public string 登入者姓名 = "";
+        public string 密碼 = "";
         public string 卡號 = "";
         public string ID = "";
         public string 顏色 = "";
@@ -1431,8 +1432,13 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DimGray;
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.未授權.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DarkRed;
+                    this.sqL_DataGridView_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                 }
             }
         }
@@ -1531,6 +1537,7 @@ namespace 調劑台管理系統
             }
             登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
             ID = list_value[0][(int)enum_人員資料.ID].ObjectToString();
+            密碼 = list_value[0][(int)enum_人員資料.密碼].ObjectToString();
             if (Main_Form.PLC_Device_掃碼顏色固定.Bool)
             {
                 if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
@@ -1704,6 +1711,7 @@ namespace 調劑台管理系統
             personPageClass personPageClass = new personPageClass();
             personPageClass.ID = ID;
             personPageClass.姓名 = 登入者姓名;
+            personPageClass.密碼 = 密碼;
             personPageClass.藥師證字號 = 藥師證字號;
             personPageClass.顏色 = 顏色;
             List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
@@ -1866,6 +1874,7 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.未授權.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無可匹配數量.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()));

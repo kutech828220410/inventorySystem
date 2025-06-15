@@ -512,8 +512,9 @@ namespace HIS_WebApi._API_AI
         [HttpPost("get_by_barcode")]
         public string get_by_barcode([FromBody] returnData returnData)
         {
-            init();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+
+            //init();
             returnData.Method = "get_by_barcode";
             try
             {
@@ -611,10 +612,14 @@ namespace HIS_WebApi._API_AI
         public string medGPT(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
+            MyTimerBasic sub_myTimerBasic = new MyTimerBasic();
             returnData.Method = "api/suspiciousRxLog/medGPT";
             try
             {
+                string decoderTime = "";
+                string GetSuspiciousRxLogTime = "";
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                decoderTime = sub_myTimerBasic.ToString();
                 if (orders.Count == 0)
                 {
                     returnData.Code = -200;
@@ -623,14 +628,16 @@ namespace HIS_WebApi._API_AI
                 }
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
-                AddsuspiciousRxLog(orders);
-                List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
+                //AddsuspiciousRxLog(orders);
+                List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode("http://127.0.0.1:4433", 藥袋條碼);
+                GetSuspiciousRxLogTime = sub_myTimerBasic.ToString();
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
                     suspiciousRxLoges[0].辨識註記 = "Y";
                     returnData.Code = 200;
                     returnData.Data = suspiciousRxLoges;
-                    returnData.Result = $"條碼{藥袋條碼}已辨識過";
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"條碼{藥袋條碼}已辨識過,decoderTime : {decoderTime} ,GetSuspiciousRxLogTime : {GetSuspiciousRxLogTime}";
                     return returnData.JsonSerializationt(true);
                 }
 
@@ -968,7 +975,7 @@ namespace HIS_WebApi._API_AI
 
             return table.JsonSerializationt(true);
         }
-        private void AddsuspiciousRxLog(List<OrderClass> orderClasses, string ICD1 = "C93.30", string ICD2 = "", string ICD3 = "")
+        private void AddsuspiciousRxLog(List<OrderClass> orderClasses, string ICD1 = "", string ICD2 = "", string ICD3 = "")
         {
             if (orderClasses.Count == 0) return;
             List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, orderClasses[0].藥袋條碼);

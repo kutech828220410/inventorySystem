@@ -97,11 +97,13 @@ namespace 調劑台管理系統
             string 藥師證字號 = personPageClass.藥師證字號;
             string 顏色 = personPageClass.顏色;
 
+
             if (barcode.StringIsEmpty())
             {
                 Console.WriteLine("barcode is empty");
                 return null;
             }
+            sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, personPageClass.ID, personPageClass.密碼);
 
 
             int daynum = PLC_Device_醫令檢查範圍.Value;
@@ -216,19 +218,7 @@ namespace 調劑台管理系統
 
                     medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
                     bool flag_檢查過帳 = false;
-                    if (medClasses_buf.Count > 0)
-                    {
-                        orderClass.藥品名稱 = medClasses_buf[0].藥品名稱;
-                        orderClass.劑量單位 = medClasses_buf[0].包裝單位;
-                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
-                        {
-                            flag_檢查過帳 = true;
-                        }
-                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
-                        {
-                            flag_檢查過帳 = true;
-                        }
-                    }
+                 
 
                     list_堆疊資料_buf = (from temp in list_堆疊資料
                                      where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == orderClass.藥品碼
@@ -241,6 +231,31 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
 
+                    if (medClasses_buf.Count > 0)
+                    {
+                        orderClass.藥品名稱 = medClasses_buf[0].藥品名稱;
+                        orderClass.劑量單位 = medClasses_buf[0].包裝單位;
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        PermissionsClass permissionsClass = _sessionClass.GetPermission("調劑台", "禁止調劑1-3級管制藥品");
+                        if (permissionsClass != null)
+                        {
+                            if (_sessionClass.GetPermission("調劑台", "禁止調劑1-3級管制藥品").狀態)
+                            {
+                                if (medClasses_buf[0].管制級別 == "1" || medClasses_buf[0].管制級別 == "2" || medClasses_buf[0].管制級別 == "3")
+                                {
+                                    takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.未授權.GetEnumName();
+                                }
+                            }
+                        }
+                      
+                    }
 
                     if (PLC_Device_領藥不檢查是否掃碼領藥過.Bool == false || flag_檢查過帳 == true)
                     {
@@ -266,9 +281,9 @@ namespace 調劑台管理系統
                             }
 
                         }
-
                     }
 
+                  
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID  = orderClass.GUID;
                     takeMedicineStackClass.序號 = orderClass.批序;

@@ -133,6 +133,9 @@ namespace HIS_DB_Lib
         [JsonPropertyName("description")]
         public string 描述 { get; set; }
     }
+
+
+
     public class sessionClass
     {
         [JsonPropertyName("GUID")]
@@ -165,7 +168,7 @@ namespace HIS_DB_Lib
         public List<PermissionsClass> Permissions { get => permissions; set => permissions = value; }
         private List<PermissionsClass> permissions = new List<PermissionsClass>();
 
-        static public returnData LoginByUID(string API_Server, string UID)
+        static public sessionClass LoginByUID(string API_Server, string UID)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
@@ -196,10 +199,10 @@ namespace HIS_DB_Lib
 
             Console.WriteLine($"{returnData_result}");
 
-            return returnData_result;
+            return returnData_result.Data.ObjToClass<sessionClass>();
 
         }
-        static public returnData LoginByBarCode(string API_Server, string BARCODE)
+        static public sessionClass LoginByBarCode(string API_Server, string BARCODE)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
@@ -230,10 +233,10 @@ namespace HIS_DB_Lib
 
             Console.WriteLine($"{returnData_result}");
 
-            return returnData_result;
+            return returnData_result.Data.ObjToClass<sessionClass>();
 
         }
-        static public returnData LoginByID(string API_Server, string userID, string password)
+        static public sessionClass LoginByID(string API_Server, string userID, string password)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API_Login");
@@ -265,8 +268,21 @@ namespace HIS_DB_Lib
 
             Console.WriteLine($"{returnData_result}");
 
-            return returnData_result;
+            return returnData_result.Data.ObjToClass<sessionClass>();
 
         }
     }
+    static public class sessionClassMethod
+    {
+        static public PermissionsClass GetPermission(this sessionClass sessionclass, string type, string name)
+        {
+            List<PermissionsClass> permissionsClasses = (from temp in sessionclass.Permissions
+                                  where temp.類別 == type
+                                  where temp.名稱 == name
+                                  select temp).ToList();
+            if (permissionsClasses.Count > 0) return permissionsClasses[0];
+            return null;
+        }
+    }
+
 }

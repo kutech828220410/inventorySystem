@@ -38,6 +38,7 @@ namespace HIS_DB_Lib
         NEW處方,
         RFID使用,
         無可匹配數量,
+        未授權,
     }
     public enum enum_取藥堆疊母資料_作業模式
     {

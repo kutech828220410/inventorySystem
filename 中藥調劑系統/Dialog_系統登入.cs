@@ -58,23 +58,16 @@ namespace 中藥調劑系統
             {
                 if (Main_Form.RFID_UID_01.StringToInt32() != 0)
                 {
-                    returnData returnData = sessionClass.LoginByUID(Main_Form.API_Server, Main_Form.RFID_UID_01);
-                    if (returnData == null) return;
-                    if (returnData.Data == null) return;
-                    if (returnData.Code != 200) return;
-                    Value = returnData.Data.ObjToClass<sessionClass>();
-                    if (returnData.Code == 200)
+                    sessionClass _sessionClass = sessionClass.LoginByUID(Main_Form.API_Server, Main_Form.RFID_UID_01);
+                    Value = _sessionClass;
+                    Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
+                    dialog_AlarmForm.ShowDialog();
+                    this.Invoke(new Action(delegate
                     {
-                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
-                        dialog_AlarmForm.ShowDialog();
-                        this.Invoke(new Action(delegate
-                        {
-                            DialogResult = DialogResult.Yes;
-                            this.Close();
-                        }));
-                    }
-            
+                        DialogResult = DialogResult.Yes;
+                        this.Close();
+                    }));
                 }
             }
         }
@@ -109,33 +102,21 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            returnData returnData = sessionClass.LoginByID(Main_Form.API_Server, UserID, Password);
-            if (returnData == null)
+            Dialog_AlarmForm dialog_AlarmForm;
+            sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, UserID, Password);
+            if (_sessionClass == null)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500, 0, -(this.Height - 50));
+                dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500, 0, -(this.Height - 50));
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
-            if(returnData.Code != 200)
-            {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"{returnData.Result}", 1500, 0, -(this.Height - 50));
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
-            if(returnData.Data == null)
-            {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500, 0, -(this.Height - 50));
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
-            Value = returnData.Data.ObjToClass<sessionClass>();
+         
+            Value = _sessionClass.ObjToClass<sessionClass>();
 
-            if (returnData.Code == 200)
-            {
-                Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
-                dialog_AlarmForm.ShowDialog();
-            }
+            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
+            dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
+            dialog_AlarmForm.ShowDialog();
+
             this.Invoke(new Action(delegate 
             {
                 DialogResult = DialogResult.Yes;

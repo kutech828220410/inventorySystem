@@ -239,152 +239,141 @@ namespace HIS_DB_Lib
         [JsonPropertyName("identified")]
         public string 辨識註記 { get; set; }
 
+        public string MED_BAG_SN { get; set; }
+        public string error { get; set; }
+        public List<string> error_type { get; set; }
+        public string response { get; set; }
+        public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
+        // 加入快取欄位
+        private List<diseaseClass> _diseaseClassesCache;
+        private List<MedicalCodeItem> _allergyCache;
+        private List<MedicalCodeItem> _interactCache;
+        private List<string> _ruleTypeCache;
+
         public List<diseaseClass> diseaseClasses
         {
             get
             {
-                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
-
-                List<string> list_診斷碼 = new List<string>();
-                List<string> list_診斷內容 = new List<string>();
-                if (this.診斷碼.StringIsEmpty() == false && this.診斷內容.StringIsEmpty() == false)
+                if (_diseaseClassesCache == null)
                 {
-                    list_診斷碼 = this.診斷碼.Split(';').ToList();
-                    list_診斷內容 = this.診斷內容.Split(';').ToList();
-                    if (list_診斷碼.Count == list_診斷內容.Count)
+                    _diseaseClassesCache = new List<diseaseClass>();
+
+                    if (!this.診斷碼.StringIsEmpty() && !this.診斷內容.StringIsEmpty())
                     {
-                        for (int i = 0; i < list_診斷碼.Count; i++)
+                        var list_診斷碼 = this.診斷碼.Split(';').ToList();
+                        var list_診斷內容 = this.診斷內容.Split(';').ToList();
+
+                        if (list_診斷碼.Count == list_診斷內容.Count)
                         {
-                            diseaseClasses.Add(new diseaseClass()
+                            for (int i = 0; i < list_診斷碼.Count; i++)
                             {
-                                疾病代碼 = list_診斷碼[i],
-                                中文說明 = list_診斷內容[i],
-                            });
+                                _diseaseClassesCache.Add(new diseaseClass()
+                                {
+                                    疾病代碼 = list_診斷碼[i],
+                                    中文說明 = list_診斷內容[i],
+                                });
+                            }
                         }
                     }
                 }
-                return diseaseClasses;
+                return _diseaseClassesCache;
             }
             set
             {
+                _diseaseClassesCache = value;
                 if (value == null) return;
-                List<string> list_診斷碼 = new List<string>();
-                List<string> list_中文說明 = new List<string>();
-
-                foreach (var item in value)
-                {
-                    list_診斷碼.Add(item.疾病代碼);
-                    if (item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
-                    else list_中文說明.Add(item.英文說明);
-                }
-
-                this.診斷碼 = string.Join(";", list_診斷碼);
-                this.診斷內容 = string.Join(";", list_中文說明);
+                this.診斷碼 = string.Join(";", value.Select(x => x.疾病代碼));
+                this.診斷內容 = string.Join(";", value.Select(x => string.IsNullOrEmpty(x.中文說明) ? x.英文說明 : x.中文說明));
             }
         }
-        public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
+
         [JsonPropertyName("ALLERGY")]
         public List<MedicalCodeItem> 過敏紀錄
         {
             get
             {
-                List<MedicalCodeItem> 過敏 = new List<MedicalCodeItem>();
-                if (this.過敏藥碼.StringIsEmpty() == false)
+                if (_allergyCache == null)
                 {
-                    List<string> list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
-                    List<string> list_過敏藥名 = this.過敏藥名.Split(';').ToList();
-                    for(int i = 0; i < list_過敏藥碼.Count; i++)
+                    _allergyCache = new List<MedicalCodeItem>();
+                    if (!this.過敏藥碼.StringIsEmpty())
                     {
-                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                        var list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
+                        var list_過敏藥名 = this.過敏藥名.Split(';').ToList();
+
+                        for (int i = 0; i < list_過敏藥碼.Count; i++)
                         {
-                            code = list_過敏藥碼[i],
-                            name = list_過敏藥名[i]
-                        };
-                        過敏.Add(medicalCodeItem);
+                            _allergyCache.Add(new MedicalCodeItem()
+                            {
+                                code = list_過敏藥碼[i],
+                                name = list_過敏藥名.ElementAtOrDefault(i) ?? ""
+                            });
+                        }
                     }
                 }
-                return 過敏;
+                return _allergyCache;
             }
             set
             {
+                _allergyCache = value;
                 if (value == null) return;
-                List<string> list_過敏藥碼 = new List<string>();
-                List<string> list_過敏藥名 = new List<string>();
-
-                foreach (var item in value)
-                {
-                    list_過敏藥碼.Add(item.code);
-                    list_過敏藥名.Add(item.name);
-                }
-                this.過敏藥碼 = string.Join(";", list_過敏藥碼);
-                this.過敏藥名 = string.Join(";", list_過敏藥名);
+                this.過敏藥碼 = string.Join(";", value.Select(x => x.code));
+                this.過敏藥名 = string.Join(";", value.Select(x => x.name));
             }
         }
+
         [JsonPropertyName("INTERACT")]
         public List<MedicalCodeItem> 交互作用紀錄
         {
             get
             {
-                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
-                List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
-                if (this.交互作用藥碼.StringIsEmpty() == false)
+                if (_interactCache == null)
                 {
-                    List<string> list_交互作用藥碼 = this.交互作用藥碼.Split(';').ToList();
-                    List<string> list_交互作用 = this.交互作用.Split(';').ToList();
-                    for(int i = 0; i < list_交互作用藥碼.Count; i++)
+                    _interactCache = new List<MedicalCodeItem>();
+                    if (!this.交互作用藥碼.StringIsEmpty())
                     {
-                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                        var list_交互作用藥碼 = this.交互作用藥碼.Split(';').ToList();
+                        var list_交互作用 = this.交互作用.Split(';').ToList();
+
+                        for (int i = 0; i < list_交互作用藥碼.Count; i++)
                         {
-                            code = list_交互作用藥碼[i],
-                            name = list_交互作用[i]
-                        };
-                        交互作用.Add(medicalCodeItem);
+                            _interactCache.Add(new MedicalCodeItem()
+                            {
+                                code = list_交互作用藥碼[i],
+                                name = list_交互作用.ElementAtOrDefault(i) ?? ""
+                            });
+                        }
                     }
                 }
-                return 交互作用;
+                return _interactCache;
             }
             set
             {
+                _interactCache = value;
                 if (value == null) return;
-                List<string> list_交互作用藥碼 = new List<string>();
-                List<string> list_交互作用 = new List<string>();
-                foreach (var item in value)
-                {
-                    list_交互作用藥碼.Add(item.code);
-                    list_交互作用.Add(item.name);
-                }
-                this.交互作用藥碼 = string.Join(";", list_交互作用藥碼);
-                this.交互作用 = string.Join(";", list_交互作用);
+                this.交互作用藥碼 = string.Join(";", value.Select(x => x.code));
+                this.交互作用 = string.Join(";", value.Select(x => x.name));
             }
         }
 
-        public string MED_BAG_SN { get; set; }
-        public string error { get; set; }
-        public List<string> error_type { get; set; }
         public List<string> rule_type
         {
             get
             {
-                if (this.識別規則依據.StringIsEmpty())
-                    return new List<string>();
-
-                return 識別規則依據.Split(';').ToList();
+                if (_ruleTypeCache == null)
+                {
+                    _ruleTypeCache = this.識別規則依據.StringIsEmpty()
+                        ? new List<string>()
+                        : this.識別規則依據.Split(';').ToList();
+                }
+                return _ruleTypeCache;
             }
             set
             {
-                if (value == null)
-                {
-                    識別規則依據 = string.Empty;
-                }
-                else
-                {
-                    識別規則依據 = string.Join(";", value);
-                }
+                _ruleTypeCache = value;
+                this.識別規則依據 = (value == null) ? "" : string.Join(";", value);
             }
-
         }
 
-        public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
         {
             public int Compare(suspiciousRxLogClass x, suspiciousRxLogClass y)

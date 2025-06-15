@@ -1560,6 +1560,8 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1993,6 +1995,7 @@
             this.panel128.SuspendLayout();
             this.panel134.SuspendLayout();
             this.panel129.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -15851,6 +15854,7 @@
             this.panel_權限設定.BorderColor = System.Drawing.Color.SkyBlue;
             this.panel_權限設定.BorderRadius = 10;
             this.panel_權限設定.BorderSize = 2;
+            this.panel_權限設定.Controls.Add(this.groupBox7);
             this.panel_權限設定.Controls.Add(this.groupBox32);
             this.panel_權限設定.Controls.Add(this.groupBox31);
             this.panel_權限設定.Controls.Add(this.groupBox30);
@@ -16153,7 +16157,7 @@
             this.groupBox28.Controls.Add(this.plC_CheckBox_藥品資料_頁面顯示);
             this.groupBox28.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox28.ForeColor = System.Drawing.Color.Black;
-            this.groupBox28.Location = new System.Drawing.Point(923, 28);
+            this.groupBox28.Location = new System.Drawing.Point(1145, 28);
             this.groupBox28.Name = "groupBox28";
             this.groupBox28.Size = new System.Drawing.Size(216, 269);
             this.groupBox28.TabIndex = 4;
@@ -16273,7 +16277,7 @@
             this.groupBox27.Controls.Add(this.plC_CheckBox_醫令資料_頁面顯示);
             this.groupBox27.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox27.ForeColor = System.Drawing.Color.Black;
-            this.groupBox27.Location = new System.Drawing.Point(701, 28);
+            this.groupBox27.Location = new System.Drawing.Point(923, 28);
             this.groupBox27.Name = "groupBox27";
             this.groupBox27.Size = new System.Drawing.Size(216, 269);
             this.groupBox27.TabIndex = 3;
@@ -16304,7 +16308,7 @@
             this.groupBox25.Controls.Add(this.plC_CheckBox_交易紀錄查詢_頁面顯示);
             this.groupBox25.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox25.ForeColor = System.Drawing.Color.Black;
-            this.groupBox25.Location = new System.Drawing.Point(479, 28);
+            this.groupBox25.Location = new System.Drawing.Point(701, 28);
             this.groupBox25.Name = "groupBox25";
             this.groupBox25.Size = new System.Drawing.Size(216, 269);
             this.groupBox25.TabIndex = 2;
@@ -16357,7 +16361,7 @@
             this.groupBox21.Controls.Add(this.plC_CheckBox_收支作業_頁面顯示);
             this.groupBox21.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox21.ForeColor = System.Drawing.Color.Black;
-            this.groupBox21.Location = new System.Drawing.Point(257, 28);
+            this.groupBox21.Location = new System.Drawing.Point(479, 28);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(216, 269);
             this.groupBox21.TabIndex = 1;
@@ -16480,7 +16484,7 @@
             this.groupBox20.Controls.Add(this.plC_CheckBox_交班作業_交班對點);
             this.groupBox20.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox20.ForeColor = System.Drawing.Color.Black;
-            this.groupBox20.Location = new System.Drawing.Point(35, 28);
+            this.groupBox20.Location = new System.Drawing.Point(257, 28);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Size = new System.Drawing.Size(216, 269);
             this.groupBox20.TabIndex = 0;
@@ -42151,6 +42155,7 @@
             // 
             // panel_Main
             // 
+            this.panel_Main.AnimationStep = 30;
             this.panel_Main.CollapsedSize = 30;
             // 
             // panel_Main.ContentsPanel
@@ -42985,6 +42990,36 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.plC_CheckBox_調劑作業_管1_3禁止調劑);
+            this.groupBox7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox7.ForeColor = System.Drawing.Color.Black;
+            this.groupBox7.Location = new System.Drawing.Point(35, 28);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(216, 269);
+            this.groupBox7.TabIndex = 9;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "調劑作業";
+            // 
+            // plC_CheckBox_調劑作業_管1_3禁止調劑
+            // 
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.AutoSize = true;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Bool = false;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Location = new System.Drawing.Point(42, 46);
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Name = "plC_CheckBox_調劑作業_管1_3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Size = new System.Drawing.Size(136, 25);
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.TabIndex = 0;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Text = "管1-3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字內容 = "管1-3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.讀寫鎖住 = false;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.音效 = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -43503,6 +43538,8 @@
             this.panel128.ResumeLayout(false);
             this.panel134.ResumeLayout(false);
             this.panel129.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -45043,6 +45080,8 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_RFID盤點;
         private MyUI.PLC_CheckBox plC_CheckBox9;
         private MyUI.PLC_CheckBox plC_CheckBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private MyUI.PLC_CheckBox plC_CheckBox_調劑作業_管1_3禁止調劑;
     }
 }
 
