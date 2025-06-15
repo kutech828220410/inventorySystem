@@ -74,7 +74,7 @@ namespace 調劑台管理系統
             this.LoadFinishedEvent += Dialog_收支作業_RFID出收入_LoadFinishedEvent;
             this.FormClosing += Dialog_收支作業_RFID出收入_FormClosing;
             this.FormClosed += Dialog_收支作業_RFID收支作業_FormClosed;
-            dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(-90).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
+            dateTimeIntervelPicker_報表時間.SetDateTime(DateTime.Now.AddDays(0).GetStartDate(), DateTime.Now.AddDays(0).GetEndDate());
         }
 
         private void Dialog_收支作業_RFID收支作業_FormClosed(object sender, FormClosedEventArgs e)

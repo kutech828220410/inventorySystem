@@ -258,7 +258,10 @@ namespace 調劑台管理系統
                                 }
                                 else
                                 {
-                                    orderClass.交易量 = (orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble()).ToString();
+                                    if ((orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble() < 0))
+                                    {
+                                        orderClass.交易量 = (orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble()).ToString();
+                                    }
                                 }
                             }
 
