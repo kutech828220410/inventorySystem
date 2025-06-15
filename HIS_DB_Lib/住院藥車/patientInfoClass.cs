@@ -394,6 +394,8 @@ namespace HIS_DB_Lib
         {
             public int Compare(patientInfoClass x, patientInfoClass y)
             {
+                x.床號 = x.床號.Split('-')[0].Trim();
+                y.床號 = y.床號.Split('-')[0].Trim();
                 int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
                 if(result == 0)
                 {
