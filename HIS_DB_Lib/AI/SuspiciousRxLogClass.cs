@@ -86,7 +86,7 @@ namespace HIS_DB_Lib
         科別,
         [Description("醫生姓名,VARCHAR,30,NONE")]
         醫生姓名,
-        [Description("診斷碼,VARCHAR,30,NONE")]
+        [Description("診斷碼,VARCHAR,200,NONE")]
         診斷碼,
         [Description("診斷內容,VARCHAR,1000,NONE")]
         診斷內容,

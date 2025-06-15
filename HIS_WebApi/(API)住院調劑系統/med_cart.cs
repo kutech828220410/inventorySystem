@@ -1357,7 +1357,16 @@ namespace HIS_WebApi
                 string 護理站 = returnData.ValueAry[1];
                 (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
                 string API = Method.GetServerAPI("Main", "網頁", "API01");
-
+                List<Task> tasks = new List<Task>();
+                List<bedStatusClass> bedStatusClasses = new List<bedStatusClass>();
+                Dictionary<string, List<bedStatusClass>> inputBedStatusDict = new Dictionary<string, List<bedStatusClass>>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    string result = get_bed_status(returnData);
+                    returnData returnData_bedStatus = result.JsonDeserializet<returnData>();
+                    bedStatusClasses = returnData_bedStatus.Data.ObjToClass<List<bedStatusClass>>();
+                    inputBedStatusDict = bedStatusClass.ToDictByID(bedStatusClasses);
+                })));
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
@@ -1372,7 +1381,6 @@ namespace HIS_WebApi
 
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
 
-                List<Task> tasks = new List<Task>();
                 if (sql_patinfo.Count == 0)
                 {
                     returnData.Code = 200;
@@ -1381,7 +1389,8 @@ namespace HIS_WebApi
                     returnData.Result = $"取得{藥局} {護理站} 共{sql_patinfo.Count}床 已出院";
                     return returnData.JsonSerializationt(true);
                 }
-
+                Task.WhenAll(tasks).Wait();
+                tasks.Clear();
                 foreach (var item in sql_patinfo)
                 {
                     tasks.Add(Task.Run(new Action(delegate
@@ -1389,6 +1398,10 @@ namespace HIS_WebApi
                         List<medCpoeClass> targetCpoe = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
                         targetCpoe = targetCpoe.Where(temp => temp.PRI_KEY.Contains("[DC]出院退藥") && temp.調劑狀態.StringIsEmpty()).ToList();
                         item.處方 = targetCpoe;
+                        item.轉床狀態 = new bedStatusClass();
+                        List<bedStatusClass> bedStatusClasses = bedStatusClass.GetByID(inputBedStatusDict, item.病歷號);
+                        bedStatusClass bedStatus = bedStatusClasses.Where(temp => temp.狀態 == "轉床").OrderByDescending(x => x.轉床時間).FirstOrDefault();
+                        if (bedStatus != null) item.轉床狀態 = bedStatus;
                     })));
                 }
                 Task.WhenAll(tasks).Wait();
@@ -1993,7 +2006,7 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }
+        } 
         /// <summary>
         ///以GUID取得藥品更動紀錄
         /// </summary>
