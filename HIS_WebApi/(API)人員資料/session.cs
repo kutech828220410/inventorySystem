@@ -33,7 +33,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("init_login_data_index")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(suspiciousRxLogClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(sessionClass))]
         [HttpPost]
         public string init_login_data_index([FromBody] returnData returnData)
         {
@@ -69,6 +69,26 @@ namespace HIS_WebApi
         {
             return GetPermissions(level.StringToInt32()).JsonSerializationt();
         }
+        /// <summary>
+        /// 使用者登入,取得session資訊,[ID,Pwd]、[UID]、[BARCODE]任一即可登入系統，若為admin則直接登入最高權限<br/>
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "ID" : "",
+        ///        "Password" : "",
+        ///        "UID" : "",
+        ///        "BARCODE" : "",
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data][sessionClass]</returns>
         [Route("login")]
         [HttpPost]
         public string POST_login([FromBody] returnData returnData)
