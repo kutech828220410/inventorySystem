@@ -495,6 +495,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string get_by_addedTime(returnData returnData)
         {
+            POST_init(returnData);
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_by_addedTime";

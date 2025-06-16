@@ -132,7 +132,7 @@ namespace HIS_WebApi
                     materialRequisitionClasses[i].核撥時間 = DateTime.MinValue.ToDateTimeString_6();
                     materialRequisitionClasses[i].申領庫庫存 = "";
                     materialRequisitionClasses[i].申領庫結存 = "";
-                    materialRequisitionClasses[i].實撥庫庫存 = "";
+                    //materialRequisitionClasses[i].實撥庫庫存 = "";
                     materialRequisitionClasses[i].實撥庫結存 = "";
                     materialRequisitionClasses[i].狀態 = "等待過帳";
                     materialRequisitionClasses_buf.Add(materialRequisitionClasses[i]);
@@ -305,7 +305,7 @@ namespace HIS_WebApi
                     returnData.Data = materialRequisitionClasses;
                     return returnData.JsonSerializationt();
                 }
-
+                materialRequisitionClasses.Sort(new materialRequisitionClass.ICP_By_requestTime());
 
                 returnData.Code = 200;
                 returnData.Result = $"取得申領資料共<{materialRequisitionClasses.Count}>筆";
@@ -467,6 +467,72 @@ namespace HIS_WebApi
 
                 returnData.Code = 200;
                 returnData.Result = $"更新成功! 實撥量 : {updatedData.實撥量}";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = existingData;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 修改申領量。
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "GUID": "unique-guid",
+        ///        "requestedQuantity": "new-quantity"
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("update_qty")]
+        [HttpPost]
+        public string update_qty_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_qty_by_GUID";
+            try
+            {
+               
+              
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                materialRequisitionClass updatedData = returnData.Data.ObjToClass<materialRequisitionClass>();
+                if (updatedData == null || updatedData.GUID.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常!";
+                    return returnData.JsonSerializationt();
+                }
+
+                Table table = new Table(new enum_materialRequisition());
+                SQLControl sQLControl_materialRequisition = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+
+                List<object[]> list_value = sQLControl_materialRequisition.GetRowsByDefult(null, (int)enum_materialRequisition.GUID, updatedData.GUID);
+                if (list_value.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                materialRequisitionClass existingData = list_value[0].SQLToClass<materialRequisitionClass, enum_materialRequisition>();
+                existingData.申領量 = updatedData.申領量;
+                List<object[]> updatedListValue = new List<object[]> { existingData.ClassToSQL<materialRequisitionClass, enum_materialRequisition>() };
+                sQLControl_materialRequisition.UpdateByDefulteExtra(null, updatedListValue);
+
+                returnData.Code = 200;
+                returnData.Result = $"更新成功! 申領量 : {updatedData.申領量}";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = existingData;
                 return returnData.JsonSerializationt();

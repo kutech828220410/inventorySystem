@@ -153,13 +153,29 @@ namespace HIS_DB_Lib
                 return new List<bedStatusClass>();
             }
         }
-        static public List<bedStatusClass> update_med_CpoeRec(string API_Server, List<bedStatusClass> bedStatusClasses)
+        static public List<bedStatusClass> update_bed_status(string API_Server, List<bedStatusClass> bedStatusClasses)
         {
             List<bedStatusClass> out_bedStatusClass = new List<bedStatusClass>();
             string url = $"{API_Server}/api/med_cart/update_bed_status";
 
             returnData returnData = new returnData();
             returnData.Data = bedStatusClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_bedStatusClass = returnData.Data.ObjToClass<List<bedStatusClass>>();
+            return out_bedStatusClass;
+        }
+
+        static public List<bedStatusClass> get_bed_status_all(string API_Server)
+        {
+            List<bedStatusClass> out_bedStatusClass = new List<bedStatusClass>();
+            string url = $"{API_Server}/api/med_cart/get_bed_status_all";
+
+            returnData returnData = new returnData();
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);

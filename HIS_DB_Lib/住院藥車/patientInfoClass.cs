@@ -361,6 +361,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("cpoe_change")]
         public List<medCpoeRecClass> 處方異動 { get; set; }
+        [JsonPropertyName("bedStatus")]
+        public bedStatusClass 轉床狀態 { get; set; }
 
         public class ICP_By_cart : IComparer<patientInfoClass>
         {
@@ -377,23 +379,12 @@ namespace HIS_DB_Lib
                 return result;
             }
         }
-        //public class ICP_By_bedNum : IComparer<patientInfoClass>
-        //{
-            
-        //    public int Compare(patientInfoClass x, patientInfoClass y)
-        //    {
-        //        int result = string.Compare(x.床號, y.床號);
-        //        if (result == 0)
-        //        {
-        //            result = string.Compare(x.更新時間, y.更新時間) * -1;
-        //        }
-        //        return result;
-        //    }
-        //}
         public class ICP_By_bedNum : IComparer<patientInfoClass>
         {
             public int Compare(patientInfoClass x, patientInfoClass y)
             {
+                x.床號 = x.床號.Split('-')[0].Trim();
+                y.床號 = y.床號.Split('-')[0].Trim();
                 int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
                 if(result == 0)
                 {
