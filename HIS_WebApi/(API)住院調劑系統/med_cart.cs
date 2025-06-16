@@ -1309,6 +1309,7 @@ namespace HIS_WebApi
                         item.處方 = targetCpoe;
                     })));
                 }
+                Task.WhenAll(tasks).Wait();
                 sql_patinfo = sql_patinfo.Where(temp => temp.處方 != null && temp.處方.Count > 0).ToList();
                 List<string> cart = sql_patinfo.Select(temp => temp.護理站).Distinct().ToList();
                 cart.Sort();
