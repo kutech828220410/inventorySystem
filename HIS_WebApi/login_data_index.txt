@@ -285,10 +285,10 @@
     },
     {
       "index": "40",
-      "name": "None",
-      "type": "",
-      "group": "",
-      "description": ""
+      "name": "禁止調劑1-3級管制藥品",
+      "type": "調劑台",
+      "group": "調劑作業",
+      "description": "領/退藥 1-3級管制藥品權限"
     },
     {
       "index": "41",
