@@ -70,7 +70,7 @@ namespace HIS_WebApi
             return GetPermissions(level.StringToInt32()).JsonSerializationt();
         }
         /// <summary>
-        /// 使用者登入,取得session資訊,[ID,Pwd]、[UID]、[BARCODE]任一即可登入系統，若為admin則直接登入最高權限<br/>
+        /// 使用者登入,取得session資訊,[ID,Pwd]、[UID]、[BARCODE]任一即可登入系統，若為admin則直接登入最高權限
         /// </summary>
         /// <remarks>
         ///  --------------------------------------------<br/> 
@@ -82,7 +82,7 @@ namespace HIS_WebApi
         ///        "ID" : "",
         ///        "Password" : "",
         ///        "UID" : "",
-        ///        "BARCODE" : "",
+        ///        "BARCODE" : ""
         ///     }
         ///   }
         /// </code>
