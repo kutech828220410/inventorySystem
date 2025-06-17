@@ -135,7 +135,7 @@ namespace HIS_WebApi._API_AI
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
-                if(data != null || data.Count != 0)
+                if(data.Count != 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"此Barcode{藥袋條碼}已存在";

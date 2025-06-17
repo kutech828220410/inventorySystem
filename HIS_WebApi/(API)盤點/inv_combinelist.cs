@@ -22,6 +22,8 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
+using System.Xml;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -1125,7 +1127,120 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 以合併單號上傳參考庫存
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "合併單號",
+        ///    "Data": 
+        ///    {                 
+        ///      
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("excel_upload_stocks/{value}")]
+        public async Task<string> excel_upload_stocks([FromRoute] string value )
+        {
+            string 合併單號 = value;
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData returnData = new returnData();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                returnData.Method = "excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
 
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                List<object[]> list_value = new List<object[]>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+
+                    list_value = dt.DataTableToRowList();
+                    if (list_value.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"文件內容不得為空";
+                        return returnData.JsonSerializationt(true);
+                    } 
+                }
+
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                List<Task> tasks = new List<Task>();
+                List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = new List<inv_combinelist_stock_Class>();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = new inv_combinelist_stock_Class();
+                    string code = list_value[i][(int)enum_合併單庫存EXCLL.藥碼].ObjectToString();
+                    medClass medClass = medClasses.SerchByBarcode(code);
+                    if (medClass != null)
+                    {
+                        inv_Combinelist_Stock_Class.藥碼 = medClass.料號;
+                        inv_Combinelist_Stock_Class.數量 = list_value[i][(int)enum_合併單庫存EXCLL.庫存].ObjectToString();
+                        inv_Combinelist_Stock_Classes.LockAdd(inv_Combinelist_Stock_Class);
+                    }
+                }
+                Task.WhenAll(tasks).Wait();
+                returnData.Value = 合併單號;
+                returnData.Data = inv_Combinelist_Stock_Classes;
+                Logger.Log("add", $"{returnData.JsonSerializationt(true)}");
+                return POST_add_stocks_by_SN(returnData);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [HttpPost("download_excel_Stock")]
+        public async Task<ActionResult> download_excel_Stock([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes = returnData.Data.ObjToClass<List<inv_combinelist_stock_Class>>();
+                if (inv_Combinelist_Stock_Classes == null)
+                {
+                    return BadRequest("returnData.Data不能是空的");
+                }
+                List<object[]> list_Combinelist_Stock = inv_Combinelist_Stock_Classes.ClassToSQL<inv_combinelist_stock_Class, enum_inv_combinelist_stock>();
+                System.Data.DataTable dataTable = list_Combinelist_Stock.ToDataTable(new enum_inv_combinelist_stock());
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx, (int)enum_合併單庫存EXCLL.庫存);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"系統錯誤：{ex.Message}");
+            }
+
+        }
         /// <summary>
         /// 以合併單號新增藥品單價
         /// </summary>
@@ -1312,7 +1427,91 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 以合併單號上傳單價
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "合併單號",
+        ///    "Data": 
+        ///    {                 
+        ///      
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("excel_upload_medPrices/{value}")]
+        public async Task<string> excel_upload_medPrices([FromRoute] string value)
+        {
+            string 合併單號 = value;
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData returnData = new returnData();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                returnData.Method = "excel_upload_medPrices";
+                var formFile = Request.Form.Files.FirstOrDefault();
 
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                List<object[]> list_value = new List<object[]>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+
+                    list_value = dt.DataTableToRowList();
+                    if (list_value.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"文件內容不得為空";
+                        return returnData.JsonSerializationt(true);
+                    }
+                }
+
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                List<Task> tasks = new List<Task>();
+                List<inv_combinelist_price_Class> inv_combinelist_price_Classes = new List<inv_combinelist_price_Class>();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    inv_combinelist_price_Class inv_combinelist_price_Class = new inv_combinelist_price_Class();
+                    string code = list_value[i][(int)enum_合併單單價EXCLL.藥碼].ObjectToString();
+                    medClass medClass = medClasses.SerchByBarcode(code);
+                    if (medClass != null)
+                    {
+                        inv_combinelist_price_Class.藥碼 = medClass.料號;
+                        inv_combinelist_price_Class.單價 = list_value[i][(int)enum_合併單單價EXCLL.單價].ObjectToString();
+                        inv_combinelist_price_Classes.LockAdd(inv_combinelist_price_Class);
+                    }
+                }
+                Task.WhenAll(tasks).Wait();
+                returnData.Value = 合併單號;
+                returnData.Data = inv_combinelist_price_Classes;
+                Logger.Log("add", $"{returnData.JsonSerializationt(true)}");
+                return POST_add_medPrices_by_SN(returnData);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
         /// <summary>
         /// 以合併單號新增藥品備註
         /// </summary>
@@ -1498,6 +1697,91 @@ namespace HIS_WebApi
 
             }
 
+        }
+        /// <summary>
+        /// 以合併單號上傳單價
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "合併單號",
+        ///    "Data": 
+        ///    {                 
+        ///      
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("excel_upload_medNote/{value}")]
+        public async Task<string> excel_upload_medNote([FromRoute] string value)
+        {
+            string 合併單號 = value;
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData returnData = new returnData();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                returnData.Method = "excel_upload_medNote";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                List<object[]> list_value = new List<object[]>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+
+                    list_value = dt.DataTableToRowList();
+                    if (list_value.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"文件內容不得為空";
+                        return returnData.JsonSerializationt(true);
+                    }
+                }
+
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                List<Task> tasks = new List<Task>();
+                List<inv_combinelist_note_Class> inv_combinelist_note_Classes = new List<inv_combinelist_note_Class>();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    inv_combinelist_note_Class inv_combinelist_note_Class = new inv_combinelist_note_Class();
+                    string code = list_value[i][(int)enum_合併單備註EXCLL.藥碼].ObjectToString();
+                    medClass medClass = medClasses.SerchByBarcode(code);
+                    if (medClass != null)
+                    {
+                        inv_combinelist_note_Class.藥碼 = medClass.料號;
+                        inv_combinelist_note_Class.備註 = list_value[i][(int)enum_合併單備註EXCLL.備註].ObjectToString();
+                        inv_combinelist_note_Classes.LockAdd(inv_combinelist_note_Class);
+                    }
+                }
+                Task.WhenAll(tasks).Wait();
+                returnData.Value = 合併單號;
+                returnData.Data = inv_combinelist_note_Classes;
+                Logger.Log("add", $"{returnData.JsonSerializationt(true)}");
+                return POST_add_medNote_by_SN(returnData);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
         }
 
         /// <summary>
@@ -2122,6 +2406,23 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_review()));
             return tables.JsonSerializationt(true);
         }
-
+        private enum enum_合併單庫存EXCLL
+        {
+            藥碼,
+            藥名,
+            庫存
+        }
+        private enum enum_合併單單價EXCLL
+        {
+            藥碼,
+            藥名,
+            單價
+        }
+        private enum enum_合併單備註EXCLL
+        {
+            藥碼,
+            藥名,
+            備註
+        }
     }
 }

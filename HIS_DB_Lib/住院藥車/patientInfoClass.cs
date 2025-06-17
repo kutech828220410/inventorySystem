@@ -409,7 +409,6 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData;
         }
-        
         static public List<patientInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
