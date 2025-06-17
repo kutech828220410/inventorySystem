@@ -24,6 +24,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using System.Xml;
+using System.Data;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -1148,7 +1149,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
         [HttpPost("excel_upload_stocks/{value}")]
-        public async Task<string> excel_upload_stocks([FromRoute] string value )
+        public async Task<string> excel_upload_stocks([FromRoute] string value)
         {
             string 合併單號 = value;
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -1181,7 +1182,7 @@ namespace HIS_WebApi
                         returnData.Code = -200;
                         returnData.Result = $"文件內容不得為空";
                         return returnData.JsonSerializationt(true);
-                    } 
+                    }
                 }
 
                 List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
@@ -1212,6 +1213,23 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 匯出庫存
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "",
+        ///    "Data": 
+        ///    [                 
+        ///     {inv_combinelist_stock_Class} 
+        ///    ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
         [HttpPost("download_excel_Stock")]
         public async Task<ActionResult> download_excel_Stock([FromBody] returnData returnData)
         {
@@ -1224,8 +1242,16 @@ namespace HIS_WebApi
                 {
                     return BadRequest("returnData.Data不能是空的");
                 }
-                List<object[]> list_Combinelist_Stock = inv_Combinelist_Stock_Classes.ClassToSQL<inv_combinelist_stock_Class, enum_inv_combinelist_stock>();
-                System.Data.DataTable dataTable = list_Combinelist_Stock.ToDataTable(new enum_inv_combinelist_stock());
+                List<object[]> list_Combinelist_Stock = new List<object[]>();
+                foreach (var item in inv_Combinelist_Stock_Classes)
+                {
+                    object[] value = new object[new enum_合併單庫存EXCLL().GetLength()];
+                    value[(int)enum_合併單庫存EXCLL.藥碼] = item.藥碼;
+                    value[(int)enum_合併單庫存EXCLL.藥名] = item.藥名;
+                    value[(int)enum_合併單庫存EXCLL.庫存] = item.數量;
+                    list_Combinelist_Stock.Add(value);
+                }
+                System.Data.DataTable dataTable = list_Combinelist_Stock.ToDataTable(new enum_合併單庫存EXCLL());
 
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
@@ -1372,8 +1398,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_medPrices_by_SN")]
-        [HttpPost]
+        [HttpPost("get_medPrices_by_SN")]
         public string POST_get_medPrices_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1513,6 +1538,60 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 匯出單價
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "",
+        ///    "Data": 
+        ///    [                 
+        ///     {inv_combinelist_price_Class} 
+        ///    ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("download_excel_medPrices")]
+        public async Task<ActionResult> download_excel_medPrices([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<inv_combinelist_price_Class> inv_combinelist_price_Classes = returnData.Data.ObjToClass<List<inv_combinelist_price_Class>>();
+                if (inv_combinelist_price_Classes == null)
+                {
+                    return BadRequest("returnData.Data不能是空的");
+                }
+                List<object[]> list_Combinelist_price = new List<object[]>();
+                foreach (var item in inv_combinelist_price_Classes)
+                {
+                    object[] value = new object[new enum_合併單庫存EXCLL().GetLength()];
+                    value[(int)enum_合併單單價EXCLL.藥碼] = item.藥碼;
+                    value[(int)enum_合併單單價EXCLL.藥名] = item.藥名;
+                    value[(int)enum_合併單單價EXCLL.單價] = item.單價;
+                    list_Combinelist_price.Add(value);
+                }
+                System.Data.DataTable dataTable = list_Combinelist_price.ToDataTable(new enum_合併單單價EXCLL());
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx, (int)enum_合併單單價EXCLL.單價);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"系統錯誤：{ex.Message}");
+            }
+
+        }
+        /// <summary>
         /// 以合併單號新增藥品備註
         /// </summary>
         /// <remarks>
@@ -1532,8 +1611,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("add_medNote_by_SN")]
-        [HttpPost]
+        [HttpPost("add_medNote_by_SN")]
         public string POST_add_medNote_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1643,8 +1721,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_medNote_by_SN")]
-        [HttpPost]
+        [HttpPost("get_medNote_by_SN")]
         public string POST_get_medNote_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1783,7 +1860,60 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 匯出單價
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "",
+        ///    "Data": 
+        ///    [                 
+        ///     {inv_combinelist_price_Class} 
+        ///    ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("download_excel_medNote")]
+        public async Task<ActionResult> download_excel_medNote([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                List<inv_combinelist_note_Class> inv_combinelist_note_Classes = returnData.Data.ObjToClass<List<inv_combinelist_note_Class>>();
+                if (inv_combinelist_note_Classes == null)
+                {
+                    return BadRequest("returnData.Data不能是空的");
+                }
+                List<object[]> list_Combinelist_note = new List<object[]>();
+                foreach (var item in inv_combinelist_note_Classes)
+                {
+                    object[] value = new object[new enum_合併單庫存EXCLL().GetLength()];
+                    value[(int)enum_合併單備註EXCLL.藥碼] = item.藥碼;
+                    value[(int)enum_合併單備註EXCLL.藥名] = item.藥名;
+                    value[(int)enum_合併單備註EXCLL.備註] = item.備註;
+                    list_Combinelist_note.Add(value);
+                }
+                System.Data.DataTable dataTable = list_Combinelist_note.ToDataTable(new enum_合併單備註EXCLL());
 
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}.xlsx"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"系統錯誤：{ex.Message}");
+            }
+
+        }
         /// <summary>
         /// 以合併單號新增藥品覆盤量
         /// </summary>
@@ -1794,18 +1924,19 @@ namespace HIS_WebApi
         /// 以下為範例JSON範例
         /// <code>
         ///  {
-        ///    "Value" : "I20240103-14",
+        ///    "Value" : "I20240103-14", //合併單號
         ///    "Data": 
         ///    {                 
-        ///       inv_combinelist_price_Class
+        ///       "CODE":"藥碼或料號",
+        ///       "NAME":"藥名",
+        ///       "QTY":"數量"
         ///    }
         /// }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("add_medReview_by_SN")]
-        [HttpPost]
+        [HttpPost("add_medReview_by_SN")]
         public string POST_add_medReview_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1922,8 +2053,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_medReview_by_SN")]
-        [HttpPost]
+        [HttpPost(("get_medReview_by_SN"))]
         public string POST_get_medReview_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1977,7 +2107,6 @@ namespace HIS_WebApi
             }
 
         }
-
         /// <summary>
         /// 以合併單號取得完整合併單DataTable
         /// </summary>
@@ -1998,8 +2127,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_full_inv_DataTable_by_SN")]
-        [HttpPost]
+        [HttpPost("get_full_inv_DataTable_by_SN")]
         public string POST_get_full_inv_DataTable_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -2242,7 +2370,7 @@ namespace HIS_WebApi
                     }
                 }
             }
-      
+
             returnData.Data = dataTables.JsonSerializeDataTable();
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"成功轉換表單<{dataTables.Count}>張";
@@ -2268,8 +2396,56 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_full_inv_Excel_by_SN")]
-        [HttpPost]
+        [HttpPost("get_detail_inv_by_SN")]
+        public string get_detail_inv_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                    return returnData.JsonSerializationt();
+                }
+                List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
+                List<object[]> list_value = dataTables[0].DataTableToRowList();
+                List<inv_combinelist_dataTable> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_dataTable, enum_inv_combinelist_dataTable>();
+
+                returnData.Data = inv_CombinelistClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"成功取得合併單-{returnData.Value} 資料,共<{inv_CombinelistClasses.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
+        /// 以合併單號取得完整合併單Excel
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_full_inv_Excel_by_SN")]
         public async Task<ActionResult> POST_get_full_inv_Excel_by_SN([FromBody] returnData returnData)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2310,8 +2486,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_record_Excel_by_SN")]
-        [HttpPost]
+        [HttpPost("get_record_Excel_by_SN")]
         public async Task<ActionResult> POST_get_record_Excel_by_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -2392,7 +2567,6 @@ namespace HIS_WebApi
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{單號}_盤點單.xlsx"));
         }
-
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 
@@ -2424,5 +2598,75 @@ namespace HIS_WebApi
             藥名,
             備註
         }
+        private enum enum_inv_combinelist_dataTable
+        {
+            GUID,
+            藥碼,
+            料號,
+            藥名,
+            別名,
+            單價,
+            庫存量,
+            盤點量,
+            未知,
+            覆盤量,
+            庫存金額,
+            結存金額,
+            誤差量,
+            誤差金額,
+            誤差百分率,
+            註記
+        }
+        private class inv_combinelist_dataTable
+        {
+            [JsonPropertyName("GUID")]
+            public string GUID { get; set; }
+
+            [JsonPropertyName("CODE")]
+            public string 藥碼 { get; set; }
+
+            [JsonPropertyName("SKDIACODE")]
+            public string 料號 { get; set; }
+
+            [JsonPropertyName("NAME")]
+            public string 藥名 { get; set; }
+
+            [JsonPropertyName("ALIAS")]
+            public string 別名 { get; set; }
+
+            [JsonPropertyName("PRICE")]
+            public string 單價 { get; set; }
+
+            [JsonPropertyName("QTY")]
+            public string 庫存量 { get; set; }
+
+            [JsonPropertyName("COUNT")]
+            public string 盤點量 { get; set; }
+
+            [JsonPropertyName("UNKNOWN")]
+            public string 未知 { get; set; }
+
+            [JsonPropertyName("REVIEW")]
+            public string 覆盤量 { get; set; }
+
+            [JsonPropertyName("STOCK")]
+            public string 庫存金額 { get; set; }
+
+            [JsonPropertyName("BALANCE")]
+            public string 結存金額 { get; set; }
+
+            [JsonPropertyName("ERROR")]
+            public string 誤差量 { get; set; }
+
+            [JsonPropertyName("ERROR_MONEY")]
+            public string 誤差金額 { get; set; }
+
+            [JsonPropertyName("ERROR_PERCENT")]
+            public string 誤差百分率 { get; set; }
+
+            [JsonPropertyName("COMMENT")]
+            public string 註記 { get; set; }
+        }
+
     }
 }
