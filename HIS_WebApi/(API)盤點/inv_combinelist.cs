@@ -62,6 +62,8 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("init")]
         [HttpPost]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCpoeClass物件", typeof(medCpoeClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "inv_combinelist_dataTable物件", typeof(inv_combinelist_dataTable))]
         public string GET_init([FromBody] returnData returnData)
         {
             try
@@ -297,8 +299,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("inv_stockrecord_update_by_GUID")]
-        [HttpPost]
+        [HttpPost("inv_stockrecord_update_by_GUID")]
         public string POST_inv_stockrecord_update_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -369,6 +370,83 @@ namespace HIS_WebApi
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "inv_stockrecord_update_by_GUID";
                 returnData.Result = $"更新盤點日庫存單號成功!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
+        /// 以GUID更新 誤差資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///         "GUID",
+        ///         "MaxTotalErrorAmount"
+        ///         "MinTotalErrorAmount"
+        ///         "MaxErrorPercentage"
+        ///         "MinErrorPercentage"
+        ///         "MaxErrorCount"
+        ///         "MinErrorCount"
+        ///  
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     
+        ///     ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("update_error_by_GUID")]
+        public string update_error_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+
+                if (inv_CombinelistClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string GUID = inv_CombinelistClass.GUID;
+                SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_inv_combinelist.GUID, GUID);
+                if (list_inv_combinelist.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                if (inv_CombinelistClass.誤差數量上限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差數量上限] = inv_CombinelistClass.誤差數量上限;
+                if (inv_CombinelistClass.誤差數量下限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差數量下限] = inv_CombinelistClass.誤差數量下限;
+                if (inv_CombinelistClass.誤差百分率上限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差百分率上限] = inv_CombinelistClass.誤差百分率上限;
+                if (inv_CombinelistClass.誤差百分率下限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差百分率下限] = inv_CombinelistClass.誤差百分率下限;
+                if (inv_CombinelistClass.誤差總金額上限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差總金額上限] = inv_CombinelistClass.誤差總金額上限;
+                if (inv_CombinelistClass.誤差總金額下限.StringIsEmpty() == false) list_inv_combinelist[0][(int)enum_inv_combinelist.誤差總金額下限] = inv_CombinelistClass.誤差總金額下限;
+
+                sQLControl_inv_combinelist.UpdateByDefulteExtra(null, list_inv_combinelist);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "update_error_by_GUID";
+                returnData.Result = $"更新誤差設定成功!";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -2377,7 +2455,7 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
         /// <summary>
-        /// 以合併單號取得完整合併單Excel
+        /// 以合併單號取得完整合併單
         /// </summary>
         /// <remarks>
         /// [必要輸入參數說明]<br/> 
@@ -2408,7 +2486,10 @@ namespace HIS_WebApi
                     returnData.Result = "returnData.Value 空白,請輸入合併單號!";
                     return returnData.JsonSerializationt();
                 }
-                List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
+                string json_out = POST_get_full_inv_DataTable_by_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                string dataTable_string = returnData.Data.ObjToClass<string>();
+                List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables(); ;
                 List<object[]> list_value = dataTables[0].DataTableToRowList();
                 List<inv_combinelist_dataTable> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_dataTable, enum_inv_combinelist_dataTable>();
 
