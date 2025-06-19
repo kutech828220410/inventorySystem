@@ -213,6 +213,62 @@ namespace HIS_WebApi._API_AI
             }
         }
         /// <summary>
+        /// 更新內容和錯誤類別
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [suspiciousRxLogClass陣列]
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update_content_errorType")]
+        public string update_content_errorType([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_content_errorType";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
+                if (suspiciousRxLogClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "suspiciousRxLog";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"更新{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
+        /// <summary>
         /// 取得規則
         /// </summary>
         /// <remarks>
@@ -588,7 +644,7 @@ namespace HIS_WebApi._API_AI
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                string command = $"SELECT * FROM {DB}.{TableName} WHERE 加入時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 = '{enum_suspiciousRxLog_status.未更改.GetEnumName()}';";
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE 加入時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 NOT IN ('{enum_suspiciousRxLog_status.未辨識.GetEnumName()}', '{enum_suspiciousRxLog_status.無異狀.GetEnumName()}') ;";
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
@@ -598,6 +654,106 @@ namespace HIS_WebApi._API_AI
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClasses;
                 returnData.Result = $"取得{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 以開方時間取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["起始時間","結束時間"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_post_time")]
+        public string get_by_post_time([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_post_time";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"起始時間\",\"結束時間\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string 起始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+                DateTime date_st = 起始時間.StringToDateTime();
+                DateTime date_end = 結束時間.StringToDateTime();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "suspiciousRxLog";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE 開方時間 BETWEEN '{date_st.ToDateTimeString()}' AND '{date_end.ToDateTimeString()}' AND 狀態 NOT IN ('{enum_suspiciousRxLog_status.未辨識.GetEnumName()}', '{enum_suspiciousRxLog_status.無異狀.GetEnumName()}') ;";
+
+                DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
+
+                List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"取得{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得錯誤類別
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":[]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_errorType")]
+        public string get_errorType([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_errorType";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+                List<string> errorType = Enum.GetNames(typeof(enum_suspiciousRxLog_errorType)).ToList();           
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = errorType;
+                returnData.Result = $"取得{errorType.Count}筆錯誤類別資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -709,7 +865,7 @@ namespace HIS_WebApi._API_AI
                         Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));
                         return returnData.JsonSerializationt(true);
                     }
-                    suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
+                    //suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
                     suspiciousRxLogClasses.簡述事件 = suspiciousRxLog.response;
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
                     suspiciousRxLogClasses.提報等級 = buff_suspiciousRxLog_ruleClass.提報等級;

@@ -35,7 +35,7 @@ namespace HIS_DB_Lib
         未辨識,
         無異狀,
         未更改,
-        已更改
+        確認提報
     }
     public enum enum_suspiciousRxLog_errorType
     {
@@ -360,7 +360,26 @@ namespace HIS_DB_Lib
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
-        public List<string> error_type { get; set; }
+        public List<string> error_type 
+        {
+            get
+            {
+                List<string> list_錯誤類別 = new List<string>();
+                if (this.錯誤類別.StringIsEmpty() == false) list_錯誤類別 = this.錯誤類別.Split(';').ToList();
+                return list_錯誤類別;
+            }
+            set
+            {
+                if (value == null) return;
+                List<string> list_錯誤類別 = new List<string>();
+                List<string> list_交互作用 = new List<string>();
+                foreach (var item in value)
+                {
+                    list_錯誤類別.Add(item);
+                }
+                this.錯誤類別 = string.Join(";", list_錯誤類別);
+            }
+        }
         public List<string> rule_type
         {
             get
