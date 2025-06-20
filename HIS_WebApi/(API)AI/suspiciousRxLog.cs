@@ -709,8 +709,11 @@ namespace HIS_WebApi._API_AI
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
+                
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                 suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
+   
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClasses;
@@ -779,7 +782,7 @@ namespace HIS_WebApi._API_AI
                 }
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
-                AddsuspiciousRxLog(orders);
+                //AddsuspiciousRxLog(orders);
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
@@ -1105,7 +1108,7 @@ namespace HIS_WebApi._API_AI
 
             return table.JsonSerializationt(true);
         }
-        private void AddsuspiciousRxLog(List<OrderClass> orderClasses, string ICD1 = "C93.30", string ICD2 = "", string ICD3 = "")
+        private void AddsuspiciousRxLog(List<OrderClass> orderClasses, string ICD1 = "", string ICD2 = "", string ICD3 = "")
         {
             if (orderClasses.Count == 0) return;
             List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, orderClasses[0].藥袋條碼);
@@ -1142,6 +1145,25 @@ namespace HIS_WebApi._API_AI
                 };
                 suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
             }
+        }
+        private List<suspiciousRxLogClass> Get_Value (List<suspiciousRxLogClass> suspiciousRxLogClasses)
+        {
+            List<Task> tasks = new List<Task>();
+            List<suspiciousRxLogClass> result = new List<suspiciousRxLogClass>();
+            foreach (var item in suspiciousRxLogClasses)
+            {
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    suspiciousRxLogClass suspiciousRxLogClass = new suspiciousRxLogClass();
+
+                    suspiciousRxLogClass = suspiciousRxLogClass.Get_diseaseClasses(item);
+                    suspiciousRxLogClass = suspiciousRxLogClass.Get_errorType(suspiciousRxLogClass);
+                    suspiciousRxLogClass = suspiciousRxLogClass.Get_ruleType(suspiciousRxLogClass);
+                    result.LockAdd(suspiciousRxLogClass);
+                })));
+            }
+            Task.WhenAll(tasks).Wait();
+            return result;
         }
     }
 }

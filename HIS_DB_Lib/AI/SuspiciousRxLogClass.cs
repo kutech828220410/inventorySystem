@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Basic;
+using NPOI.OpenXmlFormats.Dml.Chart;
+using NPOI.SS.Formula.Functions;
+using NPOI.XSSF.Streaming.Values;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using Basic;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Web;
-using NPOI.SS.Formula.Functions;
 
 namespace HIS_DB_Lib
 {
@@ -238,94 +240,16 @@ namespace HIS_DB_Lib
 
         [JsonPropertyName("identified")]
         public string 辨識註記 { get; set; }
-
-        public List<diseaseClass> diseaseClasses
-        {
-            get
-            {
-                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
-
-                List<string> list_診斷碼 = new List<string>();
-                List<string> list_診斷內容 = new List<string>();
-                if (this.診斷碼.StringIsEmpty() == false && this.診斷內容.StringIsEmpty() == false)
-                {
-                    list_診斷碼 = this.診斷碼.Split(';').ToList();
-                    list_診斷內容 = this.診斷內容.Split(';').ToList();
-                    if (list_診斷碼.Count == list_診斷內容.Count)
-                    {
-                        for (int i = 0; i < list_診斷碼.Count; i++)
-                        {
-                            diseaseClasses.Add(new diseaseClass()
-                            {
-                                疾病代碼 = list_診斷碼[i],
-                                中文說明 = list_診斷內容[i],
-                            });
-                        }
-                    }
-                }
-                return diseaseClasses;
-            }
-            set
-            {
-                if (value == null) return;
-                List<string> list_診斷碼 = new List<string>();
-                List<string> list_中文說明 = new List<string>();
-
-                foreach (var item in value)
-                {
-                    list_診斷碼.Add(item.疾病代碼);
-                    if (item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
-                    else list_中文說明.Add(item.英文說明);
-                }
-
-                this.診斷碼 = string.Join(";", list_診斷碼);
-                this.診斷內容 = string.Join(";", list_中文說明);
-            }
-        }
+        public List<diseaseClass> diseaseClasses { get; set; }
         public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
         [JsonPropertyName("ALLERGY")]
-        public List<MedicalCodeItem> 過敏紀錄
-        {
-            get
-            {
-                List<MedicalCodeItem> 過敏 = new List<MedicalCodeItem>();
-                if (this.過敏藥碼.StringIsEmpty() == false)
-                {
-                    List<string> list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
-                    List<string> list_過敏藥名 = this.過敏藥名.Split(';').ToList();
-                    for(int i = 0; i < list_過敏藥碼.Count; i++)
-                    {
-                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
-                        {
-                            code = list_過敏藥碼[i],
-                            name = list_過敏藥名[i]
-                        };
-                        過敏.Add(medicalCodeItem);
-                    }
-                }
-                return 過敏;
-            }
-            set
-            {
-                if (value == null) return;
-                List<string> list_過敏藥碼 = new List<string>();
-                List<string> list_過敏藥名 = new List<string>();
-
-                foreach (var item in value)
-                {
-                    list_過敏藥碼.Add(item.code);
-                    list_過敏藥名.Add(item.name);
-                }
-                this.過敏藥碼 = string.Join(";", list_過敏藥碼);
-                this.過敏藥名 = string.Join(";", list_過敏藥名);
-            }
-        }
+        public List<MedicalCodeItem> 過敏紀錄 { get; set; }
+        
         [JsonPropertyName("INTERACT")]
         public List<MedicalCodeItem> 交互作用紀錄
         {
             get
             {
-                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
                 List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
                 if (this.交互作用藥碼.StringIsEmpty() == false)
                 {
@@ -360,48 +284,9 @@ namespace HIS_DB_Lib
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
-        public List<string> error_type 
-        {
-            get
-            {
-                List<string> list_錯誤類別 = new List<string>();
-                if (this.錯誤類別.StringIsEmpty() == false) list_錯誤類別 = this.錯誤類別.Split(';').ToList();
-                return list_錯誤類別;
-            }
-            set
-            {
-                if (value == null) return;
-                List<string> list_錯誤類別 = new List<string>();
-                List<string> list_交互作用 = new List<string>();
-                foreach (var item in value)
-                {
-                    list_錯誤類別.Add(item);
-                }
-                this.錯誤類別 = string.Join(";", list_錯誤類別);
-            }
-        }
-        public List<string> rule_type
-        {
-            get
-            {
-                if (this.識別規則依據.StringIsEmpty())
-                    return new List<string>();
-
-                return 識別規則依據.Split(';').ToList();
-            }
-            set
-            {
-                if (value == null)
-                {
-                    識別規則依據 = string.Empty;
-                }
-                else
-                {
-                    識別規則依據 = string.Join(";", value);
-                }
-            }
-
-        }
+        public List<string> error_type { get; set; }
+        public List<string> rule_type { get; set; }
+       
 
         public string response { get; set; }
         public class ICP_By_OP_Time : IComparer<suspiciousRxLogClass>
@@ -523,6 +408,142 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, suspiciousRxLogClasses);
 
         }
+        static public suspiciousRxLogClass Get_diseaseClasses (suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            if(suspiciousRxLogClass.診斷碼.StringIsEmpty() == false && suspiciousRxLogClass.診斷內容.StringIsEmpty() == false)
+            {
+                List<diseaseClass> diseaseClasses = new List<diseaseClass>();
+                List<string>  list_診斷碼 = suspiciousRxLogClass.診斷碼.Split(';').ToList();
+                List<string>  list_診斷內容 = suspiciousRxLogClass.診斷內容.Split(';').ToList();
+                if (list_診斷碼.Count == list_診斷內容.Count)
+                {
+                    for (int i = 0; i < list_診斷碼.Count; i++)
+                    {
+                        diseaseClasses.Add(new diseaseClass()
+                        {
+                            疾病代碼 = list_診斷碼[i],
+                            中文說明 = list_診斷內容[i],
+                        });
+                    }
+                }
+                suspiciousRxLogClass.diseaseClasses = diseaseClasses;
+                return suspiciousRxLogClass;
+            }
+            else if(suspiciousRxLogClass.diseaseClasses != null)
+            {
+                List<string> list_診斷碼 = new List<string>();
+                List<string> list_中文說明 = new List<string>();
+
+                foreach (var item in suspiciousRxLogClass.diseaseClasses)
+                {
+                    list_診斷碼.Add(item.疾病代碼);
+                    if (item.中文說明.StringIsEmpty() == false) list_中文說明.Add(item.中文說明);
+                    else list_中文說明.Add(item.英文說明);
+                }
+
+                suspiciousRxLogClass.診斷碼 = string.Join(";", list_診斷碼);
+                suspiciousRxLogClass.診斷內容 = string.Join(";", list_中文說明);
+                return suspiciousRxLogClass;
+            }
+            return suspiciousRxLogClass;
+        }
+        static public suspiciousRxLogClass Get_errorType(suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            if (suspiciousRxLogClass.錯誤類別.StringIsEmpty() == false)
+            {
+                List<string> list_錯誤類別 = new List<string>();
+                list_錯誤類別 = suspiciousRxLogClass.錯誤類別.Split(';').ToList();
+                suspiciousRxLogClass.error_type = list_錯誤類別;
+                return suspiciousRxLogClass;
+            }
+            else if(suspiciousRxLogClass.error_type != null)
+            {
+                List<string> list_錯誤類別 = new List<string>();
+                List<string> list_交互作用 = new List<string>();
+                foreach (var item in suspiciousRxLogClass.error_type)
+                {
+                    list_錯誤類別.Add(item);
+                }
+                suspiciousRxLogClass.錯誤類別 = string.Join(";", list_錯誤類別);
+                return suspiciousRxLogClass;
+            }
+            return suspiciousRxLogClass;
+        }
+        static public suspiciousRxLogClass Get_ruleType(suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            if (suspiciousRxLogClass.識別規則依據.StringIsEmpty() == false)
+            {
+                List<string> rule_type = suspiciousRxLogClass.識別規則依據.Split(';').ToList();
+                suspiciousRxLogClass.rule_type = rule_type;
+                return suspiciousRxLogClass;
+            }
+            else if (suspiciousRxLogClass.rule_type != null)
+            {
+                List<string> list_識別規則 = new List<string>();
+                foreach (var item in suspiciousRxLogClass.rule_type)
+                {
+                    list_識別規則.Add(item);
+                }
+                suspiciousRxLogClass.識別規則依據 = string.Join(";", list_識別規則);
+                return suspiciousRxLogClass;
+            }
+            return suspiciousRxLogClass;
+        }
+        static public suspiciousRxLogClass Get_ALLERGY(suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            if (suspiciousRxLogClass.過敏藥碼.StringIsEmpty() == false && suspiciousRxLogClass.過敏藥名.StringIsEmpty() == false)
+            {
+                List<string> rule_type = suspiciousRxLogClass.識別規則依據.Split(';').ToList();
+                suspiciousRxLogClass.rule_type = rule_type;
+                return suspiciousRxLogClass;
+            }
+            else if (suspiciousRxLogClass.rule_type != null)
+            {
+                List<string> list_識別規則 = new List<string>();
+                foreach (var item in suspiciousRxLogClass.rule_type)
+                {
+                    list_識別規則.Add(item);
+                }
+                suspiciousRxLogClass.識別規則依據 = string.Join(";", list_識別規則);
+                return suspiciousRxLogClass;
+            }
+            return suspiciousRxLogClass;
+        }
+        //{
+        //    get
+        //    {
+        //        List<MedicalCodeItem> 過敏 = new List<MedicalCodeItem>();
+        //        if (this.過敏藥碼.StringIsEmpty() == false)
+        //        {
+        //            List<string> list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
+        //            List<string> list_過敏藥名 = this.過敏藥名.Split(';').ToList();
+        //            for(int i = 0; i < list_過敏藥碼.Count; i++)
+        //            {
+        //                MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+        //                {
+        //                    code = list_過敏藥碼[i],
+        //                    name = list_過敏藥名[i]
+        //                };
+        //                過敏.Add(medicalCodeItem);
+        //            }
+        //        }
+        //        return 過敏;
+        //    }
+        //    set
+        //    {
+        //        if (value == null) return;
+        //        List<string> list_過敏藥碼 = new List<string>();
+        //        List<string> list_過敏藥名 = new List<string>();
+
+        //        foreach (var item in value)
+        //        {
+        //            list_過敏藥碼.Add(item.code);
+        //            list_過敏藥名.Add(item.name);
+        //        }
+        //        this.過敏藥碼 = string.Join(";", list_過敏藥碼);
+        //        this.過敏藥名 = string.Join(";", list_過敏藥名);
+        //    }
+        //}
 
     }
     public class suspiciousRxLog_ruleClass
