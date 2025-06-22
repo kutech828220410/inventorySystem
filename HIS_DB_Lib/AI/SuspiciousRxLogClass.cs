@@ -49,7 +49,10 @@ namespace HIS_DB_Lib
         F數量錯誤,
         G多種藥物組合,
         H重複用藥,
-        I其他,
+        I適應症錯誤,
+        O其他,
+        [Description("O其他-藥物選用適切性")]
+        O其他_藥物選用適切性,
     }
     public enum enum_suspiciousRxLog_export
     {
@@ -84,6 +87,10 @@ namespace HIS_DB_Lib
         藥袋條碼,
         [Description("病歷號,VARCHAR,20,NONE")]
         病歷號,
+        [Description("年齡,VARCHAR,20,NONE")]
+        年齡,
+        [Description("性別,VARCHAR,20,NONE")]
+        性別,
         [Description("科別,VARCHAR,20,NONE")]
         科別,
         [Description("醫生姓名,VARCHAR,30,NONE")]
@@ -92,11 +99,11 @@ namespace HIS_DB_Lib
         診斷碼,
         [Description("診斷內容,VARCHAR,1000,NONE")]
         診斷內容,
-        [Description("過敏藥碼,VARCHAR,30,NONE")]
+        [Description("過敏藥碼,VARCHAR,200,NONE")]
         過敏藥碼,
-        [Description("過敏藥名,VARCHAR,100,NONE")]
+        [Description("過敏藥名,VARCHAR,1000,NONE")]
         過敏藥名,
-        [Description("交互作用藥碼,VARCHAR,30,NONE")]
+        [Description("交互作用藥碼,VARCHAR,200,NONE")]
         交互作用藥碼,
         [Description("交互作用,VARCHAR,1000,NONE")]
         交互作用,
@@ -166,6 +173,12 @@ namespace HIS_DB_Lib
         [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
 
+        [JsonPropertyName("AGE")]
+        public string 年齡 { get; set; }
+
+        [JsonPropertyName("GENDER")]
+        public string 性別 { get; set; }
+
         [JsonPropertyName("SECTNO")]
         public string 科別 { get; set; }
 
@@ -230,10 +243,7 @@ namespace HIS_DB_Lib
         public string 處理人員 { get; set; }
 
         [JsonPropertyName("HANDLE_TIME")]
-        public string 處理時間 { get; set; }
-
-        [JsonPropertyName("TPR_NOTIFY")]
-        public string 通報TPR { get; set; }
+        public string 處理時間 { get; set; }     
 
         [JsonPropertyName("REMARK")]
         public string 備註 { get; set; }
@@ -244,43 +254,9 @@ namespace HIS_DB_Lib
         public List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses { get; set; }
         [JsonPropertyName("ALLERGY")]
         public List<MedicalCodeItem> 過敏紀錄 { get; set; }
-        
         [JsonPropertyName("INTERACT")]
-        public List<MedicalCodeItem> 交互作用紀錄
-        {
-            get
-            {
-                List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
-                if (this.交互作用藥碼.StringIsEmpty() == false)
-                {
-                    List<string> list_交互作用藥碼 = this.交互作用藥碼.Split(';').ToList();
-                    List<string> list_交互作用 = this.交互作用.Split(';').ToList();
-                    for(int i = 0; i < list_交互作用藥碼.Count; i++)
-                    {
-                        MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
-                        {
-                            code = list_交互作用藥碼[i],
-                            name = list_交互作用[i]
-                        };
-                        交互作用.Add(medicalCodeItem);
-                    }
-                }
-                return 交互作用;
-            }
-            set
-            {
-                if (value == null) return;
-                List<string> list_交互作用藥碼 = new List<string>();
-                List<string> list_交互作用 = new List<string>();
-                foreach (var item in value)
-                {
-                    list_交互作用藥碼.Add(item.code);
-                    list_交互作用.Add(item.name);
-                }
-                this.交互作用藥碼 = string.Join(";", list_交互作用藥碼);
-                this.交互作用 = string.Join(";", list_交互作用);
-            }
-        }
+        public List<MedicalCodeItem> 交互作用紀錄 { get; set; }
+        
 
         public string MED_BAG_SN { get; set; }
         public string error { get; set; }
@@ -493,58 +469,75 @@ namespace HIS_DB_Lib
         {
             if (suspiciousRxLogClass.過敏藥碼.StringIsEmpty() == false && suspiciousRxLogClass.過敏藥名.StringIsEmpty() == false)
             {
-                List<string> rule_type = suspiciousRxLogClass.識別規則依據.Split(';').ToList();
-                suspiciousRxLogClass.rule_type = rule_type;
+                List<MedicalCodeItem> 過敏紀錄 = new List<MedicalCodeItem>();
+                List<string> list_過敏藥碼 = suspiciousRxLogClass.過敏藥碼.Split(';').ToList();
+                List<string> list_過敏藥名 = suspiciousRxLogClass.過敏藥名.Split(';').ToList();
+
+                for (int i = 0; i < list_過敏藥碼.Count; i++)
+                {
+                    MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                    {
+                        code = list_過敏藥碼[i],
+                        name = list_過敏藥名[i]
+                    };
+                    過敏紀錄.Add(medicalCodeItem);
+                }
+                suspiciousRxLogClass.過敏紀錄 = 過敏紀錄;
                 return suspiciousRxLogClass;
             }
-            else if (suspiciousRxLogClass.rule_type != null)
+            else if (suspiciousRxLogClass.過敏紀錄 != null)
             {
-                List<string> list_識別規則 = new List<string>();
-                foreach (var item in suspiciousRxLogClass.rule_type)
+                List<string> list_過敏藥碼 = new List<string>();
+                List<string> list_過敏藥名 = new List<string>();
+                foreach (var item in suspiciousRxLogClass.過敏紀錄)
                 {
-                    list_識別規則.Add(item);
+                    list_過敏藥碼.Add(item.code);
+                    list_過敏藥名.Add(item.name);
                 }
-                suspiciousRxLogClass.識別規則依據 = string.Join(";", list_識別規則);
+                suspiciousRxLogClass.過敏藥碼 = string.Join(";", list_過敏藥碼);
+                suspiciousRxLogClass.過敏藥名 = string.Join(";", list_過敏藥名);
+
                 return suspiciousRxLogClass;
             }
             return suspiciousRxLogClass;
         }
-        //{
-        //    get
-        //    {
-        //        List<MedicalCodeItem> 過敏 = new List<MedicalCodeItem>();
-        //        if (this.過敏藥碼.StringIsEmpty() == false)
-        //        {
-        //            List<string> list_過敏藥碼 = this.過敏藥碼.Split(';').ToList();
-        //            List<string> list_過敏藥名 = this.過敏藥名.Split(';').ToList();
-        //            for(int i = 0; i < list_過敏藥碼.Count; i++)
-        //            {
-        //                MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
-        //                {
-        //                    code = list_過敏藥碼[i],
-        //                    name = list_過敏藥名[i]
-        //                };
-        //                過敏.Add(medicalCodeItem);
-        //            }
-        //        }
-        //        return 過敏;
-        //    }
-        //    set
-        //    {
-        //        if (value == null) return;
-        //        List<string> list_過敏藥碼 = new List<string>();
-        //        List<string> list_過敏藥名 = new List<string>();
+        static public suspiciousRxLogClass Get_INTERACT(suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            if (suspiciousRxLogClass.交互作用藥碼.StringIsEmpty() == false && suspiciousRxLogClass.交互作用.StringIsEmpty() == false)
+            {
+                List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
+                List<string> list_交互作用藥碼 = suspiciousRxLogClass.交互作用藥碼.Split(';').ToList();
+                List<string> list_交互作用 = suspiciousRxLogClass.交互作用.Split(';').ToList();
 
-        //        foreach (var item in value)
-        //        {
-        //            list_過敏藥碼.Add(item.code);
-        //            list_過敏藥名.Add(item.name);
-        //        }
-        //        this.過敏藥碼 = string.Join(";", list_過敏藥碼);
-        //        this.過敏藥名 = string.Join(";", list_過敏藥名);
-        //    }
-        //}
+                for (int i = 0; i < list_交互作用藥碼.Count; i++)
+                {
+                    MedicalCodeItem medicalCodeItem = new MedicalCodeItem()
+                    {
+                        code = list_交互作用藥碼[i],
+                        name = list_交互作用[i]
+                    };
+                    交互作用.Add(medicalCodeItem);
+                }
+                suspiciousRxLogClass.交互作用紀錄 = 交互作用;
+                return suspiciousRxLogClass;
+            }
+            else if (suspiciousRxLogClass.交互作用紀錄 != null)
+            {
+                List<string> list_交互作用藥碼 = new List<string>();
+                List<string> list_交互作用 = new List<string>();
+                foreach (var item in suspiciousRxLogClass.過敏紀錄)
+                {
+                    list_交互作用藥碼.Add(item.code);
+                    list_交互作用.Add(item.name);
+                }
+                suspiciousRxLogClass.交互作用藥碼 = string.Join(";", list_交互作用藥碼);
+                suspiciousRxLogClass.交互作用 = string.Join(";", list_交互作用);
 
+                return suspiciousRxLogClass;
+            }
+            return suspiciousRxLogClass;
+        }
+       
     }
     public class suspiciousRxLog_ruleClass
     {
@@ -672,6 +665,10 @@ namespace HIS_DB_Lib
         public string 醫師代碼 { get; set; }
         [JsonPropertyName("PATNAME")]
         public string 病人姓名 { get; set; }
+        [JsonPropertyName("AGE")]
+        public string 年齡 { get; set; }
+        [JsonPropertyName("GENDER")]
+        public string 性別 { get; set; }
         [JsonPropertyName("CT_TIME")]
         public string 產出時間 { get; set; }
         [JsonPropertyName("SECTNO")]

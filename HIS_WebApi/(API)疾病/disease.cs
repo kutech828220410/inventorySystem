@@ -336,6 +336,12 @@ namespace HIS_WebApi._API_疾病
                     return returnData.JsonSerializationt();
                 }
                 string 疾病代碼 = returnData.ValueAry[0];
+                if (疾病代碼.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"疾病代碼\"]";
+                    return returnData.JsonSerializationt();
+                }
                 string[] 疾病代碼_Array = 疾病代碼.Split(";");
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 

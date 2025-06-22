@@ -122,15 +122,15 @@ namespace HIS_WebApi._API_AI
                 init();
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                suspiciousRxLogClass suspiciousRxLogClasses = returnData.Data.ObjToClass<suspiciousRxLogClass>();
-                if (suspiciousRxLogClasses == null)
+                suspiciousRxLogClass suspiciousRxLogClass = returnData.Data.ObjToClass<suspiciousRxLogClass>();
+                if (suspiciousRxLogClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-                string 藥袋條碼 = suspiciousRxLogClasses.藥袋條碼;
+                string 藥袋條碼 = suspiciousRxLogClass.藥袋條碼;
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
@@ -139,14 +139,14 @@ namespace HIS_WebApi._API_AI
                 {
                     returnData.Code = -200;
                     returnData.Result = $"此Barcode{藥袋條碼}已存在";
-                    returnData.Data = suspiciousRxLogClasses;
+                    returnData.Data = suspiciousRxLogClass;
                     return returnData.JsonSerializationt(true);
                 }
-                List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClass }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 sQLControl.AddRows(null, add_suspiciousRxLog);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = suspiciousRxLogClasses;
+                returnData.Data = suspiciousRxLogClass;
                 returnData.Result = $"新增一筆資料";
                 return returnData.JsonSerializationt();
             }
@@ -191,68 +191,30 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt();
                 }
 
-
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-
-                string TableName = "suspiciousRxLog";
-                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
-
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = suspiciousRxLogClasses;
-                returnData.Result = $"更新{suspiciousRxLogClasses.Count}筆資料";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Result = e.Message;
-                return returnData.JsonSerializationt();
-            }
-        }
-        /// <summary>
-        /// 更新內容和錯誤類別
-        /// </summary>
-        /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "Data": 
-        ///     {
-        ///         [suspiciousRxLogClass陣列]
-        ///     },
-        ///     "ValueAry":[""]
-        ///   }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
-        [HttpPost("update_content_errorType")]
-        public string update_content_errorType([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_content_errorType";
-            try
-            {
-                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-
-                List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
-                if (suspiciousRxLogClasses == null)
+                foreach(var item in suspiciousRxLogClasses)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料異常";
-                    return returnData.JsonSerializationt();
+                    if (item.開方時間.StringIsEmpty()) item.開方時間 = DateTime.MinValue.ToDateTimeString();
+                    if (item.加入時間.StringIsEmpty()) item.加入時間 = DateTime.MinValue.ToDateTimeString();
+                    if (item.調劑時間.StringIsEmpty()) item.調劑時間 = DateTime.MinValue.ToDateTimeString();
+                    if (item.提報時間.StringIsEmpty()) item.提報時間 = DateTime.MinValue.ToDateTimeString();
+                    if (item.處理時間.StringIsEmpty()) item.處理時間 = DateTime.MinValue.ToDateTimeString();
                 }
-
-
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> update_suspiciousRxLog = suspiciousRxLogClasses.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    sQLControl.UpdateByDefulteExtra(null, update_suspiciousRxLog);
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
+                })));
+
+                Task.WhenAll(tasks).Wait();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -267,7 +229,6 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 取得規則
         /// </summary>
@@ -549,6 +510,7 @@ namespace HIS_WebApi._API_AI
                 return returnData.JsonSerializationt();
             }
         }
+
         /// <summary>
         /// 以order_PRI_KEY(藥袋條碼)取得資料
         /// </summary>
@@ -589,7 +551,7 @@ namespace HIS_WebApi._API_AI
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_suspiciousRxLog = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
-
+                suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClasses;
@@ -649,6 +611,7 @@ namespace HIS_WebApi._API_AI
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                 suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -881,7 +844,10 @@ namespace HIS_WebApi._API_AI
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
                 suspiciousRxLogClasses.suspiciousRxLog_ruleClasses = suspiciousRxLog_ruleClasses;
-                returnData.Data = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
+                List<suspiciousRxLogClass> suspiciousRxLogs = new List<suspiciousRxLogClass>() { suspiciousRxLogClasses };
+                suspiciousRxLogs = Get_Value(suspiciousRxLogs);
+
+                returnData.Data = suspiciousRxLogs;
                 returnData.Code = 200;
                 returnData.Result = $"AI辨識處方成功";
                 return returnData.JsonSerializationt(true);
@@ -989,7 +955,8 @@ namespace HIS_WebApi._API_AI
                 if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.F數量錯誤.GetEnumName())) sheetClass.Rows[10].Cell[6].Text = "■";
                 if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.G多種藥物組合.GetEnumName())) sheetClass.Rows[11].Cell[6].Text = "■";
                 if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.H重複用藥.GetEnumName())) sheetClass.Rows[12].Cell[6].Text = "■";
-                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.I其他.GetEnumName())) sheetClass.Rows[13].Cell[6].Text = "■";
+                if (錯誤類別.Contains(enum_suspiciousRxLog_errorType.O其他.GetEnumName())) sheetClass.Rows[13].Cell[6].Text = "■";
+
                 sheetClass.Rows[15].Cell[2].Text = suspiciousRxLogClasses.醫生姓名;
                 sheetClass.Rows[15].Cell[6].Text = suspiciousRxLogClasses.病歷號;
                 sheetClass.Rows[18].Cell[2].Text = suspiciousRxLogClasses.簡述事件;
@@ -1082,7 +1049,9 @@ namespace HIS_WebApi._API_AI
                         科別 = orderClass.科別,
                         診斷碼 = suspiciousRxLogClass.診斷碼,
                         診斷內容 = suspiciousRxLogClass.診斷內容,
-                        藥袋類型 = orderClass.藥袋類型
+                        藥袋類型 = orderClass.藥袋類型,
+                        年齡 = suspiciousRxLogClass.年齡,
+                        性別 = suspiciousRxLogClass.性別,
                     };
                     if (orderClass.備註 != null && orderClass.備註.Contains("懷孕")) prescription.懷孕 = true.ToString();
                     return prescription;
@@ -1159,6 +1128,9 @@ namespace HIS_WebApi._API_AI
                     suspiciousRxLogClass = suspiciousRxLogClass.Get_diseaseClasses(item);
                     suspiciousRxLogClass = suspiciousRxLogClass.Get_errorType(suspiciousRxLogClass);
                     suspiciousRxLogClass = suspiciousRxLogClass.Get_ruleType(suspiciousRxLogClass);
+                    suspiciousRxLogClass = suspiciousRxLogClass.Get_ALLERGY(suspiciousRxLogClass);
+                    suspiciousRxLogClass = suspiciousRxLogClass.Get_INTERACT(suspiciousRxLogClass);
+
                     result.LockAdd(suspiciousRxLogClass);
                 })));
             }
