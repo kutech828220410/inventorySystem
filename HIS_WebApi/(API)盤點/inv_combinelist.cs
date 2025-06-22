@@ -2108,6 +2108,59 @@ namespace HIS_WebApi
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{單號}_盤點單.xlsx"));
         }
+        
+        /// <summary>
+        /// 以合併單號取得完整合併單Excel
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_detail_inv_by_SN")]
+        public string get_detail_inv_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                    return returnData.JsonSerializationt();
+                }
+                string json_out = POST_get_full_inv_DataTable_by_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                string dataTable_string = returnData.Data.ObjToClass<string>();
+                List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables(); ;
+                List<object[]> list_value = dataTables[0].DataTableToRowList();
+                List<inv_combinelist_dataTable> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_dataTable, enum_inv_combinelist_dataTable>();
+
+                returnData.Data = inv_CombinelistClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"成功取得合併單-{returnData.Value} 資料,共<{inv_CombinelistClasses.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
 
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
@@ -2122,6 +2175,74 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_review()));
             return tables.JsonSerializationt(true);
         }
+        private enum enum_inv_combinelist_dataTable
+        {
+            GUID,
+            藥碼,
+            料號,
+            藥名,
+            別名,
+            單價,
+            庫存量,
+            盤點量,
+            未知,
+            覆盤量,
+            庫存金額,
+            結存金額,
+            誤差量,
+            誤差金額,
+            誤差百分率,
+            註記
+        }
+        private class inv_combinelist_dataTable
+        {
+            [JsonPropertyName("GUID")]
+            public string GUID { get; set; }
 
+            [JsonPropertyName("CODE")]
+            public string 藥碼 { get; set; }
+
+            [JsonPropertyName("SKDIACODE")]
+            public string 料號 { get; set; }
+
+            [JsonPropertyName("NAME")]
+            public string 藥名 { get; set; }
+
+            [JsonPropertyName("ALIAS")]
+            public string 別名 { get; set; }
+
+            [JsonPropertyName("PRICE")]
+            public string 單價 { get; set; }
+
+            [JsonPropertyName("QTY")]
+            public string 庫存量 { get; set; }
+
+            [JsonPropertyName("COUNT")]
+            public string 盤點量 { get; set; }
+
+            [JsonPropertyName("UNKNOWN")]
+            public string 未知 { get; set; }
+
+            [JsonPropertyName("REVIEW")]
+            public string 覆盤量 { get; set; }
+
+            [JsonPropertyName("STOCK")]
+            public string 庫存金額 { get; set; }
+
+            [JsonPropertyName("BALANCE")]
+            public string 結存金額 { get; set; }
+
+            [JsonPropertyName("ERROR")]
+            public string 誤差量 { get; set; }
+
+            [JsonPropertyName("ERROR_MONEY")]
+            public string 誤差金額 { get; set; }
+
+            [JsonPropertyName("ERROR_PERCENT")]
+            public string 誤差百分率 { get; set; }
+
+            [JsonPropertyName("COMMENT")]
+            public string 註記 { get; set; }
+        }
     }
 }
