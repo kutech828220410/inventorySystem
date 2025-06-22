@@ -61,31 +61,44 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_diseaseClassClass;
         }
-        static public Dictionary<string, List<diseaseClass>> ToDictByICD(List<diseaseClass> diseaseClasses)
+        static public diseaseClass update(string API_Server, diseaseClass diseaseClass)
         {
-            Dictionary<string, List<diseaseClass>> dictionary = new Dictionary<string, List<diseaseClass>>();
+            string url = $"{API_Server}/api/disease/update";
+
+            returnData returnData = new returnData();
+            returnData.Data = diseaseClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            diseaseClass out_disease = returnData.Data.ObjToClass<diseaseClass>();
+            Console.WriteLine($"{returnData}");
+            return out_disease;
+        }
+        
+        
+    }
+    public static class diseaseClassMethod
+    {
+        static public Dictionary<string, diseaseClass> ToDictByICD(this List<diseaseClass> diseaseClasses)
+        {
+            Dictionary<string, diseaseClass> dictionary = new Dictionary<string, diseaseClass>();
             foreach (var item in diseaseClasses)
             {
-                if (dictionary.TryGetValue(item.疾病代碼, out List<diseaseClass> list))
-                {
-                    list.Add(item);
-                }
-                else
-                {
-                    dictionary[item.疾病代碼] = new List<diseaseClass> { item };
-                }
+                dictionary[item.疾病代碼] = item;
             }
             return dictionary;
         }
-        static public List<diseaseClass> GetByICD(Dictionary<string, List<diseaseClass>> dict, string master_GUID)
+        static public diseaseClass GetByICD(this Dictionary<string, diseaseClass> dict, string ICD)
         {
-            if (dict.TryGetValue(master_GUID, out List<diseaseClass> diseaseClasses))
+            if (dict.TryGetValue(ICD, out diseaseClass diseaseClasses))
             {
                 return diseaseClasses;
             }
             else
             {
-                return new List<diseaseClass>();
+                return new diseaseClass();
             }
         }
     }

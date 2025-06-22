@@ -383,10 +383,10 @@ namespace HIS_DB_Lib
         {
             public int Compare(patientInfoClass x, patientInfoClass y)
             {
-                x.床號 = x.床號.Split('-')[0].Trim();
-                y.床號 = y.床號.Split('-')[0].Trim();
-                int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
-                if(result == 0)
+                //x.床號 = x.床號.Split('-')[0].Trim();
+                //y.床號 = y.床號.Split('-')[0].Trim();
+                int result = (x.床號.Split('-')[0].Trim().StringToInt32()).CompareTo(y.床號.Split('-')[0].Trim().StringToInt32());
+                if (result == 0)
                 {
                     result = string.Compare(x.更新時間, y.更新時間) * -1;
                 }
@@ -409,10 +409,26 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData;
         }
-        
+
         static public List<patientInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry = Info;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<patientInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<patientInfoClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCarInfoClass;
+        }
+        static public List<patientInfoClass> get_bed_list_by_cart_total(string API_Server, List<string> Info)
+        {
+            string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart_total";
 
             returnData returnData = new returnData();
             returnData.ValueAry = Info;

@@ -99,10 +99,12 @@ namespace HIS_WebApi._API_疾病
                 SQLControl sQLControl = new SQLControl(Server, DB, "disease", UserName, Password, Port, SSLMode);
                 List<object[]> sqlData = sQLControl.GetAllRows(null);
                 List<diseaseClass> diseases = sqlData.SQLToClass<diseaseClass, enum_disease>();
-                Dictionary<string, List<diseaseClass>> dict = diseaseClass.ToDictByICD(diseases);
+                Dictionary<string, diseaseClass> dict = diseases.ToDictByICD();
                 for (int i = 0; i < list_value.Count; i++)
                 {
-                    diseaseClass diseaseClass = diseaseClass.GetByICD(dict, list_value[i][(int)enum_disease_EXCEL.code].ObjectToString()).FirstOrDefault();
+                    //diseaseClass diseaseClass = diseaseClass.GetByICD(dict, list_value[i][(int)enum_disease_EXCEL.code].ObjectToString()).FirstOrDefault();
+                    diseaseClass diseaseClass = dict.GetByICD(list_value[i][(int)enum_disease_EXCEL.code].ObjectToString());
+
                     if (diseaseClass != null) continue;
                     
                     diseaseClass add_diseaseClass = new diseaseClass
@@ -140,12 +142,14 @@ namespace HIS_WebApi._API_疾病
                 SQLControl sQLControl = new SQLControl(Server, DB, "disease", UserName, Password, Port, SSLMode);
                 List<object[]> sqlData = sQLControl.GetAllRows(null);
                 List<diseaseClass> diseases = sqlData.SQLToClass<diseaseClass, enum_disease>();
-                Dictionary<string, List<diseaseClass>> dict = diseaseClass.ToDictByICD(diseases);
+                Dictionary<string, diseaseClass> dict = diseases.ToDictByICD();
                 List<diseaseClass> diseaseClasses = new List<diseaseClass>();
 
                 for (int i = 0; i < list_value.Count; i++)
                 {
-                    diseaseClass diseaseClass = diseaseClass.GetByICD(dict, list_value[i].疾病代碼).FirstOrDefault();
+                    //diseaseClass diseaseClass = diseaseClass.GetByICD(dict, list_value[i].疾病代碼).FirstOrDefault();
+                    diseaseClass diseaseClass = dict.GetByICD(list_value[i].疾病代碼);
+
                     if (diseaseClass != null) continue;
 
                     diseaseClass add_diseaseClass = new diseaseClass
@@ -171,6 +175,151 @@ namespace HIS_WebApi._API_疾病
                 return ex.Message;
             }
         }
+        /// <summary>
+        /// 新增/更新資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        diseaseClass
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update")]
+        public string update([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+                diseaseClass diseaseClass = returnData.Data.ObjToClass<diseaseClass>();
+                if (diseaseClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string 疾病代碼 = diseaseClass.疾病代碼;
+
+                string TableName = "disease";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_disease.疾病代碼, 疾病代碼);
+                List<object[]> update_diseaseClass = new List<object[]>();
+                List<object[]> add_diseaseClass = new List<object[]>();
+                if (data.Count != 0)
+                {
+                    diseaseClass disease = data.SQLToClass<diseaseClass, enum_disease>()[0];
+                    bool flag = false;
+                    if (diseaseClass.中文說明 != disease.中文說明) flag = true;
+                    if (diseaseClass.英文說明 != disease.英文說明) flag = true;
+                    diseaseClass.GUID = disease.GUID;
+                    if (flag) update_diseaseClass = new List<diseaseClass>() { diseaseClass }.ClassToSQL<diseaseClass, enum_disease>();
+                }
+                else
+                {
+                    add_diseaseClass = new List<diseaseClass>() { diseaseClass }.ClassToSQL<diseaseClass, enum_disease>();
+                }
+                if (add_diseaseClass.Count > 0) sQLControl.AddRows(null, add_diseaseClass);
+                if (update_diseaseClass.Count > 0) sQLControl.UpdateByDefulteExtra(null, update_diseaseClass);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = diseaseClass;
+                returnData.Result = $"新增{add_diseaseClass.Count}筆資料，更新{update_diseaseClass.Count}筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 新增/更新資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        diseaseClass
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("update_server")]
+        public string update_server([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_server";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string TableName = "disease";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_Server = new SQLControl("220.135.128.247", "dbvm", TableName, "user", "66437068", 3306, SSLMode);
+
+                List<object[]> data = sQLControl.GetAllRows(null);
+                List<object[]> data_server = sQLControl_Server.GetAllRows(null);
+
+                List<diseaseClass> diseaseClasses = data.SQLToClass<diseaseClass, enum_disease>();
+                List<diseaseClass> diseaseClasses_server = data_server.SQLToClass<diseaseClass, enum_disease>();
+                Dictionary<string, diseaseClass> Dic_disease = diseaseClasses.ToDictByICD();
+                Dictionary<string, diseaseClass> Dic_disease_server = diseaseClasses_server.ToDictByICD();
+                List<diseaseClass> add_disease = new List<diseaseClass>();
+                List<diseaseClass> update_disease = new List<diseaseClass>();
+
+               
+                foreach(string ICD in Dic_disease.Keys)
+                {
+                    diseaseClass diseases = Dic_disease.GetByICD(ICD);
+                    diseaseClass diseases_server = Dic_disease_server.GetByICD(ICD);
+                    if (diseases_server.疾病代碼.StringIsEmpty())
+                    {
+                        add_disease.Add(diseases);
+                    }
+                    else
+                    {
+                        bool flag = false;
+                        if (diseases_server.中文說明 != diseases.中文說明) flag = true;
+                        if (diseases_server.英文說明 != diseases.英文說明) flag = true;
+                        diseases.GUID = diseases_server.GUID;
+                        if (flag) update_disease.Add(diseases);
+                    }                      
+                }
+                List<object[]> add_diseaseClass = add_disease.ClassToSQL<diseaseClass, enum_disease>();
+                List<object[]> update_diseaseClass = update_disease.ClassToSQL<diseaseClass, enum_disease>();
+                if (add_diseaseClass.Count > 0) sQLControl.AddRows(null, add_diseaseClass);
+                if (update_diseaseClass.Count > 0) sQLControl.UpdateByDefulteExtra(null, update_diseaseClass);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = diseaseClasses;
+                returnData.Result = $"新增{add_diseaseClass.Count}筆資料，更新{update_diseaseClass.Count}筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         [HttpPost("get_by_ICD")]
         public string get_by_ICD([FromBody] returnData returnData)
         {
@@ -187,12 +336,17 @@ namespace HIS_WebApi._API_疾病
                     return returnData.JsonSerializationt();
                 }
                 string 疾病代碼 = returnData.ValueAry[0];
+                if (疾病代碼.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"疾病代碼\"]";
+                    return returnData.JsonSerializationt();
+                }
                 string[] 疾病代碼_Array = 疾病代碼.Split(";");
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 string TableName = "disease";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);                            
-                //string command = $"SELECT * FROM {DB}.{TableName} WHERE 疾病代碼  = '{疾病代碼}';"; 
                 string command = $"SELECT * FROM {DB}.{TableName} WHERE"; 
 
                 for (int i = 0; i < 疾病代碼_Array.Length; i++)
@@ -214,28 +368,29 @@ namespace HIS_WebApi._API_疾病
                 List<object[]> list_diseaseClass = dataTable.DataTableToRowList();
                 List<diseaseClass> diseaseClasses = list_diseaseClass.SQLToClass<diseaseClass, enum_disease>();
                 if (diseaseClasses == null) diseaseClasses = new List<diseaseClass>();
-                if (diseaseClasses.Count == 0)
+                if (diseaseClasses.Count == 0 || diseaseClasses.Count != 疾病代碼_Array.Length)
                 {
+                    foreach(var item in 疾病代碼_Array)
+                    {
+                        diseaseClass diseaseClass_buff = diseaseClasses.Find(temp => temp.疾病代碼 == item);
+                        if (diseaseClass_buff != null) continue;
+                        string icd10_url = $"https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?df=code,name&terms={item}";
 
-                    string icd10_url = $"https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?df=code,name&terms={疾病代碼}";
+                        string icd10_json = Basic.Net.WEBApiGet(icd10_url);
+                        CodeDescription iCD10Data = CodeDescription.ParseCodeDescription(icd10_json);
+                        diseaseClass diseaseClass = new diseaseClass();
+                        diseaseClass.GUID = Guid.NewGuid().ToString();
+                        diseaseClass.疾病代碼 = iCD10Data.Code;
+                        diseaseClass.英文說明 = iCD10Data.Description;
 
-                    string icd10_json = Basic.Net.WEBApiGet(icd10_url);
-                    CodeDescription iCD10Data = CodeDescription.ParseCodeDescription(icd10_json);
-                    diseaseClass diseaseClass = new diseaseClass();
-                    diseaseClass.GUID = Guid.NewGuid().ToString();
-                    diseaseClass.疾病代碼 = iCD10Data.Code;
-                    diseaseClass.英文說明 = iCD10Data.Description;
-
-                    diseaseClasses.Add(diseaseClass);
-                    List<object[]> add = diseaseClasses.ClassToSQL<diseaseClass, enum_disease>();
-                    sQLControl.AddRows(null, add);
-                    returnData.Data = diseaseClasses;
-
+                        returnData returnData_update = new returnData();
+                        returnData_update.Data = diseaseClass;
+                        update(returnData_update);
+                        diseaseClasses.Add(diseaseClass);
+                    }
                 }
-                else
-                {
-                    returnData.Data = diseaseClasses;
-                }
+                
+                returnData.Data = diseaseClasses;
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"取得疾病資料共<{diseaseClasses.Count}>筆";
