@@ -256,32 +256,35 @@ namespace 調劑台管理系統
                         }
                       
                     }
-
-                    if (PLC_Device_領藥不檢查是否掃碼領藥過.Bool == false || flag_檢查過帳 == true)
+                    if (takeMedicineStackClass.狀態 != enum_取藥堆疊母資料_狀態.未授權.GetEnumName())
                     {
-                        if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                        if (PLC_Device_領藥不檢查是否掃碼領藥過.Bool == false || flag_檢查過帳 == true)
                         {
-                            if (orderClass.實際調劑量.StringIsDouble() == false)
+                            if (orderClass.狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
                             {
-                                takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
-                            }
-                            else
-                            {
-                                if (orderClass.交易量 == orderClass.實際調劑量)
+                                if (orderClass.實際調劑量.StringIsDouble() == false)
                                 {
                                     takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
                                 }
                                 else
                                 {
-                                    if ((orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble() < 0))
+                                    if (orderClass.交易量 == orderClass.實際調劑量)
                                     {
-                                        orderClass.交易量 = (orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble()).ToString();
+                                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過.GetEnumName();
+                                    }
+                                    else
+                                    {
+                                        if ((orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble() < 0))
+                                        {
+                                            orderClass.交易量 = (orderClass.交易量.StringToDouble() - orderClass.實際調劑量.StringToDouble()).ToString();
+                                        }
                                     }
                                 }
-                            }
 
+                            }
                         }
                     }
+                      
 
                   
                     takeMedicineStackClass.GUID = GUID;

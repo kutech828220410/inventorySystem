@@ -134,7 +134,6 @@
             this.rJ_Lable_交班作業_對點作業_當班交接人_狀態 = new MyUI.RJ_Lable();
             this.rJ_Lable61 = new MyUI.RJ_Lable();
             this.rJ_Lable75 = new MyUI.RJ_Lable();
-            this.rJ_Lable76 = new MyUI.RJ_Lable();
             this.tabPage18 = new System.Windows.Forms.TabPage();
             this.rJ_Lable_交班對點_管制結存_查無資料 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示 = new SQLUI.SQL_DataGridView();
@@ -561,6 +560,8 @@
             this.sqL_DataGridView_人員資料 = new SQLUI.SQL_DataGridView();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.panel_權限設定 = new MyUI.RJ_Pannel();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑 = new MyUI.PLC_CheckBox();
             this.groupBox32 = new System.Windows.Forms.GroupBox();
             this.plC_CheckBox_工程模式_頁面顯示 = new MyUI.PLC_CheckBox();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
@@ -1560,8 +1561,8 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑 = new MyUI.PLC_CheckBox();
+            this.plC_RJ_Pannel9 = new MyUI.PLC_RJ_Pannel();
+            this.rJ_Lable76 = new MyUI.RJ_Lable();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1716,6 +1717,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.panel_權限設定.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox32.SuspendLayout();
             this.groupBox31.SuspendLayout();
             this.groupBox30.SuspendLayout();
@@ -1995,7 +1997,7 @@
             this.panel128.SuspendLayout();
             this.panel134.SuspendLayout();
             this.panel129.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.plC_RJ_Pannel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -3603,13 +3605,7 @@
             // 
             // panel71
             // 
-            this.panel71.Controls.Add(this.plC_RJ_Pannel2);
-            this.panel71.Controls.Add(this.plC_RJ_Pannel_被交接人);
-            this.panel71.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_開始交班);
-            this.panel71.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_取消作業);
-            this.panel71.Controls.Add(this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡);
-            this.panel71.Controls.Add(this.panel73);
-            this.panel71.Controls.Add(this.rJ_Lable76);
+            this.panel71.Controls.Add(this.plC_RJ_Pannel9);
             this.panel71.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel71.Location = new System.Drawing.Point(0, 0);
             this.panel71.Name = "panel71";
@@ -3628,7 +3624,7 @@
             this.plC_RJ_Pannel2.Controls.Add(this.rJ_TextBox_交班作業_對點作業_測試UID);
             this.plC_RJ_Pannel2.ForeColor = System.Drawing.Color.White;
             this.plC_RJ_Pannel2.IsSelected = false;
-            this.plC_RJ_Pannel2.Location = new System.Drawing.Point(12, 130);
+            this.plC_RJ_Pannel2.Location = new System.Drawing.Point(12, 139);
             this.plC_RJ_Pannel2.Name = "plC_RJ_Pannel2";
             this.plC_RJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Pannel2.ShadowSize = 0;
@@ -3746,7 +3742,7 @@
             this.plC_RJ_Pannel_被交接人.Controls.Add(this.panel74);
             this.plC_RJ_Pannel_被交接人.ForeColor = System.Drawing.Color.White;
             this.plC_RJ_Pannel_被交接人.IsSelected = false;
-            this.plC_RJ_Pannel_被交接人.Location = new System.Drawing.Point(831, 193);
+            this.plC_RJ_Pannel_被交接人.Location = new System.Drawing.Point(836, 216);
             this.plC_RJ_Pannel_被交接人.Name = "plC_RJ_Pannel_被交接人";
             this.plC_RJ_Pannel_被交接人.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Pannel_被交接人.ShadowSize = 0;
@@ -4017,7 +4013,7 @@
             this.plC_RJ_Button_交班作業_對點作業_開始交班.GUID = "";
             this.plC_RJ_Button_交班作業_對點作業_開始交班.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_交班作業_對點作業_開始交班.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Location = new System.Drawing.Point(611, 771);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Location = new System.Drawing.Point(616, 794);
             this.plC_RJ_Button_交班作業_對點作業_開始交班.Name = "plC_RJ_Button_交班作業_對點作業_開始交班";
             this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字內容 = "開始交班";
             this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
@@ -4070,7 +4066,7 @@
             this.plC_RJ_Button_交班作業_對點作業_取消作業.GUID = "";
             this.plC_RJ_Button_交班作業_對點作業_取消作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_交班作業_對點作業_取消作業.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Location = new System.Drawing.Point(3, 835);
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Location = new System.Drawing.Point(8, 858);
             this.plC_RJ_Button_交班作業_對點作業_取消作業.Name = "plC_RJ_Button_交班作業_對點作業_取消作業";
             this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字內容 = "取消作業";
             this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4111,7 +4107,7 @@
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.but_press = false;
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Location = new System.Drawing.Point(267, 212);
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Location = new System.Drawing.Point(272, 235);
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Name = "plC_Button_交班作業_對點作業_當班交接人_等待刷卡";
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字內容 = "點選此處開始登入";
             this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4142,7 +4138,7 @@
             // 
             this.panel73.Controls.Add(this.rJ_Lable77);
             this.panel73.Controls.Add(this.rJ_Pannel8);
-            this.panel73.Location = new System.Drawing.Point(197, 315);
+            this.panel73.Location = new System.Drawing.Point(202, 338);
             this.panel73.Name = "panel73";
             this.panel73.Size = new System.Drawing.Size(517, 375);
             this.panel73.TabIndex = 117;
@@ -4350,28 +4346,6 @@
             this.rJ_Lable75.Text = "姓名";
             this.rJ_Lable75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable75.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable76
-            // 
-            this.rJ_Lable76.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable76.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Lable76.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable76.BorderRadius = 8;
-            this.rJ_Lable76.BorderSize = 0;
-            this.rJ_Lable76.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable76.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable76.Font = new System.Drawing.Font("微軟正黑體", 40F, System.Drawing.FontStyle.Bold);
-            this.rJ_Lable76.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable76.GUID = "";
-            this.rJ_Lable76.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable76.Name = "rJ_Lable76";
-            this.rJ_Lable76.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable76.ShadowSize = 0;
-            this.rJ_Lable76.Size = new System.Drawing.Size(1645, 127);
-            this.rJ_Lable76.TabIndex = 115;
-            this.rJ_Lable76.Text = "對點作業";
-            this.rJ_Lable76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable76.TextColor = System.Drawing.Color.White;
             // 
             // tabPage18
             // 
@@ -15874,6 +15848,36 @@
             this.panel_權限設定.ShadowSize = 0;
             this.panel_權限設定.Size = new System.Drawing.Size(1645, 870);
             this.panel_權限設定.TabIndex = 122;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.plC_CheckBox_調劑作業_管1_3禁止調劑);
+            this.groupBox7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox7.ForeColor = System.Drawing.Color.Black;
+            this.groupBox7.Location = new System.Drawing.Point(35, 28);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(216, 269);
+            this.groupBox7.TabIndex = 9;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "調劑作業";
+            // 
+            // plC_CheckBox_調劑作業_管1_3禁止調劑
+            // 
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.AutoSize = true;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Bool = false;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Location = new System.Drawing.Point(42, 46);
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Name = "plC_CheckBox_調劑作業_管1_3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Size = new System.Drawing.Size(136, 25);
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.TabIndex = 0;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Text = "管1-3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字內容 = "管1-3禁止調劑";
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.讀寫鎖住 = false;
+            this.plC_CheckBox_調劑作業_管1_3禁止調劑.音效 = true;
             // 
             // groupBox32
             // 
@@ -42990,35 +42994,52 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
-            // groupBox7
+            // plC_RJ_Pannel9
             // 
-            this.groupBox7.Controls.Add(this.plC_CheckBox_調劑作業_管1_3禁止調劑);
-            this.groupBox7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox7.ForeColor = System.Drawing.Color.Black;
-            this.groupBox7.Location = new System.Drawing.Point(35, 28);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(216, 269);
-            this.groupBox7.TabIndex = 9;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "調劑作業";
+            this.plC_RJ_Pannel9.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel9.BackgroundColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_Pannel9.BorderColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel9.BorderRadius = 10;
+            this.plC_RJ_Pannel9.BorderSize = 2;
+            this.plC_RJ_Pannel9.Controls.Add(this.rJ_Lable76);
+            this.plC_RJ_Pannel9.Controls.Add(this.plC_RJ_Pannel_被交接人);
+            this.plC_RJ_Pannel9.Controls.Add(this.plC_RJ_Pannel2);
+            this.plC_RJ_Pannel9.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_開始交班);
+            this.plC_RJ_Pannel9.Controls.Add(this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡);
+            this.plC_RJ_Pannel9.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_取消作業);
+            this.plC_RJ_Pannel9.Controls.Add(this.panel73);
+            this.plC_RJ_Pannel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Pannel9.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel9.IsSelected = false;
+            this.plC_RJ_Pannel9.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Pannel9.Name = "plC_RJ_Pannel9";
+            this.plC_RJ_Pannel9.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Pannel9.ShadowSize = 0;
+            this.plC_RJ_Pannel9.Size = new System.Drawing.Size(1645, 953);
+            this.plC_RJ_Pannel9.TabIndex = 2;
+            this.plC_RJ_Pannel9.致能讀取位置 = "S39003";
             // 
-            // plC_CheckBox_調劑作業_管1_3禁止調劑
+            // rJ_Lable76
             // 
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.AutoSize = true;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Bool = false;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Location = new System.Drawing.Point(42, 46);
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Name = "plC_CheckBox_調劑作業_管1_3禁止調劑";
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Size = new System.Drawing.Size(136, 25);
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.TabIndex = 0;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.Text = "管1-3禁止調劑";
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字內容 = "管1-3禁止調劑";
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.讀寫鎖住 = false;
-            this.plC_CheckBox_調劑作業_管1_3禁止調劑.音效 = true;
+            this.rJ_Lable76.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable76.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Lable76.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable76.BorderRadius = 8;
+            this.rJ_Lable76.BorderSize = 0;
+            this.rJ_Lable76.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable76.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable76.Font = new System.Drawing.Font("微軟正黑體", 40F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable76.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable76.GUID = "";
+            this.rJ_Lable76.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable76.Name = "rJ_Lable76";
+            this.rJ_Lable76.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable76.ShadowSize = 0;
+            this.rJ_Lable76.Size = new System.Drawing.Size(1645, 127);
+            this.rJ_Lable76.TabIndex = 116;
+            this.rJ_Lable76.Text = "對點作業";
+            this.rJ_Lable76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable76.TextColor = System.Drawing.Color.White;
             // 
             // Main_Form
             // 
@@ -43204,6 +43225,8 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.panel_權限設定.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox32.ResumeLayout(false);
             this.groupBox32.PerformLayout();
             this.groupBox31.ResumeLayout(false);
@@ -43538,8 +43561,7 @@
             this.panel128.ResumeLayout(false);
             this.panel134.ResumeLayout(false);
             this.panel129.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            this.plC_RJ_Pannel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -44356,7 +44378,6 @@
         private MyUI.RJ_Lable rJ_Lable_交班作業_對點作業_當班交接人_狀態;
         private MyUI.RJ_Lable rJ_Lable61;
         private MyUI.RJ_Lable rJ_Lable75;
-        private MyUI.RJ_Lable rJ_Lable76;
         private System.Windows.Forms.TabPage tabPage18;
         private System.Windows.Forms.Panel panel_交班作業;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton15;
@@ -45082,6 +45103,8 @@
         private MyUI.PLC_CheckBox plC_CheckBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private MyUI.PLC_CheckBox plC_CheckBox_調劑作業_管1_3禁止調劑;
+        private MyUI.PLC_RJ_Pannel plC_RJ_Pannel9;
+        private MyUI.RJ_Lable rJ_Lable76;
     }
 }
 
