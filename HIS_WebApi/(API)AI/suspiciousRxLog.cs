@@ -27,7 +27,9 @@ namespace HIS_WebApi._API_AI
     [ApiController]
     public class suspiciousRxLog : ControllerBase
     {
-        static string API_Server = Method.GetServerAPI("Main", "網頁", "API01");
+        //static string API_Server = Method.GetServerAPI("Main", "網頁", "API01");
+        static string API_Server = "http://127.0.0.1:4433";
+
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         /// <summary>
         /// 初始化資料庫
@@ -129,6 +131,8 @@ namespace HIS_WebApi._API_AI
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
+                suspiciousRxLogClass = Get_Value(suspiciousRxLogClass);
+
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 string 藥袋條碼 = suspiciousRxLogClass.藥袋條碼;
 
@@ -1137,5 +1141,16 @@ namespace HIS_WebApi._API_AI
             Task.WhenAll(tasks).Wait();
             return result;
         }
+        private suspiciousRxLogClass Get_Value(suspiciousRxLogClass suspiciousRxLogClass)
+        {
+            List<Task> tasks = new List<Task>();
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = new List<suspiciousRxLogClass>(){ suspiciousRxLogClass };
+            suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
+                
+
+
+            return suspiciousRxLogClasses[0];
+        }
+
     }
 }
