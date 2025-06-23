@@ -271,6 +271,12 @@ namespace 調劑台管理系統
                     if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                     this.Invoke(new Action(delegate
                     {
+                        sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString(), dialog_使用者登入.Value[(int)enum_人員資料.密碼].ObjectToString());
+                        if (_sessionClass.GetPermission("調劑台", "交班對點功能").狀態 == false)
+                        {
+                            MyMessageBox.ShowDialog($"{dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString()} 無交班對點權限");
+                            return;
+                        }
                         rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
                         rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
                         rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
@@ -301,6 +307,12 @@ namespace 調劑台管理系統
                     if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                     this.Invoke(new Action(delegate
                     {
+                        sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString(), dialog_使用者登入.Value[(int)enum_人員資料.密碼].ObjectToString());
+                        if (_sessionClass.GetPermission("調劑台", "交班對點功能").狀態 == false)
+                        {
+                            MyMessageBox.ShowDialog($"{dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString()} 無交班對點權限");
+                            return;
+                        }
                         rJ_Lable_交班作業_對點作業_被交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
                         rJ_Lable_交班作業_對點作業_被交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
                         rJ_Lable_交班作業_對點作業_被交接人_狀態.Text = "登入成功";
@@ -339,6 +351,12 @@ namespace 調劑台管理系統
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                 this.Invoke(new Action(delegate
                 {
+                    sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString(), dialog_使用者登入.Value[(int)enum_人員資料.密碼].ObjectToString());
+                    if (_sessionClass.GetPermission("調劑台", "交班對點功能").狀態 == false)
+                    {
+                        MyMessageBox.ShowDialog($"{dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString()} 無交班對點權限");
+                        return;
+                    }
                     rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
                     rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
                     rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
@@ -478,6 +496,12 @@ namespace 調劑台管理系統
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                 this.Invoke(new Action(delegate
                 {
+                    sessionClass _sessionClass = sessionClass.LoginByID(Main_Form.API_Server, dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString(), dialog_使用者登入.Value[(int)enum_人員資料.密碼].ObjectToString());
+                    if (_sessionClass.GetPermission("調劑台", "交班對點功能").狀態)
+                    {
+                        MyMessageBox.ShowDialog($"{dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString()} 無交班對點權限");
+                        return;
+                    }
                     rJ_Lable_交班作業_對點作業_被交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
                     rJ_Lable_交班作業_對點作業_被交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
                     rJ_Lable_交班作業_對點作業_被交接人_狀態.Text = "登入成功";

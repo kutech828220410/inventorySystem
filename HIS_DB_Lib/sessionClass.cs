@@ -15,15 +15,15 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        [Description("ID,VARCHAR,50,NONE")]
+        [Description("ID,VARCHAR,50,INDEX")]
         ID,
         [Description("Name,VARCHAR,50,NONE")]
         Name,
-        [Description("Employer,VARCHAR,50,NONE")]
+        [Description("Employer,VARCHAR,200,NONE")]
         Employer,
-        [Description("loginTime,VARCHAR,50,NONE")]
+        [Description("loginTime,DATETIME,50,NONE")]
         loginTime,
-        [Description("verifyTime,VARCHAR,50,NONE")]
+        [Description("verifyTime,DATETIME,50,NONE")]
         verifyTime,
     }
     public enum enum_login_data
