@@ -18,6 +18,10 @@ using System.Data;
 using MyOffice;
 using MyUI;
 using System.IO;
+using System.Net.Http;
+using System.Text;
+
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -835,11 +839,12 @@ namespace HIS_WebApi._API_AI
                         Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));
                         return returnData.JsonSerializationt(true);
                     }
-                    //suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
+                    suspiciousRxLogClasses.錯誤類別 = string.Join(",", suspiciousRxLog.error_type);
                     suspiciousRxLogClasses.簡述事件 = suspiciousRxLog.response;
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
                     suspiciousRxLogClasses.提報等級 = buff_suspiciousRxLog_ruleClass.提報等級;
                     suspiciousRxLogClasses.rule_type = suspiciousRxLog.rule_type;
+                    suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
                 else
@@ -888,6 +893,30 @@ namespace HIS_WebApi._API_AI
         {
             try
             {
+                string VM_API = Method.GetServerAPI("Main", "網頁", "med_cart_vm_api");
+                if (VM_API.StringIsEmpty() == false)
+                {
+                    string json_in = returnData.JsonSerializationt();
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var content = new StringContent(json_in, Encoding.UTF8, "application/json");
+                        var response = await client.PostAsync(VM_API, content);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var fileBytes = await response.Content.ReadAsByteArrayAsync();
+                            var contentType = response.Content.Headers.ContentType?.MediaType ??
+                                              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            var fileName = $"{DateTime.Now.ToDateString("-")}_醫師處方疑義紀錄表.xlsx";
+
+                            return File(fileBytes, contentType, fileName);
+                        }
+                        else
+                        {
+                            return Content($"下載失敗：{response.StatusCode}");
+                        }
+                    }
+                }
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = returnData.Data.ObjToClass<List<suspiciousRxLogClass>>();
