@@ -143,7 +143,7 @@ namespace HIS_WebApi._API_AI
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
-                if(data.Count != 0)
+                if (data.Count != 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"此Barcode{藥袋條碼}已存在";
@@ -199,7 +199,7 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt();
                 }
 
-                foreach(var item in suspiciousRxLogClasses)
+                foreach (var item in suspiciousRxLogClasses)
                 {
                     if (item.開方時間.StringIsEmpty()) item.開方時間 = DateTime.MinValue.ToDateTimeString();
                     if (item.加入時間.StringIsEmpty()) item.加入時間 = DateTime.MinValue.ToDateTimeString();
@@ -493,7 +493,7 @@ namespace HIS_WebApi._API_AI
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-                foreach(var item in suspiciousRxLogRule_locals)
+                foreach (var item in suspiciousRxLogRule_locals)
                 {
                     if (item.狀態.ToLower() == "true") item.狀態 = true.ToString();
                     if (item.狀態.ToLower() == "false") item.狀態 = false.ToString();
@@ -680,11 +680,11 @@ namespace HIS_WebApi._API_AI
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
-                
+
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                 suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
-   
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClasses;
@@ -723,7 +723,7 @@ namespace HIS_WebApi._API_AI
             try
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-                List<string> errorType = Enum.GetNames(typeof(enum_suspiciousRxLog_errorType)).ToList();           
+                List<string> errorType = Enum.GetNames(typeof(enum_suspiciousRxLog_errorType)).ToList();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = errorType;
@@ -753,6 +753,7 @@ namespace HIS_WebApi._API_AI
                 }
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
+                string 藥師姓名 = orders[0].藥師姓名;
                 //AddsuspiciousRxLog(orders);
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
@@ -821,7 +822,7 @@ namespace HIS_WebApi._API_AI
                     return returnData.JsonSerializationt(true);
                 }
 
-                
+
                 List<suspiciousRxLog_ruleClass> suspiciousRxLog_ruleClasses = suspiciousRxLog_ruleClass.get_rule_by_index(API_Server, suspiciousRxLog.rule_type);
                 suspiciousRxLog_ruleClass buff_suspiciousRxLog_ruleClass = new suspiciousRxLog_ruleClass();
                 buff_suspiciousRxLog_ruleClass = suspiciousRxLog_ruleClasses.Where(temp => temp.提報等級 == enum_suspiciousRxLog_ReportLevel.Critical.GetEnumName()).FirstOrDefault();
@@ -844,6 +845,8 @@ namespace HIS_WebApi._API_AI
                     suspiciousRxLogClasses.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
                     suspiciousRxLogClasses.提報等級 = buff_suspiciousRxLog_ruleClass.提報等級;
                     suspiciousRxLogClasses.rule_type = suspiciousRxLog.rule_type;
+                    suspiciousRxLogClasses.調劑人員 = 藥師姓名;
+                    suspiciousRxLogClasses.調劑時間 = DateTime.Now.ToDateTimeString_6();
                     suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                     suspiciousRxLogClass.update(API_Server, suspiciousRxLogClasses);
                 }
@@ -869,7 +872,7 @@ namespace HIS_WebApi._API_AI
             }
         }
         /// <summary>
-        /// 取得交易紀錄明細(Excel)(多台合併)
+        /// 取得醫師處方疑義紀錄表(Excel)(多台合併)
         /// </summary>
         /// <remarks>
         ///  --------------------------------------------<br/> 
@@ -887,7 +890,7 @@ namespace HIS_WebApi._API_AI
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        /// <returns>[returnData.Data]</returns>
         [HttpPost("download_datas_excel")]
         public async Task<ActionResult> download_datas_excel([FromBody] returnData returnData)
         {
@@ -1148,7 +1151,7 @@ namespace HIS_WebApi._API_AI
                 suspiciousRxLogClass.add(API_Server, suspiciousRxLogClasses);
             }
         }
-        private List<suspiciousRxLogClass> Get_Value (List<suspiciousRxLogClass> suspiciousRxLogClasses)
+        private List<suspiciousRxLogClass> Get_Value(List<suspiciousRxLogClass> suspiciousRxLogClasses)
         {
             List<Task> tasks = new List<Task>();
             List<suspiciousRxLogClass> result = new List<suspiciousRxLogClass>();
@@ -1173,9 +1176,9 @@ namespace HIS_WebApi._API_AI
         private suspiciousRxLogClass Get_Value(suspiciousRxLogClass suspiciousRxLogClass)
         {
             List<Task> tasks = new List<Task>();
-            List<suspiciousRxLogClass> suspiciousRxLogClasses = new List<suspiciousRxLogClass>(){ suspiciousRxLogClass };
+            List<suspiciousRxLogClass> suspiciousRxLogClasses = new List<suspiciousRxLogClass>() { suspiciousRxLogClass };
             suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
-                
+
 
 
             return suspiciousRxLogClasses[0];

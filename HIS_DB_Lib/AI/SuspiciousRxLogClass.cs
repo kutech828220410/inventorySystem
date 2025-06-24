@@ -467,6 +467,7 @@ namespace HIS_DB_Lib
         }
         static public suspiciousRxLogClass Get_ALLERGY(suspiciousRxLogClass suspiciousRxLogClass)
         {
+            suspiciousRxLogClass.過敏紀錄 = new List<MedicalCodeItem>();
             if (suspiciousRxLogClass.過敏藥碼.StringIsEmpty() == false && suspiciousRxLogClass.過敏藥名.StringIsEmpty() == false)
             {
                 List<MedicalCodeItem> 過敏紀錄 = new List<MedicalCodeItem>();
@@ -503,9 +504,12 @@ namespace HIS_DB_Lib
         }
         static public suspiciousRxLogClass Get_INTERACT(suspiciousRxLogClass suspiciousRxLogClass)
         {
+            List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
+            suspiciousRxLogClass.交互作用紀錄 = 交互作用;
+
             if (suspiciousRxLogClass.交互作用藥碼.StringIsEmpty() == false && suspiciousRxLogClass.交互作用.StringIsEmpty() == false)
             {
-                List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
+                //List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
                 List<string> list_交互作用藥碼 = suspiciousRxLogClass.交互作用藥碼.Split(';').ToList();
                 List<string> list_交互作用 = suspiciousRxLogClass.交互作用.Split(';').ToList();
 
