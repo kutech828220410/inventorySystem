@@ -35,6 +35,7 @@ namespace 調劑台管理系統
         private string _deviceName = "";
         private personPageClass _personPageClass = new personPageClass();
         private List<DrugHFTagClass> DrugHFTags = new List<DrugHFTagClass>();
+        private List<DrugHFTagClass> DrugHFTags_error = new List<DrugHFTagClass>();
         public IncomeOutcomeMode _Import_Export = IncomeOutcomeMode.支出;
         public List<StockClass> stockClasses = new List<StockClass>();
         public List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
@@ -115,6 +116,7 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_main_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
                     Task.Run(new Action(delegate 
                     {
+                        System.Threading.Thread.Sleep(1500);
                         RJ_Button_確認_MouseDownEvent(null);
                     }));
                    
@@ -205,13 +207,15 @@ namespace 調劑台管理系統
                 List<string> uids = Main_Form.rfidReader_TagUID;
 
                 List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
+                List<DrugHFTagClass> tagDisplayList_error = new List<DrugHFTagClass>();
                 foreach (var tag in drugHFTagClasses)
                 {
                     bool isUIDMatch = uids.Contains(tag.TagSN);
-                    bool isSameCode = tag.藥碼 == selectedDrugCode;
 
                     if (_Import_Export == IncomeOutcomeMode.收入)
                     {
+                        bool isSameCode = (tag.藥碼 == selectedDrugCode);
+
                         if (isUIDMatch && isSameCode)
                         {
                             tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
@@ -221,11 +225,20 @@ namespace 調劑台管理系統
                     }
                     else if (_Import_Export == IncomeOutcomeMode.支出)
                     {
-                        if (!isUIDMatch && isSameCode)
+                        bool isSameCode = (tag.藥碼 == selectedDrugCode);
+
+                        if (!isUIDMatch)
                         {
-                            tag.狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
-                            tagDisplayList.Add(tag);
-                            if (debug) Console.WriteLine($"  出庫標籤註記: {tag.TagSN}, 數量: {tag.數量}");
+                            if (isSameCode)
+                            {
+                                tag.狀態 = enum_DrugHFTagStatus.出庫註記.GetEnumName();
+                                tagDisplayList.Add(tag);
+                                if (debug) Console.WriteLine($"  出庫標籤註記: {tag.TagSN}, 數量: {tag.數量}");
+                            }
+                            else
+                            {
+                                tagDisplayList_error.Add(tag);
+                            }
                         }
                     }
                 }
@@ -239,6 +252,12 @@ namespace 調劑台管理系統
                 if (debug) Console.WriteLine($"藥品碼: {item.藥品碼}, 標籤合計數量(實出): {qty}");
 
                 DrugHFTags = tagDisplayList;
+                DrugHFTags_error = tagDisplayList_error;
+                if (tagDisplayList_error.Count > 0)
+                {
+                    if (debug) Console.WriteLine($"  異常標籤數量: {tagDisplayList_error.Count}");
+
+                }
 
                 object[] value = new object[new enum_TagList().GetLength()];
                 value[(int)enum_TagList.GUID] = item.藥品碼;

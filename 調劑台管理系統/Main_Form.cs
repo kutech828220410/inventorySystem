@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.062243")]
-[assembly: AssemblyFileVersion("1.0.25.06243")]
+[assembly: AssemblyVersion("1.0.25.062244")]
+[assembly: AssemblyFileVersion("1.0.25.06244")]
 namespace 調劑台管理系統
 {
 
