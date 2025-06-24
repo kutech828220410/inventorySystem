@@ -1563,6 +1563,9 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
+            this.plC_CheckBox_藥品資料_關檔中 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_開檔中 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_未設定 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -9889,6 +9892,9 @@
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel2.BorderRadius = 10;
             this.rJ_Pannel2.BorderSize = 2;
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_未設定);
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_關檔中);
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_開檔中);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel23);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel22);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel21);
@@ -43040,6 +43046,64 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
+            // plC_CheckBox_藥品資料_關檔中
+            // 
+            this.plC_CheckBox_藥品資料_關檔中.AutoSize = true;
+            this.plC_CheckBox_藥品資料_關檔中.Bool = false;
+            this.plC_CheckBox_藥品資料_關檔中.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_關檔中.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_關檔中.Location = new System.Drawing.Point(307, 21);
+            this.plC_CheckBox_藥品資料_關檔中.Name = "plC_CheckBox_藥品資料_關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_關檔中.TabIndex = 157;
+            this.plC_CheckBox_藥品資料_關檔中.Text = "關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_關檔中.文字內容 = "關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_關檔中.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_關檔中.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_關檔中.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_開檔中
+            // 
+            this.plC_CheckBox_藥品資料_開檔中.AutoSize = true;
+            this.plC_CheckBox_藥品資料_開檔中.Bool = false;
+            this.plC_CheckBox_藥品資料_開檔中.Checked = true;
+            this.plC_CheckBox_藥品資料_開檔中.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_藥品資料_開檔中.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_開檔中.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_開檔中.Location = new System.Drawing.Point(224, 21);
+            this.plC_CheckBox_藥品資料_開檔中.Name = "plC_CheckBox_藥品資料_開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_開檔中.TabIndex = 156;
+            this.plC_CheckBox_藥品資料_開檔中.Text = "開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_開檔中.文字內容 = "開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_開檔中.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_開檔中.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_開檔中.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_未設定
+            // 
+            this.plC_CheckBox_藥品資料_未設定.AutoSize = true;
+            this.plC_CheckBox_藥品資料_未設定.Bool = false;
+            this.plC_CheckBox_藥品資料_未設定.Checked = true;
+            this.plC_CheckBox_藥品資料_未設定.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_藥品資料_未設定.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_未設定.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_未設定.Location = new System.Drawing.Point(390, 21);
+            this.plC_CheckBox_藥品資料_未設定.Name = "plC_CheckBox_藥品資料_未設定";
+            this.plC_CheckBox_藥品資料_未設定.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_未設定.TabIndex = 158;
+            this.plC_CheckBox_藥品資料_未設定.Text = "未設定";
+            this.plC_CheckBox_藥品資料_未設定.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_未設定.文字內容 = "未設定";
+            this.plC_CheckBox_藥品資料_未設定.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_未設定.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_未設定.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_未設定.音效 = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -43158,6 +43222,7 @@
             this.plC_ScreenPage_藥品資料.ResumeLayout(false);
             this.藥檔資料.ResumeLayout(false);
             this.rJ_Pannel2.ResumeLayout(false);
+            this.rJ_Pannel2.PerformLayout();
             this.rJ_Pannel23.ResumeLayout(false);
             this.rJ_Pannel22.ResumeLayout(false);
             this.rJ_Pannel21.ResumeLayout(false);
@@ -45104,6 +45169,9 @@
         private MyUI.PLC_CheckBox plC_CheckBox_調劑作業_管1_3禁止調劑;
         private MyUI.PLC_RJ_Pannel plC_RJ_Pannel9;
         private MyUI.RJ_Lable rJ_Lable76;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_未設定;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_關檔中;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_開檔中;
     }
 }
 
