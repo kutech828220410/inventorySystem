@@ -567,7 +567,7 @@ namespace 調劑台管理系統
                     string Device_GUID = list_locker_table_value_buf[i][(int)enum_lockerIndex.Device_GUID].ObjectToString();
                     string 調劑台名稱 = this.Function_取藥堆疊母資料_取得指定Master_GUID調劑台名稱(Master_GUID);
                     Storage storage = List_EPD266_雲端資料.SortByIP(IP);
-                    if (storage != null) continue;
+                    if (storage == null) continue;
                     if (輸出狀態 == true.ToString())
                     {
                         this.flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
