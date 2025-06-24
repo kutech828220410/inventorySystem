@@ -3173,7 +3173,13 @@ namespace HIS_WebApi
                         List<bedListClass> bedLists = grouped.Select(value =>
                         {
                             string 自費PRN = "";
-                            if (value.頻次.ToLower().Contains("prn") && value.自購 == "Y") 自費PRN = "Y";
+                            string PRN = string.Empty;
+                            if (value.頻次.ToLower().Contains("prn"))
+                            {
+                                PRN = "Y";
+                                if(value.自購 == "Y") 自費PRN = "Y";
+                            } 
+
                             return new bedListClass
                             {
                                 GUID = value.GUID,
@@ -3184,7 +3190,7 @@ namespace HIS_WebApi
                                 大瓶點滴 = value.大瓶點滴,
                                 調劑狀態 = value.調劑狀態,
                                 覆核狀態 = value.覆核狀態,
-                                頻次 = value.頻次,
+                                頻次 = PRN,
                                 自費 = value.自購,
                                 自費PRN = 自費PRN,
                                 更新時間 = value.更新時間
@@ -3876,13 +3882,19 @@ namespace HIS_WebApi
 
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_bed_Status = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
+
 
 
                 List<object[]> list_pat_carInfo = sQLControl_patient_info.GetAllRows(null);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
+                List<object[]> list_bed_Status = sQLControl_bed_Status.GetAllRows(null);
+
 
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<bedStatusClass> sql_bed_Status = list_bed_Status.SQLToClass<bedStatusClass, enum_bed_status>();
+
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
@@ -3912,13 +3924,26 @@ namespace HIS_WebApi
                         }
                     }
                 })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    foreach (var item in sql_bed_Status)
+                    {
+                        DateTime dt = DateTime.Parse(item.轉床時間);
+                        DateTime 新時間 = DateTime.Today.AddHours(dt.Hour).AddMinutes(dt.Minute).AddSeconds(dt.Second);
+                        item.轉床時間 = 新時間.ToDateTimeString();
+                    }
+                })));
                 Task.WhenAll(tasks).Wait();
 
                 List<object[]> update_med_carInfo = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                 List<object[]> update_medcpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                List<object[]> update_bedStatus = sql_bed_Status.ClassToSQL<bedStatusClass, enum_bed_status>();
+
 
                 if (update_med_carInfo.Count > 0) sQLControl_patient_info.UpdateByDefulteExtra(null, update_med_carInfo);
                 if (update_medcpoe.Count > 0) sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medcpoe);
+                if (update_bedStatus.Count > 0) sQLControl_bed_Status.UpdateByDefulteExtra(null, update_bedStatus);
+
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";

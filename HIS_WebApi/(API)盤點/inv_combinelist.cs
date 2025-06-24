@@ -31,6 +31,7 @@ namespace HIS_WebApi
     [ApiController]
     public class inv_combinelist : Controller
     {
+        static string API01 = "http://127.0.0.1:4433";
         private class SheetTemp
         {
             public SheetTemp(string name)
@@ -1006,6 +1007,222 @@ namespace HIS_WebApi
             returnData.Data = inv_CombinelistClass;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "get_full_inv_by_SN";
+            returnData.Result = $"成功取得盤點單合併完成資料";
+            return returnData.JsonSerializationt(true);
+        }
+        [Route("get_full_inv_by_SN_extra")]
+        [HttpPost]
+        public string get_full_inv_by_SN_extra([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return returnData.JsonSerializationt();
+            }
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+
+            string json_get_all_inv = POST_get_all_inv(returnData);
+            returnData returnData_get_all_inv = json_get_all_inv.JsonDeserializet<returnData>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                return returnData.JsonSerializationt();
+            }
+            List<inv_combinelistClass> inv_CombinelistClasses = returnData_get_all_inv.Data.ObjToClass<List<inv_combinelistClass>>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"資料初始化失敗!";
+                return returnData.JsonSerializationt();
+            }
+            
+            List<inv_combinelistClass> inv_CombinelistClasses_buf = inv_CombinelistClasses.Where(item => item.合併單號 == returnData.Value).ToList();
+            if (inv_CombinelistClasses_buf.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無此合併單號! {returnData.Value} ";
+                return returnData.JsonSerializationt();
+            }
+            inv_combinelistClass inv_CombinelistClass = inv_CombinelistClasses_buf[0];
+            inv_CombinelistClass.get_all_full_creat("http://127.0.0.1:4433");
+
+            List<medClass> medClasses_cloud = medClass.get_med_cloud(API01);
+            List<medClass> medClasses_cloud_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+
+            List<inventoryClass.content> contents = new List<inventoryClass.content>();
+            List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
+            List<Task> tasks = new List<Task>();
+
+            List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes_buf = new List<inv_combinelist_stock_Class>();
+            List<inv_combinelist_price_Class> inv_Combinelist_price_Classes_buf = new List<inv_combinelist_price_Class>();
+            List<inv_combinelist_note_Class> inv_Combinelist_note_Classes_buf = new List<inv_combinelist_note_Class>();
+            List<inv_combinelist_review_Class> inv_Combinelist_review_Classes_buf = new List<inv_combinelist_review_Class>();
+
+
+            Dictionary<string, List<inv_combinelist_stock_Class>> keyValuePairs_inv_Combinelist_Stock_Classes = new Dictionary<string, List<inv_combinelist_stock_Class>>();
+            Dictionary<string, List<inv_combinelist_price_Class>> keyValuePairs_inv_Combinelist_price_Classes = new Dictionary<string, List<inv_combinelist_price_Class>>();
+            Dictionary<string, List<inv_combinelist_note_Class>> keyValuePairs_inv_Combinelist_note_Classes = new Dictionary<string, List<inv_combinelist_note_Class>>();
+            Dictionary<string, List<inv_combinelist_review_Class>> keyValuePairs_inv_Combinelist_review_Classes = new Dictionary<string, List<inv_combinelist_review_Class>>();
+
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_stock_Class> _inv_Combinelist_Stock_Classes = inv_combinelistClass.get_stocks_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_Stock_Classes = _inv_Combinelist_Stock_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_price_Class> _inv_Combinelist_price_Classes = inv_combinelistClass.get_medPrices_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_price_Classes = _inv_Combinelist_price_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_note_Class> _inv_Combinelist_note_Classes = inv_combinelistClass.get_medNote_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_note_Classes = _inv_Combinelist_note_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                List<inv_combinelist_review_Class> _inv_Combinelist_review_Classes = inv_combinelistClass.get_medReview_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_review_Classes = _inv_Combinelist_review_Classes.CoverToDictionaryByCode();
+            })));
+            Task.WhenAll(tasks).Wait();
+            tasks.Clear();
+
+
+          //patt1
+
+
+
+            string 藥品碼 = "";
+            string 料號 = string.Empty;
+            for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)  //合併單有幾張盤點單
+            {
+                inventoryClass.creat creat = inv_CombinelistClass.Records_Ary[i].Creat;
+                for (int k = 0; k < creat.Contents.Count; k++)
+                {
+                    if (creat.Contents[k].Sub_content.Count == 0) continue;
+                    料號 = creat.Contents[k].料號;
+                    contents_buf = (from temp in contents
+                                    where temp.料號 == 料號
+                                    select temp).ToList();
+                    if (contents_buf.Count == 0)
+                    {
+                        inventoryClass.content content = new inventoryClass.content();
+                        content.藥品碼 = creat.Contents[k].藥品碼;
+                        content.料號 = creat.Contents[k].料號;
+                        content.廠牌 = creat.Contents[k].廠牌;
+                        content.藥品名稱 = creat.Contents[k].藥品名稱;
+                        content.中文名稱 = creat.Contents[k].中文名稱;
+                        content.盤點量 = creat.Contents[k].盤點量;
+                        contents.Add(content);
+                    }
+                    else
+                    {
+                        contents_buf[0].盤點量 = (creat.Contents[k].盤點量.StringToInt32() + contents_buf[0].盤點量.StringToInt32()).ToString();
+                    }
+                }
+            }
+            //if (contents != null)
+            //{
+            //    return contents.JsonSerializationt(true);
+            //}
+            for (int i = 0; i < contents.Count; i++)
+            {
+                inv_Combinelist_Stock_Classes_buf = keyValuePairs_inv_Combinelist_Stock_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_price_Classes_buf = keyValuePairs_inv_Combinelist_price_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_note_Classes_buf = keyValuePairs_inv_Combinelist_note_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_review_Classes_buf = keyValuePairs_inv_Combinelist_review_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(contents[i].藥品碼);
+                if (medClasses_cloud_buf.Count > 0)
+                {
+                    contents[i].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                    contents[i].中文名稱 = medClasses_cloud_buf[0].中文名稱;
+                    contents[i].廠牌 = medClasses_cloud_buf[0].廠牌;
+                    contents[i].料號 = medClasses_cloud_buf[0].料號;
+                }
+
+
+                if (inv_Combinelist_review_Classes_buf.Count > 0)
+                {
+                    //contents[i].盤點量 = inv_Combinelist_review_Classes_buf[0].數量;
+                    inv_CombinelistClass.MedReviews.Add(inv_Combinelist_review_Classes_buf[0]);
+                }
+
+                if (inv_Combinelist_Stock_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.Stocks.Add(inv_Combinelist_Stock_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = new inv_combinelist_stock_Class();
+                    inv_Combinelist_Stock_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_Stock_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_Stock_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_Stock_Class.數量 = "0";
+                    inv_CombinelistClass.Stocks.Add(inv_Combinelist_Stock_Class);
+                }
+                if (inv_Combinelist_price_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.MedPrices.Add(inv_Combinelist_price_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_price_Class inv_Combinelist_Price_Class = new inv_combinelist_price_Class();
+                    inv_Combinelist_Price_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_Price_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_Price_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_Price_Class.單價 = "0";
+                    inv_CombinelistClass.MedPrices.Add(inv_Combinelist_Price_Class);
+
+                }
+
+                if (inv_Combinelist_note_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.MedNotes.Add(inv_Combinelist_note_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_note_Class inv_Combinelist_note_Class = new inv_combinelist_note_Class();
+                    inv_Combinelist_note_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_note_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_note_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_note_Class.備註 = "-";
+                    inv_CombinelistClass.MedNotes.Add(inv_Combinelist_note_Class);
+
+                }
+            }
+            
+            inv_CombinelistClass.Contents = contents;
+            //if (inv_CombinelistClass != null)
+            //{
+            //    return inv_CombinelistClass.JsonSerializationt(true);
+            //}
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = true.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = true.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = true.ToString();
+
+
+            if (inv_CombinelistClass.誤差總金額上限.StringIsDouble() == false) inv_CombinelistClass.誤差總金額上限 = "500";
+            if (inv_CombinelistClass.誤差總金額下限.StringIsDouble() == false) inv_CombinelistClass.誤差總金額下限 = "0";
+
+            if (inv_CombinelistClass.誤差百分率上限.StringIsDouble() == false) inv_CombinelistClass.誤差百分率上限 = "10";
+            if (inv_CombinelistClass.誤差百分率下限.StringIsDouble() == false) inv_CombinelistClass.誤差百分率下限 = "0";
+
+            if (inv_CombinelistClass.誤差數量上限.StringIsDouble() == false) inv_CombinelistClass.誤差數量上限 = "100";
+            if (inv_CombinelistClass.誤差數量下限.StringIsDouble() == false) inv_CombinelistClass.誤差數量下限 = "0";
+
+            //if (inv_CombinelistClass != null)
+            //{
+            //    return inv_CombinelistClass.JsonSerializationt(true);
+            //}
+            returnData.Data = inv_CombinelistClass;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
             returnData.Method = "get_full_inv_by_SN";
             returnData.Result = $"成功取得盤點單合併完成資料";
             return returnData.JsonSerializationt(true);
@@ -2256,8 +2473,15 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
 
-            inv_combinelistClass inv_CombinelistClass = inv_combinelistClass.get_full_inv_by_SN("http://127.0.0.1:4433", returnData.Value);
-            //inv_CombinelistClass.get_all_full_creat("http://127.0.0.1:4433");
+            //inv_combinelistClass inv_CombinelistClass = inv_combinelistClass.get_full_inv_by_SN("http://127.0.0.1:4433", returnData.Value);
+
+            string jsonString = POST_get_full_inv_by_SN(returnData);
+            returnData = jsonString.JsonDeserializet<returnData>();
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+
+
+
+            inv_CombinelistClass.get_all_full_creat("http://127.0.0.1:4433");
             List<inventoryClass.creat> creats = inv_CombinelistClass.Creats;
             List<inventoryClass.content> contents = new List<inventoryClass.content>();
             List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
@@ -2266,6 +2490,7 @@ namespace HIS_WebApi
             List<medClass> medClasses_cloud_buf = new List<medClass>();
             Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
             string 藥品碼 = "";
+            
             for (int i = 0; i < creats.Count; i++)
             {
                 List<object[]> list_creat_buf = new List<object[]>();
@@ -2279,6 +2504,7 @@ namespace HIS_WebApi
                     {
                         creats[i].Contents[k].料號 = medClasses_cloud_buf[0].料號;
                         creats[i].Contents[k].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                        藥品碼 = medClasses_cloud_buf[0].料號;
                     }
 
                     object[] value = new object[new enum_盤點定盤_Excel().GetLength()];

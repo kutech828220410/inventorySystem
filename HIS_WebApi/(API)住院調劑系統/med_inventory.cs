@@ -148,7 +148,7 @@ namespace HIS_WebApi
                 if (returnData.Value == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.Value 內容應為\"調劑\" OR \"覆核\" OR \"取消調劑\"";
+                    returnData.Result = $"returnData.Value 內容應為\"調劑\" OR \"覆核\" OR \"取消調劑\" OR \"退藥\"";
                     return returnData.JsonSerializationt(true);
                 }
                 List<medInventoryLogClass> input_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
