@@ -555,6 +555,89 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 以合併單號搜尋覆盤單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 盤點單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("creat_get_by_INVC")]
+        [HttpPost]
+        public string creat_get_by_INVC([FromBody] returnData returnData)
+        {
+            try
+            {
+                GET_init(returnData);
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                
+                //inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+
+                //sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"搜尋內容空白!";
+                    return returnData.JsonSerializationt();
+                }
+                string command = $"SELECT * FROM {DB}.inventory_creat WHERE {enum_盤點單號.合併單號.GetEnumName()} = '{returnData.Value}';";
+                DataTable dataTable = sQLControl_inventory_creat.WtrteCommandAndExecuteReader(command);
+
+                List<object[]> list_inventory_creat = dataTable.DataTableToRowList();
+                
+                if (list_inventory_creat.Count == 0)
+                {
+                    returnData.Code = -5;
+                    returnData.Result = $"查無此單號資料[{returnData.Value}]!";
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData = Function_Get_inventory_creat(sys_serverSettingClasses[0], returnData.TableName, list_inventory_creat);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"取得盤點資料成功!";
+                returnData.Method = "creat_get_by_INVC";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
         /// 快速創建盤點單
         /// </summary>
         /// <remarks>
