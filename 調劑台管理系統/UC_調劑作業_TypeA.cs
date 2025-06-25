@@ -261,65 +261,15 @@ namespace 調劑台管理系統
                     MyMessageBox.ShowDialog("請先完成交班");
                     return;
                 }
-                List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, scanner_text);
                 personPageClass personPageClass = new personPageClass();
 
-                if (medClasses.Count > 0)
+                if (Function_檢查是否為藥品條碼(scanner_text))
                 {
-                    if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
-                    if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
-                    if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
-                    if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
-                
-                    List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
-
-                    if (medConfigClasses.Count > 0)
-                    {
-                        Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
-                        dialog_使用者登入.ShowDialog();
-                        if (dialog_使用者登入.DialogResult != DialogResult.Yes) return;
-                        personPageClass = dialog_使用者登入.personPageClass;
-                        this.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{ personPageClass.姓名}]";
-
-                    }
-
-                    if (medConfigClasses.Count > 0)
-                    {
-                        Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入【退藥】數量");
-                        if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-                        
-                        Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
-                        takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
-                        takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
-                        takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統退藥.GetEnumName();
-                        takeMedicineStackClass.總異動量 = dialog_NumPannel.Value.ToString();
-                        takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                        takeMedicineStackClass.顏色 = this.顏色;
-                        takeMedicineStackClass.操作人 = personPageClass.姓名;
-                        takeMedicineStackClass.ID = personPageClass.ID;
-                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
-                        Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
-                    }
-                    else
-                    {
-                        Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
-                        takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
-                        takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
-                        takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
-                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
-                        takeMedicineStackClass.總異動量 = "0";
-                        takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-                        takeMedicineStackClass.顏色 = this.顏色;
-                        takeMedicineStackClass.操作人 = personPageClass.姓名;
-                        takeMedicineStackClass.ID = personPageClass.ID;
-                        takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
-                        Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
-                    }
-                    
                     cnt = 65500;
                     return;
                 }
+
+             
 
                 personPageClass.ID = "";
                 personPageClass.姓名 = "導引模式";
@@ -541,6 +491,13 @@ namespace 調劑台管理系統
                         return;
                     }
                     Console.WriteLine($"{text}");
+
+                    if(Function_檢查是否為藥品條碼(text))
+                    {
+                        cnt = 65500;
+                        return;
+                    }
+                  
                     if (text == Main_Form.QR_Code_醫令模式切換)
                     {
                         PLC_Device_單醫令模式.Bool = !PLC_Device_單醫令模式.Bool;
@@ -1854,7 +1811,69 @@ namespace 調劑台管理系統
             MyTimer_入賬完成時間.TickStop();
             MyTimer_入賬完成時間.StartTickTime();
         }
+        public bool Function_檢查是否為藥品條碼(string barcode)
+        {
+            List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, barcode);
+            personPageClass personPageClass = new personPageClass();
+            bool flag = false;
+            if (medClasses.Count > 0)
+            {
+                flag = true;
+                if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+                if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+                if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+                if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
 
+                List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
+
+                if (medConfigClasses.Count > 0)
+                {
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入();
+                    dialog_使用者登入.ShowDialog();
+                    if (dialog_使用者登入.DialogResult != DialogResult.Yes) return flag;
+                    personPageClass = dialog_使用者登入.personPageClass;
+                    this.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{ personPageClass.姓名}]";
+
+                }
+
+                if (medConfigClasses.Count > 0)
+                {
+                    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入【退藥】數量");
+                    if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return flag;
+
+                    Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
+                    takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
+                    takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統退藥.GetEnumName();
+                    takeMedicineStackClass.總異動量 = dialog_NumPannel.Value.ToString();
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.顏色 = this.顏色;
+                    takeMedicineStackClass.操作人 = personPageClass.姓名;
+                    takeMedicineStackClass.ID = personPageClass.ID;
+                    takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
+                    Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                }
+                else
+                {
+                    Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.藥品碼 = medClasses[0].藥品碼;
+                    takeMedicineStackClass.藥品名稱 = medClasses[0].藥品名稱;
+                    takeMedicineStackClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
+                    takeMedicineStackClass.總異動量 = "0";
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.顏色 = this.顏色;
+                    takeMedicineStackClass.操作人 = personPageClass.姓名;
+                    takeMedicineStackClass.ID = personPageClass.ID;
+                    takeMedicineStackClass.藥師證字號 = personPageClass.藥師證字號;
+                    Main_Form.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                }
+
+                return flag;
+            }
+            return flag;
+        }
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {
             List<object[]> list_value_buf = new List<object[]>();

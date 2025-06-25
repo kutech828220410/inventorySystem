@@ -547,12 +547,6 @@
     <Compile Include="Dialog\Dialog_用藥警示.Designer.cs">
       <DependentUpon>Dialog_用藥警示.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.Designer.cs">
-      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -763,9 +757,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID收支作業.resx">
       <DependentUpon>Dialog_收支作業_RFID收支作業.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID盤點.resx">
-      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>

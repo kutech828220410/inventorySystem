@@ -223,6 +223,7 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
                     Task.Run(new Action(delegate
                     {
+                        System.Threading.Thread.Sleep(1500);
                         Function_處理RFID確認流程();
                     }));
                    
