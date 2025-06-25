@@ -44,7 +44,19 @@ namespace 調劑台管理系統
         public string 密碼 = "";
         public string 卡號 = "";
         public string ID = "";
-        public string 顏色 = "";
+        private string _顏色 = "";
+     
+        public string 顏色
+        {
+            get
+            {
+                return _顏色;
+            }
+            set
+            {
+                _顏色 = value;
+            }
+        }
         public string 固定顏色 = "";
         public string 藥師證字號 = "";
         public string 一維碼 = "";
@@ -1819,10 +1831,15 @@ namespace 調劑台管理系統
             if (medClasses.Count > 0)
             {
                 flag = true;
-                if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
-                if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
-                if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
-                if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+                if(Main_Form.PLC_Device_掃碼顏色固定.Bool)
+                {
+                    if (index == 0) 顏色 = Main_Form._panel_工程模式_領藥台_01_顏色.BackColor.ToColorString();
+                    if (index == 1) 顏色 = Main_Form._panel_工程模式_領藥台_02_顏色.BackColor.ToColorString();
+                    if (index == 2) 顏色 = Main_Form._panel_工程模式_領藥台_03_顏色.BackColor.ToColorString();
+                    if (index == 3) 顏色 = Main_Form._panel_工程模式_領藥台_04_顏色.BackColor.ToColorString();
+
+                }
+            
 
                 List<medConfigClass> medConfigClasses = medConfigClass.get_dispense_note_by_codes(Main_Form.API_Server, medClasses[0].藥品碼);
 
