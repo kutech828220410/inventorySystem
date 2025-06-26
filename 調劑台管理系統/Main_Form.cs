@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.062253")]
-[assembly: AssemblyFileVersion("1.0.25.06253")]
+[assembly: AssemblyVersion("1.0.25.062271")]
+[assembly: AssemblyFileVersion("1.0.25.06271")]
 namespace 調劑台管理系統
 {
 
@@ -996,6 +996,7 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_person_page.DataBaseName = sys_serverSettingClass.DBName;
                 dBConfigClass.DB_person_page.UserName = sys_serverSettingClass.User;
                 dBConfigClass.DB_person_page.Password = sys_serverSettingClass.Password;
+
             }
             sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.藥檔資料);
             if (sys_serverSettingClass != null)

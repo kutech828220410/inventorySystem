@@ -80,7 +80,7 @@ namespace HIS_DB_Lib
         藥品碼,
         [Description("藥品名稱,VARCHAR,300,NONE")]
         藥品名稱,
-        [Description("藥袋序號,VARCHAR,50,INDEX")]
+        [Description("藥袋序號,VARCHAR,200,INDEX")]
         藥袋序號,
         [Description("領藥號,VARCHAR,20,INDEX")]
         領藥號,

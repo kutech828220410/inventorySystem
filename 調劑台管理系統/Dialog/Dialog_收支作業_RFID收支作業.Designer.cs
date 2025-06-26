@@ -96,7 +96,7 @@
             this.rJ_Lable_顯示狀態.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_顯示狀態.BackgroundColor = System.Drawing.Color.Green;
             this.rJ_Lable_顯示狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_顯示狀態.BorderRadius = 8;
+            this.rJ_Lable_顯示狀態.BorderRadius = 15;
             this.rJ_Lable_顯示狀態.BorderSize = 0;
             this.rJ_Lable_顯示狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable_顯示狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));

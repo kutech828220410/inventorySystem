@@ -60,6 +60,14 @@ namespace 調劑台管理系統
         public List<StockClass> stockClasses = new List<StockClass>();
         private double qty = 0;
 
+        private List<DrugHFTagClass> _cachedTagList = null;
+        private DateTime _cachedTagMaxUpdateTime = DateTime.MinValue;
+        private DateTime _cachedReportStartTime;
+        private DateTime _cachedReportEndTime;
+
+        private List<DrugHFTagStatusSummaryByCode> _cachedSummaries = null;
+        private List<string> _cachedDrugCodes = null;
+
         private MyThread myThread_HFRFID = new MyThread();
         private MyThread myThread_UI = new MyThread();
 
@@ -89,8 +97,8 @@ namespace 調劑台管理系統
 
         private void Dialog_收支作業_RFID出收入_LoadFinishedEvent(EventArgs e)
         {
- 
-        
+
+            Main_Form.HFRFID_debug = true;
             this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(DrugHFTagClass.init(Main_Form.API_Server));
             this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
@@ -142,9 +150,9 @@ namespace 調劑台管理系統
             }
             if (_Import_Export == IncomeOutcomeMode.支出)
             {
-                this.sqL_DataGridView_收支清單.Set_ColumnText("可支出", enum_DrugHFTag_IncomeOutcomeList.報表數量);
-                this.sqL_DataGridView_收支清單.Set_ColumnText("未支出", enum_DrugHFTag_IncomeOutcomeList.收支數量);
-
+                this.sqL_DataGridView_收支清單.Set_ColumnText("實際值", enum_DrugHFTag_IncomeOutcomeList.報表數量);
+                dateTimeIntervelPicker_報表時間.Visible = false;
+                rJ_Lable4.Visible = false;
                 rJ_Lable_應收入_title.Text = "應出";
                 rJ_Lable_實收入_title.Text = "實出";
             }
@@ -179,6 +187,7 @@ namespace 調劑台管理系統
                 myThread_UI = null;
             }
             Main_Form.LockClosingEvent -= Main_Form_LockClosingEvent;
+            Main_Form.HFRFID_debug = false;
         }
 
         private void Main_Form_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
@@ -281,69 +290,120 @@ namespace 調劑台管理系統
         }
         private void Program_HFRFID()
         {
+            DateTime startTotal = DateTime.Now;
+            Console.WriteLine($"[{startTotal:HH:mm:ss.fff}]  開始執行 Program_HFRFID");
+
+            DateTime reportStart = dateTimeIntervelPicker_報表時間.StartTime;
+            DateTime reportEnd = dateTimeIntervelPicker_報表時間.EndTime;
+
+            // ---------- 取得標籤資料 ----------
+            bool needFetchTags = false;
+            if (_cachedTagList == null || _cachedReportStartTime != reportStart || _cachedReportEndTime != reportEnd)
+            {
+                needFetchTags = true;
+            }
+            else
+            {
+                DateTime maxUpdate = _cachedTagList.Max(x => x.更新時間.StringToDateTime());
+                if (maxUpdate > _cachedTagMaxUpdateTime)
+                    needFetchTags = true;
+            }
+
+            if (needFetchTags)
+            {
+                Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  [重新讀取 RFID 標籤資料]");
+                if (_Import_Export == IncomeOutcomeMode.收入)
+                    _cachedTagList = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
+                else
+                    _cachedTagList = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
+
+                _cachedTagMaxUpdateTime = _cachedTagList.Max(x => x.更新時間.StringToDateTime());
+                _cachedReportStartTime = reportStart;
+                _cachedReportEndTime = reportEnd;
+            }
             List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
             if (_Import_Export == IncomeOutcomeMode.收入)
-                drugHFTagClasses = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
-            if (_Import_Export == IncomeOutcomeMode.支出)
-                drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
+            {
+                drugHFTagClasses = _cachedTagList
+               .Where(d => d.更新時間.StringToDateTime() >= reportStart &&
+                           d.更新時間.StringToDateTime() <= reportEnd)
+               .ToList();
+            }
+            else
+            {
+                drugHFTagClasses = _cachedTagList;
+            }
+               
 
-            drugHFTagClasses = drugHFTagClasses
-                .Where(d => d.更新時間.StringToDateTime() >= dateTimeIntervelPicker_報表時間.StartTime &&
-                            d.更新時間.StringToDateTime() <= dateTimeIntervelPicker_報表時間.EndTime)
-                .ToList();
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  篩選後標籤筆數: {drugHFTagClasses.Count}");
+            if (drugHFTagClasses.Count == 0)
+            {
+                Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無符合時間範圍的標籤，結束流程");
+                return;
+            }
 
-            if (drugHFTagClasses.Count == 0) return;
-
+            // ---------- 轉為報表清單 ----------
             List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses = drugHFTagClasses.ToIncomeOutcomeList(_Import_Export);
             List<string> drugCodes = drugHFTag_IncomeOutcomeListClasses.Select(x => x.藥碼).Distinct().ToList();
 
-            var (code, result, summaries) = DrugHFTagClass.GetStockinStatusSummariesByCodes(
-                Main_Form.API_Server,
-                dateTimeIntervelPicker_報表時間.StartTime,
-                dateTimeIntervelPicker_報表時間.EndTime,
-                drugCodes
-            );
+            // ---------- 取得統計資料 ----------
+            bool sameDrugCodes = _cachedDrugCodes != null &&
+                                 _cachedDrugCodes.Count == drugCodes.Count &&
+                                 !_cachedDrugCodes.Except(drugCodes).Any();
 
-            if (code == 200 && summaries != null)
+            bool needFetchSummary = !sameDrugCodes ||
+                                    _cachedReportStartTime != reportStart ||
+                                    _cachedReportEndTime != reportEnd ||
+                                    _cachedSummaries == null;
+
+            if (needFetchSummary)
+            {
+                Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  [重新取得統計資料]");
+                var (_, _, summaries) = DrugHFTagClass.GetStockinStatusSummariesByCodes(
+                    Main_Form.API_Server, reportStart, reportEnd, drugCodes);
+                _cachedSummaries = summaries;
+                _cachedDrugCodes = new List<string>(drugCodes);
+            }
+
+            if (_cachedSummaries != null)
             {
                 foreach (var item in drugHFTag_IncomeOutcomeListClasses)
                 {
-                    var summary = summaries.FirstOrDefault(s => s.藥碼 == item.藥碼);
+                    var summary = _cachedSummaries.FirstOrDefault(s => s.藥碼 == item.藥碼);
                     if (summary != null)
                     {
-                        if (_Import_Export == IncomeOutcomeMode.收入)
-                            item.報表數量 = (summary.可入庫數量).ToString("0.###");
-                        else if (_Import_Export == IncomeOutcomeMode.支出)
-                            item.報表數量 = (summary.可出庫數量).ToString("0.###");
-
-                        if (_Import_Export == IncomeOutcomeMode.收入)
-                            item.收支數量 = summary.已入庫數量.ToString("0.###");
-                        else if (_Import_Export == IncomeOutcomeMode.支出)
-                            item.收支數量 = summary.已出庫數量.ToString("0.###");
+                        item.報表數量 = (_Import_Export == IncomeOutcomeMode.收入 ? summary.可入庫數量 : summary.可出庫數量).ToString("0.###");
+                        item.收支數量 = (_Import_Export == IncomeOutcomeMode.收入 ? summary.已入庫數量 : summary.已出庫數量).ToString("0.###");
                     }
                 }
             }
 
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  收支清單筆數: {drugHFTag_IncomeOutcomeListClasses.Count}");
             this.sqL_DataGridView_收支清單.RefreshGrid(drugHFTag_IncomeOutcomeListClasses.ToObjectList());
-            if (drugHFTag_IncomeOutcomeList == null) return;
+            List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
+            if (drugHFTag_IncomeOutcomeList == null)
+            {
+                Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無選擇的藥品，結束流程");
+                return;
+            }
 
             string selectedDrugCode = drugHFTag_IncomeOutcomeList.藥碼;
-            List<string> uids = Main_Form.rfidReader_TagUID;
+          
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  UID 數量: {uids.Count}，選取藥碼: {selectedDrugCode}");
 
+            // ---------- 比對標籤 ----------
             List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
             errorTags.Clear();
+
             foreach (var tag in drugHFTagClasses)
             {
                 bool isUIDMatch = uids.Contains(tag.TagSN);
                 bool isSameCode = tag.藥碼 == selectedDrugCode;
 
-                if (_Import_Export == IncomeOutcomeMode.收入)
+                if (_Import_Export == IncomeOutcomeMode.收入 && isUIDMatch && isSameCode)
                 {
-                    if (isUIDMatch && isSameCode)
-                    {
-                        tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
-                        tagDisplayList.Add(tag);
-                    }
+                    tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
+                    tagDisplayList.Add(tag);
                 }
                 else if (_Import_Export == IncomeOutcomeMode.支出)
                 {
@@ -354,19 +414,21 @@ namespace 調劑台管理系統
                     }
                     else if (!isUIDMatch && !isSameCode)
                     {
-                        // ⚠ 異常資料：不處理狀態，但加入顯示
                         errorTags.Add(tag);
                     }
                 }
             }
 
-            // 計算收支數量（只包含已標記的入庫註記或出庫註記）
+            // ---------- 計算總量 ----------
             double qty = tagDisplayList
                 .Where(t =>
                     (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
                     (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
                 .Sum(t => t.數量.StringToDouble());
 
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  計算完成，標記數量: {qty}，異常標籤數: {errorTags.Count}");
+
+            // ---------- 顯示 ----------
             form.Invoke(new Action(() =>
             {
                 rJ_Lable_應收入.Text = this.qty.ToString();
@@ -375,7 +437,11 @@ namespace 調劑台管理系統
             }));
 
             this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
+
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  標籤清單刷新完成，顯示數量: {tagDisplayList.Count}");
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  程式結束，總耗時: {(DateTime.Now - startTotal).TotalMilliseconds} ms");
         }
+
 
         private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -913,7 +913,7 @@ namespace 調劑台管理系統
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName());
             if (list_取藥堆疊母資料.Count > 0 )
             {
-                if(Main_Form.rfidReader_1.IsOpen == false && Main_Form.rfidReader_2.IsOpen == false)
+                if(Main_Form.RfidReaderEnable == false)
                 {
                     Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料, false);
                     Main_Form.voice.SpeakOnTask("RFID讀取器未開啟");
