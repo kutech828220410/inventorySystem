@@ -3288,7 +3288,7 @@ namespace HIS_WebApi
                                 double 數量總和 = grouped.Sum(x => x.數量.StringToDouble());
                                 string guid合併 = string.Join(";", grouped.Select(x => x.GUID));
                                 string 數量 = 數量總和.ToString();
-                                if (數量總和 > 0) 數量 = $"+{數量總和.ToString()}";
+                                if (grouped.Count() >1 & 數量總和 > 0) 數量 = $"+{數量總和.ToString()}";
                                 return new bedListClass
                                 {
                                     GUID = guid合併,
