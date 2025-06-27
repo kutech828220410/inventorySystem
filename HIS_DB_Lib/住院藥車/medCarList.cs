@@ -48,6 +48,22 @@ namespace HIS_DB_Lib
                 return (x.護理站).CompareTo(y.護理站);
             }
         }
+        static public List<medCarListClass> get_medcar_by_phar(string API_Server, String 藥局)
+        {
+            string url = $"{API_Server}/api/medCarList/get_medcar_by_phar";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(藥局);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medCarListClass> out_medCarListClass = returnData.Data.ObjToClass<List<medCarListClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCarListClass;
+        }
     }
-    
+
 }

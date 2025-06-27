@@ -598,6 +598,10 @@ namespace HIS_WebApi
             List<object[]> list_inv_sub_combinelist_add = new List<object[]>();
             inv_CombinelistClass.消耗量起始時間 = DateTime.MinValue.ToDateTimeString();
             inv_CombinelistClass.消耗量結束時間 = DateTime.MinValue.ToDateTimeString();
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
+
             object[] value;
             value = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
 
@@ -612,6 +616,9 @@ namespace HIS_WebApi
                 value[(int)enum_inv_sub_combinelist.單號] = inv_CombinelistClass.Records_Ary[i].單號;
                 value[(int)enum_inv_sub_combinelist.類型] = inv_CombinelistClass.Records_Ary[i].類型;
                 value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+
                 list_inv_sub_combinelist_add.Add(value);
             }
 
@@ -1086,6 +1093,110 @@ namespace HIS_WebApi
             inv_CombinelistClasses.Add(inv_CombinelistClass);
             
             returnData.Data = inv_CombinelistClasses;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "get_inv_by_SN";
+
+            returnData.Result = $"成功取得資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以合併單號取得合併單資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    },
+        ///    "Value":"合併單號"
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_by_SN")]
+        public string get_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            if (returnData.Value.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value應填入合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            string 合併單號 = returnData.Value;
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_inv_combinelist.合併單號, 合併單號);
+            inv_combinelistClass inv_CombinelistClass = list_inv_combinelist[0].SQLToClass<inv_combinelistClass, enum_inv_combinelist>();
+           
+            returnData.Data = inv_CombinelistClass;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "get_inv_by_SN";
+
+            returnData.Result = $"成功取得資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以合併單號取得合併單資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///         inv_combinelistClass
+        ///    },
+        ///    "Value":""
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("update_by_SN")]
+        public string update_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            if (returnData.Data == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Data應填入合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "true") inv_CombinelistClass.誤差總金額致能 = true.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "true") inv_CombinelistClass.誤差百分率致能 = true.ToString();
+            if (inv_CombinelistClass.誤差數量致能.ToLower() == "true") inv_CombinelistClass.誤差數量致能 = true.ToString();
+
+            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "false") inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "false") inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.ToLower() == "false") inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+            object[] list_inv_combinelist = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
+            if (list_inv_combinelist != null) sQLControl_inv_combinelist.UpdateByDefulteExtra(null, list_inv_combinelist);
+
+            returnData.Data = inv_CombinelistClass;
             returnData.Code = 200;
             returnData.TimeTaken = myTimerBasic.ToString();
             returnData.Method = "get_inv_by_SN";
