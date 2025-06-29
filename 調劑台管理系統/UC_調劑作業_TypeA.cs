@@ -1704,7 +1704,7 @@ namespace 調劑台管理系統
                         if (code == -200)
                         {
                             Logger.Log("error", resuult);
-                            return;
+                            //return;
                         }
                         suspiciousRxLog = suspiciousRxLogClass;
 

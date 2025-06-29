@@ -2479,7 +2479,7 @@ namespace 調劑台管理系統
             try
             {
                 if (MySerialPort_Scanner01.IsConnected == false && myConfigClass.鍵盤掃碼模式 == false) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return null;       
                 text = text.Replace("\0", "");
@@ -2505,7 +2505,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner02.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner02.ReadString();
                       if (text == null) return null;       
                 text = text.Replace("\0", "");
@@ -2531,7 +2531,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner03.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner03.ReadString();
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return null;
@@ -2556,7 +2556,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner04.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner04.ReadString();
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return null;

@@ -18,6 +18,7 @@ namespace 調劑台管理系統
     public partial class Dialog_收支作業_RFID收支作業 : MyDialog
     {
         private string 調劑台名稱 = $"{Main_Form.ServerName}";
+        private List<DrugHFTagClass> DBTags = new List<DrugHFTagClass>();
         private List<DrugHFTagClass> errorTags = new List<DrugHFTagClass>();
         private bool hasRetriedConfirmation = false;
         private bool showAlert = false;
@@ -36,10 +37,9 @@ namespace 調劑台管理系統
                     {
                         rJ_Lable_藥名.Text = "--------------------------";
                         rJ_Lable_應收入.Text = "----";
-                        rJ_Lable_實收入.Text = "----";
-                        rJ_Lable_異常.Text = "----";
                         rJ_Button_選擇.Enabled = true;
                         rJ_Button_取消.Enabled = false;
+                        rJ_Lable_請關門過帳.Visible = false;
                     }));
                     if (drugHFTag_IncomeOutcomeList != null) Main_Form.Function_儲位亮燈(new Main_Form.LightOn(drugHFTag_IncomeOutcomeList.藥碼, Color.Black));
 
@@ -49,9 +49,8 @@ namespace 調劑台管理系統
                 form.Invoke(new Action(delegate
                 {
                     rJ_Lable_藥名.Text = value.藥名;
-                    rJ_Lable_應收入.Text = "----";
-                    rJ_Lable_實收入.Text = "----";
-                    rJ_Lable_異常.Text = "----";
+                    rJ_Lable_應收入.Text = value.收支數量;
+                    rJ_Lable_請關門過帳.Visible = true;
                 }));
                 _drugHFTag_IncomeOutcomeList = value;
             }
@@ -99,62 +98,61 @@ namespace 調劑台管理系統
         {
 
             Main_Form.HFRFID_debug = true;
-            this.sqL_DataGridView_TagList.RowsHeight = 50;
-            this.sqL_DataGridView_TagList.Init(DrugHFTagClass.init(Main_Form.API_Server));
-            this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
-            //this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
-            //this.sqL_DataGridView_TagList.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
-            this.sqL_DataGridView_TagList.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.狀態);
-            this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.TagSN);
-            this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.效期);
-            this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.更新時間);
-            this.sqL_DataGridView_TagList.DataGridRefreshEvent += SqL_DataGridView_TagList_DataGridRefreshEvent;
+            //this.sqL_DataGridView_TagList.RowsHeight = 50;
+            //this.sqL_DataGridView_TagList.Init(DrugHFTagClass.init(Main_Form.API_Server));
+            //this.sqL_DataGridView_TagList.Set_ColumnVisible(false, new enum_DrugHFTag().GetEnumNames());
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.TagSN);
+            ////this.sqL_DataGridView_TagList.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.藥碼);
+            ////this.sqL_DataGridView_TagList.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag.藥名);
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.效期);
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.批號);
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.數量);
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.更新時間);
+            //this.sqL_DataGridView_TagList.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag.狀態);
+            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.TagSN);
+            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.效期);
+            //this.sqL_DataGridView_TagList.Set_ColumnFont(new Font("微軟正黑體", 12F, FontStyle.Regular, GraphicsUnit.Pixel), enum_DrugHFTag.更新時間);
+            //this.sqL_DataGridView_TagList.DataGridRefreshEvent += SqL_DataGridView_TagList_DataGridRefreshEvent;
 
             this.sqL_DataGridView_收支清單.RowsHeight = 60;
             this.sqL_DataGridView_收支清單.Init(new Table(new enum_DrugHFTag_IncomeOutcomeList()));
             this.sqL_DataGridView_收支清單.Set_ColumnVisible(false, new enum_DrugHFTag_IncomeOutcomeList().GetEnumNames());
             this.sqL_DataGridView_收支清單.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.藥碼);
             this.sqL_DataGridView_收支清單.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_DrugHFTag_IncomeOutcomeList.藥名);
-            this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.收支數量);
-            this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.報表數量);
+ 
 
             Table table = takeMedicineStackClass.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType).GetTable(new enum_取藥堆疊母資料());
-            this.sqL_DataGridView_取藥狀態.InitEx(table);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
-            //this.sqL_DataGridView_取藥狀態.Set_ColumnVisible(true, enum_取藥堆疊母資料.藥品碼, enum_取藥堆疊母資料.藥品名稱, enum_取藥堆疊母資料.總異動量, enum_取藥堆疊母資料.結存量, enum_取藥堆疊母資料.狀態);
-            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.狀態);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnText("異動", enum_取藥堆疊母資料.總異動量);
-            this.sqL_DataGridView_取藥狀態.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
-            this.sqL_DataGridView_取藥狀態.DataGridRefreshEvent += SqL_DataGridView_取藥狀態_DataGridRefreshEvent;
+            //this.sqL_DataGridView_取藥狀態.InitEx(table);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
+            ////this.sqL_DataGridView_取藥狀態.Set_ColumnVisible(true, enum_取藥堆疊母資料.藥品碼, enum_取藥堆疊母資料.藥品名稱, enum_取藥堆疊母資料.總異動量, enum_取藥堆疊母資料.結存量, enum_取藥堆疊母資料.狀態);
+            ////this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+            ////this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.狀態);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnText("異動", enum_取藥堆疊母資料.總異動量);
+            //this.sqL_DataGridView_取藥狀態.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
+            //this.sqL_DataGridView_取藥狀態.DataGridRefreshEvent += SqL_DataGridView_取藥狀態_DataGridRefreshEvent;
 
             if(_Import_Export == IncomeOutcomeMode.收入)
             {
+                this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.收支數量);
+                this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 this.sqL_DataGridView_收支清單.Set_ColumnText("未收入", enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 this.sqL_DataGridView_收支清單.Set_ColumnText("已收入", enum_DrugHFTag_IncomeOutcomeList.收支數量);
 
                 rJ_Lable_應收入_title.Text = "應收";
-                rJ_Lable_實收入_title.Text = "實收";
             }
             if (_Import_Export == IncomeOutcomeMode.支出)
             {
+                this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 this.sqL_DataGridView_收支清單.Set_ColumnText("實際值", enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 dateTimeIntervelPicker_報表時間.Visible = false;
-                rJ_Lable4.Visible = false;
                 rJ_Lable_應收入_title.Text = "應出";
-                rJ_Lable_實收入_title.Text = "實出";
             }
             this.rJ_Button_選擇.MouseDownEvent += RJ_Button_選擇_MouseDownEvent;
             this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;
@@ -164,11 +162,6 @@ namespace 調劑台管理系統
             myThread_HFRFID.Add_Method(Program_HFRFID);
             myThread_HFRFID.SetSleepTime(100);
             myThread_HFRFID.Trigger();
-
-            myThread_UI.AutoRun(true);
-            myThread_UI.Add_Method(Program_UI);
-            myThread_UI.SetSleepTime(100);
-            myThread_UI.Trigger();
 
             Main_Form.LockClosingEvent += Main_Form_LockClosingEvent;
             this.Refresh();
@@ -232,7 +225,6 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
                     Task.Run(new Action(delegate
                     {
-                        System.Threading.Thread.Sleep(1500);
                         Function_處理RFID確認流程();
                     }));
                    
@@ -245,49 +237,8 @@ namespace 調劑台管理系統
 
         }
 
-        private void SqL_DataGridView_取藥狀態_DataGridRefreshEvent()
-        {
-            String 狀態 = "";
-            for (int i = 0; i < this.sqL_DataGridView_取藥狀態.dataGridView.Rows.Count; i++)
-            {
-                狀態 = this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].Cells[(int)enum_取藥堆疊母資料.狀態].Value.ToString();
-                if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
-                {
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                }
-                else if (狀態 == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
-                {
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Lime;
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                }
-                else if (狀態 == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())
-                {
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    this.sqL_DataGridView_取藥狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                }
-            }
-        }
-        private void SqL_DataGridView_TagList_DataGridRefreshEvent()
-        {
-            for(int i = 0; i < this.sqL_DataGridView_TagList.Rows.Count; i++)
-            {
-                string 狀態 = "";
-                狀態 = this.sqL_DataGridView_TagList.Rows[i].Cells[(int)enum_DrugHFTag.狀態].Value.ToString();
-                if ((狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName() && _Import_Export == IncomeOutcomeMode.收入) || (狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName() && _Import_Export == IncomeOutcomeMode.支出))
-                {
-                    this.sqL_DataGridView_TagList.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                }
-                else
-                {
-                    this.sqL_DataGridView_TagList.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                }
-            }
-        }
-        private void Program_UI()
-        {
-            sqL_DataGridView_取藥狀態.SQL_GetRows((int)enum_取藥堆疊母資料.調劑台名稱, 調劑台名稱, true);
-        }
+     
+
         private void Program_HFRFID()
         {
             DateTime startTotal = DateTime.Now;
@@ -321,29 +272,28 @@ namespace 調劑台管理系統
                 _cachedReportStartTime = reportStart;
                 _cachedReportEndTime = reportEnd;
             }
-            List<DrugHFTagClass> drugHFTagClasses = new List<DrugHFTagClass>();
             if (_Import_Export == IncomeOutcomeMode.收入)
             {
-                drugHFTagClasses = _cachedTagList
+                DBTags = _cachedTagList
                .Where(d => d.更新時間.StringToDateTime() >= reportStart &&
                            d.更新時間.StringToDateTime() <= reportEnd)
                .ToList();
             }
             else
             {
-                drugHFTagClasses = _cachedTagList;
+                DBTags = _cachedTagList;
             }
                
 
-            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  篩選後標籤筆數: {drugHFTagClasses.Count}");
-            if (drugHFTagClasses.Count == 0)
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  篩選後標籤筆數: {DBTags.Count}");
+            if (DBTags.Count == 0)
             {
                 Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無符合時間範圍的標籤，結束流程");
                 return;
             }
 
             // ---------- 轉為報表清單 ----------
-            List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses = drugHFTagClasses.ToIncomeOutcomeList(_Import_Export);
+            List<DrugHFTag_IncomeOutcomeListClass> drugHFTag_IncomeOutcomeListClasses = DBTags.ToIncomeOutcomeList(_Import_Export);
             List<string> drugCodes = drugHFTag_IncomeOutcomeListClasses.Select(x => x.藥碼).Distinct().ToList();
 
             // ---------- 取得統計資料 ----------
@@ -380,22 +330,27 @@ namespace 調劑台管理系統
 
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  收支清單筆數: {drugHFTag_IncomeOutcomeListClasses.Count}");
             this.sqL_DataGridView_收支清單.RefreshGrid(drugHFTag_IncomeOutcomeListClasses.ToObjectList());
+         
+        }
+        private List<DrugHFTagClass> readUID()
+        {
+            DateTime startTotal = DateTime.Now;
             List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
             if (drugHFTag_IncomeOutcomeList == null)
             {
                 Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無選擇的藥品，結束流程");
-                return;
+                return null;
             }
 
             string selectedDrugCode = drugHFTag_IncomeOutcomeList.藥碼;
-          
+
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  UID 數量: {uids.Count}，選取藥碼: {selectedDrugCode}");
 
             // ---------- 比對標籤 ----------
             List<DrugHFTagClass> tagDisplayList = new List<DrugHFTagClass>();
             errorTags.Clear();
 
-            foreach (var tag in drugHFTagClasses)
+            foreach (var tag in DBTags)
             {
                 bool isUIDMatch = uids.Contains(tag.TagSN);
                 bool isSameCode = tag.藥碼 == selectedDrugCode;
@@ -432,16 +387,14 @@ namespace 調劑台管理系統
             form.Invoke(new Action(() =>
             {
                 rJ_Lable_應收入.Text = this.qty.ToString();
-                rJ_Lable_實收入.Text = qty.ToString("0.###");
-                rJ_Lable_異常.Text = errorTags.Count.ToString("0.###");
             }));
 
-            this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
+            //this.sqL_DataGridView_TagList.RefreshGrid(tagDisplayList.ToObjectList());
 
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  標籤清單刷新完成，顯示數量: {tagDisplayList.Count}");
             Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  程式結束，總耗時: {(DateTime.Now - startTotal).TotalMilliseconds} ms");
+            return tagDisplayList;
         }
-
 
         private void PlC_RJ_Button_解鎖_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -509,6 +462,7 @@ namespace 調劑台管理系統
 
 
                 string 藥碼 = list_收支清單[0][(int)enum_DrugHFTag_IncomeOutcomeList.藥碼].ObjectToString();
+                list_收支清單[0][(int)enum_DrugHFTag_IncomeOutcomeList.收支數量] = qty;
                 Logger.Log("dialog_HRFID", $"取得藥碼: {藥碼}，執行亮燈與解鎖程序");
 
                 Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Blue));
@@ -530,31 +484,27 @@ namespace 調劑台管理系統
                         this.Invoke(new Action(delegate
                         {
                             Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門入庫.wav");
-                            rJ_Lable_顯示狀態.Text = "請開門入庫";
-                            rJ_Lable_顯示狀態.Visible = true;                            
+                                            
                         }));
-                        System.Threading.Thread.Sleep(2000);
-                        this.Invoke(new Action(delegate
-                        {
-                            rJ_Lable_顯示狀態.Visible = false;
-                        }));
-
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門入庫", 1500, 0, 0, Color.LightGreen, Color.Black);
+                        dialog_AlarmForm.ShowDialog();
+         
                     }));
                    
                 }
                 else if (_Import_Export == IncomeOutcomeMode.支出)
                 {
-                    this.Invoke(new Action(delegate
+                    Task.Run(new Action(delegate
                     {
-                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門出庫.wav");
-                        rJ_Lable_顯示狀態.Text = "請開門出庫";
-                        rJ_Lable_顯示狀態.Visible = true;
+                        this.Invoke(new Action(delegate
+                        {
+                            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請開門出庫.wav");
+                        }));
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請開門出庫", 1500, 0, 0, Color.LightGreen, Color.Black);
+                        dialog_AlarmForm.ShowDialog();
+
                     }));
-                    System.Threading.Thread.Sleep(2000);
-                    this.Invoke(new Action(delegate
-                    {
-                        rJ_Lable_顯示狀態.Visible = false;
-                    }));
+               
                 }
                 form.Invoke(new Action(delegate 
                 {
@@ -589,7 +539,7 @@ namespace 調劑台管理系統
                 }
         
                 drugHFTag_IncomeOutcomeList = null;
-                this.sqL_DataGridView_TagList.ClearGrid();
+                //this.sqL_DataGridView_TagList.ClearGrid();
             }
             catch (Exception ex)
             {
@@ -623,14 +573,16 @@ namespace 調劑台管理系統
         }
         private void Function_處理RFID確認流程()
         {
+            LoadingForm.ShowLoadingForm();
+            List<DrugHFTagClass> list_drugHFTagClasses = readUID();
+            LoadingForm.CloseLoadingForm();
             Dialog_收支異常提示.CloseAllDialog();
 
             Logger.Log("dialog_HRFID", $"[RJ_Button_確認_MouseDownEvent] 使用者: {Main_Form._登入者名稱}");
 
-            List<object[]> list_drugHFTagClasses = this.sqL_DataGridView_TagList.GetAllRows();
             Logger.Log("dialog_HRFID", $"取得標籤筆數: {list_drugHFTagClasses.Count}");
 
-            if (list_drugHFTagClasses.Count == 0)
+            if (list_drugHFTagClasses.Count == 0 && errorTags.Count == 0)
             {
                 Logger.Log("dialog_HRFID", "未讀取到任何 RFID 標籤");
                 MyMessageBox.ShowDialog("未讀取到RFID標籤");
@@ -641,12 +593,11 @@ namespace 調劑台管理系統
             bool 數量異常 = false;
 
             double 實際標籤數量 = list_drugHFTagClasses
-                .ToDrugHFTagClassList()
                 .Where(t =>
                     (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
                     (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
                 .Sum(t => t.數量.StringToDouble());
-
+        
             if (實際標籤數量 != qty)
             {
                 Logger.Log("dialog_HRFID", $"標籤數量 {實際標籤數量} ≠ 輸入數量 {qty}");
@@ -662,7 +613,20 @@ namespace 調劑台管理系統
 
             if (驗證失敗)
             {
-                Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示();
+                string tts_content = "";
+                if (實際標籤數量 != qty && errorTags.Count > 0)
+                {
+                    tts_content = "數量及品項錯誤,請再次確認";
+                }
+                else if(實際標籤數量 != qty)
+                {
+                    tts_content = "數量錯誤,請再次確認";
+                }
+                else if (errorTags.Count > 0)
+                {
+                    tts_content = "品項錯誤,請再次確認";
+                }
+                Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示($"{Main_Form._登入者名稱},{tts_content}");
                 dialog_收支異常提示.IgnoreVisible = hasRetriedConfirmation;
                 dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                 dialog_收支異常提示.ShowDialog();
@@ -689,7 +653,7 @@ namespace 調劑台管理系統
                         發生時間 = DateTime.Now.ToDateTimeString_6(),
                         排除時間 = DateTime.MinValue.ToDateTimeString(),
                         狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
-                        事件描述 = "標籤未註記為入/出庫",
+                        事件描述 = "品項錯誤",
                         通知註記 = "未通知",
                         通知時間 = DateTime.MinValue.ToDateTimeString(),
                         參數1 = tag.TagSN,
@@ -714,7 +678,7 @@ namespace 調劑台管理系統
                         發生時間 = DateTime.Now.ToDateTimeString_6(),
                         排除時間 = DateTime.MinValue.ToDateTimeString(),
                         狀態 = enum_medRecheckLog_State.未排除.GetEnumName(),
-                        事件描述 = "輸入數量與標籤數量不符",
+                        事件描述 = "數量錯誤",
                         通知註記 = "未通知",
                         通知時間 = DateTime.MinValue.ToDateTimeString(),
                         參數1 = "",
@@ -728,6 +692,7 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_HRFID", $"自動寫入異常標籤與數量記錄 {errorLogs.Count} 筆");
                     LoadingForm.ShowLoadingForm();
                     medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
+                    (int code, var result, var val) = DrugHFTagClass.set_tag_broken_full(Main_Form.API_Server, errorTags);
                     LoadingForm.CloseLoadingForm();
                     MyMessageBox.ShowDialog($"⚠ 已自動新增異常記錄 {errorLogs.Count} 筆，請查閱紀錄！");
                 }
@@ -736,7 +701,7 @@ namespace 調劑台管理系統
 
             hasRetriedConfirmation = false;
 
-            List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses.ToDrugHFTagClassList();
+            List<DrugHFTagClass> drugHFTagClasses = list_drugHFTagClasses;
 
             if (_Import_Export == IncomeOutcomeMode.收入)
             {
@@ -812,7 +777,7 @@ namespace 調劑台管理系統
             LoadingForm.CloseLoadingForm();
             Logger.Log("dialog_HRFID", $"完成 API 寫入與畫面清除");
             drugHFTag_IncomeOutcomeList = null;
-            this.sqL_DataGridView_TagList.ClearGrid();
+            //this.sqL_DataGridView_TagList.ClearGrid();
             showAlert = true;
             this.Close();
         }

@@ -21,11 +21,12 @@ namespace 調劑台管理系統
         public event RJ_Button.MouseDownEventHandler MouseDownEvent_LokcOpen;
         public event RJ_Button.MouseDownEventHandler MouseDownEvent_Ignore;
         public bool IgnoreVisible = false;
-
+        public string tts_content = "";
         private MyThread myThread = new MyThread();
-        public Dialog_收支異常提示()
+        public Dialog_收支異常提示(string tts_content)
         {
             InitializeComponent();
+            this.tts_content = tts_content;
             this.Load += Dialog_收支異常提示_Load;
             this.FormClosing += Dialog_收支異常提示_FormClosing;
         }
@@ -47,7 +48,15 @@ namespace 調劑台管理系統
         }
         public void sub_program()
         {
-            Voice.MediaPlay($@"{Main_Form.currentDirectory}\alarm.wav");
+            if(tts_content.StringIsEmpty())
+            {
+                Voice.MediaPlay($@"{Main_Form.currentDirectory}\alarm.wav");
+            }
+            else
+            {
+                Voice.PlayGoogleTTS(tts_content);
+            }
+        
         }
         private void RJ_Button_跳過_MouseDownEvent(MouseEventArgs mevent)
         {

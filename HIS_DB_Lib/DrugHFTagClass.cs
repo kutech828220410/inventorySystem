@@ -42,7 +42,8 @@ namespace HIS_DB_Lib
         出庫註記,
         進入儲位,
         離開儲位,
-        已重置
+        已重置,
+        已銷毀,
     }
     public class DrugHFTagStatusSummaryByCode
     {
@@ -163,7 +164,38 @@ namespace HIS_DB_Lib
             DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
+        static public List<DrugHFTagClass> set_tag_broken(string API_Server, DrugHFTagClass DrugHFTagClass)
+        {
+            var (code, result, list) = set_tag_broken_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            return list;
+        }
+        static public List<DrugHFTagClass> set_tag_broken(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            var (code, result, list) = set_tag_broken_full(API_Server, DrugHFTagClasses);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) set_tag_broken_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/set_tag_broken";
 
+            returnData returnData = new returnData();
+            returnData.Data = DrugHFTagClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
 
         static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, string tagSN)
         {

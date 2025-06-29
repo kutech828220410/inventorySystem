@@ -313,6 +313,8 @@ namespace 調劑台管理系統
             try
             {
                 Dialog_收支異常提示.CloseAllDialog();
+                List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
+                List<takeMedicineStackClass> takeMedicineStackClasses_org = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
 
                 List<object[]> list_TagList = this.sqL_DataGridView_TagList.GetAllRows();
                 List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
@@ -357,7 +359,7 @@ namespace 調劑台管理系統
                 if (數量異常)
                 {
                     Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] 偵測到數量異常，請確認標籤數量是否正確");
-                    Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示();
+                    Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示($"{takeMedicineStackClasses_org[0].操作人},數量異常,請再次確認");
                     dialog_收支異常提示.IgnoreVisible = hasRetriedConfirmation;
                     dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                     dialog_收支異常提示.ShowDialog();
@@ -422,8 +424,7 @@ namespace 調劑台管理系統
                         sb.AppendLine(new string('-', 30));
                     }
 
-                    List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
-                    List<takeMedicineStackClass> takeMedicineStackClasses_org = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+              
 
                     foreach (var stock in stockClasses)
                     {

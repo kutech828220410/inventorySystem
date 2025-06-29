@@ -815,7 +815,7 @@ namespace HIS_WebApi._API_AI
                 if (suspiciousRxLog == null)
                 {
                     returnData.Url = url;
-                    returnData.Data = result;
+                    returnData.Data = suspiciousRxLoges;
                     returnData.Code = -200;
                     returnData.Result = $"MEDGPT呼叫失敗";
                     Logger.Log("suspiciousRxLog", returnData.JsonSerializationt(true));

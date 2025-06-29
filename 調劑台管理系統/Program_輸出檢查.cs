@@ -580,6 +580,18 @@ namespace 調劑台管理系統
                             break;
                         }
                     }
+                    else
+                    {
+                        if (輸出狀態 == true.ToString())
+                        {
+                            this.flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
+                            if (輸出位置 != "") this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
+                            list_locker_table_value_buf[i][(int)enum_lockerIndex.輸出狀態] = false.ToString();
+                            list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[i]);
+
+                            break;
+                        }
+                    }
                   
                 }
             }
