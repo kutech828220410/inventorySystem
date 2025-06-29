@@ -1228,14 +1228,22 @@ namespace HIS_WebApi
                 {
                     //取得處方資料
                     List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                    settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                    settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                    settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
+
 
                     List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, GUID);
                     sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                    if (settingPage.設定值 == true.ToString())
+                    
+                    if (settingPage_vaildOrder.設定值 == true.ToString())
                     {
-                        sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                        sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains("DC") == false).ToList();
                     }
+                    else
+                    {
+                        if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                    }
+
                     str_result_temp += $"取得處方資料 , {myTimerBasic}ms \n";
                 })));
                 Task.WhenAll(tasks).Wait();
@@ -1700,6 +1708,8 @@ namespace HIS_WebApi
                             string GUID合併 = string.Join(";", grouped.Select(x => x.GUID));
                             first.GUID = GUID合併;
                             first.數量 = 數量.ToString();
+                            if (grouped.Count() > 1 ) first.狀態 = $"異動";
+
                             return first;
                         }).ToList();
                         item.處方 = medCpoeClasses;
@@ -1890,6 +1900,7 @@ namespace HIS_WebApi
                             medCpoeClass first = grouped.First();
                             double 數量 = grouped.Sum(g => g.數量.StringToDouble());
                             string GUID合併 = string.Join(";", grouped.Select(x => x.GUID));
+                            if (grouped.Count() > 1) first.狀態 = $"異動";
                             first.GUID = GUID合併;
                             first.數量 = 數量.ToString();
                             return first;
@@ -1902,7 +1913,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = patientInfoClasses;
-                returnData.Result = $"取得{藥局} {護理站} 共{patientInfoClasses.Count}床 未調劑";
+                returnData.Result = $"取得{藥局} {護理站} 共{patientInfoClasses.Count}床 未覆核";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -3318,7 +3329,7 @@ namespace HIS_WebApi
                                 double 數量總和 = grouped.Sum(x => x.數量.StringToDouble());
                                 string guid合併 = string.Join(";", grouped.Select(x => x.GUID));
                                 string 數量 = 數量總和.ToString();
-                                if (數量總和 > 0) 數量 = $"+{數量總和.ToString()}";
+                                if (grouped.Count() > 1 & 數量總和 > 0) 數量 = $"+{數量總和.ToString()}";
                                 return new bedListClass
                                 {
                                     GUID = guid合併,
