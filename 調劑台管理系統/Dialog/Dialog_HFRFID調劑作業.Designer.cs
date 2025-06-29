@@ -35,9 +35,14 @@ namespace 調劑台管理系統
             this.rJ_Button_取消 = new MyUI.RJ_Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
-            this.sqL_DataGridView_TagList = new SQLUI.SQL_DataGridView();
+            this.rJ_Pannel3 = new MyUI.RJ_Pannel();
+            this.rJ_Lable_應收入 = new MyUI.RJ_Lable();
+            this.rJ_Lable_應收入_title = new MyUI.RJ_Lable();
+            this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
+            this.rJ_Lable2 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.rJ_Pannel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // rJ_Pannel2
@@ -119,7 +124,7 @@ namespace 調劑台管理系統
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.rJ_Button_確認);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(4, 855);
+            this.panel2.Location = new System.Drawing.Point(4, 289);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1249, 68);
             this.panel2.TabIndex = 158;
@@ -198,63 +203,115 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
             // 
-            // sqL_DataGridView_TagList
+            // rJ_Pannel3
             // 
-            this.sqL_DataGridView_TagList.AutoSelectToDeep = false;
-            this.sqL_DataGridView_TagList.backColor = System.Drawing.Color.Gainsboro;
-            this.sqL_DataGridView_TagList.BorderColor = System.Drawing.Color.Transparent;
-            this.sqL_DataGridView_TagList.BorderRadius = 0;
-            this.sqL_DataGridView_TagList.BorderSize = 0;
-            this.sqL_DataGridView_TagList.CellBorderColor = System.Drawing.Color.Gainsboro;
-            this.sqL_DataGridView_TagList.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_TagList.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_TagList.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_TagList.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_TagList.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_TagList.columnHeaderBackColor = System.Drawing.Color.DarkGray;
-            this.sqL_DataGridView_TagList.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_TagList.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_TagList.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_TagList.columnHeadersHeight = 40;
-            this.sqL_DataGridView_TagList.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.sqL_DataGridView_TagList.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet;
-            this.sqL_DataGridView_TagList.DataKeyEnable = false;
-            this.sqL_DataGridView_TagList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_TagList.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_TagList.ImageBox = false;
-            this.sqL_DataGridView_TagList.Location = new System.Drawing.Point(4, 161);
-            this.sqL_DataGridView_TagList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.sqL_DataGridView_TagList.Name = "sqL_DataGridView_TagList";
-            this.sqL_DataGridView_TagList.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_TagList.Password = "user82822040";
-            this.sqL_DataGridView_TagList.Port = ((uint)(3306u));
-            this.sqL_DataGridView_TagList.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_TagList.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_TagList.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_TagList.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_TagList.RowsColor = System.Drawing.SystemColors.Window;
-            this.sqL_DataGridView_TagList.RowsHeight = 40;
-            this.sqL_DataGridView_TagList.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_TagList.selectedBorderSize = 2;
-            this.sqL_DataGridView_TagList.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_TagList.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_TagList.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_TagList.Server = "127.0.0.0";
-            this.sqL_DataGridView_TagList.Size = new System.Drawing.Size(1249, 694);
-            this.sqL_DataGridView_TagList.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_TagList.TabIndex = 159;
-            this.sqL_DataGridView_TagList.UserName = "root";
-            this.sqL_DataGridView_TagList.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_TagList.可選擇多列 = false;
-            this.sqL_DataGridView_TagList.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_TagList.自動換行 = true;
-            this.sqL_DataGridView_TagList.表單字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_TagList.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_TagList.顯示CheckBox = false;
-            this.sqL_DataGridView_TagList.顯示首列 = true;
-            this.sqL_DataGridView_TagList.顯示首行 = true;
-            this.sqL_DataGridView_TagList.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_TagList.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.rJ_Pannel3.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel3.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Pannel3.BorderColor = System.Drawing.Color.DarkGray;
+            this.rJ_Pannel3.BorderRadius = 10;
+            this.rJ_Pannel3.BorderSize = 2;
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_應收入);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_應收入_title);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable_藥名);
+            this.rJ_Pannel3.Controls.Add(this.rJ_Lable2);
+            this.rJ_Pannel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Pannel3.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel3.IsSelected = false;
+            this.rJ_Pannel3.Location = new System.Drawing.Point(4, 161);
+            this.rJ_Pannel3.Name = "rJ_Pannel3";
+            this.rJ_Pannel3.Padding = new System.Windows.Forms.Padding(10);
+            this.rJ_Pannel3.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel3.ShadowSize = 0;
+            this.rJ_Pannel3.Size = new System.Drawing.Size(1249, 128);
+            this.rJ_Pannel3.TabIndex = 159;
+            // 
+            // rJ_Lable_應收入
+            // 
+            this.rJ_Lable_應收入.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_應收入.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_應收入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_應收入.BorderRadius = 5;
+            this.rJ_Lable_應收入.BorderSize = 0;
+            this.rJ_Lable_應收入.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_應收入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_應收入.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_應收入.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_應收入.GUID = "";
+            this.rJ_Lable_應收入.Location = new System.Drawing.Point(944, 10);
+            this.rJ_Lable_應收入.Name = "rJ_Lable_應收入";
+            this.rJ_Lable_應收入.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_應收入.ShadowSize = 0;
+            this.rJ_Lable_應收入.Size = new System.Drawing.Size(82, 108);
+            this.rJ_Lable_應收入.TabIndex = 162;
+            this.rJ_Lable_應收入.Text = "----";
+            this.rJ_Lable_應收入.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_應收入.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable_應收入_title
+            // 
+            this.rJ_Lable_應收入_title.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_應收入_title.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_應收入_title.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_應收入_title.BorderRadius = 5;
+            this.rJ_Lable_應收入_title.BorderSize = 0;
+            this.rJ_Lable_應收入_title.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_應收入_title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_應收入_title.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_應收入_title.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_應收入_title.GUID = "";
+            this.rJ_Lable_應收入_title.Location = new System.Drawing.Point(839, 10);
+            this.rJ_Lable_應收入_title.Name = "rJ_Lable_應收入_title";
+            this.rJ_Lable_應收入_title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_應收入_title.ShadowSize = 0;
+            this.rJ_Lable_應收入_title.Size = new System.Drawing.Size(105, 108);
+            this.rJ_Lable_應收入_title.TabIndex = 161;
+            this.rJ_Lable_應收入_title.Text = "應收:";
+            this.rJ_Lable_應收入_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_應收入_title.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable_藥名
+            // 
+            this.rJ_Lable_藥名.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_藥名.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable_藥名.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_藥名.BorderRadius = 5;
+            this.rJ_Lable_藥名.BorderSize = 0;
+            this.rJ_Lable_藥名.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable_藥名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_藥名.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_藥名.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_藥名.GUID = "";
+            this.rJ_Lable_藥名.Location = new System.Drawing.Point(113, 10);
+            this.rJ_Lable_藥名.Name = "rJ_Lable_藥名";
+            this.rJ_Lable_藥名.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_藥名.ShadowSize = 0;
+            this.rJ_Lable_藥名.Size = new System.Drawing.Size(726, 108);
+            this.rJ_Lable_藥名.TabIndex = 160;
+            this.rJ_Lable_藥名.Text = "--------------------------";
+            this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_藥名.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Lable2
+            // 
+            this.rJ_Lable2.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable2.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable2.BorderRadius = 5;
+            this.rJ_Lable2.BorderSize = 0;
+            this.rJ_Lable2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable2.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable2.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable2.GUID = "";
+            this.rJ_Lable2.Location = new System.Drawing.Point(10, 10);
+            this.rJ_Lable2.Name = "rJ_Lable2";
+            this.rJ_Lable2.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable2.ShadowSize = 0;
+            this.rJ_Lable2.Size = new System.Drawing.Size(103, 108);
+            this.rJ_Lable2.TabIndex = 159;
+            this.rJ_Lable2.Text = "藥名:";
+            this.rJ_Lable2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable2.TextColor = System.Drawing.Color.Black;
             // 
             // Dialog_HFRFID調劑作業
             // 
@@ -262,10 +319,10 @@ namespace 調劑台管理系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CaptionHeight = 40;
-            this.ClientSize = new System.Drawing.Size(1257, 927);
+            this.ClientSize = new System.Drawing.Size(1257, 361);
             this.CloseBoxSize = new System.Drawing.Size(40, 40);
             this.ControlBox = true;
-            this.Controls.Add(this.sqL_DataGridView_TagList);
+            this.Controls.Add(this.rJ_Pannel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.rJ_Pannel2);
             this.MaximizeBox = false;
@@ -275,6 +332,7 @@ namespace 調劑台管理系統
             this.Text = "高頻RFID調劑作業";
             this.rJ_Pannel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.rJ_Pannel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -286,7 +344,11 @@ namespace 調劑台管理系統
         private MyUI.RJ_Button rJ_Button_取消;
         private System.Windows.Forms.Panel panel3;
         private MyUI.RJ_Button rJ_Button_確認;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_TagList;
         private MyUI.PLC_RJ_Button plC_RJ_Button_解鎖;
+        private MyUI.RJ_Pannel rJ_Pannel3;
+        private MyUI.RJ_Lable rJ_Lable_應收入;
+        private MyUI.RJ_Lable rJ_Lable_應收入_title;
+        private MyUI.RJ_Lable rJ_Lable_藥名;
+        private MyUI.RJ_Lable rJ_Lable2;
     }
 }

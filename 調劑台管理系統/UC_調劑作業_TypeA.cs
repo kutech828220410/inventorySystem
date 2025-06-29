@@ -1349,7 +1349,7 @@ namespace 調劑台管理系統
             }
         }
         private void SqL_DataGridView_領藥內容_DataGridClearGridEvent()
-        {
+        { 
             Function_調劑作業_醫令資訊更新();
         }
         private void SqL_DataGridView_領藥內容_RowEnterEvent(object[] RowValue)
