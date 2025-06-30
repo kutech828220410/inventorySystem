@@ -651,7 +651,6 @@ namespace HIS_DB_Lib
         }
 
 
-
         static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime dateTime)
         {
 
@@ -795,12 +794,12 @@ namespace HIS_DB_Lib
             List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return OrderClasses;
         }
+
         static public List<OrderClass> get_by_nursingstation_day(string API_Server, string station_code, DateTime dateTime)
         {
             var (code, result, list) = get_by_nursingstation_day_full(API_Server, station_code, dateTime);
             return list;
         }
-
         static public (int code, string result, List<OrderClass>) get_by_nursingstation_day_full(string API_Server, string station_code, DateTime dateTime)
         {
 
@@ -825,6 +824,43 @@ namespace HIS_DB_Lib
             List<OrderClass> orderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
             return (returnData_out.Code, returnData_out.Result, orderClasses);
         }
+
+        /// <summary>
+        /// 呼叫 API 以日期取得批次領藥醫令 (簡化回傳)
+        /// </summary>
+        static public List<OrderClass> get_batch_order_by_day(string API_Server, DateTime dateTime)
+        {
+            var (code, result, list) = get_batch_order_by_day_full(API_Server, dateTime);
+            return list;
+        }
+
+        /// <summary>
+        /// 呼叫 API 以日期取得批次領藥醫令 (完整回傳包含狀態碼與結果訊息)
+        /// </summary>
+        static public (int code, string result, List<OrderClass>) get_batch_order_by_day_full(string API_Server, DateTime dateTime)
+        {
+            string url = $"{API_Server}/api/order/get_batch_order_by_day";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime.ToDateString());
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> orderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return (returnData_out.Code, returnData_out.Result, orderClasses);
+        }
+
 
         static public void updete_by_guid(string API_Server, OrderClass OrderClass)
         {

@@ -40,8 +40,8 @@ namespace 調劑台管理系統
             庫存,
             [Description("實際庫存,VARCHAR,300,NONE")]
             實際庫存,
-            [Description("異常值,VARCHAR,300,NONE")]
-            異常值,
+            [Description("異常事件,VARCHAR,300,NONE")]
+            異常事件,
             [Description("Value,VARCHAR,300,NONE")]
             Value,
         }
@@ -64,14 +64,14 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Init(table);
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnVisible(false, new enum_收支作業_單品入庫_儲位搜尋().GetEnumNames());
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品碼);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位名稱);
             //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位型式);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
             if (RfidReaderEnable)
             {
-                this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.實際庫存);
-                this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.異常值);
+                this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.實際庫存);
+                //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.異常事件);
                 sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("理論庫存", enum_收支作業_單品入庫_儲位搜尋.庫存);
                 this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.Texts = "自動盤點";
                 this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.OFF_文字顏色 = Color.Yellow;
@@ -133,7 +133,7 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_收支作業_RFID出庫.MouseDownEvent += PlC_RJ_Button_收支作業_RFID出庫_MouseDownEvent;
             this.plC_RJ_Button_收支作業_RFID入庫.MouseDownEvent += PlC_RJ_Button_收支作業_RFID入庫_MouseDownEvent;
-            this.plC_RJ_Button_收支作業_RFID盤點.MouseDownEvent += PlC_RJ_Button_收支作業_RFID盤點_MouseDownEvent;
+            this.plC_RJ_Button_收支作業_RFID清點.MouseDownEvent += PlC_RJ_Button_收支作業_RFID清點_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
@@ -551,10 +551,18 @@ namespace 調劑台管理系統
                 List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
                 List<StockClass> stockClasses = drugHFTagClasses.GetStockClasses();
 
+                List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
+                Dictionary<string, List<medRecheckLogClass>> keyValuePairs_medRecheckLogClass = medRecheckLogClasses.CoverToDictionaryBy_Code();
+                List<medRecheckLogClass> medRecheckLogClasses_buf = new List<medRecheckLogClass>();
+
                 List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
                 for (int i = 0; i < RowsList.Count; i++)
                 {
                     string code = RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼].ObjectToString();
+                    string name = RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱].ObjectToString();
+                    string storageName = RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.儲位名稱].ObjectToString();
+                    string ip = RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.IP].ObjectToString();
+
                     var drugHFTagClasses_buf = (from temp in drugHFTagClasses
                                                 where temp.藥碼 == code
                                                 where uids.Contains(temp.TagSN)
@@ -567,9 +575,13 @@ namespace 調劑台管理系統
                     }
 
                     RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.實際庫存] = qty.ToString();
+                    int abnormalCount = keyValuePairs_medRecheckLogClass.SortDictionaryBy_Code(code).Count;
+                    RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.異常事件] = abnormalCount;
+
+                    Console.WriteLine($"[處理 {i + 1}/{RowsList.Count}] 藥碼: {code}, 藥名: {name}, 儲位: {storageName}, IP: {ip}, 實際庫存: {qty}, 異常事件: {abnormalCount}");
                 }
 
-                // 分段排序：實際庫存≠庫存 → 異常值有資料 → 其他
+                // 分段排序：實際庫存≠庫存 → 異常事件有資料 → 其他
                 var list_實際庫存異常 = RowsList.Where(row =>
                 {
                     string 庫存 = row[(int)enum_收支作業_單品入庫_儲位搜尋.庫存].ObjectToString();
@@ -577,24 +589,23 @@ namespace 調劑台管理系統
                     return 庫存 != 實際庫存;
                 }).ToList();
 
-                var list_異常值 = RowsList.Where(row =>
+                var list_異常事件 = RowsList.Where(row =>
                 {
-                    string 異常值 = row[(int)enum_收支作業_單品入庫_儲位搜尋.異常值].ObjectToString();
-                    return 異常值.StringIsEmpty() == false;
+                    string 異常事件 = row[(int)enum_收支作業_單品入庫_儲位搜尋.異常事件].ObjectToString();
+                    return 異常事件.StringToDouble() > 0;
                 }).Except(list_實際庫存異常).ToList();
 
-                var list_正常 = RowsList.Except(list_實際庫存異常).Except(list_異常值).ToList();
+                var list_正常 = RowsList.Except(list_實際庫存異常).Except(list_異常事件).ToList();
 
                 // 合併排序後結果
                 RowsList = new List<object[]>();
                 RowsList.AddRange(list_實際庫存異常);
-                RowsList.AddRange(list_異常值);
+                RowsList.AddRange(list_異常事件);
                 RowsList.AddRange(list_正常);
 
                 LoadingForm.CloseLoadingForm();
             }
         }
-
         private void SqL_DataGridView_收支作業_單品入庫_儲位搜尋_DataGridRefreshEvent()
         {
             if (RfidReaderEnable)
@@ -603,14 +614,48 @@ namespace 調劑台管理系統
                 {
                     double 庫存 = this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.dataGridView.Rows[i].Cells[(int)enum_收支作業_單品入庫_儲位搜尋.庫存].Value.ToString().StringToDouble();
                     double 實際庫存 = this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.dataGridView.Rows[i].Cells[(int)enum_收支作業_單品入庫_儲位搜尋.實際庫存].Value.ToString().StringToDouble();
+                    double 異常事件 = this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.dataGridView.Rows[i].Cells[(int)enum_收支作業_單品入庫_儲位搜尋.異常事件].Value.ToString().StringToDouble();
                     if (庫存 != 實際庫存)
                     {
                         this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.dataGridView.Rows[i].Cells[(int)enum_收支作業_單品入庫_儲位搜尋.實際庫存].Style.ForeColor = Color.Red;
                     }
+                    if(異常事件 > 0)
+                    {
+                        this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
 
+                    }
                 }
             }
                 
+        }
+
+        private void PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            //if (RfidReaderEnable)
+            //{
+            //    sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid();
+            //}
+
+            List<Device> devices = this.Function_從SQL取得所有儲位();
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < devices.Count; i++)
+            {
+                if (devices[i].Code.StringIsEmpty()) continue;
+                object[] value = new object[new enum_收支作業_單品入庫_儲位搜尋().GetLength()];
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.GUID] = devices[i].GUID;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.IP] = devices[i].IP;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼] = devices[i].Code;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱] = devices[i].Name;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.中文名稱] = devices[i].ChineseName;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位名稱] = devices[i].StorageName;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位型式] = devices[i].DeviceType.GetEnumName();
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.庫存] = devices[i].Inventory;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.Value] = devices[i];
+                list_value.Add(value);
+            }
+
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid(list_value);
+
         }
 
         private void PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(MouseEventArgs mevent)
@@ -656,34 +701,6 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SetSelectRow(list_value[0]);
                 PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(null);
             }
-        }
-        private void PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(MouseEventArgs mevent)
-        {
-            //if (RfidReaderEnable)
-            //{
-            //    sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid();
-            //}
-
-            List<Device> devices = this.Function_從SQL取得所有儲位();
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < devices.Count; i++)
-            {
-                if (devices[i].Code.StringIsEmpty()) continue;
-                object[] value = new object[new enum_收支作業_單品入庫_儲位搜尋().GetLength()];
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.GUID] = devices[i].GUID;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.IP] = devices[i].IP;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼] = devices[i].Code;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱] = devices[i].Name;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.中文名稱] = devices[i].ChineseName;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位名稱] = devices[i].StorageName;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位型式] = devices[i].DeviceType.GetEnumName();
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.庫存] = devices[i].Inventory;
-                value[(int)enum_收支作業_單品入庫_儲位搜尋.Value] = devices[i];
-                list_value.Add(value);
-            }
- 
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid(list_value);
-
         }
         private void PlC_RJ_Button_收支作業_單品入庫_中文名稱搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1011,7 +1028,7 @@ namespace 調劑台管理系統
             if (dialog_收支作業_RFID出入庫.ShowDialog() != DialogResult.Yes) return;
 
         }
-        private void PlC_RJ_Button_收支作業_RFID盤點_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_收支作業_RFID清點_MouseDownEvent(MouseEventArgs mevent)
         {
             
         }

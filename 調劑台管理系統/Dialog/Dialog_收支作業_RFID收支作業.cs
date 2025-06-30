@@ -145,14 +145,14 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_收支清單.Set_ColumnText("未收入", enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 this.sqL_DataGridView_收支清單.Set_ColumnText("已收入", enum_DrugHFTag_IncomeOutcomeList.收支數量);
 
-                rJ_Lable_應收入_title.Text = "應收";
+                rJ_Lable_應收入_title.Text = "收入";
             }
             if (_Import_Export == IncomeOutcomeMode.支出)
             {
                 this.sqL_DataGridView_收支清單.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 this.sqL_DataGridView_收支清單.Set_ColumnText("實際值", enum_DrugHFTag_IncomeOutcomeList.報表數量);
                 dateTimeIntervelPicker_報表時間.Visible = false;
-                rJ_Lable_應收入_title.Text = "應出";
+                rJ_Lable_應收入_title.Text = "支出";
             }
             this.rJ_Button_選擇.MouseDownEvent += RJ_Button_選擇_MouseDownEvent;
             this.plC_RJ_Button_解鎖.MouseDownEvent += PlC_RJ_Button_解鎖_MouseDownEvent;

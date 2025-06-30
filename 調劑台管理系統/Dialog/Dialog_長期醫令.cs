@@ -60,15 +60,26 @@ namespace 調劑台管理系統
         {
             this.sqL_DataGridView_護理站列表.RowsHeight = 40;
             this.sqL_DataGridView_護理站列表.Init(new Table(new enum_nursingStation()));
-            this.sqL_DataGridView_護理站列表.Set_ColumnVisible(false, new enum_nursingStation().GetEnumNames());
-            this.sqL_DataGridView_護理站列表.Set_ColumnWidth(100, enum_nursingStation.代碼);
-            this.sqL_DataGridView_護理站列表.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_nursingStation.名稱);
-            this.sqL_DataGridView_護理站列表.RowEnterEvent += SqL_DataGridView_護理站列表_RowEnterEvent;
-            this.sqL_DataGridView_護理站列表.RowClickEvent += SqL_DataGridView_護理站列表_RowClickEvent;
+            if (Main_Form.PLC_Device_批次領藥_藥品總量調劑.Bool == false)
+            {
+                this.sqL_DataGridView_護理站列表.Set_ColumnVisible(false, new enum_nursingStation().GetEnumNames());
+                this.sqL_DataGridView_護理站列表.Set_ColumnWidth(100, enum_nursingStation.代碼);
+                this.sqL_DataGridView_護理站列表.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_nursingStation.名稱);
+                this.sqL_DataGridView_護理站列表.RowEnterEvent += SqL_DataGridView_護理站列表_RowEnterEvent;
+                this.sqL_DataGridView_護理站列表.RowClickEvent += SqL_DataGridView_護理站列表_RowClickEvent;
+                List<nursingStationClass> nursingStationClasses = nursingStationClass.get_all(Main_Form.API_Server);
+                List<object[]> list_nursingStation = nursingStationClasses.ClassToSQL<nursingStationClass, enum_nursingStation>();
+                this.sqL_DataGridView_護理站列表.RefreshGrid(list_nursingStation);
+            }
+            else
+            {
+                checkBox_管1.Checked = true;
+                checkBox_管2.Checked = true;
+                checkBox_管3.Checked = true;
+                checkBox_管4.Checked = true;
+                this.sqL_DataGridView_護理站列表.Visible = false;
+            }
 
-            List<nursingStationClass> nursingStationClasses = nursingStationClass.get_all(Main_Form.API_Server);
-            List<object[]> list_nursingStation = nursingStationClasses.ClassToSQL<nursingStationClass, enum_nursingStation>();
-            this.sqL_DataGridView_護理站列表.RefreshGrid(list_nursingStation);
 
             this.sqL_DataGridView_用藥資訊.RowsHeight = 40;
             this.sqL_DataGridView_用藥資訊.Init(new Table(new enum_用藥資訊_總量()));
@@ -94,15 +105,25 @@ namespace 調劑台管理系統
         }
         private void sub_program()
         {
-            List<object[]> list_護理站列表 = sqL_DataGridView_護理站列表.Get_All_Select_RowsValues();
-            if (list_護理站列表.Count == 0) return;
-            object[] RowValue = list_護理站列表[0];
-            string 護理站代碼 = RowValue[(int)enum_nursingStation.代碼].ObjectToString();
+
             try
             {
-                //LoadingForm.ShowLoadingForm();
                 List<object[]> list_value = new List<object[]>();
-                List<OrderClass> orderClasses = OrderClass.get_by_nursingstation_day(Main_Form.API_Server, 護理站代碼, rJ_DatePicker_日期.Value);
+                List<OrderClass> orderClasses = new List<OrderClass>();
+                //LoadingForm.ShowLoadingForm();
+                if (Main_Form.PLC_Device_批次領藥_藥品總量調劑.Bool == false)
+                {
+                    List<object[]> list_護理站列表 = sqL_DataGridView_護理站列表.Get_All_Select_RowsValues();
+                    if (list_護理站列表.Count == 0) return;
+                    object[] RowValue = list_護理站列表[0];
+                    string 護理站代碼 = RowValue[(int)enum_nursingStation.代碼].ObjectToString();
+
+                    orderClasses = OrderClass.get_by_nursingstation_day(Main_Form.API_Server, 護理站代碼, rJ_DatePicker_日期.Value);
+                }
+                else
+                {
+                    orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
+                }
                 Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
                 foreach (string key in keyValuePairs_order.Keys)
                 {
@@ -170,16 +191,29 @@ namespace 調劑台管理系統
 
         private void RJ_Button_批次調劑_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_護理站列表 = sqL_DataGridView_護理站列表.Get_All_Select_RowsValues();
-            if (list_護理站列表.Count == 0)
-            {
-                MyMessageBox.ShowDialog("未選取護理站");
-                return;
-            }
-            string 護理站代碼 = list_護理站列表[0][(int)enum_nursingStation.代碼].ObjectToString();
-            string 護理站名稱 = list_護理站列表[0][(int)enum_nursingStation.名稱].ObjectToString();
-            List<OrderClass> orderClasses = OrderClass.get_by_nursingstation_day(Main_Form.API_Server, 護理站代碼, rJ_DatePicker_日期.Value);
+            List<OrderClass> orderClasses = new List<OrderClass>();
             List<OrderClass> orderClasse_buf = new List<OrderClass>();
+            string 護理站代碼 = "";
+            string 護理站名稱 = "";
+
+            if (Main_Form.PLC_Device_批次領藥_藥品總量調劑.Bool == false)
+            {
+                List<object[]> list_護理站列表 = sqL_DataGridView_護理站列表.Get_All_Select_RowsValues();
+                if (list_護理站列表.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("未選取護理站");
+                    return;
+                }
+                護理站代碼 = list_護理站列表[0][(int)enum_nursingStation.代碼].ObjectToString();
+                護理站名稱 = list_護理站列表[0][(int)enum_nursingStation.名稱].ObjectToString();
+                orderClasses = OrderClass.get_by_nursingstation_day(Main_Form.API_Server, 護理站代碼, rJ_DatePicker_日期.Value);
+            }
+            else
+            {
+                護理站代碼 = "批次領藥";
+                orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
+            }
+       
             Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
             foreach (string key in keyValuePairs_order.Keys)
             {
@@ -298,7 +332,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.ID = ID;
                 takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.總異動量 = orderClass.交易量;
-                takeMedicineStackClass.收支原因 = "UD作業";
+                takeMedicineStackClass.收支原因 = "批領作業";
                 takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
 
 

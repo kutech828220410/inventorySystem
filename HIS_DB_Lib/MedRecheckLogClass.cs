@@ -383,6 +383,53 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result);
         }
 
+        /// <summary>
+        /// 呼叫 API 取得所有未排除盤點異常資料（依發生時間降冪排序）
+        /// </summary>
+        /// <param name="API_Server">API伺服器網址</param>
+        /// <param name="serverName">Server 名稱</param>
+        /// <param name="serverType">Server 類型</param>
+        /// <returns>未排除盤點異常資料</returns>
+        static public List<medRecheckLogClass> get_all_unresolved_data(string API_Server, string serverName, string serverType)
+        {
+            var (code, result, list) = get_all_unresolved_data_full(API_Server, serverName, serverType);
+            return list;
+        }
+        /// <summary>
+        /// 呼叫 API 取得所有未排除盤點異常資料（依發生時間降冪排序，完整回傳）
+        /// </summary>
+        /// <param name="API_Server">API伺服器網址</param>
+        /// <param name="serverName">Server 名稱</param>
+        /// <param name="serverType">Server 類型</param>
+        /// <returns>(狀態碼, 結果訊息, 資料清單)</returns>
+        static public (int code, string result, List<medRecheckLogClass>) get_all_unresolved_data_full(string API_Server, string serverName, string serverType)
+        {
+            string url = $"{API_Server}/api/medRecheckLog/get_all_unresolved_data";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            Console.WriteLine($"{returnData_out}");
+
+            List<medRecheckLogClass> list = returnData_out.Data.ObjToClass<List<medRecheckLogClass>>();
+            return (returnData_out.Code, returnData_out.Result, list);
+        }
+
 
         public class ICP_By_occurrence_time : IComparer<medRecheckLogClass>
         {
@@ -437,7 +484,6 @@ namespace HIS_DB_Lib
         {
             return FilterByStateAndType(list, 狀態, null);
         }
-
         /// <summary>
         /// 只根據發生類別過濾資料。
         /// </summary>
@@ -450,6 +496,36 @@ namespace HIS_DB_Lib
                 .Where(x => x.發生類別 == 類別描述)
                 .ToList();
         }
+
+        static public Dictionary<string, List<medRecheckLogClass>> CoverToDictionaryBy_Code(this List<medRecheckLogClass> medRecheckLogClasses)
+        {
+            Dictionary<string, List<medRecheckLogClass>> dictionary = new Dictionary<string, List<medRecheckLogClass>>();
+
+            foreach (var item in medRecheckLogClasses)
+            {
+                string key = item.藥碼;
+
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                else
+                {
+                    dictionary[key] = new List<medRecheckLogClass> { item };
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<medRecheckLogClass> SortDictionaryBy_Code(this Dictionary<string, List<medRecheckLogClass>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<medRecheckLogClass>();
+        }
+
     }
 
 }

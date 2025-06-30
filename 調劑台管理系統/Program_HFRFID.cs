@@ -46,7 +46,7 @@ namespace 調劑台管理系統
             {
                 plC_RJ_Button_收支作業_RFID入庫.Visible = true;
                 plC_RJ_Button_收支作業_RFID出庫.Visible = true;
-                plC_RJ_Button_收支作業_RFID盤點.Visible = true;
+                plC_RJ_Button_收支作業_RFID清點.Visible = true;
                 //myThread_HFRFID.AutoRun(true);
                 //myThread_HFRFID.Add_Method(Program_HFRFID);
                 //myThread_HFRFID.SetSleepTime(1);

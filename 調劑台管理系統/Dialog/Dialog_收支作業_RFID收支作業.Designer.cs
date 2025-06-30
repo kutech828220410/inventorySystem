@@ -30,6 +30,7 @@
         {
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rJ_Lable_請關門過帳 = new MyUI.RJ_Lable();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
             this.plC_RJ_Button_解鎖 = new MyUI.PLC_RJ_Button();
             this.dateTimeIntervelPicker_報表時間 = new MyUI.DateTimeIntervelPicker();
@@ -45,7 +46,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Button_選擇 = new MyUI.RJ_Button();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
-            this.rJ_Lable_請關門過帳 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.rJ_Pannel3.SuspendLayout();
@@ -85,6 +85,28 @@
             this.panel1.Size = new System.Drawing.Size(838, 114);
             this.panel1.TabIndex = 1;
             // 
+            // rJ_Lable_請關門過帳
+            // 
+            this.rJ_Lable_請關門過帳.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_請關門過帳.BackgroundColor = System.Drawing.Color.Yellow;
+            this.rJ_Lable_請關門過帳.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_請關門過帳.BorderRadius = 12;
+            this.rJ_Lable_請關門過帳.BorderSize = 0;
+            this.rJ_Lable_請關門過帳.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_請關門過帳.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_請關門過帳.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable_請關門過帳.GUID = "";
+            this.rJ_Lable_請關門過帳.Location = new System.Drawing.Point(428, 13);
+            this.rJ_Lable_請關門過帳.Name = "rJ_Lable_請關門過帳";
+            this.rJ_Lable_請關門過帳.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_請關門過帳.ShadowSize = 0;
+            this.rJ_Lable_請關門過帳.Size = new System.Drawing.Size(268, 83);
+            this.rJ_Lable_請關門過帳.TabIndex = 165;
+            this.rJ_Lable_請關門過帳.Text = "請關門過帳";
+            this.rJ_Lable_請關門過帳.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_請關門過帳.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_請關門過帳.Visible = false;
+            // 
             // rJ_Button_確認
             // 
             this.rJ_Button_確認.AutoResetState = false;
@@ -117,7 +139,6 @@
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
             this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
-            this.rJ_Button_確認.Visible = false;
             // 
             // plC_RJ_Button_解鎖
             // 
@@ -486,28 +507,6 @@
             this.rJ_Lable1.Text = "收支清單";
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable1.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable_請關門過帳
-            // 
-            this.rJ_Lable_請關門過帳.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_請關門過帳.BackgroundColor = System.Drawing.Color.Yellow;
-            this.rJ_Lable_請關門過帳.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_請關門過帳.BorderRadius = 12;
-            this.rJ_Lable_請關門過帳.BorderSize = 0;
-            this.rJ_Lable_請關門過帳.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_請關門過帳.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_請關門過帳.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable_請關門過帳.GUID = "";
-            this.rJ_Lable_請關門過帳.Location = new System.Drawing.Point(428, 13);
-            this.rJ_Lable_請關門過帳.Name = "rJ_Lable_請關門過帳";
-            this.rJ_Lable_請關門過帳.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_請關門過帳.ShadowSize = 0;
-            this.rJ_Lable_請關門過帳.Size = new System.Drawing.Size(268, 83);
-            this.rJ_Lable_請關門過帳.TabIndex = 165;
-            this.rJ_Lable_請關門過帳.Text = "請關門過帳";
-            this.rJ_Lable_請關門過帳.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable_請關門過帳.TextColor = System.Drawing.Color.Black;
-            this.rJ_Lable_請關門過帳.Visible = false;
             // 
             // Dialog_收支作業_RFID收支作業
             // 

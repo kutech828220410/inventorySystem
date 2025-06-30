@@ -1264,6 +1264,104 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 以日期取得批次領藥的西藥醫令
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///   "Data": {},
+        ///   "ValueAry": [
+        ///     "日期"
+        ///   ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_batch_order_by_day")]
+        [HttpPost]
+        public string get_batch_order_by_day([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_batch_order_by_day";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為 [日期]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string date = returnData.ValueAry[0];
+
+                if (date.Check_Date_String() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入日期不合法";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "醫囑資料");
+                }
+
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "order_list";
+
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                string cmd = $"SELECT * FROM dbvm.order_list WHERE DATE(開方日期) = '{date}' AND 藥袋類型 = '批次領藥';";
+
+                System.Data.DataTable dataTable = sQLControl_醫令資料.WtrteCommandAndExecuteReader(cmd);
+                List<object[]> list_value_buf = dataTable.DataTableToRowList();
+                List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
+
+                for (int i = 0; i < OrderClasses.Count; i++)
+                {
+                    if (OrderClasses[i].實際調劑量.StringIsInt32() == false) OrderClasses[i].實際調劑量 = "0";
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"取得西藥醫令 {date} 藥袋類型: 批次領藥，共<{OrderClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = OrderClasses;
+
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
+        /// <summary>
         /// 以領藥號和日期取得西藥醫令
         /// </summary>
         /// <remarks>
