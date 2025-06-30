@@ -1101,7 +1101,7 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt(true);
         }
         /// <summary>
-        /// 以合併單號取得合併單資料
+        /// 以合併單號取得合併單覆盤設定資料
         /// </summary>
         /// <remarks>
         /// [必要輸入參數說明]<br/> 
@@ -1120,8 +1120,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [HttpPost("get_by_SN")]
-        public string get_by_SN([FromBody] returnData returnData)
+        [HttpPost("get_setting_by_SN")]
+        public string get_setting_by_SN([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             if (returnData.Value.StringIsEmpty())
@@ -1141,7 +1141,7 @@ namespace HIS_WebApi
             returnData.Data = inv_CombinelistClass;
             returnData.Code = 200;
             returnData.TimeTaken = myTimerBasic.ToString();
-            returnData.Method = "get_inv_by_SN";
+            returnData.Method = "get_setting_by_SN";
 
             returnData.Result = $"成功取得資料";
             return returnData.JsonSerializationt(true);
@@ -1166,8 +1166,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [HttpPost("update_by_SN")]
-        public string update_by_SN([FromBody] returnData returnData)
+        [HttpPost("update_setting_by_SN")]
+        public string update_setting_by_SN([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             if (returnData.Data == null)
@@ -1199,7 +1199,7 @@ namespace HIS_WebApi
             returnData.Data = inv_CombinelistClass;
             returnData.Code = 200;
             returnData.TimeTaken = myTimerBasic.ToString();
-            returnData.Method = "get_inv_by_SN";
+            returnData.Method = "update_setting_by_SN";
 
             returnData.Result = $"成功取得資料";
             return returnData.JsonSerializationt(true);

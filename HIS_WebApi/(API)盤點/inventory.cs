@@ -295,6 +295,96 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 以建表日區間搜尋覆盤單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 起始日期,結束日期 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "2023/10/26,2023/10/27"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+
+        [Route("creat_review_get_by_CT_TIME_ST_END")]
+        [HttpPost]
+        public string creat_review_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                GET_init(returnData);
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+                string[] date_ary = returnData.Value.Split(',');
+                if (date_ary.Length != 2)
+                {
+                    returnData.Code = -5;
+                    returnData.Result = "輸入日期格式錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+                else
+                {
+                    if (!date_ary[0].Check_Date_String() || !date_ary[1].Check_Date_String())
+                    {
+                        returnData.Code = -5;
+                        returnData.Result = "輸入日期格式錯誤!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                DateTime date_st = date_ary[0].StringToDateTime();
+                DateTime date_end = date_ary[1].StringToDateTime();
+                sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+                list_inventory_creat = list_inventory_creat.GetRowsInDateEx((int)enum_盤點單號.建表時間, date_st, date_end);
+                returnData = Function_Get_inventory_creat(sys_serverSettingClasses[0], returnData.TableName, list_inventory_creat, false);
+                List<inventoryClass.creat> creats = returnData.Data.ObjToClass<List<inventoryClass.creat>>();
+                creats = creats.Where(c => c.類型.Contains("覆盤")).ToList();
+                returnData.Data = creats;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "creat_get_by_CT_TIME_ST_END";
+                returnData.Result = $"取得盤點資料成功!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+        /// <summary>
         /// 以建表日搜尋盤點單
         /// </summary>
         /// <remarks>
