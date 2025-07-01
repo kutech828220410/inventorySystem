@@ -414,7 +414,7 @@ namespace HIS_WebApi
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
 
-                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName() && temp.床號.Contains("1RR") == false).ToList();
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
                 sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
@@ -1680,7 +1680,6 @@ namespace HIS_WebApi
         public string get_patient_with_NOdispens_summary([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "med_Cart/get_patient_with_NOdispens_summary";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
@@ -1692,6 +1691,7 @@ namespace HIS_WebApi
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
                 returnData = get_patient_with_NOdispense(returnData).JsonDeserializet<returnData>();
+                returnData.Method = "med_Cart/get_patient_with_NOdispens_summary";
                 if (returnData.Code != 200) return returnData.JsonSerializationt(true);
                 List<patientInfoClass> patientInfoClasses = returnData.Data.ObjToClass<List<patientInfoClass>>();
                 List<Task> tasks = new List<Task>();
@@ -1831,7 +1831,7 @@ namespace HIS_WebApi
 
                 List<Task> tasks = new List<Task>();
                 sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);
-                sql_patinfo = sql_patinfo.Where(temp => temp.覆核狀態.StringIsEmpty() == false && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
+                sql_patinfo = sql_patinfo.Where(temp => temp.覆核狀態.StringIsEmpty() && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
                 foreach (var item in sql_patinfo)
                 {
                     tasks.Add(Task.Run(new Action(delegate
@@ -1843,6 +1843,7 @@ namespace HIS_WebApi
                 }
                 Task.WhenAll(tasks).Wait();
                 sql_patinfo.Sort(new patientInfoClass.ICP_By_bedNum());
+                sql_patinfo = sql_patinfo.Where(item => item.處方.Count > 0).ToList();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_patinfo;
@@ -1874,7 +1875,6 @@ namespace HIS_WebApi
         public string get_patient_with_NOcheck_summary([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "med_Cart/get_patient_with_NOdispens_summary";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
@@ -1886,6 +1886,8 @@ namespace HIS_WebApi
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
                 returnData = get_patient_with_NOcheck(returnData).JsonDeserializet<returnData>();
+                returnData.Method = "med_Cart/get_patient_with_NOcheck_summary";
+
                 if (returnData.Code != 200) return returnData.JsonSerializationt(true);
                 List<patientInfoClass> patientInfoClasses = returnData.Data.ObjToClass<List<patientInfoClass>>();
                 List<Task> tasks = new List<Task>();
@@ -3259,7 +3261,6 @@ namespace HIS_WebApi
         public string get_med_qty_summary([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "med_cart/get_med_qty_summary";
             try
             {
                 if (returnData.ServerType == null)
@@ -3279,6 +3280,7 @@ namespace HIS_WebApi
                 }
                 string 動作 = returnData.ServerType;
                 returnData = get_med_qty(returnData).JsonDeserializet<returnData>();
+                returnData.Method = "med_cart/get_med_qty_summary";
                 if (returnData.Code != 200) return returnData.JsonSerializationt(true);
 
                 List<medCpoeClass> medCpoeClasses = returnData.Data.ObjToClass<List<medCpoeClass>>();
