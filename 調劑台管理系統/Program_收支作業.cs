@@ -503,7 +503,7 @@ namespace 調劑台管理系統
         {
 
         }
-     
+        public static List<string> stocks_uids = new List<string>();
         #endregion
         #region Event
         private void PlC_RJ_Button_收支作業_設定_MouseDownEvent(MouseEventArgs mevent)
@@ -548,14 +548,14 @@ namespace 調劑台管理系統
             if (RfidReaderEnable)
             {
                 LoadingForm.ShowLoadingForm();
-                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
+                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_stockout_tags(Main_Form.API_Server);
                 List<StockClass> stockClasses = drugHFTagClasses.GetStockClasses();
 
                 List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
                 Dictionary<string, List<medRecheckLogClass>> keyValuePairs_medRecheckLogClass = medRecheckLogClasses.CoverToDictionaryBy_Code();
                 List<medRecheckLogClass> medRecheckLogClasses_buf = new List<medRecheckLogClass>();
 
-                List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
+                stocks_uids = Main_Form.ReadAllUIDsOnceOnly();
                 for (int i = 0; i < RowsList.Count; i++)
                 {
                     string code = RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼].ObjectToString();
@@ -565,7 +565,7 @@ namespace 調劑台管理系統
 
                     var drugHFTagClasses_buf = (from temp in drugHFTagClasses
                                                 where temp.藥碼 == code
-                                                where uids.Contains(temp.TagSN)
+                                                where stocks_uids.Contains(temp.TagSN)
                                                 select temp).ToList();
 
                     double qty = 0;
@@ -1030,7 +1030,18 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_收支作業_RFID清點_MouseDownEvent(MouseEventArgs mevent)
         {
-            
+            object[] value = sqL_DataGridView_收支作業_單品入庫_儲位搜尋.GetRowValues();
+            if (value == null)
+            {
+                MyMessageBox.ShowDialog("未選擇儲位!");
+                return;
+            }
+            string drug_code = value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼].ObjectToString();
+            string drug_name = value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱].ObjectToString();
+            Dialog_收支作業_RFID清點作業 dialog_收支作業_RFID清點作業 = new Dialog_收支作業_RFID清點作業(drug_code, drug_name);
+            dialog_收支作業_RFID清點作業.ShowDialog();
+
+            PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(null);
         }
         #endregion
     }

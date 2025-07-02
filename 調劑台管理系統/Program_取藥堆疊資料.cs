@@ -321,7 +321,7 @@ namespace 調劑台管理系統
 
                         Task.Run(new Action(delegate
                         {
-                            Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
+                            Basic.Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
                             MyMessageBox.ShowDialog(msg);
                         }));
 

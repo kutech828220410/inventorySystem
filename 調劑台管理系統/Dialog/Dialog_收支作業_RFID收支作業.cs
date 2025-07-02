@@ -610,11 +610,12 @@ namespace 調劑台管理系統
                 Logger.Log("dialog_HRFID", $"偵測到異常標籤 {errorTags.Count} 筆");
                 驗證失敗 = true;
             }
-
+            bool 品項錯誤 = errorTags.Count > 0;
+            品項錯誤 = false;
             if (驗證失敗)
             {
                 string tts_content = "";
-                if (實際標籤數量 != qty && errorTags.Count > 0)
+                if (實際標籤數量 != qty && 品項錯誤)
                 {
                     tts_content = "數量及品項錯誤,請再次確認";
                 }
@@ -622,7 +623,7 @@ namespace 調劑台管理系統
                 {
                     tts_content = "數量錯誤,請再次確認";
                 }
-                else if (errorTags.Count > 0)
+                else if (品項錯誤)
                 {
                     tts_content = "品項錯誤,請再次確認";
                 }

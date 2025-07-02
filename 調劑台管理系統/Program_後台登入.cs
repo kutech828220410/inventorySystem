@@ -87,7 +87,19 @@ namespace 調劑台管理系統
                 _登入者顏色 = color.ToColorString();
             }
         }
-        private string 登入者藥師證字號 = "";
+        public static string _登入者藥師證字號 = "";
+        private string 登入者藥師證字號
+        {
+            get
+            {
+                return _登入者藥師證字號;
+            }
+            set
+            {
+                _登入者藥師證字號 = value;
+            }
+        }
+
         private List<PermissionsClass> 登入者權限 = new List<PermissionsClass>();
         
         private void Program_後台登入_Init()

@@ -21,6 +21,8 @@ namespace HIS_WebApi
     [ApiController]
     public class APIController : ControllerBase
     {
+        public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
         [Route("IsAlive")]
         [HttpGet()]
         public string Get_IsAlive()
@@ -41,6 +43,30 @@ namespace HIS_WebApi
         {
             return DateTime.Now.ToDateTimeString();
         }
+        [Route("goolge_voice")]
+        [HttpGet()]
+        public string Get_goolge_voice(string text,string lan)
+        {
+            if(lan.StringIsEmpty())
+            {
+                lan = "zh-tw";
+            }
+            string base64 = Basic.Voice.GoogleSpeakerBase64(text, lan);
+            if(ContainerChecker.IsRunningInDocker() == false)
+            {
+                base64 = AudioProcessingLibrary.Voice.PlayBase64Mp3WithFFmpegAndReturnMp3Base64(base64, 1.8F);
+            }
+            return base64;
+           
 
+        
+        }
+        [Route("currentDirectory")]
+        [HttpGet()]
+        public string Get_currentDirectory(string text, string lan)
+        {
+         
+            return currentDirectory;
+        }
     }
 }

@@ -120,7 +120,6 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_main_HRFID", $"[Locker Check] 符合條件，執行 Function_處理RFID確認流程()");
                     Task.Run(new Action(delegate
                     {
-                        System.Threading.Thread.Sleep(1500);
                         RJ_Button_確認_MouseDownEvent(null);
                     }));
 
@@ -284,6 +283,8 @@ namespace 調劑台管理系統
             myThread_HFRFID.Add_Method(Program_HFRFID);
             myThread_HFRFID.SetSleepTime(100);
             myThread_HFRFID.Trigger();
+
+            Main_Form.Function_外門片解鎖();
         }
         private void Dialog_HFRFID調劑作業_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -346,10 +347,13 @@ namespace 調劑台管理系統
 
                 List<object[]> list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
                 List<takeMedicineStackClass> takeMedicineStackClasses_org = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
+
+          
                 List<medRecheckLogClass> errorLogs = new List<medRecheckLogClass>();
                 Dialog_AlarmForm dialog_AlarmForm = null;
                 bool 數量異常 = false;
                 bool 品項錯誤 = (errorTags.Count != 0);
+                品項錯誤 = false;
                 for (int i = 0; i < list_TagList.Count; i++)
                 {
                     string 藥碼 = list_TagList[i][(int)enum_TagList.藥碼].ObjectToString();
@@ -390,7 +394,8 @@ namespace 調劑台管理系統
                             通知註記 = "未通知",
                             通知時間 = DateTime.MinValue.ToDateTimeString(),
                             參數1 = "",
-                            參數2 = ""
+                            參數2 = "",
+                            盤點藥師1 = takeMedicineStackClasses_org[0].操作人
                         };
                         errorLogs.Add(qtyLog);
                     }
@@ -416,19 +421,13 @@ namespace 調劑台管理系統
                         通知註記 = "未通知",
                         通知時間 = DateTime.MinValue.ToDateTimeString(),
                         參數1 = tag.TagSN,
-                        參數2 = ""
+                        參數2 = "",
+                        盤點藥師1 = takeMedicineStackClasses_org[0].操作人
                     };
                     errorLogs.Add(log);
                 }
 
-                if (數量異常)
-                {
-             
-
-
-                
-
-                }
+          
                 if(數量異常 || 品項錯誤)
                 {
                     string tts_content = "";
@@ -465,7 +464,7 @@ namespace 調劑台管理系統
 
                 hasRetriedConfirmation = false;
                 StringBuilder sb = new StringBuilder();
-                List<object[]> list_drugHFTagClasses = DrugHFTags.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
+                List<object[]> list_drugHFTagClasses = tagDisplayList.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>();
                 List<DrugHFTagClass> drugHFTagClasses_replace = new List<DrugHFTagClass>();
 
                 takeMedicineStackClasses.Clear();

@@ -1423,8 +1423,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog(ex.Message);
             }
         }
-
-       
+   
         private void PlC_Button_退_ValueChangeEvent(bool Value)
         {
             this.plC_Button_領.Bool = !Value;
@@ -1536,7 +1535,8 @@ namespace 調劑台管理系統
             }));
             Main_Form.commonSapceClasses = Main_Form.Function_取得共用區所有儲位();
             //MySerialPort_Scanner01.ClearReadByte();
-            Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
+            //Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
+            $"{登入者姓名},登入成功".PlayGooleVoiceAsync(Main_Form.API_Server);
 
             醫令條碼 = "";
         }

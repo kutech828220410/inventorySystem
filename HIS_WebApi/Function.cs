@@ -29,6 +29,7 @@ namespace HIS_WebApi
             sys_serverSettingClass sys_serverSettingClass = serverSetting.MyFind(Name, Type, Content).FirstOrDefault();
             if (sys_serverSettingClass == null)
             {
+                return null;
                 throw new Exception("找無Server資料");
             }
             return sys_serverSettingClass.Server;

@@ -318,6 +318,33 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, drugHFTagClasses);
         }
 
+        static public List<DrugHFTagClass> get_stockout_tags(string API_Server)
+        {
+            var (code, result, list) = get_stockout_tags_full(API_Server);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) get_stockout_tags_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/get_stockout_tags";
+
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            List<DrugHFTagClass> drugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, drugHFTagClasses);
+        }
+
         static public List<DrugHFTagClass> get_latest_stockout_eligible_tags(string API_Server)
         {
             var (code, result, list) = get_latest_stockout_eligible_tags_full(API_Server);
@@ -566,6 +593,35 @@ namespace HIS_DB_Lib
             return tag;
         }
 
+
+        static public Dictionary<string, List<DrugHFTagClass>> CoverToDictionaryBy_Code(this List<DrugHFTagClass> drugHFTagClasses)
+        {
+            Dictionary<string, List<DrugHFTagClass>> dictionary = new Dictionary<string, List<DrugHFTagClass>>();
+
+            foreach (var item in drugHFTagClasses)
+            {
+                string key = item.藥碼;
+
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                else
+                {
+                    dictionary[key] = new List<DrugHFTagClass> { item };
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<DrugHFTagClass> SortDictionaryBy_Code(this Dictionary<string, List<DrugHFTagClass>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<DrugHFTagClass>();
+        }
     }
 
     [EnumDescription("DrugHFTag_IncomeOutcomeList")]

@@ -54,7 +54,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                Voice.PlayGoogleTTS(tts_content);
+                tts_content.PlayGooleVoice(Main_Form.API_Server);
             }
         
         }

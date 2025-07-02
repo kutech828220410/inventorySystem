@@ -524,10 +524,11 @@ namespace 調劑台管理系統
                 transactionsClass.庫存量 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
                 transactionsClass.盤點量 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
                 transactionsClass.操作人 = personPageClass_盤點人員.姓名;
+                transactionsClass.藥師證字號 = personPageClass_盤點人員.藥師證字號;
                 transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
                 transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
                 transactionsClass.操作時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
-
+                transactionsClass.收支原因 = "交班對點";
                 transactionsClass.備註 = 備註;
                 if (transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
 
@@ -584,12 +585,8 @@ namespace 調劑台管理系統
             {
                 Function_寫入交易紀錄("盤點中斷");
                 list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
-                for (int i = 0; i < list_交班對點.Count; i++)
-                {
-                    string 藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
-                    Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
-                }
-              
+
+                Main_Form.Function_全部滅燈();
             }
             else
             {

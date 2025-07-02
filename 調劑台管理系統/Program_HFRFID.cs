@@ -180,7 +180,7 @@ namespace 調劑台管理系統
 
                     if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
                     {
-                        for (int i = 3; i <= 4; i++)
+                        for (int i = 3; i <= 6; i++)
                         {
                             rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
                             reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);

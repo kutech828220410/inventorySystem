@@ -999,3 +999,9 @@ C:\Users\User'\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pd
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.Up2Date
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.CopyComplete
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\AudioProcessingLibrary.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NAudio.WinMM.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NAudio.Core.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NAudio.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Win32.Registry.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NAudio.Wasapi.dll

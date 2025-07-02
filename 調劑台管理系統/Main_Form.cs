@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07014")]
-[assembly: AssemblyFileVersion("1.0.25.07014")]
+[assembly: AssemblyVersion("1.0.25.07028")]
+[assembly: AssemblyFileVersion("1.0.25.07028")]
 namespace 調劑台管理系統
 {
 
@@ -174,6 +174,7 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
         }
+
         private void LoadDBConfig()
         {
 
@@ -619,6 +620,7 @@ namespace 調劑台管理系統
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
+            _storageUI_LCD_114 = this.storageUI_LCD_114;
 
             DateTime dateTime = sys_serverSettingClass.GetServerTime(API_Server);
             Console.WriteLine($"從伺服器取得時間: {dateTime:yyyy/MM/dd HH:mm:ss}");

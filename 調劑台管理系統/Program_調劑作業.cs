@@ -955,6 +955,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                    takeMedicineStackClass.收支原因 = $"手動{(動作 == enum_交易記錄查詢動作.手輸領藥?"領":"退")}藥";
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.ID = ID;
 

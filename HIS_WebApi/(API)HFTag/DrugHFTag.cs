@@ -502,6 +502,61 @@ namespace HIS_WebApi
         }
 
         /// <summary>
+        /// 取得所有Tag中最新一筆且狀態為「出庫註記」的標籤資料
+        /// </summary>
+        [Route("get_stockout_tags")]
+        [HttpPost]
+        public string get_stockout_tag([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_stockout_tags";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
+                if (settings.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                var db = settings[0];
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
+
+                string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
+                string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
+                string statusCol = enum_DrugHFTag.狀態.GetEnumName();
+
+                string query = $@"
+            SELECT * FROM {db.DBName}.{TableName} t1
+            WHERE t1.{timeCol} = (
+                  SELECT MAX(t2.{timeCol})
+                  FROM {db.DBName}.{TableName} t2
+                  WHERE t2.{tagCol} = t1.{tagCol}
+              )";
+
+                var resultTable = sql.WtrteCommandAndExecuteReader(query);
+                var resultList = resultTable.DataTableToRowList().SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+
+                returnData.Code = 200;
+                returnData.Data = resultList;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得最新標籤資料成功，共<{resultList.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception: {ex.Message}";
+                return returnData.JsonSerializationt();
+            }
+        }
+
+
+        /// <summary>
         /// 取得所有Tag中最新一筆且「可入庫」的標籤資料（狀態為「出庫註記」或「已重置」且曾為「已重置」）
         /// </summary>
         [Route("get_latest_stockin_eligible_tags")]

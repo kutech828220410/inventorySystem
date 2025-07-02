@@ -43,6 +43,9 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioProcessingLibrary">
+      <HintPath>..\0.DLL\AudioProcessingLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Basic">
       <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
