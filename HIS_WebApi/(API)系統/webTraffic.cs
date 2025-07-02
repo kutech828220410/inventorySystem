@@ -86,9 +86,10 @@ namespace HIS_WebApi._API_系統
                 }
                 else
                 {
+
                     input_webTrafficClass.GUID = webTrafficClasses[0].GUID;
                     input_webTrafficClass.加入時間 = DateTime.Now.ToDateTimeString();
-
+                    input_webTrafficClass.裝置IP = 裝置IP;
                     object[] update = input_webTrafficClass.ClassToSQL<webTrafficClass, enum_webTraffic>();
                     sQLControl.UpdateByDefulteExtra(null, update);
                 }
@@ -142,31 +143,42 @@ namespace HIS_WebApi._API_系統
                     returnData.Result = $"傳入returnData.ValueAry資料為空值";
                     return returnData.JsonSerializationt();
                 }
-                if (returnData.ValueAry.Count != 3)
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"傳入returnData.ValueAry資料應該為 [\"頁面\",\"參數\",\"秒數\"]";
+                    returnData.Result = $"傳入returnData.ValueAry資料應該為 [\"頁面\",\"秒數\"]";
                     return returnData.JsonSerializationt();
                 }
                 string 頁面 = returnData.ValueAry[0];
-                string 參數 = returnData.ValueAry[1];
-                string 秒數 = returnData.ValueAry[2];
+                string 秒數 = returnData.ValueAry[1];
                 double 時間區間 = 秒數.StringToDouble() * -1;
                 string now = DateTime.Now.AddSeconds(時間區間).ToDateTimeString();
 
 
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "webTraffic", UserName, Password, Port, SSLMode);
-                string command = $"SELECT * FROM {DB}.webTraffic WHERE  頁面 = '{頁面}' AND 參數 = '{參數}' AND 加入時間 > '{now}';";
+                string command = $"SELECT * FROM {DB}.webTraffic WHERE  頁面 = '{頁面}' AND 加入時間 > '{now}';";
                 DataTable dataTable_webTraffic = sQLControl.WtrteCommandAndExecuteReader(command);
                 List<object[]> list_webTraffic = dataTable_webTraffic.DataTableToRowList();
 
                 List<webTrafficClass> webTrafficClasses = list_webTraffic.SQLToClass<webTrafficClass, enum_webTraffic>();
-               
+                webTrafficClasses = webTrafficClasses
+                    .GroupBy(item => item.參數)
+                    .Select(group => 
+                    {
+                        int qty = group.Count();
+                        webTrafficClass webTrafficClass = group.First();
+                        webTrafficClass.統計 = qty;
+                        webTrafficClass.使用者ID = string.Empty;
+                        webTrafficClass.使用者姓名 = string.Empty;
+                        return webTrafficClass;
+                    }).ToList();
+
+
                 returnData.Code = 200;
-                returnData.Data = webTrafficClasses.Count;
+                returnData.Data = webTrafficClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"{秒數}秒內有{webTrafficClasses.Count}個裝置在頁面";
+                returnData.Result = $"{秒數}秒內有{webTrafficClasses.Count}資料";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

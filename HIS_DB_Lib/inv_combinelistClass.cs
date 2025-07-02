@@ -799,7 +799,52 @@ namespace HIS_DB_Lib
             return inv_Combinelist_review_Classes;
         }
     }
+    public class ScheduledCountClass
+    {
+        /// <summary>
+        /// 藥碼
+        /// </summary>
+        [JsonPropertyName("CODE")]
+        public string 藥碼 { get; set; }
+        /// <summary>
+        /// 料號
+        /// </summary>
+        [JsonPropertyName("SKDIACODE")]
+        public string 料號 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("NAME")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 庫存量
+        /// </summary>
+        [JsonPropertyName("QTY")]
+        public string 庫存量 { get; set; }
+        /// <summary>
+        /// 節存量
+        /// </summary>
+        [JsonPropertyName("INV")]
+        public string 結存量 { get; set; }
+        /// <summary>
+        /// 盤差量
+        /// </summary>
+        [JsonPropertyName("Discrepancy")]
+        public string 盤差量 { get; set; }
+        /// <summary>
+        /// 批號
+        /// </summary>
+        [JsonPropertyName("List_Lot_number")]
+        public List<string> 批號 { get; set; }
+        /// <summary>
+        /// 效期
+        /// </summary>
+        [JsonPropertyName("List_Validity_period")]
+        public List<string> 效期 { get; set; }
 
+
+
+    }
     public static class inv_combinelistClassMethod
     {
         static public System.Collections.Generic.Dictionary<string, List<inv_combinelist_stock_Class>> CoverToDictionaryByCode(this List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes)
@@ -1037,7 +1082,6 @@ namespace HIS_DB_Lib
         public inventoryClass.creat Creat { get => creat; set => creat = value; }
         private inventoryClass.creat creat = new inventoryClass.creat();
     }
-
 
     /// <summary>
     /// 合併單庫存明細

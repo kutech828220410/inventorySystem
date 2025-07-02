@@ -49,5 +49,7 @@ namespace HIS_DB_Lib.系統
 
         [JsonPropertyName("add_time")]
         public string 加入時間 { get; set; }
+        [JsonPropertyName("count")]
+        public int 統計 { get; set; }
     }
 }
