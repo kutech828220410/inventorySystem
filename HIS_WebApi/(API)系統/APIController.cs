@@ -52,9 +52,9 @@ namespace HIS_WebApi
                 lan = "zh-tw";
             }
             string base64 = Basic.Voice.GoogleSpeakerBase64(text, lan);
-            if(ContainerChecker.IsRunningInDocker() == false)
+            if(ContainerChecker.IsRunningInDocker() == true)
             {
-                base64 = AudioProcessingLibrary.Voice.PlayBase64Mp3WithFFmpegAndReturnMp3Base64(base64, 1.8F);
+                base64 = AudioProcessingLibrary.Voice.PlayBase64Mp3WithFFmpegAndReturnMp3Base64_Docker(base64, 1.8F);
             }
             return base64;
            

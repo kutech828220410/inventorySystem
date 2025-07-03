@@ -197,6 +197,7 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
             this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
+            this.rJ_Button_確認.Visible = false;
             // 
             // sqL_DataGridView_TagList
             // 
