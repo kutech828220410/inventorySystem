@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace HIS_DB_Lib.系統
+namespace HIS_DB_Lib
 {
     [EnumDescription("webTraffic")]
     public enum enum_webTraffic
