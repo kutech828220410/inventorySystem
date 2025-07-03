@@ -406,7 +406,7 @@ namespace 調劑台管理系統
                     var log = new medRecheckLogClass
                     {
                         GUID = Guid.NewGuid().ToString(),
-                        發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? enum_medRecheckLog_ICDT_TYPE.RFID入庫異常.GetEnumName() : enum_medRecheckLog_ICDT_TYPE.RFID出庫異常.GetEnumName(),
+                        發生類別 = (_Import_Export == IncomeOutcomeMode.收入) ? enum_medRecheckLog_ICDT_TYPE.RFID調劑異常.GetEnumName() : enum_medRecheckLog_ICDT_TYPE.RFID退藥異常.GetEnumName(),
                         藥碼 = tag.藥碼,
                         藥名 = tag.藥名,
                         效期 = tag.效期,
@@ -459,7 +459,7 @@ namespace 調劑台管理系統
                     medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
                     (int code, var result, var val) = DrugHFTagClass.set_tag_broken_full(Main_Form.API_Server, errorTags);
                     LoadingForm.CloseLoadingForm();
-                    MyMessageBox.ShowDialog($"⚠ 已自動新增異常記錄 {errorLogs.Count} 筆，請查閱紀錄！");
+                    //MyMessageBox.ShowDialog($"⚠ 已自動新增異常記錄 {errorLogs.Count} 筆，請查閱紀錄！");
                 }
 
                 hasRetriedConfirmation = false;

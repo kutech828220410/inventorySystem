@@ -21,7 +21,9 @@ namespace HIS_DB_Lib
         [Description("RFID出庫異常")]
         RFID出庫異常,
         [Description("RFID調劑異常")]
-        RFID調劑異常
+        RFID調劑異常,
+        [Description("RFID退藥異常")]
+        RFID退藥異常,
     }
     public enum enum_medRecheckLog_State
     {
