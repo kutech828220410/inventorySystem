@@ -75,6 +75,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("盤點名稱,VARCHAR,500,NONE")]
         盤點名稱,
+        [Description("類型,VARCHAR,50,NONE")]
+        類型,
         [Description("盤點單號,VARCHAR,50,NONE")]
         盤點單號,
         [Description("建表人,VARCHAR,50,NONE")]
@@ -89,6 +91,8 @@ namespace HIS_DB_Lib
         盤點狀態,
         [Description("預設盤點人,VARCHAR,300,NONE")]
         預設盤點人,
+        [Description("合併單號,VARCHAR,50,NONE")]
+        合併單號,
         [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
@@ -160,6 +164,8 @@ namespace HIS_DB_Lib
             public string GUID { get; set; }
             [JsonPropertyName("IC_NAME")]
             public string 盤點名稱 { get; set; }
+            [JsonPropertyName("TYPE")]
+            public string 類型 { get; set; }
             [JsonPropertyName("IC_SN")]
             public string 盤點單號 { get; set; }
             [JsonPropertyName("CT")]
@@ -174,6 +180,8 @@ namespace HIS_DB_Lib
             public string 盤點狀態 { get; set; }
             [JsonPropertyName("DEFAULT_OP")]
             public string 預設盤點人 { get; set; }
+            [JsonPropertyName("INV_SN")]
+            public string 合併單號 { get; set; }
             [JsonPropertyName("NOTE")]
             public string 備註 { get; set; }
 

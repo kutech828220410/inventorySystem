@@ -87,22 +87,22 @@ namespace HIS_WebApi
             returnData.Method = "medCarList/add";
             try
             {
-                if (returnData.ValueAry == null)
+                if (returnData.Data == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    returnData.Result = $"returnData.Data 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.ValueAry.Count != 3)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥局代號,藥局, 護理站]";
-                    return returnData.JsonSerializationt(true);
-                }
-                string 藥局代號 = returnData.ValueAry[0];
-                string 藥局 = returnData.ValueAry[1];
-                string 護理站 = returnData.ValueAry[2];
-
+                //if (returnData.ValueAry.Count != 3)
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.ValueAry 內容應為[藥局代號,藥局, 護理站]";
+                //    return returnData.JsonSerializationt(true);
+                //}
+                //string 藥局代號 = returnData.ValueAry[0];
+                //string 藥局 = returnData.ValueAry[1];
+                //string 護理站 = returnData.ValueAry[2];
+                List<medCarListClass> medCarListClasses = returnData.Data.ObjToClass<List<medCarListClass>>();
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 //List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -126,26 +126,26 @@ namespace HIS_WebApi
                 List<medCarListClass> medCart_sql_buf = new List<medCarListClass>();
                 List<medCarListClass> medCart_sql_add = new List<medCarListClass>();
                 List<medCarListClass> medCart_sql_replace = new List<medCarListClass>();
+                foreach (var item in medCarListClasses)
+                {
+                    string 藥局 = item.藥局;
+                    string 藥局名 = item.藥局名;
+                    string 護理站 = item.護理站;
+                    medCart_sql_buf = (from temp in medCart_sql
+                                       where temp.藥局 == 藥局
+                                       where temp.護理站 == 護理站
+                                       select temp).ToList();
+                    if (medCart_sql_buf.Count != 0) continue;
 
-                medCart_sql_buf = (from temp in medCart_sql
-                                   where temp.藥局 == 藥局
-                                   where temp.護理站 == 護理站
-                                   select temp).ToList();
-                if (medCart_sql_buf.Count != 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "資料已存在";
-                    return returnData.JsonSerializationt(true);
-                }
-                else
-                {
+
                     string GUID = Guid.NewGuid().ToString();
                     medCarListClass medCarListClass = new medCarListClass
                     {
                         GUID = GUID,
-                        藥局 = 藥局代號,
-                        藥局名 = 藥局,
-                        護理站 = 護理站
+                        藥局 = 藥局,
+                        藥局名 = 藥局名,
+                        護理站 = 護理站,
+                        交車時間 = DateTime.MinValue.ToDateTimeString()
                     };
                     medCart_sql_add.Add(medCarListClass);
                 }
@@ -391,21 +391,12 @@ namespace HIS_WebApi
                     .GroupBy(medCart => medCart.藥局)
                     .Select(group => group.First())
                     .ToList();
-                List<medCarListClass> medCarList = new List<medCarListClass>();
-                foreach (var value in medCart_sql_buf)
-                {
-                    medCarListClass medCarListClass = new medCarListClass
-                    {
-                        藥局 = value.藥局,
-                        藥局名 = value.藥局名
-                    };
-                    medCarList.Add(medCarListClass);
-                }
-                medCarList.Sort(new medCarListClass.ICP_By_phar_name());
+               
+                medCart_sql_buf.Sort(new medCarListClass.ICP_By_phar_name());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCarList;
-                returnData.Result = $"取得藥局資料共{medCarList.Count}";
+                returnData.Data = medCart_sql_buf;
+                returnData.Result = $"取得藥局資料共{medCart_sql_buf.Count}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -416,7 +407,66 @@ namespace HIS_WebApi
             }
 
         }
-        
+        /// <summary>
+        ///取得藥局護理站資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_all")]
+        public string get_all([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "medCarList/get_all";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+
+                //List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                Table table = new Table(new enum_med_carList());
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
+
+                List<medCarListClass> medCart_sql = list_medCart.SQLToClass<medCarListClass, enum_med_carList>();
+
+
+                medCart_sql.Sort(new medCarListClass.ICP_By_phar_name());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medCart_sql;
+                returnData.Result = $"取得藥局資料共{medCart_sql.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+
 
     }
 }

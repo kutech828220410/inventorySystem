@@ -1,4 +1,4 @@
 {
-  "Name": "XX",
-  "Api_Server": "http://127.0.0.1:4433"
+  "Name": "A7",
+  "Api_Server": "https://220.135.128.247:4443"
 }

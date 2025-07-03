@@ -25,12 +25,14 @@ using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Data;
+using NPOI.HPSF;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
     public class inv_combinelist : Controller
     {
+        static string API01 = "http://127.0.0.1:4433";
         private class SheetTemp
         {
             public SheetTemp(string name)
@@ -149,6 +151,355 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt(true);
         }
         /// <summary>
+        /// 取得今日可建立最新覆盤單號
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Value]為建立盤點單號</returns>
+        [HttpPost("new_IC_SN_review")]
+        public string new_IC_SN_review([FromBody] returnData returnData)
+        {
+            if (returnData.Value.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 應該為合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            string 合併單號 = returnData.Value;
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat_time = new List<object[]>();
+            List<object[]> list_inventory_creat_SN = new List<object[]>();
+            string 覆盤單號 = "";
+            inventoryClass.creat creat = new inventoryClass.creat();
+
+
+            list_inventory_creat_time = list_inventory_creat.GetRowsInDate((int)enum_盤點單號.建表時間, DateTime.Now);
+            list_inventory_creat_SN = list_inventory_creat.GetRowsByLike((int)enum_盤點單號.合併單號, 合併單號);
+
+            if(list_inventory_creat_SN.Count > 0)
+            {
+                覆盤單號 = list_inventory_creat_SN[0][(int)enum_盤點單號.盤點單號].ToString();
+                returnData.Value = 覆盤單號;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "new_IC_SN_review";
+                returnData.Result = $"已存在合併單號{合併單號}的覆盤單{覆盤單號}";
+                return returnData.JsonSerializationt(true);
+            }
+
+            int index = 0;
+            while (true)
+            {
+                覆盤單號 = $"REV{DateTime.Now.ToDateTinyString()}-{index}";
+                index++;
+                list_inventory_creat_time = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, 覆盤單號);
+                if (list_inventory_creat_time.Count == 0) break;
+            }
+            creat.GUID = Guid.NewGuid().ToString();
+            creat.盤點名稱 = "";
+            creat.類型 = "覆盤單";
+            creat.盤點單號 = "覆盤單號";
+            creat.建表人 = "";
+            creat.建表時間 = DateTime.Now.ToDateString();
+            creat.盤點開始時間 = DateTime.MinValue.ToDateTimeString();
+            creat.盤點結束時間 = DateTime.MinValue.ToDateTimeString();
+            creat.盤點狀態 = "等待盤點";
+            creat.合併單號 = 合併單號;
+
+            returnData.Value = 覆盤單號;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "new_IC_SN_review";
+            returnData.Result = $"成功! {myTimerBasic.ToString()}";
+            return returnData.JsonSerializationt(true);
+        }
+        [HttpPost("review_creat_add")]
+        public string review_creat_add([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+
+            if (creat == null)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"Data 資料錯誤 \n";
+                return returnData.JsonSerializationt();
+            }
+
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetRowsByDefult(null,(int)enum_盤點單號.盤點單號, creat.盤點單號);
+            if (list_inventory_creat.Count > 0)
+            {
+                List<object[]> list_inventory_content = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.盤點單號, creat.盤點單號);
+                List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetRowsByDefult(null, (int)enum_盤點明細.盤點單號, creat.盤點單號);
+
+                if (list_inventory_creat.Count > 0) sQLControl_inventory_creat.DeleteExtra(null, list_inventory_creat);
+                if (list_inventory_content.Count > 0) sQLControl_inventory_content.DeleteExtra(null, list_inventory_content);
+                if (list_inventory_sub_content.Count > 0) sQLControl_inventory_sub_content.DeleteExtra(null, list_inventory_sub_content);
+            }
+            creat.GUID = Guid.NewGuid().ToString();
+            creat.建表時間 = DateTime.Now.ToDateTimeString();
+            creat.盤點開始時間 = DateTime.MaxValue.ToDateTimeString();
+            creat.盤點結束時間 = DateTime.MaxValue.ToDateTimeString();
+
+            List<object[]> list_inventory_creat_add = new List<object[]>();
+            List<object[]> list_inventory_content_add = new List<object[]>();
+            List<object[]> list_inventory_sub_content_add = new List<object[]>();
+            object[] value;
+            value = new object[new enum_盤點單號().GetLength()];
+
+            value[(int)enum_盤點單號.GUID] = creat.GUID;
+            value[(int)enum_盤點單號.類型] = creat.類型;
+            value[(int)enum_盤點單號.合併單號] = creat.合併單號;
+            value[(int)enum_盤點單號.盤點單號] = creat.盤點單號;
+            value[(int)enum_盤點單號.盤點名稱] = creat.盤點名稱;
+            value[(int)enum_盤點單號.建表人] = creat.建表人;
+            value[(int)enum_盤點單號.建表時間] = creat.建表時間;
+            value[(int)enum_盤點單號.盤點開始時間] = creat.盤點開始時間;
+            value[(int)enum_盤點單號.盤點結束時間] = creat.盤點結束時間;
+            value[(int)enum_盤點單號.預設盤點人] = creat.預設盤點人;
+            value[(int)enum_盤點單號.盤點狀態] = "等待盤點";
+            value[(int)enum_盤點單號.備註] = creat.備註;
+
+            list_inventory_creat_add.Add(value);
+            
+
+            for (int i = 0; i < creat.Contents.Count; i++)
+            {
+                value = new object[new enum_盤點內容().GetLength()];
+                creat.Contents[i].GUID = Guid.NewGuid().ToString();
+                creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
+                creat.Contents[i].Master_GUID = creat.GUID;
+                creat.Contents[i].盤點單號 = creat.盤點單號;
+                value[(int)enum_盤點內容.GUID] = creat.Contents[i].GUID;
+                value[(int)enum_盤點內容.Master_GUID] = creat.Contents[i].Master_GUID;
+                value[(int)enum_盤點內容.序號] = creat.Contents[i].序號;
+                value[(int)enum_盤點內容.儲位名稱] = creat.Contents[i].儲位名稱;
+                value[(int)enum_盤點內容.藥品碼] = creat.Contents[i].藥品碼;
+                value[(int)enum_盤點內容.料號] = creat.Contents[i].料號;
+                value[(int)enum_盤點內容.藥品條碼1] = creat.Contents[i].藥品條碼1;
+                value[(int)enum_盤點內容.藥品條碼2] = creat.Contents[i].藥品條碼2;
+                value[(int)enum_盤點內容.盤點單號] = creat.Contents[i].盤點單號;
+                value[(int)enum_盤點內容.理論值] = creat.Contents[i].理論值;
+                value[(int)enum_盤點內容.新增時間] = creat.Contents[i].新增時間;
+                value[(int)enum_盤點內容.備註] = creat.Contents[i].備註;
+                for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                {
+                    object[] sub_value = new object[new enum_盤點明細().GetLength()];
+                    sub_value = creat.Contents[i].Sub_content[k].ClassToSQL<inventoryClass.sub_content, enum_盤點明細>();
+                    sub_value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
+                    sub_value[(int)enum_盤點明細.Master_GUID] = creat.Contents[i].GUID;
+                    sub_value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString_6();
+                    sub_value[(int)enum_盤點明細.盤點單號] = creat.盤點單號;
+                    list_inventory_sub_content_add.Add(sub_value);
+                }
+                list_inventory_content_add.Add(value);
+            }
+            sQLControl_inventory_creat.AddRows(null, list_inventory_creat_add);
+            sQLControl_inventory_content.AddRows(null, list_inventory_content_add);
+            sQLControl_inventory_sub_content.AddRows(null, list_inventory_sub_content_add);
+            returnData.Data = creat;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "creat_add";
+
+            returnData.Result = $"成功加入新覆盤單! 共{list_inventory_content_add.Count}筆資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 取得今日可建立最新覆盤單號
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         "CT":"建表人",
+        ///         "IC_NAME":"覆盤單名稱"
+        ///     }
+        ///     "Value":"合併單號"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Value]為建立盤點單號</returns>
+        [HttpPost("review_auto_add")]
+        public string review_auto_add([FromBody] returnData returnData)
+        {
+            try
+            {
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 應輸入\"合併單號\"";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 應輸入 inventoryClass.creat";
+                    return returnData.JsonSerializationt(true);
+                }
+                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+                string 合併單號 = returnData.Value;
+                List<Task> tasks = new List<Task>();
+                inv_combinelistClass inv_CombinelistClass = new inv_combinelistClass();
+                List<inv_combinelist_dataTable> inv_Combinelist_DataTables = new List<inv_combinelist_dataTable>();
+                string str_REV_SN = string.Empty;
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    returnData returnData_get_full_inv_by_SN = new returnData();
+                    returnData_get_full_inv_by_SN.Value = 合併單號;
+                    string jsonString = get_full_inv_by_SN(returnData_get_full_inv_by_SN);
+                    returnData_get_full_inv_by_SN = jsonString.JsonDeserializet<returnData>();
+                    inv_CombinelistClass = returnData_get_full_inv_by_SN.Data.ObjToClass<inv_combinelistClass>();
+                })));
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    returnData returnData_GET_new_IC_SN = new returnData();
+                    returnData_GET_new_IC_SN.Value = 合併單號;
+                    returnData_GET_new_IC_SN = new_IC_SN_review(returnData_GET_new_IC_SN).JsonDeserializet<returnData>();
+                    str_REV_SN = returnData_GET_new_IC_SN.Value;
+                })));
+                                
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    returnData returnData_get_detail_inv_by_SN = new returnData();
+                    returnData_get_detail_inv_by_SN.Value = 合併單號;
+                    string jsonString = get_detail_inv_by_SN(returnData_get_detail_inv_by_SN);
+                    returnData_get_detail_inv_by_SN = jsonString.JsonDeserializet<returnData>();
+                    inv_Combinelist_DataTables = returnData_get_detail_inv_by_SN.Data.ObjToClass<List<inv_combinelist_dataTable>>();
+                })));
+                Task.WhenAll(tasks).Wait();
+                tasks.Clear();
+
+                if (inv_CombinelistClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "FUNTION get_full_inv_by_SN 發生錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (str_REV_SN.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "FUNTION new_IC_SN_review 發生錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                //檢查所有盤點單都鎖單
+            
+                bool flag_鎖單 = false;
+                string 盤點單號 = string.Empty;
+                for(int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
+                {
+                    inventoryClass.creat _creat = inv_CombinelistClass.Records_Ary[i].Creat;
+
+                    if (_creat.盤點狀態 != "鎖定") 
+                    {
+                        flag_鎖單 = true;
+                        盤點單號 = _creat.盤點單號;
+                    } 
+                    
+                    break;
+                }
+                if (flag_鎖單)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"此合併單{合併單號}內的盤點單{盤點單號}沒有鎖定!!";
+                    returnData.Data = string.Empty;
+                    return returnData.JsonSerializationt(true);
+
+                }
+                List<medClass> medClasses = medClass.get_med_cloud(API01);
+                Dictionary<string, List<medClass>> dic_medClass = medClasses.CoverToDictionaryByCode();
+                
+                
+                creat.盤點單號 = str_REV_SN;
+                creat.合併單號 = 合併單號;
+                creat.類型 = "覆盤單";
+                //if(inv_Combinelist_DataTables.Count > 0)
+                //{
+                //   return inv_Combinelist_DataTables.JsonSerializationt(true);
+                //}
+                for (int i = 0; i < inv_Combinelist_DataTables.Count; i++)
+                {
+                    if (inv_Combinelist_DataTables[i].註記.Contains("覆盤") == false) continue;
+                    inventoryClass.content content = new inventoryClass.content();
+                    string 藥碼 = inv_Combinelist_DataTables[i].藥碼;
+                    List<medClass> medClass_buff = dic_medClass.SortDictionaryByCode(藥碼);
+                    if(medClass_buff.Count > 0)
+                    {
+                        medClass medClass = medClass_buff.Where(item => item.開檔狀態.Contains("關檔中") == false).FirstOrDefault();
+                        if (medClass != null) medClass_buff[0] = medClass;
+
+                        content.GUID = Guid.NewGuid().ToString();
+                        content.藥品碼 = medClass_buff[0].藥品碼;
+                        content.藥品名稱 = medClass_buff[0].藥品名稱;
+                        content.中文名稱 = medClass_buff[0].中文名稱;
+                        content.料號 = medClass_buff[0].料號;
+                        content.藥品條碼1 = medClass_buff[0].藥品條碼1;
+                        content.藥品條碼2 = medClass_buff[0].藥品條碼2;
+                        content.包裝單位 = medClass_buff[0].包裝單位;
+                        content.新增時間 = DateTime.Now.ToDateTimeString();
+                        content.盤點單號 = str_REV_SN;
+                        content.理論值 = "0";
+                        creat.Contents.Add(content);
+                    }
+                }
+                if (creat.Contents.Count == 0)
+                {
+                    returnData.Code = -6;
+                    returnData.Value = "無覆盤資料可新增!";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.Data = creat;
+                returnData.Method = "creat_auto_add";
+                return review_creat_add(returnData);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 創建合併單
         /// </summary>
         /// <remarks>
@@ -247,6 +598,10 @@ namespace HIS_WebApi
             List<object[]> list_inv_sub_combinelist_add = new List<object[]>();
             inv_CombinelistClass.消耗量起始時間 = DateTime.MinValue.ToDateTimeString();
             inv_CombinelistClass.消耗量結束時間 = DateTime.MinValue.ToDateTimeString();
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
+
             object[] value;
             value = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
 
@@ -261,6 +616,9 @@ namespace HIS_WebApi
                 value[(int)enum_inv_sub_combinelist.單號] = inv_CombinelistClass.Records_Ary[i].單號;
                 value[(int)enum_inv_sub_combinelist.類型] = inv_CombinelistClass.Records_Ary[i].類型;
                 value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_inv_sub_combinelist.新增時間] = DateTime.Now.ToDateTimeString();
+
                 list_inv_sub_combinelist_add.Add(value);
             }
 
@@ -481,8 +839,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("inv_consumption_time_update_by_GUID")]
-        [HttpPost]
+        [HttpPost("inv_consumption_time_update_by_GUID")]
         public string POST_inv_consumption_time_update_by_GUID([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -662,6 +1019,191 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt(true);
         }
         /// <summary>
+        /// 以合併單號取得合併單資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    },
+        ///    "Value":"合併單號"
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [Route("get_inv_by_SN")]
+        [HttpPost]
+        public string get_inv_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            if (returnData.Value.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value應填入合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            string 合併單號 = returnData.Value;
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");           
+
+            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inv_sub_combinelist = new SQLControl(Server, DB, "inv_sub_combinelist", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null,(int)enum_inv_combinelist.合併單號, 合併單號);
+            inv_combinelistClass inv_CombinelistClass = list_inv_combinelist[0].SQLToClass<inv_combinelistClass, enum_inv_combinelist>();
+
+            List<object[]> list_inv_sub_combinelist = sQLControl_inv_sub_combinelist.GetRowsByDefult(null,(int)enum_inv_sub_combinelist.合併單號, 合併單號);
+            List<inv_records_Class> inv_Sub_CombinelistClasses = list_inv_sub_combinelist.SQLToClass<inv_records_Class, enum_inv_sub_combinelist>();
+
+
+
+            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat_buf = new List<object[]>();
+
+            List<inv_combinelistClass> inv_CombinelistClasses = new List<inv_combinelistClass>();
+
+            
+           
+            List<inv_records_Class> inv_Sub_CombinelistClasses_buf = new List<inv_records_Class>();
+            for (int k = 0; k < inv_Sub_CombinelistClasses.Count; k++)
+            {
+                string 單號 = inv_Sub_CombinelistClasses[k].單號;
+                string 類型 = inv_Sub_CombinelistClasses[k].類型;
+                if (類型 == "盤點單")
+                {
+                    list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, 單號);
+                    if (list_inventory_creat_buf.Count > 0)
+                    {
+                        inv_Sub_CombinelistClasses[k].名稱 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點名稱].ObjectToString();
+                        inv_Sub_CombinelistClasses[k].單號 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點單號].ObjectToString();
+                        inv_Sub_CombinelistClasses[k].類型 = "盤點單";
+                        inv_Sub_CombinelistClasses_buf.Add(inv_Sub_CombinelistClasses[k]);
+                    }
+                }
+            }
+            inv_CombinelistClass.Records_Ary = inv_Sub_CombinelistClasses_buf;
+            inv_CombinelistClasses.Add(inv_CombinelistClass);
+            
+            returnData.Data = inv_CombinelistClasses;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "get_inv_by_SN";
+
+            returnData.Result = $"成功取得資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以合併單號取得合併單覆盤設定資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    },
+        ///    "Value":"合併單號"
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_setting_by_SN")]
+        public string get_setting_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            if (returnData.Value.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value應填入合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            string 合併單號 = returnData.Value;
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_inv_combinelist.合併單號, 合併單號);
+            inv_combinelistClass inv_CombinelistClass = list_inv_combinelist[0].SQLToClass<inv_combinelistClass, enum_inv_combinelist>();
+           
+            returnData.Data = inv_CombinelistClass;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "get_setting_by_SN";
+
+            returnData.Result = $"成功取得資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以合併單號取得合併單資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///         inv_combinelistClass
+        ///    },
+        ///    "Value":""
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("update_setting_by_SN")]
+        public string update_setting_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            if (returnData.Data == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Data應填入合併單號";
+                return returnData.JsonSerializationt(true);
+            }
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "true") inv_CombinelistClass.誤差總金額致能 = true.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "true") inv_CombinelistClass.誤差百分率致能 = true.ToString();
+            if (inv_CombinelistClass.誤差數量致能.ToLower() == "true") inv_CombinelistClass.誤差數量致能 = true.ToString();
+
+            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "false") inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "false") inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.ToLower() == "false") inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+            object[] list_inv_combinelist = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
+            if (list_inv_combinelist != null) sQLControl_inv_combinelist.UpdateByDefulteExtra(null, list_inv_combinelist);
+
+            returnData.Data = inv_CombinelistClass;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
+            returnData.Method = "update_setting_by_SN";
+
+            returnData.Result = $"成功取得資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
         /// 取得所有可合併單
         /// </summary>
         /// <remarks>
@@ -817,9 +1359,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [Route("get_full_inv_by_SN")]
-        [HttpPost]
-        public string POST_get_full_inv_by_SN([FromBody] returnData returnData)
+        [HttpPost(("get_full_inv_by_SN_old"))]
+        public string POST_get_full_inv_by_SN_old([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1006,6 +1547,251 @@ namespace HIS_WebApi
             returnData.Data = inv_CombinelistClass;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "get_full_inv_by_SN";
+            returnData.Result = $"成功取得盤點單合併完成資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以合併單號取得完整合併單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+
+        [HttpPost("get_full_inv_by_SN")]
+        public string get_full_inv_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return returnData.JsonSerializationt();
+            }
+            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+            string 合併單號 = returnData.Value;
+
+            string json_get_all_inv = get_inv_by_SN(returnData);
+            returnData returnData_get_all_inv = json_get_all_inv.JsonDeserializet<returnData>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                return returnData.JsonSerializationt();
+            }
+            List<inv_combinelistClass> inv_CombinelistClasses = returnData_get_all_inv.Data.ObjToClass<List<inv_combinelistClass>>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"資料初始化失敗!";
+                return returnData.JsonSerializationt();
+            }
+            
+            List<inv_combinelistClass> inv_CombinelistClasses_buf = inv_CombinelistClasses.Where(item => item.合併單號 == 合併單號).ToList();
+            if (inv_CombinelistClasses_buf.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無此合併單號! {returnData.Value} ";
+                return returnData.JsonSerializationt();
+            }
+            inv_combinelistClass inv_CombinelistClass = inv_CombinelistClasses_buf[0];
+            inv_CombinelistClass.get_all_full_creat("http://127.0.0.1:4433");
+            
+            for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
+            {
+                inventoryClass.creat creat = inv_CombinelistClass.Records_Ary[i].Creat;
+                List<inventoryClass.content> Contents = creat.Contents;
+                Contents = Contents.Where(item => item.Sub_content.Count > 0).ToList();
+                creat.Contents = Contents;
+            }
+
+            List<medClass> medClasses_cloud = medClass.get_med_cloud(API01);
+            List<medClass> medClasses_cloud_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+
+            List<inventoryClass.content> contents = new List<inventoryClass.content>();
+            List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
+            List<Task> tasks = new List<Task>();
+
+            List<inv_combinelist_stock_Class> inv_Combinelist_Stock_Classes_buf = new List<inv_combinelist_stock_Class>();
+            List<inv_combinelist_price_Class> inv_Combinelist_price_Classes_buf = new List<inv_combinelist_price_Class>();
+            List<inv_combinelist_note_Class> inv_Combinelist_note_Classes_buf = new List<inv_combinelist_note_Class>();
+            List<inv_combinelist_review_Class> inv_Combinelist_review_Classes_buf = new List<inv_combinelist_review_Class>();
+
+
+            Dictionary<string, List<inv_combinelist_stock_Class>> keyValuePairs_inv_Combinelist_Stock_Classes = new Dictionary<string, List<inv_combinelist_stock_Class>>();
+            Dictionary<string, List<inv_combinelist_price_Class>> keyValuePairs_inv_Combinelist_price_Classes = new Dictionary<string, List<inv_combinelist_price_Class>>();
+            Dictionary<string, List<inv_combinelist_note_Class>> keyValuePairs_inv_Combinelist_note_Classes = new Dictionary<string, List<inv_combinelist_note_Class>>();
+            Dictionary<string, List<inv_combinelist_review_Class>> keyValuePairs_inv_Combinelist_review_Classes = new Dictionary<string, List<inv_combinelist_review_Class>>();
+
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_stock_Class> _inv_Combinelist_Stock_Classes = inv_combinelistClass.get_stocks_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_Stock_Classes = _inv_Combinelist_Stock_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_price_Class> _inv_Combinelist_price_Classes = inv_combinelistClass.get_medPrices_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_price_Classes = _inv_Combinelist_price_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                List<inv_combinelist_note_Class> _inv_Combinelist_note_Classes = inv_combinelistClass.get_medNote_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_note_Classes = _inv_Combinelist_note_Classes.CoverToDictionaryByCode();
+            })));
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                List<inv_combinelist_review_Class> _inv_Combinelist_review_Classes = inv_combinelistClass.get_medReview_by_SN("http://127.0.0.1:4433", returnData.Value);
+                keyValuePairs_inv_Combinelist_review_Classes = _inv_Combinelist_review_Classes.CoverToDictionaryByCode();
+            })));
+            Task.WhenAll(tasks).Wait();
+            tasks.Clear();
+
+
+          //patt1
+
+
+
+            string 藥品碼 = "";
+            string 料號 = string.Empty;
+            for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)  //合併單有幾張盤點單
+            {
+                inventoryClass.creat creat = inv_CombinelistClass.Records_Ary[i].Creat;
+                for (int k = 0; k < creat.Contents.Count; k++)
+                {
+                    if (creat.Contents[k].Sub_content.Count == 0) continue;
+                    料號 = creat.Contents[k].料號;
+                    contents_buf = (from temp in contents
+                                    where temp.料號 == 料號
+                                    select temp).ToList();
+                    if (contents_buf.Count == 0)
+                    {
+                        inventoryClass.content content = new inventoryClass.content();
+                        content.藥品碼 = creat.Contents[k].藥品碼;
+                        content.料號 = creat.Contents[k].料號;
+                        content.廠牌 = creat.Contents[k].廠牌;
+                        content.藥品名稱 = creat.Contents[k].藥品名稱;
+                        content.中文名稱 = creat.Contents[k].中文名稱;
+                        content.盤點量 = creat.Contents[k].盤點量;
+                        contents.Add(content);
+                    }
+                    else
+                    {
+                        contents_buf[0].盤點量 = (creat.Contents[k].盤點量.StringToInt32() + contents_buf[0].盤點量.StringToInt32()).ToString();
+                    }
+                }
+            }
+            //if (contents != null)
+            //{
+            //    return contents.JsonSerializationt(true);
+            //}
+            for (int i = 0; i < contents.Count; i++)
+            {
+                inv_Combinelist_Stock_Classes_buf = keyValuePairs_inv_Combinelist_Stock_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_price_Classes_buf = keyValuePairs_inv_Combinelist_price_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_note_Classes_buf = keyValuePairs_inv_Combinelist_note_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                inv_Combinelist_review_Classes_buf = keyValuePairs_inv_Combinelist_review_Classes.SortDictionaryByCode(contents[i].藥品碼);
+                medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(contents[i].藥品碼);
+                if (medClasses_cloud_buf.Count > 0)
+                {
+                    medClass medClass = medClasses_cloud_buf.Find(item => item.開檔狀態.Contains("關檔中") == false);
+                    if(medClass != null) medClasses_cloud_buf[0] = medClass;
+                    contents[i].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                    contents[i].中文名稱 = medClasses_cloud_buf[0].中文名稱;
+                    contents[i].廠牌 = medClasses_cloud_buf[0].廠牌;
+                    contents[i].料號 = medClasses_cloud_buf[0].料號;
+                }
+
+
+                if (inv_Combinelist_review_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.MedReviews.Add(inv_Combinelist_review_Classes_buf[0]);
+                }
+
+                if (inv_Combinelist_Stock_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.Stocks.Add(inv_Combinelist_Stock_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = new inv_combinelist_stock_Class();
+                    inv_Combinelist_Stock_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_Stock_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_Stock_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_Stock_Class.數量 = "0";
+                    inv_CombinelistClass.Stocks.Add(inv_Combinelist_Stock_Class);
+                }
+                if (inv_Combinelist_price_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.MedPrices.Add(inv_Combinelist_price_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_price_Class inv_Combinelist_Price_Class = new inv_combinelist_price_Class();
+                    inv_Combinelist_Price_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_Price_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_Price_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_Price_Class.單價 = "0";
+                    inv_CombinelistClass.MedPrices.Add(inv_Combinelist_Price_Class);
+
+                }
+
+                if (inv_Combinelist_note_Classes_buf.Count > 0)
+                {
+                    inv_CombinelistClass.MedNotes.Add(inv_Combinelist_note_Classes_buf[0]);
+                }
+                else
+                {
+                    inv_combinelist_note_Class inv_Combinelist_note_Class = new inv_combinelist_note_Class();
+                    inv_Combinelist_note_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_note_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_note_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_note_Class.備註 = "-";
+                    inv_CombinelistClass.MedNotes.Add(inv_Combinelist_note_Class);
+
+                }
+            }
+            
+            inv_CombinelistClass.Contents = contents;
+            //if (inv_CombinelistClass != null)
+            //{
+            //    return inv_CombinelistClass.JsonSerializationt(true);
+            //}
+            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = true.ToString();
+            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = true.ToString();
+            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = true.ToString();
+
+
+            if (inv_CombinelistClass.誤差總金額上限.StringIsDouble() == false) inv_CombinelistClass.誤差總金額上限 = "500";
+            if (inv_CombinelistClass.誤差總金額下限.StringIsDouble() == false) inv_CombinelistClass.誤差總金額下限 = "0";
+
+            if (inv_CombinelistClass.誤差百分率上限.StringIsDouble() == false) inv_CombinelistClass.誤差百分率上限 = "10";
+            if (inv_CombinelistClass.誤差百分率下限.StringIsDouble() == false) inv_CombinelistClass.誤差百分率下限 = "0";
+
+            if (inv_CombinelistClass.誤差數量上限.StringIsDouble() == false) inv_CombinelistClass.誤差數量上限 = "100";
+            if (inv_CombinelistClass.誤差數量下限.StringIsDouble() == false) inv_CombinelistClass.誤差數量下限 = "0";
+
+            //if (inv_CombinelistClass != null)
+            //{
+            //    return inv_CombinelistClass.JsonSerializationt(true);
+            //}
+            returnData.Data = inv_CombinelistClass;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimerBasic.ToString();
             returnData.Method = "get_full_inv_by_SN";
             returnData.Result = $"成功取得盤點單合併完成資料";
             return returnData.JsonSerializationt(true);
@@ -2205,8 +2991,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為合併單結構</returns>
-        [HttpPost("get_full_inv_DataTable_by_SN")]
-        public string POST_get_full_inv_DataTable_by_SN([FromBody] returnData returnData)
+        [HttpPost("get_full_inv_DataTable_by_SN_old")]
+        public string POST_get_full_inv_DataTable_by_SN_old([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -2455,6 +3241,257 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
         /// <summary>
+        /// 以合併單號取得完整合併單DataTable
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_full_inv_DataTable_by_SN")]
+        public string POST_get_full_inv_DataTable_by_SN([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            GET_init(returnData);
+            returnData.Method = "get_full_inv_DataTable_by_SN_extra";
+            
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return returnData.JsonSerializationt(true);
+            }
+           
+            string jsonString = get_full_inv_by_SN(returnData); 
+            returnData = jsonString.JsonDeserializet<returnData>();
+            if(returnData == null || returnData.Code != 200) 
+            {
+                return returnData.JsonSerializationt(true);
+            }
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+
+            if(inv_CombinelistClass == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"資料初始化失敗!";
+                return returnData.JsonSerializationt(true);
+            }
+            
+            List<inventoryClass.creat> creats = inv_CombinelistClass.Creats; //盤點單內容
+            
+            List<inventoryClass.content> contents = new List<inventoryClass.content>();
+            List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
+            List<System.Data.DataTable> dataTables_creat = new List<System.Data.DataTable>();
+            List<medClass> medClasses_cloud = medClass.get_med_cloud("http://127.0.0.1:4433");
+            List<medClass> medClasses_cloud_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs_med_cloud = medClasses_cloud.CoverToDictionaryByCode();
+            string 藥品碼 = "";
+            string 料號 = string.Empty;
+
+            for (int i = 0; i < creats.Count; i++) //數量是合併了幾張盤點單
+            {
+                List<object[]> list_creat_buf = new List<object[]>();
+                System.Data.DataTable dataTable_buf = new System.Data.DataTable();
+                for (int k = 0; k < creats[i].Contents.Count; k++) //盤點內容(藥品為單位)
+                {
+                    if (creats[i].Contents[k].Sub_content.Count == 0) continue;
+                    藥品碼 = creats[i].Contents[k].藥品碼;
+                    料號 = creats[i].Contents[k].料號;
+                    medClasses_cloud_buf = keyValuePairs_med_cloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_cloud_buf.Count > 0)
+                    {
+                        creats[i].Contents[k].料號 = medClasses_cloud_buf[0].料號;
+                        creats[i].Contents[k].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                    }
+
+                    object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                    value[(int)enum_盤點定盤_Excel.藥碼] = creats[i].Contents[k].藥品碼;
+                    value[(int)enum_盤點定盤_Excel.料號] = creats[i].Contents[k].料號;
+                    value[(int)enum_盤點定盤_Excel.藥名] = creats[i].Contents[k].藥品名稱;
+                    value[(int)enum_盤點定盤_Excel.庫存量] = creats[i].Contents[k].理論值;
+                    value[(int)enum_盤點定盤_Excel.盤點量] = creats[i].Contents[k].盤點量;
+
+
+
+                    list_creat_buf.Add(value);
+
+
+                    contents_buf = (from temp in contents
+                                    where temp.料號 == 料號
+                                    select temp).ToList();
+                    if (contents_buf.Count == 0)
+                    {
+                        inventoryClass.content content = creats[i].Contents[k];
+                        content.GUID = "";
+                        content.Master_GUID = "";
+                        content.理論值 = "";
+                        content.新增時間 = "";
+                        content.盤點單號 = "";
+                        content.Sub_content.Clear();
+                        contents.Add(content);
+                    }
+                    else
+                    {
+                        contents_buf[0].盤點量 = (creats[i].Contents[k].盤點量.StringToInt32() + contents_buf[0].盤點量.StringToInt32()).ToString();
+                    }
+                }
+                dataTable_buf = list_creat_buf.ToDataTable(new enum_盤點定盤_Excel());
+
+                string tableName = $"{i}.{creats[i].盤點名稱}";
+
+                // 移除或替換非法字元
+                string safeFileName = Regex.Replace(tableName, @"[\\/:*?""<>|]", "_");
+
+                // 指定為合法的檔案名稱
+                dataTable_buf.TableName = safeFileName;
+
+                dataTables_creat.Add(dataTable_buf);
+            }
+
+
+
+            List<object[]> list_value = new List<object[]>();
+            System.Data.DataTable dataTable;
+            SheetClass sheetClass;
+            Console.WriteLine($"取得creats {myTimer.ToString()}");
+
+
+
+            for (int i = 0; i < contents.Count; i++) //總表藥品項目
+            {
+                bool flag_覆盤 = false;
+                string 藥碼 = contents[i].藥品碼;
+                string __料號 = contents[i].料號;
+
+                object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                value[(int)enum_盤點定盤_Excel.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_盤點定盤_Excel.藥碼] = contents[i].藥品碼;
+                value[(int)enum_盤點定盤_Excel.料號] = contents[i].料號;
+                value[(int)enum_盤點定盤_Excel.藥名] = contents[i].藥品名稱;
+                value[(int)enum_盤點定盤_Excel.盤點量] = contents[i].盤點量;
+                value[(int)enum_盤點定盤_Excel.單價] = "0";
+                value[(int)enum_盤點定盤_Excel.誤差百分率] = "0";
+                value[(int)enum_盤點定盤_Excel.消耗量] = "0";
+                inv_combinelist_stock_Class inv_Combinelist_Stock_Class = inv_CombinelistClass.GetStockByCode(藥碼);
+                inv_combinelist_price_Class inv_Combinelist_Price_Class = inv_CombinelistClass.GetMedPriceByCode(藥碼);
+                inv_combinelist_note_Class inv_Combinelist_Note_Class = inv_CombinelistClass.GetMedNoteByCode(藥碼);
+                inv_combinelist_review_Class inv_Combinelist_Review_Class = inv_CombinelistClass.GetMedReviewByCode(藥碼);
+                if (inv_Combinelist_Stock_Class != null)
+                {
+                    value[(int)enum_盤點定盤_Excel.庫存量] = inv_Combinelist_Stock_Class.數量;
+                }
+                if (inv_Combinelist_Note_Class != null)
+                {
+                    value[(int)enum_盤點定盤_Excel.別名] = inv_Combinelist_Note_Class.備註;
+                }
+
+                if (inv_Combinelist_Review_Class != null)
+                {
+                    value[(int)enum_盤點定盤_Excel.覆盤量] = inv_Combinelist_Review_Class.數量;
+                }
+
+                if (inv_Combinelist_Price_Class != null)
+                {
+                    if (inv_Combinelist_Price_Class.單價.StringIsDouble()) value[(int)enum_盤點定盤_Excel.單價] = inv_Combinelist_Price_Class.單價;
+                }
+                value[(int)enum_盤點定盤_Excel.庫存金額] = value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+
+                if (value[(int)enum_盤點定盤_Excel.覆盤量].ObjectToString().StringIsEmpty())
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.盤點量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+                else
+                {
+                    value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+                    value[(int)enum_盤點定盤_Excel.誤差量] = value[(int)enum_盤點定盤_Excel.覆盤量].StringToDouble() - value[(int)enum_盤點定盤_Excel.庫存量].StringToDouble();
+                }
+
+                value[(int)enum_盤點定盤_Excel.誤差金額] = value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble() * value[(int)enum_盤點定盤_Excel.單價].StringToDouble();
+
+                value[(int)enum_盤點定盤_Excel.庫存金額] = value[(int)enum_盤點定盤_Excel.庫存金額].StringToDouble().ToString("0.00");
+                value[(int)enum_盤點定盤_Excel.結存金額] = value[(int)enum_盤點定盤_Excel.結存金額].StringToDouble().ToString("0.00");
+                value[(int)enum_盤點定盤_Excel.誤差金額] = value[(int)enum_盤點定盤_Excel.誤差金額].StringToDouble().ToString("0.00");
+
+                if (value[(int)enum_盤點定盤_Excel.消耗量].StringToInt32() > 0)
+                {
+                    value[(int)enum_盤點定盤_Excel.誤差百分率] = ((value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble() / value[(int)enum_盤點定盤_Excel.消耗量].StringToDouble()) * 100).ToString("0.00");
+                }
+
+                if (inv_CombinelistClass.誤差總金額致能.StringToBool())
+                {
+                    double 上限 = inv_CombinelistClass.誤差總金額上限.StringToDouble();
+                    double 下限 = inv_CombinelistClass.誤差總金額下限.StringToDouble();
+                    double temp = value[(int)enum_盤點定盤_Excel.誤差金額].StringToDouble();
+                    if (temp < 下限 || temp > 上限)
+                    {
+                        flag_覆盤 = true;
+                    }
+                }
+
+                if (inv_CombinelistClass.誤差數量致能.StringToBool())
+                {
+                    double 上限 = inv_CombinelistClass.誤差數量上限.StringToDouble();
+                    double 下限 = inv_CombinelistClass.誤差數量下限.StringToDouble();
+                    double temp = value[(int)enum_盤點定盤_Excel.誤差量].StringToDouble();
+                    if (temp < 下限 || temp > 上限)
+                    {
+                        flag_覆盤 = true;
+                    }
+                }
+                if (inv_CombinelistClass.誤差百分率致能.StringToBool())
+                {
+                    double 上限 = inv_CombinelistClass.誤差百分率上限.StringToDouble();
+                    double 下限 = inv_CombinelistClass.誤差百分率下限.StringToDouble();
+                    double temp = value[(int)enum_盤點定盤_Excel.誤差百分率].StringToDouble();
+                    if (temp < 下限 || temp > 上限)
+                    {
+                        flag_覆盤 = true;
+                    }
+                }
+                if (flag_覆盤) value[(int)enum_盤點定盤_Excel.註記] = "覆盤";
+                list_value.Add(value);
+            }
+            List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+            dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
+            dataTable.TableName = "盤點總表";
+            dataTables.Add(dataTable);
+
+
+            for (int i = 0; i < dataTables_creat.Count; i++)
+            {
+                dataTables.Add(dataTables_creat[i]);
+            }
+            if (returnData.ValueAry != null)
+            {
+                for (int i = 0; i < returnData.ValueAry.Count; i++)
+                {
+                    foreach (System.Data.DataTable dt in dataTables)
+                    {
+                        dt.Columns.Remove(returnData.ValueAry[i]);
+                    }
+                }
+            }
+
+            returnData.Data = dataTables.JsonSerializeDataTable();
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"成功轉換表單<{dataTables.Count}>張";
+            return returnData.JsonSerializationt();
+        }
+        /// <summary>
         /// 以合併單號取得完整合併單
         /// </summary>
         /// <remarks>
@@ -2489,7 +3526,7 @@ namespace HIS_WebApi
                 string json_out = POST_get_full_inv_DataTable_by_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 string dataTable_string = returnData.Data.ObjToClass<string>();
-                List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables(); ;
+                List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables(); 
                 List<object[]> list_value = dataTables[0].DataTableToRowList();
                 List<inv_combinelist_dataTable> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_dataTable, enum_inv_combinelist_dataTable>();
 
@@ -2531,7 +3568,14 @@ namespace HIS_WebApi
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API01");
-            List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
+            //List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
+
+
+            string json_out = POST_get_full_inv_DataTable_by_SN(returnData);
+            returnData = json_out.JsonDeserializet<returnData>();
+            string dataTable_string = returnData.Data.ObjToClass<string>();
+            List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables();
+
             if (dataTables == null)
             {
                 return null;
@@ -2648,6 +3692,176 @@ namespace HIS_WebApi
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{單號}_盤點單.xlsx"));
         }
+
+        /// <summary>
+        /// 以合併單號取得所有盤點單數量統計
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_inv_EndQty_by_SN")]
+        public string get_inv_EndQty_by_SN([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return returnData.JsonSerializationt(true);
+            }
+
+            string jsonString = get_full_inv_by_SN(returnData);
+            returnData = jsonString.JsonDeserializet<returnData>();
+            if (returnData == null || returnData.Code != 200)
+            {
+                return returnData.JsonSerializationt(true);
+            }
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+
+            if (inv_CombinelistClass == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"資料初始化失敗!";
+                return returnData.JsonSerializationt(true);
+            }
+            List<ScheduledCountClass> scheduledCountClasses = new List<ScheduledCountClass>();
+            List<ScheduledCountClass> scheduledCountClasses_buff = new List<ScheduledCountClass>();
+
+
+            for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
+            {
+                for(int k = 0; k < inv_CombinelistClass.Records_Ary[i].Creat.Contents.Count; k++)
+                {
+                    scheduledCountClasses_buff = scheduledCountClasses.Where(item => item.料號 == inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].料號).ToList();
+                    if(scheduledCountClasses_buff.Count == 0)
+                    {
+                        ScheduledCountClass scheduledCount = new ScheduledCountClass();
+                        scheduledCount.藥碼 = inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].藥品碼;
+                        scheduledCount.料號 = inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].料號;
+                        scheduledCount.藥名 = inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].藥品名稱;
+                        scheduledCount.結存量 = inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].盤點量;
+
+                        scheduledCountClasses.Add(scheduledCount);
+                    }
+                    else
+                    {
+                        scheduledCountClasses_buff[0].結存量 = (scheduledCountClasses_buff[0].結存量.StringToDouble() + inv_CombinelistClass.Records_Ary[i].Creat.Contents[k].盤點量.StringToDouble()).ToString();
+                    }
+                   
+                }
+            }
+                       
+            returnData.Method = "get_inv_EndQty_by_SN";
+            returnData.Data = scheduledCountClasses;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"取得合併單號{returnData.Value}內所有盤點單盤點項目，共{scheduledCountClasses.Count}個";
+            return returnData.JsonSerializationt(true);
+        }
+
+        /// <summary>
+        /// 以合併單號取得所有盤點單數量統計
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "ServerName": "A7"
+        ///    "ServerType":"調劑台 or 藥庫 or 藥局"
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_scheduledCount_by_SN_ServerName")]
+        public string get_scheduledCount_by_SN_ServerName([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return returnData.JsonSerializationt(true);
+            }
+            if (returnData.ServerName.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.ServerName 空白,請輸入ServerName!";
+                return returnData.JsonSerializationt(true);
+            }
+            if (returnData.ServerType.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.ServerType 空白,請輸入ServerType!";
+                return returnData.JsonSerializationt(true);
+            }
+            string serverName = returnData.ServerName;
+            string serverType = returnData.ServerType;
+            string jsonString = get_inv_EndQty_by_SN(returnData);
+            returnData = jsonString.JsonDeserializet<returnData>();
+
+            List<ScheduledCountClass> scheduledCountClasses = returnData.Data.ObjToClass<List<ScheduledCountClass>>();
+
+            List<string> codes = scheduledCountClasses.Select(x => x.藥碼).Distinct().ToList();
+            List<medClass> medClasses = medClass.get_dps_medClass_by_code(API01, serverName, codes);
+            List<medClass> medClasses_buff = new List<medClass>();
+            foreach(var item in scheduledCountClasses)
+            {
+                double 庫存量 = 0;
+                List<string> lot_number = new List<string>();
+                List<string> validity_period = new List<string>();
+
+                medClasses_buff = medClasses.Where(x => x.藥品碼 == item.藥碼).ToList();
+                for(int i = 0; i < medClasses_buff.Count; i++)
+                {
+                    for (int k = 0; k < medClasses_buff[i].DeviceBasics.Count; k++)
+                    {
+                        List<string> qty = medClasses_buff[i].DeviceBasics[k].List_Inventory;
+                        double total = qty.Sum(item => double.Parse(item));
+                        庫存量 += total;
+                        lot_number.AddRange(medClasses_buff[i].DeviceBasics[k].List_Lot_number);
+                        validity_period.AddRange(medClasses_buff[i].DeviceBasics[k].List_Validity_period);
+                    }
+                }
+                item.庫存量 = 庫存量.ToString();
+                item.批號 = lot_number;
+                item.效期 = validity_period;
+                item.盤差量 = (item.結存量.StringToDouble() - item.庫存量.StringToDouble()).ToString();
+            }
+
+            returnData.Method = "get_scheduledCount_by_SN_ServerName";
+            returnData.Data = scheduledCountClasses;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"取得合併單號{returnData.Value}內所有盤點單盤點項目，共{scheduledCountClasses.Count}個";
+            return returnData.JsonSerializationt(true);
+        }
+
+
         private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass)
         {
 

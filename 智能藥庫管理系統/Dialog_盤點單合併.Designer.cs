@@ -71,7 +71,7 @@ namespace 智能藥庫系統
             this.panel2.Controls.Add(this.plC_RJ_Button_庫存設定);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(4, 44);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panel2.Size = new System.Drawing.Size(2392, 259);
@@ -95,7 +95,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_別名設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_別名設定.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_別名設定.Location = new System.Drawing.Point(440, 119);
-            this.plC_RJ_Button_別名設定.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_別名設定.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_別名設定.Name = "plC_RJ_Button_別名設定";
             this.plC_RJ_Button_別名設定.OFF_文字內容 = "別名設定";
             this.plC_RJ_Button_別名設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -149,7 +149,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_覆盤設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_覆盤設定.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_覆盤設定.Location = new System.Drawing.Point(776, 119);
-            this.plC_RJ_Button_覆盤設定.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_覆盤設定.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_覆盤設定.Name = "plC_RJ_Button_覆盤設定";
             this.plC_RJ_Button_覆盤設定.OFF_文字內容 = "覆盤設定";
             this.plC_RJ_Button_覆盤設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -203,7 +203,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_單價設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_單價設定.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_單價設定.Location = new System.Drawing.Point(296, 119);
-            this.plC_RJ_Button_單價設定.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_單價設定.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_單價設定.Name = "plC_RJ_Button_單價設定";
             this.plC_RJ_Button_單價設定.OFF_文字內容 = "單價設定";
             this.plC_RJ_Button_單價設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -257,7 +257,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_生成總表.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_生成總表.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_生成總表.Location = new System.Drawing.Point(920, 119);
-            this.plC_RJ_Button_生成總表.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_生成總表.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_生成總表.Name = "plC_RJ_Button_生成總表";
             this.plC_RJ_Button_生成總表.OFF_文字內容 = "生成總表";
             this.plC_RJ_Button_生成總表.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -302,7 +302,7 @@ namespace 智能藥庫系統
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(7, 6);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(2378, 106);
             this.panel3.TabIndex = 18;
@@ -327,7 +327,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_新建.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_新建.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_新建.Location = new System.Drawing.Point(2110, 0);
-            this.plC_RJ_Button_新建.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_新建.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_新建.Name = "plC_RJ_Button_新建";
             this.plC_RJ_Button_新建.OFF_文字內容 = "新建";
             this.plC_RJ_Button_新建.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -368,7 +368,7 @@ namespace 智能藥庫系統
             this.panel5.Controls.Add(this.comboBox_inv_Combinelist);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(416, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(13, 29, 40, 0);
             this.panel5.Size = new System.Drawing.Size(729, 104);
@@ -381,7 +381,7 @@ namespace 智能藥庫系統
             this.comboBox_inv_Combinelist.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_inv_Combinelist.FormattingEnabled = true;
             this.comboBox_inv_Combinelist.Location = new System.Drawing.Point(13, 29);
-            this.comboBox_inv_Combinelist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_inv_Combinelist.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_inv_Combinelist.Name = "comboBox_inv_Combinelist";
             this.comboBox_inv_Combinelist.Size = new System.Drawing.Size(715, 41);
             this.comboBox_inv_Combinelist.TabIndex = 19;
@@ -406,7 +406,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_刪除.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_刪除.Location = new System.Drawing.Point(2243, 0);
-            this.plC_RJ_Button_刪除.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_刪除.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_刪除.Name = "plC_RJ_Button_刪除";
             this.plC_RJ_Button_刪除.OFF_文字內容 = "刪除";
             this.plC_RJ_Button_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -447,7 +447,7 @@ namespace 智能藥庫系統
             this.panel4.Controls.Add(this.dateTimeIntervelPicker_建表日期);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(416, 104);
             this.panel4.TabIndex = 17;
@@ -460,7 +460,7 @@ namespace 智能藥庫系統
             this.dateTimeIntervelPicker_建表日期.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimeIntervelPicker_建表日期.EndTime = new System.DateTime(2024, 3, 28, 23, 59, 59, 0);
             this.dateTimeIntervelPicker_建表日期.Location = new System.Drawing.Point(0, 0);
-            this.dateTimeIntervelPicker_建表日期.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateTimeIntervelPicker_建表日期.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimeIntervelPicker_建表日期.Name = "dateTimeIntervelPicker_建表日期";
             this.dateTimeIntervelPicker_建表日期.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimeIntervelPicker_建表日期.Size = new System.Drawing.Size(416, 104);
@@ -487,7 +487,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button2.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button2.Location = new System.Drawing.Point(1064, 119);
-            this.plC_RJ_Button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button2.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button2.Name = "plC_RJ_Button2";
             this.plC_RJ_Button2.OFF_文字內容 = "消耗量設定";
             this.plC_RJ_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -541,7 +541,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_選擇.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_選擇.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_選擇.Location = new System.Drawing.Point(8, 119);
-            this.plC_RJ_Button_選擇.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_選擇.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_選擇.Name = "plC_RJ_Button_選擇";
             this.plC_RJ_Button_選擇.OFF_文字內容 = "盤點單選取";
             this.plC_RJ_Button_選擇.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -594,7 +594,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_庫存設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_庫存設定.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_Button_庫存設定.Location = new System.Drawing.Point(152, 119);
-            this.plC_RJ_Button_庫存設定.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_庫存設定.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_庫存設定.Name = "plC_RJ_Button_庫存設定";
             this.plC_RJ_Button_庫存設定.OFF_文字內容 = "庫存設定";
             this.plC_RJ_Button_庫存設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -638,7 +638,7 @@ namespace 智能藥庫系統
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(4, 1136);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2392, 110);
             this.panel1.TabIndex = 10;
@@ -660,7 +660,7 @@ namespace 智能藥庫系統
             this.rJ_Button_搜尋.GUID = "";
             this.rJ_Button_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_搜尋.Location = new System.Drawing.Point(1008, 25);
-            this.rJ_Button_搜尋.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rJ_Button_搜尋.Margin = new System.Windows.Forms.Padding(4);
             this.rJ_Button_搜尋.Name = "rJ_Button_搜尋";
             this.rJ_Button_搜尋.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_搜尋.ProhibitionLineWidth = 4;
@@ -681,7 +681,7 @@ namespace 智能藥庫系統
             this.comboBox_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.comboBox_搜尋內容.FormattingEnabled = true;
             this.comboBox_搜尋內容.Location = new System.Drawing.Point(609, 34);
-            this.comboBox_搜尋內容.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_搜尋內容.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_搜尋內容.Name = "comboBox_搜尋內容";
             this.comboBox_搜尋內容.Size = new System.Drawing.Size(387, 46);
             this.comboBox_搜尋內容.TabIndex = 126;
@@ -699,7 +699,7 @@ namespace 智能藥庫系統
             "已覆盤",
             "全部顯示"});
             this.comboBox_搜尋條件.Location = new System.Drawing.Point(259, 34);
-            this.comboBox_搜尋條件.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_搜尋條件.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_搜尋條件.Name = "comboBox_搜尋條件";
             this.comboBox_搜尋條件.Size = new System.Drawing.Size(316, 46);
             this.comboBox_搜尋條件.TabIndex = 125;
@@ -724,7 +724,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_下載報表.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_下載報表.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_下載報表.Location = new System.Drawing.Point(0, 0);
-            this.plC_RJ_Button_下載報表.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_下載報表.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_下載報表.Name = "plC_RJ_Button_下載報表";
             this.plC_RJ_Button_下載報表.OFF_文字內容 = "下載報表";
             this.plC_RJ_Button_下載報表.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -780,7 +780,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_返回.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_返回.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_返回.Location = new System.Drawing.Point(2177, 0);
-            this.plC_RJ_Button_返回.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.plC_RJ_Button_返回.Margin = new System.Windows.Forms.Padding(4);
             this.plC_RJ_Button_返回.Name = "plC_RJ_Button_返回";
             this.plC_RJ_Button_返回.OFF_文字內容 = "返回";
             this.plC_RJ_Button_返回.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -846,7 +846,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點總表.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_盤點總表.ImageBox = false;
             this.sqL_DataGridView_盤點總表.Location = new System.Drawing.Point(4, 303);
-            this.sqL_DataGridView_盤點總表.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.sqL_DataGridView_盤點總表.Margin = new System.Windows.Forms.Padding(5);
             this.sqL_DataGridView_盤點總表.Name = "sqL_DataGridView_盤點總表";
             this.sqL_DataGridView_盤點總表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
             this.sqL_DataGridView_盤點總表.Password = "user82822040";
@@ -891,7 +891,7 @@ namespace 智能藥庫系統
             this.Controls.Add(this.sqL_DataGridView_盤點總表);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaxSize = new System.Drawing.Size(40, 40);
             this.MinimizeBox = true;
             this.MiniSize = new System.Drawing.Size(40, 40);

@@ -47,6 +47,8 @@ namespace HIS_DB_Lib
         中文名,
         [Description("數量,VARCHAR,10,NONE")]
         數量,
+        [Description("退藥數量,VARCHAR,10,NONE")]
+        退藥數量,
         [Description("劑量,VARCHAR,10,NONE")]
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
@@ -153,6 +155,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("qty")]
         public string 數量 { get; set; }
+        /// <summary>
+        /// 退藥數量
+        /// </summary>
+        [JsonPropertyName("returnQty")]
+        public string 退藥數量 { get; set; }
         /// <summary>
         /// 劑量
         /// </summary>
