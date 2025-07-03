@@ -364,6 +364,23 @@ namespace HIS_DB_Lib
             List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             return out_textVisionClass;
         }
+        static public returnData get_by_MasterGUID(string API, string MasterGUID)
+        {
+            string url = $"{API}/api/pcmpo/get_by_MasterGUID";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry = new List<string>() { MasterGUID };
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            //if (returnData.Code != 200)
+            //{
+            //    return null;
+            //}
+            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+            return returnData;
+        }
         static public List<textVisionClass> delete_by_GUID(string API, string GUID)
         { 
             string url = $"{API}/api/pcmpo/delete_by_GUID";

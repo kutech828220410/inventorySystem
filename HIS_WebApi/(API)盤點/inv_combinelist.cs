@@ -1168,40 +1168,56 @@ namespace HIS_WebApi
         [HttpPost("update_setting_by_SN")]
         public string update_setting_by_SN([FromBody] returnData returnData)
         {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            if (returnData.Data == null)
+            try
             {
-                returnData.Code = -200;
-                returnData.Result = "returnData.Data應填入合併單號";
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data應填入合併單號";
+                    return returnData.JsonSerializationt(true);
+                }
+                inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+                if(inv_CombinelistClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data應填入合併單資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (inv_CombinelistClass.誤差總金額致能.ToLower() == "true") inv_CombinelistClass.誤差總金額致能 = true.ToString();
+                if (inv_CombinelistClass.誤差百分率致能.ToLower() == "true") inv_CombinelistClass.誤差百分率致能 = true.ToString();
+                if (inv_CombinelistClass.誤差數量致能.ToLower() == "true") inv_CombinelistClass.誤差數量致能 = true.ToString();
+
+                if (inv_CombinelistClass.誤差總金額致能.ToLower() == "false") inv_CombinelistClass.誤差總金額致能 = false.ToString();
+                if (inv_CombinelistClass.誤差百分率致能.ToLower() == "false") inv_CombinelistClass.誤差百分率致能 = false.ToString();
+                if (inv_CombinelistClass.誤差數量致能.ToLower() == "false") inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+                if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
+                if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
+                if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+                object[] list_inv_combinelist = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
+                if (list_inv_combinelist != null) sQLControl_inv_combinelist.UpdateByDefulteExtra(null, list_inv_combinelist);
+
+                returnData.Data = inv_CombinelistClass;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "update_setting_by_SN";
+
+                returnData.Result = $"成功取得資料";
                 return returnData.JsonSerializationt(true);
             }
-            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
-            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "true") inv_CombinelistClass.誤差總金額致能 = true.ToString();
-            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "true") inv_CombinelistClass.誤差百分率致能 = true.ToString();
-            if (inv_CombinelistClass.誤差數量致能.ToLower() == "true") inv_CombinelistClass.誤差數量致能 = true.ToString();
-
-            if (inv_CombinelistClass.誤差總金額致能.ToLower() == "false") inv_CombinelistClass.誤差總金額致能 = false.ToString();
-            if (inv_CombinelistClass.誤差百分率致能.ToLower() == "false") inv_CombinelistClass.誤差百分率致能 = false.ToString();
-            if (inv_CombinelistClass.誤差數量致能.ToLower() == "false") inv_CombinelistClass.誤差數量致能 = false.ToString();
-
-            if (inv_CombinelistClass.誤差總金額致能.StringIsEmpty()) inv_CombinelistClass.誤差總金額致能 = false.ToString();
-            if (inv_CombinelistClass.誤差百分率致能.StringIsEmpty()) inv_CombinelistClass.誤差百分率致能 = false.ToString();
-            if (inv_CombinelistClass.誤差數量致能.StringIsEmpty()) inv_CombinelistClass.誤差數量致能 = false.ToString();
-
-            (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-
-            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
-
-            object[] list_inv_combinelist = inv_CombinelistClass.ClassToSQL<inv_combinelistClass, enum_inv_combinelist>();
-            if (list_inv_combinelist != null) sQLControl_inv_combinelist.UpdateByDefulteExtra(null, list_inv_combinelist);
-
-            returnData.Data = inv_CombinelistClass;
-            returnData.Code = 200;
-            returnData.TimeTaken = myTimerBasic.ToString();
-            returnData.Method = "update_setting_by_SN";
-
-            returnData.Result = $"成功取得資料";
-            return returnData.JsonSerializationt(true);
+            catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";       
+                return returnData.JsonSerializationt(true);
+            }
+            
         }
         /// <summary>
         /// 取得所有可合併單

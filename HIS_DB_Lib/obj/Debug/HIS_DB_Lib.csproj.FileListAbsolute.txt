@@ -421,4 +421,4 @@ C:\Users\User\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.cspro
 C:\Users\User\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.csproj.CopyComplete
 C:\Users\User\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.dll
 C:\Users\User\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.pdb
-C:\Users\Administrator\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.csproj.CopyComplete
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Debug\HIS_DB_Lib.csproj.Up2Date
