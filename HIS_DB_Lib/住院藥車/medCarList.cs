@@ -64,6 +64,22 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarListClass;
         }
+
+        static public List<medCarListClass> get_all(string API_Server, String 藥局)
+        {
+            string url = $"{API_Server}/api/medCarList/get_all";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medCarListClass> out_medCarListClass = returnData.Data.ObjToClass<List<medCarListClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCarListClass;
+        }
     }
 
 }

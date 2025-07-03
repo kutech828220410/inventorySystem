@@ -300,17 +300,17 @@ namespace HIS_WebApi
 
                 if (list_medCart_add.Count > 0)
                 {
-                    Logger.Log("patientInfo", $"add_update_patientInfo \n {medCart_sql_add.JsonSerializationt(true)}");
+                    Logger.Log($"patientInfo-{護理站}", $"add_update_patientInfo \n {medCart_sql_add.JsonSerializationt(true)}");
                     sQLControl_patient_info.AddRows(null, list_medCart_add);
                 }
                 if (list_medCart_update.Count > 0)
                 {
-                    Logger.Log("patientInfo", $"update_update_patientInfo \n {medCart_sql_update.JsonSerializationt(true)}");
+                    Logger.Log($"patientInfo-{護理站}", $"update_update_patientInfo \n {medCart_sql_update.JsonSerializationt(true)}");
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCart_update);
                 }
                 if (list_medCart_update_out.Count > 0)
                 {
-                    Logger.Log("patientInfo", $"update_update_patientInfo \n {medCart_sql_update_out.JsonSerializationt(true)}");
+                    Logger.Log($"patientInfo-{護理站}", $"update_update_patientInfo \n {medCart_sql_update_out.JsonSerializationt(true)}");
                     sQLControl_patient_info.UpdateByDefulteExtra(null, list_medCart_update_out);
                     //List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
                     //List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
@@ -337,7 +337,7 @@ namespace HIS_WebApi
                     List<object[]> list_medCpoe_delete_buff = filterCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_delete_buff.Count > 0)
                     {
-                        Logger.Log("medCpoe", $"update_update_patientInfo \n {filterCpoe.JsonSerializationt(true)}");
+                        Logger.Log($"medCpoe-{護理站}", $"update_update_patientInfo \n {filterCpoe.JsonSerializationt(true)}");
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_delete_buff);
                     }
                 }
@@ -551,17 +551,17 @@ namespace HIS_WebApi
 
                 if (list_medCpoe_add.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"add_update_med_cpoe \n {medCpoe_sql_add.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"add_update_med_cpoe \n {medCpoe_sql_add.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.AddRows(null, list_medCpoe_add);
                 }
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_update_med_cpoe \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"update_update_med_cpoe \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
                 if (list_medCpoe_delete.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"delete_update_med_cpoe \n {medCpoe_sql_delete.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"delete_update_med_cpoe \n {medCpoe_sql_delete.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.DeleteExtra(null, list_medCpoe_delete);
                 }
 
@@ -849,11 +849,11 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 sql_medCpoe[0].大瓶點滴 = 大瓶藥標記;
-
+                
                 List<object[]> list_medCpoe_replace = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_update_large_in_med_cpoe \n {sql_medCpoe.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{sql_medCpoe[0].護理站}", $"update_update_large_in_med_cpoe \n {sql_medCpoe.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
@@ -942,7 +942,7 @@ namespace HIS_WebApi
                 List<object[]> list_medCpoe_add = add_medCpoeRecClass.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
                 if (list_medCpoe_add.Count > 0)
                 {
-                    Logger.Log("medCpoeRec", $"add_update_med_cpoe_rec \n {add_medCpoeRecClass.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoeRec-{護理站}", $"add_update_med_cpoe_rec \n {add_medCpoeRecClass.JsonSerializationt(true)}");
                     sQLControl_med_cpoe_rec.AddRows(null, list_medCpoe_add);
                 }
 
@@ -2298,12 +2298,17 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
-
-                if (settingPage.設定值 == true.ToString())
+                settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
+                if (settingPage_vaildOrder.設定值 == true.ToString())
                 {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                    sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains("DC") == false).ToList();
                 }
+                else
+                {
+                    if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                }
+                
 
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
                 List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
@@ -2314,6 +2319,7 @@ namespace HIS_WebApi
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
+                
                 foreach (var medCpoeClass in sql_medCpoe)
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
@@ -2332,14 +2338,14 @@ namespace HIS_WebApi
                                 debit_medcpoe.Add(medCpoeClass);
                             }
                         }
-                        //medCpoeClass.狀態 = "";      
-                        //medCpoeClass.調劑異動 = "";
                     }
                     else
                     {
                         if (medCpoeClass.調劑狀態.StringIsEmpty() == false)
                         {
                             medCpoeClass.調劑狀態 = string.Empty;
+                            medCpoeClass.覆核狀態 = string.Empty;
+                            medCpoeClass.DC確認 = string.Empty;
                             refund_medcpoe.Add(medCpoeClass);
                         }
                     }
@@ -2353,7 +2359,7 @@ namespace HIS_WebApi
                     List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_replace.Count > 0)
                     {
-                        Logger.Log("medCpoe", $"update_check_dispense \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                        Logger.Log($"medCpoe-{sql_medCpoe[0].護理站}", $"update_check_dispense \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                     }
                 })));
@@ -2365,7 +2371,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
-                        Logger.Log("patientInfo", $"update_check_dispense \n {sql_patinfo.JsonSerializationt(true)}");
+                        Logger.Log($"patientInfo-{sql_medCpoe[0].護理站}", $"update_check_dispense \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
                 })));
@@ -2446,9 +2452,13 @@ namespace HIS_WebApi
                 }
                 medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
                 medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
+                string 護理站 = medCpoe_sql_replace[0].護理站;
 
                 if (調劑狀態.StringIsEmpty() == true) //取消調劑
                 {
+                    medCpoe_sql_replace[0].覆核狀態 = string.Empty;
+                    medCpoe_sql_replace[0].DC確認 = string.Empty;
+
                     refund_medcpoe.Add(medCpoe_sql_replace[0]);
                 }
                 else //確認調劑
@@ -2470,7 +2480,7 @@ namespace HIS_WebApi
                     List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_replace.Count > 0)
                     {
-                        Logger.Log("medCpoe", $"update_check_dispense_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                        Logger.Log($"medCpoe-{護理站}", $"update_check_dispense_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                     }
                 })));
@@ -2482,7 +2492,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
-                        Logger.Log("patientInfo", $"update_check_dispense_by_GUID \n {sql_patinfo.JsonSerializationt(true)}");
+                        Logger.Log($"patientInfo-{護理站}", $"update_check_dispense_by_GUID \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
 
@@ -2566,6 +2576,7 @@ namespace HIS_WebApi
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
+                string 護理站 = sql_medCpoe[0].護理站;
                 for (int i = 0; i < sql_medCpoe.Count; i++)
                 {
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
@@ -2591,7 +2602,7 @@ namespace HIS_WebApi
                     List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (update_medCpoe.Count > 0)
                     {
-                        Logger.Log("medCpoe", $"update_dispensed_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
+                        Logger.Log($"medCpoe-{護理站}", $"update_dispensed_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                     }
                 })));
@@ -2606,7 +2617,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
-                        Logger.Log("patientInfo", $"update_dispensed_by_GUID \n {sql_patinfo.JsonSerializationt(true)}");
+                        Logger.Log($"patientInfo-{護理站}", $"update_dispensed_by_GUID \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
 
@@ -2641,7 +2652,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID確認藥品調劑
+        ///以GUID確認藥品調劑，針對整個藥車調劑(只能確認)
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -2656,7 +2667,6 @@ namespace HIS_WebApi
         [HttpPost("dispensed_by_cart")]
         public string dispensed_by_cart([FromBody] returnData returnData)
         {
-            //針對整個藥車調劑(只能確認)
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "dispensed_by_cart";
             try
@@ -2725,7 +2735,7 @@ namespace HIS_WebApi
                     List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (update_medCpoe.Count > 0)
                     {
-                        Logger.Log("medCpoe", $"update_dispensed_by_cart \n {sql_medCpoe.JsonSerializationt(true)}");
+                        Logger.Log($"medCpoe-{護理站}", $"update_dispensed_by_cart \n {sql_medCpoe.JsonSerializationt(true)}");
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                     }
                 })));
@@ -2739,7 +2749,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
-                        Logger.Log("patientInfo", $"update_dispensed_by_cart \n {sql_patinfo.JsonSerializationt(true)}");
+                        Logger.Log($"patientInfo-{護理站}", $"update_dispensed_by_cart \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
 
@@ -2768,7 +2778,6 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception:{ex.Message}";
-                Logger.Log(returnData.JsonSerializationt(true));
                 return returnData.JsonSerializationt(true);
             }
         }
@@ -2825,12 +2834,17 @@ namespace HIS_WebApi
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                settingPageClass settingPage = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
-
-                if (settingPage.設定值 == true.ToString())
+                settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+                settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
+                if (settingPage_vaildOrder.設定值 == true.ToString())
                 {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                    sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains("DC") == false).ToList();
                 }
+                else
+                {
+                    if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                }
+                
 
                 if (sql_medCpoe.Count == 0)
                 {
@@ -2838,6 +2852,7 @@ namespace HIS_WebApi
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
+                string 護理站 = sql_medCpoe[0].護理站;
                 foreach (var medCpoeClass in sql_medCpoe)
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
@@ -2853,7 +2868,7 @@ namespace HIS_WebApi
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_double_check \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"update_double_check \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
@@ -2917,11 +2932,11 @@ namespace HIS_WebApi
                 }
 
                 medCpoe_sql_replace[0].覆核狀態 = 覆核狀態;
-
+                string 護理站 = medCpoe_sql_replace[0].護理站;
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
@@ -2996,11 +3011,11 @@ namespace HIS_WebApi
                         sql_medCpoe[i].覆核狀態 = "Y";
                     }
                 }
-
+                string 護理站 = sql_medCpoe[0].護理站;
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{護理站}", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                 }
 
@@ -3014,12 +3029,11 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception:{ex.Message}";
-                Logger.Log(returnData.JsonSerializationt(true));
                 return returnData.JsonSerializationt(true);
             }
         }
         /// <summary>
-        ///以GUID確認藥品覆核
+        ///以GUID確認藥品覆核，針對整個藥車覆核(只能確認)
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -3034,7 +3048,6 @@ namespace HIS_WebApi
         [HttpPost("check_by_cart")]
         public string check_by_cart([FromBody] returnData returnData)
         {
-            //針對整個藥車調劑(只能確認)
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "dispensed_by_cart";
             try
@@ -3086,7 +3099,7 @@ namespace HIS_WebApi
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0)
                 {
-                    Logger.Log("medCpoe", $"update_check_by_cart \n {sql_medCpoe.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{sql_medCpoe[0].護理站}", $"update_check_by_cart \n {sql_medCpoe.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                 }
                 returnData.Code = 200;
@@ -4071,6 +4084,7 @@ namespace HIS_WebApi
         }
         private List<patientInfoClass> UpdateStatus(List<patientInfoClass> patientInfoClasses, List<medCpoeClass> medCpoeClasses)
         {
+            string 護理站 = patientInfoClasses[0].護理站;
             Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(medCpoeClasses);
             (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
             string tableName_patient_info = "patient_info";
@@ -4120,7 +4134,7 @@ namespace HIS_WebApi
                 List<object[]> update = patientInfoClasses.ClassToSQL<patientInfoClass, enum_patient_info>();
                 if (update.Count > 0)
                 {
-                    Logger.Log("patientInfo", $"update_UpdateStatus \n {patientInfoClasses.JsonSerializationt(true)}");
+                    Logger.Log($"patientInfo-{護理站}", $"update_UpdateStatus \n {patientInfoClasses.JsonSerializationt(true)}");
                     sQLControl_patient_info.UpdateByDefulteExtra(null, update);
                 }
             })));

@@ -391,21 +391,71 @@ namespace HIS_WebApi
                     .GroupBy(medCart => medCart.藥局)
                     .Select(group => group.First())
                     .ToList();
-                List<medCarListClass> medCarList = new List<medCarListClass>();
-                foreach (var value in medCart_sql_buf)
-                {
-                    medCarListClass medCarListClass = new medCarListClass
-                    {
-                        藥局 = value.藥局,
-                        藥局名 = value.藥局名
-                    };
-                    medCarList.Add(medCarListClass);
-                }
-                medCarList.Sort(new medCarListClass.ICP_By_phar_name());
+               
+                medCart_sql_buf.Sort(new medCarListClass.ICP_By_phar_name());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCarList;
-                returnData.Result = $"取得藥局資料共{medCarList.Count}";
+                returnData.Data = medCart_sql_buf;
+                returnData.Result = $"取得藥局資料共{medCart_sql_buf.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        /// <summary>
+        ///取得藥局護理站資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_all")]
+        public string get_all([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "medCarList/get_all";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+
+                //List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                Table table = new Table(new enum_med_carList());
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
+
+                List<medCarListClass> medCart_sql = list_medCart.SQLToClass<medCarListClass, enum_med_carList>();
+
+
+                medCart_sql.Sort(new medCarListClass.ICP_By_phar_name());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medCart_sql;
+                returnData.Result = $"取得藥局資料共{medCart_sql.Count}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
