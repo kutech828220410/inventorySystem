@@ -2327,6 +2327,7 @@ namespace HIS_WebApi
                         if (medCpoeClass.調劑狀態.StringIsEmpty())
                         {
                             medCpoeClass.調劑狀態 = "Y";
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                             if (medCpoeClass.PRI_KEY.Contains("DC"))
                             {
                                 medCpoeClass.覆核狀態 = "Y";
@@ -2346,6 +2347,7 @@ namespace HIS_WebApi
                             medCpoeClass.調劑狀態 = string.Empty;
                             medCpoeClass.覆核狀態 = string.Empty;
                             medCpoeClass.DC確認 = string.Empty;
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                             refund_medcpoe.Add(medCpoeClass);
                         }
                     }
@@ -2405,7 +2407,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID調整藥品調劑狀態
+        ///以GUID調整藥品調劑狀態，藥品總量單床調劑
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -2452,13 +2454,13 @@ namespace HIS_WebApi
                 }
                 medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
                 medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
+                medCpoe_sql_replace[0].更新時間 = DateTime.Now.ToDateTimeString();
                 string 護理站 = medCpoe_sql_replace[0].護理站;
 
                 if (調劑狀態.StringIsEmpty() == true) //取消調劑
                 {
                     medCpoe_sql_replace[0].覆核狀態 = string.Empty;
                     medCpoe_sql_replace[0].DC確認 = string.Empty;
-
                     refund_medcpoe.Add(medCpoe_sql_replace[0]);
                 }
                 else //確認調劑
@@ -2526,7 +2528,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID確認藥品調劑
+        ///以GUID確認藥品調劑，未調藥品的全部調劑
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -2541,7 +2543,6 @@ namespace HIS_WebApi
         [HttpPost("dispensed_by_GUID")]
         public string dispensed_by_GUID([FromBody] returnData returnData)
         {
-            ///未調藥品的全部調劑
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "dispensed_by_GUID";
             try
@@ -2582,6 +2583,7 @@ namespace HIS_WebApi
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
                         sql_medCpoe[i].調劑狀態 = "Y";
+                        sql_medCpoe[i].更新時間 = DateTime.Now.ToDateTimeString();
                         if (sql_medCpoe[i].PRI_KEY.Contains("DC"))
                         {
                             sql_medCpoe[i].DC確認 = "Y";
@@ -2727,6 +2729,7 @@ namespace HIS_WebApi
                         debit_medcpoe.Add(item);
                     }
                     item.調劑狀態 = "Y";
+                    item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
 
                 List<Task> tasks = new List<Task>();
@@ -2857,12 +2860,21 @@ namespace HIS_WebApi
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
                     {
-                        medCpoeClass.覆核狀態 = "Y";
+                        if (medCpoeClass.覆核狀態.StringIsEmpty())
+                        {
+                            medCpoeClass.覆核狀態 = "Y";
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
+                        }
                     }
                     else
                     {
-                        medCpoeClass.覆核狀態 = "";
+                        if(medCpoeClass.覆核狀態.StringIsEmpty() == false)
+                        {
+                            medCpoeClass.覆核狀態 = string.Empty;
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
+                        }
                     }
+
                     medCpoe_sql_replace.Add(medCpoeClass);
                 }
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -2903,7 +2915,7 @@ namespace HIS_WebApi
         public string double_check_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "check_dispense_by_GUID";
+            returnData.Method = "double_check_by_GUID";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 3)
@@ -2932,11 +2944,12 @@ namespace HIS_WebApi
                 }
 
                 medCpoe_sql_replace[0].覆核狀態 = 覆核狀態;
-                string 護理站 = medCpoe_sql_replace[0].護理站;
+                medCpoe_sql_replace[0].更新時間 = DateTime.Now.ToDateTimeString();
+                //string 護理站 = medCpoe_sql_replace[0].護理站;
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log($"medCpoe-{護理站}", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{medCpoe_sql_replace[0].護理站}", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
@@ -3009,13 +3022,13 @@ namespace HIS_WebApi
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
                         sql_medCpoe[i].覆核狀態 = "Y";
+                        sql_medCpoe[i].更新時間 = DateTime.Now.ToDateTimeString();
                     }
                 }
-                string 護理站 = sql_medCpoe[0].護理站;
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0)
                 {
-                    Logger.Log($"medCpoe-{護理站}", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{sql_medCpoe[0].護理站}", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                 }
 
@@ -3094,6 +3107,7 @@ namespace HIS_WebApi
                 {
                     patientGUID.Add(item.Master_GUID);
                     item.覆核狀態 = "Y";
+                    item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
 
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
