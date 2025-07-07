@@ -116,82 +116,102 @@ namespace 調劑台管理系統
                 List<HF_ReaderLib.Entity.TagInfoEntity> reader1_tagInfoList_temp = new List<HF_ReaderLib.Entity.TagInfoEntity>();
                 List<HF_ReaderLib.Entity.TagInfoEntity> reader2_tagInfoList = new List<HF_ReaderLib.Entity.TagInfoEntity>();
                 List<HF_ReaderLib.Entity.TagInfoEntity> reader2_tagInfoList_temp = new List<HF_ReaderLib.Entity.TagInfoEntity>();
-     
-                tasks.Add(Task.Run(() =>
-                {
-                    DateTime start = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 開始讀取: {start:HH:mm:ss.fff}");
 
-                    if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
-                    {
-                        for (int i = 1; i <= 2; i++)
-                        {
-                            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
-                            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
-                        }
-                    }
+                //tasks.Add(Task.Run(() =>
+                //{
+                //    DateTime start = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 開始讀取: {start:HH:mm:ss.fff}");
+
+                //    if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
+                //    {
+                //        for (int i = 1; i <= 2; i++)
+                //        {
+                //            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
+                //            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
+                //        }
+                //    }
                
-                    DateTime end = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
-                }));
+                //    DateTime end = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //}));
 
-                tasks.Add(Task.Run(() =>
+                //tasks.Add(Task.Run(() =>
+                //{
+                //    DateTime start = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 開始讀取: {start:HH:mm:ss.fff}");
+
+                //    if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
+                //    {
+                //        for (int i = 1; i <= 2; i++)
+                //        {
+                //            rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
+                //            reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);
+                //        }
+                //    }
+
+                //    DateTime end = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //}));
+
+                //Task.WhenAll(tasks).Wait();
+                //tasks.Clear();
+                //tasks.Add(Task.Run(() =>
+                //{
+                //    DateTime start = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](34) 開始讀取: {start:HH:mm:ss.fff}");
+
+                //    if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
+                //    {
+                //        for (int i = 3; i <= 4; i++)
+                //        {
+                //            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
+                //            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
+                //        }
+                //    }
+
+                //    DateTime end = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](34) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //}));
+
+                //tasks.Add(Task.Run(() =>
+                //{
+                //    DateTime start = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](34) 開始讀取: {start:HH:mm:ss.fff}");
+
+                //    if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
+                //    {
+                //        for (int i = 3; i <= 6; i++)
+                //        {
+                //            rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
+                //            reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);
+                //        }
+                //    }
+
+                //    DateTime end = DateTime.Now;
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](34) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //}));
+                //Task.WhenAll(tasks).Wait();
+
+                if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
                 {
-                    DateTime start = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 開始讀取: {start:HH:mm:ss.fff}");
-
-                    if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
+                    for (int i = 1; i <= 4; i++)
                     {
-                        for (int i = 1; i <= 2; i++)
-                        {
-                            rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
-                            reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);
-                        }
+                        rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
+                        reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
                     }
-
-                    DateTime end = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
-                }));
-
-                Task.WhenAll(tasks).Wait();
-                tasks.Clear();
-                tasks.Add(Task.Run(() =>
+                }
+                if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
                 {
-                    DateTime start = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_1](34) 開始讀取: {start:HH:mm:ss.fff}");
-
-                    if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
+                    for (int i = 1; i <= 6; i++)
                     {
-                        for (int i = 3; i <= 4; i++)
-                        {
-                            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
-                            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
-                        }
+                        rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
+                        reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);
                     }
+                }
 
-                    DateTime end = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_1](34) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
-                }));
-
-                tasks.Add(Task.Run(() =>
-                {
-                    DateTime start = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_2](34) 開始讀取: {start:HH:mm:ss.fff}");
-
-                    if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
-                    {
-                        for (int i = 3; i <= 6; i++)
-                        {
-                            rfidReader_2.Inventory(i, out reader2_tagInfoList_temp);
-                            reader2_tagInfoList.LockAdd(reader2_tagInfoList_temp);
-                        }
-                    }
-
-                    DateTime end = DateTime.Now;
-                    if (HFRFID_debug) Console.WriteLine($"[RFID_2](34) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
-                }));
-                Task.WhenAll(tasks).Wait();
                 DateTime totalEnd = DateTime.Now;
+
+          
                 if (HFRFID_debug) Console.WriteLine($"[RFID] 全部完成: {totalEnd:HH:mm:ss.fff}，總耗時: {(totalEnd - totalStart).TotalMilliseconds} ms");
                 rfidReader_temp.LockAdd(reader1_tagInfoList);
                 rfidReader_temp.LockAdd(reader2_tagInfoList);
