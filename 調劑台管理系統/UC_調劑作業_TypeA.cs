@@ -1549,6 +1549,7 @@ namespace 調劑台管理系統
             }
             Main_Form.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.取消作業, 登入者姓名, 調劑台名稱);
             Main_Form.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(調劑台名稱);
+            Main_Form.commonSapceClasses.DeleteTakeMedicineStack(調劑台名稱);
             Function_調劑作業_醫令資訊更新();
             this.sqL_DataGridView_領藥內容.ClearGrid();
         }

@@ -49,7 +49,22 @@ namespace 調劑台管理系統
                 Console.WriteLine($"新增共用台資料,共<{list_堆疊母資料_add.Count}>筆");
             }
         }
-
+        public static void DeleteTakeMedicineStack(this List<CommonSapceClass> commonSapceClasses,string deviceName)
+        {
+            Table table = new Table(new enum_取藥堆疊母資料());
+            SQLControl sQLControl = new SQLControl();
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                table.Server = commonSapceClasses[i].sys_serverSettingClass.Server;
+                table.Username = commonSapceClasses[i].sys_serverSettingClass.User;
+                table.Password = commonSapceClasses[i].sys_serverSettingClass.Password;
+                table.Port = commonSapceClasses[i].sys_serverSettingClass.Port;
+                table.DBName = commonSapceClasses[i].sys_serverSettingClass.DBName;
+                sQLControl.Init(table);
+                sQLControl.DeleteByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, deviceName);
+              
+            }
+        }
     }
     public class CommonSapceClass
     {
