@@ -6,7 +6,9 @@ using HIS_WebApi._API_藥品資料;
 using K4os.Compression.LZ4.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using MyOffice;
 using MySql.Data.MySqlClient;
+using MyUI;
 using NPOI.SS.Formula.Functions;
 using NPOI.XSSF.Streaming.Values;
 using SQLUI;
@@ -14,9 +16,13 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Ubiety.Dns.Core;
 
 
 
@@ -3764,6 +3770,170 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
+        }
+        /// <summary>
+        ///取得所有處方資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medCpoe_by_st_end")]
+        public string get_medCpoe_by_st_end([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medCpoe_by_st_end";
+            try
+            {
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string 開始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+
+                //(string StartTime, string Endtime) = GetToday();
+
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, 開始時間, 結束時間);
+
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                sql_medCpoe.Sort(new medCpoeClass.ICP_By_bedNum());
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"取得處方資料共{sql_medCpoe.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///取得藥品消耗量
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[{medCpoeClass}]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_med_consumption")]
+        public string get_med_consumption([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_med_consumption";
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+            
+                List<medCpoeClass> medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+
+                if (medCpoeClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+
+                List<medCpoeClass> medCpoeClasses = medCpoeClass
+                    .GroupBy(temp => temp.藥碼)
+                    .Select(grouped =>
+                    {
+                        medCpoeClass medCpoe = grouped.First();                       
+                        
+                        return new medCpoeClass
+                        {
+                            藥品名 = medCpoe.藥品名,
+                            中文名 = medCpoe.中文名,
+                            藥碼 = grouped.Key,
+                            數量 = grouped.Sum(x => x.數量.StringToDouble()).ToString()
+                        };
+                    }).ToList();
+                medCpoeClasses.Sort(new medCpoeClass.ICP_By_medName());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medCpoeClasses;
+                returnData.Result = $"取得{medCpoeClasses.Count}藥品消耗量";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///下載藥品消耗量
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[{medCpoeClass}]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("download_med_consumption")]
+        public async Task<ActionResult> download_cdmis_datas_excel([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+
+                List<medCpoeClass> medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+                if (medCpoeClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+                List<object[]> objects = medCpoeClass.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                System.Data.DataTable dataTable = objects.ToDataTable(new enum_med_cpoe());
+                dataTable = dataTable.ReorderTable(new enum_med_cpoe_export());
+              
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_藥品消耗量報表.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
         /// <summary>
         /// 清洗資料
