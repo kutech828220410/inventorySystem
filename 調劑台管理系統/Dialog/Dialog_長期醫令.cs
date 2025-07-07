@@ -123,6 +123,7 @@ namespace 調劑台管理系統
                 else
                 {
                     orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
+    
                 }
                 Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
                 foreach (string key in keyValuePairs_order.Keys)
@@ -212,6 +213,7 @@ namespace 調劑台管理系統
             {
                 護理站代碼 = "批次領藥";
                 orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
+         
             }
        
             Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();

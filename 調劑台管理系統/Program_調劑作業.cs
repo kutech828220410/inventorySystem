@@ -922,7 +922,7 @@ namespace 調劑台管理系統
                     string 操作人 = uC_調劑作業_TypeA_1.登入者姓名;
                     string 藥師證字號 = uC_調劑作業_TypeA_1.藥師證字號;
                     string 顏色 = uC_調劑作業_TypeA_1.顏色;
-                    string 收支原因 = "";
+                    string 收支原因 = $"手動{(enum_狀態 == Dialog_手輸醫令.enum_狀態.領藥? "領":"退")}藥";
                     double 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToDouble();
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                     if (總異動量 <= 0)
@@ -955,7 +955,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
-                    takeMedicineStackClass.收支原因 = $"手動{(動作 == enum_交易記錄查詢動作.手輸領藥?"領":"退")}藥";
+                    takeMedicineStackClass.收支原因 = 收支原因;
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.ID = ID;
 

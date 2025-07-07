@@ -41812,7 +41812,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.TabIndex = 2;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.TextColor = System.Drawing.Color.White;
             // 
@@ -41838,7 +41838,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.TabIndex = 0;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.TextColor = System.Drawing.Color.White;
             // 
@@ -41932,7 +41932,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.TabIndex = 2;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.TextColor = System.Drawing.Color.White;
             // 
@@ -41958,7 +41958,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.TabIndex = 0;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.TextColor = System.Drawing.Color.White;
             // 

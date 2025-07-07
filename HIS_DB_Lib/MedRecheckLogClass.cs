@@ -493,7 +493,7 @@ namespace HIS_DB_Lib
         {
             if (list == null) return new List<medRecheckLogClass>();
 
-            string 類別描述 = 發生類別.GetEnumDescription();
+            string 類別描述 = 發生類別.GetEnumName();
             return list
                 .Where(x => x.發生類別 == 類別描述)
                 .ToList();
