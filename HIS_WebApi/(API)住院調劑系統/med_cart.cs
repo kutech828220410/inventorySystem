@@ -3900,7 +3900,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("download_med_consumption")]
-        public async Task<ActionResult> download_cdmis_datas_excel([FromBody] returnData returnData)
+        public async Task<ActionResult> download_med_consumption([FromBody] returnData returnData)
         {
             try
             {

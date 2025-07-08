@@ -101,6 +101,10 @@ namespace HIS_DB_Lib
         廠牌,
         [Description("藥品許可證號,VARCHAR,50,NONE")]
         藥品許可證號,
+        [Description("供貨廠商,VARCHAR,100,NONE")]
+        供貨廠商,
+        [Description("供貨商證字號,VARCHAR,50,NONE")]
+        供貨商證字號,
         [Description("開檔狀態,VARCHAR,50,NONE")]
         開檔狀態,
         [Description("儲位描述,VARCHAR,300,NONE")]
