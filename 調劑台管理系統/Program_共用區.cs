@@ -44,6 +44,7 @@ namespace 調劑台管理系統
                 for(int k = 0; k < list_堆疊母資料_add.Count; k++)
                 {
                     if (list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.動作].ObjectToString() == "系統領藥") list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.動作] = "掃碼領藥";
+                    if (list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == "已領用過") list_堆疊母資料_add[k][(int)enum_取藥堆疊母資料.狀態] = "儲位亮燈";
                 }
                 sQLControl.AddRows(null, list_堆疊母資料_add);
                 Console.WriteLine($"新增共用台資料,共<{list_堆疊母資料_add.Count}>筆");
