@@ -20,7 +20,7 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace HIS_WebApi
 {
- 
+
     [Route("api/[controller]")]
     [ApiController]
     public class person_page : ControllerBase
@@ -108,7 +108,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data][personPageClass陣列]</returns>
         [Route("get_all")]
-        [HttpPost] 
+        [HttpPost]
         public string get_all([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -116,19 +116,21 @@ namespace HIS_WebApi
             try
             {
 
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
+                List<sys_serverSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                else serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+
+                if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_personPage = new SQLControl(Server, DB, "person_page", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_personPage.GetAllRows(null);
                 List<personPageClass> personPageClasses = list_value.SQLToClass<personPageClass, enum_人員資料>();
@@ -171,9 +173,10 @@ namespace HIS_WebApi
             returnData.Method = "serch_by_id";
             try
             {
-             
+
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                    else sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -181,7 +184,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 string ID = returnData.Value;
-                if(ID.StringIsEmpty())
+                if (ID.StringIsEmpty())
                 {
 
                 }
@@ -192,7 +195,7 @@ namespace HIS_WebApi
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_personPage = new SQLControl(Server, DB, "person_page", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_personPage.GetRowsByDefult(null, (int)enum_人員資料.ID, ID);
-                if(list_value.Count > 0)
+                if (list_value.Count > 0)
                 {
                     returnData.Data = list_value[0].SQLToClass<personPageClass, enum_人員資料>();
                 }
@@ -242,7 +245,8 @@ namespace HIS_WebApi
             {
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                    else sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -309,9 +313,9 @@ namespace HIS_WebApi
             returnData.Method = "serch_by_add";
             try
             {
-                
+
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -333,7 +337,7 @@ namespace HIS_WebApi
                 {
                     string ID = list_src[i][(int)enum_人員資料.ID].ObjectToString();
                     list_value_buf = list_value.GetRows((int)enum_人員資料.ID, ID);
-                    if(list_value_buf.Count > 0)
+                    if (list_value_buf.Count > 0)
                     {
                         list_replace.Add(list_src[i]);
                     }
@@ -380,7 +384,7 @@ namespace HIS_WebApi
             returnData.Method = "delete";
             try
             {
-                if(returnData.ValueAry == null)
+                if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"ValueAry不可為空";
@@ -399,17 +403,17 @@ namespace HIS_WebApi
 
                 List<object[]> list_value = sQLControl_personPage.GetAllRows(null);
                 List<object[]> list_value_buf = new List<object[]>();
-                List<object[]> list_delete= new List<object[]>();
-                for(int i = 0; i < GUIDs.Length; i++)
+                List<object[]> list_delete = new List<object[]>();
+                for (int i = 0; i < GUIDs.Length; i++)
                 {
                     string GUID = GUIDs[i];
                     list_value_buf = list_value.GetRows((int)enum_人員資料.GUID, GUID);
-                    if(list_value_buf.Count > 0)
+                    if (list_value_buf.Count > 0)
                     {
                         list_delete.Add(list_value_buf[0]);
                     }
                 }
-                
+
                 if (list_delete.Count > 0) sQLControl_personPage.DeleteExtra(null, list_delete);
 
                 returnData.Code = 200;

@@ -49,9 +49,10 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_異常通知_盤點錯誤_發生時段搜尋.MouseDownEvent += PlC_RJ_Button_異常通知_盤點錯誤_發生時段搜尋_MouseDownEvent;
             this.plC_RJ_Button_異常通知_盤點錯誤_排除時段搜尋.MouseDownEvent += PlC_RJ_Button_異常通知_盤點錯誤_排除時段搜尋_MouseDownEvent;
 
-    
-        }     
-     
+            rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Value = rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Value.AddMonths(-1);
+            rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Value = rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Value.AddMonths(-1);
+        }
+
         private void PlC_RJ_Button_異常通知_盤點錯誤_選取藥品異常排除_MouseDownEvent(MouseEventArgs mevent)
         {
             LoadingForm.ShowLoadingForm();
@@ -99,7 +100,6 @@ namespace 調劑台管理系統
             }
        
         }
-
         private void PlC_RJ_Button_異常通知_盤點錯誤_排除時段搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             DateTime dateTime_st = rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Value.GetStartDate();
@@ -128,12 +128,11 @@ namespace 調劑台管理系統
             List<object[]> list_med_recheck = medRecheckLogClasses.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
             this.sqL_DataGridView_異常通知_盤點錯誤.RefreshGrid(list_med_recheck);
         }
-        #region Function
         private void PlC_RJ_Button_異常通知_盤點錯誤_未排除顯示_MouseDownEvent(MouseEventArgs mevent)
         {
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_ng_state_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             medRecheckLogClasses = medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
-            if(medRecheckLogClasses.Count == 0)
+            if (medRecheckLogClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料");
                 return;
@@ -142,9 +141,11 @@ namespace 調劑台管理系統
             List<object[]> list_med_recheck = medRecheckLogClasses.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
             this.sqL_DataGridView_異常通知_盤點錯誤.RefreshGrid(list_med_recheck);
         }
+        #region Function
 
 
-    
+
+
         private void Function_異常通知_盤點錯誤_庫存異動(string 藥碼, string 藥名 , double 差異值)
         {
             List<string> list_效期 = new List<string>();

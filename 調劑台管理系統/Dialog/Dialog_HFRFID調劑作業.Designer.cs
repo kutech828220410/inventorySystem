@@ -197,6 +197,7 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
             this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
+            this.rJ_Button_確認.Visible = false;
             // 
             // sqL_DataGridView_TagList
             // 
@@ -208,7 +209,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_TagList.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_TagList.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_TagList.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_TagList.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_TagList.cellStyleFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_TagList.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_TagList.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_TagList.columnHeaderBackColor = System.Drawing.Color.DarkGray;

@@ -78,6 +78,65 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 取得所有未排除盤點異常資料庫資料 (依發生時間 DESC 排序)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例 JSON：
+        /// <code>
+        /// {
+        ///   "ServerName": "管藥",
+        ///   "ServerType": "調劑台"
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>API 回應 JSON</returns>
+        [Route("get_all_unresolved_data")]
+        [HttpPost]
+        public string get_all_unresolved_data([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "get_all_unresolved_data";
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses[0];
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_medRecheckLog.狀態, enum_medRecheckLog_State.未排除.GetEnumName());
+
+                // 排序：依發生時間 DESC
+                list_value = list_value.OrderByDescending(r => r[(int)enum_medRecheckLog.發生時間].ToDateTimeString_6().StringToDateTime()).ToList();
+
+                List<medRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<medRecheckLogClass, enum_medRecheckLog>();
+
+                returnData.Data = medRecheckLogClasses;
+                returnData.Code = 200;
+                returnData.Result = $"取得資料成功，共 {medRecheckLogClasses.Count} 筆!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
+        /// <summary>
         /// 新增資料至盤點異常資料庫
         /// </summary>
         /// <remarks>

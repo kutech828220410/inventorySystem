@@ -33,6 +33,7 @@ namespace 調劑台管理系統
     public partial class Main_Form : Form
     {
         public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
+        public static StorageUI_LCD_114 _storageUI_LCD_114 = null;
         public static StorageUI_WT32 _storageUI_WT32 = null;
         public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
 
@@ -284,9 +285,9 @@ namespace 調劑台管理系統
                             }
                         }
                     }
-                      
 
-                  
+
+                    if (orderClass.交易量.StringToDouble() > 0) 動作 = enum_交易記錄查詢動作.掃碼退藥;
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID  = orderClass.GUID;
                     takeMedicineStackClass.序號 = orderClass.批序;
@@ -1125,6 +1126,52 @@ namespace 調劑台管理系統
             }
 
             return null; // 如果完全沒找到符合的效期，就回傳 null
+        }
+        static public List<StockClass> Function_取得庫存值從雲端資料(string 藥品碼)
+        {
+            List<object> 儲位 = new List<object>();
+            List<string> 儲位_TYPE = new List<string>();
+            Function_從雲端資料取得儲位(Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
+
+            Dictionary<(string validity, string lot), StockClass> stockDict = new Dictionary<(string, string), StockClass>();
+
+            for (int k = 0; k < 儲位.Count; k++)
+            {
+                object value_device = 儲位[k];
+                if (value_device is Device device)
+                {
+                    for (int i = 0; i < device.List_Validity_period.Count; i++)
+                    {
+                        string validity = device.List_Validity_period[i];
+                        string lot = device.List_Lot_number[i];
+
+                        int.TryParse(device.List_Inventory[i], out int qty);
+                        if (qty <= 0) continue;
+
+                        var key = (validity, lot);
+
+                        if (!stockDict.ContainsKey(key))
+                        {
+                            stockDict[key] = new StockClass()
+                            {
+                                Code = 藥品碼,
+                                Name = device.Name ?? "",
+                                Validity_period = validity,
+                                Lot_number = lot,
+                                Qty = qty.ToString()
+                            };
+                        }
+                        else
+                        {
+                            // 如果已存在，累加數量
+                            int currentQty = stockDict[key].Qty.StringToInt32();
+                            stockDict[key].Qty = (currentQty + qty).ToString();
+                        }
+                    }
+                }
+            }
+
+            return stockDict.Values.ToList();
         }
 
         static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量, string 效期)
@@ -1976,7 +2023,73 @@ namespace 調劑台管理系統
 
             return 庫存;
         }
+        static public void Function_全部滅燈()
+        {
+            List<Drawer> drawers_epd583 = new List<Drawer>();
+            List<Storage> storages_epd266 = new List<Storage>();
+            List<RowsLED> rowsLEDs = new List<RowsLED>();
 
+            List<CommonSapceClass> commonSapceClasses = Function_取得共用區所有儲位();
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                drawers_epd583.LockAdd(commonSapceClasses[i].List_EPD583);
+                storages_epd266.LockAdd(commonSapceClasses[i].List_EPD266);
+                rowsLEDs.LockAdd(commonSapceClasses[i].List_RowsLED);
+            }
+            drawers_epd583.LockAdd(List_EPD583_本地資料);
+            storages_epd266.LockAdd(List_EPD266_本地資料);
+            rowsLEDs.LockAdd(List_RowsLED_本地資料);
+
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < drawers_epd583.Count; i++)
+            {
+                Drawer drawer = drawers_epd583[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    _drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                })));
+            }
+
+
+            for (int i = 0; i < storages_epd266.Count; i++)
+            {
+                Storage storage = storages_epd266[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                })));
+            }
+
+            for (int i = 0; i < rowsLEDs.Count; i++)
+            {
+                RowsLED rowsLED = rowsLEDs[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    _rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
+                })));
+            }
+
+            List<object[]> list_value = _sqL_DataGridView_LCD114_索引表.SQL_GetAllRows(false);
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string IP = list_value[i][(int)enum_LCD114_索引表.index_IP].ObjectToString();
+                try
+                {
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        _storageUI_LCD_114.ClearCanvas(IP, 29008);
+                    })));
+
+                }
+                catch
+                {
+
+                }
+
+
+            }
+        }
 
         static public void Function_儲位亮燈(LightOn lightOn)
         {
@@ -2479,7 +2592,7 @@ namespace 調劑台管理系統
             try
             {
                 if (MySerialPort_Scanner01.IsConnected == false && myConfigClass.鍵盤掃碼模式 == false) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return null;       
                 text = text.Replace("\0", "");
@@ -2505,7 +2618,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner02.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner02.ReadString();
                       if (text == null) return null;       
                 text = text.Replace("\0", "");
@@ -2531,7 +2644,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner03.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner03.ReadString();
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return null;
@@ -2556,7 +2669,7 @@ namespace 調劑台管理系統
 
                 string text = MySerialPort_Scanner04.ReadString();
                 if (text == null) return null;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(200);
                 text = MySerialPort_Scanner04.ReadString();
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return null;

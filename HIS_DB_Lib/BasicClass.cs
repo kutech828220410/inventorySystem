@@ -8,6 +8,7 @@ using Basic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Text.Json;
+using System.Net.Http;
 namespace HIS_DB_Lib
 {
     public class returnData
@@ -206,130 +207,63 @@ namespace HIS_DB_Lib
         }
     }
 
-    //public static class BasicClassMethod
-    //{
-    //    static public object[] ClassToSQL<T, E>(this T _class) where E : Enum
-    //    {
-    //        object[] value = new object[Enum.GetNames(typeof(E)).Length];
-    //        Type enumType = typeof(E);
-    //        E _enum = Activator.CreateInstance<E>();
-    //        foreach (var field in enumType.GetFields())
-    //        {
-    //            if (field.FieldType.IsEnum)
-    //            {
-    //                string enumName = field.Name;
-    //                int enumIndex = (int)field.GetValue(_enum);
+    static public class BasicMethod
+    {
+        static public void PlayGooleVoice(this string text, string API_Server, string lan = "zh-tw")
+        {
+            try
+            {
+                Console.WriteLine($"開始呼叫語音 API，文字: {text} 語言: {lan}");
+                string url = $"{API_Server}/api/goolge_voice?text={Uri.EscapeDataString(text)}&lan={Uri.EscapeDataString(lan)}";
+                Console.WriteLine($"API URL: {url}");
 
-    //                // 使用 enumIndex 來填入對應的屬性值
-    //                value[enumIndex] = typeof(T).GetProperty(enumName)?.GetValue(_class);
-    //            }
-    //        }
+                string base64 = Basic.Net.WEBApiGet(url);
 
-    //        return value;
-    //    }
-    //    static public T SQLToClass<T, E>(this object[] values)
-    //    {
-    //        T obj = Activator.CreateInstance<T>();
-    //        E _enum = Activator.CreateInstance<E>();
-    //        Type enumType = typeof(E);
+                if (string.IsNullOrEmpty(base64))
+                {
+                    Console.WriteLine("取得的 Base64 資料為空，無法播放。");
+                    return;
+                }
 
-    //        foreach (var field in enumType.GetFields())
-    //        {
-    //            string enumName = field.Name;
-    //            if (field.FieldType.IsEnum)
-    //            {
+                Console.WriteLine("成功取得 Base64 音訊資料，開始播放...");
+                AudioProcessingLibrary.Voice.PlayBase64Mp3(base64);
+                Console.WriteLine("播放完成。");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"播放語音時發生錯誤: {ex.Message}");
+            }
+        }
+        static public async Task PlayGooleVoiceAsync(this string text, string API_Server, string lan = "zh-tw")
+        {
+            try
+            {
+                Console.WriteLine($"開始呼叫語音 API (非同步)，文字: {text} 語言: {lan}");
+                string url = $"{API_Server}/api/goolge_voice?text={Uri.EscapeDataString(text)}&lan={Uri.EscapeDataString(lan)}";
+                Console.WriteLine($"API URL: {url}");
 
-    //                int enumIndex = (int)field.GetValue(_enum);
+                using (var httpClient = new HttpClient())
+                {
+                    string base64 = await httpClient.GetStringAsync(url);
 
-    //                // 使用 enumIndex 來取得對應的屬性值
-    //                object value = values[enumIndex];
+                    if (string.IsNullOrEmpty(base64))
+                    {
+                        Console.WriteLine("取得的 Base64 資料為空，無法播放。");
+                        return;
+                    }
 
-    //                // 使用 enumName 來取得對應的屬性
-    //                var property = typeof(T).GetProperty(enumName);
-    //                if (value is DateTime)
-    //                {
-    //                    if (property == null)
-    //                    {
-    //                        property?.SetValue(obj, value.ObjectToString());
-    //                    }
-    //                    else if (property.PropertyType.Name == "DateTime")
-    //                    {
-    //                        property?.SetValue(obj, value);
-    //                    }
-    //                    else
-    //                    {
-    //                        property?.SetValue(obj, value.ToDateTimeString());
-    //                    }
-                       
-    //                }
-    //                else
-    //                {
-    //                    if (property == null)
-    //                    {
-    //                        property?.SetValue(obj, value.ObjectToString());
-    //                    }
-    //                    else if (property.PropertyType.Name == "DateTime")
-    //                    {
-    //                        property?.SetValue(obj, value.StringToDateTime());
-    //                    }
-    //                    else
-    //                    {
-    //                        // 將值填入對應的屬性
-    //                        property?.SetValue(obj, value.ObjectToString());
-    //                    }
-                       
-    //                }
+                    Console.WriteLine("成功取得 Base64 音訊資料，開始播放...");
+                    await Task.Run(() => AudioProcessingLibrary.Voice.PlayBase64Mp3(base64));
+                    Console.WriteLine("播放完成。");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"播放語音時發生錯誤: {ex.Message}");
+            }
+        }
 
-    //            }
-    //        }
-
-    //        return obj;
-    //    }
-
-    //    static public List<object[]> ClassToSQL<T, E>(this List<T> _classes) where E : Enum, new()
-    //    {
-    //        List<object[]> list_value = new List<object[]>();
-    //        E _enum = Activator.CreateInstance<E>();
-    //        for (int i = 0; i < _classes.Count; i++)
-    //        {
-    //            object[] value = _classes[i].ClassToSQL<T, E>();
-    //            list_value.Add(value);
-    //        }
-    //        return list_value;
-    //    }
-
-    //    static public List<T> SQLToClass<T, E>(this List<object[]> values) where E : Enum, new()
-    //    {
-    //        List<T> list_value = new List<T>();
-    //        E _enum = Activator.CreateInstance<E>();
-
-    //        for (int i = 0; i < values.Count; i++)
-    //        {
-    //            object[] value = values[i];
-    //            T _class = values[i].SQLToClass<T, E>();
-    //            list_value.Add(_class);
-    //        }
-    //        return list_value;
-    //    }
-
-    //    static public T ObjToClass<T>(this object data)
-    //    {
-    //        string jsondata = data.JsonSerializationt();
-    //        return jsondata.JsonDeserializet<T>();
-    //    }
-    //    static public List<T> ObjToListClass<T>(this object data)
-    //    {
-    //        string jsondata = data.JsonSerializationt();
-    //        return jsondata.JsonDeserializet<List<T>>();
-    //    }
-
-    //    static public List<object[]> ObjToListSQL<T, E>(this object data) where E : Enum, new()
-    //    {
-    //        List<T> list_T = data.ObjToListClass<T>();
-
-    //        return list_T.ClassToSQL<T, E>();
-    //    }
-    //}
+    }
 
     public class ValidityClass
     {

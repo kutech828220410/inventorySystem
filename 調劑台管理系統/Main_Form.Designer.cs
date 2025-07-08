@@ -213,7 +213,7 @@
             this.plC_RJ_Button_收支作業_調出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_調入 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel28 = new MyUI.RJ_Pannel();
-            this.plC_RJ_Button_收支作業_RFID盤點 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_收支作業_RFID清點 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_RFID出庫 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_RFID入庫 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_批次入庫 = new MyUI.PLC_RJ_Button();
@@ -332,6 +332,9 @@
             this.plC_ScreenPage_藥品資料 = new MyUI.PLC_ScreenPage();
             this.藥檔資料 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
+            this.plC_CheckBox_藥品資料_未設定 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_關檔中 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_開檔中 = new MyUI.PLC_CheckBox();
             this.rJ_Pannel23 = new MyUI.RJ_Pannel();
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable173 = new MyUI.RJ_Lable();
@@ -1138,6 +1141,7 @@
             this.plC_CheckBox_面板於調劑結束更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_面板於過帳後更新 = new MyUI.PLC_CheckBox();
             this.tabPage40 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox10 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox9 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox6 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_取藥錯誤語音 = new MyUI.PLC_CheckBox();
@@ -2159,6 +2163,7 @@
             this.uC_調劑作業_TypeA_1.Size = new System.Drawing.Size(860, 505);
             this.uC_調劑作業_TypeA_1.TabIndex = 0;
             this.uC_調劑作業_TypeA_1.Title = "-------";
+            this.uC_調劑作業_TypeA_1.顏色 = "";
             // 
             // rJ_Pannel_領藥台_02
             // 
@@ -2188,6 +2193,7 @@
             this.uC_調劑作業_TypeA_2.Size = new System.Drawing.Size(739, 505);
             this.uC_調劑作業_TypeA_2.TabIndex = 1;
             this.uC_調劑作業_TypeA_2.Title = "-------";
+            this.uC_調劑作業_TypeA_2.顏色 = "";
             // 
             // panel_領藥台_03_04
             // 
@@ -2227,6 +2233,7 @@
             this.uC_調劑作業_TypeA_3.Size = new System.Drawing.Size(800, 283);
             this.uC_調劑作業_TypeA_3.TabIndex = 1;
             this.uC_調劑作業_TypeA_3.Title = "-------";
+            this.uC_調劑作業_TypeA_3.顏色 = "";
             // 
             // rJ_Pannel_領藥台_04
             // 
@@ -2256,6 +2263,7 @@
             this.uC_調劑作業_TypeA_4.Size = new System.Drawing.Size(815, 283);
             this.uC_調劑作業_TypeA_4.TabIndex = 1;
             this.uC_調劑作業_TypeA_4.Title = "-------";
+            this.uC_調劑作業_TypeA_4.顏色 = "";
             // 
             // 調劑樣式2
             // 
@@ -6598,7 +6606,7 @@
             this.rJ_Pannel28.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel28.BorderRadius = 10;
             this.rJ_Pannel28.BorderSize = 2;
-            this.rJ_Pannel28.Controls.Add(this.plC_RJ_Button_收支作業_RFID盤點);
+            this.rJ_Pannel28.Controls.Add(this.plC_RJ_Button_收支作業_RFID清點);
             this.rJ_Pannel28.Controls.Add(this.plC_RJ_Button_收支作業_RFID出庫);
             this.rJ_Pannel28.Controls.Add(this.plC_RJ_Button_收支作業_RFID入庫);
             this.rJ_Pannel28.Controls.Add(this.plC_RJ_Button_收支作業_批次入庫);
@@ -6613,59 +6621,59 @@
             this.rJ_Pannel28.Size = new System.Drawing.Size(847, 140);
             this.rJ_Pannel28.TabIndex = 148;
             // 
-            // plC_RJ_Button_收支作業_RFID盤點
+            // plC_RJ_Button_收支作業_RFID清點
             // 
-            this.plC_RJ_Button_收支作業_RFID盤點.AutoResetState = true;
-            this.plC_RJ_Button_收支作業_RFID盤點.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_RFID盤點.Bool = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_收支作業_RFID盤點.BorderRadius = 15;
-            this.plC_RJ_Button_收支作業_RFID盤點.BorderSize = 1;
-            this.plC_RJ_Button_收支作業_RFID盤點.but_press = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_收支作業_RFID盤點.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_收支作業_RFID盤點.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_RFID盤點.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_收支作業_RFID盤點.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_收支作業_RFID盤點.GUID = "";
-            this.plC_RJ_Button_收支作業_RFID盤點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_RFID盤點.Image_padding = new System.Windows.Forms.Padding(14, 3, 19, 1);
-            this.plC_RJ_Button_收支作業_RFID盤點.Location = new System.Drawing.Point(266, 10);
-            this.plC_RJ_Button_收支作業_RFID盤點.Name = "plC_RJ_Button_收支作業_RFID盤點";
-            this.plC_RJ_Button_收支作業_RFID盤點.OFF_文字內容 = "RFID盤點";
-            this.plC_RJ_Button_收支作業_RFID盤點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_收支作業_RFID盤點.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_收支作業_RFID盤點.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_RFID盤點.ON_BorderSize = 1;
-            this.plC_RJ_Button_收支作業_RFID盤點.ON_文字內容 = "RFID盤點";
-            this.plC_RJ_Button_收支作業_RFID盤點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_收支作業_RFID盤點.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_收支作業_RFID盤點.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_RFID盤點.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_收支作業_RFID盤點.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_收支作業_RFID盤點.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_收支作業_RFID盤點.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_收支作業_RFID盤點.ShadowSize = 3;
-            this.plC_RJ_Button_收支作業_RFID盤點.ShowLoadingForm = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.Size = new System.Drawing.Size(115, 116);
-            this.plC_RJ_Button_收支作業_RFID盤點.State = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.TabIndex = 149;
-            this.plC_RJ_Button_收支作業_RFID盤點.Text = "RFID盤點";
-            this.plC_RJ_Button_收支作業_RFID盤點.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_收支作業_RFID盤點.TextHeight = 35;
-            this.plC_RJ_Button_收支作業_RFID盤點.Texts = "RFID盤點";
-            this.plC_RJ_Button_收支作業_RFID盤點.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.Visible = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.字型鎖住 = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_收支作業_RFID盤點.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_收支作業_RFID盤點.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.背景圖片 = global::調劑台管理系統.Properties.Resources.RFID盤點;
-            this.plC_RJ_Button_收支作業_RFID盤點.讀取位元反向 = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.讀寫鎖住 = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.音效 = true;
-            this.plC_RJ_Button_收支作業_RFID盤點.顯示 = false;
-            this.plC_RJ_Button_收支作業_RFID盤點.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.AutoResetState = true;
+            this.plC_RJ_Button_收支作業_RFID清點.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_RFID清點.Bool = false;
+            this.plC_RJ_Button_收支作業_RFID清點.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_收支作業_RFID清點.BorderRadius = 15;
+            this.plC_RJ_Button_收支作業_RFID清點.BorderSize = 1;
+            this.plC_RJ_Button_收支作業_RFID清點.but_press = false;
+            this.plC_RJ_Button_收支作業_RFID清點.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_RFID清點.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_收支作業_RFID清點.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_RFID清點.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_RFID清點.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_收支作業_RFID清點.GUID = "";
+            this.plC_RJ_Button_收支作業_RFID清點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_RFID清點.Image_padding = new System.Windows.Forms.Padding(14, 3, 19, 1);
+            this.plC_RJ_Button_收支作業_RFID清點.Location = new System.Drawing.Point(266, 10);
+            this.plC_RJ_Button_收支作業_RFID清點.Name = "plC_RJ_Button_收支作業_RFID清點";
+            this.plC_RJ_Button_收支作業_RFID清點.OFF_文字內容 = "RFID清點";
+            this.plC_RJ_Button_收支作業_RFID清點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_收支作業_RFID清點.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_收支作業_RFID清點.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_RFID清點.ON_BorderSize = 1;
+            this.plC_RJ_Button_收支作業_RFID清點.ON_文字內容 = "RFID清點";
+            this.plC_RJ_Button_收支作業_RFID清點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_收支作業_RFID清點.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_收支作業_RFID清點.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_RFID清點.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_收支作業_RFID清點.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_收支作業_RFID清點.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_收支作業_RFID清點.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_收支作業_RFID清點.ShadowSize = 3;
+            this.plC_RJ_Button_收支作業_RFID清點.ShowLoadingForm = false;
+            this.plC_RJ_Button_收支作業_RFID清點.Size = new System.Drawing.Size(115, 116);
+            this.plC_RJ_Button_收支作業_RFID清點.State = false;
+            this.plC_RJ_Button_收支作業_RFID清點.TabIndex = 149;
+            this.plC_RJ_Button_收支作業_RFID清點.Text = "RFID清點";
+            this.plC_RJ_Button_收支作業_RFID清點.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_收支作業_RFID清點.TextHeight = 35;
+            this.plC_RJ_Button_收支作業_RFID清點.Texts = "RFID清點";
+            this.plC_RJ_Button_收支作業_RFID清點.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_RFID清點.Visible = false;
+            this.plC_RJ_Button_收支作業_RFID清點.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_收支作業_RFID清點.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_RFID清點.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.背景圖片 = global::調劑台管理系統.Properties.Resources.RFID盤點;
+            this.plC_RJ_Button_收支作業_RFID清點.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.音效 = true;
+            this.plC_RJ_Button_收支作業_RFID清點.顯示 = false;
+            this.plC_RJ_Button_收支作業_RFID清點.顯示狀態 = false;
             // 
             // plC_RJ_Button_收支作業_RFID出庫
             // 
@@ -9889,6 +9897,9 @@
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel2.BorderRadius = 10;
             this.rJ_Pannel2.BorderSize = 2;
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_未設定);
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_關檔中);
+            this.rJ_Pannel2.Controls.Add(this.plC_CheckBox_藥品資料_開檔中);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel23);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel22);
             this.rJ_Pannel2.Controls.Add(this.rJ_Pannel21);
@@ -9907,6 +9918,64 @@
             this.rJ_Pannel2.ShadowSize = 3;
             this.rJ_Pannel2.Size = new System.Drawing.Size(796, 439);
             this.rJ_Pannel2.TabIndex = 118;
+            // 
+            // plC_CheckBox_藥品資料_未設定
+            // 
+            this.plC_CheckBox_藥品資料_未設定.AutoSize = true;
+            this.plC_CheckBox_藥品資料_未設定.Bool = false;
+            this.plC_CheckBox_藥品資料_未設定.Checked = true;
+            this.plC_CheckBox_藥品資料_未設定.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_藥品資料_未設定.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_未設定.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_未設定.Location = new System.Drawing.Point(390, 21);
+            this.plC_CheckBox_藥品資料_未設定.Name = "plC_CheckBox_藥品資料_未設定";
+            this.plC_CheckBox_藥品資料_未設定.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_未設定.TabIndex = 158;
+            this.plC_CheckBox_藥品資料_未設定.Text = "未設定";
+            this.plC_CheckBox_藥品資料_未設定.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_未設定.文字內容 = "未設定";
+            this.plC_CheckBox_藥品資料_未設定.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_未設定.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_未設定.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_未設定.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_關檔中
+            // 
+            this.plC_CheckBox_藥品資料_關檔中.AutoSize = true;
+            this.plC_CheckBox_藥品資料_關檔中.Bool = false;
+            this.plC_CheckBox_藥品資料_關檔中.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_關檔中.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_關檔中.Location = new System.Drawing.Point(307, 21);
+            this.plC_CheckBox_藥品資料_關檔中.Name = "plC_CheckBox_藥品資料_關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_關檔中.TabIndex = 157;
+            this.plC_CheckBox_藥品資料_關檔中.Text = "關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_關檔中.文字內容 = "關檔中";
+            this.plC_CheckBox_藥品資料_關檔中.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_關檔中.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_關檔中.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_關檔中.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_開檔中
+            // 
+            this.plC_CheckBox_藥品資料_開檔中.AutoSize = true;
+            this.plC_CheckBox_藥品資料_開檔中.Bool = false;
+            this.plC_CheckBox_藥品資料_開檔中.Checked = true;
+            this.plC_CheckBox_藥品資料_開檔中.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.plC_CheckBox_藥品資料_開檔中.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_開檔中.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_開檔中.Location = new System.Drawing.Point(224, 21);
+            this.plC_CheckBox_藥品資料_開檔中.Name = "plC_CheckBox_藥品資料_開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.Size = new System.Drawing.Size(77, 25);
+            this.plC_CheckBox_藥品資料_開檔中.TabIndex = 156;
+            this.plC_CheckBox_藥品資料_開檔中.Text = "開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_開檔中.文字內容 = "開檔中";
+            this.plC_CheckBox_藥品資料_開檔中.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_開檔中.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_開檔中.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_開檔中.音效 = true;
             // 
             // rJ_Pannel23
             // 
@@ -32360,6 +32429,7 @@
             // 
             // tabPage40
             // 
+            this.tabPage40.Controls.Add(this.plC_CheckBox10);
             this.tabPage40.Controls.Add(this.plC_CheckBox9);
             this.tabPage40.Controls.Add(this.plC_CheckBox6);
             this.tabPage40.Controls.Add(this.plC_CheckBox_取藥錯誤語音);
@@ -32384,6 +32454,26 @@
             this.tabPage40.TabIndex = 1;
             this.tabPage40.Text = "調劑設定";
             this.tabPage40.UseVisualStyleBackColor = true;
+            // 
+            // plC_CheckBox10
+            // 
+            this.plC_CheckBox10.AutoSize = true;
+            this.plC_CheckBox10.Bool = false;
+            this.plC_CheckBox10.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox10.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox10.Location = new System.Drawing.Point(256, 132);
+            this.plC_CheckBox10.Name = "plC_CheckBox10";
+            this.plC_CheckBox10.Size = new System.Drawing.Size(197, 20);
+            this.plC_CheckBox10.TabIndex = 239;
+            this.plC_CheckBox10.Text = "[批次調劑]藥品總量調劑";
+            this.plC_CheckBox10.UseVisualStyleBackColor = true;
+            this.plC_CheckBox10.寫入元件位置 = "S5022";
+            this.plC_CheckBox10.文字內容 = "[批次調劑]藥品總量調劑";
+            this.plC_CheckBox10.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox10.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox10.讀取元件位置 = "S5022";
+            this.plC_CheckBox10.讀寫鎖住 = false;
+            this.plC_CheckBox10.音效 = false;
             // 
             // plC_CheckBox9
             // 
@@ -41722,7 +41812,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.TabIndex = 2;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.TextColor = System.Drawing.Color.White;
             // 
@@ -41748,7 +41838,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.TabIndex = 0;
             this.rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.TextColor = System.Drawing.Color.White;
             // 
@@ -41842,7 +41932,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.TabIndex = 2;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.TextColor = System.Drawing.Color.White;
             // 
@@ -41868,7 +41958,7 @@
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.PickerFont = new System.Drawing.Font("新細明體", 15.75F);
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.PickerFore = System.Drawing.SystemColors.ControlText;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Size = new System.Drawing.Size(250, 35);
-            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.SkinColor = System.Drawing.Color.DarkCyan;
+            this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.SkinColor = System.Drawing.Color.DimGray;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.TabIndex = 0;
             this.rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.TextColor = System.Drawing.Color.White;
             // 
@@ -43158,6 +43248,7 @@
             this.plC_ScreenPage_藥品資料.ResumeLayout(false);
             this.藥檔資料.ResumeLayout(false);
             this.rJ_Pannel2.ResumeLayout(false);
+            this.rJ_Pannel2.PerformLayout();
             this.rJ_Pannel23.ResumeLayout(false);
             this.rJ_Pannel22.ResumeLayout(false);
             this.rJ_Pannel21.ResumeLayout(false);
@@ -45097,13 +45188,17 @@
         private MyUI.RJ_Lable rJ_Lable25;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD266_包裝數量;
         private MyUI.PLC_CheckBox plC_CheckBox7;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_RFID盤點;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_RFID清點;
         private MyUI.PLC_CheckBox plC_CheckBox9;
         private MyUI.PLC_CheckBox plC_CheckBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private MyUI.PLC_CheckBox plC_CheckBox_調劑作業_管1_3禁止調劑;
         private MyUI.PLC_RJ_Pannel plC_RJ_Pannel9;
         private MyUI.RJ_Lable rJ_Lable76;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_未設定;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_關檔中;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_開檔中;
+        private MyUI.PLC_CheckBox plC_CheckBox10;
     }
 }
 

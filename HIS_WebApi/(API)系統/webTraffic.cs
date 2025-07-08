@@ -1,6 +1,5 @@
 ﻿using Basic;
 using HIS_DB_Lib;
-using HIS_DB_Lib.系統;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;

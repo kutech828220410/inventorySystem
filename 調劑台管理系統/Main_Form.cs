@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.062241")]
-[assembly: AssemblyFileVersion("1.0.25.06241")]
+[assembly: AssemblyVersion("1.0.25.07081")]
+[assembly: AssemblyFileVersion("1.0.25.07081")]
 namespace 調劑台管理系統
 {
 
@@ -106,6 +106,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_調劑畫面合併相同藥品 = new PLC_Device("S5011");
         static public PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
+        static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
@@ -173,6 +174,7 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
         }
+
         private void LoadDBConfig()
         {
 
@@ -618,6 +620,7 @@ namespace 調劑台管理系統
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             _storageUI_WT32 = this.storageUI_WT32;
             _drawerUI_EPD_583 = this.drawerUI_EPD_583;
+            _storageUI_LCD_114 = this.storageUI_LCD_114;
 
             DateTime dateTime = sys_serverSettingClass.GetServerTime(API_Server);
             Console.WriteLine($"從伺服器取得時間: {dateTime:yyyy/MM/dd HH:mm:ss}");
@@ -996,6 +999,7 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_person_page.DataBaseName = sys_serverSettingClass.DBName;
                 dBConfigClass.DB_person_page.UserName = sys_serverSettingClass.User;
                 dBConfigClass.DB_person_page.Password = sys_serverSettingClass.Password;
+
             }
             sys_serverSettingClass = sys_serverSettingClasses.MyFind(Name, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.藥檔資料);
             if (sys_serverSettingClass != null)

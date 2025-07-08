@@ -15,6 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -93,6 +93,9 @@
     <Reference Include="HCGUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\HCGUI.dll</HintPath>
+    </Reference>
+    <Reference Include="HF_ReaderLib">
+      <HintPath>..\0.DLL\HF_ReaderLib.dll</HintPath>
     </Reference>
     <Reference Include="HIS_DB_Lib">
       <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
@@ -547,11 +550,11 @@
     <Compile Include="Dialog\Dialog_用藥警示.Designer.cs">
       <DependentUpon>Dialog_用藥警示.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.cs">
+    <Compile Include="Dialog\Dialog_收支作業_RFID清點作業.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支作業_RFID盤點.Designer.cs">
-      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_收支作業_RFID清點作業.Designer.cs">
+      <DependentUpon>Dialog_收支作業_RFID清點作業.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -764,8 +767,8 @@
     <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID收支作業.resx">
       <DependentUpon>Dialog_收支作業_RFID收支作業.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID盤點.resx">
-      <DependentUpon>Dialog_收支作業_RFID盤點.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_收支作業_RFID清點作業.resx">
+      <DependentUpon>Dialog_收支作業_RFID清點作業.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>

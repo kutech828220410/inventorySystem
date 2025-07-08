@@ -81,13 +81,15 @@ namespace 調劑台管理系統
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+      
+
             Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
                 MyMessageBox.ShowDialog($"人員資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-            this.sqL_DataGridView_人員資料.Init(table);
+            this.sqL_DataGridView_人員資料.InitEx(table);
             this.sqL_DataGridView_人員資料.Set_ColumnVisible(false, new enum_人員資料().GetEnumNames());
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);

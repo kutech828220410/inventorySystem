@@ -67,7 +67,7 @@ namespace HIS_WebApi
         [HttpGet]
         public string Get(string level)
         {
-            return GetPermissions(level.StringToInt32()).JsonSerializationt();
+            return GetPermissions(level.StringToInt32() ,"","").JsonSerializationt();
         }
         /// <summary>
         /// 使用者登入,取得session資訊,[ID,Pwd]、[UID]、[BARCODE]任一即可登入系統，若為admin則直接登入最高權限
@@ -96,7 +96,14 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -206,7 +213,7 @@ namespace HIS_WebApi
                     sessionClass.level = list_person_page[0][(int)enum_人員資料.權限等級].ObjectToString();
                     sessionClass.Color = list_person_page[0][(int)enum_人員資料.顏色].ObjectToString();
                     sessionClass.license = list_person_page[0][(int)enum_人員資料.藥師證字號].ObjectToString();
-                    sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
+                    sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32(), returnData.ServerName, returnData.ServerType);
                 }
                 else
                 {
@@ -219,7 +226,7 @@ namespace HIS_WebApi
                     sessionClass.loginTime = DateTime.Now.ToDateTimeString();
                     sessionClass.level = "-1";
                     sessionClass.Color = System.Drawing.Color.Red.ToColorString();
-                    sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
+                    sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32(), returnData.ServerName, returnData.ServerType);
                 }
 
 
@@ -257,7 +264,14 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -306,7 +320,14 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -378,7 +399,14 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -426,7 +454,14 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                }
+                else
+                {
+                    sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                }
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -468,7 +503,7 @@ namespace HIS_WebApi
                 sessionClass.Employer = list_person_page[0][(int)enum_人員資料.單位].ObjectToString();
                 sessionClass.level = list_person_page[0][(int)enum_人員資料.權限等級].ObjectToString();
                 sessionClass.Color = list_person_page[0][(int)enum_人員資料.顏色].ObjectToString();
-                sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
+                sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32(), returnData.ServerName, returnData.ServerType);
 
 
 
@@ -511,8 +546,16 @@ namespace HIS_WebApi
                 
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 returnData.Method = "get_login_data_index";
-
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string ServerName = returnData.ServerName;
+                string ServerType = returnData.ServerType;
+                string Content = "人員資料";
+                if (ServerName.StringIsEmpty())
+                {
+                    ServerName = "Main";
+                    ServerType = "網頁";
+                    Content = "VM端";
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content);
                 SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
                 List<object[]> login_data_index = sQLControl_login_data_index.GetAllRows(null);
                 List<loginDataIndexClass> loginDataIndexClasses = login_data_index.SQLToClass<loginDataIndexClass, enum_login_data_index>();
@@ -557,7 +600,16 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string ServerName = returnData.ServerName;
+                string ServerType = returnData.ServerType;
+                string Content = "人員資料";
+                if (ServerName.StringIsEmpty())
+                {
+                    ServerName = "Main";
+                    ServerType = "網頁";
+                    Content = "VM端";
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content);
                 SQLControl sQLControl_login_data_index = new SQLControl(Server, DB, "login_data_index", UserName, Password, Port, SSLMode);
                 List<loginDataIndexClass> input_loginDataIndex = returnData.Data.ObjToClass<List<loginDataIndexClass>>();
 
@@ -648,11 +700,20 @@ namespace HIS_WebApi
                     returnData.Result = $"ValueAry應為[\"權限等級\",\"調劑台or藥庫\"]";
                     return returnData.JsonSerializationt(true);
                 }
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string ServerName = returnData.ServerName;
+                string ServerType = returnData.ServerType;
+                string Content = "人員資料";
+                if (ServerName.StringIsEmpty())
+                {
+                    ServerName = "Main";
+                    ServerType = "網頁";
+                    Content = "VM端";
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content); 
                 int level = returnData.ValueAry[0].StringToInt32();
                 string 類別 = returnData.ValueAry[1];
                 loadData();
-                List<PermissionsClass> PermissionsClasses = GetPermissions(level);
+                List<PermissionsClass> PermissionsClasses = GetPermissions(level, ServerName, ServerType);
 
                 PermissionsClasses = PermissionsClasses.Where(item => item.類別 == 類別).ToList();
 
@@ -716,10 +777,18 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<PermissionsClass> update_permiss = returnData.Data.ObjToClass<List<PermissionsClass>>();
-
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string ServerName = returnData.ServerName;
+                string ServerType = returnData.ServerType;
+                string Content = "人員資料";
+                if (ServerName.StringIsEmpty())
+                {
+                    ServerName = "Main";
+                    ServerType = "網頁";
+                    Content = "VM端";
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content);
                 string level = returnData.ValueAry[0];
-                List<PermissionsClass> PermissionsClasses = GetPermissions(level.StringToInt32());
+                List<PermissionsClass> PermissionsClasses = GetPermissions(level.StringToInt32(), ServerName,ServerType);
 
                 foreach(var item in PermissionsClasses)
                 {
@@ -774,8 +843,17 @@ namespace HIS_WebApi
             {
                 
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string ServerName = returnData.ServerName;
+                string ServerType = returnData.ServerType;
+                string Content = "人員資料";
+                if (ServerName.StringIsEmpty())
+                {
+                    ServerName = "Main";
+                    ServerType = "網頁";
+                    Content = "VM端";
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content);
                 SQLControl sQLControl_login_data = new SQLControl(Server, DB, "login_data", UserName, Password, Port, SSLMode);
                 List<object[]> session_data = sQLControl_login_data.GetAllRows(null);
                 List<loginDataClass> loginDataClasses = session_data.SQLToClass<loginDataClass, enum_login_data>();
@@ -794,10 +872,17 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        private List<PermissionsClass> GetPermissions(int level)
+        private List<PermissionsClass> GetPermissions(int level ,string serverName , string serverType)
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClasses = sys_serverSettingClasses.MyFind(enum_sys_serverSetting_Type.網頁, enum_sys_serverSetting_網頁.人員資料);
+            if (serverName.StringIsEmpty() || serverType.StringIsEmpty())
+            {
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            }
+            else
+            {
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(serverName, serverType, "人員資料");
+            }
             if (sys_serverSettingClasses.Count == 0)
             {
                 return new List<PermissionsClass>();

@@ -149,7 +149,86 @@ namespace HIS_WebApi
                 return json;
             }
         }
+        /// <summary>
+        /// 設定標籤銷毀
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [DrugHFTagClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("set_tag_broken")]
+        [HttpPost]
+        public string set_tag_broken([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "set_tag_broken";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<DrugHFTagClass> drugHFTagClasses = returnData.Data.ObjToClass<List<DrugHFTagClass>>();
+                if (drugHFTagClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_drugHFTag_buf = new List<object[]>();
+                List<object[]> list_drugHFTag_add = new List<object[]>();
+                List<object[]> list_drugHFTag_replace = new List<object[]>();
+                for (int i = 0; i < drugHFTagClasses.Count; i++)
+                {
+                    DrugHFTagClass drugHFTagClass = drugHFTagClasses[i];
+                    if (drugHFTagClass.TagSN.StringIsEmpty()) continue;
+                    if (drugHFTagClass.效期.StringIsEmpty()) continue;
+                    drugHFTagClass.GUID = Guid.NewGuid().ToString();
+                    drugHFTagClass.更新時間 = DateTime.Now.ToDateTimeString_6();
+                    drugHFTagClass.狀態 = enum_DrugHFTagStatus.已銷毀.GetEnumName();
+                    list_drugHFTag_add.Add(drugHFTagClass.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
+                }
+                sQLControl_drugHFTag.AddRows(null, list_drugHFTag_add);
+                sQLControl_drugHFTag.UpdateByDefulteExtra(null, list_drugHFTag_replace);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = drugHFTagClasses;
+                returnData.Result = $"新增標籤資料成功,共新增<{list_drugHFTag_add.Count}>筆資料";
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+        }
         /// <summary>
         /// 以TagSN取得最新標籤資料
         /// </summary>
@@ -421,6 +500,61 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+
+        /// <summary>
+        /// 取得所有Tag中最新一筆且狀態為「出庫註記」的標籤資料
+        /// </summary>
+        [Route("get_stockout_tags")]
+        [HttpPost]
+        public string get_stockout_tag([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_stockout_tags";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
+                if (settings.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                var db = settings[0];
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
+
+                string tagCol = enum_DrugHFTag.TagSN.GetEnumName();
+                string timeCol = enum_DrugHFTag.更新時間.GetEnumName();
+                string statusCol = enum_DrugHFTag.狀態.GetEnumName();
+
+                string query = $@"
+            SELECT * FROM {db.DBName}.{TableName} t1
+            WHERE t1.{timeCol} = (
+                  SELECT MAX(t2.{timeCol})
+                  FROM {db.DBName}.{TableName} t2
+                  WHERE t2.{tagCol} = t1.{tagCol}
+              )";
+
+                var resultTable = sql.WtrteCommandAndExecuteReader(query);
+                var resultList = resultTable.DataTableToRowList().SQLToClass<DrugHFTagClass, enum_DrugHFTag>();
+
+                returnData.Code = 200;
+                returnData.Data = resultList;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得最新標籤資料成功，共<{resultList.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception: {ex.Message}";
+                return returnData.JsonSerializationt();
+            }
+        }
+
 
         /// <summary>
         /// 取得所有Tag中最新一筆且「可入庫」的標籤資料（狀態為「出庫註記」或「已重置」且曾為「已重置」）

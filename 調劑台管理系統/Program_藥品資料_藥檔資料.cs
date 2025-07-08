@@ -893,6 +893,22 @@ namespace 調劑台管理系統
                 {
                     RowsList[i][(int)enum_藥品資料_藥檔資料.管制級別] = "N";
                 }
+               
+            }
+            if (!plC_CheckBox_藥品資料_開檔中.Checked)
+            {
+                RowsList.RemoveAll(row =>
+                    row[(int)enum_藥品資料_藥檔資料.開檔狀態].ObjectToString() == enum_開檔狀態.開檔中.GetEnumName());
+            }
+            if (!plC_CheckBox_藥品資料_關檔中.Checked)
+            {
+                RowsList.RemoveAll(row =>
+                    row[(int)enum_藥品資料_藥檔資料.開檔狀態].ObjectToString() == enum_開檔狀態.關檔中.GetEnumName());
+            }
+            if (!plC_CheckBox_藥品資料_未設定.Checked)
+            {
+                RowsList.RemoveAll(row =>
+                    row[(int)enum_藥品資料_藥檔資料.開檔狀態].ObjectToString().StringIsEmpty());
             }
             RowsList.Sort(new Icp_藥品資料_藥檔資料());
         }

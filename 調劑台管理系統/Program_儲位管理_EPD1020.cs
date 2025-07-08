@@ -708,6 +708,8 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
+                value_trading[(int)enum_交易記錄查詢資料.收支原因] = "庫存異動";
+                value_trading[(int)enum_交易記錄查詢資料.藥師證字號] = this.登入者藥師證字號;
 
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Function_設定雲端資料更新();
@@ -787,7 +789,8 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-
+                value_trading[(int)enum_交易記錄查詢資料.收支原因] = "庫存異動";
+                value_trading[(int)enum_交易記錄查詢資料.藥師證字號] = this.登入者藥師證字號;
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Function_設定雲端資料更新();
                 this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.On_RowEnter();
@@ -863,6 +866,8 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
+                value_trading[(int)enum_交易記錄查詢資料.收支原因] = "庫存異動";
+                value_trading[(int)enum_交易記錄查詢資料.藥師證字號] = this.登入者藥師證字號;
 
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Function_設定雲端資料更新();
@@ -922,6 +927,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
+
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
             }
         }
