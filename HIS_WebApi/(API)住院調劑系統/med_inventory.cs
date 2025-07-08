@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Basic;
 using HIS_DB_Lib;
-using Basic;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using SQLUI;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -574,7 +575,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string[] Master_GUIDs = returnData.ValueAry[0].Split(";");
-
+                string guidList = string.Join(",", Master_GUIDs.Select(guid => $"'{guid}'"));
                 List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (sys_serverSettingClasses.Count == 0)
@@ -589,21 +590,15 @@ namespace HIS_WebApi
                 string Password = sys_serverSettingClasses[0].Password;
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_inventoryLog = new SQLControl(Server, DB, "med_inventory_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_medInventoryLog = sQLControl_med_inventoryLog.GetAllRows(null);
-                List<medInventoryLogClass> sql_medInventoryLog = list_medInventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();
-                Dictionary<string, List<medInventoryLogClass>> medInvenDict = sql_medInventoryLog.GroupBy(m => m.Master_GUID)
-                    .ToDictionary(g => g.Key, g => g.ToList());
-                List<medInventoryLogClass> result = new List<medInventoryLogClass>();
-                foreach (var master_GUID in Master_GUIDs)
-                {
-                    if (medInvenDict.TryGetValue(master_GUID, out List<medInventoryLogClass> logs)) result.AddRange(logs);
-                }
-                result.Sort(new medInventoryLogClass.ICP_By_optime());
+
+                string command = $"SELECT * FROM {DB}.med_inventory_log WHERE Master_GUID IN ({guidList});";
+                DataTable dataTable = sQLControl_med_inventoryLog.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_medInventoryLog = dataTable.DataTableToRowList();
+                List<medInventoryLogClass> sql_medInventoryLog = list_medInventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();              
+                sql_medInventoryLog.Sort(new medInventoryLogClass.ICP_By_optime());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = result;
-                //if(sql_medInventoryLog.Count == 0)
-                //returnData.Result = $"取得處方調劑紀錄共{sql_medInventoryLog.Count}筆";
+                returnData.Data = sql_medInventoryLog;
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
