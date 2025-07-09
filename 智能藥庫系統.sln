@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35325.158
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能藥庫系統", "智能藥庫系統\智能藥庫系統.csproj", "{BAB61187-27DE-4337-ADF3-F84019E01A99}"
 EndProject
@@ -50,9 +50,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_medpic_download_to_ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_StackDataAccounting", "batch_StackDataAccounting\batch_StackDataAccounting.csproj", "{1EE88150-F781-470C-BFFA-3902125C3064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能RFID燒錄系統", "智能RFID燒錄系統\智能RFID燒錄系統.csproj", "{E223D52A-5547-4EFB-8D13-258DC841E1D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,14 +128,14 @@ Global
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

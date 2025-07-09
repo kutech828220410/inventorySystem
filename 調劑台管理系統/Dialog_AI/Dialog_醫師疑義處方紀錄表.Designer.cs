@@ -61,6 +61,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_病歷號 = new MyUI.RJ_Lable();
             this.rJ_Lable24 = new MyUI.RJ_Lable();
             this.rJ_TextBox_簡述事件 = new MyUI.RJ_TextBox();
+            this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.rJ_Pannel_處方內容.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -263,6 +264,7 @@ namespace 調劑台管理系統
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.rJ_Lable1);
             this.panel7.Controls.Add(this.rJ_Button_確認);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(4, 720);
@@ -683,6 +685,28 @@ namespace 調劑台管理系統
             this.rJ_TextBox_簡述事件.Texts = "";
             this.rJ_TextBox_簡述事件.UnderlineStyle = false;
             // 
+            // rJ_Lable1
+            // 
+            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable1.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable1.BorderRadius = 5;
+            this.rJ_Lable1.BorderSize = 0;
+            this.rJ_Lable1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable1.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable1.GUID = "";
+            this.rJ_Lable1.Location = new System.Drawing.Point(5, 5);
+            this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 0;
+            this.rJ_Lable1.Size = new System.Drawing.Size(409, 66);
+            this.rJ_Lable1.TabIndex = 158;
+            this.rJ_Lable1.Text = "僅供參考，由藥師依專業決定";
+            this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable1.TextColor = System.Drawing.Color.DimGray;
+            // 
             // Dialog_醫師疑義處方紀錄表
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -747,5 +771,6 @@ namespace 調劑台管理系統
         private MyUI.RJ_Lable rJ_Lable_病歷號;
         private MyUI.RJ_Lable rJ_Lable24;
         private MyUI.RJ_TextBox rJ_TextBox_簡述事件;
+        private MyUI.RJ_Lable rJ_Lable1;
     }
 }
