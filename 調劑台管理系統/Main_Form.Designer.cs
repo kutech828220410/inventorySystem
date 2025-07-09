@@ -1112,6 +1112,7 @@
             this.plC_RJ_Pannel7 = new MyUI.PLC_RJ_Pannel();
             this.tabControl5 = new System.Windows.Forms.TabControl();
             this.tabPage39 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox11 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox7 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_掃碼顏色固定 = new MyUI.PLC_CheckBox();
             this.groupBox39 = new System.Windows.Forms.GroupBox();
@@ -31939,6 +31940,7 @@
             // 
             // tabPage39
             // 
+            this.tabPage39.Controls.Add(this.plC_CheckBox11);
             this.tabPage39.Controls.Add(this.plC_CheckBox7);
             this.tabPage39.Controls.Add(this.plC_CheckBox_掃碼顏色固定);
             this.tabPage39.Controls.Add(this.groupBox39);
@@ -31963,6 +31965,26 @@
             this.tabPage39.TabIndex = 0;
             this.tabPage39.Text = "通用設定";
             this.tabPage39.UseVisualStyleBackColor = true;
+            // 
+            // plC_CheckBox11
+            // 
+            this.plC_CheckBox11.AutoSize = true;
+            this.plC_CheckBox11.Bool = false;
+            this.plC_CheckBox11.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox11.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox11.Location = new System.Drawing.Point(8, 217);
+            this.plC_CheckBox11.Name = "plC_CheckBox11";
+            this.plC_CheckBox11.Size = new System.Drawing.Size(245, 20);
+            this.plC_CheckBox11.TabIndex = 235;
+            this.plC_CheckBox11.Text = "[盤點]顯示庫存量及預帶盤點量";
+            this.plC_CheckBox11.UseVisualStyleBackColor = true;
+            this.plC_CheckBox11.寫入元件位置 = "S5050";
+            this.plC_CheckBox11.文字內容 = "[盤點]顯示庫存量及預帶盤點量";
+            this.plC_CheckBox11.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox11.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox11.讀取元件位置 = "S5050";
+            this.plC_CheckBox11.讀寫鎖住 = false;
+            this.plC_CheckBox11.音效 = false;
             // 
             // plC_CheckBox7
             // 
@@ -45199,6 +45221,7 @@
         private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_關檔中;
         private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_開檔中;
         private MyUI.PLC_CheckBox plC_CheckBox10;
+        private MyUI.PLC_CheckBox plC_CheckBox11;
     }
 }
 

@@ -313,7 +313,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.ID = ID;
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = orderClass.交易量;
-                    takeMedicineStackClass.收支原因 = "調劑領藥";
+                    takeMedicineStackClass.收支原因 = $"調劑{(orderClass.交易量.StringToDouble() > 0 ? "退" : "領")}藥";
 
 
                  

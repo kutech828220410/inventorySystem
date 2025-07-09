@@ -120,25 +120,22 @@ namespace 調劑台管理系統
                 //tasks.Add(Task.Run(() =>
                 //{
                 //    DateTime start = DateTime.Now;
-                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 開始讀取: {start:HH:mm:ss.fff}");
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](1) 開始讀取: {start:HH:mm:ss.fff}");
 
                 //    if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
                 //    {
-                //        for (int i = 1; i <= 2; i++)
-                //        {
-                //            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
-                //            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
-                //        }
+                //        rfidReader_1.Inventory(1, out reader1_tagInfoList_temp);
+                //        reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
                 //    }
-               
+
                 //    DateTime end = DateTime.Now;
-                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_1](1) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
                 //}));
 
                 //tasks.Add(Task.Run(() =>
                 //{
                 //    DateTime start = DateTime.Now;
-                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 開始讀取: {start:HH:mm:ss.fff}");
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](1) 開始讀取: {start:HH:mm:ss.fff}");
 
                 //    if (!myConfigClass.HFRFID_2_COMPort.StringIsEmpty())
                 //    {
@@ -150,7 +147,7 @@ namespace 調劑台管理系統
                 //    }
 
                 //    DateTime end = DateTime.Now;
-                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](12) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
+                //    if (HFRFID_debug) Console.WriteLine($"[RFID_2](1) 結束讀取: {end:HH:mm:ss.fff}，耗時: {(end - start).TotalMilliseconds} ms");
                 //}));
 
                 //Task.WhenAll(tasks).Wait();
