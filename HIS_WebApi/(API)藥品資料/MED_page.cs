@@ -806,38 +806,46 @@ namespace HIS_WebApi
                     else
                     {
                         medClass medClass_update = medClasses_cloud_buf[0];
-                        medClass_update.藥品碼 = medClasses_src_buf[i].藥品碼;
-                        medClass_update.料號 = medClasses_src_buf[i].料號;
-                        medClass_update.藥品名稱 = medClasses_src_buf[i].藥品名稱;
-                        medClass_update.藥品學名 = medClasses_src_buf[i].藥品學名;
-                        medClass_update.管制級別 = medClasses_src_buf[i].管制級別;
-                        medClass_update.包裝單位 = medClasses_src_buf[i].包裝單位;
-                        medClass_update.建議劑量 = medClasses_src_buf[i].建議劑量;
-                        medClass_update.建議頻次 = medClasses_src_buf[i].建議頻次;
-                        medClass_update.適應症 = medClasses_src_buf[i].適應症;
-                        medClass_update.使用說明 = medClasses_src_buf[i].使用說明;
-                        medClass_update.警訊藥品 = medClasses_src_buf[i].警訊藥品;
-                        medClass_update.懷孕用藥級別 = medClasses_src_buf[i].懷孕用藥級別;
-                        medClass_update.高價藥品 = medClasses_src_buf[i].高價藥品;
-                        medClass_update.冷藏藥品 = medClasses_src_buf[i].冷藏藥品;
-                        medClass_update.自費藥品 = medClasses_src_buf[i].自費藥品;
-                        medClass_update.生物製劑 = medClasses_src_buf[i].生物製劑;
-                        medClass_update.健保碼 = medClasses_src_buf[i].健保碼;
-                        medClass_update.健保規範 = medClasses_src_buf[i].健保規範;
-                        medClass_update.廠牌 = medClasses_src_buf[i].廠牌;
-                        medClass_update.治療分類名 = medClasses_src_buf[i].治療分類名;
-                        medClass_update.治療分類代碼 = medClasses_src_buf[i].治療分類代碼;
-                        medClass_update.開檔狀態 = medClasses_src_buf[i].開檔狀態;
-                        medClass_update.ATC = medClasses_src_buf[i].ATC;
-                        medClass_update.中文名稱 = medClasses_src_buf[i].中文名稱;
-                        medClass_update.儲位描述 = medClasses_src_buf[i].儲位描述;
-                        medClass_update.圖片網址 = medClasses_src_buf[i].圖片網址;
-                        medClass_update.仿單網址 = medClasses_src_buf[i].仿單網址;
-                        medClass_update.說明書網址 = medClasses_src_buf[i].說明書網址;
-                        medClass_update.類別 = medClasses_src_buf[i].類別;
-                        medClass_update.中西藥 = medClasses_src_buf[i].中西藥;
-                        medClass_update.最小包裝單位 = medClasses_src_buf[i].最小包裝單位;
-                        medClass_update.備註 = medClasses_src_buf[i].備註;
+                        if (medClasses_src_buf[i].料號.StringIsEmpty() == false) medClass_update.料號 = medClasses_src_buf[i].料號;
+                        if (medClasses_src_buf[i].ATC.StringIsEmpty() == false) medClass_update.ATC = medClasses_src_buf[i].ATC;
+                        if (medClasses_src_buf[i].中文名稱.StringIsEmpty() == false) medClass_update.中文名稱 = medClasses_src_buf[i].中文名稱;
+                        if (medClasses_src_buf[i].藥品名稱.StringIsEmpty() == false) medClass_update.藥品名稱 = medClasses_src_buf[i].藥品名稱;
+                        if (medClasses_src_buf[i].藥品學名.StringIsEmpty() == false) medClass_update.藥品學名 = medClasses_src_buf[i].藥品學名;
+                        if (medClasses_src_buf[i].藥品群組.StringIsEmpty() == false) medClass_update.藥品群組 = medClasses_src_buf[i].藥品群組;
+                        if (medClasses_src_buf[i].健保碼.StringIsEmpty() == false) medClass_update.健保碼 = medClasses_src_buf[i].健保碼;
+                        if (medClasses_src_buf[i].包裝單位.StringIsEmpty() == false) medClass_update.包裝單位 = medClasses_src_buf[i].包裝單位;
+                        if (medClasses_src_buf[i].包裝數量.StringIsEmpty() == false) medClass_update.包裝數量 = medClasses_src_buf[i].包裝數量;
+                        if (medClasses_src_buf[i].最小包裝單位.StringIsEmpty() == false) medClass_update.最小包裝單位 = medClasses_src_buf[i].最小包裝單位;
+                        if (medClasses_src_buf[i].建議劑量.StringIsEmpty() == false) medClass_update.建議劑量 = medClasses_src_buf[i].建議劑量;
+                        if (medClasses_src_buf[i].建議頻次.StringIsEmpty() == false) medClass_update.建議頻次 = medClasses_src_buf[i].建議頻次;
+                        if (medClasses_src_buf[i].治療分類代碼.StringIsEmpty() == false) medClass_update.治療分類代碼 = medClasses_src_buf[i].治療分類代碼;
+                        if (medClasses_src_buf[i].治療分類名.StringIsEmpty() == false) medClass_update.治療分類名 = medClasses_src_buf[i].治療分類名;
+                        if (medClasses_src_buf[i].藥理分類序號.StringIsEmpty() == false) medClass_update.藥理分類序號 = medClasses_src_buf[i].藥理分類序號;
+                        if (medClasses_src_buf[i].藥理分類代碼.StringIsEmpty() == false) medClass_update.藥理分類代碼 = medClasses_src_buf[i].藥理分類代碼;
+                        if (medClasses_src_buf[i].藥理分類名.StringIsEmpty() == false) medClass_update.藥理分類名 = medClasses_src_buf[i].藥理分類名;
+                        if (medClasses_src_buf[i].適應症.StringIsEmpty() == false) medClass_update.適應症 = medClasses_src_buf[i].適應症;
+                        if (medClasses_src_buf[i].健保規範.StringIsEmpty() == false) medClass_update.健保規範 = medClasses_src_buf[i].健保規範;
+                        if (medClasses_src_buf[i].使用說明.StringIsEmpty() == false) medClass_update.使用說明 = medClasses_src_buf[i].使用說明;
+                        if (medClasses_src_buf[i].警訊藥品.StringIsEmpty() == false) medClass_update.警訊藥品 = medClasses_src_buf[i].警訊藥品;
+                        if (medClasses_src_buf[i].高價藥品.StringIsEmpty() == false) medClass_update.高價藥品 = medClasses_src_buf[i].高價藥品;
+                        if (medClasses_src_buf[i].自費藥品.StringIsEmpty() == false) medClass_update.自費藥品 = medClasses_src_buf[i].自費藥品;
+                        if (medClasses_src_buf[i].冷藏藥品.StringIsEmpty() == false) medClass_update.冷藏藥品 = medClasses_src_buf[i].冷藏藥品;
+                        if (medClasses_src_buf[i].生物製劑.StringIsEmpty() == false) medClass_update.生物製劑 = medClasses_src_buf[i].生物製劑;
+                        if (medClasses_src_buf[i].管制級別.StringIsEmpty() == false) medClass_update.管制級別 = medClasses_src_buf[i].管制級別;
+                        if (medClasses_src_buf[i].懷孕用藥級別.StringIsEmpty() == false) medClass_update.懷孕用藥級別 = medClasses_src_buf[i].懷孕用藥級別;
+                        if (medClasses_src_buf[i].圖片網址.StringIsEmpty() == false) medClass_update.圖片網址 = medClasses_src_buf[i].圖片網址;
+                        if (medClasses_src_buf[i].仿單網址.StringIsEmpty() == false) medClass_update.仿單網址 = medClasses_src_buf[i].仿單網址;
+                        if (medClasses_src_buf[i].說明書網址.StringIsEmpty() == false) medClass_update.說明書網址 = medClasses_src_buf[i].說明書網址;
+                        if (medClasses_src_buf[i].類別.StringIsEmpty() == false) medClass_update.類別 = medClasses_src_buf[i].類別;
+                        if (medClasses_src_buf[i].中西藥.StringIsEmpty() == false) medClass_update.中西藥 = medClasses_src_buf[i].中西藥;
+                        if (medClasses_src_buf[i].廠牌.StringIsEmpty() == false) medClass_update.廠牌 = medClasses_src_buf[i].廠牌;
+                        if (medClasses_src_buf[i].藥品許可證號.StringIsEmpty() == false) medClass_update.藥品許可證號 = medClasses_src_buf[i].藥品許可證號;
+                        if (medClasses_src_buf[i].供貨廠商.StringIsEmpty() == false) medClass_update.供貨廠商 = medClasses_src_buf[i].供貨廠商;
+                        if (medClasses_src_buf[i].供貨商證字號.StringIsEmpty() == false) medClass_update.供貨商證字號 = medClasses_src_buf[i].供貨商證字號;
+                        if (medClasses_src_buf[i].開檔狀態.StringIsEmpty() == false) medClass_update.開檔狀態 = medClasses_src_buf[i].開檔狀態;
+                        if (medClasses_src_buf[i].儲位描述.StringIsEmpty() == false) medClass_update.儲位描述 = medClasses_src_buf[i].儲位描述;
+                        if (medClasses_src_buf[i].備註.StringIsEmpty() == false) medClass_update.備註 = medClasses_src_buf[i].備註;
+
                         medClasses_replace.Add(medClass_update);
                     }
                 }
@@ -3511,7 +3519,7 @@ namespace HIS_WebApi
         }
         [Route("excel_upload")]
         [HttpPost]
-        public async Task<string> excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
+        public async Task<string> excel_upload([FromForm] IFormFile file)
         {
             returnData returnData = new returnData();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -3542,7 +3550,7 @@ namespace HIS_WebApi
                 {
                     await formFile.CopyToAsync(memoryStream);
                     System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
-                    dt = dt.ReorderTable(new enum_雲端藥檔_EXCEL());
+                    dt = dt.ReorderTable(new enum_雲端藥檔());
                     if (dt == null)
                     {
                         returnData.Code = -200;
@@ -3556,37 +3564,37 @@ namespace HIS_WebApi
                         returnData.Result = $"文件內容不得為空";
                         return returnData.JsonSerializationt(true);
                     }
+                    medClasses = list_value.SQLToClass<medClass,enum_雲端藥檔>();
+                    //for (int i = 0; i < list_value.Count; i++)
+                    //{
+                    //    string 中西藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString();
+                    //    if (!中西藥.Contains(中西藥品))
+                    //    {
+                    //        string 藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString();
+                    //        str += $"藥品 :{藥品名稱} 未加入成功，中西藥欄位需填入\"中藥\"或\"西藥\"，";
+                    //        continue;
+                    //    }
 
-                    for (int i = 0; i < list_value.Count; i++)
-                    {
-                        string 中西藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString();
-                        if (!中西藥.Contains(中西藥品))
-                        {
-                            string 藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString();
-                            str += $"藥品 :{藥品名稱} 未加入成功，中西藥欄位需填入\"中藥\"或\"西藥\"，";
-                            continue;
-                        }
-
-                        medClass medClass = new medClass
-                        {
-                            藥品碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥碼].ObjectToString(),
-                            中文名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.中文名].ObjectToString(),
-                            藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString(),
-                            藥品學名 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品學名].ObjectToString(),
-                            健保碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.健保碼].ObjectToString(),
-                            包裝單位 = list_value[i][(int)enum_雲端藥檔_EXCEL.包裝單位].ObjectToString(),
-                            庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.庫存].ObjectToString(),
-                            安全庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.安全庫存].ObjectToString(),
-                            警訊藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.警訊藥品].ObjectToString(),
-                            高價藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.高價藥品].ObjectToString(),
-                            管制級別 = list_value[i][(int)enum_雲端藥檔_EXCEL.管制級別].ObjectToString(),
-                            類別 = list_value[i][(int)enum_雲端藥檔_EXCEL.類別].ObjectToString(),
-                            廠牌 = list_value[i][(int)enum_雲端藥檔_EXCEL.廠牌].ObjectToString(),
-                            藥品許可證號 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品許可證號].ObjectToString(),
-                            中西藥 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString()
-                        };
-                        medClasses.Add(medClass);
-                    }
+                    //    medClass medClass = new medClass
+                    //    {
+                    //        藥品碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥碼].ObjectToString(),
+                    //        中文名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.中文名].ObjectToString(),
+                    //        藥品名稱 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥名].ObjectToString(),
+                    //        藥品學名 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品學名].ObjectToString(),
+                    //        健保碼 = list_value[i][(int)enum_雲端藥檔_EXCEL.健保碼].ObjectToString(),
+                    //        包裝單位 = list_value[i][(int)enum_雲端藥檔_EXCEL.包裝單位].ObjectToString(),
+                    //        庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.庫存].ObjectToString(),
+                    //        安全庫存 = list_value[i][(int)enum_雲端藥檔_EXCEL.安全庫存].ObjectToString(),
+                    //        警訊藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.警訊藥品].ObjectToString(),
+                    //        高價藥品 = list_value[i][(int)enum_雲端藥檔_EXCEL.高價藥品].ObjectToString(),
+                    //        管制級別 = list_value[i][(int)enum_雲端藥檔_EXCEL.管制級別].ObjectToString(),
+                    //        類別 = list_value[i][(int)enum_雲端藥檔_EXCEL.類別].ObjectToString(),
+                    //        廠牌 = list_value[i][(int)enum_雲端藥檔_EXCEL.廠牌].ObjectToString(),
+                    //        藥品許可證號 = list_value[i][(int)enum_雲端藥檔_EXCEL.藥品許可證號].ObjectToString(),
+                    //        中西藥 = list_value[i][(int)enum_雲端藥檔_EXCEL.中西藥].ObjectToString()
+                    //    };
+                    //    medClasses.Add(medClass);
+                    //}
                 }
                 if (medClasses.Count > 0)
                 {
@@ -3623,21 +3631,31 @@ namespace HIS_WebApi
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Sheet1");
-                worksheet.Cells[1, 1].Value = "藥碼";
-                worksheet.Cells[1, 2].Value = "中文名";
-                worksheet.Cells[1, 3].Value = "藥名";
-                worksheet.Cells[1, 4].Value = "藥品學名";
-                worksheet.Cells[1, 5].Value = "健保碼";
-                worksheet.Cells[1, 6].Value = "包裝單位";
-                worksheet.Cells[1, 7].Value = "庫存";
-                worksheet.Cells[1, 8].Value = "安全庫存";
-                worksheet.Cells[1, 9].Value = "警訊藥品";
-                worksheet.Cells[1, 10].Value = "高價藥品";
-                worksheet.Cells[1, 11].Value = "管制級別";
-                worksheet.Cells[1, 12].Value = "類別";
-                worksheet.Cells[1, 13].Value = "廠牌";
-                worksheet.Cells[1, 14].Value = "藥品許可證號";
-                worksheet.Cells[1, 15].Value = "中西藥";
+                var names = Enum.GetNames(typeof(enum_雲端藥檔));
+                int i = 1;
+                foreach (var name in names)
+                {
+                    if (name == "GUID") continue;
+                    worksheet.Cells[1, i].Value = name;
+                    i++;
+                }
+                //worksheet.Cells[1, 1].Value = enum_雲端藥檔.藥品碼.GetEnumName();
+
+                //worksheet.Cells[1, 1].Value = "藥碼";
+                //worksheet.Cells[1, 2].Value = "中文名";
+                //worksheet.Cells[1, 3].Value = "藥名";
+                //worksheet.Cells[1, 4].Value = "藥品學名";
+                //worksheet.Cells[1, 5].Value = "健保碼";
+                //worksheet.Cells[1, 6].Value = "包裝單位";
+                //worksheet.Cells[1, 7].Value = "庫存";
+                //worksheet.Cells[1, 8].Value = "安全庫存";
+                //worksheet.Cells[1, 9].Value = "警訊藥品";
+                //worksheet.Cells[1, 10].Value = "高價藥品";
+                //worksheet.Cells[1, 11].Value = "管制級別";
+                //worksheet.Cells[1, 12].Value = "類別";
+                //worksheet.Cells[1, 13].Value = "廠牌";
+                //worksheet.Cells[1, 14].Value = "藥品許可證號";
+                //worksheet.Cells[1, 15].Value = "中西藥";
 
 
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
@@ -3651,6 +3669,60 @@ namespace HIS_WebApi
 
                 return File(stream, contentType, fileName);
             }
+        }
+        /// <summary>
+        ///下載藥檔
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[{medClass}]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("download_med_cloud")]
+        public async Task<ActionResult> download_med_cloud([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+
+                List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
+                if (medClasses == null)
+                {
+                    //medClasses = new List<medClass>();
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+                List<object[]> objects = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                System.Data.DataTable dataTable = objects.ToDataTable(new enum_雲端藥檔());
+                if (dataTable.Columns.Count > 0)
+                {
+                    dataTable.Columns.RemoveAt(0);
+                }
+                //dataTable = dataTable.ReorderTable(new enum_med_cpoe_export());
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_藥檔.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
         static public Dictionary<string, List<H_Pannel_lib.DeviceSimple>> ConvertToDictionary(List<H_Pannel_lib.DeviceSimple> deviceSimples)
         {
