@@ -1324,6 +1324,55 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("get_by_MasterGUID")]
+        public string get_by_MasterGUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_MasterGUID";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Data = -200;
+                    returnData.Result = "returnData.ValueAry 空白，請輸入對應欄位資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"Master_GUID\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
+                string Master_GUID = returnData.ValueAry[0];
+                SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.Master_GUID, Master_GUID);
+                if (list_textVision.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<textVisionClass> textVisionClasses = list_textVision.SQLToClass<textVisionClass, enum_textVision>();
+
+
+                returnData.Code = 200;
+                returnData.Data = textVisionClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得驗收-Master_GUID : {Master_GUID} 資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                Logger.Log(project, returnData.JsonSerializationt());
+                Logger.Log(project, Message);
+                return returnData.JsonSerializationt(true);
+            }
+        }
         /// <summary>
         /// 資料預儲存
         /// </summary>

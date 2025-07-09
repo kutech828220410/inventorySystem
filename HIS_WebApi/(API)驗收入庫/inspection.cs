@@ -34,6 +34,7 @@ namespace HIS_WebApi
         }
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
+        static private string API = "http://127.0.0.1:4433";
 
 
         /// <summary>
@@ -1497,6 +1498,13 @@ namespace HIS_WebApi
             //}
 
             string GUID = content.GUID;
+            List<Task> tasks = new List<Task>();
+            List<textVisionClass> textVisionClasses = new List<textVisionClass>();
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                returnData returnData_textVision = textVisionClass.get_by_MasterGUID(API, GUID);
+                textVisionClasses = returnData_textVision.Data.ObjToClass<List<textVisionClass>>();
+            })));
             returnData.Data = null;
             List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
             List<object[]> list_inspection_content_buf = new List<object[]>();
@@ -1562,9 +1570,10 @@ namespace HIS_WebApi
 
                     }
                 }
-
+                Task.WhenAll(tasks).Wait();
                 content.實收數量 = 實收數量.ToString();
                 content.Sub_content.Sort(new ICP_sub_content());
+                content.textVision = textVisionClasses;
                 returnData.Data = content;
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();

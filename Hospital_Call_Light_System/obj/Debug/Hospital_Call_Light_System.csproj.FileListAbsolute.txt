@@ -434,4 +434,5 @@ C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\
 C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe
 C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.pdb
-C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.csproj.CopyComplete
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital.DBFEDD3D.Up2Date
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe.config

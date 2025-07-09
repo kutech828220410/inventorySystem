@@ -637,6 +637,7 @@ namespace HIS_DB_Lib
 
             private List<sub_content> _sub_content = new List<sub_content>();
             public List<sub_content> Sub_content { get => _sub_content; set => _sub_content = value; }
+            public List<textVisionClass> textVision { get; set; }
 
           
         }

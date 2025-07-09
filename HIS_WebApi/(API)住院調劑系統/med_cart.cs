@@ -6,7 +6,9 @@ using HIS_WebApi._API_藥品資料;
 using K4os.Compression.LZ4.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using MyOffice;
 using MySql.Data.MySqlClient;
+using MyUI;
 using NPOI.SS.Formula.Functions;
 using NPOI.XSSF.Streaming.Values;
 using SQLUI;
@@ -14,9 +16,13 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Ubiety.Dns.Core;
 
 
 
@@ -2327,6 +2333,7 @@ namespace HIS_WebApi
                         if (medCpoeClass.調劑狀態.StringIsEmpty())
                         {
                             medCpoeClass.調劑狀態 = "Y";
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                             if (medCpoeClass.PRI_KEY.Contains("DC"))
                             {
                                 medCpoeClass.覆核狀態 = "Y";
@@ -2346,6 +2353,7 @@ namespace HIS_WebApi
                             medCpoeClass.調劑狀態 = string.Empty;
                             medCpoeClass.覆核狀態 = string.Empty;
                             medCpoeClass.DC確認 = string.Empty;
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                             refund_medcpoe.Add(medCpoeClass);
                         }
                     }
@@ -2405,7 +2413,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID調整藥品調劑狀態
+        ///以GUID調整藥品調劑狀態，藥品總量單床調劑
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -2452,13 +2460,13 @@ namespace HIS_WebApi
                 }
                 medCpoe_sql_replace = medCpoe_sql_replace.Where(temp => temp.GUID == GUID).ToList();
                 medCpoe_sql_replace[0].調劑狀態 = 調劑狀態;
+                medCpoe_sql_replace[0].更新時間 = DateTime.Now.ToDateTimeString();
                 string 護理站 = medCpoe_sql_replace[0].護理站;
 
                 if (調劑狀態.StringIsEmpty() == true) //取消調劑
                 {
                     medCpoe_sql_replace[0].覆核狀態 = string.Empty;
                     medCpoe_sql_replace[0].DC確認 = string.Empty;
-
                     refund_medcpoe.Add(medCpoe_sql_replace[0]);
                 }
                 else //確認調劑
@@ -2526,7 +2534,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        ///以GUID確認藥品調劑
+        ///以GUID確認藥品調劑，未調藥品的全部調劑
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -2541,7 +2549,6 @@ namespace HIS_WebApi
         [HttpPost("dispensed_by_GUID")]
         public string dispensed_by_GUID([FromBody] returnData returnData)
         {
-            ///未調藥品的全部調劑
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "dispensed_by_GUID";
             try
@@ -2582,6 +2589,7 @@ namespace HIS_WebApi
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
                         sql_medCpoe[i].調劑狀態 = "Y";
+                        sql_medCpoe[i].更新時間 = DateTime.Now.ToDateTimeString();
                         if (sql_medCpoe[i].PRI_KEY.Contains("DC"))
                         {
                             sql_medCpoe[i].DC確認 = "Y";
@@ -2727,6 +2735,7 @@ namespace HIS_WebApi
                         debit_medcpoe.Add(item);
                     }
                     item.調劑狀態 = "Y";
+                    item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
 
                 List<Task> tasks = new List<Task>();
@@ -2857,12 +2866,21 @@ namespace HIS_WebApi
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
                     {
-                        medCpoeClass.覆核狀態 = "Y";
+                        if (medCpoeClass.覆核狀態.StringIsEmpty())
+                        {
+                            medCpoeClass.覆核狀態 = "Y";
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
+                        }
                     }
                     else
                     {
-                        medCpoeClass.覆核狀態 = "";
+                        if(medCpoeClass.覆核狀態.StringIsEmpty() == false)
+                        {
+                            medCpoeClass.覆核狀態 = string.Empty;
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
+                        }
                     }
+
                     medCpoe_sql_replace.Add(medCpoeClass);
                 }
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -2903,7 +2921,7 @@ namespace HIS_WebApi
         public string double_check_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "check_dispense_by_GUID";
+            returnData.Method = "double_check_by_GUID";
             try
             {
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 3)
@@ -2932,11 +2950,12 @@ namespace HIS_WebApi
                 }
 
                 medCpoe_sql_replace[0].覆核狀態 = 覆核狀態;
-                string 護理站 = medCpoe_sql_replace[0].護理站;
+                medCpoe_sql_replace[0].更新時間 = DateTime.Now.ToDateTimeString();
+                //string 護理站 = medCpoe_sql_replace[0].護理站;
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    Logger.Log($"medCpoe-{護理站}", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{medCpoe_sql_replace[0].護理站}", $"update_double_check_by_GUID \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
@@ -3009,13 +3028,13 @@ namespace HIS_WebApi
                     if (GUIDs.Contains(sql_medCpoe[i].GUID))
                     {
                         sql_medCpoe[i].覆核狀態 = "Y";
+                        sql_medCpoe[i].更新時間 = DateTime.Now.ToDateTimeString();
                     }
                 }
-                string 護理站 = sql_medCpoe[0].護理站;
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0)
                 {
-                    Logger.Log($"medCpoe-{護理站}", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
+                    Logger.Log($"medCpoe-{sql_medCpoe[0].護理站}", $"update_check_by_GUID \n {sql_medCpoe.JsonSerializationt(true)}");
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                 }
 
@@ -3094,6 +3113,7 @@ namespace HIS_WebApi
                 {
                     patientGUID.Add(item.Master_GUID);
                     item.覆核狀態 = "Y";
+                    item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
 
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -3750,6 +3770,170 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
+        }
+        /// <summary>
+        ///取得所有處方資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medCpoe_by_st_end")]
+        public string get_medCpoe_by_st_end([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medCpoe_by_st_end";
+            try
+            {
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                string 開始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+
+                //(string StartTime, string Endtime) = GetToday();
+
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, 開始時間, 結束時間);
+
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                sql_medCpoe.Sort(new medCpoeClass.ICP_By_bedNum());
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"取得處方資料共{sql_medCpoe.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///取得藥品消耗量
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[{medCpoeClass}]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_med_consumption")]
+        public string get_med_consumption([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "med_cart/get_med_consumption";
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+            
+                List<medCpoeClass> medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+
+                if (medCpoeClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+
+                List<medCpoeClass> medCpoeClasses = medCpoeClass
+                    .GroupBy(temp => temp.藥碼)
+                    .Select(grouped =>
+                    {
+                        medCpoeClass medCpoe = grouped.First();                       
+                        
+                        return new medCpoeClass
+                        {
+                            藥品名 = medCpoe.藥品名,
+                            中文名 = medCpoe.中文名,
+                            藥碼 = grouped.Key,
+                            數量 = grouped.Sum(x => x.數量.StringToDouble()).ToString()
+                        };
+                    }).ToList();
+                medCpoeClasses.Sort(new medCpoeClass.ICP_By_medName());
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medCpoeClasses;
+                returnData.Result = $"取得{medCpoeClasses.Count}藥品消耗量";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///下載藥品消耗量
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Data":[{medCpoeClass}]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("download_med_consumption")]
+        public async Task<ActionResult> download_med_consumption([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+
+                List<medCpoeClass> medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+                if (medCpoeClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return Content($"下載失敗：{returnData.Result}");
+                }
+                List<object[]> objects = medCpoeClass.ClassToSQL<medCpoeClass, enum_med_cpoe>();
+                System.Data.DataTable dataTable = objects.ToDataTable(new enum_med_cpoe());
+                dataTable = dataTable.ReorderTable(new enum_med_cpoe_export());
+              
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_藥品消耗量報表.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
         /// <summary>
         /// 清洗資料

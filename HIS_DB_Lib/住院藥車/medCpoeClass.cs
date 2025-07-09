@@ -104,6 +104,13 @@ namespace HIS_DB_Lib
         [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
+    public enum enum_med_cpoe_export
+    {
+        藥碼,
+        藥品名,
+        中文名,
+        數量
+    }
     /// <summary>
     /// medCpoeClass資料
     /// </summary>
@@ -371,10 +378,32 @@ namespace HIS_DB_Lib
         {
             public int Compare(medCpoeClass x, medCpoeClass y)
             {
-                int result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+                int result = (x.藥局).CompareTo(y.藥局);
+                if(result == 0)
+                {
+                    result = (x.護理站).CompareTo(y.護理站);
+                    if(result == 0)
+                    {
+                        result = (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+                        if(result == 0)
+                        {
+                            result = string.Compare(x.更新時間, y.更新時間) * -1;
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
+        public class ICP_By_medName : IComparer<medCpoeClass>
+        {
+            public int Compare(medCpoeClass x, medCpoeClass y)
+            {
+                int result = (x.藥品名).CompareTo(y.藥品名);
                 if (result == 0)
                 {
-                    result = string.Compare(x.更新時間, y.更新時間) * -1;
+                    result = (x.中文名).CompareTo(y.中文名);
+                    
                 }
                 return result;
             }

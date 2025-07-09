@@ -2507,6 +2507,67 @@ namespace HIS_WebApi
 
             }
         }
+        [HttpPost("get_list_by_department")]
+        public string get_list_by_department([FromBody]returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[Type]";
+                    return returnData.JsonSerializationt(true);
+                }
+                ServerSettingController controller = new ServerSettingController();
+                string result = controller.POST_get_serversetting_by_department_type(returnData);
+                returnData returnData_get_serversetting_by_type = result.JsonDeserializet<returnData>();
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = returnData_get_serversetting_by_type.Data.ObjToClass<List<sys_serverSettingClass>>();
+                if(sys_serverSettingClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"POST_get_serversetting_by_type 回傳為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<Task> tasks = new List<Task>();
+                List<DeviceBasic> deviceBasics_total = new List<DeviceBasic>();
+                foreach (var item in sys_serverSettingClasses)
+                {                    
+                    string 調劑台 = item.設備名稱;
+                    string 藥品清單 = GET_list(調劑台);
+                    returnData returnData_get_list = 藥品清單.JsonDeserializet<returnData>();
+                    List<DeviceBasic> deviceBasics = returnData_get_list.Data.ObjToClass<List<DeviceBasic>>();
+                    if(deviceBasics != null)
+                    {
+                        for (int i = 0; i < deviceBasics.Count; i++)
+                        {
+                            deviceBasics[i].Area = 調劑台;
+                        }
+                        deviceBasics_total.AddRange(deviceBasics);
+                    }                                          
+                }
+                returnData.Code = 200;
+                returnData.Result = $"取得單位:{returnData.ValueAry[0]}內所有資料，共{deviceBasics_total.Count}筆";
+                returnData.Data = deviceBasics_total;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{ex.Message}";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
         [ApiExplorerSettings(IgnoreApi = true)]
         static public List<DeviceBasic> Function_Get_device()

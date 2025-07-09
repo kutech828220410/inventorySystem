@@ -221,6 +221,16 @@ namespace HIS_DB_Lib
         [JsonPropertyName("LICENSE")]
         public string 藥品許可證號 { get; set; }
         /// <summary>
+        /// 供貨廠商。
+        /// </summary>
+        [JsonPropertyName("SUPPLIER")]
+        public string 供貨廠商 { get; set; }
+        /// <summary>
+        /// 供貨商證字號。
+        /// </summary>
+        [JsonPropertyName("SUPPLIER_LICENSE")]
+        public string 供貨商證字號 { get; set; }
+        /// <summary>
         /// 類別。
         /// </summary>
         [JsonPropertyName("TYPE")]
