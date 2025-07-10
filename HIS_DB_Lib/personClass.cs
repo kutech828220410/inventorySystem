@@ -210,5 +210,24 @@ namespace HIS_DB_Lib
             return table;
         }
     }
- 
+    static public class personPageClassMethod
+    {
+        /// <summary>
+        /// 從 personPageClass 清單中，根據 ID 查找資料
+        /// </summary>
+        static public personPageClass SerchByID(this List<personPageClass> list, string id)
+        {
+            if (list == null || id.StringIsEmpty()) return null;
+            return list.FirstOrDefault(x => x.ID == id);
+        }
+
+        /// <summary>
+        /// 從 personPageClass 清單中，根據姓名查找資料（精確比對）
+        /// </summary>
+        static public personPageClass SerchByName(this List<personPageClass> list, string name)
+        {
+            if (list == null || name.StringIsEmpty()) return null;
+            return list.FirstOrDefault(x => x.姓名 == name);
+        }
+    }
 }
