@@ -209,25 +209,15 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
-    }
-    static public class personPageClassMethod
-    {
-        /// <summary>
-        /// 從 personPageClass 清單中，根據 ID 查找資料
-        /// </summary>
-        static public personPageClass SerchByID(this List<personPageClass> list, string id)
-        {
-            if (list == null || id.StringIsEmpty()) return null;
-            return list.FirstOrDefault(x => x.ID == id);
-        }
 
-        /// <summary>
-        /// 從 personPageClass 清單中，根據姓名查找資料（精確比對）
-        /// </summary>
-        static public personPageClass SerchByName(this List<personPageClass> list, string name)
+    }
+    public static class personPageClassMethod
+    {
+        public static personPageClass searchByName(this List<personPageClass> personPageClasses, string personName)
         {
-            if (list == null || name.StringIsEmpty()) return null;
-            return list.FirstOrDefault(x => x.姓名 == name);
+            if (personPageClasses == null) return null;
+            personPageClass personPageClass = personPageClasses.Where(temp => temp.姓名 == personName).FirstOrDefault();
+            return personPageClass;
         }
     }
 }
