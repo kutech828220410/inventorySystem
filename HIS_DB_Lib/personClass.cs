@@ -209,6 +209,15 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
+
     }
- 
+    public static class personPageClassMethod
+    {
+        public static personPageClass searchByName(this List<personPageClass> personPageClasses, string personName)
+        {
+            if (personPageClasses == null) return null;
+            personPageClass personPageClass = personPageClasses.Where(temp => temp.姓名 == personName).FirstOrDefault();
+            return personPageClass;
+        }
+    }
 }
