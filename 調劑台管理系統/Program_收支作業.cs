@@ -578,7 +578,7 @@ namespace 調劑台管理系統
                     int abnormalCount = keyValuePairs_medRecheckLogClass.SortDictionaryBy_Code(code).Count;
                     RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.異常事件] = abnormalCount;
 
-                    Console.WriteLine($"[處理 {i + 1}/{RowsList.Count}] 藥碼: {code}, 藥名: {name}, 儲位: {storageName}, IP: {ip}, 實際庫存: {qty}, 異常事件: {abnormalCount}");
+                    //Console.WriteLine($"[處理 {i + 1}/{RowsList.Count}] 藥碼: {code}, 藥名: {name}, 儲位: {storageName}, IP: {ip}, 實際庫存: {qty}, 異常事件: {abnormalCount}");
                 }
 
                 // 分段排序：實際庫存≠庫存 → 異常事件有資料 → 其他

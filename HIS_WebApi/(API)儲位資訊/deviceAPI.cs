@@ -123,7 +123,15 @@ namespace HIS_WebApi
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(value, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.儲位資料);
-                if(sys_serverSettingClass == null)
+                string IP = sys_serverSettingClass.Server;
+                int port = sys_serverSettingClass.Port.StringToInt32();
+                if (Basic.Net.TestConnection(IP, port, 300) == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"伺服器無回應,{IP}";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (sys_serverSettingClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無伺服器資料";
