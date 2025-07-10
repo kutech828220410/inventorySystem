@@ -336,6 +336,7 @@ namespace 調劑台管理系統
         {
             DateTime startTotal = DateTime.Now;
             List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
+
             if (drugHFTag_IncomeOutcomeList == null)
             {
                 Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無選擇的藥品，結束流程");
@@ -588,7 +589,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未讀取到RFID標籤");
                 return;
             }
-
+    
             bool 驗證失敗 = false;
             bool 數量異常 = false;
 

@@ -197,6 +197,39 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
+        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, DrugHFTagClass DrugHFTagClass)
+        {
+            var (code, result, list) = set_tag_stockin_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            return list;
+        }
+        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            var (code, result, list) = set_tag_stockin_full(API_Server, DrugHFTagClasses);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) set_tag_stockin_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        {
+            string url = $"{API_Server}/api/DrugHFTag/set_tag_stockin";
+
+            returnData returnData = new returnData();
+            returnData.Data = DrugHFTagClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
+
         static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, string tagSN)
         {
             var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, new List<string>() { tagSN });
@@ -318,14 +351,14 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, drugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_stockout_tags(string API_Server)
+        static public List<DrugHFTagClass> get_latest_tags(string API_Server)
         {
-            var (code, result, list) = get_stockout_tags_full(API_Server);
+            var (code, result, list) = get_latest_tags_full(API_Server);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_stockout_tags_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_tags_full(string API_Server)
         {
-            string url = $"{API_Server}/api/DrugHFTag/get_stockout_tags";
+            string url = $"{API_Server}/api/DrugHFTag/get_latest_tags";
 
             returnData returnData = new returnData();
             string json_in = returnData.JsonSerializationt();

@@ -1989,7 +1989,7 @@ namespace 調劑台管理系統
                 string[] IPs = storage.IP.Split('.');
                 if (IPs.Length == 4)
                 {
-                    index += (IPs[2].StringToInt32() * 10000000 + IPs[2].StringToInt32() * 100000);
+                    index += (IPs[2].StringToInt32() * 10000000 + IPs[3].StringToInt32() * 10000);
                 }
             }
             for (int i = 0; i < pannels.Count; i++)
@@ -1998,7 +1998,7 @@ namespace 調劑台管理系統
                 string[] IPs = storage.IP.Split('.');
                 if (IPs.Length == 4)
                 {
-                    index += (IPs[2].StringToInt32() * 10000000 + IPs[2].StringToInt32() * 100000);
+                    index += (IPs[2].StringToInt32() * 10000000 + IPs[3].StringToInt32() * 10000);
                 }
             }
 

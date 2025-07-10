@@ -548,6 +548,57 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
+        private void Dialog_交班對點_LoadFinishedEvent(EventArgs e)
+        {
+            List<StepEntity> list = new List<StepEntity>();
+            list.Add(new StepEntity("1", "登入", 1, "請登入使用者(盤點)", eumStepState.Waiting, null));
+            list.Add(new StepEntity("2", "登入", 2, "請登入使用者(覆盤)", eumStepState.Waiting, null));
+            list.Add(new StepEntity("3", "藥品選擇", 3, "選擇交班藥品", eumStepState.Waiting, null));
+            list.Add(new StepEntity("4", "清點藥品", 4, "清點交班藥品", eumStepState.Waiting, null));
+            list.Add(new StepEntity("5", "確認送出", 5, "交班表紀錄送出", eumStepState.Waiting, null));
+            this.stepViewer.CurrentStep = 1;
+            this.stepViewer.ListDataSource = list;
+
+
+            medGroupClasses = medGroupClass.get_all_group(Main_Form.API_Server);
+            List<string> list_str = new List<string>();
+            for (int i = 0; i < medGroupClasses.Count; i++)
+            {
+                if (medGroupClasses[i].顯示資訊.StringIsEmpty() || medGroupClasses[i].顯示資訊.Contains(Main_Form.ServerName))
+                {
+                    list_str.Add(medGroupClasses[i].名稱);
+                }
+            }
+
+            this.comboBox_藥品群組.DataSource = list_str.ToArray();
+            if (list_str.Count > 0)
+            {
+                this.comboBox_藥品群組.SelectedIndex = 0;
+            }
+            this.Invoke(new Action(delegate
+            {
+                Table table_交班藥品 = new Table(new enum_交班藥品());
+                this.sqL_DataGridView_交班藥品.Init(table_交班藥品);
+                this.sqL_DataGridView_交班藥品.Set_ColumnVisible(false, new enum_交班藥品().GetEnumNames());
+                //this.sqL_DataGridView_交班藥品.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.排列號);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.藥碼);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_交班藥品.藥名);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.單位);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.盤點量);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.差異值);
+                this.sqL_DataGridView_交班藥品.ClearGrid();
+            }));
+
+
+
+            myThread_program = new MyThread();
+            myThread_program.Add_Method(sub_program);
+            myThread_program.AutoRun(true);
+            myThread_program.SetSleepTime(100);
+            myThread_program.Trigger();
+
+
+        }
         private void SqL_DataGridView_交班藥品_RowEnterEvent(object[] RowValue)
         {
             if (RowValue != null)
@@ -593,57 +644,7 @@ namespace 調劑台管理系統
                 list_交班對點 = null;
             }
         }
-        private void Dialog_交班對點_LoadFinishedEvent(EventArgs e)
-        {
-            List<StepEntity> list = new List<StepEntity>();
-            list.Add(new StepEntity("1", "登入", 1, "請登入使用者(盤點)", eumStepState.Waiting, null));
-            list.Add(new StepEntity("2", "登入", 2, "請登入使用者(覆盤)", eumStepState.Waiting, null));
-            list.Add(new StepEntity("3", "藥品選擇", 3, "選擇交班藥品", eumStepState.Waiting, null));
-            list.Add(new StepEntity("4", "清點藥品", 4, "清點交班藥品", eumStepState.Waiting, null));
-            list.Add(new StepEntity("5", "確認送出", 5, "交班表紀錄送出", eumStepState.Waiting, null));
-            this.stepViewer.CurrentStep = 1;
-            this.stepViewer.ListDataSource = list;
-
-
-            medGroupClasses = medGroupClass.get_all_group(Main_Form.API_Server);
-            List<string> list_str = new List<string>();
-            for (int i = 0; i < medGroupClasses.Count; i++)
-            {
-                if (medGroupClasses[i].顯示資訊.StringIsEmpty() || medGroupClasses[i].顯示資訊.Contains(Main_Form.ServerName))
-                {
-                    list_str.Add(medGroupClasses[i].名稱);
-                }
-            }
-       
-            this.comboBox_藥品群組.DataSource = list_str.ToArray();
-            if (list_str.Count > 0)
-            {
-                this.comboBox_藥品群組.SelectedIndex = 0;
-            }
-            this.Invoke(new Action(delegate 
-            {
-                Table table_交班藥品 = new Table(new enum_交班藥品());
-                this.sqL_DataGridView_交班藥品.Init(table_交班藥品);
-                this.sqL_DataGridView_交班藥品.Set_ColumnVisible(false, new enum_交班藥品().GetEnumNames());
-                //this.sqL_DataGridView_交班藥品.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.排列號);
-                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.藥碼);
-                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_交班藥品.藥名);
-                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.單位);
-                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.盤點量);
-                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.差異值);
-                this.sqL_DataGridView_交班藥品.ClearGrid();
-            }));
-          
-          
-
-            myThread_program = new MyThread();
-            myThread_program.Add_Method(sub_program);
-            myThread_program.AutoRun(true);
-            myThread_program.SetSleepTime(100);
-            myThread_program.Trigger();
-
-           
-        }
+     
         string CodeLast = "";
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -548,7 +548,7 @@ namespace 調劑台管理系統
             if (RfidReaderEnable)
             {
                 LoadingForm.ShowLoadingForm();
-                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_stockout_tags(Main_Form.API_Server);
+                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
                 List<StockClass> stockClasses = drugHFTagClasses.GetStockClasses();
 
                 List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
