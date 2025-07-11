@@ -157,6 +157,44 @@ namespace HIS_DB_Lib
         [Description("加入時間,DATETIME,50,INDEX")]
         加入時間,
     }
+    [EnumDescription("inv_combinelist_report")]
+    public enum enum_inv_combinelist_report
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("合併單號,VARCHAR,30,INDEX")]
+        合併單號,
+        [Description("藥碼,VARCHAR,30,NONE")]
+        藥碼,
+        [Description("料號,VARCHAR,30,NONE")]
+        料號,
+        [Description("藥名,VARCHAR,300,NONE")]
+        藥名,
+        [Description("備註,VARCHAR,300,NONE")]
+        備註,
+        [Description("單價,VARCHAR,30,NONE")]
+        單價,
+        [Description("庫存量,VARCHAR,30,NONE")]
+        庫存量,
+        [Description("盤點量,VARCHAR,30,NONE")]
+        盤點量,
+        [Description("消耗量,VARCHAR,30,NONE")]
+        消耗量,
+        [Description("覆盤量,VARCHAR,30,NONE")]
+        覆盤量,
+        [Description("庫存金額,VARCHAR,30,NONE")]
+        庫存金額,
+        [Description("結存金額,VARCHAR,30,NONE")]
+        結存金額,
+        [Description("誤差量,VARCHAR,30,NONE")]
+        誤差量,
+        [Description("誤差金額,VARCHAR,30,NONE")]
+        誤差金額,
+        [Description("誤差百分率,VARCHAR,30,NONE")]
+        誤差百分率,
+        [Description("註記,VARCHAR,30,NONE")]
+        註記
+    }
     /// <summary>
     /// 合併總單
     /// </summary>
@@ -329,7 +367,14 @@ namespace HIS_DB_Lib
         [JsonPropertyName("medReviews")]
         public List<inv_combinelist_review_Class> MedReviews { get => medReviews; set => medReviews = value; }
         private List<inv_combinelist_review_Class> medReviews = new List<inv_combinelist_review_Class>();
-
+        public class ICP_By_CT_time : IComparer<inv_combinelistClass>
+        {
+            public int Compare(inv_combinelistClass x, inv_combinelistClass y)
+            {
+                int result = string.Compare(x.建表時間, y.建表時間) * -1;
+                return result;
+            }
+        }
         public bool IsHaveRecord(inventoryClass.creat creat)
         {
             List<inv_records_Class> records_Ary_buf = (from temp in records_Ary
@@ -1269,5 +1314,97 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ADD_TIME")]
         public string 加入時間 { get; set; }
+    }
+
+    /// <summary>
+    /// 合併單總表
+    /// </summary>
+    public class inv_combinelist_report_Class
+    {
+        /// <summary>
+        /// GUID
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 合併單號
+        /// </summary>
+        [JsonPropertyName("SN")]
+        public string 合併單號 { get; set; }
+        /// <summary>
+        /// 藥碼
+        /// </summary>
+        [JsonPropertyName("CODE")]
+        public string 藥碼 { get; set; }
+        /// <summary>
+        /// 料號
+        /// </summary>
+        [JsonPropertyName("SKDIACODE")]
+        public string 料號 { get; set; }
+        /// <summary>
+        /// 藥名
+        /// </summary>
+        [JsonPropertyName("NAME")]
+        public string 藥名 { get; set; }
+        /// <summary>
+        /// 備註
+        /// </summary>
+        [JsonPropertyName("ALIAS")]
+        public string 備註 { get; set; }
+        /// <summary>
+        /// 單價
+        /// </summary>
+        [JsonPropertyName("PRICE")]
+        public string 單價 { get; set; }
+        /// <summary>
+        /// 庫存量
+        /// </summary>
+        [JsonPropertyName("QTY")]
+        public string 庫存量 { get; set; }
+        /// <summary>
+        /// 盤點量
+        /// </summary>
+        [JsonPropertyName("COUNT")]
+        public string 盤點量 { get; set; }
+        /// <summary>
+        /// 消耗量
+        /// </summary>
+        [JsonPropertyName("consumption")]
+        public string 消耗量 { get; set; }
+        /// <summary>
+        /// 覆盤量
+        /// </summary>
+        [JsonPropertyName("REVIEW")]
+        public string 覆盤量 { get; set; }
+        /// <summary>
+        /// 庫存金額
+        /// </summary>
+        [JsonPropertyName("STOCK")]
+        public string 庫存金額 { get; set; }
+        /// <summary>
+        /// 結存金額
+        /// </summary>
+        [JsonPropertyName("BALANCE")]
+        public string 結存金額 { get; set; }
+        /// <summary>
+        /// 誤差量
+        /// </summary>
+        [JsonPropertyName("ERROR")]
+        public string 誤差量 { get; set; }
+        /// <summary>
+        /// 誤差金額
+        /// </summary>
+        [JsonPropertyName("ERROR_MONEY")]
+        public string 誤差金額 { get; set; }
+        /// <summary>
+        /// 誤差百分率
+        /// </summary>
+        [JsonPropertyName("ERROR_PERCENT")]
+        public string 誤差百分率 { get; set; }
+        /// <summary>
+        /// 註記
+        /// </summary>
+        [JsonPropertyName("COMMENT")]
+        public string 註記 { get; set; }
     }
 }

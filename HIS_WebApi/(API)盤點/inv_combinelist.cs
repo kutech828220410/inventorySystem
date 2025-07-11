@@ -65,7 +65,7 @@ namespace HIS_WebApi
         [Route("init")]
         [HttpPost]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCpoeClass物件", typeof(medCpoeClass))]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "inv_combinelist_dataTable物件", typeof(inv_combinelist_dataTable))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "inv_combinelist_dataTable物件", typeof(inv_combinelist_report_Class))]
         public string GET_init([FromBody] returnData returnData)
         {
             try
@@ -381,7 +381,7 @@ namespace HIS_WebApi
                 string 合併單號 = returnData.Value;
                 List<Task> tasks = new List<Task>();
                 inv_combinelistClass inv_CombinelistClass = new inv_combinelistClass();
-                List<inv_combinelist_dataTable> inv_Combinelist_DataTables = new List<inv_combinelist_dataTable>();
+                List<inv_combinelist_report_Class> inv_Combinelist_DataTables = new List<inv_combinelist_report_Class>();
                 string str_REV_SN = string.Empty;
                 tasks.Add(Task.Run(new Action(delegate 
                 {
@@ -405,7 +405,7 @@ namespace HIS_WebApi
                     returnData_get_detail_inv_by_SN.Value = 合併單號;
                     string jsonString = get_detail_inv_by_SN(returnData_get_detail_inv_by_SN);
                     returnData_get_detail_inv_by_SN = jsonString.JsonDeserializet<returnData>();
-                    inv_Combinelist_DataTables = returnData_get_detail_inv_by_SN.Data.ObjToClass<List<inv_combinelist_dataTable>>();
+                    inv_Combinelist_DataTables = returnData_get_detail_inv_by_SN.Data.ObjToClass<List<inv_combinelist_report_Class>>();
                 })));
                 Task.WhenAll(tasks).Wait();
                 tasks.Clear();
@@ -444,7 +444,6 @@ namespace HIS_WebApi
                     returnData.Result = $"此合併單{合併單號}內的盤點單{盤點單號}沒有鎖定!!";
                     returnData.Data = string.Empty;
                     return returnData.JsonSerializationt(true);
-
                 }
                 List<medClass> medClasses = medClass.get_med_cloud(API01);
                 Dictionary<string, List<medClass>> dic_medClass = medClasses.CoverToDictionaryByCode();
@@ -1009,7 +1008,7 @@ namespace HIS_WebApi
                 inv_CombinelistClasses.Add(inv_CombinelistClass);
             }
 
-
+            inv_CombinelistClasses.Sort(new inv_combinelistClass.ICP_By_CT_time());
             returnData.Data = inv_CombinelistClasses;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -2390,7 +2389,6 @@ namespace HIS_WebApi
                 }
 
                 List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
-                List<Task> tasks = new List<Task>();
                 List<inv_combinelist_price_Class> inv_combinelist_price_Classes = new List<inv_combinelist_price_Class>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
@@ -2404,7 +2402,6 @@ namespace HIS_WebApi
                         inv_combinelist_price_Classes.LockAdd(inv_combinelist_price_Class);
                     }
                 }
-                Task.WhenAll(tasks).Wait();
                 returnData.Value = 合併單號;
                 returnData.Data = inv_combinelist_price_Classes;
                 Logger.Log("add", $"{returnData.JsonSerializationt(true)}");
@@ -3508,6 +3505,221 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
         /// <summary>
+        /// 以合併單號生成總表
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("add_report_by_SN")]
+        public string add_report_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try 
+            {
+                if (returnData.Value.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 合併單號 = returnData.Value;
+                string jsonString = get_full_inv_by_SN(returnData);
+                returnData = jsonString.JsonDeserializet<returnData>();
+                if (returnData == null || returnData.Code != 200)
+                {
+                    return returnData.JsonSerializationt(true);
+                }
+                inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+
+                if (inv_CombinelistClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"資料初始化失敗!";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                List<inventoryClass.content> contents = inv_CombinelistClass.Contents;
+                List<inv_combinelist_report_Class> inv_Combinelist_Report_Classes = new List<inv_combinelist_report_Class>();
+                if(contents.Count == 0)
+                {
+                    returnData.Data = inv_Combinelist_Report_Classes;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"無盤點資料";
+                    returnData.Method = "add_report_by_SN";
+                    returnData.Code = 200;
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < contents.Count; i++) //總表藥品項目
+                {
+                    bool flag_覆盤 = false;
+                    string 藥碼 = contents[i].藥品碼;
+                    string __料號 = contents[i].料號;
+                    inv_combinelist_report_Class inv_Combinelist_Report_Class = new inv_combinelist_report_Class();
+
+                    inv_Combinelist_Report_Class.GUID = Guid.NewGuid().ToString();
+                    inv_Combinelist_Report_Class.藥碼 = contents[i].藥品碼;
+                    inv_Combinelist_Report_Class.料號 = contents[i].料號;
+                    inv_Combinelist_Report_Class.藥名 = contents[i].藥品名稱;
+                    inv_Combinelist_Report_Class.盤點量 = contents[i].盤點量;
+                    inv_Combinelist_Report_Class.單價 = "0";
+                    inv_Combinelist_Report_Class.誤差百分率 = "0";
+                    inv_Combinelist_Report_Class.消耗量 = "0";
+                    inv_Combinelist_Report_Class.合併單號 = 合併單號;
+
+
+                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = inv_CombinelistClass.GetStockByCode(藥碼);
+                    inv_combinelist_price_Class inv_Combinelist_Price_Class = inv_CombinelistClass.GetMedPriceByCode(藥碼);
+                    inv_combinelist_note_Class inv_Combinelist_Note_Class = inv_CombinelistClass.GetMedNoteByCode(藥碼);
+                    inv_combinelist_review_Class inv_Combinelist_Review_Class = inv_CombinelistClass.GetMedReviewByCode(藥碼);
+
+                    if (inv_Combinelist_Stock_Class != null) inv_Combinelist_Report_Class.庫存量 = inv_Combinelist_Stock_Class.數量;
+                    if (inv_Combinelist_Note_Class != null) inv_Combinelist_Report_Class.備註 = inv_Combinelist_Note_Class.備註;
+                    if (inv_Combinelist_Review_Class != null) inv_Combinelist_Report_Class.覆盤量 = inv_Combinelist_Review_Class.數量;
+                    if (inv_Combinelist_Price_Class != null) inv_Combinelist_Report_Class.單價 = inv_Combinelist_Price_Class.單價;
+
+                    inv_Combinelist_Report_Class.庫存金額 = (inv_Combinelist_Report_Class.庫存量.StringToDouble() * inv_Combinelist_Report_Class.單價.StringToDouble()).ToString("0.00");
+                    if (inv_Combinelist_Report_Class.覆盤量.StringIsEmpty())
+                    {
+                        inv_Combinelist_Report_Class.結存金額 = (inv_Combinelist_Report_Class.盤點量.StringToDouble() * inv_Combinelist_Report_Class.單價.StringToDouble()).ToString("0.00");
+                        inv_Combinelist_Report_Class.誤差量 = (inv_Combinelist_Report_Class.盤點量.StringToDouble() - inv_Combinelist_Report_Class.庫存量.StringToDouble()).ToString();
+                    }
+                    else
+                    {
+                        inv_Combinelist_Report_Class.結存金額 = (inv_Combinelist_Report_Class.覆盤量.StringToDouble() * inv_Combinelist_Report_Class.單價.StringToDouble()).ToString("0.00");
+                        inv_Combinelist_Report_Class.誤差量 = (inv_Combinelist_Report_Class.覆盤量.StringToDouble() - inv_Combinelist_Report_Class.庫存量.StringToDouble()).ToString();
+                    }
+                    inv_Combinelist_Report_Class.誤差金額 = (inv_Combinelist_Report_Class.誤差量.StringToDouble() * inv_Combinelist_Report_Class.單價.StringToDouble()).ToString("0.00");
+                    if (inv_Combinelist_Report_Class.消耗量.StringToDouble() > 0)
+                    {
+                        inv_Combinelist_Report_Class.誤差百分率 = (inv_Combinelist_Report_Class.誤差量.StringToDouble() / inv_Combinelist_Report_Class.消耗量.StringToDouble() * 100).ToString("0.00");
+                    }
+
+
+                    if (inv_CombinelistClass.誤差總金額致能.StringToBool())
+                    {
+                        double 上限 = inv_CombinelistClass.誤差總金額上限.StringToDouble();
+                        double 下限 = inv_CombinelistClass.誤差總金額下限.StringToDouble();
+                        double temp = inv_Combinelist_Report_Class.誤差金額.StringToDouble();
+                        if (temp < 下限 || temp > 上限) flag_覆盤 = true;
+                    }
+
+                    if (inv_CombinelistClass.誤差數量致能.StringToBool())
+                    {
+                        double 上限 = inv_CombinelistClass.誤差數量上限.StringToDouble();
+                        double 下限 = inv_CombinelistClass.誤差數量下限.StringToDouble();
+                        double temp = inv_Combinelist_Report_Class.誤差量.StringToDouble();
+                        if (temp < 下限 || temp > 上限) flag_覆盤 = true;
+                    }
+                    if (inv_CombinelistClass.誤差百分率致能.StringToBool())
+                    {
+                        double 上限 = inv_CombinelistClass.誤差百分率上限.StringToDouble();
+                        double 下限 = inv_CombinelistClass.誤差百分率下限.StringToDouble();
+                        double temp = inv_Combinelist_Report_Class.誤差百分率.StringToDouble();
+                        if (temp < 下限 || temp > 上限) flag_覆盤 = true;
+                    }
+                    if (flag_覆盤) inv_Combinelist_Report_Class.註記 = "覆盤";
+                    inv_Combinelist_Report_Classes.Add(inv_Combinelist_Report_Class);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "inv_combinelist_report", UserName, Password, Port, SSLMode);
+                sQLControl.DeleteByDefult(null, (int)enum_inv_combinelist_report.合併單號, returnData.Value);
+                List<object[]> objects = inv_Combinelist_Report_Classes.ClassToSQL<inv_combinelist_report_Class, enum_inv_combinelist_report>();
+                sQLControl.AddRows(null, objects);
+
+                returnData.Data = inv_Combinelist_Report_Classes;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"成功取得總表，共{inv_Combinelist_Report_Classes.Count}筆";
+                returnData.Method = "add_report_by_SN";
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch(Exception ex)
+            {
+                if (ex.Message == "Index was outside the bounds of the array.") GET_init(returnData);
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+            
+        }
+        /// <summary>
+        /// 以合併單號取得總表
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : "I20240103-14",
+        ///    "Data": 
+        ///    {                 
+        ///    
+        ///    }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("get_report_by_SN")]
+        public string get_report_by_SN([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Value.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 合併單號 = returnData.Value;
+                
+                
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "inv_combinelist_report", UserName, Password, Port, SSLMode);
+                List<object[]> objects = sQLControl.GetRowsByDefult(null, (int)enum_inv_combinelist_report.合併單號, returnData.Value);
+                List<inv_combinelist_report_Class> inv_Combinelist_Report_Classes = objects.SQLToClass<inv_combinelist_report_Class, enum_inv_combinelist_report>();
+                if (inv_Combinelist_Report_Classes.Count == 0)
+                {
+                    returnData.Data = inv_Combinelist_Report_Classes;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"無總表資料";
+                    returnData.Method = "get_report_by_SN";
+                    returnData.Code = 200;
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Data = inv_Combinelist_Report_Classes;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"成功取得總表，共{inv_Combinelist_Report_Classes.Count}筆";
+                returnData.Method = "get_report_by_SN";
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Index was outside the bounds of the array.") GET_init(returnData);
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 以合併單號取得完整合併單
         /// </summary>
         /// <remarks>
@@ -3544,7 +3756,7 @@ namespace HIS_WebApi
                 string dataTable_string = returnData.Data.ObjToClass<string>();
                 List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables(); 
                 List<object[]> list_value = dataTables[0].DataTableToRowList();
-                List<inv_combinelist_dataTable> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_dataTable, enum_inv_combinelist_dataTable>();
+                List<inv_combinelist_report_Class> inv_CombinelistClasses = list_value.SQLToClass<inv_combinelist_report_Class, enum_inv_combinelist_report>();
 
                 returnData.Data = inv_CombinelistClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -3584,17 +3796,22 @@ namespace HIS_WebApi
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
             sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "API01");
-            //List<System.Data.DataTable> dataTables = inv_combinelistClass.get_full_inv_DataTable_by_SN("http://127.0.0.1:4433", returnData.Value);
-
 
             string json_out = POST_get_full_inv_DataTable_by_SN(returnData);
             returnData = json_out.JsonDeserializet<returnData>();
             string dataTable_string = returnData.Data.ObjToClass<string>();
             List<System.Data.DataTable> dataTables = dataTable_string.JsonDeserializeToDataTables();
-
+            
             if (dataTables == null)
             {
                 return null;
+            }
+            for(int i = 0; i < dataTables.Count; i++)
+            {
+                if(dataTables[i].Columns.Count > 0)
+                {
+                    dataTables[i].Columns.RemoveAt(0);
+                }
             }
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -3889,6 +4106,8 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_price()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_note()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_review()));
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_inv_combinelist_report()));
+
             return tables.JsonSerializationt(true);
         }
         private enum enum_合併單庫存EXCLL
@@ -3909,75 +4128,8 @@ namespace HIS_WebApi
             藥名,
             備註
         }
-        private enum enum_inv_combinelist_dataTable
-        {
-            GUID,
-            藥碼,
-            料號,
-            藥名,
-            別名,
-            單價,
-            庫存量,
-            盤點量,
-            未知,
-            覆盤量,
-            庫存金額,
-            結存金額,
-            誤差量,
-            誤差金額,
-            誤差百分率,
-            註記
-        }
-        private class inv_combinelist_dataTable
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-
-            [JsonPropertyName("CODE")]
-            public string 藥碼 { get; set; }
-
-            [JsonPropertyName("SKDIACODE")]
-            public string 料號 { get; set; }
-
-            [JsonPropertyName("NAME")]
-            public string 藥名 { get; set; }
-
-            [JsonPropertyName("ALIAS")]
-            public string 別名 { get; set; }
-
-            [JsonPropertyName("PRICE")]
-            public string 單價 { get; set; }
-
-            [JsonPropertyName("QTY")]
-            public string 庫存量 { get; set; }
-
-            [JsonPropertyName("COUNT")]
-            public string 盤點量 { get; set; }
-
-            [JsonPropertyName("UNKNOWN")]
-            public string 未知 { get; set; }
-
-            [JsonPropertyName("REVIEW")]
-            public string 覆盤量 { get; set; }
-
-            [JsonPropertyName("STOCK")]
-            public string 庫存金額 { get; set; }
-
-            [JsonPropertyName("BALANCE")]
-            public string 結存金額 { get; set; }
-
-            [JsonPropertyName("ERROR")]
-            public string 誤差量 { get; set; }
-
-            [JsonPropertyName("ERROR_MONEY")]
-            public string 誤差金額 { get; set; }
-
-            [JsonPropertyName("ERROR_PERCENT")]
-            public string 誤差百分率 { get; set; }
-
-            [JsonPropertyName("COMMENT")]
-            public string 註記 { get; set; }
-        }
+        
+        
 
     }
 }

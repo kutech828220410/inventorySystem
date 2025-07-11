@@ -163,13 +163,13 @@ namespace HIS_WebApi._API_系統
                 List<webTrafficClass> webTrafficClasses = list_webTraffic.SQLToClass<webTrafficClass, enum_webTraffic>();
                 webTrafficClasses = webTrafficClasses
                     .GroupBy(item => item.參數)
-                    .Select(group => 
+                    .Select(group =>
                     {
                         int qty = group.Count();
                         webTrafficClass webTrafficClass = group.First();
                         webTrafficClass.統計 = qty;
-                        webTrafficClass.使用者ID = string.Empty;
-                        webTrafficClass.使用者姓名 = string.Empty;
+                        webTrafficClass.使用者ID = string.Join(",", group.Select(x => x.使用者ID));
+                        webTrafficClass.使用者姓名 = string.Join(",", group.Select(x => x.使用者姓名));
                         return webTrafficClass;
                     }).ToList();
 
