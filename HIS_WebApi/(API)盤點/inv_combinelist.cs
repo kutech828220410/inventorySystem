@@ -64,7 +64,6 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("init")]
         [HttpPost]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCpoeClass物件", typeof(medCpoeClass))]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "inv_combinelist_dataTable物件", typeof(inv_combinelist_report_Class))]
         public string GET_init([FromBody] returnData returnData)
         {
@@ -381,7 +380,7 @@ namespace HIS_WebApi
                 string 合併單號 = returnData.Value;
                 List<Task> tasks = new List<Task>();
                 inv_combinelistClass inv_CombinelistClass = new inv_combinelistClass();
-                List<inv_combinelist_report_Class> inv_Combinelist_DataTables = new List<inv_combinelist_report_Class>();
+                List<inv_combinelist_report_Class> inv_combinelist_report_Classes = new List<inv_combinelist_report_Class>();
                 string str_REV_SN = string.Empty;
                 tasks.Add(Task.Run(new Action(delegate 
                 {
@@ -403,9 +402,9 @@ namespace HIS_WebApi
                 {
                     returnData returnData_get_detail_inv_by_SN = new returnData();
                     returnData_get_detail_inv_by_SN.Value = 合併單號;
-                    string jsonString = get_detail_inv_by_SN(returnData_get_detail_inv_by_SN);
+                    string jsonString = get_report_by_SN(returnData_get_detail_inv_by_SN);
                     returnData_get_detail_inv_by_SN = jsonString.JsonDeserializet<returnData>();
-                    inv_Combinelist_DataTables = returnData_get_detail_inv_by_SN.Data.ObjToClass<List<inv_combinelist_report_Class>>();
+                    inv_combinelist_report_Classes = returnData_get_detail_inv_by_SN.Data.ObjToClass<List<inv_combinelist_report_Class>>();
                 })));
                 Task.WhenAll(tasks).Wait();
                 tasks.Clear();
@@ -456,11 +455,11 @@ namespace HIS_WebApi
                 //{
                 //   return inv_Combinelist_DataTables.JsonSerializationt(true);
                 //}
-                for (int i = 0; i < inv_Combinelist_DataTables.Count; i++)
+                for (int i = 0; i < inv_combinelist_report_Classes.Count; i++)
                 {
-                    if (inv_Combinelist_DataTables[i].註記.Contains("覆盤") == false) continue;
+                    if (inv_combinelist_report_Classes[i].註記.Contains("覆盤") == false) continue;
                     inventoryClass.content content = new inventoryClass.content();
-                    string 藥碼 = inv_Combinelist_DataTables[i].藥碼;
+                    string 藥碼 = inv_combinelist_report_Classes[i].藥碼;
                     List<medClass> medClass_buff = dic_medClass.SortDictionaryByCode(藥碼);
                     if(medClass_buff.Count > 0)
                     {
