@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Basic;
+using Google.Protobuf.WellKnownTypes;
+using HIS_DB_Lib;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
+using SQLUI;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HIS_DB_Lib;
-using Basic;
-using MySql.Data.MySqlClient;
-using SQLUI;
-using System.Collections.Concurrent;
 
 namespace HIS_WebApi._API_系統
 {
@@ -17,8 +18,9 @@ namespace HIS_WebApi._API_系統
     public class settingPage : ControllerBase
     {
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-        [HttpPost("init_settingPage")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "settingPageClass物件", typeof(settingPageClass))]
+
+        [HttpPost("init_settingPage")]
         public string init_settingPage([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
@@ -58,6 +60,7 @@ namespace HIS_WebApi._API_系統
         [HttpPost("get_by_page_name")]
         public string get_by_page_name([FromBody] returnData returnData)
         {
+            loadData();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_page_name";
             try
@@ -92,7 +95,7 @@ namespace HIS_WebApi._API_系統
                         List<string> option = settingPageClasses[i].選項.Split(";").ToList();
                         settingPageClasses[i].option = option;
                     }
-                    if(settingPageClasses[i].欄位代碼 == "display_block")
+                    if(settingPageClasses[i].欄位代碼 == "display_block" || settingPageClasses[i].欄位代碼 == "display_block_nocheck")
                     {
                         List<uiConfig> uiConfigs = Convert(settingPageClasses[i].設定值);
                         settingPageClasses[i].value = uiConfigs;
@@ -137,6 +140,7 @@ namespace HIS_WebApi._API_系統
             returnData.Method = "get_all";
             try
             {
+                loadData();
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
                 List<object[]> list_settingPage = sQLControl.GetAllRows(null);
@@ -210,7 +214,7 @@ namespace HIS_WebApi._API_系統
                 {
                     string 頁面名稱 = item.頁面名稱;
                     string 欄位名稱 = item.欄位名稱;
-                    settingPage_buff = settingPage_buff.Where(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱).ToList();
+                    settingPage_buff = settingPageClasses.Where(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱).ToList();
                     if (settingPage_buff.Count == 0 || settingPage_buff == null)
                     {
                         item.GUID = Guid.NewGuid().ToString();
@@ -293,7 +297,7 @@ namespace HIS_WebApi._API_系統
 
         }
 
-        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass, Enum enumInstance)
+        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass, System.Enum enumInstance)
         {
             string Server = sys_serverSettingClass.Server;
             string DB = sys_serverSettingClass.DBName;
@@ -336,6 +340,14 @@ namespace HIS_WebApi._API_系統
             }
             return uiConfigs;
         }
-        
+        private void loadData()
+        {
+            init_settingPage(new returnData());
+            string data = Basic.MyFileStream.LoadFileAllText(@"./setting_page.txt", "utf-8");
+            //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
+            returnData returnData = data.JsonDeserializet<returnData>();
+            add(returnData);
+        }
+
     }
 }

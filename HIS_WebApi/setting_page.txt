@@ -1,152 +1,204 @@
 {
-  "Data": [
-    {
-      "page_name": "medicine_cart",
-      "cht": "大瓶藥例外",
-      "name": "big_bottle_exception",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "覆核_全選大瓶藥例外",
-      "name": "check_big_bottle_exception",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "False"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "藥名(中)字體大小",
-      "name": "med_cht_name_font_size",
-      "value_type": "radio",
-      "option_str": "16;20;24;28;36",
-      "value_db": "28"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "未調藥品相同床號加總顯示",
-      "name": "undispensed_merge_same_bed",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "藥品總量顯示儲位",
-      "name": "med_qty_display_loc",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "切帳時間",
-      "name": "cut_time",
-      "value_type": "time",
-      "option_str": "",
-      "value_db": "23:59"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "顯示公藥",
-      "name": "display_public_medicine",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "False"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "調劑_全選大瓶藥例外",
-      "name": "dispense_big_bottle_exception",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "顯示欄位(任選6個)",
-      "name": "display_block",
-      "value_type": "checkbox_group",
-      "option_str": "6",
-      "value_db": "ordseq;dosage;freqn;route;code;storage"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "藥品異動顯示儲位",
-      "name": "med_unCheck_display_loc",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "藥名(英)字體大小",
-      "name": "med_name_font_size",
-      "value_type": "radio",
-      "option_str": "16;20;24;28;36",
-      "value_db": "28"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "DC處方確認後取消顯示",
-      "name": "DCcpoe",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "撈藥功能開啟",
-      "name": "pick_medicine",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "藥品總量相同床號加總顯示",
-      "name": "total_qty_merge_same_bed",
-      "value_type": "checkbox",
-      "option_str": "",
-      "value_db": "True"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "交車時間",
-      "name": "delivery_time",
-      "value_type": "time",
-      "option_str": "",
-      "value_db": "23:59"
-    },
-    {
-      "page_name": "medicine_cart",
-      "cht": "處方顯示模式",
-      "name": "order_display_mode",
-      "value_type": "radio",
-      "option_str": "單色;雙色;種類區分(口服、針劑)",
-      "value_db": "雙色"
-    }
-  ],
-  "Code": 200,
-  "Method": "get_all",
-  "Result": "取得設定頁面資料",
-  "Value": "",
-  "ValueAry": [
-    "01",
-    "調劑台"
-  ],
-  "TimeTaken": "64.767ms",
-  "Token": "",
-  "Server": "",
-  "DbName": "",
-  "TableName": "",
-  "Port": 0,
-  "UserName": "",
-  "Password": "",
-  "ServerType": "",
-  "ServerName": "",
-  "ServerContent": "",
-  "RequestUrl": ""
+    "Data": [
+        {
+            "page_name": "medicine_cart",
+            "cht": "大瓶藥例外",
+            "name": "big_bottle_exception",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "逐床僅顯示有效處方",
+            "name": "per_bed_valid_orders_only",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "覆核_全選大瓶藥例外",
+            "name": "check_big_bottle_exception",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "False"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥名(中)字體大小",
+            "name": "med_cht_name_font_size",
+            "value_type": "radio",
+            "option_str": "16;20;24;28;36",
+            "value_db": "20"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "未調藥品相同床號加總顯示",
+            "name": "undispensed_merge_same_bed",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量顯示儲位",
+            "name": "med_qty_display_loc",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "切帳時間",
+            "name": "cut_time",
+            "value_type": "time",
+            "option_str": "",
+            "value_db": "23:59"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "顯示公藥",
+            "name": "display_public_medicine",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "False"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "調劑_全選大瓶藥例外",
+            "name": "dispense_big_bottle_exception",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "顯示欄位(任選6個)",
+            "name": "display_block",
+            "value_type": "checkbox_group",
+            "option_str": "6",
+            "value_db": "ordseq;dosage;freqn;route;code;storage"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品異動顯示儲位",
+            "name": "med_unCheck_display_loc",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥名(英)字體大小",
+            "name": "med_name_font_size",
+            "value_type": "radio",
+            "option_str": "16;20;24;28;36",
+            "value_db": "20"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "DC處方確認後取消顯示",
+            "name": "DCcpoe",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "覆核_已覆核處方特別顯示",
+            "name": "highlight_checked",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "撈藥功能開啟",
+            "name": "pick_medicine",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量相同床號加總顯示",
+            "name": "total_qty_merge_same_bed",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "交車時間",
+            "name": "delivery_time",
+            "value_type": "time",
+            "option_str": "",
+            "value_db": "23:59"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "處方顯示模式",
+            "name": "order_display_mode",
+            "value_type": "radio",
+            "option_str": "單色;雙色;種類區分(口服、針劑)",
+            "value_db": "雙色"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "未調(核)藥品顯示欄位(任選2個)",
+            "name": "display_block_nocheck",
+            "value_type": "checkbox_group",
+            "option_str": "2",
+            "value_db": "dosage;freqn"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "未調(核)藥品預設調劑台",
+            "name": "default_dps_nocheck",
+            "value_type": "text",
+            "option_str": "",
+            "value_db": "全部"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "調劑_已覆核處方特別顯示",
+            "name": "highlight_checked_dispensed",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "主畫面_身分欄位加粗",
+            "name": "main_indentity_bold",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "主畫面_特殊情況特別顯示",
+            "name": "main_special_highlight",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "電子病歷功能開啟",
+            "name": "electronic_medical_record",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "出院退藥預設調劑台",
+            "name": "default_dps_discharge",
+            "value_type": "text",
+            "option_str": "",
+            "value_db": "全部"
+        }
+    ]
 }
