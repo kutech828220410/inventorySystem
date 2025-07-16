@@ -285,6 +285,8 @@ namespace 調劑台管理系統
             myThread_HFRFID.Trigger();
 
             Main_Form.Function_外門片解鎖();
+            "冰箱門,注意關閉".PlayGooleVoice(Main_Form.API_Server);
+
         }
         private void Dialog_HFRFID調劑作業_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -840,7 +840,10 @@ namespace 調劑台管理系統
                 dialog_收支原因選擇.ShowDialog();
                 收支原因 = dialog_收支原因選擇.Value;
             }
-                
+            if (plC_RJ_Button_收支作業_入庫.Bool || plC_RJ_Button_收支作業_出庫.Bool)
+            {
+                收支原因 = (plC_RJ_Button_收支作業_入庫.Bool ? "入庫作業" : "出庫作業");
+            }
 
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)

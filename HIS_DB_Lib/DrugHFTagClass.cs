@@ -132,22 +132,24 @@ namespace HIS_DB_Lib
             return table;
         }
 
-        static public List<DrugHFTagClass> add(string API_Server, DrugHFTagClass DrugHFTagClass)
+        static public List<DrugHFTagClass> add(string API_Server, DrugHFTagClass DrugHFTagClass, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = add_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            var (code, result, list) = add_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass }, serverName, serverType);
             return list;
         }
-        static public List<DrugHFTagClass> add(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public List<DrugHFTagClass> add(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = add_full(API_Server, DrugHFTagClasses);
+            var (code, result, list) = add_full(API_Server, DrugHFTagClasses, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) add_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public (int code, string result, List<DrugHFTagClass>) add_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/add";
 
             returnData returnData = new returnData();
             returnData.Data = DrugHFTagClasses;
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -164,22 +166,25 @@ namespace HIS_DB_Lib
             DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
-        static public List<DrugHFTagClass> set_tag_broken(string API_Server, DrugHFTagClass DrugHFTagClass)
+        static public List<DrugHFTagClass> set_tag_broken(string API_Server, DrugHFTagClass DrugHFTagClass, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = set_tag_broken_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            var (code, result, list) = set_tag_broken_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass }, serverName, serverType);
             return list;
         }
-        static public List<DrugHFTagClass> set_tag_broken(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public List<DrugHFTagClass> set_tag_broken(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = set_tag_broken_full(API_Server, DrugHFTagClasses);
+            var (code, result, list) = set_tag_broken_full(API_Server, DrugHFTagClasses, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) set_tag_broken_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public (int code, string result, List<DrugHFTagClass>) set_tag_broken_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/set_tag_broken";
 
             returnData returnData = new returnData();
             returnData.Data = DrugHFTagClasses;
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -197,22 +202,25 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, DrugHFTagClass DrugHFTagClass)
+        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, DrugHFTagClass DrugHFTagClass, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = set_tag_stockin_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass });
+            var (code, result, list) = set_tag_stockin_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass }, serverName, serverType);
             return list;
         }
-        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public List<DrugHFTagClass> set_tag_stockin(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = set_tag_stockin_full(API_Server, DrugHFTagClasses);
+            var (code, result, list) = set_tag_stockin_full(API_Server, DrugHFTagClasses, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) set_tag_stockin_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses)
+        static public (int code, string result, List<DrugHFTagClass>) set_tag_stockin_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/set_tag_stockin";
 
             returnData returnData = new returnData();
             returnData.Data = DrugHFTagClasses;
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -230,23 +238,25 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, string tagSN)
+        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, string tagSN, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, new List<string>() { tagSN });
+            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, new List<string>() { tagSN }, serverName, serverType);
             return list;
         }
-        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, List<string> tagsSN)
+        static public List<DrugHFTagClass> get_latest_tag_ByTagSN(string API_Server, List<string> tagsSN, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, tagsSN);
+            var (code, result, list) = get_latest_tag_ByTagSN_full(API_Server, tagsSN, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_tag_ByTagSN_full(string API_Server, List<string> tagsSN)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_tag_ByTagSN_full(string API_Server, List<string> tagsSN, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_tag_ByTagSN";
 
             returnData returnData = new returnData();
             string sqlList = string.Join(", ", tagsSN.Select(tagSN => $"{tagSN}"));
             returnData.ValueAry.Add(sqlList);
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -264,16 +274,18 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_latest_reset_tag(string API_Server)
+        static public List<DrugHFTagClass> get_latest_reset_tag(string API_Server, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_reset_tag_full(API_Server);
+            var (code, result, list) = get_latest_reset_tag_full(API_Server, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_reset_tag_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_reset_tag_full(string API_Server, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_reset_tag";
 
             returnData returnData = new returnData(); // 無需傳 tagSN，只需空殼傳入
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -294,19 +306,21 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 取得所有Tag中最新一筆且狀態為「入庫註記」的標籤資料（僅回傳資料）
         /// </summary>
-        static public List<DrugHFTagClass> get_latest_stockin_tag(string API_Server)
+        static public List<DrugHFTagClass> get_latest_stockin_tag(string API_Server, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_stockin_tag_full(API_Server);
+            var (code, result, list) = get_latest_stockin_tag_full(API_Server, serverName, serverType);
             return list;
         }
         /// <summary>
         /// 取得所有Tag中最新一筆且狀態為「入庫註記」的標籤資料（完整資訊）
         /// </summary>
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockin_tag_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockin_tag_full(string API_Server, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_stockin_tag";
 
             returnData returnData = new returnData(); // 空殼傳入即可
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
@@ -324,16 +338,18 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_latest_stockin_eligible_tags(string API_Server)
+        static public List<DrugHFTagClass> get_latest_stockin_eligible_tags(string API_Server, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_stockin_eligible_tags_full(API_Server);
+            var (code, result, list) = get_latest_stockin_eligible_tags_full(API_Server, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockin_eligible_tags_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockin_eligible_tags_full(string API_Server, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_stockin_eligible_tags";
 
             returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 
@@ -351,16 +367,18 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, drugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_latest_tags(string API_Server)
+        static public List<DrugHFTagClass> get_latest_tags(string API_Server, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_tags_full(API_Server);
+            var (code, result, list) = get_latest_tags_full(API_Server, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_tags_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_tags_full(string API_Server, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_tags";
 
             returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 
@@ -378,16 +396,18 @@ namespace HIS_DB_Lib
             return (returnData_out.Code, returnData_out.Result, drugHFTagClasses);
         }
 
-        static public List<DrugHFTagClass> get_latest_stockout_eligible_tags(string API_Server)
+        static public List<DrugHFTagClass> get_latest_stockout_eligible_tags(string API_Server, string serverName = "", string serverType = "")
         {
-            var (code, result, list) = get_latest_stockout_eligible_tags_full(API_Server);
+            var (code, result, list) = get_latest_stockout_eligible_tags_full(API_Server, serverName, serverType);
             return list;
         }
-        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockout_eligible_tags_full(string API_Server)
+        static public (int code, string result, List<DrugHFTagClass>) get_latest_stockout_eligible_tags_full(string API_Server, string serverName = "", string serverType = "")
         {
             string url = $"{API_Server}/api/DrugHFTag/get_latest_stockout_eligible_tags";
 
             returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
 

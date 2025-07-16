@@ -53,7 +53,10 @@ namespace HIS_WebApi
             try
             {
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -97,7 +100,12 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -176,7 +184,12 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -256,7 +269,11 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -336,7 +353,11 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -416,7 +437,11 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -479,7 +504,12 @@ namespace HIS_WebApi
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                List<sys_serverSettingClass> _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
                 if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -539,15 +569,20 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
-                if (settings.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
 
-                var db = settings[0];
+                var db = _sys_serverSettingClasses[0];
                 string TableName = new enum_DrugHFTag().GetEnumDescription();
                 SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
 
@@ -594,15 +629,20 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
-                if (settings.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
 
-                var db = settings[0];
+                var db = _sys_serverSettingClasses[0];
                 string TableName = new enum_DrugHFTag().GetEnumDescription();
                 SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
 
@@ -649,15 +689,20 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
-                if (settings.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+                
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
 
-                var db = settings[0];
+                var db = _sys_serverSettingClasses[0];
                 string TableName = new enum_DrugHFTag().GetEnumDescription();
                 SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
 
@@ -717,15 +762,20 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
 
-                var settings = ServerSettingController.GetAllServerSetting().MyFind("Main", "網頁", "VM端");
-                if (settings.Count == 0)
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
+                if (_sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
 
-                var db = settings[0];
+                var db = _sys_serverSettingClasses[0];
                 string TableName = new enum_DrugHFTag().GetEnumDescription();
                 SQLControl sql = new SQLControl(db.Server, db.DBName, TableName, db.User, db.Password, (uint)db.Port.StringToInt32(), SSLMode);
 

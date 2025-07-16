@@ -46,6 +46,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass15 = new HIS_DB_Lib.sys_serverSettingClass();
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass16 = new HIS_DB_Lib.sys_serverSettingClass();
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass17 = new HIS_DB_Lib.sys_serverSettingClass();
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass18 = new HIS_DB_Lib.sys_serverSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -79,6 +80,7 @@ namespace ServerSettingForm
             this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.label8 = new System.Windows.Forms.Label();
+            this.panel_SQLContent10 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // label1
@@ -242,6 +244,7 @@ namespace ServerSettingForm
             // panel_API_URL3
             // 
             this.panel_API_URL3.Content = "Order_By_BAG_NUM_API";
+            this.panel_API_URL3.Description = "-----";
             this.panel_API_URL3.Location = new System.Drawing.Point(11, 889);
             this.panel_API_URL3.Name = "panel_API_URL3";
             sys_serverSettingClass1.DBName = null;
@@ -265,6 +268,7 @@ namespace ServerSettingForm
             // panel_API_URL9
             // 
             this.panel_API_URL9.Content = "Order_By_MRN_API";
+            this.panel_API_URL9.Description = "-----";
             this.panel_API_URL9.Location = new System.Drawing.Point(12, 823);
             this.panel_API_URL9.Name = "panel_API_URL9";
             sys_serverSettingClass2.DBName = null;
@@ -288,6 +292,7 @@ namespace ServerSettingForm
             // panel_API_URL8
             // 
             this.panel_API_URL8.Content = "Order_upload_API";
+            this.panel_API_URL8.Description = "-----";
             this.panel_API_URL8.Location = new System.Drawing.Point(12, 575);
             this.panel_API_URL8.Name = "panel_API_URL8";
             sys_serverSettingClass3.DBName = null;
@@ -311,6 +316,7 @@ namespace ServerSettingForm
             // panel_API_URL7
             // 
             this.panel_API_URL7.Content = "Order_By_Code_API";
+            this.panel_API_URL7.Description = "-----";
             this.panel_API_URL7.Location = new System.Drawing.Point(12, 757);
             this.panel_API_URL7.Name = "panel_API_URL7";
             sys_serverSettingClass4.DBName = null;
@@ -358,6 +364,7 @@ namespace ServerSettingForm
             // panel_API_URL5
             // 
             this.panel_API_URL5.Content = "Med_API";
+            this.panel_API_URL5.Description = "-----";
             this.panel_API_URL5.Location = new System.Drawing.Point(12, 533);
             this.panel_API_URL5.Name = "panel_API_URL5";
             sys_serverSettingClass6.DBName = null;
@@ -381,6 +388,7 @@ namespace ServerSettingForm
             // panel_API_URL4
             // 
             this.panel_API_URL4.Content = "Order_API";
+            this.panel_API_URL4.Description = "-----";
             this.panel_API_URL4.Location = new System.Drawing.Point(12, 691);
             this.panel_API_URL4.Name = "panel_API_URL4";
             sys_serverSettingClass7.DBName = null;
@@ -404,6 +412,7 @@ namespace ServerSettingForm
             // panel_API_URL2
             // 
             this.panel_API_URL2.Content = "API02";
+            this.panel_API_URL2.Description = "-----";
             this.panel_API_URL2.Location = new System.Drawing.Point(12, 466);
             this.panel_API_URL2.Name = "panel_API_URL2";
             sys_serverSettingClass8.DBName = null;
@@ -427,6 +436,7 @@ namespace ServerSettingForm
             // panel_API_URL1
             // 
             this.panel_API_URL1.Content = "API01";
+            this.panel_API_URL1.Description = "-----";
             this.panel_API_URL1.Location = new System.Drawing.Point(12, 424);
             this.panel_API_URL1.Name = "panel_API_URL1";
             sys_serverSettingClass9.DBName = null;
@@ -649,12 +659,37 @@ namespace ServerSettingForm
             this.label8.TabIndex = 81;
             this.label8.Text = "線上藥檔";
             // 
+            // panel_SQLContent10
+            // 
+            this.panel_SQLContent10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent10.Content = "VM_DB";
+            this.panel_SQLContent10.Location = new System.Drawing.Point(1642, 82);
+            this.panel_SQLContent10.Name = "panel_SQLContent10";
+            sys_serverSettingClass18.DBName = "";
+            sys_serverSettingClass18.GUID = null;
+            sys_serverSettingClass18.Password = "";
+            sys_serverSettingClass18.Port = "";
+            sys_serverSettingClass18.Server = "";
+            sys_serverSettingClass18.TableName = null;
+            sys_serverSettingClass18.User = "";
+            sys_serverSettingClass18.Value = null;
+            sys_serverSettingClass18.內容 = "VM_DB";
+            sys_serverSettingClass18.單位 = null;
+            sys_serverSettingClass18.程式類別 = null;
+            sys_serverSettingClass18.設備名稱 = "";
+            sys_serverSettingClass18.類別 = "調劑台";
+            this.panel_SQLContent10.ServerSetting = sys_serverSettingClass18;
+            this.panel_SQLContent10.ServerSetting_Type = HIS_DB_Lib.enum_sys_serverSetting_Type.調劑台;
+            this.panel_SQLContent10.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent10.TabIndex = 82;
+            // 
             // Dialog_調劑台
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.ClientSize = new System.Drawing.Size(1924, 970);
+            this.Controls.Add(this.panel_SQLContent10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -734,5 +769,6 @@ namespace ServerSettingForm
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private Panel_SQLContent panel_SQLContent10;
     }
 }

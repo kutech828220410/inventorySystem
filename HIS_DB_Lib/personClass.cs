@@ -107,15 +107,15 @@ namespace HIS_DB_Lib
         [JsonPropertyName("open_access")]
         public string 開門權限 { get; set; }
 
-        static public List<personPageClass> get_all(string API_Server)
+       
+        static public List<personPageClass> get_all(string API_Server , string serverName = "" , string serverType = "")
         {
             string url = $"{API_Server}/api/person_page/get_all";
-            string str_serverNames = "";
-            string str_serverTypes = "";
+    
 
             returnData returnData = new returnData();
-            returnData.ServerName = "";
-            returnData.ServerType = "";
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
             returnData.Data = null;
 
 
