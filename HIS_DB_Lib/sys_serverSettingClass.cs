@@ -115,6 +115,15 @@ namespace HIS_DB_Lib
             if (sys_serverSettingClasses_buf.Count == 0) return null;
             return sys_serverSettingClasses_buf[0];
         }
+        public static sys_serverSettingClass myFind(this List<sys_serverSettingClass> sys_serverSettingClasses, string GUID)
+        {
+            if (sys_serverSettingClasses == null) return null;
+            List<sys_serverSettingClass> sys_serverSettingClasses_buf = (from value in sys_serverSettingClasses
+                                                                         where value.GUID == GUID
+                                                                         select value).ToList();
+            if (sys_serverSettingClasses_buf.Count == 0) return null;
+            return sys_serverSettingClasses_buf[0];
+        }
         public static List<sys_serverSettingClass> MyFind(this List<sys_serverSettingClass> sys_serverSettingClasses, string Name, string Type, string Content)
         {
             if (sys_serverSettingClasses == null) return null;

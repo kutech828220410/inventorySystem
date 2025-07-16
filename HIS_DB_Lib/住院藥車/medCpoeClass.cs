@@ -358,6 +358,11 @@ namespace HIS_DB_Lib
         public List<medInventoryLogClass> 調劑紀錄 { get; set; }
         [JsonPropertyName("bed_list")]
         public List<bedListClass> 病床清單 { get; set; }
+        [JsonPropertyName("prn")]
+        public string PRN註記 { get; set; }
+        [JsonPropertyName("prn_self")]
+        public string 自費PRN註記 { get; set; }
+
 
         public class ICP_By_Rank : IComparer<medCpoeClass>
         {

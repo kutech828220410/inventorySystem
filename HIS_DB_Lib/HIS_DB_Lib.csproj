@@ -147,6 +147,7 @@
     <Compile Include="inv_combinelistClass.cs" />
     <Compile Include="lockerIndexClass.cs" />
     <Compile Include="疾病\diseaseClass.cs" />
+    <Compile Include="系統\temperatureClass.cs" />
     <Compile Include="系統\webTrafficClass.cs" />
     <Compile Include="藥品基本檔\medClass.cs" />
     <Compile Include="藥品基本檔\medConfigClass.cs" />
@@ -155,8 +156,9 @@
     <Compile Include="藥品基本檔\medGroupClass.cs" />
     <Compile Include="medInfoCalss.cs" />
     <Compile Include="medInterClass .cs" />
-    <Compile Include="medInventoryClass.cs" />
+    <Compile Include="住院藥車\medInventoryClass.cs" />
     <Compile Include="藥品基本檔\medListClass.cs" />
+    <Compile Include="藥品基本檔\medMapClass.cs" />
     <Compile Include="藥品基本檔\medPharmacyClass.cs" />
     <Compile Include="藥品基本檔\medPicClass.cs" />
     <Compile Include="藥品基本檔\medPriceClass.cs" />
