@@ -170,7 +170,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Result = "雲端藥檔取得成功!";
                 returnData.TimeTaken = myTimerBasic.ToString();
-
+                
                 return returnData.JsonSerializationt(false);
             }
             catch (Exception e)
