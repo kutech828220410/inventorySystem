@@ -120,13 +120,15 @@ namespace 勤務傳送櫃
 
 
 
-     
+
+        public delegate void InSideBoxOnEventHandler(Pannel_Box pannel_Box);
         public delegate void AlarmEventHandler(Pannel_Box pannel_Box);
         public delegate void CloseEventHandler(Pannel_Box pannel_Box);
         public delegate void OpenEventHandler(Pannel_Box pannel_Box);
         public event AlarmEventHandler AlarmEvent;
         public event CloseEventHandler CloseEvent;
         public event OpenEventHandler OpenEvent;
+        public event InSideBoxOnEventHandler InSideBoxOnEvent;
 
         public bool AlarmBeep = false;
 
@@ -617,16 +619,19 @@ namespace 勤務傳送櫃
             {
                 if(MyTimerBasic_input.IsTimeOut())
                 {
+                    if(flag_input != this.pLC_Device_sensor_input.Bool) if (InSideBoxOnEvent != null) InSideBoxOnEvent(this);
                     this.pLC_Device_sensor_input.Bool = true;
-                }               
+                    
+
+                }
             }
             else
             {
                 this.pLC_Device_sensor_input.Bool = false;
                 MyTimerBasic_input.TickStop();
                 MyTimerBasic_input.StartTickTime(input_time);
-
             }
+
             if (this.pLC_Device_LED_State.Bool != this.flag_LED_State)
             {
                 this.flag_LED_State = this.pLC_Device_LED_State.Bool;

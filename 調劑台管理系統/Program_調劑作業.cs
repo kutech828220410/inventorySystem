@@ -101,7 +101,7 @@ namespace 調劑台管理系統
 
             uC_調劑作業_TypeA_1.調劑台名稱 = 領藥台_01名稱;
             uC_調劑作業_TypeA_1.PLC_Device_已登入 = new PLC_Device(PLC_Device_領藥台_01_已登入.GetAdress());
-            uC_調劑作業_TypeA_1.PLC_Device_單醫令模式 = new PLC_Device(PLC_Device_領藥台_01_單醫令模式.GetAdress());
+            uC_調劑作業_TypeA_1.PLC_Device_單醫令模式 = PLC_Device_領藥台_01_單醫令模式;
             uC_調劑作業_TypeA_1.Init(0);
 
 

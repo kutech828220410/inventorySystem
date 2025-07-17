@@ -124,7 +124,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!single_order)
+                if (!Main_Form.PLC_Device_多醫令模式.Bool)
                 {
                     Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
                 }
@@ -417,7 +417,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!single_order)
+                if (!Main_Form.PLC_Device_多醫令模式.Bool)
                 {
                     Function_取藥堆疊資料_刪除指定調劑台名稱母資料(deviceName);
                 }

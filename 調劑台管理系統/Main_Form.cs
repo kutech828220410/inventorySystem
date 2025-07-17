@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07161")]
-[assembly: AssemblyFileVersion("1.0.25.07161")]
+[assembly: AssemblyVersion("1.0.25.07176")]
+[assembly: AssemblyFileVersion("1.0.25.07176")]
 namespace 調劑台管理系統
 {
 
@@ -108,6 +108,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
+        static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";

@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.42")]
-[assembly: AssemblyFileVersion("1.0.0.42")]
+[assembly: AssemblyVersion("1.0.0.49")]
+[assembly: AssemblyFileVersion("1.0.0.49")]
 namespace 勤務傳送櫃
 {
     public partial class Main_Form : Form
@@ -522,6 +522,7 @@ namespace 勤務傳送櫃
                 pannel_Box.AlarmEvent += Pannel_Box_AlarmEvent;
                 pannel_Box.CloseEvent += Pannel_Box_CloseEvent;
                 pannel_Box.OpenEvent += Pannel_Box_OpenEvent;
+                pannel_Box.InSideBoxOnEvent += Pannel_Box_InSideBoxOnEvent;
                 pannel_Box.EPDSettingEvent += Pannel_Box_EPDSettingEvent;
                 pannel_Box.PharmacyLightEvent += Pannel_Box_PharmacyLightEvent;
                 this.plC_UI_Init.Add_Method(pannel_Box.Run);
@@ -531,21 +532,25 @@ namespace 勤務傳送櫃
          
 
         }
-  
+
+        private void Pannel_Box_InSideBoxOnEvent(Pannel_Box pannel_Box)
+        {
+            this.新增交易紀錄(enum_交易記錄查詢動作.藥品放入, this.登入者名稱, $"{pannel_Box.WardName}", "");
+        }
         private void Pannel_Box_AlarmEvent(Pannel_Box pannel_Box)
         {
-            this.新增交易紀錄(enum_交易記錄查詢動作.門片未關閉異常, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+            this.新增交易紀錄(enum_交易記錄查詢動作.門片未關閉異常, pannel_Box.CT_Name, $"{pannel_Box.WardName}", "");
         }
         private void Pannel_Box_CloseEvent(Pannel_Box pannel_Box)
         {
             if (pannel_Box.CT_Name.StringIsEmpty()) return;
-            this.新增交易紀錄(enum_交易記錄查詢動作.關閉門片, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+            this.新增交易紀錄(enum_交易記錄查詢動作.關閉門片, pannel_Box.CT_Name, $"{pannel_Box.WardName}", "");
             pannel_Box.Name = "";
         }
         private void Pannel_Box_OpenEvent(Pannel_Box pannel_Box)
         {
             if (pannel_Box.CT_Name.StringIsEmpty()) return;
-            this.新增交易紀錄(enum_交易記錄查詢動作.開啟門片, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+            this.新增交易紀錄(enum_交易記錄查詢動作.開啟門片, pannel_Box.CT_Name, $"{pannel_Box.WardName}", "");
             string[] serch_colName = {enum_交易記錄查詢資料.領用時間.GetEnumName() };
             string[] serch_Value = {"1999-01-01 00:00:00" };
 

@@ -3338,8 +3338,12 @@ namespace 調劑台管理系統
                         {
                             for (int k = 0; k < storages.Count; k++)
                             {
-
-                                object uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(storages[k].IP);
+                                object uDP_READ = null;
+                                string index_IP = Funcion_取得LCD114索引表_index_IP(storages[k].IP);
+                                if (index_IP.StringIsEmpty() == false)
+                                {
+                                    uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+                                }
 
                                 // 若在 LCD 讀取不到，則嘗試從 EPD 讀取
                                 if (uDP_READ == null)
