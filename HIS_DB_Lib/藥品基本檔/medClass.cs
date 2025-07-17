@@ -57,6 +57,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("DIANAME")]
         public string 藥品學名 { get; set; }
         /// <summary>
+        /// 藥品商品名。
+        /// </summary>
+        [JsonPropertyName("TRADENAME")]
+        public string 藥品商品名 { get; set; }
+        /// <summary>
         /// 藥品群組。
         /// </summary>
         [JsonPropertyName("GROUP")]
