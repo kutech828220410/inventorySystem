@@ -35,6 +35,8 @@ namespace HIS_DB_Lib
         藥品名稱,
         [Description("藥品學名,VARCHAR,300,NONE")]
         藥品學名,
+        [Description("藥品商品名,VARCHAR,300,NONE")]
+        藥品商品名,
         [Description("藥品群組,VARCHAR,300,NONE")]
         藥品群組,
         [Description("健保碼,VARCHAR,50,NONE")]
