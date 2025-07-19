@@ -475,10 +475,10 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData;
         }
-        static public returnData update_med_cpoe_recovery_room(string API_Server, List<medCpoeClass> medCpoeClasses)
+        static public returnData update_med_cpoe_New(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
-            string url = $"{API_Server}/api/med_cart/update_med_cpoe_recovery_room";
+            string url = $"{API_Server}/api/med_cart/update_med_cpoe_New";
 
             returnData returnData = new returnData();
             returnData.Data = medCpoeClasses;
@@ -488,10 +488,41 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             //if (returnData == null) return null;
             //if (returnData.Code != 200) return null;
-            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            //out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
             Console.WriteLine($"{returnData}");
             return returnData;
         }
+        static public returnData update_med_cpoe_DC_by_medChange(string API_Server, string 藥局, string 護理站)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(藥局);
+            returnData.ValueAry.Add(護理站);
+            string url = $"{API_Server}/api/med_cart/update_med_cpoe_DC_by_medChange";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
+            //Console.WriteLine($"{returnData}");
+            return returnData;
+        }
+        static public returnData get_patient_with_NOdispens_summary_dispense(string API_Server, string 藥局, string 護理站)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(藥局);
+            returnData.ValueAry.Add(護理站);
+            string url = $"{API_Server}/api/med_cart/get_patient_with_NOdispens_summary_dispense";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
+            //Console.WriteLine($"{returnData}");
+            return returnData;
+        }
+
         static public List<medCpoeClass> add_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
