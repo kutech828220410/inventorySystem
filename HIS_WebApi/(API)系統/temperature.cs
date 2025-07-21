@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -149,6 +150,17 @@ namespace HIS_WebApi._API_系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
+                List<Task> tasks = new List<Task>();
+                List<temperature_setClass> temperature_SetClasses = new List<temperature_setClass>();
+                returnData returnData_get_set = new returnData();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    //取得設定
+                    string result = get_set(returnData);
+                    returnData_get_set = result.JsonDeserializet<returnData>();
+                    if (returnData_get_set.Code != 200 || returnData_get_set.Data == null) return;
+                    temperature_SetClasses = returnData_get_set.Data.ObjToClass<List<temperature_setClass>>();
+                })));
                 if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
@@ -175,7 +187,7 @@ namespace HIS_WebApi._API_系統
                     returnData.Result = $"結束時間格式錯誤";
                     return returnData.JsonSerializationt();
                 }
-                //List<temperature_setClass> temperature_SetClasses = get_set(returnData).;
+                
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "temperature", UserName, Password, Port, SSLMode);
@@ -183,9 +195,25 @@ namespace HIS_WebApi._API_系統
                 DataTable dataTable = sQLControl.WtrteCommandAndExecuteReader(command);
                 List<object[]> objects = dataTable.DataTableToRowList();
                 List<temperatureClass> temperatureClasses = objects.SQLToClass<temperatureClass, enum_temperature>();
-                temperatureClasses.Sort(new temperatureClass.ICP_By_time());
+                List<List<temperatureClass>> list_temperatureClass = GroupOrders(temperatureClasses);
+                List<temperature_setClass> temperature_SetClass_buff = new List<temperature_setClass>();
+                Task.WhenAll(tasks).Wait();
+                if(temperature_SetClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"取得設定失敗: {returnData_get_set.Result}";
+                    return returnData.JsonSerializationt(true);
+                }
+                for(int i = 0; i < list_temperatureClass.Count(); i++)
+                {
+                    List<temperatureClass> temperatureClass_buff = list_temperatureClass[i];
+                    temperatureClass_buff.Sort(new temperatureClass.ICP_By_time());
+
+                    temperature_SetClass_buff = temperature_SetClasses.Where(set => set.IP == temperatureClass_buff[0].IP).ToList();
+                    temperature_SetClass_buff[0].temperatureClasses = temperatureClass_buff;
+                }
                 returnData.Code = 200;
-                returnData.Data = temperatureClasses;
+                returnData.Data = temperature_SetClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "get_temp_by_name";
                 returnData.Result = $"取得{開始時間}~{結束時間}溫度資料成功，共{temperatureClasses.Count()}!";
@@ -308,6 +336,7 @@ namespace HIS_WebApi._API_系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
+                init();
                 if (returnData.Data == null)
                 {
                     returnData.Code = -200;
@@ -324,13 +353,17 @@ namespace HIS_WebApi._API_系統
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "temperature_set", UserName, Password, Port, SSLMode);
+                List<object[]> objects = sQLControl.GetRowsByDefult(null, (int)enum_temperature_set.IP, temperature_setClass.IP);
+                if(objects.Count > 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"此IP:{temperature_setClass.IP}已存在設定";
+                    return returnData.JsonSerializationt(true);
+                }
 
                 temperature_setClass.GUID = Guid.NewGuid().ToString();
                 if (temperature_setClass.警報.StringIsEmpty() == false) temperature_setClass.警報 = temperature_setClass.警報.StringToBool().ToString();
                 if (temperature_setClass.發信.StringIsEmpty() == false) temperature_setClass.發信 = temperature_setClass.發信.StringToBool().ToString();
-
-
-
 
                 object[] add = temperature_setClass.ClassToSQL<temperature_setClass, enum_temperature_set>();
                 sQLControl.AddRow(null, add);
@@ -510,19 +543,15 @@ namespace HIS_WebApi._API_系統
 
             return tables.JsonSerializationt(true);
         }
-        private string GetRandomTemp()
+     
+        public static List<List<temperatureClass>> GroupOrders(List<temperatureClass> temperatureClasses)
         {
-            Random rand = new Random();
-            int chance = rand.Next(100);
-            int value = (chance < 90) ? rand.Next(22, 29) : rand.Next(29, 33);
-            return value.ToString();
-        }
-        private string GetRandomHumidity()
-        {
-            Random rand = new Random();
-            int chance = rand.Next(100);
-            int value = (chance < 90) ? rand.Next(55, 65) : rand.Next(65, 75);
-            return value.ToString();
+            List<List<temperatureClass>> groupedtemperature = temperatureClasses
+                .GroupBy(o => new { o.IP})
+                .Select(group => group.ToList())
+                .ToList();
+
+            return groupedtemperature;
         }
     }
 }

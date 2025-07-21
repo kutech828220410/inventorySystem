@@ -34,7 +34,7 @@ namespace HIS_WebApi._API_系統
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
-                }
+                }               
                 return CheckCreatTable(sys_serverSettingClasses[0], new enum_settingPage());
             }
             catch (Exception ex)
@@ -209,6 +209,8 @@ namespace HIS_WebApi._API_系統
 
                 List<settingPageClass> settingPage_buff = new List<settingPageClass>();
                 List<settingPageClass> settingPage_add = new List<settingPageClass>();
+                List<settingPageClass> settingPage = new List<settingPageClass>();
+
 
                 foreach (var item in input_settingPageClass)
                 {
@@ -219,16 +221,26 @@ namespace HIS_WebApi._API_系統
                     {
                         item.GUID = Guid.NewGuid().ToString();
                         settingPage_add.Add(item);
+
+                    }
+                    else
+                    {
+                        settingPage.AddRange(settingPage_buff);
                     }
                     
                 }
-                List<object[]> list_textVision = settingPage_add.ClassToSQL<settingPageClass, enum_settingPage>();
-                sQLControl.AddRows(null, list_textVision);
+                List<string> GUID = settingPage.Select(temp => temp.GUID).ToList();
+                List<settingPageClass> settingPage_delete = settingPageClasses.Where(temp => GUID.Contains(temp.GUID) == false).ToList();
+                List<object[]> add = settingPage_add.ClassToSQL<settingPageClass, enum_settingPage>();
+                List<object[]> delete = settingPage_delete.ClassToSQL<settingPageClass, enum_settingPage>();
+
+                if (add.Count > 0) sQLControl.AddRows(null, add);
+                if (delete.Count > 0) sQLControl.DeleteExtra(null, delete);
 
                 returnData.Code = 200;
                 returnData.Data = input_settingPageClass;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"資料儲存共{input_settingPageClass.Count}筆 成功";
+                returnData.Result = $"資料設定，新增{add.Count}筆，刪除{delete.Count}成功";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

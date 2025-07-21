@@ -36,10 +36,14 @@ namespace HIS_DB_Lib
         溫度上限,
         [Description("溫度下限,VARCHAR,20,NONE")]
         溫度下限,
+        [Description("溫度補償,VARCHAR,20,NONE")]
+        溫度補償,
         [Description("濕度上限,VARCHAR,20,NONE")]
         濕度上限,
         [Description("濕度下限,VARCHAR,20,NONE")]
         濕度下限,
+        [Description("濕度補償,VARCHAR,20,NONE")]
+        濕度補償,
         [Description("警報,VARCHAR,20,NONE")]
         警報,
         [Description("發信,VARCHAR,20,NONE")]
@@ -142,6 +146,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("temp_min")]
         public string 溫度下限 { get; set; }
         /// <summary>
+        /// 溫度補償
+        /// </summary>
+        [JsonPropertyName("temp_offset")]
+        public string 溫度補償 { get; set; }
+        /// <summary>
         /// 濕度上限
         /// </summary>
         [JsonPropertyName("humidity_max")]
@@ -152,6 +161,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("humidity_min")]
         public string 濕度下限 { get; set; }
         /// <summary>
+        /// 濕度補償
+        /// </summary>
+        [JsonPropertyName("humidity_offset")]
+        public string 濕度補償 { get; set; }
+        /// <summary>
         /// 警報
         /// </summary>
         [JsonPropertyName("alert")]
@@ -161,6 +175,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("mail")]
         public string 發信 { get; set; }
+        public List<temperatureClass> temperatureClasses { get; set; }
     }
     public static class temperature_setClassMethod
     {

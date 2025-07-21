@@ -201,37 +201,14 @@
             "value_db": "全部"
         },
         {
-            "page_name": "temperature",
-            "cht": "溫度設定上限",
-            "name": "temp_max",
+            "page_name": "medicine_cart",
+            "cht": "藥品總量預設調劑台",
+            "name": "default_dps_qty",
             "value_type": "text",
             "option_str": "",
-            "value_db": "30"
-        },
-        {
-            "page_name": "temperature",
-            "cht": "溫度設定下限",
-            "name": "temp_min",
-            "value_type": "text",
-            "option_str": "",
-            "value_db": "20"
-        },
-        {
-            "page_name": "temperature",
-            "cht": "濕度設定上限",
-            "name": "humi_max",
-            "value_type": "text",
-            "option_str": "",
-            "value_db": "30"
-        },
-        {
-            "page_name": "temperature",
-            "cht": "濕度設定下限",
-            "name": "humi_min",
-            "value_type": "text",
-            "option_str": "",
-            "value_db": "20"
+            "value_db": "全部"
         }
 
+        
     ]
 }
