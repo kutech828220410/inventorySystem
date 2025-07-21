@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07176")]
-[assembly: AssemblyFileVersion("1.0.25.07176")]
+[assembly: AssemblyVersion("1.0.25.07221")]
+[assembly: AssemblyFileVersion("1.0.25.07221")]
 namespace 調劑台管理系統
 {
 
@@ -456,10 +456,24 @@ namespace 調劑台管理系統
                 this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
                 this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
 
+                MyMessageBox.TimerEvent += MyMessageBox_TimerEvent;
+
             }
         }
-        #region Event
 
+
+        #region Event
+        private void MyMessageBox_TimerEvent(MyMessageBox myMessageBox)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (Function_ReadBacodeScanner_pre(i) != null)
+                {
+                    myMessageBox.Close();
+                    return;
+                }
+            }
+        }
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")

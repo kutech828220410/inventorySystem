@@ -1676,7 +1676,7 @@ namespace 調劑台管理系統
 
             return bmp;
         }
-        public void Function_醫令領藥(string BarCode)
+        public async void Function_醫令領藥(string BarCode)
         {
             personPageClass personPageClass = new personPageClass();
             personPageClass.ID = ID;
@@ -1735,9 +1735,16 @@ namespace 調劑台管理系統
                         if(text_用藥警示.StringIsEmpty() == false)
                         {
                             Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
+                            Console.WriteLine($"{text_用藥警示}");
 
-                            Dialog_用藥警示 dialog_用藥警示 = new Dialog_用藥警示(text_用藥警示);
-                            dialog_用藥警示.ShowDialog();
+                            Task.Run(new Action(delegate
+                            {
+                                Dialog_用藥警示 dialog_用藥警示 = new Dialog_用藥警示(text_用藥警示);
+                                dialog_用藥警示.ShowDialog();
+
+                            }));
+
+
                         }
                        
                         this.Invoke(new Action(delegate

@@ -89,6 +89,8 @@ namespace 調劑台管理系統
 
         static public List<OrderClass> Function_醫令領藥(string barcode, personPageClass personPageClass, string deviceName, bool single_order , UC_調劑作業_TypeA uC_depensing = null)
         {
+            MyMessageBox.CloseAllDialog();
+            Dialog_用藥警示.CloseAllDialog();
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             MyTimer myTimer_total = new MyTimer();
             myTimer_total.StartTickTime(50000);
@@ -115,6 +117,7 @@ namespace 調劑台管理系統
             daynum *= -1;
             double 手輸數量 = 0;
             List<OrderClass> orderClasses = new List<OrderClass>();
+            List<OrderClass> orderClasses_buf = new List<OrderClass>(); 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -158,18 +161,20 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                orderClasses = (from temp in orderClasses
+                orderClasses_buf = (from temp in orderClasses
                                 where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
                                 || temp.展藥時間.StringToDateTime() >= dateTime_start && temp.展藥時間.StringToDateTime() <= dateTime_end
                                 select temp).ToList();
 
 
-                if (orderClasses.Count == 0)
+                if (orderClasses_buf.Count == 0)
                 {
                     Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
+                    if (MyMessageBox.ShowDialog("藥單已過期,是否繼續調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
+                    {
+                        orderClasses = new List<OrderClass>();
+                        return;
+                    }
                 }
 
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
@@ -177,7 +182,7 @@ namespace 調劑台管理系統
 
                 if (PLC_Device_領藥處方選取.Bool)
                 {
-                    List<OrderClass> orderClasses_buf = new List<OrderClass>();
+                    orderClasses_buf = new List<OrderClass>();
                     for (int i = 0; i < orderClasses.Count; i++)
                     {
                         string 藥碼 = orderClasses[i].藥品碼;
