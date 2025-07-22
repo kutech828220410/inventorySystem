@@ -156,10 +156,7 @@ namespace HIS_WebApi._API_系統
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     //取得設定
-                    string result = get_set(returnData);
-                    returnData_get_set = result.JsonDeserializet<returnData>();
-                    if (returnData_get_set.Code != 200 || returnData_get_set.Data == null) return;
-                    temperature_SetClasses = returnData_get_set.Data.ObjToClass<List<temperature_setClass>>();
+                    (returnData_get_set, temperature_SetClasses) = get_set();
                 })));
                 if (returnData.ValueAry == null)
                 {
@@ -198,10 +195,10 @@ namespace HIS_WebApi._API_系統
                 List<List<temperatureClass>> list_temperatureClass = GroupOrders(temperatureClasses);
                 List<temperature_setClass> temperature_SetClass_buff = new List<temperature_setClass>();
                 Task.WhenAll(tasks).Wait();
-                if(temperature_SetClasses.Count == 0)
+                if(temperature_SetClasses == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"取得設定失敗: {returnData_get_set.Result}";
+                    returnData.Result = $"取得設定失敗, {returnData_get_set.Result}";
                     return returnData.JsonSerializationt(true);
                 }
                 for(int i = 0; i < list_temperatureClass.Count(); i++)
@@ -212,6 +209,7 @@ namespace HIS_WebApi._API_系統
                     temperature_SetClass_buff = temperature_SetClasses.Where(set => set.IP == temperatureClass_buff[0].IP).ToList();
                     temperature_SetClass_buff[0].temperatureClasses = temperatureClass_buff;
                 }
+                temperature_SetClasses = temperature_SetClasses.Where(item => item.temperatureClasses != null).ToList();
                 returnData.Code = 200;
                 returnData.Data = temperature_SetClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -253,6 +251,13 @@ namespace HIS_WebApi._API_系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
+                List<Task> tasks = new List<Task>();
+                List<temperature_setClass> temperature_SetClasses = new List<temperature_setClass>();
+                returnData returnData_get_set = new returnData();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    (returnData_get_set,temperature_SetClasses) = get_set();
+                })));
                 DateTime now = DateTime.Now;
                 string 開始時間 = now.GetStartDate().ToDateTimeString();
                 string 結束時間 = now.GetEndDate().ToDateTimeString();
@@ -285,11 +290,25 @@ namespace HIS_WebApi._API_系統
                         temperatureClass temperatureClass = grouped.OrderByDescending(item => item.新增時間).First();
                         return temperatureClass;
                     }).ToList();
+                
+                Task.WhenAll(tasks).Wait();
+                if (temperature_SetClasses == null || temperature_SetClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"取得設定失敗: {returnData_get_set.Result}";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < temperature_SetClasses.Count(); i++)
+                {
+                    List<temperatureClass> temperatures = temperatureClasses_buff.Where(item => item.IP == temperature_SetClasses[i].IP).ToList();
+                    temperature_SetClasses[i].temperatureClasses = temperatures;
+                }
+                temperature_SetClasses = temperature_SetClasses.Where(item => item.temperatureClasses.Count != 0).ToList();
                 returnData.Code = 200;
-                returnData.Data = temperatureClasses_buff;
+                returnData.Data = temperature_SetClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "get_latest_today";
-                returnData.Result = $"取得最新溫度資料成功，共{temperatureClasses_buff.Count()}!";
+                returnData.Result = $"取得最新溫度資料成功，共{temperature_SetClasses.Count()}!";
                 return returnData.JsonSerializationt(true);
 
             }
@@ -418,58 +437,127 @@ namespace HIS_WebApi._API_系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
+                List<Task> tasks = new List<Task>();
+                List<temperature_setClass> temperature_SetClasses = new List<temperature_setClass>();
+                returnData returnData_get_set = new returnData();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    (returnData_get_set, temperature_SetClasses) = get_set();
+                })));
                 if (returnData.Data == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.Data資料錯誤!";
                     return returnData.JsonSerializationt();
                 }
-                temperature_setClass temperature_setClass = returnData.Data.ObjToClass<temperature_setClass>();
-                if (temperature_setClass == null)
+                List<temperature_setClass> input_temperature_setClass = returnData.Data.ObjToClass<List<temperature_setClass>>();
+                if (input_temperature_setClass == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "returnData.Data資料錯誤，須為 {temperature_setClass}!";
+                    returnData.Result = "returnData.Data資料錯誤，須為 [{temperature_setClass}]!";
                     return returnData.JsonSerializationt();
                 }
-                if (temperature_setClass.GUID.StringIsEmpty())
+                
+                Task.WhenAll(tasks).Wait();
+                if (temperature_SetClasses == null || temperature_SetClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "returnData.Data.GUID資料錯誤，須為 {temperature_setClass.GUID}!";
-                    return returnData.JsonSerializationt();
+                    returnData.Result = $"取得設定失敗: {returnData_get_set.Result}";
+                    return returnData.JsonSerializationt(true);
                 }
+                List<temperature_setClass> update_temperature_setClass = new List<temperature_setClass>();
+                for (int i =0; i < input_temperature_setClass.Count; i++)
+                {
+                    temperature_setClass temperature_set_Class_buff = temperature_SetClasses.Where(item => item.GUID == input_temperature_setClass[i].GUID).FirstOrDefault();
+                    if (temperature_set_Class_buff == null) continue;
+                    if (input_temperature_setClass[i].IP.StringIsEmpty() == false) temperature_set_Class_buff.IP = input_temperature_setClass[i].IP;
+                    if (input_temperature_setClass[i].別名.StringIsEmpty() == false) temperature_set_Class_buff.別名 = input_temperature_setClass[i].別名;
+                    if (input_temperature_setClass[i].溫度上限.StringIsEmpty() == false) temperature_set_Class_buff.溫度上限 = input_temperature_setClass[i].溫度上限;
+                    if (input_temperature_setClass[i].溫度下限.StringIsEmpty() == false) temperature_set_Class_buff.溫度下限 = input_temperature_setClass[i].溫度下限;
+                    if (input_temperature_setClass[i].溫度補償.StringIsEmpty() == false) temperature_set_Class_buff.溫度補償 = input_temperature_setClass[i].溫度補償;
+                    if (input_temperature_setClass[i].濕度上限.StringIsEmpty() == false) temperature_set_Class_buff.濕度上限 = input_temperature_setClass[i].濕度上限;
+                    if (input_temperature_setClass[i].濕度下限.StringIsEmpty() == false) temperature_set_Class_buff.濕度下限 = input_temperature_setClass[i].濕度下限;
+                    if (input_temperature_setClass[i].濕度補償.StringIsEmpty() == false) temperature_set_Class_buff.濕度補償 = input_temperature_setClass[i].濕度補償;
+                    if (input_temperature_setClass[i].警報.StringIsEmpty() == false) temperature_set_Class_buff.警報 = input_temperature_setClass[i].警報.StringToBool().ToString();
+                    if (input_temperature_setClass[i].發信.StringIsEmpty() == false) temperature_set_Class_buff.發信 = input_temperature_setClass[i].發信.StringToBool().ToString();
+                    update_temperature_setClass.Add(temperature_set_Class_buff);
+
+                }
+
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-
                 SQLControl sQLControl = new SQLControl(Server, DB, "temperature_set", UserName, Password, Port, SSLMode);
-                List<object[]> objects = sQLControl.GetRowsByDefult(null, (int)enum_temperature_set.GUID, temperature_setClass.GUID);
-                if (objects.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找不到對應的資料，請確認GUID是否正確!";
-                    return returnData.JsonSerializationt();
-                }
-                temperature_setClass temperature_set_Class_buff = objects[0].SQLToClass<temperature_setClass, enum_temperature_set>();
-                if(temperature_setClass.IP.StringIsEmpty() == false) temperature_set_Class_buff.IP = temperature_setClass.IP;
-                if (temperature_setClass.別名.StringIsEmpty() == false) temperature_set_Class_buff.別名 = temperature_setClass.別名;
-                if (temperature_setClass.溫度上限.StringIsEmpty() == false) temperature_set_Class_buff.溫度上限 = temperature_setClass.溫度上限;
-                if (temperature_setClass.溫度下限.StringIsEmpty() == false) temperature_set_Class_buff.溫度下限 = temperature_setClass.溫度下限;
-                if (temperature_setClass.濕度上限.StringIsEmpty() == false) temperature_set_Class_buff.濕度上限 = temperature_setClass.濕度上限;
-                if (temperature_setClass.濕度下限.StringIsEmpty() == false) temperature_set_Class_buff.濕度下限 = temperature_setClass.濕度下限;
-                if (temperature_setClass.警報.StringIsEmpty() == false) temperature_set_Class_buff.警報 = temperature_setClass.警報.StringToBool().ToString();
-                if (temperature_setClass.發信.StringIsEmpty() == false) temperature_set_Class_buff.發信 = temperature_setClass.發信.StringToBool().ToString();
-
-                object[] update = temperature_set_Class_buff.ClassToSQL<temperature_setClass, enum_temperature_set>();
+                List<object[]> update = update_temperature_setClass.ClassToSQL<temperature_setClass, enum_temperature_set>();
                 sQLControl.UpdateByDefulteExtra(null, update);
 
                 returnData.Code = 200;
-                returnData.Data = temperature_set_Class_buff;
+                returnData.Data = update_temperature_setClass;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "update_set";
-                returnData.Result = $"資料寫入成功!";
+                returnData.Result = $"資料更新，共{update_temperature_setClass.Count}筆!";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
                 if (ex.Message == "Index was outside the bounds of the array.") init();
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 刪除設定資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "Value": "",
+        ///     "ValueAry":["GUID"]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("delete_set")]
+        public string delete_set([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                init();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry資料錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count() != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data資料錯誤，須為[\"GUID\"]!";
+                    return returnData.JsonSerializationt();
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string GUID = returnData.ValueAry[0];
+                SQLControl sQLControl = new SQLControl(Server, DB, "temperature_set", UserName, Password, Port, SSLMode);
+                List<object[]> objects = sQLControl.GetRowsByDefult(null, (int)enum_temperature_set.GUID, GUID);
+                if (objects.Count > 0) sQLControl.DeleteExtra(null, objects);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "add_set";
+                returnData.Result = $"資料{GUID}刪除成功!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                init();
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
@@ -552,6 +640,15 @@ namespace HIS_WebApi._API_系統
                 .ToList();
 
             return groupedtemperature;
+        }
+        (returnData, List<temperature_setClass>) get_set()
+        {
+            returnData returnData_get_set = new returnData();
+            string result = get_set(returnData_get_set);
+            returnData_get_set = result.JsonDeserializet<returnData>();
+            if (returnData_get_set.Code != 200 || returnData_get_set.Data == null) return (returnData_get_set,null);
+            List<temperature_setClass> temperature_SetClasses = returnData_get_set.Data.ObjToClass<List<temperature_setClass>>();
+            return (returnData_get_set,temperature_SetClasses);
         }
     }
 }
