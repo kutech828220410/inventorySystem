@@ -16,14 +16,38 @@ namespace HIS_DB_Lib
         GUID,
         [Description("IP,VARCHAR,20,NONE")]
         IP,
-        [Description("別名,VARCHAR,20,INDEX")]
-        別名, 
         [Description("溫度,VARCHAR,20,NONE")]
         溫度,
         [Description("濕度,VARCHAR,20,NONE")]
         濕度,
         [Description("新增時間,DATETIME,20,NONE")]
         新增時間,
+    }
+    [EnumDescription("temperature_set")]
+    public enum enum_temperature_set
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("IP,VARCHAR,20,NONE")]
+        IP,
+        [Description("別名,VARCHAR,20,INDEX")]
+        別名,
+        [Description("溫度上限,VARCHAR,20,NONE")]
+        溫度上限,
+        [Description("溫度下限,VARCHAR,20,NONE")]
+        溫度下限,
+        [Description("溫度補償,VARCHAR,20,NONE")]
+        溫度補償,
+        [Description("濕度上限,VARCHAR,20,NONE")]
+        濕度上限,
+        [Description("濕度下限,VARCHAR,20,NONE")]
+        濕度下限,
+        [Description("濕度補償,VARCHAR,20,NONE")]
+        濕度補償,
+        [Description("警報,VARCHAR,20,NONE")]
+        警報,
+        [Description("發信,VARCHAR,20,NONE")]
+        發信,
     }
     /// <summary>
     /// temperatureClass物件
@@ -40,11 +64,6 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("IP")]
         public string IP { get; set; }
-        /// <summary>
-        /// 別名
-        /// </summary>
-        [JsonPropertyName("name")]
-        public string 別名 { get; set; }
         /// <summary>
         /// 溫度
         /// </summary>
@@ -65,7 +84,7 @@ namespace HIS_DB_Lib
             public int Compare(temperatureClass x, temperatureClass y)
             {
                 
-                int result = (x.別名).CompareTo(y.別名);
+                int result = (x.IP).CompareTo(y.IP);
                 if (result == 0)
                 {
                     result = string.Compare(x.新增時間, y.新增時間) * -1;
@@ -95,5 +114,76 @@ namespace HIS_DB_Lib
 
         }
 
+    }
+    /// <summary>
+    /// temperature_setClass物件
+    /// </summary>
+    public class temperature_setClass
+    {
+        /// <summary>
+        /// 唯一值
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// IP
+        /// </summary>
+        [JsonPropertyName("IP")]
+        public string IP { get; set; }
+        /// <summary>
+        /// 別名
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string 別名 { get; set; }
+        /// <summary>
+        /// 溫度上限
+        /// </summary>
+        [JsonPropertyName("temp_max")]
+        public string 溫度上限 { get; set; }
+        /// <summary>
+        /// 溫度下限
+        /// </summary>
+        [JsonPropertyName("temp_min")]
+        public string 溫度下限 { get; set; }
+        /// <summary>
+        /// 溫度補償
+        /// </summary>
+        [JsonPropertyName("temp_offset")]
+        public string 溫度補償 { get; set; }
+        /// <summary>
+        /// 濕度上限
+        /// </summary>
+        [JsonPropertyName("humidity_max")]
+        public string 濕度上限 { get; set; }
+        /// <summary>
+        /// 濕度下限
+        /// </summary>
+        [JsonPropertyName("humidity_min")]
+        public string 濕度下限 { get; set; }
+        /// <summary>
+        /// 濕度補償
+        /// </summary>
+        [JsonPropertyName("humidity_offset")]
+        public string 濕度補償 { get; set; }
+        /// <summary>
+        /// 警報
+        /// </summary>
+        [JsonPropertyName("alert")]
+        public string 警報 { get; set; }
+        /// <summary>
+        /// 發信
+        /// </summary>
+        [JsonPropertyName("mail")]
+        public string 發信 { get; set; }
+        public List<temperatureClass> temperatureClasses { get; set; }
+    }
+    public static class temperature_setClassMethod
+    {
+        public static temperature_setClass searchByIp(this List<temperature_setClass> temperature_SetClasses, string ip)
+        {
+            if(temperature_SetClasses == null) return null;
+            temperature_setClass temperature_SetClass = temperature_SetClasses.Where(item => item.IP == ip).FirstOrDefault();
+            return temperature_SetClass;
+        }
     }
 }
