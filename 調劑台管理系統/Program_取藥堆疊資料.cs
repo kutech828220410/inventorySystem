@@ -1460,7 +1460,7 @@ namespace 調劑台管理系統
                             }
                             bool flag_commonlight = false;
                             List<MyColor> myColors = new List<MyColor>();
-                            if (color != Color.Black)
+                            if (color.R != 0 || color.G != 0 || color.B != 0)
                             {
                                 for (int k = 0; k < numOfLED; k++)
                                 {
@@ -1481,7 +1481,7 @@ namespace 調劑台管理系統
                             drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color, !lightOn.flag_Refresh_Light);
                             if (!flag_commonlight || lightOn.flag_Refresh_Light)
                             {
-                                if (color != Color.Black)
+                                if (color.R != 0 || color.G != 0 || color.B != 0)
                                 {
                                     if (lightOn.flag_Refresh_Light == false) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
                                 }

@@ -146,27 +146,24 @@ namespace batch_MQTT_Server
                 temperatureClass temperatureClass = new temperatureClass();
                 if (clientId == "00:E0:4C:04:B7:A1")
                 {
-                    temperatureClass.別名 = "A8";
                     temperatureClass.IP = clientId;
                     temperatureClass.溫度 = uDP_READ_Basic.dht_t.ToString();
                     temperatureClass.濕度 = uDP_READ_Basic.dht_h.ToString();
                 }
                 if (clientId == "00:E0:4C:04:AD:4F")
                 {
-                    temperatureClass.別名 = "藥庫";
                     temperatureClass.IP = clientId;
                     temperatureClass.溫度 = uDP_READ_Basic.dht_t.ToString();
                     temperatureClass.濕度 = uDP_READ_Basic.dht_h.ToString();
                 }
                 if (clientId == "00:E0:4C:04:B2:A5")
                 {
-                    temperatureClass.別名 = "住院藥局";
                     temperatureClass.IP = clientId;
                     temperatureClass.溫度 = uDP_READ_Basic.dht_t.ToString();
                     temperatureClass.濕度 = uDP_READ_Basic.dht_h.ToString();
                 }
 
-                Console.WriteLine($"上傳溫濕度：別名 = {temperatureClass.別名} 溫度 = {temperatureClass.溫度}°C，濕度 = {temperatureClass.濕度}%");
+                Console.WriteLine($"上傳溫濕度： 溫度 = {temperatureClass.溫度}°C，濕度 = {temperatureClass.濕度}%");
                 temperatureClass.add(dBConfigClass.Api_Server, temperatureClass);
             }
             catch (Exception ex)
