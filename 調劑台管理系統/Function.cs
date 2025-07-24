@@ -362,13 +362,15 @@ namespace 調劑台管理系統
                     ID = personPageClass.ID;
                     操作人 = personPageClass.姓名;
                     藥師證字號 = personPageClass.藥師證字號;
+                    if (Main_Form.PLC_Device_掃碼顏色固定.Bool == false) 顏色 = personPageClass.顏色;
                     for (int i = 0; i < takeMedicineStackClasses.Count; i++)
                     {
                         takeMedicineStackClasses[i].操作人 = 操作人;
                         takeMedicineStackClasses[i].ID = ID;
                         takeMedicineStackClasses[i].藥師證字號 = 藥師證字號;
+                        takeMedicineStackClasses[i].顏色 = 顏色;
                     }
-                    if(uC_depensing != null)
+                    if (uC_depensing != null)
                     {
                         uC_depensing.Title = $" {(Main_Form.PLC_Device_導引模式.Bool ? "(導引模式)" : "")}[{操作人}]";
                     }
