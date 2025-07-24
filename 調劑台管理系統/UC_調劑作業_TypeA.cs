@@ -263,6 +263,7 @@ namespace 調劑台管理系統
                 if (scanner_text.StringIsEmpty()) return;
                 return;
             }
+            if (PLC_Device_已登入.Bool == false) CheckFpMatchLogin();
             if (Main_Form.PLC_Device_導引模式.Bool == true && PLC_Device_已登入.Bool == false)
             {
 
@@ -1934,6 +1935,40 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.RFID使用.GetEnumName()));
             if (!Main_Form._plC_CheckBox_領藥無儲位不顯示.Checked) list_value_buf.LockAdd(list_value.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
+        }
+        public void CheckFpMatchLogin()
+        {
+            if (FpMatchClass_指紋資訊 != null)
+            {
+                List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (Main_Form.fpMatchSoket.Match(FpMatchClass_指紋資訊.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                        break;
+                    }
+                }
+                FpMatchClass_指紋資訊 = null;
+                if (value == null)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                if (PLC_Device_已登入.Bool && (ID != value[(int)enum_人員資料.ID].ObjectToString())) Logout();
+
+                this.Invoke(new Action(delegate
+                {
+                    textBox_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                    textBox_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                    Login();
+                }));
+
+                Main_Form.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 登入者姓名, "01.號使用者");
+            }
         }
     }
 }
