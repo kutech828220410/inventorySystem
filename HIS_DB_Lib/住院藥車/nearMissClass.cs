@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace HIS_DB_Lib
+{
+    public enum enum_nearMiss
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("pat_GUID,VARCHAR,50,INDEX")]
+        pat_GUID,
+        [Description("cpoe_GUID,VARCHAR,50,INDEX")]
+        cpoe_GUID,
+        [Description("藥局,VARCHAR,20,NONE")]
+        藥局,
+        [Description("護理站,VARCHAR,20,NONE")]
+        護理站,
+        [Description("調劑人ID,VARCHAR,20,NONE")]
+        調劑人ID,
+        [Description("調劑人姓名,VARCHAR,20,NONE")]
+        調劑人姓名,
+        [Description("通報人ID,VARCHAR,20,NONE")]
+        通報人ID,
+        [Description("通報人姓名,VARCHAR,20,NONE")]
+        通報人姓名,
+        [Description("通報時間,DATETIME,30,NONE")]
+        通報時間,
+        [Description("原因,VARCHAR,300,NONE")]
+        原因,
+        [Description("備註,VARCHAR,500,NONE")]
+        備註,
+    }
+    public class nearMissClass
+    {
+        /// <summary>
+        /// GUID
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// 病人GUID
+        /// </summary>
+        [JsonPropertyName("pat_GUID")]
+        public string pat_GUID { get; set; }
+        /// <summary>
+        /// 處方GUID
+        /// </summary>
+        [JsonPropertyName("cpoe_GUID")]
+        public string cpoe_GUID { get; set; }
+        /// <summary>
+        /// 藥局
+        /// </summary>
+        [JsonPropertyName("pharm")]
+        public string 藥局 { get; set; }
+        /// <summary>
+        /// 護理站
+        /// </summary>
+        [JsonPropertyName("nurnum")]
+        public string 護理站 { get; set; }
+        /// <summary>
+        /// 調劑人ID
+        /// </summary>
+        [JsonPropertyName("disp_id")]
+        public string 調劑人ID { get; set; }
+        /// <summary>
+        /// 調劑人姓名
+        /// </summary>
+        [JsonPropertyName("disp_name")]
+        public string 調劑人姓名 { get; set; }
+        /// <summary>
+        /// 通報人ID
+        /// </summary>
+        [JsonPropertyName("reporter_id")]
+        public string 通報人ID { get; set; }
+        /// <summary>
+        /// 通報人姓名
+        /// </summary>
+        [JsonPropertyName("reporter_name")]
+        public string 通報人姓名 { get; set; }
+        /// <summary>
+        /// 原因
+        /// </summary>
+        [JsonPropertyName("reason")]
+        public string 原因 { get; set; }
+        [JsonPropertyName("note")]
+        public string 備註 { get; set; }
+        public patientInfoClass patientInfoClass { get; set; }
+        public medCpoeClass medCpoeClass { get; set; }
+    }
+}
