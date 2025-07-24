@@ -123,7 +123,17 @@ namespace 調劑台管理系統
                 else
                 {
                     orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
-    
+                    if (Main_Form.myConfigClass.批次領藥篩選.StringIsEmpty() == false)
+                    {
+                        string[] str = Main_Form.myConfigClass.批次領藥篩選.Split(',');
+                        if (str != null && str.Length > 0)
+                        {
+                            orderClasses = orderClasses
+                                            .Where(temp => str.Any(filter => temp.藥局代碼.ToUpper().Contains(filter.ToUpper())))
+                                            .ToList();
+                        }
+                    }
+
                 }
                 Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
                 foreach (string key in keyValuePairs_order.Keys)
@@ -194,6 +204,9 @@ namespace 調劑台管理系統
         {
             List<OrderClass> orderClasses = new List<OrderClass>();
             List<OrderClass> orderClasse_buf = new List<OrderClass>();
+
+            List<medClass> medClasses_buf = new List<medClass>();
+
             string 護理站代碼 = "";
             string 護理站名稱 = "";
 
@@ -213,7 +226,16 @@ namespace 調劑台管理系統
             {
                 護理站代碼 = "批次領藥";
                 orderClasses = OrderClass.get_batch_order_by_day(Main_Form.API_Server, rJ_DatePicker_日期.Value);
-         
+                if (Main_Form.myConfigClass.批次領藥篩選.StringIsEmpty() == false)
+                {
+                    string[] str = Main_Form.myConfigClass.批次領藥篩選.Split(',');
+                    if (str != null && str.Length > 0)
+                    {
+                        orderClasses = orderClasses
+                                        .Where(temp => str.Any(filter => temp.藥局代碼.ToUpper().Contains(filter.ToUpper())))
+                                        .ToList();
+                    }
+                }
             }
        
             Dictionary<string, List<OrderClass>> keyValuePairs_order = orderClasses.CoverToDictionaryBy_Code();
@@ -223,9 +245,25 @@ namespace 調劑台管理系統
                 object[] value = new object[new enum_用藥資訊_總量().GetLength()];
                 if (orderClasses_temp.Count == 0) continue;
                 if (orderClasses_temp[0].藥品碼.StringIsEmpty()) continue;
+
+
+
                 if (Main_Form.Function_從本地資料取得儲位(orderClasses_temp[0].藥品碼).Count == 0)
                 {
                     continue;
+                }
+
+                if (orderClasses_temp[0].藥品碼.StringIsEmpty()) continue;
+                medClasses_buf = keyValuePairs_med_cloud.SortDictionaryByCode(orderClasses_temp[0].藥品碼);
+                if (medClasses_buf.Count == 0) continue;
+                else
+                {
+                    string 管制級別 = medClasses_buf[0].管制級別;
+                    if (checkBox_管1.Checked == false && 管制級別 == "1") continue;
+                    if (checkBox_管2.Checked == false && 管制級別 == "2") continue;
+                    if (checkBox_管3.Checked == false && 管制級別 == "3") continue;
+                    if (checkBox_管4.Checked == false && 管制級別 == "4") continue;
+                    if (checkBox_N.Checked == false && (管制級別 == "N" || 管制級別.StringIsEmpty())) continue;
                 }
 
                 for (int i = 0; i < orderClasses_temp.Count; i++)
@@ -246,7 +284,7 @@ namespace 調劑台管理系統
             List<string> Codes = (from temp in orderClasse_buf
                                   select temp.藥品碼).Distinct().ToList();
             List<medClass> medClasses = medClass.get_med_clouds_by_codes(Main_Form.API_Server, Codes);
-            List<medClass> medClasses_buf = new List<medClass>();
+        
             Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
             string ID = personPageClass.ID;
             string 操作人 = personPageClass.姓名;

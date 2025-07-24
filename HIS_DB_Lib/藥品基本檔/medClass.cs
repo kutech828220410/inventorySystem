@@ -26,6 +26,13 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
+
+        /// <summary>
+        /// 排序號。
+        /// </summary>
+        [JsonPropertyName("SortIndex")]
+        public string 排序號 { get; set; }
+
         /// <summary>
         /// 藥品碼。
         /// </summary>

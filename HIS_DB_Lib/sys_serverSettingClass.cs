@@ -124,6 +124,20 @@ namespace HIS_DB_Lib
             if (sys_serverSettingClasses_buf.Count == 0) return null;
             return sys_serverSettingClasses_buf[0];
         }
+
+        public static string GetUrl(this List<sys_serverSettingClass> sys_serverSettingClasses, string Name, string Type, string Content)
+        {
+            if (sys_serverSettingClasses == null) return null;
+            List<sys_serverSettingClass> sys_serverSettingClasses_buf = (from value in sys_serverSettingClasses
+                                                                         where value.類別 == Type
+                                                                         where value.設備名稱.ToUpper() == Name.ToUpper()
+                                                                         where value.內容 == Content
+                                                                         select value).ToList();
+            if (sys_serverSettingClasses_buf.Count == 0) return null;
+            return sys_serverSettingClasses_buf[0].Server;
+        }
+
+
         public static List<sys_serverSettingClass> MyFind(this List<sys_serverSettingClass> sys_serverSettingClasses, string Name, string Type, string Content)
         {
             if (sys_serverSettingClasses == null) return null;

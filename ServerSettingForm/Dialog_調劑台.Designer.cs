@@ -47,6 +47,8 @@ namespace ServerSettingForm
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass16 = new HIS_DB_Lib.sys_serverSettingClass();
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass17 = new HIS_DB_Lib.sys_serverSettingClass();
             HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass18 = new HIS_DB_Lib.sys_serverSettingClass();
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass19 = new HIS_DB_Lib.sys_serverSettingClass();
+            HIS_DB_Lib.sys_serverSettingClass sys_serverSettingClass20 = new HIS_DB_Lib.sys_serverSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -81,6 +83,11 @@ namespace ServerSettingForm
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.label8 = new System.Windows.Forms.Label();
             this.panel_SQLContent10 = new ServerSettingForm.Panel_SQLContent();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel_API_URL6 = new ServerSettingForm.Panel_API_URL();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel_API_URL10 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // label1
@@ -293,7 +300,7 @@ namespace ServerSettingForm
             // 
             this.panel_API_URL8.Content = "Order_upload_API";
             this.panel_API_URL8.Description = "-----";
-            this.panel_API_URL8.Location = new System.Drawing.Point(12, 575);
+            this.panel_API_URL8.Location = new System.Drawing.Point(11, 625);
             this.panel_API_URL8.Name = "panel_API_URL8";
             sys_serverSettingClass3.DBName = null;
             sys_serverSettingClass3.GUID = null;
@@ -683,12 +690,95 @@ namespace ServerSettingForm
             this.panel_SQLContent10.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent10.TabIndex = 82;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(13, 598);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 24);
+            this.label9.TabIndex = 83;
+            this.label9.Text = "醫令回寫";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label10.Location = new System.Drawing.Point(897, 424);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(86, 24);
+            this.label10.TabIndex = 85;
+            this.label10.Text = "藥品排序";
+            // 
+            // panel_API_URL6
+            // 
+            this.panel_API_URL6.Content = "Med_Sort";
+            this.panel_API_URL6.Description = "-----";
+            this.panel_API_URL6.Location = new System.Drawing.Point(897, 451);
+            this.panel_API_URL6.Name = "panel_API_URL6";
+            sys_serverSettingClass19.DBName = null;
+            sys_serverSettingClass19.GUID = null;
+            sys_serverSettingClass19.Password = null;
+            sys_serverSettingClass19.Port = null;
+            sys_serverSettingClass19.Server = "";
+            sys_serverSettingClass19.TableName = null;
+            sys_serverSettingClass19.User = null;
+            sys_serverSettingClass19.Value = null;
+            sys_serverSettingClass19.內容 = "Med_Sort";
+            sys_serverSettingClass19.單位 = null;
+            sys_serverSettingClass19.程式類別 = null;
+            sys_serverSettingClass19.設備名稱 = "";
+            sys_serverSettingClass19.類別 = "調劑台";
+            this.panel_API_URL6.ServerSetting = sys_serverSettingClass19;
+            this.panel_API_URL6.ServerSetting_Type = HIS_DB_Lib.enum_sys_serverSetting_Type.調劑台;
+            this.panel_API_URL6.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL6.TabIndex = 84;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(897, 490);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(86, 24);
+            this.label11.TabIndex = 87;
+            this.label11.Text = "儲位排序";
+            // 
+            // panel_API_URL10
+            // 
+            this.panel_API_URL10.Content = "Storage_Sort";
+            this.panel_API_URL10.Description = "-----";
+            this.panel_API_URL10.Location = new System.Drawing.Point(897, 517);
+            this.panel_API_URL10.Name = "panel_API_URL10";
+            sys_serverSettingClass20.DBName = null;
+            sys_serverSettingClass20.GUID = null;
+            sys_serverSettingClass20.Password = null;
+            sys_serverSettingClass20.Port = null;
+            sys_serverSettingClass20.Server = "";
+            sys_serverSettingClass20.TableName = null;
+            sys_serverSettingClass20.User = null;
+            sys_serverSettingClass20.Value = null;
+            sys_serverSettingClass20.內容 = "Storage_Sort";
+            sys_serverSettingClass20.單位 = null;
+            sys_serverSettingClass20.程式類別 = null;
+            sys_serverSettingClass20.設備名稱 = "";
+            sys_serverSettingClass20.類別 = "調劑台";
+            this.panel_API_URL10.ServerSetting = sys_serverSettingClass20;
+            this.panel_API_URL10.ServerSetting_Type = HIS_DB_Lib.enum_sys_serverSetting_Type.調劑台;
+            this.panel_API_URL10.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL10.TabIndex = 86;
+            // 
             // Dialog_調劑台
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1924, 970);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.panel_API_URL10);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.panel_API_URL6);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel_SQLContent10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -770,5 +860,10 @@ namespace ServerSettingForm
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private Panel_SQLContent panel_SQLContent10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private Panel_API_URL panel_API_URL6;
+        private System.Windows.Forms.Label label11;
+        private Panel_API_URL panel_API_URL10;
     }
 }

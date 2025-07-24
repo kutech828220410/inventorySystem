@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07232")]
-[assembly: AssemblyFileVersion("1.0.25.07232")]
+[assembly: AssemblyVersion("1.0.25.07233")]
+[assembly: AssemblyFileVersion("1.0.25.07233")]
 namespace 調劑台管理系統
 {
 
@@ -139,8 +139,8 @@ namespace 調劑台管理系統
             private string orderByCodeApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
-
-
+            private string med_Sort = "";
+            private string storage_Sort = "";
 
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
@@ -175,6 +175,10 @@ namespace 調劑台管理系統
             public string Order_mrn_ApiURL { get => order_mrn_ApiURL; set => order_mrn_ApiURL = value; }
             [JsonIgnore]
             public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
+            [JsonIgnore]
+            public string Med_Sort { get => med_Sort; set => med_Sort = value; }
+            [JsonIgnore]
+            public string Storage_Sort { get => storage_Sort; set => storage_Sort = value; }
         }
 
         private void LoadDBConfig()
@@ -241,6 +245,7 @@ namespace 調劑台管理系統
             private bool _外部輸出 = false;
             private bool _全螢幕顯示 = true;
             private bool _鍵盤掃碼模式 = false;
+            private string _批次領藥篩選 = "";
 
             private string rFID_COMPort = "COM1";
             private string scanner01_COMPort = "COM2";
@@ -285,6 +290,7 @@ namespace 調劑台管理系統
             public string 聲紋辨識_IP { get => _聲紋辨識_IP; set => _聲紋辨識_IP = value; }
             public string HFRFID_1_COMPort { get => hFRFID_1_COMPort; set => hFRFID_1_COMPort = value; }
             public string HFRFID_2_COMPort { get => hFRFID_2_COMPort; set => hFRFID_2_COMPort = value; }
+            public string 批次領藥篩選 { get => _批次領藥篩選; set => _批次領藥篩選 = value; }
         }
         private void LoadMyConfig()
         {

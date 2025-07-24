@@ -30,5 +30,6 @@
   "舊版晶片": true,
   "聲紋辨識_IP": "",
   "HFRFID_1_COMPort": "",
-  "HFRFID_2_COMPort": ""
+  "HFRFID_2_COMPort": "",
+  "批次領藥篩選": "PHER"
 }

@@ -1713,25 +1713,35 @@ namespace 調劑台管理系統
                         string text = "";
                         int text_height = 30;
                         int text_height_basic = TextRenderer.MeasureText("測試", rJ_Lable_診斷.Font).Height;
-
-                        for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
+                        if(suspiciousRxLog.diseaseClasses != null)
                         {
-                            text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
-                            if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄.Count != 0) text += "\n";
-                            text_height += text_height_basic;
+                            for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
+                            {
+                                text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
+                                if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄.Count != 0) text += "\n";
+                                text_height += text_height_basic;
+                            }
                         }
-                        for (int i = 0; i < suspiciousRxLog.交互作用紀錄.Count; i++)
+                        if (suspiciousRxLog.交互作用紀錄 != null)
                         {
-                            text += $"  ※ [{suspiciousRxLog.交互作用紀錄[i].code.StringLength(0)}]{suspiciousRxLog.交互作用紀錄[i].name}";
-                            if (i != suspiciousRxLog.交互作用紀錄.Count - 1) text += "\n";
-                            text_height += text_height_basic;
+                            for (int i = 0; i < suspiciousRxLog.交互作用紀錄.Count; i++)
+                            {
+                                text += $"  ※ [{suspiciousRxLog.交互作用紀錄[i].code.StringLength(0)}]{suspiciousRxLog.交互作用紀錄[i].name}";
+                                if (i != suspiciousRxLog.交互作用紀錄.Count - 1) text += "\n";
+                                text_height += text_height_basic;
+                            }
                         }
                         string text_用藥警示 = "";
-                        for (int i = 0; i < suspiciousRxLog.過敏紀錄.Count; i++)
+                        if (suspiciousRxLog.過敏紀錄 != null)
                         {
-                            text_用藥警示 += $"  ※ [{suspiciousRxLog.過敏紀錄[i].code.StringLength(0)}]{suspiciousRxLog.過敏紀錄[i].name}";
-                            if (i != suspiciousRxLog.過敏紀錄.Count - 1) text_用藥警示 += "\n";
+                            for (int i = 0; i < suspiciousRxLog.過敏紀錄.Count; i++)
+                            {
+                                text_用藥警示 += $"  ※ [{suspiciousRxLog.過敏紀錄[i].code.StringLength(0)}]{suspiciousRxLog.過敏紀錄[i].name}";
+                                if (i != suspiciousRxLog.過敏紀錄.Count - 1) text_用藥警示 += "\n";
+                            }
                         }
+                       
+                       
                         if(text_用藥警示.StringIsEmpty() == false)
                         {
                             Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\alarm.wav");
