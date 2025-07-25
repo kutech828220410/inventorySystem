@@ -1032,6 +1032,60 @@ namespace HIS_WebApi._API_AI
             }
 
         }
+        [HttpPost("update_data")]
+        public string update_data([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_data";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog", UserName, Password, Port, SSLMode);
+                
+
+                List<object[]> list_suspiciousRxLog = sQLControl.GetAllRows(null);
+                
+                List<suspiciousRxLogClass> sql_suspiciousRxLog = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<suspiciousRxLogClass> update_suspiciousRxLog = new List<suspiciousRxLogClass>();
+
+                foreach (var item in sql_suspiciousRxLog)
+                {
+                    if (item.開方時間.Check_Date_String() && item.加入時間.Check_Date_String() && item.調劑時間.Check_Date_String()) 
+                    {
+                        DateTime dt_開方時間 = DateTime.Parse(item.開方時間);
+                        DateTime dt_加入時間 = DateTime.Parse(item.加入時間);
+                        DateTime dt_調劑時間 = DateTime.Parse(item.調劑時間);
+
+                        dt_開方時間 = DateTime.Today.AddHours(dt_開方時間.Hour).AddMinutes(dt_開方時間.Minute).AddSeconds(dt_開方時間.Second);
+                        dt_加入時間 = DateTime.Today.AddHours(dt_加入時間.Hour).AddMinutes(dt_加入時間.Minute).AddSeconds(dt_加入時間.Second);
+                        dt_調劑時間 = DateTime.Today.AddHours(dt_調劑時間.Hour).AddMinutes(dt_調劑時間.Minute).AddSeconds(dt_調劑時間.Second);
+
+                        item.開方時間 = dt_開方時間.ToDateTimeString();
+                        item.加入時間 = dt_加入時間.ToDateTimeString();
+                        item.調劑時間 = dt_調劑時間.ToDateTimeString();
+                        update_suspiciousRxLog.Add(item);
+                    }                    
+                }
+                //sql_suspiciousRxLog = sql_suspiciousRxLog.Where(item => item.開方時間.StringIsEmpty())
+                List<object[]> update = update_suspiciousRxLog.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+
+                if (update.Count > 0) sQLControl.UpdateByDefulteExtra(null, update);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                //returnData.Data = patientInfoClasses;
+                returnData.Result = $"更改所有資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses, suspiciousRxLogClass suspiciousRxLogClass)
         {
             List<medClass> medClasses = medClass.get_med_cloud(API_Server);
