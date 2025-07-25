@@ -346,6 +346,8 @@ namespace 智能藥庫系統
                                 storage.Name = medClasses_buf[0].藥品名稱;
                                 storage.ChineseName = medClasses_buf[0].中文名稱;
                                 storage.Package = medClasses_buf[0].包裝單位;
+                                storage.IsWarning = medClasses_buf[0].警訊藥品.StringToBool();
+
                             }
                             storages_replace.Add(storage);
                         }
@@ -456,27 +458,52 @@ namespace 智能藥庫系統
         private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
         {
             string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+            Console.WriteLine($"[Debug] 取得儲位 IP: {IP}");
 
             Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+            if (storage == null)
+            {
+                Console.WriteLine("[Warning] 找不到對應的 Storage 資料！");
+                return;
+            }
 
-            if (storage == null) return;
+            Console.WriteLine($"[Debug] 取得儲位資料: Code={storage.Code}, Name={storage.Name}");
+
+            medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, storage.Code);
+
             rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
             rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
             rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
             rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
             rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
             rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
+            Console.WriteLine($"[Debug] 更新儲位內容顯示：藥品碼={storage.Code}, 總庫存={storage.Inventory}");
 
             plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_庫存顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.Checked = storage.Name_Visable;
-            plC_CheckBox_儲架電子紙_儲位內容_效期顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.Checked = storage.Scientific_Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.Checked = storage.ChineseName_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.Checked = storage.Code_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.Checked = storage.Package_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_庫存顯示.Checked = storage.Inventory_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.Checked = storage.BarCode_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_效期顯示.Checked = storage.Validity_period_Visable;
+            Console.WriteLine("[Debug] 顯示選項已同步到 Checkbox");
+
+            if (_medClass != null)
+            {
+                Console.WriteLine($"[Debug] _medClass.警訊藥品 : {_medClass.警訊藥品}");
+
+                if (_medClass.警訊藥品 == "Y" || _medClass.警訊藥品.ToUpper() == "TRUE")
+                {
+                    storage.IsWarning = true;
+                    Console.WriteLine($"[Debug] 設定警訊藥品標記: {storage.IsWarning}");
+                }
+
+            }
 
             epD_290_Pannel.DrawToPictureBox(storage);
+            Console.WriteLine("[Debug] 已繪製至電子紙面板");
+
 
 
         }
@@ -746,6 +773,12 @@ namespace 智能藥庫系統
             {
                 string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
                 Storage storage = storages.SortByIP(IP);
+                medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, storage.Code);
+                if (_medClass.警訊藥品 == "Y" || _medClass.警訊藥品.ToUpper() == "TRUE")
+                {
+                    storage.IsWarning = true;
+                    Console.WriteLine($"[Debug] 設定警訊藥品標記: {storage.IsWarning}");
+                }
                 storage.Inventory_Visable = false;
                 if (storage != null)
                 {
