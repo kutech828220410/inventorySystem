@@ -20,14 +20,36 @@ namespace TestForm
 {
     public partial class Form1 : Form
     {
-   
+        private DragDropListBox dragDropListBox;
+
         Image image = null;
         public Form1()
         {
             InitializeComponent();
-            button_LoadImage.Click += Button_LoadImage_Click;
-            button_call_api.Click += Button_call_api_Click;
-            button_loadBase64.Click += Button_loadBase64_Click;   
+            // 初始化 DragDropListBox
+            dragDropListBox = new DragDropListBox();
+            dragDropListBox.Size = new Size(300, 200);
+            dragDropListBox.Location = new Point(20, 20);
+            dragDropListBox.Font = new Font("標楷體", 18);
+            dragDropListBox.ItemHeight = 40;
+            dragDropListBox.Dock = DockStyle.Fill;
+            panel1.Controls.Add(dragDropListBox);
+
+            // 建立並繫結 IndexedDictionary
+            IndexedDictionary<string> drugDict = new IndexedDictionary<string>();
+            drugDict.Add("藥品代碼 A123-普拿疼", "普拿疼");
+            drugDict.Add("藥品代碼 B456-阿斯匹靈", "阿斯匹靈");
+            drugDict.Add("藥品代碼 C789-克痰靈", "克痰靈");
+            drugDict.Add("藥品代碼 D321-維他命C", "維他命C");
+            drugDict.Add("藥品代碼 E654-胃散", "胃散");
+            drugDict.Add("藥品代碼 F987-抗生素", "抗生素");
+            drugDict.Add("藥品代碼 G111-咳嗽糖漿", "咳嗽糖漿");
+            drugDict.Add("藥品代碼 H222-降血壓藥", "降血壓藥");
+            drugDict.Add("藥品代碼 I333-消炎藥", "消炎藥");
+            drugDict.Add("藥品代碼 J444-鎮靜劑", "鎮靜劑");
+
+            // 綁定至 DragDropListBox
+            dragDropListBox.Bind(drugDict);
         }
 
         
@@ -135,6 +157,5 @@ namespace TestForm
             }
             pictureBox1.Image = image;
         }
-
     }
 }

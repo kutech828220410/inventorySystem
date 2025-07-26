@@ -454,16 +454,16 @@
     <Compile Include="Dialog\Dialog_交班對點.Designer.cs">
       <DependentUpon>Dialog_交班對點.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組.Designer.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組.Designer.cs">
       <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組_新增群組.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組_新增群組.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組_新增群組.Designer.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組_新增群組.Designer.cs">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_藥品搜索.cs">
@@ -502,10 +502,10 @@
     <Compile Include="Dialog\Dialog_醫令選擇.Designer.cs">
       <DependentUpon>Dialog_醫令選擇.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組設定.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組設定.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_藥品群組設定.Designer.cs">
+    <Compile Include="Dialog\藥品群組\Dialog_藥品群組設定.Designer.cs">
       <DependentUpon>Dialog_藥品群組設定.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_效期批號選擇.cs">
@@ -798,7 +798,7 @@
     <EmbeddedResource Include="Dialog\Dialog_申領.resx">
       <DependentUpon>Dialog_申領.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_藥品群組設定.resx">
+    <EmbeddedResource Include="Dialog\藥品群組\Dialog_藥品群組設定.resx">
       <DependentUpon>Dialog_藥品群組設定.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥品資料_批次設定.resx">
@@ -874,10 +874,10 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品搜尋.resx">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_藥品群組.resx">
+    <EmbeddedResource Include="Dialog\藥品群組\Dialog_藥品群組.resx">
       <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_藥品群組_新增群組.resx">
+    <EmbeddedResource Include="Dialog\藥品群組\Dialog_藥品群組_新增群組.resx">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥品搜索.resx">

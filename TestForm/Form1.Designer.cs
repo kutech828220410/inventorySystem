@@ -36,6 +36,7 @@ namespace TestForm
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.button_loadBase64 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -49,9 +50,9 @@ namespace TestForm
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 69);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 403);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 828);
+            this.pictureBox1.Size = new System.Drawing.Size(640, 494);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -97,11 +98,19 @@ namespace TestForm
             this.button_loadBase64.Text = "LoadBase64(.txt)";
             this.button_loadBase64.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(12, 73);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(640, 324);
+            this.panel1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 973);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button_loadBase64);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.pictureBox1);
@@ -123,6 +132,7 @@ namespace TestForm
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button button_loadBase64;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

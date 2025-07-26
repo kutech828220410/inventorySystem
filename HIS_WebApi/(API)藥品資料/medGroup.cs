@@ -70,6 +70,11 @@ namespace HIS_WebApi
         {
             try
             {
+                if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
+                {
+                    returnData.ServerName = "Main";
+                    returnData.ServerType = "網頁";
+                }
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
                 if (sys_serverSettingClasses.Count == 0)
@@ -1023,10 +1028,14 @@ namespace HIS_WebApi
                     medClasses_buf = keyValuePairs_medClass.SortDictionaryByCode(medGroupClasses[i].MedClasses[k].藥品碼);
                     if (medClasses_buf.Count > 0)
                     {
+                        string 排列號 = medGroupClasses[i].MedClasses[k].排列號;
                         medGroupClasses[i].MedClasses[k] = medClasses_buf[0];
+                        medGroupClasses[i].MedClasses[k].排列號 = 排列號;
                     }
                 }
-   
+                medGroupClasses[i].MedClasses = medGroupClasses[i].MedClasses.SortByIndex();
+
+
             }
             return medGroupClasses;
         }

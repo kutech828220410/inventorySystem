@@ -20,19 +20,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-
         /// <summary>
         /// 主GUID。
         /// </summary>
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
-
         /// <summary>
         /// 排序號。
         /// </summary>
-        [JsonPropertyName("SortIndex")]
-        public string 排序號 { get; set; }
-
+        [JsonPropertyName("INDEX")]
+        public string 排列號 { get; set; }
         /// <summary>
         /// 藥品碼。
         /// </summary>
@@ -1022,7 +1019,15 @@ namespace HIS_DB_Lib
             }
             return new List<medClass>();
         }
-
+        public static List<medClass> SortByIndex(this List<medClass> medClasses)
+        {
+            return medClasses.OrderBy(m =>
+            {
+                int index = 0;
+                int.TryParse(m.排列號, out index);
+                return index;
+            }).ToList();
+        }
         static public bool IsEqual(this medClass medClass_src, medClass medClass_dst)
         {
             if (medClass_src.藥品碼 != medClass_dst.藥品碼) return false;

@@ -29,6 +29,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,200,INDEX")]
         Master_GUID,
+        [Description("排列號,VARCHAR,10,None")]
+        排列號,
         [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
     }
