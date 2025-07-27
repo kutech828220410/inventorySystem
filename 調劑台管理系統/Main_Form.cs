@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07242")]
-[assembly: AssemblyFileVersion("1.0.25.07242")]
+[assembly: AssemblyVersion("1.0.25.07271")]
+[assembly: AssemblyFileVersion("1.0.25.07271")]
 namespace 調劑台管理系統
 {
 
@@ -108,6 +108,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
+        static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
         static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 
         #region DBConfigClass
@@ -387,6 +388,7 @@ namespace 調劑台管理系統
             _pannel_Locker_Design = this.pannel_Locker_Design;
             _plC_ScreenPage_Main = this.plC_ScreenPage_Main;
 
+           
 
             H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
@@ -489,6 +491,8 @@ namespace 調劑台管理系統
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
+
+
             if (myConfigClass.全螢幕顯示 == false)
             {
                 this.WindowState = FormWindowState.Maximized;
@@ -570,9 +574,11 @@ namespace 調劑台管理系統
 
             this.DBConfigInit();
 
-
-            this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
+
+      
+            this.Program_Scanner_RS232_Init();
+         
 
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();

@@ -50,9 +50,15 @@ namespace TestForm
 
             // 綁定至 DragDropListBox
             dragDropListBox.Bind(drugDict);
+            this.Load += Form1_Load;
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            $"盤點量與庫存不符,請確認是否正確".PlayGooleVoiceAsync("http://220.135.128.247:4433");
+
+            List<consumptionClass> consumptionClasses =  consumptionClass.serch_by_ST_END("http://220.135.128.247:4433","A6","調劑台",DateTime.Now.AddMonths(-1),DateTime.Now.GetEndDate(), "TEST");
+        }
 
         private OleDbConnection conn;
 

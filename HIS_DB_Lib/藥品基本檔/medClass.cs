@@ -1021,13 +1021,57 @@ namespace HIS_DB_Lib
         }
         public static List<medClass> SortByIndex(this List<medClass> medClasses)
         {
-            return medClasses.OrderBy(m =>
-            {
-                int index = 0;
-                int.TryParse(m.排列號, out index);
-                return index;
-            }).ToList();
+            return medClasses
+                .OrderBy(m =>
+                {
+                    bool ok = int.TryParse(m.排列號, out int index);
+                    return ok ? index : int.MaxValue;
+                })
+                .ThenBy(m => m.藥品碼)
+                .ToList();
         }
+        public static List<T> SortByMedClassIndex<T>(this List<T> listToSort, List<medClass> medClasses, Func<T, string> getCode)
+        {
+            var sortMap = medClasses.ToDictionary(
+                m => m.藥品碼,
+                m =>
+                {
+                    if (int.TryParse(m.排列號, out int index)) return index;
+                    return int.MaxValue;
+                }
+            );
+
+            return listToSort
+                .OrderBy(item =>
+                {
+                    string code = getCode(item);
+                    return sortMap.ContainsKey(code) ? sortMap[code] : int.MaxValue;
+                })
+                .ThenBy(item => getCode(item)) // 藥品碼排序
+                .ToList();
+        }
+        public static List<T> SortAndFilterByMedClass<T>(this List<T> listToSort,List<medClass> medClasses,Func<T, string> getCode)
+        {
+            // 建立排序對照表：藥品碼 → 排列號Index（預設 MaxValue）
+            var sortMap = medClasses
+                .Where(m => !string.IsNullOrWhiteSpace(m.藥品碼))
+                .ToDictionary(
+                    m => m.藥品碼,
+                    m =>
+                    {
+                        if (int.TryParse(m.排列號, out int index))
+                            return index;
+                        return int.MaxValue;
+                    });
+
+            // 過濾 + 排序
+            return listToSort
+                .Where(item => sortMap.ContainsKey(getCode(item))) // ✅ 僅保留 medClass 中出現的
+                .OrderBy(item => sortMap[getCode(item)])           // ✅ 先依 index 排序
+                .ThenBy(item => getCode(item))                     // ✅ 再依藥品碼排序
+                .ToList();
+        }
+
         static public bool IsEqual(this medClass medClass_src, medClass medClass_dst)
         {
             if (medClass_src.藥品碼 != medClass_dst.藥品碼) return false;

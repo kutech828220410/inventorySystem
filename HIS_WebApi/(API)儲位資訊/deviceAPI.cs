@@ -125,7 +125,7 @@ namespace HIS_WebApi
                 sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(value, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.儲位資料);
                 string IP = sys_serverSettingClass.Server;
                 int port = sys_serverSettingClass.Port.StringToInt32();
-                if (Basic.Net.TestConnection(IP, port, 300) == false)
+                if (Basic.Net.Ping(IP, port, 300) == false)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"伺服器無回應,{IP}";

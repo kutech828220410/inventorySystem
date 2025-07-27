@@ -310,7 +310,7 @@ namespace 調劑台管理系統
             Dialog_使用者登入.myTimerBasic_覆核完成.StartTickTime(1);
             this.plC_RJ_Button_指紋登入.MouseDownEvent += PlC_RJ_Button_指紋登入_MouseDownEvent;
             this.plC_RJ_Button_手輸醫令.MouseDownEvent += PlC_RJ_Button_手輸醫令_MouseDownEvent;
-            this.plC_RJ_Button_條碼輸入.MouseDownEvent += PlC_RJ_Button_條碼輸入_MouseDownEvent;
+            this.plC_RJ_Button_藥單條碼輸入.MouseDownEvent += PlC_RJ_Button_條碼輸入_MouseDownEvent;
             this.plC_RJ_Button_醫令檢索.MouseDownEvent += PlC_RJ_Button_醫令檢索_MouseDownEvent;
             this.plC_RJ_Button_藥品調入.MouseDownEvent += PlC_RJ_Button_藥品調入_MouseDownEvent;
             this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;

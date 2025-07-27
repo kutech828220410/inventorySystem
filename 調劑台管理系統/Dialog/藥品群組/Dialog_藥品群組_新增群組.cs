@@ -36,7 +36,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未輸入名稱");
                 return;
             }
-            medGroupClass medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, this.rJ_TextBox_名稱.Text);
+            medGroupClass medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, this.rJ_TextBox_名稱.Text);
             if (medGroupClass != null)
             {
                 MyMessageBox.ShowDialog("此名稱已存在");

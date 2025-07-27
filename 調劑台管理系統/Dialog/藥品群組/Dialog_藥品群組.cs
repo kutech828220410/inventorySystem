@@ -90,17 +90,8 @@ namespace 調劑台管理系統
         {
             this.Invoke(new Action(delegate
             {
-                List<medGroupClass> medGroupClasses = medGroupClass.get_all_group(Main_Form.API_Server);
-                List<string> list_str = new List<string>();
-                for (int i = 0; i < medGroupClasses.Count; i++)
-                {
-                    if(medGroupClasses[i].顯示資訊.StringIsEmpty() || medGroupClasses[i].顯示資訊.Contains(Main_Form.ServerName))
-                    {
-                        list_str.Add(medGroupClasses[i].名稱);
-                    }
-                  
-                }
-                this.comboBox_藥品群組.DataSource = list_str.ToArray();
+      
+                this.comboBox_藥品群組.DataSource = medGroupClass.get_medGroupList_header(Main_Form.API_Server, Main_Form.ServerName);
                 this.Refresh();
 
             }));
@@ -179,7 +170,7 @@ namespace 調劑台管理系統
                 dialogResult = MyMessageBox.ShowDialog($"是否儲存群組資料,共<{sortedList.Count}>筆?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel);
                 if (dialogResult != DialogResult.Yes) return;
                 string text = comboBox_藥品群組.GetComboBoxText();  
-                medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, text);
+                medGroupClass _medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, text);
                 _medGroupClass.MedClasses = sortedList;
                 medGroupClass.add_group(Main_Form.API_Server, _medGroupClass);
             }
@@ -215,7 +206,7 @@ namespace 調劑台管理系統
                 }
 
                 if (MyMessageBox.ShowDialog("是否刪除選取群組?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-                medGroupClass _medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, this.comboBox_藥品群組.GetComboBoxText());
+                medGroupClass _medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, this.comboBox_藥品群組.GetComboBoxText());
                 medGroupClass.delete_group_by_guid(Main_Form.API_Server, _medGroupClass);
                 Function_更新群組列表();
 
@@ -274,7 +265,7 @@ namespace 調劑台管理系統
                 }
                 if (comboBox_藥品資料_搜尋條件.GetComboBoxText() == "已選藥品")
                 {
-                    medGroupClass medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
+                    medGroupClass medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
                     medClasses = medGroupClass.MedClasses;
                 }
 
@@ -334,7 +325,7 @@ namespace 調劑台管理系統
             LoadingForm.ShowLoadingForm();
             try
             {
-                medGroupClass medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
+                medGroupClass medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());
                 this.sqL_DataGridView_藥品資料.SetDataKeys(medGroupClass.MedClasses.ClassToSQL<medClass, enum_雲端藥檔>(), true);
                 this.sqL_DataGridView_藥品資料.RefreshGrid();
                 IndexedDictionary<medClass> drugDict = new IndexedDictionary<medClass>();

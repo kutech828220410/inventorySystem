@@ -44,5 +44,80 @@ namespace HIS_DB_Lib
         public string 實調量 { get; set; }
         [JsonPropertyName("STOCK")]
         public string 庫存量 { get; set; }
+
+        static public (int code, string result, List<consumptionClass>) serch_by_ST_END_full(
+            string API_Server,
+            string serverName,
+            string serverType,
+            string startDate,
+            string endDate,
+            string groupName = "")
+        {
+            return serch_by_ST_END_full(
+                API_Server,
+                serverName,
+                serverType,
+                DateTime.Parse(startDate),
+                DateTime.Parse(endDate),
+                groupName
+            );
+        }
+
+        static public (int code, string result, List<consumptionClass>) serch_by_ST_END_full(
+            string API_Server,
+            string serverName,
+            string serverType,
+            DateTime startDate,
+            DateTime endDate,
+            string groupName = "")
+        {
+            string url = $"{API_Server}/api/consumption/serch_by_ST_END";
+
+            returnData sendData = new returnData();
+            sendData.ServerName = serverName;
+            sendData.ServerType = serverType;
+            sendData.Method = "serch_by_ST_END";
+            sendData.Value = $"{startDate.ToDateTimeString()},{endDate.ToDateTimeString()}";
+            if (!string.IsNullOrWhiteSpace(groupName)) sendData.ValueAry = new List<string> { groupName };
+
+            string json_in = sendData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+                return (0, "returnData_out == null", null);
+
+            if (returnData_out.Data == null)
+                return (0, "returnData_out.Data == null", null);
+
+            List<consumptionClass> list = returnData_out.Data.ObjToClass<List<consumptionClass>>();
+            return (returnData_out.Code, returnData_out.Result, list);
+        }
+
+        static public List<consumptionClass> serch_by_ST_END(
+            string API_Server,
+            string serverName,
+            string serverType,
+            string startDate,
+            string endDate,
+            string groupName = "")
+        {
+            var (code, result, list) = serch_by_ST_END_full(API_Server, serverName, serverType, startDate, endDate, groupName);
+            return list;
+        }
+
+        static public List<consumptionClass> serch_by_ST_END(
+            string API_Server,
+            string serverName,
+            string serverType,
+            DateTime startDate,
+            DateTime endDate,
+            string groupName = "")
+        {
+            var (code, result, list) = serch_by_ST_END_full(API_Server, serverName, serverType, startDate, endDate, groupName);
+            return list;
+        }
+
     }
 }

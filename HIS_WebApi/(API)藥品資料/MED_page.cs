@@ -3841,7 +3841,7 @@ namespace HIS_WebApi
                 return null;
             }
         }
-        private List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass)
+        static public List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass)
         {
             try
             {

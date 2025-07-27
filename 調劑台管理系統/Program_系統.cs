@@ -277,6 +277,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_檢查頁面不顯示_OK = new PLC_Device("");
         MyTimer MyTimer_檢查頁面不顯示_結束延遲 = new MyTimer();
         int cnt_Program_檢查頁面不顯示 = 65534;
+        bool flag_檢查頁面不顯示_init = false;
         void sub_Program_檢查頁面不顯示()
         {
             PLC_Device_檢查頁面不顯示.Bool = true;
@@ -538,22 +539,41 @@ namespace 調劑台管理系統
    
         private void PlC_RJ_Button_檢查頁面不顯示_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (plC_CheckBox_不顯示設定_調劑作業.Checked)
+       
+        
+            plC_RJ_ScreenButton_調劑作業.SetVisible(!plC_CheckBox_不顯示設定_調劑作業.Checked);
+            plC_RJ_ScreenButton_管制抽屜.SetVisible(!plC_CheckBox_不顯示設定_管制抽屜.Checked);
+            plC_RJ_ScreenButton_交班作業.SetVisible(!plC_CheckBox_不顯示設定_交班作業.Checked);
+            plC_RJ_Button_手輸醫令.SetVisible(!plC_CheckBox_調劑功能_手輸醫令.Checked);
+            plC_RJ_Button_醫令檢索.SetVisible(!plC_CheckBox_調劑功能_醫令檢索.Checked);
+            plC_RJ_Button_藥單條碼輸入.SetVisible(!plC_CheckBox_調劑功能_藥單條碼輸入.Checked);
+            plC_RJ_Button_全部滅燈.SetVisible(!plC_CheckBox_調劑功能_全部滅燈.Checked);
+            plC_RJ_Button_藥品搜索.SetVisible(!plC_CheckBox_調劑功能_藥品搜索.Checked);
+            plC_RJ_Button_藥品調入.SetVisible(!plC_CheckBox_調劑功能_藥品調入.Checked);
+            plC_RJ_Button_交班對點.SetVisible(!plC_CheckBox_調劑功能_交班對點.Checked);
+            plC_RJ_Button_申領.SetVisible(!plC_CheckBox_調劑功能_申領.Checked);
+            plC_RJ_Button_藥品搜索.SetVisible(!plC_CheckBox_調劑功能_藥品搜索.Checked);
+            plC_RJ_Button_藥品搜索.SetVisible(!plC_CheckBox_調劑功能_藥品搜索.Checked);
+
+            if (flag_檢查頁面不顯示_init == false)
             {
-                plC_RJ_ScreenButton_調劑作業.SetVisible(false);
+                this.Invoke(new Action(delegate 
+                {
+                    plC_RJ_Button_手輸醫令.Visible = true;
+                    plC_RJ_Button_醫令檢索.Visible = false;
+                    plC_RJ_Button_藥單條碼輸入.Visible = false;
+                    plC_RJ_Button_全部滅燈.Visible = false;
+                    plC_RJ_Button_藥品搜索.Visible = false;
+                    plC_RJ_Button_藥品調入.Visible = false;
+                    plC_RJ_Button_交班對點.Visible = false;
+                    plC_RJ_Button_申領.Visible = false;
+                    plC_RJ_Button_藥品搜索.Visible = false;
+                    plC_RJ_Button_藥品搜索.Visible = false;
+                }));
+
+                flag_檢查頁面不顯示_init = true;
             }
-            else
-            {
-                plC_RJ_ScreenButton_調劑作業.SetVisible(true);
-            }
-            if (plC_CheckBox_不顯示設定_管制抽屜.Checked)
-            {
-                plC_RJ_ScreenButton_管制抽屜.SetVisible(false);
-            }
-            else
-            {
-                plC_RJ_ScreenButton_管制抽屜.SetVisible(true);
-            }
+
             if (plC_CheckBox_不顯示設定_收支作業.Checked)
             {
                 plC_RJ_ScreenButton_收支作業.SetVisible(false);
@@ -569,10 +589,6 @@ namespace 調劑台管理系統
             if (plC_CheckBox_不顯示設定_藥品資料.Checked)
             {
                 plC_RJ_ScreenButton_藥品資料.SetVisible(false);
-            }
-            if (plC_CheckBox_不顯示設定_效期管理.Checked)
-            {
-                //plC_RJ_ScreenButton_效期管理.SetVisible(false);
             }
             if (plC_CheckBox_不顯示設定_人員資料.Checked)
             {

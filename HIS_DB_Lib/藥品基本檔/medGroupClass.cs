@@ -66,67 +66,136 @@ namespace HIS_DB_Lib
 
 
         /// <summary>
+        /// 呼叫 API 取得藥品群組上層（僅群組資訊，不含 MedClasses，可依顯示資訊過濾）
+        /// </summary>
+        /// <param name="API_Server">API 伺服器</param>
+        /// <param name="filterServerName">要比對的顯示資訊（可為空）</param>
+        /// <returns>過濾後的藥品群組清單</returns>
+        static public List<medGroupClass> get_all_group_header(string API_Server, string filterServerName = "")
+        {
+            var (code, result, list) = get_all_group_header_full(API_Server);
+            if (list == null) return new List<medGroupClass>();
+
+            if (!filterServerName.StringIsEmpty())
+            {
+                list = list
+                    .Where(x => x.顯示資訊.StringIsEmpty() || x.顯示資訊.Contains(filterServerName))
+                    .ToList();
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// 呼叫 API 取得藥品群組上層（完整版本，回傳 code、result、list）
+        /// </summary>
+        static public (int code, string result, List<medGroupClass>) get_all_group_header_full(string API_Server)
+        {
+            string url = $"{API_Server}/api/medGroup/get_all_group_header";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+                return (0, "returnData_out == null", null);
+
+            if (returnData_out.Data == null)
+                return (0, "returnData_out.Data == null", null);
+
+            List<medGroupClass> medGroupClasses = returnData_out.Data.ObjToClass<List<medGroupClass>>();
+            return (returnData_out.Code, returnData_out.Result, medGroupClasses);
+        }
+        /// <summary>
         /// 獲取所有藥品群組名稱列表
         /// </summary>
         /// <param name="API_Server">API伺服器地址</param>
         /// <returns>藥品群組名稱列表</returns>
-        static public List<string> get_medGroupList(string API_Server)
-        {
-            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
-            List<string> vs = (from temp in medGroupClasses
-                               select temp.名稱).Distinct().ToList();
-            return vs;
-        }
         /// <summary>
-        /// 根據名稱獲取藥品群組
+        /// 獲取所有藥品群組名稱列表（僅上層，根據 filterServerName 過濾顯示資訊）
         /// </summary>
         /// <param name="API_Server">API伺服器地址</param>
-        /// <param name="name">藥品群組名稱</param>
-        /// <returns>藥品群組</returns>
-        static public medGroupClass get_medGroup(string API_Server, string name)
+        /// <param name="filterServerName">用於比對 medGroupClass.顯示資訊（可為空）</param>
+        /// <returns>藥品群組名稱列表</returns>
+        static public List<string> get_medGroupList_header(string API_Server, string filterServerName = "")
         {
-            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
-            medGroupClasses = (from temp in medGroupClasses
-                               where temp.名稱 == name
-                               select temp).ToList();
-            if (medGroupClasses.Count == 0) return null;
-            return medGroupClasses[0];
-        }       
-        /// <summary>
-        /// 根據名稱獲取藥品群組
-        /// </summary>
-        /// <param name="API_Server">API伺服器地址</param>
-        /// <param name="name">藥品群組名稱</param>
-        /// <returns>藥品群組</returns>
-        static public medGroupClass get_all_group(string API_Server, string name)
-        {
-            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
-            medGroupClasses = (from temp in medGroupClasses
-                               where temp.名稱 == name
-                               select temp).ToList();
-            if (medGroupClasses.Count == 0) return null;
-            return medGroupClasses[0];
+            List<medGroupClass> medGroupClasses = get_all_group_header(API_Server);
+
+            if (medGroupClasses == null) return new List<string>();
+
+            List<string> names = medGroupClasses
+                .Where(x =>
+                    !x.名稱.StringIsEmpty() &&
+                    (x.顯示資訊.StringIsEmpty() || x.顯示資訊.Contains(filterServerName))
+                )
+                .Select(x => x.名稱)
+                .Distinct()
+                .ToList();
+
+            return names;
         }
 
+        static public medGroupClass get_group_by_name(string API_Server, string groupName)
+        {
+            var (code, result, group) = get_group_by_name_full(API_Server, groupName);
+            return group;
+        }
+        static public (int code, string result, medGroupClass group) get_group_by_name_full(string API_Server, string groupName)
+        {
+            string url = $"{API_Server}/api/medGroup/get_group_by_name";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(groupName);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+
+            // ✅ 將回傳的資料轉型成 medGroupClass（單一筆）
+            medGroupClass medGroup = returnData_out.Data.ObjToClass<medGroupClass>();
+            return (returnData_out.Code, returnData_out.Result, medGroup);
+        }
+
+
         /// <summary>
-        /// 獲取所有藥品群組
+        /// 獲取所有藥品群組（可指定過濾 ServerName）
         /// </summary>
         /// <param name="API_Server">API伺服器地址</param>
+        /// <param name="filterServerName">要過濾的伺服器名稱，若為 null 則不過濾</param>
         /// <returns>藥品群組列表</returns>
-        static public List<medGroupClass> get_all_group(string API_Server)
+        static public List<medGroupClass> get_all_group(string API_Server, string filterServerName = null)
         {
             string url = $"{API_Server}/api/medGroup/get_all_group";
             returnData returnData = new returnData();
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
-            if (returnData_out == null) return null;
-            if (returnData_out.Code != 200) return null;
-            Console.WriteLine($"{returnData}");
+
+            if (returnData_out == null || returnData_out.Code != 200) return null;
+
             List<medGroupClass> medGroupClasses = returnData_out.Data.ObjToClass<List<medGroupClass>>();
+
+            // ✅ 加入 ServerName 過濾條件（可選）
+            if (!filterServerName.StringIsEmpty())
+            {
+                medGroupClasses = medGroupClasses
+                    .Where(x => x.顯示資訊.StringIsEmpty() || x.顯示資訊.Contains(filterServerName))
+                    .ToList();
+            }
 
             return medGroupClasses;
         }
+
 
         /// <summary>
         /// 獲取所有藥品群組名稱

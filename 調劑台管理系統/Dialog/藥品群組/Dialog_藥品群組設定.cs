@@ -32,7 +32,7 @@ namespace 調劑台管理系統
             this.Load += Dialog_藥品群組設定_Load;
             this.LoadFinishedEvent += Dialog_藥品群組設定_LoadFinishedEvent;
             rJ_Button_存檔.MouseDownEvent += RJ_Button_存檔_MouseDownEvent;
-            comboBox_藥品群組.DataSource = medGroupClass.get_medGroupList(Main_Form.API_Server);
+            comboBox_藥品群組.DataSource = medGroupClass.get_medGroupList_header(Main_Form.API_Server);
             comboBox_藥品群組.DisplayMember = "藥品群組名稱";
             if(comboBox_藥品群組.Items.Count == 0)
             {
@@ -49,7 +49,7 @@ namespace 調劑台管理系統
             LoadingForm.ShowLoadingForm();
             string text = comboBox_藥品群組.Text;
             medGroupClass medGroupClass = new medGroupClass();
-            medGroupClass = medGroupClass.get_medGroup(Main_Form.API_Server, text);
+            medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, text);
             if (medGroupClass == null)
             {
                 MyMessageBox.ShowDialog("藥品群組不存在");
@@ -69,7 +69,7 @@ namespace 調劑台管理系統
         {
             string text = comboBox_藥品群組.GetComboBoxText();
             medGroupClass medGroupClass = new medGroupClass();
-            medGroupClass = medGroupClass.get_medGroup(Main_Form.API_Server, text);
+            medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, text);
             if (medGroupClass == null)
             {
                 MyMessageBox.ShowDialog("藥品群組不存在");
