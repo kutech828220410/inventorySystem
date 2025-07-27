@@ -101,31 +101,41 @@ namespace HIS_WebApi
                 DateTime date_st = date_ary[0].StringToDateTime().GetStartDate();
                 DateTime date_end = date_ary[1].StringToDateTime().GetEndDate();
                 string sql = @$"
-                            SELECT t2.藥品碼,
-                                   t2.藥品名稱,
-                                   t1.交易量,
-                                   t2.結存量
-                            FROM (
-                                SELECT 藥品碼, SUM(CAST(交易量 AS SIGNED)) AS 交易量
+                        SELECT 
+                            t2.藥品碼,
+                            t2.藥品名稱,
+                            IFNULL(t1.交易量, 0) AS 交易量,
+                            t2.結存量
+                        FROM (
+                            SELECT 藥品碼, 
+                                   SUM(
+                                       CASE 
+                                           WHEN 交易量 REGEXP '^-?[0-9]+(\\.[0-9]+)?$' THEN CAST(交易量 AS DECIMAL(20,6))
+                                           ELSE 0
+                                       END
+                                   ) AS 交易量
+                            FROM trading
+                            WHERE 操作時間 BETWEEN '{date_ary[0]}' AND '{date_ary[1]}'
+                              AND 藥品碼 IS NOT NULL
+                              AND 藥品碼 <> ''
+                            GROUP BY 藥品碼
+                        ) t1
+                        RIGHT JOIN (
+                            SELECT a.*
+                            FROM trading a
+                            JOIN (
+                                SELECT 藥品碼, MAX(操作時間) AS 最新時間
                                 FROM trading
-                                WHERE 操作時間 BETWEEN '{date_ary[0]}' AND '{date_ary[1]}'
+                                WHERE 操作時間 <= '{date_ary[1]}'
                                   AND 藥品碼 IS NOT NULL
                                   AND 藥品碼 <> ''
                                 GROUP BY 藥品碼
-                            ) t1
-                            JOIN (
-                                SELECT a.*
-                                FROM trading a
-                                JOIN (
-                                    SELECT 藥品碼, MAX(操作時間) AS 最新時間
-                                    FROM trading
-                                    WHERE 操作時間 BETWEEN '{date_ary[0]}' AND '{date_ary[1]}'
-                                      AND 藥品碼 IS NOT NULL
-                                      AND 藥品碼 <> ''
-                                    GROUP BY 藥品碼
-                                ) b ON a.藥品碼 = b.藥品碼 AND a.操作時間 = b.最新時間
-                            ) t2 ON t1.藥品碼 = t2.藥品碼
-                            ";
+                            ) b ON a.藥品碼 = b.藥品碼 AND a.操作時間 = b.最新時間
+                        ) t2 ON t1.藥品碼 = t2.藥品碼
+                    ";
+
+
+
 
 
 
