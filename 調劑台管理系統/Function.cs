@@ -17,6 +17,8 @@ using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using ZXing.QrCode.Internal;
+using LadderProperty;
+using DrawingClass;
 namespace 調劑台管理系統
 {
     public enum enum_儲位資訊
@@ -1847,7 +1849,7 @@ namespace 調劑台管理系統
             }
             return list_value;
         }
-        public object Fucnction_從本地資料取得儲位(string IP)
+        static public object Fucnction_從本地資料取得儲位(string IP)
         {
             Storage storage = List_EPD266_本地資料.SortByIP(IP);
             if (storage != null) return storage;
@@ -1863,7 +1865,7 @@ namespace 調劑台管理系統
             if (pannel35 != null) return pannel35;
             return null;
         }
-        public object Fucnction_從雲端資料取得儲位(string IP)
+        static public object Fucnction_從雲端資料取得儲位(string IP)
         {
             Storage storage = List_EPD266_雲端資料.SortByIP(IP);
             if (storage != null) return storage;
@@ -1951,6 +1953,7 @@ namespace 調劑台管理系統
             }
             return list_value;
         }
+
         static public double Function_從SQL取得庫存(string 藥品碼)
         {
             double 庫存 = 0;
@@ -2387,6 +2390,66 @@ namespace 調劑台管理系統
 
                     Task.WhenAll(taskList).Wait();
                 }
+            }
+
+        }
+        public void Function_儲位刷新_byIP(string IP)
+        {
+            List<string> list_lock_IP = new List<string>();
+            this.Function_儲位刷新_byIP(IP, ref list_lock_IP);
+        }
+        public void Function_儲位刷新_byIP(string IP, ref List<string> list_lock_IP)
+        {
+            object device = Fucnction_從本地資料取得儲位(IP);
+            List<Task> taskList = new List<Task>();
+            List<string> list_IP = new List<string>();
+            List<string> list_IP_buf = new List<string>();
+
+    
+
+            if (device != null)
+            {
+                if (device is Storage)
+                {
+                    Storage storage = device as Storage;
+                    if (storage != null)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                            storage = List_EPD266_雲端資料.SortByIP(IP);
+                            if (storage.DeviceType == DeviceType.Pannel35 || storage.DeviceType == DeviceType.Pannel35_lock)
+                            {
+                                if (!plC_CheckBox_測試模式.Checked)
+                                {
+                                    this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                                }
+                            }
+                            else
+                            {
+                                this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                            }
+                        
+                        }));
+
+                        list_IP.Add(IP);
+                    }
+                }
+                else if (device is Drawer)
+                {
+                    Drawer drawer = device as Drawer;
+                    if (drawer != null)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                            drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);
+                        }));
+                        list_IP.Add(IP);
+                    }
+                }
+            
+
+                Task.WhenAll(taskList).Wait();
             }
 
         }

@@ -700,66 +700,208 @@ namespace 調劑台管理系統
 
          
         }
+        private void PlC_RJ_Button_儲位管理_EPD583_單格亮燈_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if(this.ControlMode || true)
+            {
+                // 顏色選擇邏輯
+                Color color = Color.Black;
+                if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_紅.Checked) color = Color.Red;
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_綠.Checked) color = Color.Lime;
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_藍.Checked) color = Color.Blue;
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_白.Checked) color = Color.White;
+
+                // 選取的 Box
+                List<int> cols = new List<int>();
+                List<int> rows = new List<int>();
+                int index = this.epD_583_Pannel.GetSelectBoxes(ref cols, ref rows);
+                if (index == 0) return;
+
+                List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+                if (boxes.Count == 0) return;
+
+                // 蒐集所有 box.Code 並組成亮燈資料
+                List<(string 藥碼, string 顏色, string 秒數)> lightList = new List<(string, string, string)>();
+                foreach (var box in boxes)
+                {
+                    if (string.IsNullOrWhiteSpace(box.Code)) continue;
+                    lightList.Add((box.Code, color.ToColorString(), "60")); // 預設亮燈 5 秒
+                }
+
+                if (lightList.Count == 0) return;
+
+                // 呼叫亮燈 API
+                var (code_result, result) = deviceApiClass.light_by_drugCodes_full(Main_Form.API_Server, lightList, Main_Form.ServerName, Main_Form.ServerType);
+
+                if (code_result == 200)
+                    Console.WriteLine($"單格亮燈成功，共 {lightList.Count} 格\n{result}");
+                else
+                    Console.WriteLine($"單格亮燈失敗！\n{result}");
+            }
+            else
+            {
+                Color color = Color.Black;
+                if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_紅.Checked)
+                {
+                    color = Color.Red;
+                }
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_綠.Checked)
+                {
+                    color = Color.Lime;
+                }
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_藍.Checked)
+                {
+                    color = Color.Blue;
+                }
+                else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_白.Checked)
+                {
+                    color = Color.White;
+                }
+                List<int> cols = new List<int>();
+                List<int> rows = new List<int>();
+                int index = this.epD_583_Pannel.GetSelectBoxes(ref cols, ref rows);
+                if (index == 0) return;
+                epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
+                epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(epD_583_Pannel.CurrentDrawer, this.epD_583_Pannel.GetSelectBoxes(), color);
+                epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(epD_583_Pannel.CurrentDrawer, color);
+                this.drawerUI_EPD_583.Set_LED_UDP(epD_583_Pannel.CurrentDrawer);
+
+                List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+                Rectangle rectangle = DrawerUI_EPD_583.Get_Box_rect(epD_583_Pannel.CurrentDrawer, boxes[0]);
+                Console.WriteLine($"rectangle : {rectangle}");
+                DrawerUI_EPD_583.LightSensorClass lightSensorClass = DrawerUI_EPD_583.Get_LightSensorClass(rectangle);
+                Console.WriteLine($"lightSensorClass : {lightSensorClass}");
+                string index_IP = Funcion_取得LCD114索引表_index_IP(epD_583_Pannel.CurrentDrawer.IP);
+                if (index_IP.StringIsEmpty()) return;
+                StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+                uDP_READ.IsSensorOn(lightSensorClass);
+            }
+            
+
+        }
         private void PlC_RJ_Button_儲位管理_EPD583_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
-            if (list_value.Count == 0) return;          
-            List<Task> taskList = new List<Task>();
-            for (int i = 0; i < list_value.Count; i++)
+            if (this.ControlMode || true)
             {
-                string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-                taskList.Add(Task.Run(() =>
-                {
+                // 顏色選擇邏輯
+                Color color = Color.Black;
 
-                    if (drawer != null)
-                    {
-                        if (!this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer))
-                        {
-                            //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜滅燈失敗!");
-                        }
-                        Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜成功!");
-                    }
-                }));
+
+                // 選取的 Box
+                List<int> cols = new List<int>();
+                List<int> rows = new List<int>();
+                int index = this.epD_583_Pannel.GetSelectBoxes(ref cols, ref rows);
+                if (index == 0) return;
+
+                List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+                if (boxes.Count == 0) return;
+
+                // 蒐集所有 box.Code 並組成亮燈資料
+                List<(string 藥碼, string 顏色, string 秒數)> lightList = new List<(string, string, string)>();
+                foreach (var box in boxes)
+                {
+                    if (string.IsNullOrWhiteSpace(box.Code)) continue;
+                    lightList.Add((box.Code, color.ToColorString(), "1")); // 預設亮燈 5 秒
+                }
+
+                if (lightList.Count == 0) return;
+
+                // 呼叫亮燈 API
+                var (code_result, result) = deviceApiClass.light_by_drugCodes_full(Main_Form.API_Server, lightList, Main_Form.ServerName, Main_Form.ServerType);
+
+                if (code_result == 200)
+                    Console.WriteLine($"單格亮燈成功，共 {lightList.Count} 格\n{result}");
+                else
+                    Console.WriteLine($"單格亮燈失敗！\n{result}");
             }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
+            else
+            {
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                    Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                    taskList.Add(Task.Run(() =>
+                    {
+
+                        if (drawer != null)
+                        {
+                            if (!this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer))
+                            {
+                                //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜滅燈失敗!");
+                            }
+                            Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜成功!");
+                        }
+                    }));
+                }
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
+            }
+               
         }
         private void PlC_RJ_Button_儲位管理_EPD583_上傳至面板_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
             if (list_value.Count == 0) return;
-            List<Task> taskList = new List<Task>();
-            for (int i = 0; i < list_value.Count; i++)
+
+            // 擷取選取的 IP 清單
+            List<string> ipList = list_value
+                .Select(row => row[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString())
+                .Where(ip => !string.IsNullOrWhiteSpace(ip))
+                .Distinct()
+                .ToList();
+
+            if (ipList.Count == 0) return;
+
+            // 呼叫後端 API
+            var (code, result) = deviceApiClass.refresh_canvas_by_ip_full(Main_Form.API_Server, ipList, Main_Form.ServerName, Main_Form.ServerType);
+
+            // 顯示結果（可依你系統決定是否彈窗或列印 log）
+            if (code == 200)
             {
-                string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-                taskList.Add(Task.Run(() =>
-                {
-                    if (drawer != null)
-                    {
-                        if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked)
-                        {
-                            if (!this.drawerUI_EPD_583.DrawToEpd_UDP(drawer))
-                            {
-                                //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
-                            }
-                        }
-                        else
-                        {
-                            if (!this.drawerUI_EPD_583.DrawToEpd_BarCode_UDP(drawer))
-                            {
-                                //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
-                            }
-                        }
-                        Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳成功!");
-                    }
-                }));
+                Console.WriteLine($"✅ 成功上傳 {ipList.Count} 筆面板資料！\n{result}");
             }
-            Task allTask = Task.WhenAll(taskList);
-            allTask.Wait();
-    
-           
+            else
+            {
+                Console.WriteLine($"❌ 上傳失敗！\n{result}");
+            }
+
+
+            //List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
+            //if (list_value.Count == 0) return;
+            //List<Task> taskList = new List<Task>();
+            //for (int i = 0; i < list_value.Count; i++)
+            //{
+            //    string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+            //    Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            //    taskList.Add(Task.Run(() =>
+            //    {
+            //        if (drawer != null)
+            //        {
+            //            if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked)
+            //            {
+            //                if (!this.drawerUI_EPD_583.DrawToEpd_UDP(drawer))
+            //                {
+            //                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                if (!this.drawerUI_EPD_583.DrawToEpd_BarCode_UDP(drawer))
+            //                {
+            //                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+            //                }
+            //            }
+            //            Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳成功!");
+            //        }
+            //    }));
+            //}
+            //Task allTask = Task.WhenAll(taskList);
+            //allTask.Wait();
+
+
         }
         private void PlC_RJ_Button_儲位管理_EPD583_寫入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1277,45 +1419,7 @@ namespace 調劑台管理系統
 
             }));
         }
-        private void PlC_RJ_Button_儲位管理_EPD583_單格亮燈_MouseDownEvent(MouseEventArgs mevent)
-        {
-            Color color = Color.Black;
-            if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_紅.Checked)
-            {
-                color = Color.Red;
-            }
-            else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_綠.Checked)
-            {
-                color = Color.Lime;
-            }
-            else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_藍.Checked)
-            {
-                color = Color.Blue;
-            }
-            else if (rJ_RatioButton_儲位管理_EPD583_單格亮燈_白.Checked)
-            {
-                color = Color.White;
-            }
-            List<int> cols = new List<int>();
-            List<int> rows = new List<int>();
-            int index = this.epD_583_Pannel.GetSelectBoxes(ref cols, ref rows);
-            if (index == 0) return;
-            epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
-            epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(epD_583_Pannel.CurrentDrawer, this.epD_583_Pannel.GetSelectBoxes(), color);
-            epD_583_Pannel.CurrentDrawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(epD_583_Pannel.CurrentDrawer, color);
-            this.drawerUI_EPD_583.Set_LED_UDP(epD_583_Pannel.CurrentDrawer);
-
-            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
-            Rectangle rectangle = DrawerUI_EPD_583.Get_Box_rect(epD_583_Pannel.CurrentDrawer, boxes[0]);
-            Console.WriteLine($"rectangle : {rectangle}");
-            DrawerUI_EPD_583.LightSensorClass lightSensorClass = DrawerUI_EPD_583.Get_LightSensorClass(rectangle);
-            Console.WriteLine($"lightSensorClass : {lightSensorClass}");
-            string index_IP = Funcion_取得LCD114索引表_index_IP(epD_583_Pannel.CurrentDrawer.IP);
-            if (index_IP.StringIsEmpty()) return;
-            StorageUI_LCD_114.UDP_READ uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
-            uDP_READ.IsSensorOn(lightSensorClass);
-
-        }
+    
         private void PlC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             string text = "";

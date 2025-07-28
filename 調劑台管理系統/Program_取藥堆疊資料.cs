@@ -2014,12 +2014,21 @@ namespace 調劑台管理系統
                 {
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
                     string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    if (藥品碼.StringIsEmpty() == false)
+                    string IP = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.IP].ObjectToString();
+                    if (藥品碼.StringIsEmpty() == false && 藥品碼 != "None")
                     {
                         Task.Run(() =>
                         {
                             Function_從SQL取得儲位到本地資料(藥品碼);
                             this.Function_儲位刷新(藥品碼);
+                        });
+                    }
+                    if (IP.StringIsEmpty() == false)
+                    {
+                        Task.Run(() =>
+                        {
+                            //Function_從SQL取得儲位到本地資料(IP);
+                            this.Function_儲位刷新_byIP(IP);
                         });
                     }
 

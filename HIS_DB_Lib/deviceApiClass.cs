@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using Basic;
 using System.Text.Json;
 using H_Pannel_lib;
+using System.Drawing;
 
 namespace HIS_DB_Lib
 {
@@ -700,6 +701,112 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_result}");
             List<DeviceBasic> deviceBasics = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
             return deviceBasics;
+        }
+
+        /// <summary>
+        /// 呼叫 API 以藥碼亮燈（只回傳是否成功）
+        /// </summary>
+        static public bool light_by_drugCodes(string API_Server, List<(string 藥碼, string 顏色, string 秒數)> lightList, string serverName = "", string serverType = "")
+        {
+            var (code, result) = light_by_drugCodes_full(API_Server, lightList, serverName, serverType);
+            return code == 200;
+        }
+        /// <summary>
+        /// 呼叫 API 以藥碼亮燈（回傳完整結果）
+        /// </summary>
+        static public (int code, string result) light_by_drugCodes_full(string API_Server, List<(string 藥碼, string 顏色, string 秒數)> lightList, string serverName = "", string serverType = "")
+        {
+            string url = $"{API_Server}/api/device/light_by_drugCodes";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
+            // 組成 ValueAry，每列為 [藥碼, 顏色, 秒數]
+            returnData.ValueAry = lightList
+                .Select(x => new List<string> { x.藥碼, x.顏色, x.秒數 }.JsonSerializationt())
+                .ToList();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "回傳為 null");
+            }
+
+            return (returnData_out.Code, returnData_out.Result);
+        }
+        /// <summary>
+        /// 呼叫 API 以 IP 清單刷新設備面板（只回傳是否成功）
+        /// </summary>
+        static public bool refresh_canvas_by_ip(string API_Server, List<string> ipList, string serverName = "", string serverType = "")
+        {
+            var (code, result) = refresh_canvas_by_ip_full(API_Server, ipList, serverName, serverType);
+            return code == 200;
+        }
+        /// <summary>
+        /// 呼叫 API 以 IP 清單刷新設備面板（回傳完整結果）
+        /// </summary>
+        static public (int code, string result) refresh_canvas_by_ip_full(string API_Server, List<string> ipList, string serverName = "", string serverType = "")
+        {
+            string url = $"{API_Server}/api/device/refresh_canvas_by_ip";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
+            // 將 IP 清單轉為 ValueAry 格式：List<string[]> → 每筆為 ["192.168.0.10"]
+            returnData.ValueAry = ipList
+                .Select(ip => new List<string> { ip }.JsonSerializationt())
+                .ToList();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "回傳為 null");
+            }
+
+            return (returnData_out.Code, returnData_out.Result);
+        }
+        /// <summary>
+        /// 呼叫 API 以藥碼刷新設備面板（只回傳是否成功）
+        /// </summary>
+        static public bool refresh_canvas_by_drugCodes(string API_Server, List<(string 藥碼, string 延遲秒數)> drugList, string serverName = "", string serverType = "")
+        {
+            var (code, result) = refresh_canvas_by_drugCodes_full(API_Server, drugList, serverName, serverType);
+            return code == 200;
+        }
+        /// <summary>
+        /// 呼叫 API 以藥碼刷新設備面板（回傳完整結果）
+        /// </summary>
+        static public (int code, string result) refresh_canvas_by_drugCodes_full(string API_Server, List<(string 藥碼, string 延遲秒數)> drugList, string serverName = "", string serverType = "")
+        {
+            string url = $"{API_Server}/api/refresh_canvas_by_drugCodes";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
+            // 組成 ValueAry 格式：每列為 ["藥碼", "延遲秒數"]
+            returnData.ValueAry = drugList
+                .Select(x => new List<string> { x.藥碼, x.延遲秒數 }.JsonSerializationt())
+                .ToList();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return (0, "回傳為 null");
+            }
+
+            return (returnData_out.Code, returnData_out.Result);
         }
 
     }
