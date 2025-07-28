@@ -1043,13 +1043,16 @@ namespace HIS_WebApi._API_AI
 
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog", UserName, Password, Port, SSLMode);
-                
+                SQLControl sQLControl_order = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
+
+
 
                 List<object[]> list_suspiciousRxLog = sQLControl.GetAllRows(null);
                 
                 List<suspiciousRxLogClass> sql_suspiciousRxLog = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 List<suspiciousRxLogClass> update_suspiciousRxLog = new List<suspiciousRxLogClass>();
-
+                List<OrderClass> update_orderClass = new List<OrderClass>();
+                order order = new order();
                 foreach (var item in sql_suspiciousRxLog)
                 {
                     if (item.開方時間.Check_Date_String() && item.加入時間.Check_Date_String() && item.調劑時間.Check_Date_String()) 
@@ -1065,14 +1068,34 @@ namespace HIS_WebApi._API_AI
                         item.開方時間 = dt_開方時間.ToDateTimeString();
                         item.加入時間 = dt_加入時間.ToDateTimeString();
                         item.調劑時間 = dt_調劑時間.ToDateTimeString();
+                        item.醫生姓名 = "鴻森智能";
+                        item.調劑人員 = "王小明";
+                        item.病歷號 = "0003345678";
+
                         update_suspiciousRxLog.Add(item);
-                    }                    
+                        returnData.ValueAry = new List<string> { item.藥袋條碼 };
+                        string result = order.POST_get_by_barcode(returnData);
+                        returnData = result.JsonDeserializet<returnData>();
+                        List<OrderClass> orderClasses = returnData.Data.ObjToClass<List<OrderClass>>();
+                        if(orderClasses.Count != 0)
+                        {
+                            foreach (var orderClass in orderClasses)
+                            {
+                                orderClass.病人姓名 = "張小美";
+                                orderClass.病歷號 = "0003345678";
+                                orderClass.醫師代碼 = "鴻森智能";
+                            }
+                            update_orderClass.AddRange(orderClasses);
+                        }
+                    }   
+                    
                 }
-                //sql_suspiciousRxLog = sql_suspiciousRxLog.Where(item => item.開方時間.StringIsEmpty())
+
                 List<object[]> update = update_suspiciousRxLog.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<object[]> update_order = update_orderClass.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (update.Count > 0) sQLControl.UpdateByDefulteExtra(null, update);
-
+                sQLControl_order.UpdateByDefulteExtra(null, update_order);
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 //returnData.Data = patientInfoClasses;

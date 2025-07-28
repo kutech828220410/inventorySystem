@@ -131,11 +131,19 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
-                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站).ToList();
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站)
+                    .GroupBy(temp => temp.床號)
+                    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
                 Dictionary<string, List<patientInfoClass>> patInfoDictBedNum = patientInfoClass.ToDictByBedNum(sql_patinfo);
-
+                List<patientInfoClass> input_patInfo_filter = new List<patientInfoClass>();
                 List<Task> tasks = new List<Task>();
-
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    List<string> ipout_床號 = input_patInfo.Select(x => x.床號).ToList();
+                    input_patInfo_filter = sql_patinfo.Where(b => ipout_床號.Contains(b.床號) == false).ToList();
+                        
+                })));
+                //List<patientInfoClass> input_patInfo_filter = sql_patinfo.Where(temp => ipout_GUID.Contains(temp.GUID) == false 　&& temp.占床狀態 == enum_bed_status_string.已佔床.GetEnumName()).ToList();
                 foreach (patientInfoClass patientInfoClass in input_patInfo)
                 {
                     tasks.Add(Task.Run(new Action(delegate
@@ -185,17 +193,21 @@ namespace HIS_WebApi
                                 patientInfoClass.調劑時間 = targetPatient.調劑時間;
                                 patientInfoClass.調劑狀態 = targetPatient.調劑狀態;
                                 patientInfoClass.覆核狀態 = targetPatient.覆核狀態;
+                                patientInfoClass.異動 = targetPatient.異動;
                                 medCart_sql_update.LockAdd(patientInfoClass);
                             }
                         }
                     })));
                 }
                 Task.WhenAll(tasks).Wait();
-
-
-
-
-
+                if (input_patInfo_filter.Count > 0)
+                {
+                    foreach (var item in input_patInfo_filter)
+                    {
+                        item.占床狀態 = enum_bed_status_string.已出院.GetEnumName();
+                        medCart_sql_update_out.LockAdd(item);
+                    }
+                }
                 List<object[]> list_medCart_add = medCart_sql_add.ClassToSQL<patientInfoClass, enum_patient_info>();
                 List<object[]> list_medCart_update = medCart_sql_update.ClassToSQL<patientInfoClass, enum_patient_info>();
                 List<object[]> list_medCart_update_out = medCart_sql_update_out.ClassToSQL<patientInfoClass, enum_patient_info>();
@@ -249,7 +261,9 @@ namespace HIS_WebApi
                 list_pat_carInfo = sQLControl_patient_info.GetRowsByBetween(null, (int)enum_patient_info.更新時間, StartTime, Endtime);
                 sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
-                List<patientInfoClass> patientInfoClasses = sql_patinfo.Where(temp => temp.護理站 == 護理站).ToList();
+                List<patientInfoClass> patientInfoClasses = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName())
+                    .GroupBy(temp => temp.床號)
+                    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
                 patientInfoClasses.Sort(new patientInfoClass.ICP_By_bedNum());
 
                 returnData.Code = 200;
@@ -4405,6 +4419,8 @@ namespace HIS_WebApi
                         DateTime dt = DateTime.Parse(item.轉床時間);
                         DateTime 新時間 = DateTime.Today.AddHours(dt.Hour).AddMinutes(dt.Minute).AddSeconds(dt.Second);
                         item.轉床時間 = 新時間.ToDateTimeString();
+                        item.病歷號 = "33445566";
+                        item.姓名 ="XXX";
                     }
                 })));
                 List<medCpoeRecClass> medCpoeRec_vaild = new List<medCpoeRecClass>();
@@ -4440,6 +4456,7 @@ namespace HIS_WebApi
                         cpoeRec.開始時間 = 新開始時間.ToDateTimeString();
                         cpoeRec.結束時間 = 新結束時間.ToDateTimeString();
                         cpoeRec.更新時間 = 新更新時間.ToDateTimeString();
+                        cpoeRec.操作人員 = "鴻森智能";
 
                     }
                 })));
