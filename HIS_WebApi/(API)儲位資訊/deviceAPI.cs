@@ -2301,6 +2301,9 @@ namespace HIS_WebApi
 
                 string device_Server = sys_serverSettingClasses[0].Server;
                 string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 List<string[]> valueAry = returnData.ValueAry.Select(v => v.JsonDeserializet<string[]>()).ToList();
@@ -2328,7 +2331,7 @@ namespace HIS_WebApi
                 }
                 timer.Tick("轉換為SQL資料完成");
 
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
                 timer.Tick("SQL寫入完成");
 
@@ -2394,6 +2397,9 @@ namespace HIS_WebApi
 
                 string device_Server = sys_serverSettingClasses[0].Server;
                 string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -2418,7 +2424,7 @@ namespace HIS_WebApi
                 }
                 timer.Tick("轉換為SQL資料完成");
 
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
                 timer.Tick("SQL寫入完成");
 
@@ -2483,6 +2489,9 @@ namespace HIS_WebApi
 
                 string device_Server = sys_serverSettingClasses[0].Server;
                 string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 List<string[]> inputList = returnData.ValueAry.Select(v => v.JsonDeserializet<string[]>()).ToList();
@@ -2509,7 +2518,7 @@ namespace HIS_WebApi
                 }
                 timer.Tick("轉換為SQL資料完成");
 
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
                 timer.Tick("SQL寫入完成");
 
