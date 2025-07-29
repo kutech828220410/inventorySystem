@@ -27,6 +27,14 @@ namespace HIS_DB_Lib
         下單日期,
         請購發票年月
     }
+    public enum enum_出貨單匯入
+    {
+        請購單號,
+        品名,
+        出貨數量,
+        批號,
+        效期
+    }
 
 
     [EnumDescription("inspection_creat")]

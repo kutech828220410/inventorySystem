@@ -1,24 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using SQLUI;
-using Basic;
-using System.Text;
-using System.Text.Json;
-using System.Text.Encodings.Web;
-using System.Text.Json.Serialization;
-using System.Configuration;
-using MyOffice;
-using System.IO;
-using MyUI;
+﻿using Basic;
+using Google.Protobuf.WellKnownTypes;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MyOffice;
+using MySql.Data.MySqlClient;
+using MyUI;
+using SQLUI;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace HIS_WebApi
 {
@@ -1766,93 +1770,195 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
-        [Route("sub_content_add")]
-        [HttpPost]
+        //[Route("sub_content_add")]
+        //[HttpPost]
+        //public string sub_content_add([FromBody] returnData returnData)
+        //{
+        //    MyTimer myTimer = new MyTimer();
+        //    myTimer.StartTickTime(50000);
+
+        //    List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+        //    sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+        //    if (sys_serverSettingClasses.Count == 0)
+        //    {
+        //        returnData.Code = -200;
+        //        returnData.Result = $"找無Server資料!";
+        //        return returnData.JsonSerializationt();
+        //    }
+        //    string Server = sys_serverSettingClasses[0].Server;
+        //    string DB = sys_serverSettingClasses[0].DBName;
+        //    string UserName = sys_serverSettingClasses[0].User;
+        //    string Password = sys_serverSettingClasses[0].Password;
+        //    uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+        //    SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
+        //    SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+        //    SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+        //    List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
+        //    List<object[]> list_inspection_content_buf = new List<object[]>();
+        //    List<object[]> list_add = new List<object[]>();
+        //    inspectionClass.sub_content sub_content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
+        //    string Master_GUID = sub_content.Master_GUID;
+        //    list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.GUID, Master_GUID);
+        //    if (list_inspection_content_buf.Count == 0)
+        //    {
+        //        returnData.Code = -5;
+        //        returnData.TimeTaken = myTimer.ToString();
+        //        returnData.Result = $"找無資料!";
+        //        returnData.Method = "sub_content_add";
+        //        returnData.Data = null;
+        //        return returnData.JsonSerializationt();
+        //    }
+
+        //    object[] value = new object[new enum_驗收明細().GetLength()];
+        //    value[(int)enum_驗收明細.GUID] = Guid.NewGuid().ToString();
+        //    value[(int)enum_驗收明細.藥品碼] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品碼];
+        //    value[(int)enum_驗收明細.料號] = list_inspection_content_buf[0][(int)enum_驗收內容.料號];
+        //    value[(int)enum_驗收明細.驗收單號] = list_inspection_content_buf[0][(int)enum_驗收內容.驗收單號];
+        //    value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼1];
+        //    value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼2];
+
+        //    value[(int)enum_驗收明細.Master_GUID] = Master_GUID;
+        //    value[(int)enum_驗收明細.效期] = sub_content.效期;
+        //    value[(int)enum_驗收明細.批號] = sub_content.批號;
+        //    value[(int)enum_驗收明細.實收數量] = sub_content.實收數量;
+        //    value[(int)enum_驗收明細.操作人] = sub_content.操作人;
+        //    value[(int)enum_驗收明細.操作時間] = DateTime.Now.ToDateTimeString();
+        //    value[(int)enum_驗收明細.狀態] = "未鎖定";
+
+        //    list_add.Add(value);
+
+        //    sQLControl_inspection_sub_content.AddRows(null, list_add);
+
+        //    inspectionClass.content content = new inspectionClass.content();
+        //    content.GUID = Master_GUID;
+        //    returnData.Data = content;
+        //    string json_content = content_get_by_content_GUID(returnData);
+        //    returnData = json_content.JsonDeserializet<returnData>();
+        //    if (returnData == null)
+        //    {
+        //        returnData.Code = -5;
+        //        returnData.TimeTaken = myTimer.ToString();
+        //        returnData.Result = $"搜尋content資料錯誤!";
+        //        returnData.Method = "sub_content_add";
+        //        returnData.Data = null;
+        //        return returnData.JsonSerializationt();
+        //    }
+        //    if (returnData.Code < 0)
+        //    {
+        //        returnData.TimeTaken = myTimer.ToString();
+        //        returnData.Method = "sub_content_add";
+        //        returnData.Data = null;
+        //        return returnData.JsonSerializationt();
+        //    }
+
+        //    returnData.Code = 200;
+        //    returnData.TimeTaken = myTimer.ToString();
+        //    returnData.Result = $"新增批效成功!";
+        //    returnData.Method = "sub_content_add";
+        //    return returnData.JsonSerializationt();
+        //}
+        /// <summary>
+        /// 新增單筆驗收藥品中的明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///       "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0",
+        ///       "OP": "測試者",
+        ///       "END_QTY": "56"
+        ///    }
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :sub_content資料結構 </returns>
+        [HttpPost("sub_content_add")]
         public string sub_content_add([FromBody] returnData returnData)
         {
-            MyTimer myTimer = new MyTimer();
-            myTimer.StartTickTime(50000);
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {    
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"Data資料不可為空";
+                    return returnData.JsonSerializationt();
+                }
+                List<inspectionClass.sub_content> sub_contents = returnData.Data.ObjToClass< List < inspectionClass.sub_content >> ();
+                if(sub_contents == null)
+                {
+                    inspectionClass.sub_content sub_Content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
+                    if(sub_Content != null) sub_contents = new List<inspectionClass.sub_content> { sub_Content };
+                }
+                if (sub_contents == null)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"Data資料應為[inspectionClass.sub_content]";
+                    return returnData.JsonSerializationt();
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+                List<string> GUIDs = sub_contents.Select(x => x.Master_GUID).Distinct().ToList();
+                string inClause = string.Join(",", GUIDs.Select(g => $"'{g}'"));  // 加上單引號包起來
+                string command = $"SELECT * FROM {DB}.inspection_content WHERE GUID IN ({inClause});";
+                DataTable dataTable_inspection_content = sQLControl_inspection_content.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_inspection_content = dataTable_inspection_content.DataTableToRowList();
+                if (list_inspection_content.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"找無資料!";
+                    returnData.Method = "sub_contents_add";
+                    returnData.Data = null;
+                    return returnData.JsonSerializationt();
+                }
+                List<object[]> list_add = new List<object[]>();
+                foreach (var item in sub_contents)
+                {
+                    List<object[]> list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.GUID, item.Master_GUID);
+                    object[] value = new object[new enum_驗收明細().GetLength()];
+                    value[(int)enum_驗收明細.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_驗收明細.藥品碼] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品碼];
+                    value[(int)enum_驗收明細.料號] = list_inspection_content_buf[0][(int)enum_驗收內容.料號];
+                    value[(int)enum_驗收明細.驗收單號] = list_inspection_content_buf[0][(int)enum_驗收內容.驗收單號];
+                    value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼1];
+                    value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼2];
 
-            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-            if (sys_serverSettingClasses.Count == 0)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"找無Server資料!";
-                return returnData.JsonSerializationt();
-            }
-            string Server = sys_serverSettingClasses[0].Server;
-            string DB = sys_serverSettingClasses[0].DBName;
-            string UserName = sys_serverSettingClasses[0].User;
-            string Password = sys_serverSettingClasses[0].Password;
-            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                    value[(int)enum_驗收明細.Master_GUID] = item.Master_GUID;
+                    value[(int)enum_驗收明細.效期] = item.效期;
+                    value[(int)enum_驗收明細.批號] = item.批號;
+                    value[(int)enum_驗收明細.實收數量] = item.實收數量;
+                    value[(int)enum_驗收明細.操作人] = item.操作人;
+                    value[(int)enum_驗收明細.操作時間] = DateTime.Now.ToDateTimeString();
+                    value[(int)enum_驗收明細.狀態] = "未鎖定";
 
-            SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
-            List<object[]> list_inspection_content_buf = new List<object[]>();
-            List<object[]> list_add = new List<object[]>();
-            inspectionClass.sub_content sub_content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
-            string Master_GUID = sub_content.Master_GUID;
-            list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.GUID, Master_GUID);
-            if (list_inspection_content_buf.Count == 0)
-            {
-                returnData.Code = -5;
-                returnData.TimeTaken = myTimer.ToString();
-                returnData.Result = $"找無資料!";
+                    list_add.Add(value);
+                }
+                sQLControl_inspection_sub_content.AddRows(null, list_add);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"新增批效成功!";
                 returnData.Method = "sub_content_add";
-                returnData.Data = null;
-                return returnData.JsonSerializationt();
+                return returnData.JsonSerializationt(true);
             }
-
-            object[] value = new object[new enum_驗收明細().GetLength()];
-            value[(int)enum_驗收明細.GUID] = Guid.NewGuid().ToString();
-            value[(int)enum_驗收明細.藥品碼] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品碼];
-            value[(int)enum_驗收明細.料號] = list_inspection_content_buf[0][(int)enum_驗收內容.料號];
-            value[(int)enum_驗收明細.驗收單號] = list_inspection_content_buf[0][(int)enum_驗收內容.驗收單號];
-            value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼1];
-            value[(int)enum_驗收明細.藥品條碼1] = list_inspection_content_buf[0][(int)enum_驗收內容.藥品條碼2];
-
-            value[(int)enum_驗收明細.Master_GUID] = Master_GUID;
-            value[(int)enum_驗收明細.效期] = sub_content.效期;
-            value[(int)enum_驗收明細.批號] = sub_content.批號;
-            value[(int)enum_驗收明細.實收數量] = sub_content.實收數量;
-            value[(int)enum_驗收明細.操作人] = sub_content.操作人;
-            value[(int)enum_驗收明細.操作時間] = DateTime.Now.ToDateTimeString();
-            value[(int)enum_驗收明細.狀態] = "未鎖定";
-
-            list_add.Add(value);
-
-            sQLControl_inspection_sub_content.AddRows(null, list_add);
-
-            inspectionClass.content content = new inspectionClass.content();
-            content.GUID = Master_GUID;
-            returnData.Data = content;
-            string json_content = content_get_by_content_GUID(returnData);
-            returnData = json_content.JsonDeserializet<returnData>();
-            if (returnData == null)
+            catch(Exception ex)
             {
-                returnData.Code = -5;
-                returnData.TimeTaken = myTimer.ToString();
-                returnData.Result = $"搜尋content資料錯誤!";
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"{ex.Message}";
                 returnData.Method = "sub_content_add";
-                returnData.Data = null;
-                return returnData.JsonSerializationt();
-            }
-            if (returnData.Code < 0)
-            {
-                returnData.TimeTaken = myTimer.ToString();
-                returnData.Method = "sub_content_add";
-                returnData.Data = null;
-                return returnData.JsonSerializationt();
-            }
-
-            returnData.Code = 200;
-            returnData.TimeTaken = myTimer.ToString();
-            returnData.Result = $"新增批效成功!";
-            returnData.Method = "sub_content_add";
-            return returnData.JsonSerializationt();
+                return returnData.JsonSerializationt(true);
+            }          
+            
         }
         /// <summary>
         /// 更新單筆驗收藥品中的明細
@@ -2248,7 +2354,104 @@ namespace HIS_WebApi
 
             return creat_add(returnData);
         }
+        /// <summary>
+        /// 上傳Excel表單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[file] : 上傳xls/xlsx <br/> 
+        ///  1.[IC_SN] : 驗收單號 <br/> 
+        ///  2.[CT] : 操作者 <br/> 
+        /// </remarks>
+        /// <returns>Excel</returns>
+        [HttpPost("excel_upload_sub_content")]
+        public async Task<string> excel([FromForm] IFormFile file, [FromForm] string IC_SN, [FromForm] string CT)
+        {
+            returnData returnData = new returnData();
+            var formFile = Request.Form.Files.FirstOrDefault();
 
+            if (formFile == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = "文件不可為空";
+                return returnData.JsonSerializationt(true);
+            }
+            if (IC_SN.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "IC_SN(驗收單號)不可為空";
+                return returnData.JsonSerializationt(true);
+            }
+            if (CT.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = "CT(操作人)不可為空";
+                return returnData.JsonSerializationt(true);
+            }
+            List<Task> tasks = new List<Task>();
+            inspectionClass.creat creat = new inspectionClass.creat();
+            tasks.Add(Task.Run(new Action(delegate 
+            {
+                returnData.Value = IC_SN;
+                string create_string = creat_get_by_IC_SN(returnData);
+                returnData = create_string.JsonDeserializet<returnData>();
+                creat = returnData.Data.ObjToClass<List<inspectionClass.creat>>()[0];
+            })));
+
+            string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            List<object[]> list_value = new List<object[]>();
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(memoryStream);
+                System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+                dt = dt.ReorderTable(new enum_出貨單匯入());
+                if (dt == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "上傳文件表頭應為請購單號、品名、出貨數量、效期!";
+                    return returnData.JsonSerializationt(true);
+                }
+                list_value = dt.DataTableToRowList();
+            }
+            if (list_value.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "無傳入資料!";
+                return returnData.JsonSerializationt(true);
+            }
+
+            Task.WhenAll(tasks).Wait();
+            tasks.Clear();
+
+            if (creat == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"查無此驗收單號{IC_SN}";
+                return returnData.JsonSerializationt(true);
+            }
+            List<inspectionClass.content> content = creat.Contents;           
+            
+            List<inspectionClass.sub_content> list_sub_content = new List<inspectionClass.sub_content>();
+            foreach(var item in list_value)
+            {
+                
+                string 請購單號 = item[(int)enum_出貨單匯入.請購單號].ObjectToString();
+                inspectionClass.content content_buff = content.Where(item => item.請購單號 == 請購單號).FirstOrDefault();
+                if (content_buff == null) continue;
+                inspectionClass.sub_content sub_content = new inspectionClass.sub_content();
+                sub_content.Master_GUID = content_buff.GUID;
+                string 效期 = EditExpirydate(item[(int)enum_出貨單匯入.效期].ObjectToString());
+                sub_content.效期 = 效期;
+                sub_content.批號 = item[(int)enum_出貨單匯入.批號].ObjectToString();
+                sub_content.實收數量 = content_buff.應收數量;
+                sub_content.操作人 = CT;               
+                list_sub_content.Add(sub_content);                
+            }
+            returnData.Data = list_sub_content;
+            string reslut = sub_content_add(returnData);       
+            return reslut;
+        }
 
         private returnData Function_Get_inspection_creat(sys_serverSettingClass sys_serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat)
         {
@@ -2423,5 +2626,24 @@ namespace HIS_WebApi
                 return x.操作時間.CompareTo(y.操作時間);
             }
         }
+        private string EditExpirydate(string 效期)
+        {
+            if (Regex.IsMatch(效期, @"^\d{3}/\d{2}/\d{2}$")) // 範例：025/08/16
+            {
+                效期 = "2" + 效期; // 轉為 2025/08/16
+            }
+            string[] formats = { "MM/dd/yyyy", "yyyy-MM-dd", "dd-MM-yyyy", "M/d/yyyy", "yyyy.MM.dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd", "yyyyMMdd" }; // 可擴展格式
+
+            if (DateTime.TryParseExact(效期, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            {
+                效期 = date.ToDateTimeString();
+            }
+            else
+            {
+                效期 = DateTime.MinValue.ToDateTimeString();
+            }
+            return 效期;
+        }
+
     }
 }
