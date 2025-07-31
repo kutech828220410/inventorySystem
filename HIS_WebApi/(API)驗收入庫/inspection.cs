@@ -1892,9 +1892,10 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 List<inspectionClass.sub_content> sub_contents = returnData.Data.ObjToClass< List < inspectionClass.sub_content >> ();
-                if(sub_contents == null)
+                inspectionClass.sub_content sub_Content = new inspectionClass.sub_content();
+                if (sub_contents == null)
                 {
-                    inspectionClass.sub_content sub_Content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
+                    sub_Content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
                     if(sub_Content != null) sub_contents = new List<inspectionClass.sub_content> { sub_Content };
                 }
                 if (sub_contents == null)
@@ -1944,6 +1945,30 @@ namespace HIS_WebApi
                     list_add.Add(value);
                 }
                 sQLControl_inspection_sub_content.AddRows(null, list_add);
+                if(GUIDs.Count == 1)
+                {
+                    inspectionClass.content content = new inspectionClass.content();
+                    content.GUID = sub_Content.Master_GUID;
+                    returnData.Data = content;
+                    string json_content = content_get_by_content_GUID(returnData);
+                    returnData = json_content.JsonDeserializet<returnData>();
+                    if (returnData == null)
+                    {
+                        returnData.Code = -5;
+                        returnData.TimeTaken = myTimerBasic.ToString();
+                        returnData.Result = $"搜尋content資料錯誤!";
+                        returnData.Method = "sub_content_add";
+                        returnData.Data = null;
+                        return returnData.JsonSerializationt();
+                    }
+                    if (returnData.Code < 0)
+                    {
+                        returnData.TimeTaken = myTimerBasic.ToString();
+                        returnData.Method = "sub_content_add";
+                        returnData.Data = null;
+                        return returnData.JsonSerializationt();
+                    } 
+                }
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Result = $"新增批效成功!";
