@@ -65,8 +65,10 @@ namespace 調劑台管理系統
             }
             this.list_醫令資料_buf = list_醫令資料;
             this._sqL_DataGridView_醫令資料 = Main_Form._sqL_DataGridView_醫令資料;
-            //InitializeComponent();
+            this.LoadFinishedEvent += Dialog_醫令退藥_LoadFinishedEvent;
         }
+
+    
 
         private void Dialog_醫令退藥_Load(object sender, EventArgs e)
         {
@@ -95,8 +97,15 @@ namespace 調劑台管理系統
 
             rJ_Button_確認送出.MouseDownEvent += RJ_Button_確認送出_MouseDownEvent;
         }
+        private void Dialog_醫令退藥_LoadFinishedEvent(EventArgs e)
+        {
+            if (this.list_醫令資料_buf.Count == 1)
+            {
+                this.sqL_DataGridView_醫令資料.SetSelectRow(0);
+                RJ_Button_選擇_MouseDownEvent(null);
+            }
+        }
 
-  
 
         private void RJ_Button_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -138,14 +147,21 @@ namespace 調劑台管理系統
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"{stockClass.Validity_period}({stockClass.Lot_number})");
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             double num = dialog_NumPannel.Value;
-            if(實調量.StringToDouble() + num > 0)
+            if (Main_Form.PLC_Device_退藥不檢查是否掃碼領藥過.Bool == false)
             {
-                MyMessageBox.ShowDialog("退藥數量不可大於實際調劑量!");
-                return;
+                if (實調量.StringToDouble() + num > 0)
+                {
+                    MyMessageBox.ShowDialog("退藥數量不可大於實際調劑量!");
+                    return;
+                }
             }
             value[(int)enum_醫囑資料.備註] = $"[效期]:{stockClass.Validity_period},[批號]:{stockClass.Lot_number},[數量]:{num}";
             if (num == 0) value[(int)enum_醫囑資料.備註] = "";
             this.sqL_DataGridView_醫令資料.ReplaceExtra(value, true);
+            if(list_醫令資料_buf.Count == 1)
+            {
+                RJ_Button_確認送出_MouseDownEvent(null);
+            }
         }
         private void SqL_DataGridView_醫令資料_DataGridRefreshEvent()
         {
