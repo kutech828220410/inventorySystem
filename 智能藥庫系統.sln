@@ -22,9 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Call_Light_System", "Hospital_Call_Light_System\Hospital_Call_Light_System.csproj", "{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "batch", "batch", "{A26FB20E-1042-41C8-BA46-0CB7E82757E8}"
-	ProjectSection(SolutionItems) = preProject
-		HIS_WebApi\lockerAccess.cs = HIS_WebApi\lockerAccess.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "藥庫", "藥庫", "{178BB82E-8C58-4627-B537-1E5457A7AB7C}"
 EndProject
@@ -50,9 +47,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_medpic_download_to_ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_StackDataAccounting", "batch_StackDataAccounting\batch_StackDataAccounting.csproj", "{1EE88150-F781-470C-BFFA-3902125C3064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能RFID燒錄系統", "智能RFID燒錄系統\智能RFID燒錄系統.csproj", "{E223D52A-5547-4EFB-8D13-258DC841E1D9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "智能RFID燒錄系統", "智能RFID燒錄系統\智能RFID燒錄系統.csproj", "{E223D52A-5547-4EFB-8D13-258DC841E1D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_MQTT_Server", "batch_MQTT_Server\batch_MQTT_Server.csproj", "{78F6D9F8-3160-4BEB-B716-25E26EEE8C99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,14 +127,18 @@ Global
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE88150-F781-470C-BFFA-3902125C3064}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E223D52A-5547-4EFB-8D13-258DC841E1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F6D9F8-3160-4BEB-B716-25E26EEE8C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F6D9F8-3160-4BEB-B716-25E26EEE8C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F6D9F8-3160-4BEB-B716-25E26EEE8C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F6D9F8-3160-4BEB-B716-25E26EEE8C99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +152,7 @@ Global
 		{550C4B14-6906-429A-AC55-FAE5BF6FBD0A} = {A7E77C33-031E-4713-9B8B-A1972553EE94}
 		{D052F6A1-7A59-4351-B2CC-F72D1CE81809} = {E617E12B-9021-4311-8DAA-E6E3CFE5047F}
 		{1EE88150-F781-470C-BFFA-3902125C3064} = {BED408C5-A664-4417-812E-6486B776D33E}
+		{78F6D9F8-3160-4BEB-B716-25E26EEE8C99} = {A26FB20E-1042-41C8-BA46-0CB7E82757E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B921A9E-6909-4DAB-8E4C-5F9D26A5CEDE}

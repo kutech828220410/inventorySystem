@@ -123,7 +123,15 @@ namespace HIS_WebApi
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 sys_serverSettingClass sys_serverSettingClass = sys_serverSettingClasses.MyFind(value, enum_sys_serverSetting_Type.調劑台, enum_sys_serverSetting_調劑台.儲位資料);
-                if(sys_serverSettingClass == null)
+                string IP = sys_serverSettingClass.Server;
+                int port = sys_serverSettingClass.Port.StringToInt32();
+                if (Basic.Net.Ping(IP, port, 300) == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"伺服器無回應,{IP}";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (sys_serverSettingClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無伺服器資料";
@@ -2246,65 +2254,291 @@ namespace HIS_WebApi
 
             }
         }
-
-        [Route("light_web")]
+        /// <summary>
+        /// 以藥碼對應設備進行亮燈
+        /// </summary>
+        /// <remarks>
+        /// 請求 JSON 範例如下：
+        /// <code>
+        /// {
+        ///   "ServerName": "A6",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     ["藥碼", "顏色", "亮燈時間(s)"],
+        ///     ["A123", "#FF0000", "5"],
+        ///     ["B456", "#00FF00", "3"]
+        ///   ]
+        /// }
+        /// </code>
+        /// 系統將根據藥碼查詢對應的設備 IP，自動進行亮燈處理。
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構，包含 ServerName、ServerType 與 ValueAry</param>
+        /// <returns>處理結果 JSON 字串，包含回應代碼、訊息與耗時</returns>
+        [Route("light_by_drugCodes")]
         [HttpPost]
-        public string POST_light_web(returnData returnData)
+        public string light_by_drugCodes(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            returnData.Method = "light_web";
+            returnData.Method = "light_by_deviceBasics";
+            TimeLogHelper timer = new TimeLogHelper();
+
             try
             {
+                timer.Tick("啟動");
                 List<object[]> list_add = new List<object[]>();
+
                 List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                timer.Tick("取得Server設定");
+
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                 if (sys_serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
+                    returnData.Result = $"找無Server資料!\n⏱ {timer.GetResult()}";
                     return returnData.JsonSerializationt();
                 }
+
                 string device_Server = sys_serverSettingClasses[0].Server;
                 string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
 
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                Color color = returnData.Value.ToColor();
-                string json_in = returnData.Data.JsonSerializationt();
-                List<DeviceBasic> deviceBasics = json_in.JsonDeserializet<List<DeviceBasic>>();
-                for (int i = 0; i < deviceBasics.Count; i++)
+                List<string[]> valueAry = returnData.ValueAry.Select(v => v.JsonDeserializet<string[]>()).ToList();
+                timer.Tick("資料解析完成");
+
+                foreach (var item in valueAry)
                 {
-                    string IP = deviceBasics[i].IP;
+                    if (item.Length < 3) continue;
+
+                    string code = item[0];
+                    string colorStr = item[1];
+                    string seconds = item[2];
+
+                    Color color = colorStr.ToColor();
+
                     object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
                     value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = code;
                     value[(int)enum_取藥堆疊母資料.顏色] = color.ToColorString();
-                    value[(int)enum_取藥堆疊母資料.IP] = IP;
-                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
-                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新亮燈";
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "儲位亮燈";
+                    value[(int)enum_取藥堆疊母資料.總異動量] = seconds;
+                    value[(int)enum_取藥堆疊母資料.狀態] = "None";
+                    value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
                     list_add.Add(value);
                 }
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                timer.Tick("轉換為SQL資料完成");
+
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+                timer.Tick("SQL寫入完成");
 
                 returnData.Code = 200;
-                returnData.Result = $"設備更新亮燈完成!";
+                returnData.Result = $"設備更新亮燈完成！共更新 {list_add.Count} 筆\n⏱ {timer.GetResult()} (Total: {timer.Total})";
                 returnData.TimeTaken = myTimer.ToString();
                 return returnData.JsonSerializationt();
-
             }
             catch (Exception e)
             {
+                timer.Tick("例外處理");
                 returnData.Code = -200;
-                returnData.Result = $"{e.Message}";
+                returnData.Result = $"{e.Message}\n⏱ {timer.GetResult()} (Total: {timer.Total})";
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Data = null;
                 return returnData.JsonSerializationt(true);
             }
-            finally
-            {
+        }
+        /// <summary>
+        /// 以 IP 清單進行面板刷新
+        /// </summary>
+        /// <remarks>
+        /// 請求 JSON 範例如下：
+        /// <code>
+        /// {
+        ///   "ServerName": "A6",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     ["192.168.0.101"],
+        ///     ["192.168.0.102"]
+        ///   ]
+        /// }
+        /// </code>
+        /// 系統會根據傳入的 IP 清單，建立對應的面板刷新資料。
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構，包含 ServerName、ServerType 與 IP 陣列</param>
+        /// <returns>JSON 回傳字串，包含代碼、訊息與耗時</returns>
+        [Route("refresh_canvas_by_ip")]
+        [HttpPost]
+        public string refresh_canvas_by_ip(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "refresh_canvas_by_ip";
+            TimeLogHelper timer = new TimeLogHelper();
 
+            try
+            {
+                timer.Tick("啟動");
+
+                List<object[]> list_add = new List<object[]>();
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                timer.Tick("取得Server設定");
+
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!\n⏱ {timer.GetResult()}";
+                    return returnData.JsonSerializationt();
+                }
+
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
+
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                // 從 ValueAry 取得 IP 列表
+                List<string[]> ipList = returnData.ValueAry.Select(v => v.JsonDeserializet<string[]>()).ToList();
+                timer.Tick("資料解析完成");
+
+                foreach (var item in ipList)
+                {
+                    if (item.Length < 1) continue;
+
+                    string ip = item[0];
+                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.IP] = ip;
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = "None";
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "刷新面板";
+                    value[(int)enum_取藥堆疊母資料.狀態] = "None";
+                    value[(int)enum_取藥堆疊母資料.總異動量] = "1";
+                    value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
+                    list_add.Add(value);
+                }
+                timer.Tick("轉換為SQL資料完成");
+
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
+                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+                timer.Tick("SQL寫入完成");
+
+                returnData.Code = 200;
+                returnData.Result = $"設備刷新上傳完成！共更新 {list_add.Count} 筆\n⏱ {timer.GetResult()} (Total: {timer.Total})";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                timer.Tick("例外處理");
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}\n⏱ {timer.GetResult()} (Total: {timer.Total})";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 以藥碼清單進行面板刷新
+        /// </summary>
+        /// <remarks>
+        /// 請求 JSON 範例如下：
+        /// <code>
+        /// {
+        ///   "ServerName": "A6",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     ["A123", "2"],
+        ///     ["B456", "0"]
+        ///   ]
+        /// }
+        /// </code>
+        /// 系統會根據傳入藥碼查詢設備 IP，並寫入刷新資料，延遲時間以秒為單位。
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構，包含藥碼與延遲秒數</param>
+        /// <returns>JSON 回傳字串，包含代碼、訊息與耗時</returns>
+        [Route("refresh_canvas_by_drugCodes")]
+        [HttpPost]
+        public string refresh_canvas_by_drugCodes(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "refresh_canvas_by_drugCodes";
+            TimeLogHelper timer = new TimeLogHelper();
+
+            try
+            {
+                timer.Tick("啟動");
+
+                List<object[]> list_add = new List<object[]>();
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                timer.Tick("取得Server設定");
+
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!\n⏱ {timer.GetResult()}";
+                    return returnData.JsonSerializationt();
+                }
+
+                string device_Server = sys_serverSettingClasses[0].Server;
+                string device_DB = sys_serverSettingClasses[0].DBName;
+                string port = sys_serverSettingClasses[0].Port;
+                string username = sys_serverSettingClasses[0].User;
+                string pwd = sys_serverSettingClasses[0].Password;
+
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                List<string[]> inputList = returnData.ValueAry.Select(v => v.JsonDeserializet<string[]>()).ToList();
+                timer.Tick("資料解析完成");
+
+                foreach (var item in inputList)
+                {
+                    if (item.Length < 1) continue;
+
+                    string drugCode = item[0];
+                    string delaySec = item.Length >= 2 ? item[1] : "0";
+
+
+
+                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = drugCode;
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "刷新面板";
+                    value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
+                    value[(int)enum_取藥堆疊母資料.狀態] = "None";
+                    value[(int)enum_取藥堆疊母資料.總異動量] = delaySec; // 儲存延遲秒數
+
+                    list_add.Add(value);
+                }
+                timer.Tick("轉換為SQL資料完成");
+
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", username, pwd, port.StringToUInt32(), SSLMode);
+                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+                timer.Tick("SQL寫入完成");
+
+                returnData.Code = 200;
+                returnData.Result = $"面板刷新資料上傳完成！共更新 {list_add.Count} 筆\n⏱ {timer.GetResult()} (Total: {timer.Total})";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                timer.Tick("例外處理");
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}\n⏱ {timer.GetResult()} (Total: {timer.Total})";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
+
         [Route("light")]
         [HttpPost]
         public string POST_light(returnData returnData)
@@ -2385,63 +2619,7 @@ namespace HIS_WebApi
             }
         }
 
-        [Route("refresh_canvas")]
-        [HttpPost]
-        public string POST_refresh_canvas(returnData returnData)
-        {
-            MyTimer myTimer = new MyTimer();
-            myTimer.StartTickTime(50000);
-            returnData.Method = "refresh_canvas";
-            try
-            {
-                List<object[]> list_add = new List<object[]>();
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                string device_Server = sys_serverSettingClasses[0].Server;
-                string device_DB = sys_serverSettingClasses[0].DBName;
-
-                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                Color color = returnData.Value.ToColor();
-                string json_in = returnData.Data.JsonSerializationt();
-                List<DeviceBasic> deviceBasics = json_in.JsonDeserializet<List<DeviceBasic>>();
-                for (int i = 0; i < deviceBasics.Count; i++)
-                {
-                    string IP = deviceBasics[i].IP;
-                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
-                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
-                    value[(int)enum_取藥堆疊母資料.IP] = IP;
-                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
-                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新面板";
-                    list_add.Add(value);
-                }
-                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
-
-                returnData.Code = 200;
-                returnData.Result = $"設備刷新上傳完成!";
-                returnData.TimeTaken = myTimer.ToString();
-                return returnData.JsonSerializationt();
-
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Result = $"{e.Message}";
-                returnData.TimeTaken = myTimer.ToString();
-                returnData.Data = null;
-                return returnData.JsonSerializationt(true);
-            }
-            finally
-            {
-
-            }
-        }
+       
 
         [Route("sort_by_ip")]
         [HttpPost]

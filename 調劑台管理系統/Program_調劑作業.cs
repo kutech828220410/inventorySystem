@@ -101,7 +101,7 @@ namespace 調劑台管理系統
 
             uC_調劑作業_TypeA_1.調劑台名稱 = 領藥台_01名稱;
             uC_調劑作業_TypeA_1.PLC_Device_已登入 = new PLC_Device(PLC_Device_領藥台_01_已登入.GetAdress());
-            uC_調劑作業_TypeA_1.PLC_Device_單醫令模式 = new PLC_Device(PLC_Device_領藥台_01_單醫令模式.GetAdress());
+            uC_調劑作業_TypeA_1.PLC_Device_單醫令模式 = PLC_Device_領藥台_01_單醫令模式;
             uC_調劑作業_TypeA_1.Init(0);
 
 
@@ -310,7 +310,7 @@ namespace 調劑台管理系統
             Dialog_使用者登入.myTimerBasic_覆核完成.StartTickTime(1);
             this.plC_RJ_Button_指紋登入.MouseDownEvent += PlC_RJ_Button_指紋登入_MouseDownEvent;
             this.plC_RJ_Button_手輸醫令.MouseDownEvent += PlC_RJ_Button_手輸醫令_MouseDownEvent;
-            this.plC_RJ_Button_條碼輸入.MouseDownEvent += PlC_RJ_Button_條碼輸入_MouseDownEvent;
+            this.plC_RJ_Button_藥單條碼輸入.MouseDownEvent += PlC_RJ_Button_條碼輸入_MouseDownEvent;
             this.plC_RJ_Button_醫令檢索.MouseDownEvent += PlC_RJ_Button_醫令檢索_MouseDownEvent;
             this.plC_RJ_Button_藥品調入.MouseDownEvent += PlC_RJ_Button_藥品調入_MouseDownEvent;
             this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;

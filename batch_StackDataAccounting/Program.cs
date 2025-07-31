@@ -1999,6 +1999,55 @@ namespace batch_StackDataAccounting
 
         }
 
+        static public void Function_儲位刷新_byIP(string IP)
+        {
+            List<string> list_lock_IP = new List<string>();
+            Function_儲位刷新_byIP(IP, ref list_lock_IP);
+        }
+        static public void Function_儲位刷新_byIP(string IP, ref List<string> list_lock_IP)
+        {
+            object device = Fucnction_從本地資料取得儲位(IP);
+            List<Task> taskList = new List<Task>();
+            List<string> list_IP = new List<string>();
+            List<string> list_IP_buf = new List<string>();
+
+            if (device != null)
+            {
+                if (device is Storage)
+                {
+                    Storage storage = device as Storage;
+                    if (storage != null)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                            storage = List_EPD266_雲端資料.SortByIP(IP);
+                            storageUI_EPD_266.DrawToEpd_UDP(storage);
+
+                        }));
+
+                        list_IP.Add(IP);
+                    }
+                }
+                else if (device is Drawer)
+                {
+                    Drawer drawer = device as Drawer;
+                    if (drawer != null)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                            drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            drawerUI_EPD_583.DrawToEpd_UDP(drawer);
+                        }));
+                        list_IP.Add(IP);
+                    }
+                }
+
+
+                Task.WhenAll(taskList).Wait();
+            }
+
+        }
+
         static public void Function_儲位亮燈_Ex(LightOn lightOn)
         {
             string 藥品碼 = lightOn.藥品碼;
@@ -3013,18 +3062,31 @@ namespace batch_StackDataAccounting
                 {
                     list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
                     string 藥品碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    string IP = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.IP].ObjectToString();
+
                     if (藥品碼.StringIsEmpty() == false)
                     {
-                        Task.Run(() =>
+                        if (藥品碼.StringIsEmpty() == false && 藥品碼 != "None")
                         {
-                            Function_從SQL取得儲位到本地資料(藥品碼);
-                            Function_儲位刷新(藥品碼);
-                        });
+                            Task.Run(() =>
+                            {
+                                Function_從SQL取得儲位到本地資料(藥品碼);
+                                Function_儲位刷新(藥品碼);
+                            });
+                        }
+                        if (IP.StringIsEmpty() == false)
+                        {
+                            Task.Run(() =>
+                            {
+                                //Function_從SQL取得儲位到本地資料(IP);
+                                Function_儲位刷新_byIP(IP);
+                            });
+                        }
                     }
 
                 }
             }
-            if (list_取藥堆疊母資料_delete.Count > 0) sQLControl_取藥堆疊母資料.UpdateByDefulteExtra(null, list_取藥堆疊母資料_delete);
+            if (list_取藥堆疊母資料_delete.Count > 0) sQLControl_取藥堆疊母資料.DeleteExtra(null, list_取藥堆疊母資料_delete);
 
             cnt++;
         }
@@ -3062,7 +3124,8 @@ namespace batch_StackDataAccounting
                     for (int i = 0; i < list_取藥堆疊母資料_delete.Count; i++)
                     {
                         string 藥品碼 = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                        sQLControl_取藥堆疊子資料.DeleteByDefult(null, (int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        List<object[]> list_value_sub_take = sQLControl_取藥堆疊子資料.GetRowsByDefult(null, (int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        sQLControl_取藥堆疊子資料.DeleteExtra(null, list_value_sub_take);
                         Console.WriteLine($"儲位亮燈-刪除資料 藥品碼 : {藥品碼}");
 
                     }
@@ -3098,7 +3161,8 @@ namespace batch_StackDataAccounting
                 for (int i = 0; i < list_取藥堆疊母資料_delete.Count; i++)
                 {
                     string 藥品碼 = list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    sQLControl_取藥堆疊子資料.DeleteByDefult(null, (int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                    List<object[]> list_value_sub_take = sQLControl_取藥堆疊子資料.GetRowsByDefult(null, (int)enum_取藥堆疊子資料.Master_GUID, list_取藥堆疊母資料_delete[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                    sQLControl_取藥堆疊子資料.DeleteExtra(null, list_value_sub_take);
                     Console.WriteLine($"儲位亮燈-刪除資料 藥品碼 : {藥品碼}");
 
                 }

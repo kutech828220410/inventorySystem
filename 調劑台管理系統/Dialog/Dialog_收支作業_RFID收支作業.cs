@@ -336,6 +336,7 @@ namespace 調劑台管理系統
         {
             DateTime startTotal = DateTime.Now;
             List<string> uids = Main_Form.ReadAllUIDsOnceOnly();
+
             if (drugHFTag_IncomeOutcomeList == null)
             {
                 Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  無選擇的藥品，結束流程");
@@ -588,7 +589,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未讀取到RFID標籤");
                 return;
             }
-
+    
             bool 驗證失敗 = false;
             bool 數量異常 = false;
 
@@ -693,7 +694,7 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_HRFID", $"自動寫入異常標籤與數量記錄 {errorLogs.Count} 筆");
                     LoadingForm.ShowLoadingForm();
                     medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
-                    (int code, var result, var val) = DrugHFTagClass.set_tag_broken_full(Main_Form.API_Server, errorTags);
+                    //(int code, var result, var val) = DrugHFTagClass.set_tag_broken_full(Main_Form.API_Server, errorTags);
                     LoadingForm.CloseLoadingForm();
                     //MyMessageBox.ShowDialog($"⚠ 已自動新增異常記錄 {errorLogs.Count} 筆，請查閱紀錄！");
                 }

@@ -166,7 +166,7 @@ namespace 調劑台管理系統
             rJ_Lable_藥名.Text = $"({this.drugCode}){this.drugName}";
 
             LoadingForm.ShowLoadingForm();
-            List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_stockout_tags(Main_Form.API_Server);
+            List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             keyValuePairs_medRecheckLogClass = medRecheckLogClasses.CoverToDictionaryBy_Code();
             keyValuePairs_drugHFTagClasses = drugHFTagClasses.CoverToDictionaryBy_Code();
@@ -176,6 +176,10 @@ namespace 調劑台管理系統
             drugHFTagClasses_buf = (from temp in drugHFTagClasses_buf
                                     where Main_Form.stocks_uids.Contains(temp.TagSN)
                                     select temp).ToList();
+
+            DrugHFTagClass.set_tag_stockin(Main_Form.API_Server, drugHFTagClasses_buf);
+
+
             List<StockClass> stockClasses = new List<StockClass>();
             stockClasses = drugHFTagClasses_buf.GetStockClasses();
             for (int i = 0; i < stockClasses.Count; i++)

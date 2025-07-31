@@ -3711,6 +3711,8 @@
             // 
             this.plC_CheckBox_交易記錄查詢_顯示細節.AutoSize = true;
             this.plC_CheckBox_交易記錄查詢_顯示細節.Bool = false;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Checked = true;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.CheckState = System.Windows.Forms.CheckState.Checked;
             this.plC_CheckBox_交易記錄查詢_顯示細節.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_CheckBox_交易記錄查詢_顯示細節.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_交易記錄查詢_顯示細節.Location = new System.Drawing.Point(24, 32);
@@ -10243,7 +10245,7 @@
             this.sqL_DataGridView_雲端藥檔.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_雲端藥檔.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_雲端藥檔.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 15;
+            this.sqL_DataGridView_雲端藥檔.columnHeadersHeight = 18;
             this.sqL_DataGridView_雲端藥檔.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_雲端藥檔.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_雲端藥檔.DataKeyEnable = false;

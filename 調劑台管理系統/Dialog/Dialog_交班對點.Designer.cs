@@ -51,7 +51,7 @@ namespace 調劑台管理系統
             this.panel_交班內容 = new System.Windows.Forms.Panel();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
             this.rJ_Lable_狀態 = new MyUI.RJ_Lable();
-            this.rJ_Lable1 = new MyUI.RJ_Lable();
+            this.rJ_Lable_現有庫存_Title = new MyUI.RJ_Lable();
             this.rJ_Button_確認輸入 = new MyUI.RJ_Button();
             this.rJ_TextBox_盤點量 = new MyUI.RJ_TextBox();
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
@@ -613,7 +613,7 @@ namespace 調劑台管理系統
             this.rJ_Pannel1.BorderRadius = 10;
             this.rJ_Pannel1.BorderSize = 2;
             this.rJ_Pannel1.Controls.Add(this.rJ_Lable_狀態);
-            this.rJ_Pannel1.Controls.Add(this.rJ_Lable1);
+            this.rJ_Pannel1.Controls.Add(this.rJ_Lable_現有庫存_Title);
             this.rJ_Pannel1.Controls.Add(this.rJ_Button_確認輸入);
             this.rJ_Pannel1.Controls.Add(this.rJ_TextBox_盤點量);
             this.rJ_Pannel1.Controls.Add(this.rJ_Pannel2);
@@ -654,27 +654,27 @@ namespace 調劑台管理系統
             this.rJ_Lable_狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable_狀態.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_Lable1
+            // rJ_Lable_現有庫存_Title
             // 
-            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable1.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.rJ_Lable1.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Lable1.BorderRadius = 10;
-            this.rJ_Lable1.BorderSize = 1;
-            this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable1.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable1.GUID = "";
-            this.rJ_Lable1.Location = new System.Drawing.Point(600, 264);
-            this.rJ_Lable1.Name = "rJ_Lable1";
-            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable1.ShadowSize = 3;
-            this.rJ_Lable1.Size = new System.Drawing.Size(209, 72);
-            this.rJ_Lable1.TabIndex = 45;
-            this.rJ_Lable1.Text = "現有庫存";
-            this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable1.TextColor = System.Drawing.Color.Black;
-            this.rJ_Lable1.Visible = false;
+            this.rJ_Lable_現有庫存_Title.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_現有庫存_Title.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.rJ_Lable_現有庫存_Title.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Lable_現有庫存_Title.BorderRadius = 10;
+            this.rJ_Lable_現有庫存_Title.BorderSize = 1;
+            this.rJ_Lable_現有庫存_Title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_現有庫存_Title.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_現有庫存_Title.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_現有庫存_Title.GUID = "";
+            this.rJ_Lable_現有庫存_Title.Location = new System.Drawing.Point(600, 264);
+            this.rJ_Lable_現有庫存_Title.Name = "rJ_Lable_現有庫存_Title";
+            this.rJ_Lable_現有庫存_Title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_現有庫存_Title.ShadowSize = 3;
+            this.rJ_Lable_現有庫存_Title.Size = new System.Drawing.Size(209, 72);
+            this.rJ_Lable_現有庫存_Title.TabIndex = 45;
+            this.rJ_Lable_現有庫存_Title.Text = "現有庫存";
+            this.rJ_Lable_現有庫存_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_現有庫存_Title.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_現有庫存_Title.Visible = false;
             // 
             // rJ_Button_確認輸入
             // 
@@ -1268,7 +1268,7 @@ namespace 調劑台管理系統
         private System.Windows.Forms.Panel panel_交班內容;
         private MyUI.RJ_Pannel rJ_Pannel1;
         private MyUI.RJ_Lable rJ_Lable_狀態;
-        private MyUI.RJ_Lable rJ_Lable1;
+        private MyUI.RJ_Lable rJ_Lable_現有庫存_Title;
         private MyUI.RJ_Button rJ_Button_確認輸入;
         private MyUI.RJ_TextBox rJ_TextBox_盤點量;
         private MyUI.RJ_Pannel rJ_Pannel2;

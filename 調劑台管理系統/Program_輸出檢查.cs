@@ -96,7 +96,7 @@ namespace 調劑台管理系統
 
                 if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
                 {
-                    object value_device = this.Fucnction_從雲端資料取得儲位(IP);
+                    object value_device = Fucnction_從雲端資料取得儲位(IP);
                     if (value_device == null) return;
                     if (value_device is Storage)
                     {

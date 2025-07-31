@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07081")]
-[assembly: AssemblyFileVersion("1.0.25.07081")]
+[assembly: AssemblyVersion("1.0.25.07281")]
+[assembly: AssemblyFileVersion("1.0.25.07281")]
 namespace 調劑台管理系統
 {
 
@@ -107,6 +107,9 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
+        static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
+        static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
+        static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
@@ -137,8 +140,8 @@ namespace 調劑台管理系統
             private string orderByCodeApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
-
-
+            private string med_Sort = "";
+            private string storage_Sort = "";
 
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
@@ -173,6 +176,10 @@ namespace 調劑台管理系統
             public string Order_mrn_ApiURL { get => order_mrn_ApiURL; set => order_mrn_ApiURL = value; }
             [JsonIgnore]
             public string Order_bag_num_ApiURL { get => order_bag_num_ApiURL; set => order_bag_num_ApiURL = value; }
+            [JsonIgnore]
+            public string Med_Sort { get => med_Sort; set => med_Sort = value; }
+            [JsonIgnore]
+            public string Storage_Sort { get => storage_Sort; set => storage_Sort = value; }
         }
 
         private void LoadDBConfig()
@@ -239,6 +246,7 @@ namespace 調劑台管理系統
             private bool _外部輸出 = false;
             private bool _全螢幕顯示 = true;
             private bool _鍵盤掃碼模式 = false;
+            private string _批次領藥篩選 = "";
 
             private string rFID_COMPort = "COM1";
             private string scanner01_COMPort = "COM2";
@@ -283,6 +291,7 @@ namespace 調劑台管理系統
             public string 聲紋辨識_IP { get => _聲紋辨識_IP; set => _聲紋辨識_IP = value; }
             public string HFRFID_1_COMPort { get => hFRFID_1_COMPort; set => hFRFID_1_COMPort = value; }
             public string HFRFID_2_COMPort { get => hFRFID_2_COMPort; set => hFRFID_2_COMPort = value; }
+            public string 批次領藥篩選 { get => _批次領藥篩選; set => _批次領藥篩選 = value; }
         }
         private void LoadMyConfig()
         {
@@ -379,6 +388,7 @@ namespace 調劑台管理系統
             _pannel_Locker_Design = this.pannel_Locker_Design;
             _plC_ScreenPage_Main = this.plC_ScreenPage_Main;
 
+           
 
             H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
@@ -454,10 +464,24 @@ namespace 調劑台管理系統
                 this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
                 this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
 
+                MyMessageBox.TimerEvent += MyMessageBox_TimerEvent;
+
             }
         }
-        #region Event
 
+
+        #region Event
+        private void MyMessageBox_TimerEvent(MyMessageBox myMessageBox)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (Function_ReadBacodeScanner_pre(i) != null)
+                {
+                    myMessageBox.Close();
+                    return;
+                }
+            }
+        }
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")
@@ -467,6 +491,8 @@ namespace 調劑台管理系統
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
+
+
             if (myConfigClass.全螢幕顯示 == false)
             {
                 this.WindowState = FormWindowState.Maximized;
@@ -548,9 +574,11 @@ namespace 調劑台管理系統
 
             this.DBConfigInit();
 
-
-            this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
+
+      
+            this.Program_Scanner_RS232_Init();
+         
 
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();

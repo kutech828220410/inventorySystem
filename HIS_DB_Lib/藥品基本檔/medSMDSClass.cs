@@ -18,6 +18,8 @@ namespace HIS_DB_Lib
         藥品碼,
         [Description("料號,VARCHAR,20,INDEX")]
         料號,
+        [Description("排序號,VARCHAR,20,INDEX")]
+        排序號,
         [Description("中文名稱,VARCHAR,300,NONE")]
         中文名稱,
         [Description("藥品名稱,VARCHAR,300,NONE")]

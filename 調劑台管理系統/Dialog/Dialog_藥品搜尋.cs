@@ -144,6 +144,16 @@ namespace 調劑台管理系統
                               where temp.開檔狀態 == enum_開檔狀態.開檔中.GetEnumName() || temp.開檔狀態.StringIsEmpty()
                               select temp).ToList();
 
+                List<medClass> medClasses_dps = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
+                medClasses_dps = (from temp in medClasses_dps
+                                  where temp.DeviceBasics.Count > 0
+                                  select temp).ToList();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_dps = medClasses_dps.CoverToDictionaryByCode();
+
+                medClasses = (from temp in medClasses
+                              where keyValuePairs_medClasses_dps.SortDictionaryByCode(temp.藥品碼).Count > 0
+                              select temp).ToList();
+
                 List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
 
 

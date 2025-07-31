@@ -1185,6 +1185,7 @@ namespace HIS_WebApi
             try
             {
                 string VM_API = Method.GetServerAPI("Main", "網頁", "cdmi_excel_download_api");
+                Logger.Log("download_cdmis_datas_excel", returnData.JsonSerializationt(true));
                 if (VM_API.StringIsEmpty() == false)
                 {
                     string json_in = returnData.JsonSerializationt();

@@ -1460,7 +1460,7 @@ namespace 調劑台管理系統
                             }
                             bool flag_commonlight = false;
                             List<MyColor> myColors = new List<MyColor>();
-                            if (color != Color.Black)
+                            if (color.R != 0 || color.G != 0 || color.B != 0)
                             {
                                 for (int k = 0; k < numOfLED; k++)
                                 {
@@ -1481,7 +1481,7 @@ namespace 調劑台管理系統
                             drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color, !lightOn.flag_Refresh_Light);
                             if (!flag_commonlight || lightOn.flag_Refresh_Light)
                             {
-                                if (color != Color.Black)
+                                if (color.R != 0 || color.G != 0 || color.B != 0)
                                 {
                                     if (lightOn.flag_Refresh_Light == false) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
                                 }
@@ -2014,12 +2014,21 @@ namespace 調劑台管理系統
                 {
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
                     string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    if (藥品碼.StringIsEmpty() == false)
+                    string IP = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.IP].ObjectToString();
+                    if (藥品碼.StringIsEmpty() == false && 藥品碼 != "None")
                     {
                         Task.Run(() =>
                         {
                             Function_從SQL取得儲位到本地資料(藥品碼);
                             this.Function_儲位刷新(藥品碼);
+                        });
+                    }
+                    if (IP.StringIsEmpty() == false)
+                    {
+                        Task.Run(() =>
+                        {
+                            //Function_從SQL取得儲位到本地資料(IP);
+                            this.Function_儲位刷新_byIP(IP);
                         });
                     }
 
@@ -3338,8 +3347,12 @@ namespace 調劑台管理系統
                         {
                             for (int k = 0; k < storages.Count; k++)
                             {
-
-                                object uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(storages[k].IP);
+                                object uDP_READ = null;
+                                string index_IP = Funcion_取得LCD114索引表_index_IP(storages[k].IP);
+                                if (index_IP.StringIsEmpty() == false)
+                                {
+                                    uDP_READ = this.storageUI_LCD_114.Get_UDP_READ(index_IP);
+                                }
 
                                 // 若在 LCD 讀取不到，則嘗試從 EPD 讀取
                                 if (uDP_READ == null)

@@ -548,7 +548,7 @@ namespace 調劑台管理系統
             if (RfidReaderEnable)
             {
                 LoadingForm.ShowLoadingForm();
-                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_stockout_tags(Main_Form.API_Server);
+                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
                 List<StockClass> stockClasses = drugHFTagClasses.GetStockClasses();
 
                 List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
@@ -578,7 +578,7 @@ namespace 調劑台管理系統
                     int abnormalCount = keyValuePairs_medRecheckLogClass.SortDictionaryBy_Code(code).Count;
                     RowsList[i][(int)enum_收支作業_單品入庫_儲位搜尋.異常事件] = abnormalCount;
 
-                    Console.WriteLine($"[處理 {i + 1}/{RowsList.Count}] 藥碼: {code}, 藥名: {name}, 儲位: {storageName}, IP: {ip}, 實際庫存: {qty}, 異常事件: {abnormalCount}");
+                    //Console.WriteLine($"[處理 {i + 1}/{RowsList.Count}] 藥碼: {code}, 藥名: {name}, 儲位: {storageName}, IP: {ip}, 實際庫存: {qty}, 異常事件: {abnormalCount}");
                 }
 
                 // 分段排序：實際庫存≠庫存 → 異常事件有資料 → 其他
@@ -840,7 +840,10 @@ namespace 調劑台管理系統
                 dialog_收支原因選擇.ShowDialog();
                 收支原因 = dialog_收支原因選擇.Value;
             }
-                
+            if (plC_RJ_Button_收支作業_入庫.Bool || plC_RJ_Button_收支作業_出庫.Bool)
+            {
+                收支原因 = (plC_RJ_Button_收支作業_入庫.Bool ? "入庫作業" : "出庫作業");
+            }
 
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)

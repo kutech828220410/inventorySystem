@@ -138,14 +138,20 @@ namespace 勤務傳送櫃
 
         private void 新增交易紀錄(enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 操作人, string 房名, string 備註)
         {
-            object[] values = new object[new enum_交易記錄查詢資料().GetLength()];
-            values[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
-            values[(int)enum_交易記錄查詢資料.動作] = _enum_交易記錄查詢動作.GetEnumName();
-            values[(int)enum_交易記錄查詢資料.操作人] = 操作人;
-            values[(int)enum_交易記錄查詢資料.病房號] = 房名;
-            values[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now;
-            values[(int)enum_交易記錄查詢資料.備註] = 備註;
-            this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(values, false);
+            string GUID = $"{_enum_交易記錄查詢動作.GetEnumName()};{操作人};{房名};{DateTime.Now.ToDateTimeString()}";
+            List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows((int)enum_交易記錄查詢資料.GUID, GUID, false);
+            if (list_value.Count == 0)
+            {
+                object[] values = new object[new enum_交易記錄查詢資料().GetLength()];
+                values[(int)enum_交易記錄查詢資料.GUID] = GUID;
+                values[(int)enum_交易記錄查詢資料.動作] = _enum_交易記錄查詢動作.GetEnumName();
+                values[(int)enum_交易記錄查詢資料.操作人] = 操作人;
+                values[(int)enum_交易記錄查詢資料.病房號] = 房名;
+                values[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString();
+                values[(int)enum_交易記錄查詢資料.備註] = 備註;
+                this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(values, false);
+            }
+            
         }
         #endregion
 
@@ -222,12 +228,26 @@ namespace 勤務傳送櫃
         private void SqL_DataGridView_交易記錄查詢_DataGridRefreshEvent()
         {
             string date = "";
+            string 動作 = "";
             for (int i = 0; i < this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows.Count; i++)
             {
                 date = this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[enum_交易記錄查詢資料.領用時間.GetEnumName()].Value.ToString();
                 if(date == "1999-01-01 00:00:00")
                 {
                     this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[enum_交易記錄查詢資料.領用時間.GetEnumName()].Value = "-";
+                }
+
+                動作 = this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[(int)enum_交易記錄查詢資料.動作].Value.ToString();
+                if (動作 == enum_交易記錄查詢動作.人臉識別登入.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.一維碼登入.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.密碼登入.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.登出.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.效期庫存異動.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.操作工程模式.GetEnumName()
+                    )
+                {
+                    this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
+                    this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }

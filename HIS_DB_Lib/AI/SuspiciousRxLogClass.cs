@@ -505,7 +505,7 @@ namespace HIS_DB_Lib
         static public suspiciousRxLogClass Get_INTERACT(suspiciousRxLogClass suspiciousRxLogClass)
         {
             List<MedicalCodeItem> 交互作用 = new List<MedicalCodeItem>();
-            suspiciousRxLogClass.交互作用紀錄 = 交互作用;
+            //suspiciousRxLogClass.交互作用紀錄 = 交互作用;
 
             if (suspiciousRxLogClass.交互作用藥碼.StringIsEmpty() == false && suspiciousRxLogClass.交互作用.StringIsEmpty() == false)
             {
@@ -529,7 +529,7 @@ namespace HIS_DB_Lib
             {
                 List<string> list_交互作用藥碼 = new List<string>();
                 List<string> list_交互作用 = new List<string>();
-                foreach (var item in suspiciousRxLogClass.過敏紀錄)
+                foreach (var item in suspiciousRxLogClass.交互作用紀錄)
                 {
                     list_交互作用藥碼.Add(item.code);
                     list_交互作用.Add(item.name);

@@ -170,7 +170,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Result = "雲端藥檔取得成功!";
                 returnData.TimeTaken = myTimerBasic.ToString();
-
+                
                 return returnData.JsonSerializationt(false);
             }
             catch (Exception e)
@@ -3841,7 +3841,7 @@ namespace HIS_WebApi
                 return null;
             }
         }
-        private List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass)
+        static public List<medClass> Get_med_cloud(sys_serverSettingClass sys_serverSettingClass)
         {
             try
             {

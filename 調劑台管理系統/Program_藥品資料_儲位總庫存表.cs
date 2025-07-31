@@ -184,7 +184,7 @@ namespace 調劑台管理系統
                         MyMessageBox.ShowDialog("搜尋內容空白");
                         return;
                     }
-                    medGroupClass medGroupClass =  medGroupClass.get_all_group(API_Server, comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText());
+                    medGroupClass medGroupClass =  medGroupClass.get_group_by_name(API_Server, comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText());
                     Dictionary<string, List<medClass>> keyValuePairs_medGroup = medGroupClass.MedClasses.CoverToDictionaryByCode();
 
                     medClasses = (from temp in medClasses
