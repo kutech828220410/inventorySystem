@@ -784,7 +784,7 @@ namespace HIS_WebApi._API_AI
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     returnData returnData_labResult =  labResultClass.get_by_PATCODE("http://127.0.0.1:4433", 病歷號);
-                    if (returnData_labResult == null || returnData_labResult.Code != 200)
+                    if (returnData_labResult != null || returnData_labResult.Code == 200)
                     {
                         labResultClasses = returnData_labResult.Data.ObjToClass<List<labResultClass>>();
                     }
@@ -818,7 +818,7 @@ namespace HIS_WebApi._API_AI
                 //}
                 string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
-                Logger.Log("suspiciousRxLog_input", returnData.JsonSerializationt(true));
+                Logger.Log("suspiciousRxLog_input", result.JsonSerializationt(true));
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
                 if (suspiciousRxLog == null)
                 {
