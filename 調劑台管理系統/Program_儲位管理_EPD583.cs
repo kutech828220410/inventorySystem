@@ -702,7 +702,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_單格亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
-            if(this.ControlMode || true)
+            if(this.ControlMode)
             {
                 // 顏色選擇邏輯
                 Color color = Color.Black;

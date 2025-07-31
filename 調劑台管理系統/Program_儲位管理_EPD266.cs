@@ -1078,51 +1078,60 @@ namespace 調劑台管理系統
         {
             try
             {
-                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-                if (list_value.Count == 0) return;
 
-                List<(string 藥碼, string 顏色, string 秒數)> lightList = new List<(string, string, string)>();
-                foreach (var row in list_value)
+                if (this.ControlMode)
                 {
-                    string code = row[(int)enum_儲位管理_EPD266_儲位資料.藥品碼].ObjectToString();
-                    if (string.IsNullOrWhiteSpace(code)) continue;
-                    lightList.Add((code, Color.Black.ToColorString(), "1")); // 0 秒立即清除
-                }
+                    List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                    if (list_value.Count == 0) return;
 
-                var (code_result, result) = deviceApiClass.light_by_drugCodes_full(Main_Form.API_Server, lightList, Main_Form.ServerName, Main_Form.ServerType);
+                    List<(string 藥碼, string 顏色, string 秒數)> lightList = new List<(string, string, string)>();
+                    foreach (var row in list_value)
+                    {
+                        string code = row[(int)enum_儲位管理_EPD266_儲位資料.藥品碼].ObjectToString();
+                        if (string.IsNullOrWhiteSpace(code)) continue;
+                        lightList.Add((code, Color.Black.ToColorString(), "1")); // 0 秒立即清除
+                    }
 
-                if (code_result == 200)
-                {
-                    Console.WriteLine($"✅ 清除燈號完成，共處理 {lightList.Count} 筆\n{result}");
+                    var (code_result, result) = deviceApiClass.light_by_drugCodes_full(Main_Form.API_Server, lightList, Main_Form.ServerName, Main_Form.ServerType);
+
+                    if (code_result == 200)
+                    {
+                        Console.WriteLine($"✅ 清除燈號完成，共處理 {lightList.Count} 筆\n{result}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"❌ 清除燈號失敗！\n{result}");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine($"❌ 清除燈號失敗！\n{result}");
+                    List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                    if (list_value.Count == 0) return;
+
+                    List<Task> taskList = new List<Task>();
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+                        string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+                        Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+
+                        taskList.Add(Task.Run(() =>
+                        {
+                            if (storage != null)
+                            {
+
+                                if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black))
+                                {
+                                    Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
+
+                                }
+                            }
+                        }));
+                    }
+                    Task allTask = Task.WhenAll(taskList);
+                    allTask.Wait();
                 }
-                //List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-                //if (list_value.Count == 0) return;
 
-                //List<Task> taskList = new List<Task>();
-                //for (int i = 0; i < list_value.Count; i++)
-                //{
-                //    string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                //    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
 
-                //    taskList.Add(Task.Run(() =>
-                //    {
-                //        if (storage != null)
-                //        {
-
-                //            if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black))
-                //            {
-                //                Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
-
-                //            }
-                //        }
-                //    }));
-                //}
-                //Task allTask = Task.WhenAll(taskList);
-                //allTask.Wait();
             }
             catch
             {
