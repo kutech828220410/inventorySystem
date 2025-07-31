@@ -745,6 +745,12 @@ namespace HIS_WebApi._API_AI
             try
             {
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                if (orders == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data空白";
+                    return returnData.JsonSerializationt(true);
+                }
                 if (orders.Count == 0)
                 {
                     returnData.Code = -200;
@@ -754,7 +760,6 @@ namespace HIS_WebApi._API_AI
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
                 string 藥師姓名 = orders[0].藥師姓名;
-                //AddsuspiciousRxLog(orders);
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
@@ -771,17 +776,20 @@ namespace HIS_WebApi._API_AI
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
                 string 病歷號 = orders[0].病歷號;
-
-                if (orders == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "returnData.Data空白";
-                    return returnData.JsonSerializationt(true);
-                }
-
+                
                 List<Task> tasks = new List<Task>();
                 List<Prescription> eff_cpoe = new List<Prescription>();
                 List<Prescription> old_cpoe = new List<Prescription>();
+                List<labResultClass> labResultClasses = new List<labResultClass>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    returnData returnData_labResult =  labResultClass.get_by_PATCODE("http://127.0.0.1:4433", 病歷號);
+                    if (returnData_labResult == null || returnData_labResult.Code != 200)
+                    {
+                        labResultClasses = returnData_labResult.Data.ObjToClass<List<labResultClass>>();
+                    }
+                    
+                })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     List<object[]> list_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.病歷號, 病歷號);
@@ -797,7 +805,7 @@ namespace HIS_WebApi._API_AI
                     eff_cpoe = GroupOrderList(orders, suspiciousRxLogClasses);
                 })));
                 Task.WhenAll(tasks).Wait();
-
+                eff_cpoe[0].labResultClasses = labResultClasses;
                 PrescriptionSet result = new PrescriptionSet
                 {
                     有效處方 = eff_cpoe,

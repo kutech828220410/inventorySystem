@@ -730,6 +730,7 @@ namespace HIS_DB_Lib
                 this.診斷內容 = string.Join(";", list_中文說明);
             }
         }
+        public List<labResultClass> labResultClasses { get; set; }
     }
     public class MedicalCodeItem
     {

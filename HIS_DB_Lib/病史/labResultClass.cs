@@ -74,7 +74,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ADDTIME")]
         public string 加入時間 { get; set; }
-        public returnData add(string API, List<labResultClass> labResultClasses)
+        static public returnData add(string API, List<labResultClass> labResultClasses)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData returnData = new returnData();
@@ -85,7 +85,7 @@ namespace HIS_DB_Lib
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
             return returnData_out;
         }
-        public returnData get_by_PATCODE(string API, string 病歷號)
+        static public returnData get_by_PATCODE(string API, string 病歷號)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData returnData = new returnData();
