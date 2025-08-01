@@ -135,9 +135,17 @@ namespace 調劑台管理系統
             StockClass stockClass = null;
             if (stockClasses.Count >= 2 || stockClasses.Count == 0)
             {
-                Dialog_效期批號選擇 dialog_效期批號選擇 = new Dialog_效期批號選擇(stockClasses);
-                if (dialog_效期批號選擇.ShowDialog() != DialogResult.Yes) return;
-                stockClass = dialog_效期批號選擇.StockClass;
+                if (Main_Form.PLC_Device_退藥不選擇效期批號.Bool && stockClasses.Count >= 2)
+                {
+                    stockClass = stockClasses[0];
+                }
+                else
+                {
+                    Dialog_效期批號選擇 dialog_效期批號選擇 = new Dialog_效期批號選擇(stockClasses);
+                    if (dialog_效期批號選擇.ShowDialog() != DialogResult.Yes) return;
+                    stockClass = dialog_效期批號選擇.StockClass;
+                }
+               
             }
             else
             {

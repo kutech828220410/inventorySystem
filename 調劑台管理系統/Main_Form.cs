@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.08014")]
-[assembly: AssemblyFileVersion("1.0.25.08014")]
+[assembly: AssemblyVersion("1.0.25.08015")]
+[assembly: AssemblyFileVersion("1.0.25.08015")]
 namespace 調劑台管理系統
 {
 
@@ -109,6 +109,7 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
+        static public PLC_Device PLC_Device_退藥不選擇效期批號 = new PLC_Device("S5053");
         static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
         static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 
