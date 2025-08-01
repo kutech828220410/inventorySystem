@@ -1727,7 +1727,7 @@ namespace 調劑台管理系統
                             for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
                             {
                                 text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
-                                if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄.Count != 0) text += "\n";
+                                if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄 != null) text += "\n";
                                 text_height += text_height_basic;
                             }
                         }
