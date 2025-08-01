@@ -112,6 +112,8 @@ namespace 調劑台管理系統
                 Logger.Log($"[確認輸入] 無法取得儲位 Device，IP: {_lockerIndexClass.IP}");
                 return;
             }
+            List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
+
             string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
 
             if (device is DeviceBasic)
@@ -119,7 +121,6 @@ namespace 調劑台管理系統
                 DeviceBasic deviceBasic = (DeviceBasic)device;
                 Logger.Log($"[確認輸入] 取得 DeviceBasic，藥碼: {deviceBasic.Code}");
 
-                List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
                 if (list_交班對點.Count == 0)
                 {
                     Logger.Log($"[確認輸入] 無交班藥品被選取");
@@ -343,6 +344,7 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
+                        PlC_RJ_Button_確認送出_MouseDownEvent(null);
                         plC_RJ_Button_確認送出.Enabled = true;
                     }));
                 }
@@ -867,6 +869,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {
+            "是否送出交班表?".PlayGooleVoiceAsync(Main_Form.API_Server);
             if (MyMessageBox.ShowDialog("確認送出交班表?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
 
             Function_寫入交易紀錄("交班盤點完成");
