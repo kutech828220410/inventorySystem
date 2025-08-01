@@ -218,7 +218,7 @@ namespace 調劑台管理系統
 
                 List<object[]> list_取藥堆疊資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(deviceName);
                 List<object[]> list_取藥堆疊資料_buf = new List<object[]>();
-
+                int flag_重複刷取 = 0;
                 for (int i = 0; i < orderClasses.Count; i++)
                 {
                     OrderClass orderClass = orderClasses[i];
@@ -227,10 +227,11 @@ namespace 調劑台管理系統
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
                     list_取藥堆疊資料_buf = (from temp in list_取藥堆疊資料
-                                       where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == GUID
+                                       where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == orderClass.GUID
                                        select temp).ToList();
                     if(list_取藥堆疊資料_buf.Count > 0)
                     {
+                        flag_重複刷取++;
                         continue;
                     }
                     medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
@@ -354,6 +355,10 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
 
+                }
+                if(flag_重複刷取 > 0)
+                {
+                    Task.Run(new Action(delegate { $"有{flag_重複刷取}筆藥單重複刷取".PlayGooleVoiceAsync(Main_Form.API_Server); }));
                 }
             });
             List<Task> taskList = new List<Task>();
