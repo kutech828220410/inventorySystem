@@ -869,15 +869,24 @@ namespace batch_StackDataAccounting
                     sub_Program_取藥堆疊資料_狀態更新();
                     sub_Program_取藥堆疊資料_流程作業檢查();
                     sub_Program_取藥堆疊資料_入賬檢查();
+                    Function_從SQL取得儲位到本地資料();
                     System.Threading.Thread.Sleep(1);
+                }
+
+            }));
+            Task.Run(new Action(delegate
+            {
+                while (true)
+                {
+                    Function_從SQL取得儲位到本地資料();
+                    Function_從SQL取得儲位到雲端資料();
+                    System.Threading.Thread.Sleep(60000);
                 }
 
             }));
             while (true)
             {
-
    
-
                 for (int i = 0; i < List_EPD583_本地資料.Count; i++)
                 {
                     Drawer drawer = List_EPD583_本地資料[i];

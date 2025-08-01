@@ -124,6 +124,7 @@
     <Compile Include="DrugHFTagClass.cs" />
     <Compile Include="lockerAccessClass.cs" />
     <Compile Include="loggerClass.cs" />
+    <Compile Include="住院藥車\nearMissClass.cs" />
     <Compile Include="住院藥車\nursingStationClass.cs" />
     <Compile Include="shiftClass.cs" />
     <Compile Include="住院藥車\patientInfoClass.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="inv_combinelistClass.cs" />
     <Compile Include="lockerIndexClass.cs" />
     <Compile Include="疾病\diseaseClass.cs" />
+    <Compile Include="病史\labResultClass.cs" />
     <Compile Include="系統\temperatureClass.cs" />
     <Compile Include="系統\webTrafficClass.cs" />
     <Compile Include="藥品基本檔\medClass.cs" />

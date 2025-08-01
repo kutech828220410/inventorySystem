@@ -745,6 +745,12 @@ namespace HIS_WebApi._API_AI
             try
             {
                 List<OrderClass> orders = returnData.Data.ObjToClass<List<OrderClass>>();
+                if (orders == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data空白";
+                    return returnData.JsonSerializationt(true);
+                }
                 if (orders.Count == 0)
                 {
                     returnData.Code = -200;
@@ -754,7 +760,6 @@ namespace HIS_WebApi._API_AI
 
                 string 藥袋條碼 = orders[0].藥袋條碼;
                 string 藥師姓名 = orders[0].藥師姓名;
-                //AddsuspiciousRxLog(orders);
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
@@ -771,17 +776,24 @@ namespace HIS_WebApi._API_AI
                 SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
 
                 string 病歷號 = orders[0].病歷號;
-
-                if (orders == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "returnData.Data空白";
-                    return returnData.JsonSerializationt(true);
-                }
-
+                
                 List<Task> tasks = new List<Task>();
                 List<Prescription> eff_cpoe = new List<Prescription>();
                 List<Prescription> old_cpoe = new List<Prescription>();
+                List<labResultClass> labResultClasses = new List<labResultClass>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    returnData returnData_labResult =  labResultClass.get_by_PATCODE("http://127.0.0.1:4433", 病歷號);
+                    if (returnData_labResult != null && returnData_labResult.Code == 200)
+                    {
+                        labResultClasses = returnData_labResult.Data.ObjToClass<List<labResultClass>>();
+                    }
+                    else
+                    {
+                        Logger.Log("labResultClass_get_by_PATCODE", returnData_labResult.JsonSerializationt(true));
+                    }
+                    
+                })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     List<object[]> list_order = sQLControl.GetRowsByDefult(null, (int)enum_醫囑資料.病歷號, 病歷號);
@@ -797,7 +809,7 @@ namespace HIS_WebApi._API_AI
                     eff_cpoe = GroupOrderList(orders, suspiciousRxLogClasses);
                 })));
                 Task.WhenAll(tasks).Wait();
-
+                eff_cpoe[0].labResultClasses = labResultClasses;
                 PrescriptionSet result = new PrescriptionSet
                 {
                     有效處方 = eff_cpoe,
@@ -810,7 +822,7 @@ namespace HIS_WebApi._API_AI
                 //}
                 string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
-                Logger.Log("suspiciousRxLog_input", returnData.JsonSerializationt(true));
+                Logger.Log("suspiciousRxLog_input", result.JsonSerializationt(true));
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);
                 if (suspiciousRxLog == null)
                 {
@@ -1031,6 +1043,83 @@ namespace HIS_WebApi._API_AI
                 return null;
             }
 
+        }
+        [HttpPost("update_data")]
+        public string update_data([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_data";
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "suspiciousRxLog", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_order = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
+
+
+
+                List<object[]> list_suspiciousRxLog = sQLControl.GetAllRows(null);
+                
+                List<suspiciousRxLogClass> sql_suspiciousRxLog = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<suspiciousRxLogClass> update_suspiciousRxLog = new List<suspiciousRxLogClass>();
+                List<OrderClass> update_orderClass = new List<OrderClass>();
+                order order = new order();
+                foreach (var item in sql_suspiciousRxLog)
+                {
+                    if (item.開方時間.Check_Date_String() && item.加入時間.Check_Date_String() && item.調劑時間.Check_Date_String()) 
+                    {
+                        DateTime dt_開方時間 = DateTime.Parse(item.開方時間);
+                        DateTime dt_加入時間 = DateTime.Parse(item.加入時間);
+                        DateTime dt_調劑時間 = DateTime.Parse(item.調劑時間);
+
+                        dt_開方時間 = DateTime.Today.AddHours(dt_開方時間.Hour).AddMinutes(dt_開方時間.Minute).AddSeconds(dt_開方時間.Second);
+                        dt_加入時間 = DateTime.Today.AddHours(dt_加入時間.Hour).AddMinutes(dt_加入時間.Minute).AddSeconds(dt_加入時間.Second);
+                        dt_調劑時間 = DateTime.Today.AddHours(dt_調劑時間.Hour).AddMinutes(dt_調劑時間.Minute).AddSeconds(dt_調劑時間.Second);
+
+                        item.開方時間 = dt_開方時間.ToDateTimeString();
+                        item.加入時間 = dt_加入時間.ToDateTimeString();
+                        item.調劑時間 = dt_調劑時間.ToDateTimeString();
+                        item.醫生姓名 = "鴻森智能";
+                        item.調劑人員 = "王小明";
+                        item.病歷號 = "0003345678";
+
+                        update_suspiciousRxLog.Add(item);
+                        returnData.ValueAry = new List<string> { item.藥袋條碼 };
+                        string result = order.POST_get_by_barcode(returnData);
+                        returnData = result.JsonDeserializet<returnData>();
+                        List<OrderClass> orderClasses = returnData.Data.ObjToClass<List<OrderClass>>();
+                        if(orderClasses.Count != 0)
+                        {
+                            foreach (var orderClass in orderClasses)
+                            {
+                                orderClass.病人姓名 = "張小美";
+                                orderClass.病歷號 = "0003345678";
+                                orderClass.醫師代碼 = "鴻森智能";
+                            }
+                            update_orderClass.AddRange(orderClasses);
+                        }
+                    }   
+                    
+                }
+
+                List<object[]> update = update_suspiciousRxLog.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<object[]> update_order = update_orderClass.ClassToSQL<OrderClass, enum_醫囑資料>();
+
+                if (update.Count > 0) sQLControl.UpdateByDefulteExtra(null, update);
+                sQLControl_order.UpdateByDefulteExtra(null, update_order);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                //returnData.Data = patientInfoClasses;
+                returnData.Result = $"更改所有資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
         }
         private List<Prescription> GroupOrderList(List<OrderClass> OrderClasses, suspiciousRxLogClass suspiciousRxLogClass)
         {
