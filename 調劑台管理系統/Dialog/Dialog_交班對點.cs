@@ -252,6 +252,7 @@ namespace 調劑台管理系統
 
         #region Function
         private bool flag_program_init = false;
+        private bool flag_自動彈出詢問送出報表 = false;
         private void sub_program()
         {
             try
@@ -344,7 +345,11 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
-                        PlC_RJ_Button_確認送出_MouseDownEvent(null);
+                        if(flag_自動彈出詢問送出報表 == false)
+                        {
+                            PlC_RJ_Button_確認送出_MouseDownEvent(null);
+                            flag_自動彈出詢問送出報表 = true;
+                        }
                         plC_RJ_Button_確認送出.Enabled = true;
                     }));
                 }
