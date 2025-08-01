@@ -112,6 +112,7 @@ namespace 調劑台管理系統
                 Logger.Log($"[確認輸入] 無法取得儲位 Device，IP: {_lockerIndexClass.IP}");
                 return;
             }
+            string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
 
             if (device is DeviceBasic)
             {
@@ -125,7 +126,6 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
                 Logger.Log($"[確認輸入] 被選取藥碼: {藥碼}");
 
                 if (藥碼 == deviceBasic.Code)
@@ -135,7 +135,20 @@ namespace 調劑台管理系統
                 }
                 else
                 {
-                    Logger.Log($"[確認輸入] 藥碼比對失敗，Device藥碼: {deviceBasic.Code}, 選取藥碼: {藥碼}");
+                    Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {deviceBasic.IP}, 選取藥碼: {藥碼}");
+                }
+            }
+            else if(device is Drawer)
+            {
+                Drawer drawer = (Drawer)device;
+                if (drawer.SortByCode(藥碼).Count > 0)
+                {
+                    Logger.Log($"[確認輸入] 藥碼比對成功: {藥碼}");
+                    flag_確認輸入 = true;
+                }
+                else
+                {
+                    Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {drawer.IP}, 選取藥碼: {藥碼}");
                 }
             }
             else
@@ -403,6 +416,7 @@ namespace 調劑台管理系統
         {
             if(flag_確認輸入)
             {
+                System.Threading.Thread.Sleep(200);
                 flag_確認輸入 = false;
 
                 List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();

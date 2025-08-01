@@ -1691,6 +1691,10 @@ namespace 調劑台管理系統
             personPageClass.藥師證字號 = 藥師證字號;
             personPageClass.顏色 = 顏色;
             List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+
+            List<object[]> list_取藥堆疊資料 = Main_Form._sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+
+
             if (orderClasses != null)
             {
                 if (Main_Form.PLC_Device_AI處方核對啟用.Bool || Main_Form.PLC_Device_顯示診斷訊息.Bool)
