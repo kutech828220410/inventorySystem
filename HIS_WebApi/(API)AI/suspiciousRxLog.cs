@@ -784,9 +784,13 @@ namespace HIS_WebApi._API_AI
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     returnData returnData_labResult =  labResultClass.get_by_PATCODE("http://127.0.0.1:4433", 病歷號);
-                    if (returnData_labResult != null || returnData_labResult.Code == 200)
+                    if (returnData_labResult != null && returnData_labResult.Code == 200)
                     {
                         labResultClasses = returnData_labResult.Data.ObjToClass<List<labResultClass>>();
+                    }
+                    else
+                    {
+                        Logger.Log("labResultClass_get_by_PATCODE", returnData_labResult.JsonSerializationt(true));
                     }
                     
                 })));
