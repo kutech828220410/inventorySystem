@@ -113,7 +113,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
-
+            if (list_交班對點.Count == 0) return;
             string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
 
             if (device is DeviceBasic)
