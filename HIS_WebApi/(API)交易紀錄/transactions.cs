@@ -222,6 +222,91 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 新增多筆交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "Data": 
+        ///     {
+        ///        [transactionsClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("update_by_guid")]
+        [HttpPost]
+        public string update_by_guid([FromBody] returnData returnData)
+        {
+            GET_init(returnData);
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_by_guid";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                List<transactionsClass> transactionsClasses = returnData.Data.ObjToClass<List<transactionsClass>>();
+                foreach (transactionsClass transactionsClass in transactionsClasses)
+                {
+                    if (transactionsClass.領用時間.Check_Date_String() == false)
+                    {
+                        transactionsClass.領用時間 = DateTime.MinValue.ToDateTimeString();
+                    }
+                    if (transactionsClass.操作時間.Check_Date_String() == false)
+                    {
+                        transactionsClass.操作時間 = DateTime.MinValue.ToDateTimeString();
+                    }
+                    if (transactionsClass.開方時間.Check_Date_String() == false)
+                    {
+                        transactionsClass.開方時間 = DateTime.MinValue.ToDateTimeString();
+                    }
+                }
+                if (transactionsClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常!";
+                    return returnData.JsonSerializationt();
+                }
+               
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                sQLControl_trading.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Result = $"更新交易紀錄成功!共<{list_value.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+
+
+        }
+        /// <summary>
         /// 以藥碼搜尋交易紀錄
         /// </summary>
         /// <remarks>
