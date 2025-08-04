@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.07281")]
-[assembly: AssemblyFileVersion("1.0.25.07281")]
+[assembly: AssemblyVersion("1.0.25.08015")]
+[assembly: AssemblyFileVersion("1.0.25.08015")]
 namespace 調劑台管理系統
 {
 
@@ -102,12 +102,14 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_手輸數量 = new PLC_Device("S4067");
         static public PLC_Device PLC_Device_領藥處方選取 = new PLC_Device("S5027");
         static public PLC_Device PLC_Device_領藥不檢查是否掃碼領藥過 = new PLC_Device("S5010");
+        static public PLC_Device PLC_Device_退藥不檢查是否掃碼領藥過 = new PLC_Device("S5020");
         static public PLC_Device PLC_Device_同藥碼同時取藥亮紫色 = new PLC_Device("S5033");
         static public PLC_Device PLC_Device_調劑畫面合併相同藥品 = new PLC_Device("S5011");
         static public PLC_Device PLC_Device_S800 = new PLC_Device("S800");
         static public PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
+        static public PLC_Device PLC_Device_退藥不選擇效期批號 = new PLC_Device("S5053");
         static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
         static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 

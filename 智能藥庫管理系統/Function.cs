@@ -84,7 +84,7 @@ namespace 智能藥庫系統
                             if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.EPD730 || device.DeviceType == DeviceType.EPD730_lock)
+                    else if (device.DeviceType == DeviceType.EPD730F || device.DeviceType == DeviceType.EPD730F_lock)
                     {
                         Box box = list_Device[i] as Box;
                         if (box != null)

@@ -163,6 +163,7 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
+
                 orderClasses_buf = (from temp in orderClasses
                                 where temp.開方日期.StringToDateTime() >= dateTime_start && temp.開方日期.StringToDateTime() <= dateTime_end
                                 || temp.展藥時間.StringToDateTime() >= dateTime_start && temp.展藥時間.StringToDateTime() <= dateTime_end
@@ -214,9 +215,10 @@ namespace 調劑台管理系統
                 List<medClass> medClasses_buf = new List<medClass>();
                 Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
-              
-             
 
+                List<object[]> list_取藥堆疊資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(deviceName);
+                List<object[]> list_取藥堆疊資料_buf = new List<object[]>();
+                int flag_重複刷取 = 0;
                 for (int i = 0; i < orderClasses.Count; i++)
                 {
                     OrderClass orderClass = orderClasses[i];
@@ -224,6 +226,14 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = deviceName;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
+                    list_取藥堆疊資料_buf = (from temp in list_取藥堆疊資料
+                                       where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == orderClass.GUID
+                                       select temp).ToList();
+                    if(list_取藥堆疊資料_buf.Count > 0)
+                    {
+                        flag_重複刷取++;
+                        continue;
+                    }
                     medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
                     bool flag_檢查過帳 = false;
                  
@@ -295,6 +305,9 @@ namespace 調劑台管理系統
 
 
                     if (orderClass.交易量.StringToDouble() > 0) 動作 = enum_交易記錄查詢動作.掃碼退藥;
+
+
+
                     takeMedicineStackClass.GUID = GUID;
                     takeMedicineStackClass.Order_GUID  = orderClass.GUID;
                     takeMedicineStackClass.序號 = orderClass.批序;
@@ -342,6 +355,10 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
 
+                }
+                if(flag_重複刷取 > 0)
+                {
+                    Task.Run(new Action(delegate { $"有{flag_重複刷取}筆藥單重複刷取".PlayGooleVoiceAsync(Main_Form.API_Server); }));
                 }
             });
             List<Task> taskList = new List<Task>();

@@ -145,8 +145,6 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
-    
-
         private void StoragePanel_SizeChanged(object sender, EventArgs e)
         {
             this.storagePanel.Location = new Point((this.storagePanel.Parent.Width - this.storagePanel.Width) / 2, (this.storagePanel.Parent.Height - this.storagePanel.Height) / 2);
@@ -416,6 +414,17 @@ namespace 調劑台管理系統
             //storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {
+                if (Storage.ContainsBitmap(storage.Code) == false)
+                {
+                    List<Image> images = Function_取得藥品圖片(storage.Code);
+                    if (images != null)
+                    {
+                        if (images.Count > 0)
+                        {
+                            Storage.SetBitmapToCache(storage.Code, (Bitmap)images[0]);
+                        }
+                    }
+                }
                 this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.CheckStateChanged -= PlC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測_CheckStateChanged;
                 this.plC_CheckBox_儲位管理_EPD266_警報.CheckStateChanged -= PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged;
 
@@ -1141,56 +1150,73 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD266_上傳至面板_MouseDownEvent(MouseEventArgs mevent)
         {
-
-
             try
             {
-                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-                if (list_value.Count == 0) return;
-
-                // 擷取所有選取列的 IP
-                List<string> ipList = list_value
-                    .Select(v => v[(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString())
-                    .Where(ip => !string.IsNullOrWhiteSpace(ip))
-                    .Distinct()
-                    .ToList();
-
-                if (ipList.Count == 0) return;
-
-                // 呼叫 API 統一刷新面板
-                var (code, result) = deviceApiClass.refresh_canvas_by_ip_full(Main_Form.API_Server, ipList, Main_Form.ServerName, Main_Form.ServerType);
-
-                // 輸出結果到 Console
-                if (code == 200)
+                if (this.ControlMode)
                 {
-                    Console.WriteLine($"✅ EPD266 面板刷新成功，共上傳 {ipList.Count} 筆\n{result}");
+                    List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                    if (list_value.Count == 0) return;
+
+                    // 擷取所有選取列的 IP
+                    List<string> ipList = list_value
+                        .Select(v => v[(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString())
+                        .Where(ip => !string.IsNullOrWhiteSpace(ip))
+                        .Distinct()
+                        .ToList();
+
+                    if (ipList.Count == 0) return;
+
+                    // 呼叫 API 統一刷新面板
+                    var (code, result) = deviceApiClass.refresh_canvas_by_ip_full(Main_Form.API_Server, ipList, Main_Form.ServerName, Main_Form.ServerType);
+
+                    // 輸出結果到 Console
+                    if (code == 200)
+                    {
+                        Console.WriteLine($"✅ EPD266 面板刷新成功，共上傳 {ipList.Count} 筆\n{result}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"❌ EPD266 面板刷新失敗！\n{result}");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine($"❌ EPD266 面板刷新失敗！\n{result}");
+                    List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
+                    if (list_value.Count == 0) return;
+
+                    List<Task> taskList = new List<Task>();
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+                        string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
+                        Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+                    
+                        if (Storage.ContainsBitmap(storage.Code) == false)
+                        {
+                            List<Image> images = Function_取得藥品圖片(storage.Code);
+                            if (images != null)
+                            {
+                                if (images.Count > 0)
+                                {
+                                    Storage.SetBitmapToCache(storage.Code, (Bitmap)images[0]);
+                                }
+                            }
+                        }
+
+                        taskList.Add(Task.Run(() =>
+                        {
+                            if (storage != null)
+                            {
+                                if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
+                                {
+                                    Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
+                                }
+                            }
+                        }));
+                    }
+                    Task allTask = Task.WhenAll(taskList);
+                    allTask.Wait();
                 }
-                //List<object[]> list_value = sqL_DataGridView_儲位管理_EPD266_儲位資料.Get_All_Select_RowsValues();
-                //if (list_value.Count == 0) return;
 
-                //List<Task> taskList = new List<Task>();
-                //for (int i = 0; i < list_value.Count; i++)
-                //{
-                //    string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                //    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
-
-                //    taskList.Add(Task.Run(() =>
-                //    {
-                //        if (storage != null)
-                //        {
-                //            if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
-                //            {
-                //                Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
-                //            }
-                //        }
-                //    }));
-                //}
-                //Task allTask = Task.WhenAll(taskList);
-                //allTask.Wait();
             }
             catch
             {

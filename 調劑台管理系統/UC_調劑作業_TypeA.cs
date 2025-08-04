@@ -1691,6 +1691,9 @@ namespace 調劑台管理系統
             personPageClass.藥師證字號 = 藥師證字號;
             personPageClass.顏色 = 顏色;
             List<OrderClass> orderClasses = Main_Form.Function_醫令領藥(BarCode, personPageClass, 調劑台名稱, PLC_Device_單醫令模式.Bool);
+
+
+
             if (orderClasses != null)
             {
                 if (Main_Form.PLC_Device_AI處方核對啟用.Bool || Main_Form.PLC_Device_顯示診斷訊息.Bool)
@@ -1724,7 +1727,7 @@ namespace 調劑台管理系統
                             for (int i = 0; i < suspiciousRxLog.diseaseClasses.Count; i++)
                             {
                                 text += $"  {i + 1}.[{suspiciousRxLog.diseaseClasses[i].疾病代碼.StringLength(0)}]{suspiciousRxLog.diseaseClasses[i].中文說明}";
-                                if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄.Count != 0) text += "\n";
+                                if (i != suspiciousRxLog.diseaseClasses.Count - 1 || suspiciousRxLog.交互作用紀錄 != null) text += "\n";
                                 text_height += text_height_basic;
                             }
                         }
