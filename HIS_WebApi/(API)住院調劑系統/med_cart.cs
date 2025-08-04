@@ -1975,22 +1975,31 @@ namespace HIS_WebApi
                 if (returnData.Code != 200) return returnData.JsonSerializationt(true);
                 List<patientInfoClass> patientInfoClasses = returnData.Data.ObjToClass<List<patientInfoClass>>();
                 List<string> GUID = new List<string>();
+                returnData returnData_dispensed = new returnData();
+
+
                 foreach (var item in patientInfoClasses)
                 {
                     List<medCpoeClass> medCpoeClasses = item.處方;
                     medCpoeClasses = medCpoeClasses.Where(item => item.數量 == "0").ToList();
                     if (medCpoeClasses.Count == 0) continue;
-                    foreach(var order in medCpoeClasses)
+                    foreach (var order in medCpoeClasses)
                     {
-                        returnData returnData_dispensed = new returnData();
-                        returnData_dispensed.ValueAry.Add(order.GUID);
-                        returnData_dispensed.ValueAry.Add(order.護理站);
-                        GUID.AddRange(order.GUID.Split(";"));
-                        string result = dispensed_by_cart(returnData_dispensed);
-                        Logger.Log("自動調劑", $"{result.JsonSerializationt(true)}");
 
-                        add_log("自動調劑", order.GUID);
+                        GUID.AddRange(order.GUID.Split(";"));
+
                     }
+                }
+                if (GUID.Count > 0)
+                {
+                    string GUIDs = string.Join(";", GUID);
+                    returnData_dispensed.ValueAry.Add(GUIDs);
+                    returnData_dispensed.ValueAry.Add(護理站);
+
+                    string result = dispensed_by_cart(returnData_dispensed);
+                    Logger.Log("自動調劑", $"{result}");
+
+                    add_log("自動調劑", GUIDs);
                 }
                 returnData.Method = "med_Cart/get_patient_with_NOdispens_summary_dispense";
                 returnData.Code = 200;
