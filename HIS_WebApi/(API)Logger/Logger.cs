@@ -46,40 +46,21 @@ namespace HIS_WebApi.Anna_Logger
         /// <returns></returns>
         [HttpPost("init")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "loggerClass物件", typeof(loggerClass))]
-        public string init([FromBody] returnData returnData)
+        public string init()
         {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData returnData = new returnData();
             try
             {
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                return CheckCreatTable(sys_serverSettingClasses[0], new enum_logger());
-                
+                return CheckCreatTable();
             }
             catch (Exception ex)
             {
                 returnData.Code = -200;
-                returnData.Result = $"Exception : {ex.Message}";
-                return returnData.JsonSerializationt(true);
+                returnData.Result = $"{ex.Message}";
+                return returnData.JsonSerializationt();
             }
         }
-        private string CheckCreatTable(sys_serverSettingClass sys_serverSettingClass, Enum enumInstance)
-        {
-            string Server = sys_serverSettingClass.Server;
-            string DB = sys_serverSettingClass.DBName;
-            string UserName = sys_serverSettingClass.User;
-            string Password = sys_serverSettingClass.Password;
-            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
 
-            Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, enumInstance);
-            return table.JsonSerializationt(true);
-        }
         /// <summary>
         ///取得所有Logger資料
         /// </summary>
@@ -151,6 +132,7 @@ namespace HIS_WebApi.Anna_Logger
         [HttpPost("add")]
         public string POST_add([FromBody] returnData returnData)
         {
+            init();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
@@ -161,38 +143,26 @@ namespace HIS_WebApi.Anna_Logger
                     return returnData.JsonSerializationt();
                 }
 
-                List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClassMethod.WebApiGet($"{API_Server}");
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "人員資料");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
 
                 SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
 
                 List<loggerClass> profile_sql_add = new List<loggerClass>();
-                List<loggerClass> profile_input = returnData.Data.ObjToClass<List<loggerClass>>();
+                List<loggerClass> input = returnData.Data.ObjToClass<List<loggerClass>>();
 
-                for (int i = 0; i < profile_input.Count; i++)
+                for (int i = 0; i < input.Count; i++)
                 {
                     string GUID = Guid.NewGuid().ToString();
 
-                    loggerClass loggerClass = profile_input[i];
+                    loggerClass loggerClass = input[i];
                     loggerClass.GUID = GUID;
                     loggerClass.操作時間 = DateTime.Now.ToDateTimeString();
                     profile_sql_add.Add(loggerClass);
 
                 }
 
-                List<object[]> list_profile_add = new List<object[]>();
-                list_profile_add = profile_sql_add.ClassToSQL<loggerClass, enum_logger>();
+                List<object[]> list_profile_add = profile_sql_add.ClassToSQL<loggerClass, enum_logger>();
                 if (list_profile_add.Count > 0) sqlControl.AddRows(null, list_profile_add);
                 returnData.Data = profile_sql_add;
                 returnData.Code = 200;
@@ -432,5 +402,23 @@ namespace HIS_WebApi.Anna_Logger
                 return returnData.JsonSerializationt(true);
             }
         }
-    }   
+        private string CheckCreatTable()
+        {
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
+            {
+                returnData returnData = new returnData();
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+
+            List<Table> tables = new List<Table>();
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_logger()));
+
+            return tables.JsonSerializationt(true);
+        }
+
+    }
 }

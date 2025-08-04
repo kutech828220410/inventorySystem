@@ -4401,7 +4401,8 @@ namespace HIS_WebApi
 
                         DateTime 新時間 = DateTime.Today.AddHours(dt.Hour).AddMinutes(dt.Minute).AddSeconds(dt.Second);
                         item.更新時間 = 新時間.ToDateTimeString();
-                        if (item.入院日期.StringIsEmpty()) item.入院日期 = DateTime.MinValue.ToDateTimeString();           
+                        if (item.入院日期.StringIsEmpty()) item.入院日期 = DateTime.MinValue.ToDateTimeString();
+                        abnormal(item);
                     }
                 })));
                 tasks.Add(Task.Run(new Action(delegate
@@ -4689,6 +4690,55 @@ namespace HIS_WebApi
             med_inventory med_Inventory = new med_inventory();
             string log_result = med_Inventory.add_med_inventory_log(returnData_add_log);
             //Logger.Log("自動調劑LOG", $"{log_result.JsonSerializationt(true)}");
+        }
+        private patientInfoClass abnormal(patientInfoClass patientInfoClasses)
+        {
+            List<string> lowlList = new List<string>();
+
+            List<string> highlList = new List<string>();
+
+            double 白蛋白 = patientInfoClasses.白蛋白.StringToDouble();
+            double 肌酸酐 = patientInfoClasses.肌酸酐.StringToDouble();
+            double 估算腎小球過濾率 = patientInfoClasses.估算腎小球過濾率.StringToDouble();
+            double 丙氨酸氨基轉移酶 = patientInfoClasses.丙氨酸氨基轉移酶.StringToDouble();
+            double 鉀離子 = patientInfoClasses.鉀離子.StringToDouble();
+            double 鈣離子 = patientInfoClasses.鈣離子.StringToDouble();
+            double 總膽紅素 = patientInfoClasses.總膽紅素.StringToDouble();
+            double 鈉離子 = patientInfoClasses.鈉離子.StringToDouble();
+            double 白血球 = patientInfoClasses.白血球.StringToDouble();
+            double 血紅素 = patientInfoClasses.血紅素.StringToDouble();
+            double 血小板 = patientInfoClasses.血小板.StringToDouble();
+            double 國際標準化比率 = patientInfoClasses.國際標準化比率.StringToDouble();
+            if (白蛋白 <= 3.7) lowlList.Add("alb");
+            if (白蛋白 >= 5.3) highlList.Add("alb");
+            if (肌酸酐 <= 0.5) lowlList.Add("scr");
+            if (肌酸酐 >= 0.9) highlList.Add("scr");
+            if (鉀離子 <= 3.5) lowlList.Add("k");
+            if (鉀離子 >= 5.1) highlList.Add("k");
+            if (鈣離子 <= 8.6) lowlList.Add("ca");
+            if (鈣離子 >= 10.0) highlList.Add("ca");
+            if (鈉離子 <= 136) lowlList.Add("na");
+            if (鈉離子 >= 145) highlList.Add("na");
+            if (白血球 <= 4180) lowlList.Add("wbc");
+            if (白血球 >= 9380) highlList.Add("wbc");
+            if (血紅素 <= 10.9) lowlList.Add("hgb");
+            if (血紅素 >= 15.6) highlList.Add("hgb");
+            if (血小板 <= 145000.0) lowlList.Add("plt");
+            if (血小板 >= 383000) highlList.Add("plt");
+            if (國際標準化比率 <= 0.82) lowlList.Add("inr");
+            if (國際標準化比率 >= 1.15) highlList.Add("inr");
+            if (估算腎小球過濾率 <= 60) lowlList.Add("egfr");
+            if (丙氨酸氨基轉移酶 > 33) highlList.Add("alt");
+            if (總膽紅素 > 1.2) highlList.Add("tb");
+
+
+
+
+            string low = string.Join(";", lowlList);
+            string high = string.Join(";", highlList);
+
+            patientInfoClasses.檢驗數值異常 = $"{low}||{high}";
+            return patientInfoClasses;
         }
 
 
