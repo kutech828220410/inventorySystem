@@ -2020,7 +2020,7 @@ namespace 調劑台管理系統
                         Task.Run(() =>
                         {
                             Function_從SQL取得儲位到本地資料(藥品碼);
-                            this.Function_儲位刷新(藥品碼);
+                            Function_儲位刷新(藥品碼);
                         });
                     }
                     if (IP.StringIsEmpty() == false)
@@ -2200,7 +2200,7 @@ namespace 調劑台管理系統
                     string Jsonstring = Basic.Net.WEBApiGet(dBConfigClass.Med_Update_ApiURL);
                     Console.WriteLine(Jsonstring);
                 }
-                this.Function_從SQL取得儲位到雲端資料();
+                Function_從SQL取得儲位到雲端資料();
                 PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料.Bool = false;
             }
 
@@ -2385,7 +2385,7 @@ namespace 調劑台管理系統
                 List<object> list_code = Code_LINQ.ToList();
                 for (int i = 0; i < list_code.Count; i++)
                 {
-                    this.Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
+                    Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
                 }
 
                 List<object[]> list_取藥堆疊母資料_buf = new List<object[]>();
@@ -2407,7 +2407,7 @@ namespace 調劑台管理系統
                     藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     調劑台名稱 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString();
                     總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
-                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
+                    庫存量 = Function_從雲端資料取得庫存(藥品碼);
                     結存量 = (庫存量 + 總異動量);
                     flag_獨立作業 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
                     flag_雙人覆核 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
@@ -2670,7 +2670,7 @@ namespace 調劑台管理系統
                     調劑台名稱 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString();
                     藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
-                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
+                    庫存量 = Function_從雲端資料取得庫存(藥品碼);
                     結存量 = (庫存量 + 總異動量);
                     效期 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
                     批號 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.批號].ObjectToString();
@@ -2729,7 +2729,7 @@ namespace 調劑台管理系統
                               
                                 if (IP.StringIsEmpty())
                                 {
-                                    儲位資訊 = this.Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
+                                    儲位資訊 = Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
                                 }
                                 else
                                 {
@@ -2808,7 +2808,7 @@ namespace 調劑台管理系統
                                     object[] value = this.Function_取藥堆疊資料_新增子資料(GUID, 儲位資訊_GUID, 調劑台名稱, 藥品碼, 儲位資訊_IP, 儲位資訊_Num, 儲位資訊_TYPE, 儲位資訊_效期, 儲位資訊_批號, 儲位資訊_異動量);
 
                                     list_取藥堆疊子資料_buf.Add(value);
-                                    this.Function_庫存異動至雲端資料(儲位資訊[k]);
+                                    Function_庫存異動至雲端資料(儲位資訊[k]);
                                 }
                                 else
                                 {
@@ -2819,7 +2819,7 @@ namespace 調劑台管理系統
                                     }
                                     if (list_sortValue[0][(int)enum_取藥堆疊子資料.已入帳].ObjectToString() == false.ToString())
                                     {
-                                        this.Function_庫存異動至雲端資料(儲位資訊[k]);
+                                        Function_庫存異動至雲端資料(儲位資訊[k]);
                                     }
                                 }
                             }

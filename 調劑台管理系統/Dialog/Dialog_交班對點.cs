@@ -625,19 +625,31 @@ namespace 調劑台管理系統
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsDouble() == false) continue;
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToDouble() != 0)
                     {
-                        medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
-                        medRecheckLogClass.發生類別 = "交班對點";
-                        medRecheckLogClass.藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
-                        medRecheckLogClass.藥名 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
-                        medRecheckLogClass.庫存值 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
-                        medRecheckLogClass.盤點值 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
-                        medRecheckLogClass.盤點藥師1 = personPageClass_盤點人員.姓名;
-                        medRecheckLogClass.盤點藥師ID1 = personPageClass_盤點人員.ID;
-                        medRecheckLogClass.盤點藥師2 = personPageClass_覆盤人員.姓名;
-                        medRecheckLogClass.盤點藥師ID2 = personPageClass_覆盤人員.ID;
-                        medRecheckLogClass.異常原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
+                        string 藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                        string 藥名 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
+                        double 差異值 = list_交班對點[i][(int)enum_交班藥品.差異值].StringToDouble();
+                        string 盤點藥師1 = personPageClass_盤點人員.姓名;
+                        if (Main_Form.PLC_Device_盤點異常量直接寫入庫存.Bool == false)
+                        {
+                            medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
+                            medRecheckLogClass.發生類別 = "交班對點";
+                            medRecheckLogClass.藥碼 = 藥碼;
+                            medRecheckLogClass.藥名 = 藥名;
+                            medRecheckLogClass.庫存值 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
+                            medRecheckLogClass.盤點值 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
+                            medRecheckLogClass.盤點藥師1 = personPageClass_盤點人員.姓名;
+                            medRecheckLogClass.盤點藥師ID1 = personPageClass_盤點人員.ID;
+                            medRecheckLogClass.盤點藥師2 = personPageClass_覆盤人員.姓名;
+                            medRecheckLogClass.盤點藥師ID2 = personPageClass_覆盤人員.ID;
+                            medRecheckLogClass.異常原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
 
-                        medRecheckLogClasses.Add(medRecheckLogClass);
+                            medRecheckLogClasses.Add(medRecheckLogClass);
+                        }
+                        else
+                        {
+                            Main_Form.Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值, 盤點藥師1);
+                            Main_Form.Function_儲位刷新(藥碼);
+                        }
                     }
 
                 }

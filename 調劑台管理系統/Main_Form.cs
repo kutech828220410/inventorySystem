@@ -110,6 +110,9 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
         static public PLC_Device PLC_Device_退藥不選擇效期批號 = new PLC_Device("S5053");
+        static public PLC_Device PLC_Device_盤點異常量直接寫入庫存 = new PLC_Device("S5054");
+
+        
         static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
         static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 

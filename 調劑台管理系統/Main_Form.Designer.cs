@@ -1145,6 +1145,7 @@
             this.plC_CheckBox_面板於調劑結束更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_面板於過帳後更新 = new MyUI.PLC_CheckBox();
             this.tabPage40 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox13 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox10 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox9 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox6 = new MyUI.PLC_CheckBox();
@@ -1582,7 +1583,7 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.plC_CheckBox13 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox14 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -31991,6 +31992,7 @@
             // 
             // tabPage39
             // 
+            this.tabPage39.Controls.Add(this.plC_CheckBox14);
             this.tabPage39.Controls.Add(this.plC_CheckBox12);
             this.tabPage39.Controls.Add(this.plC_CheckBox11);
             this.tabPage39.Controls.Add(this.plC_CheckBox7);
@@ -32549,6 +32551,26 @@
             this.tabPage40.TabIndex = 1;
             this.tabPage40.Text = "調劑設定";
             this.tabPage40.UseVisualStyleBackColor = true;
+            // 
+            // plC_CheckBox13
+            // 
+            this.plC_CheckBox13.AutoSize = true;
+            this.plC_CheckBox13.Bool = false;
+            this.plC_CheckBox13.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox13.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox13.Location = new System.Drawing.Point(254, 54);
+            this.plC_CheckBox13.Name = "plC_CheckBox13";
+            this.plC_CheckBox13.Size = new System.Drawing.Size(197, 20);
+            this.plC_CheckBox13.TabIndex = 240;
+            this.plC_CheckBox13.Text = "[退藥]不選擇效期及批號";
+            this.plC_CheckBox13.UseVisualStyleBackColor = true;
+            this.plC_CheckBox13.寫入元件位置 = "S5053";
+            this.plC_CheckBox13.文字內容 = "[退藥]不選擇效期及批號";
+            this.plC_CheckBox13.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox13.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox13.讀取元件位置 = "S5053";
+            this.plC_CheckBox13.讀寫鎖住 = false;
+            this.plC_CheckBox13.音效 = false;
             // 
             // plC_CheckBox10
             // 
@@ -43445,25 +43467,25 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
-            // plC_CheckBox13
+            // plC_CheckBox14
             // 
-            this.plC_CheckBox13.AutoSize = true;
-            this.plC_CheckBox13.Bool = false;
-            this.plC_CheckBox13.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox13.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox13.Location = new System.Drawing.Point(254, 54);
-            this.plC_CheckBox13.Name = "plC_CheckBox13";
-            this.plC_CheckBox13.Size = new System.Drawing.Size(197, 20);
-            this.plC_CheckBox13.TabIndex = 240;
-            this.plC_CheckBox13.Text = "[退藥]不選擇效期及批號";
-            this.plC_CheckBox13.UseVisualStyleBackColor = true;
-            this.plC_CheckBox13.寫入元件位置 = "S5053";
-            this.plC_CheckBox13.文字內容 = "[退藥]不選擇效期及批號";
-            this.plC_CheckBox13.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox13.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox13.讀取元件位置 = "S5053";
-            this.plC_CheckBox13.讀寫鎖住 = false;
-            this.plC_CheckBox13.音效 = false;
+            this.plC_CheckBox14.AutoSize = true;
+            this.plC_CheckBox14.Bool = false;
+            this.plC_CheckBox14.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox14.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox14.Location = new System.Drawing.Point(8, 269);
+            this.plC_CheckBox14.Name = "plC_CheckBox14";
+            this.plC_CheckBox14.Size = new System.Drawing.Size(213, 20);
+            this.plC_CheckBox14.TabIndex = 237;
+            this.plC_CheckBox14.Text = "[盤點]異常量直接寫入庫存";
+            this.plC_CheckBox14.UseVisualStyleBackColor = true;
+            this.plC_CheckBox14.寫入元件位置 = "S5054";
+            this.plC_CheckBox14.文字內容 = "[盤點]異常量直接寫入庫存";
+            this.plC_CheckBox14.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox14.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox14.讀取元件位置 = "S5054";
+            this.plC_CheckBox14.讀寫鎖住 = false;
+            this.plC_CheckBox14.音效 = false;
             // 
             // Main_Form
             // 
@@ -45550,6 +45572,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品搜索;
         private MyUI.PLC_RJ_Button plC_RJ_Button_全部滅燈;
         private MyUI.PLC_CheckBox plC_CheckBox13;
+        private MyUI.PLC_CheckBox plC_CheckBox14;
     }
 }
 

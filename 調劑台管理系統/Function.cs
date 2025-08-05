@@ -860,7 +860,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None.GetEnumName();
             Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
         }
-        public void Function_從SQL取得儲位到雲端資料()
+        static public void Function_從SQL取得儲位到雲端資料()
         {
             try
             {
@@ -872,21 +872,21 @@ namespace 調劑台管理系統
                 {
                     MyTimer myTimer0 = new MyTimer();
                     myTimer0.StartTickTime(50000);
-                    List_EPD583_雲端資料 = this.drawerUI_EPD_583.SQL_GetAllDrawers();
+                    List_EPD583_雲端資料 = _drawerUI_EPD_583.SQL_GetAllDrawers();
                     Console.WriteLine($"讀取EPD583資料! 耗時 :{myTimer0.GetTickTime().ToString("0.000")} ");
                 }));
                 taskList.Add(Task.Run(() =>
                 {
                     MyTimer myTimer0 = new MyTimer();
                     myTimer0.StartTickTime(50000);
-                    List_EPD1020_雲端資料 = this.drawerUI_EPD_1020.SQL_GetAllDrawers();
+                    List_EPD1020_雲端資料 = _drawerUI_EPD_1020.SQL_GetAllDrawers();
                     Console.WriteLine($"讀取EPD1020資料! 耗時 :{myTimer0.GetTickTime().ToString("0.000")} ");
                 }));
                 taskList.Add(Task.Run(() =>
                 {
                     MyTimer myTimer1 = new MyTimer();
                     myTimer1.StartTickTime(50000);
-                    List_EPD266_雲端資料 = this.storageUI_EPD_266.SQL_GetAllStorage();
+                    List_EPD266_雲端資料 = _storageUI_EPD_266.SQL_GetAllStorage();
                     Console.WriteLine($"讀取EPD266資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
 
                 }));
@@ -894,7 +894,7 @@ namespace 調劑台管理系統
                 {
                     MyTimer myTimer2 = new MyTimer();
                     myTimer2.StartTickTime(50000);
-                    List_RowsLED_雲端資料 = this.rowsLEDUI.SQL_GetAllRowsLED();
+                    List_RowsLED_雲端資料 = _rowsLEDUI.SQL_GetAllRowsLED();
                     Console.WriteLine($"讀取RowsLED資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
                 }));
@@ -902,18 +902,18 @@ namespace 調劑台管理系統
                 {
                     MyTimer myTimer2 = new MyTimer();
                     myTimer2.StartTickTime(50000);
-                    List_Pannel35_雲端資料 = this.storageUI_WT32.SQL_GetAllStorage();
+                    List_Pannel35_雲端資料 = _storageUI_WT32.SQL_GetAllStorage();
                     Console.WriteLine($"讀取Pannel35資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
                 }));
-                taskList.Add(Task.Run(() =>
-                {
-                    MyTimer myTimer2 = new MyTimer();
-                    myTimer2.StartTickTime(50000);
-                    List_RFID_雲端資料 = this.rfiD_UI.SQL_GetAllRFIDClass();
-                    Console.WriteLine($"外部設備資料資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
+                //taskList.Add(Task.Run(() =>
+                //{
+                //    MyTimer myTimer2 = new MyTimer();
+                //    myTimer2.StartTickTime(50000);
+                //    List_RFID_雲端資料 = _rfiD_UI.SQL_GetAllRFIDClass();
+                //    Console.WriteLine($"外部設備資料資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
-                }));
+                //}));
                 taskList.Add(Task.Run(() =>
                 {
                     MyTimer myTimer2 = new MyTimer();
@@ -932,7 +932,7 @@ namespace 調劑台管理系統
             }
 
         }
-        public List<object> Function_從SQL取得儲位到雲端資料(string 藥品碼)
+        static public List<object> Function_從SQL取得儲位到雲端資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
             List<Task> tasks = new List<Task>();
@@ -942,7 +942,7 @@ namespace 調劑台管理系統
                 List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < boxes.Count; i++)
                 {
-                    Box box = this.drawerUI_EPD_583.SQL_GetBox(boxes[i]);
+                    Box box = _drawerUI_EPD_583.SQL_GetBox(boxes[i]);
                     List_EPD583_雲端資料.Add_NewDrawer(box);
                     list_value.LockAdd(box);
                 }
@@ -952,7 +952,7 @@ namespace 調劑台管理系統
                 List<Box> boxes_1020 = List_EPD1020_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < boxes_1020.Count; i++)
                 {
-                    Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
+                    Drawer drawer = _drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
                     List_EPD1020_雲端資料.Add_NewDrawer(drawer);
                     Box box = drawer.GetByGUID(boxes_1020[i].GUID);
                     list_value.LockAdd(box);
@@ -963,7 +963,7 @@ namespace 調劑台管理系統
                 List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < storages.Count; i++)
                 {
-                    Storage storage = this.storageUI_EPD_266.SQL_GetStorage(storages[i]);
+                    Storage storage = _storageUI_EPD_266.SQL_GetStorage(storages[i]);
                     List_EPD266_雲端資料.Add_NewStorage(storage);
                     list_value.LockAdd(storage);
                 }
@@ -973,7 +973,7 @@ namespace 調劑台管理系統
                 List<Storage> pannels = List_Pannel35_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < pannels.Count; i++)
                 {
-                    Storage pannel = this.storageUI_WT32.SQL_GetStorage(pannels[i]);
+                    Storage pannel = _storageUI_WT32.SQL_GetStorage(pannels[i]);
                     List_Pannel35_雲端資料.Add_NewStorage(pannel);
                     list_value.LockAdd(pannel);
                 }
@@ -983,22 +983,22 @@ namespace 調劑台管理系統
                 List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
                 for (int i = 0; i < rowsDevices.Count; i++)
                 {
-                    RowsLED rowsLED = this.rowsLEDUI.SQL_GetRowsLED(rowsDevices[i].IP);
+                    RowsLED rowsLED = _rowsLEDUI.SQL_GetRowsLED(rowsDevices[i].IP);
                     RowsDevice rowsDevice = rowsLED.GetRowsDevice(rowsDevices[i].GUID);
                     if (rowsDevice != null) list_value.LockAdd(rowsDevice);
                     List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
                 }
             })));
-            tasks.Add(Task.Run(new Action(delegate
-            {
-                List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
-                for (int i = 0; i < rFIDDevices.Count; i++)
-                {
-                    RFIDDevice rFIDDevice = this.rfiD_UI.SQL_GetDevice(rFIDDevices[i]);
-                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
-                    list_value.LockAdd(rFIDDevices);
-                }
-            })));
+            //tasks.Add(Task.Run(new Action(delegate
+            //{
+            //    List<RFIDDevice> rFIDDevices = List_RFID_雲端資料.SortByCode(藥品碼);
+            //    for (int i = 0; i < rFIDDevices.Count; i++)
+            //    {
+            //        RFIDDevice rFIDDevice = rfiD_UI.SQL_GetDevice(rFIDDevices[i]);
+            //        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+            //        list_value.LockAdd(rFIDDevices);
+            //    }
+            //})));
 
             Task.WhenAll(tasks).Wait();
 
@@ -1057,7 +1057,7 @@ namespace 調劑台管理系統
 
             }
         }
-        public double Function_從雲端資料取得庫存(string 藥品碼)
+        static public double Function_從雲端資料取得庫存(string 藥品碼)
         {
             double 庫存 = 0;
             List<object> list_value = new List<object>();
@@ -1237,7 +1237,7 @@ namespace 調劑台管理系統
         }
 
 
-        public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
+        static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, double 異動量)
         {
             bool debug = false;
             if (debug) Console.WriteLine($"[取得異動儲位資訊] 藥品碼={藥品碼}, 異動量={異動量}");
@@ -1574,11 +1574,11 @@ namespace 調劑台管理系統
             return 儲位資訊;
         }
 
-        public object Function_庫存異動至雲端資料(object[] 儲位資訊)
+        static public object Function_庫存異動至雲端資料(object[] 儲位資訊)
         {
-            return this.Function_庫存異動至雲端資料(儲位資訊, false);
+            return Function_庫存異動至雲端資料(儲位資訊, false);
         }
-        public object Function_庫存異動至雲端資料(object device, string TYPE, string 效期, string 批號, string 異動量, bool upToSQL)
+        static public object Function_庫存異動至雲端資料(object device, string TYPE, string 效期, string 批號, string 異動量, bool upToSQL)
         {
             object Value = device;
 
@@ -1594,7 +1594,7 @@ namespace 調劑台管理系統
                     {
                         storage.效期庫存異動(效期, 批號, 異動量, false);
                         List_EPD266_雲端資料.Add_NewStorage(storage);
-                        if (upToSQL) this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        if (upToSQL) _storageUI_EPD_266.SQL_ReplaceStorage(storage);
                         storage.UpToSQL = true;
                         return storage;
                     }
@@ -1607,7 +1607,7 @@ namespace 調劑台管理系統
                     {
                         storage.效期庫存異動(效期, 批號, 異動量, false);
                         List_Pannel35_雲端資料.Add_NewStorage(storage);
-                        if (upToSQL) this.storageUI_WT32.SQL_ReplaceStorage(storage);
+                        if (upToSQL) _storageUI_WT32.SQL_ReplaceStorage(storage);
                         storage.UpToSQL = true;
                         return storage;
                     }
@@ -1621,7 +1621,7 @@ namespace 調劑台管理系統
                     box.效期庫存異動(效期, 批號, 異動量, false);
                     List_EPD583_雲端資料.ReplaceBox(box);
                     Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
-                    if (upToSQL) this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                    if (upToSQL) _drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                     drawer.UpToSQL = true;
                     return drawer;
                 }
@@ -1631,7 +1631,7 @@ namespace 調劑台管理系統
                     box.效期庫存異動(效期, 批號, 異動量, false);
                     List_EPD1020_雲端資料.ReplaceByGUID(box);
                     Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
-                    if (upToSQL) this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                    if (upToSQL) _drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
                     drawer.UpToSQL = true;
                     return drawer;
                 }
@@ -1644,28 +1644,28 @@ namespace 調劑台管理系統
                     rowsDevice.效期庫存異動(效期, 批號, 異動量, false);
                     List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
                     RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
-                    if (upToSQL) this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
+                    if (upToSQL) _rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
                     rowsLED.UpToSQL = true;
                     return rowsLED;
                 }
 
             }
-            else if (Value is RFIDDevice)
-            {
-                if (TYPE == DeviceType.RFID_Device.GetEnumName())
-                {
-                    RFIDDevice rFIDDevice = Value as RFIDDevice;
-                    rFIDDevice.效期庫存異動(效期, 批號, 異動量, false);
-                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
-                    RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
-                    if (upToSQL) this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
-                    rFIDClass.UpToSQL = true;
-                    return rFIDClass;
-                }
-            }
+            //else if (Value is RFIDDevice)
+            //{
+            //    if (TYPE == DeviceType.RFID_Device.GetEnumName())
+            //    {
+            //        RFIDDevice rFIDDevice = Value as RFIDDevice;
+            //        rFIDDevice.效期庫存異動(效期, 批號, 異動量, false);
+            //        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+            //        RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
+            //        if (upToSQL) _rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
+            //        rFIDClass.UpToSQL = true;
+            //        return rFIDClass;
+            //    }
+            //}
             return null;
         }
-        public object Function_庫存異動至雲端資料(object[] 儲位資訊, bool upToSQL)
+        static public object Function_庫存異動至雲端資料(object[] 儲位資訊, bool upToSQL)
         {
             object Value = 儲位資訊[(int)enum_儲位資訊.Value];
             string 效期 = 儲位資訊[(int)enum_儲位資訊.效期].ObjectToString();
@@ -1683,7 +1683,7 @@ namespace 調劑台管理系統
                     {
                         storage.效期庫存異動(效期, 異動量, false);
                         List_EPD266_雲端資料.Add_NewStorage(storage);
-                        if (upToSQL) this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        if (upToSQL) _storageUI_EPD_266.SQL_ReplaceStorage(storage);
                         storage.UpToSQL = true;
                         return storage;
                     }
@@ -1696,7 +1696,7 @@ namespace 調劑台管理系統
                     {
                         storage.效期庫存異動(效期, 異動量, false);
                         List_Pannel35_雲端資料.Add_NewStorage(storage);
-                        if (upToSQL) this.storageUI_WT32.SQL_ReplaceStorage(storage);
+                        if (upToSQL) _storageUI_WT32.SQL_ReplaceStorage(storage);
                         storage.UpToSQL = true;
                         return storage;
                     }
@@ -1710,7 +1710,7 @@ namespace 調劑台管理系統
                     box.效期庫存異動(效期, 異動量, false);
                     List_EPD583_雲端資料.ReplaceBox(box);
                     Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
-                    if (upToSQL) this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                    if (upToSQL) _drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                     drawer.UpToSQL = true;
                     return drawer;
                 }
@@ -1720,7 +1720,7 @@ namespace 調劑台管理系統
                     box.效期庫存異動(效期, 異動量, false);
                     List_EPD1020_雲端資料.ReplaceByGUID(box);
                     Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
-                    if (upToSQL) this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                    if (upToSQL) _drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
                     drawer.UpToSQL = true;
                     return drawer;
                 }
@@ -1733,25 +1733,25 @@ namespace 調劑台管理系統
                     rowsDevice.效期庫存異動(效期, 異動量, false);
                     List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
                     RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
-                    if (upToSQL) rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
+                    if (upToSQL) _rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
                     rowsLED.UpToSQL = true;
                     return rowsLED;
                 }
 
             }
-            else if (Value is RFIDDevice)
-            {
-                if (TYPE == DeviceType.RFID_Device.GetEnumName())
-                {
-                    RFIDDevice rFIDDevice = Value as RFIDDevice;
-                    rFIDDevice.效期庫存異動(效期, 異動量, false);
-                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
-                    RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
-                    if (upToSQL) this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
-                    rFIDClass.UpToSQL = true;
-                    return rFIDClass;
-                }
-            }
+            //else if (Value is RFIDDevice)
+            //{
+            //    if (TYPE == DeviceType.RFID_Device.GetEnumName())
+            //    {
+            //        RFIDDevice rFIDDevice = Value as RFIDDevice;
+            //        rFIDDevice.效期庫存異動(效期, 異動量, false);
+            //        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+            //        RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
+            //        if (upToSQL) this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
+            //        rFIDClass.UpToSQL = true;
+            //        return rFIDClass;
+            //    }
+            //}
             return null;
         }
         public void Function_雲端資料上傳至SQL()
@@ -2239,7 +2239,7 @@ namespace 調劑台管理系統
         }
 
 
-        public void Function_儲位刷新(string 藥品碼, int 庫存)
+        static public void Function_儲位刷新(string 藥品碼, int 庫存)
         {
             List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             List<Task> taskList = new List<Task>();
@@ -2269,7 +2269,7 @@ namespace 調劑台管理系統
                             {
                                 storage.清除所有庫存資料();
                                 storage.新增效期("2050/12/31", 庫存.ToString());
-                                this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                                _storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
 
                             list_IP.Add(IP);
@@ -2289,7 +2289,7 @@ namespace 調劑台管理系統
                                     boxes[k].清除所有庫存資料();
                                     boxes[k].新增效期("2050/12/31", 庫存.ToString());
                                 }
-                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);
+                                _drawerUI_EPD_583.DrawToEpd_UDP(drawer);
                             }));
 
                             list_IP.Add(IP);
@@ -2303,12 +2303,12 @@ namespace 調劑台管理系統
             }
 
         }
-        public void Function_儲位刷新(string 藥品碼)
+        static public void Function_儲位刷新(string 藥品碼)
         {
             List<string> list_lock_IP = new List<string>();
-            this.Function_儲位刷新(藥品碼, ref list_lock_IP);
+            Function_儲位刷新(藥品碼, ref list_lock_IP);
         }
-        public void Function_儲位刷新(string 藥品碼, ref List<string> list_lock_IP)
+        static public void Function_儲位刷新(string 藥品碼, ref List<string> list_lock_IP)
         {
             List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             List<Task> taskList = new List<Task>();
@@ -2336,7 +2336,7 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                                _storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
 
                             list_IP.Add(IP);
@@ -2352,7 +2352,7 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-                                this.drawerUI_EPD_583.DrawToEpd_UDP(drawer);
+                                _drawerUI_EPD_583.DrawToEpd_UDP(drawer);
                             }));
 
                             list_IP.Add(IP);
@@ -2386,10 +2386,8 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                if (!plC_CheckBox_測試模式.Checked)
-                                {
-                                    this.storageUI_WT32.Set_DrawPannelJEPG(storage);
-                                }
+                                _storageUI_WT32.Set_DrawPannelJEPG(storage);
+
                             }));
 
                             list_IP.Add(IP);

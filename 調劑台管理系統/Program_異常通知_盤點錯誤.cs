@@ -81,7 +81,7 @@ namespace 調劑台管理系統
                     $"是否排除盤點異常?";
                 if (MyMessageBox.ShowDialog($"{msg}", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
                 medRecheckLogClass.set_unresolved_data_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼, Main_Form._登入者名稱);
-                Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值);
+                Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值 ,Main_Form._登入者名稱);
                 this.sqL_DataGridView_異常通知_盤點錯誤.ClearGrid();
                 uC_調劑作業_TypeA_1.Logout();
                 uC_調劑作業_TypeA_2.Logout();
@@ -143,10 +143,7 @@ namespace 調劑台管理系統
         }
         #region Function
 
-
-
-
-        private void Function_異常通知_盤點錯誤_庫存異動(string 藥碼, string 藥名 , double 差異值)
+        static public void Function_異常通知_盤點錯誤_庫存異動(string 藥碼, string 藥名 , double 差異值 , string _登入者名稱 = "")
         {
             List<string> list_效期 = new List<string>();
             List<string> list_批號 = new List<string>();
@@ -185,7 +182,7 @@ namespace 調劑台管理系統
                 transactionsClass.庫存量 = 庫存量.ToString();
                 transactionsClass.交易量 = 異動量.ToString();
                 transactionsClass.結存量 = 結存量.ToString();
-                transactionsClass.操作人 = 登入者名稱;
+                transactionsClass.操作人 = _登入者名稱;
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.備註 = 備註;
                 object[] trading_value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
@@ -216,14 +213,14 @@ namespace 調劑台管理系統
                 transactionsClass.庫存量 = 庫存量.ToString();
                 transactionsClass.交易量 = 異動量.ToString();
                 transactionsClass.結存量 = 結存量.ToString();
-                transactionsClass.操作人 = 登入者名稱;
+                transactionsClass.操作人 = _登入者名稱;
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.備註 = 備註;
                 object[] trading_value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
 
                 list_交易紀錄_Add.Add(trading_value);
             }
-            if (list_交易紀錄_Add.Count > 0) sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄_Add, false);
+            if (list_交易紀錄_Add.Count > 0) _sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄_Add, false);
         }
         #endregion
     }
