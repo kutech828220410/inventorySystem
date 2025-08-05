@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
+using H_Pannel_lib;
 [assembly: AssemblyVersion("1.0.25.08016")]
 [assembly: AssemblyFileVersion("1.0.25.08016")]
 namespace 調劑台管理系統
@@ -583,7 +584,12 @@ namespace 調劑台管理系統
 
       
             this.Program_Scanner_RS232_Init();
-         
+
+            _drawerUI_EPD_1020 = this.drawerUI_EPD_1020;
+            _storageUI_EPD_266 = this.storageUI_EPD_266;
+            _storageUI_WT32 = this.storageUI_WT32;
+            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
+            _storageUI_LCD_114 = this.storageUI_LCD_114;
 
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();
@@ -650,10 +656,7 @@ namespace 調劑台管理系統
             this.storageUI_LCD_114.Set_UDP_WriteTime(1);
             this.storageUI_WT32.Set_UDP_WriteTime(5);
 
-            _storageUI_EPD_266 = this.storageUI_EPD_266;
-            _storageUI_WT32 = this.storageUI_WT32;
-            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
-            _storageUI_LCD_114 = this.storageUI_LCD_114;
+       
 
             DateTime dateTime = sys_serverSettingClass.GetServerTime(API_Server);
             Console.WriteLine($"從伺服器取得時間: {dateTime:yyyy/MM/dd HH:mm:ss}");
