@@ -63,13 +63,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.藥師姓名);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
 
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.藥品碼);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.病歷號);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.開方日期);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.過帳時間);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.展藥時間);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.藥師姓名);
-            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Programmatic, enum_醫囑資料.領藥號);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.藥品碼);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.病歷號);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.開方日期);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.過帳時間);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.展藥時間);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.藥師姓名);
+            this.sqL_DataGridView_醫令資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_醫囑資料.領藥號);
 
             this.sqL_DataGridView_醫令資料.Set_ColumnText("藥碼", enum_醫囑資料.藥品碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnText("藥名", enum_醫囑資料.藥品名稱);
