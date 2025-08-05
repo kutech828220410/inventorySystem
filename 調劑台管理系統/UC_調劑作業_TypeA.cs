@@ -976,7 +976,11 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 double 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToDouble();
+                double 庫存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.庫存量].StringToDouble();
                 double 結存量 = 0;
+                double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+                結存量 = 庫存量 + 總異動量 + 差異值;
+                Console.WriteLine($"{藥碼}-{藥名} 庫存量:{庫存量},總異動量:{總異動量},差異值:{差異值},結存量:{結存量}");
                 Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\請輸入盲盤數量.wav"); ;
                 while (true)
                 {
@@ -991,9 +995,11 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    double 庫存量 = Main_Form.Function_從SQL取得庫存(藥碼);
-                    double 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
-                    結存量 = 庫存量 + 總異動量 + 差異值;
+                    
+                    //double 庫存量 = Main_Form.Function_從SQL取得庫存(藥碼);
+                
+          
+                   
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量] = 結存量;
                     if (結存量 == dialog_NumPannel.Value)
                     {

@@ -24,6 +24,8 @@ namespace HIS_DB_Lib
         RFID調劑異常,
         [Description("RFID退藥異常")]
         RFID退藥異常,
+        [Description("盤點異常")]
+        盤點異常,
     }
     public enum enum_medRecheckLog_State
     {
@@ -497,6 +499,16 @@ namespace HIS_DB_Lib
             return list
                 .Where(x => x.發生類別 == 類別描述)
                 .ToList();
+        }
+        public static List<medRecheckLogClass> FilterByTypes(this List<medRecheckLogClass> list, params enum_medRecheckLog_ICDT_TYPE[] 發生類別集合)
+        {
+            if (list == null || 發生類別集合 == null || 發生類別集合.Length == 0)
+            {
+                return new List<medRecheckLogClass>();
+            }
+
+            var 類別描述集合 = 發生類別集合.Select(e => e.GetEnumName()).ToHashSet();
+            return list.Where(x => 類別描述集合.Contains(x.發生類別)).ToList();
         }
 
         static public Dictionary<string, List<medRecheckLogClass>> CoverToDictionaryBy_Code(this List<medRecheckLogClass> medRecheckLogClasses)

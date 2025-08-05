@@ -216,7 +216,7 @@ namespace 調劑台管理系統
                     && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()
                     && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.未授權.GetEnumName()) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
 
-                if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
+                //if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.掃碼領藥.GetEnumName())
                 {
                     if (takeMedicineStackClasses[i].總異動量.StringToDouble() > 0) takeMedicineStackClasses[i].動作 = enum_交易記錄查詢動作.掃碼退藥.GetEnumName();
@@ -2726,7 +2726,15 @@ namespace 調劑台管理系統
 
                             if (效期.StringIsEmpty())
                             {
-                                儲位資訊 = this.Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
+                              
+                                if (IP.StringIsEmpty())
+                                {
+                                    儲位資訊 = this.Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
+                                }
+                                else
+                                {
+                                    儲位資訊 = Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量, 效期, IP);
+                                }
                             }
                             else
                             {
@@ -2755,7 +2763,7 @@ namespace 調劑台管理系統
                                     }
                                 }
 
-                                儲位資訊 = Function_新增效期至雲端資料(藥品碼, 總異動量, 效期, 批號);
+                                儲位資訊 = Function_新增效期至雲端資料(藥品碼, 總異動量, 效期, 批號, IP);
                             }
 
                             List<object[]> list_sortValue = new List<object[]>();

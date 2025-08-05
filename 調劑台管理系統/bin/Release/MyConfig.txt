@@ -5,7 +5,7 @@
   "掃碼槍COM通訊": false,
   "RFID_COMPort": "COM1",
   "Scanner01_COMPort": "COM2",
-  "Scanner02_COMPort": "COM3",
+  "Scanner02_COMPort": "",
   "Scanner03_COMPort": "",
   "Scanner04_COMPort": "",
   "藥物辨識圖片顯示": true,

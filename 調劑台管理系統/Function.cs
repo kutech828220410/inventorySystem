@@ -1090,7 +1090,9 @@ namespace 調劑台管理系統
                     Device device = (Device)value_device;
                     for (int i = 0; i < device.List_Validity_period.Count; i++)
                     {
-                        if ((device.List_Validity_period[i].StringToDateTime().ToDateString() == 效期.StringToDateTime().ToDateString()) && device.IP == IP)
+                        string device_Validity = device.List_Validity_period[i].StringToDateTime().ToDateString();
+                        string validity = 效期.StringToDateTime().ToDateString();
+                        if ((device_Validity == validity || 效期.StringIsEmpty()) && device.IP == IP)
                         {
                             value[(int)enum_儲位資訊.IP] = device.IP;
                             value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
@@ -1433,13 +1435,13 @@ namespace 調劑台管理系統
         //    return 儲位資訊_buf;
         //}
 
-        public List<object[]> Function_新增效期至雲端資料(string 藥品碼, double 異動量, string 效期, string 批號)
+        public List<object[]> Function_新增效期至雲端資料(string 藥品碼, double 異動量, string 效期, string 批號 ,string iP ="")
         {
             object value_device = new object();
             List<object[]> 儲位資訊 = new List<object[]>();
             List<string> TYPE = new List<string>();
             List<object> values = new List<object>();
-            string IP = "";
+            string IP = iP;
             Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
             string Type_str = "";
             for (int k = 0; k < values.Count; k++)

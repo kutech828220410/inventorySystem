@@ -897,6 +897,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.收支原因 = 收支原因;
             takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.IP = IP;
             takeMedicineStackClass.ID = ID;
             takeMedicineStackClass.藥師證字號 = 藥師證字號;
             takeMedicineStackClass.顏色 = 顏色;

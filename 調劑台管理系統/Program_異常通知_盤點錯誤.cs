@@ -105,7 +105,7 @@ namespace 調劑台管理系統
             DateTime dateTime_st = rJ_DatePicker_異常通知_盤點錯誤_排除時段_起始.Value.GetStartDate();
             DateTime dateTime_end = rJ_DatePicker_異常通知_盤點錯誤_排除時段_結束.Value.GetEndDate();
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_by_occurrence_time_st_end(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, dateTime_st, dateTime_end);
-            medRecheckLogClasses = medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
+            medRecheckLogClasses = medRecheckLogClasses.FilterByTypes(enum_medRecheckLog_ICDT_TYPE.交班對點, enum_medRecheckLog_ICDT_TYPE.盤點異常);
             if (medRecheckLogClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料");
@@ -119,7 +119,7 @@ namespace 調劑台管理系統
             DateTime dateTime_st = rJ_DatePicker_異常通知_盤點錯誤_發生時段_起始.Value.GetStartDate(); 
             DateTime dateTime_end = rJ_DatePicker_異常通知_盤點錯誤_發生時段_結束.Value.GetEndDate();
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_by_occurrence_time_st_end(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, dateTime_st, dateTime_end);
-            medRecheckLogClasses = medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
+            medRecheckLogClasses = medRecheckLogClasses.FilterByTypes(enum_medRecheckLog_ICDT_TYPE.交班對點, enum_medRecheckLog_ICDT_TYPE.盤點異常);
             if (medRecheckLogClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料");
@@ -131,7 +131,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_異常通知_盤點錯誤_未排除顯示_MouseDownEvent(MouseEventArgs mevent)
         {
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_ng_state_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
-            medRecheckLogClasses = medRecheckLogClasses.FilterByType(enum_medRecheckLog_ICDT_TYPE.交班對點);
+            medRecheckLogClasses = medRecheckLogClasses.FilterByTypes(enum_medRecheckLog_ICDT_TYPE.交班對點, enum_medRecheckLog_ICDT_TYPE.盤點異常);
             if (medRecheckLogClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料");
