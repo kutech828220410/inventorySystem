@@ -180,13 +180,19 @@ namespace 調劑台管理系統
         {
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.GetAllRows();
             List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
-            
+           
             for(int i = 0 ; i < orderClasses.Count; i++)
             {
                 if (Main_Form.convert_note(orderClasses[i].備註) != null)
                 {
                     this.orderClasses.Add(orderClasses[i]);
                 }
+            }
+            if (this.orderClasses.Count == 0)
+            {
+                "未選擇退藥資訊".PlayGooleVoiceAsync(Main_Form.API_Server);
+                MyMessageBox.ShowDialog("未選擇退藥資訊");
+                return;
             }
             this.DialogResult = DialogResult.Yes;
             this.Close();
