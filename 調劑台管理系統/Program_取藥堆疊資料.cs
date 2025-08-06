@@ -803,7 +803,7 @@ namespace 調劑台管理系統
                 if (Num.StringIsEmpty()) Num = "-1";
                 list_堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
                 list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.IP, IP);
-                //list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
+                list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
                 list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.致能, true.ToString());
                 if (plC_CheckBox_需等待手勢感測_關閉抽屜才可入帳.Checked) list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.流程作業完成, true.ToString());
                 Console.WriteLine($"「設定配藥完成」IP : {IP} ,PC_NAME : {調劑台名稱} , connt : {list_取藥堆疊子資料.Count}");

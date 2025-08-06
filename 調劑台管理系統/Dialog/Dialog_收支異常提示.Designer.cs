@@ -166,13 +166,14 @@ namespace 調劑台管理系統
             this.dragDropListBox.DragTextColor = System.Drawing.Color.Black;
             this.dragDropListBox.DragTextOpacity = 1F;
             this.dragDropListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.dragDropListBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.dragDropListBox.FormattingEnabled = true;
             this.dragDropListBox.HelperLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dragDropListBox.HelperLineDash = true;
             this.dragDropListBox.HelperLineWidth = 1F;
             this.dragDropListBox.InsertLineColor = System.Drawing.Color.DarkRed;
             this.dragDropListBox.InsertLineWidth = 2F;
-            this.dragDropListBox.ItemHeight = 22;
+            this.dragDropListBox.ItemHeight = 30;
             this.dragDropListBox.Location = new System.Drawing.Point(4, 124);
             this.dragDropListBox.Name = "dragDropListBox";
             this.dragDropListBox.ShowHelperLine = true;

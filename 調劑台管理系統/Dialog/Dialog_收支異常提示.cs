@@ -26,7 +26,8 @@ namespace 調劑台管理系統
         private List<medRecheckLogClass> _medRecheckLogClasses = new List<medRecheckLogClass>();
         public Dialog_收支異常提示(string tts_content , List<medRecheckLogClass> medRecheckLogClasses)
         {
-            InitializeComponent();
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+       
             this.tts_content = tts_content;
             this.Load += Dialog_收支異常提示_Load;
             this.FormClosing += Dialog_收支異常提示_FormClosing;
@@ -48,7 +49,7 @@ namespace 調劑台管理系統
 
             for(int i = 0; i < _medRecheckLogClasses.Count; i++)
             {
-                dragDropListBox.Items.Add($"({_medRecheckLogClasses[i].藥碼}){_medRecheckLogClasses[i].藥名} [庫存值:{_medRecheckLogClasses[i].盤點值},庫存值:{_medRecheckLogClasses[i].差異值}]");
+                dragDropListBox.Items.Add($"「{_medRecheckLogClasses[i].事件描述}」({_medRecheckLogClasses[i].藥碼}){_medRecheckLogClasses[i].藥名} [庫存值:{_medRecheckLogClasses[i].盤點值},差異值:{_medRecheckLogClasses[i].差異值}]");
             }
 
             myThread.Add_Method(sub_program);
