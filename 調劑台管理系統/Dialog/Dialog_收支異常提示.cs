@@ -23,12 +23,14 @@ namespace 調劑台管理系統
         public bool IgnoreVisible = false;
         public string tts_content = "";
         private MyThread myThread = new MyThread();
-        public Dialog_收支異常提示(string tts_content)
+        private List<medRecheckLogClass> _medRecheckLogClasses = new List<medRecheckLogClass>();
+        public Dialog_收支異常提示(string tts_content , List<medRecheckLogClass> medRecheckLogClasses)
         {
             InitializeComponent();
             this.tts_content = tts_content;
             this.Load += Dialog_收支異常提示_Load;
             this.FormClosing += Dialog_收支異常提示_FormClosing;
+            _medRecheckLogClasses = medRecheckLogClasses;
         }
 
         private void Dialog_收支異常提示_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,6 +43,14 @@ namespace 調劑台管理系統
             rJ_Button_開鎖.MouseDownEvent += RJ_Button_開鎖_MouseDownEvent;
             rJ_Button_跳過.MouseDownEvent += RJ_Button_跳過_MouseDownEvent;
             rJ_Button_跳過.Visible = IgnoreVisible;
+
+            dragDropListBox.Items.Clear();
+
+            for(int i = 0; i < _medRecheckLogClasses.Count; i++)
+            {
+                dragDropListBox.Items.Add($"({_medRecheckLogClasses[i].藥碼}){_medRecheckLogClasses[i].藥名} [庫存值:{_medRecheckLogClasses[i].盤點值},庫存值:{_medRecheckLogClasses[i].差異值}]");
+            }
+
             myThread.Add_Method(sub_program);
             myThread.AutoRun(true);
             myThread.SetSleepTime(500);

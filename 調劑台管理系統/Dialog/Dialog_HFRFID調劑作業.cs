@@ -446,7 +446,7 @@ namespace 調劑台管理系統
                         tts_content = "品項錯誤,請再次確認";
                     }
                     Logger.Log("dialog_main_HRFID", $"[RJ_Button_確認_MouseDownEvent] {tts_content}");
-                    Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示($"{takeMedicineStackClasses_org[0].操作人},{tts_content}");
+                    Dialog_收支異常提示 dialog_收支異常提示 = new Dialog_收支異常提示($"{takeMedicineStackClasses_org[0].操作人},{tts_content}" , errorLogs);
                     dialog_收支異常提示.IgnoreVisible = hasRetriedConfirmation;
                     dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                     dialog_收支異常提示.ShowDialog();
