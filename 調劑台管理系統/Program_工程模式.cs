@@ -151,7 +151,7 @@ namespace 調劑台管理系統
         #region Function
         private void Function_工程模式_鎖控按鈕更新()
         {
-            this.Function_從SQL取得儲位到本地資料();
+            Function_從SQL取得儲位到本地資料();
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_buf = new List<object[]>();
             string OutputAdress = "";

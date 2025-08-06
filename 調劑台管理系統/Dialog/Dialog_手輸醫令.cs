@@ -229,7 +229,7 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-            this.Main_Form_buf.Function_從SQL取得儲位到本地資料();
+            Main_Form.Function_從SQL取得儲位到本地資料();
             Main_Form.commonSapceClasses = Main_Form.Function_取得共用區所有儲位();
 
             List<object[]> RowsList_buf = new List<object[]>();

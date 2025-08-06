@@ -223,7 +223,7 @@ namespace 調劑台管理系統
         private void Function_管制抽屜_鎖控按鈕更新()
         {
             pannel_Locker_Design.LoadLocker();
-            this.Function_從SQL取得儲位到本地資料();
+            Function_從SQL取得儲位到本地資料();
             List<Pannel_Locker> pannel_Lockers = pannel_Locker_Design.GetAllPannel_Locker();
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_buf = new List<object[]>();

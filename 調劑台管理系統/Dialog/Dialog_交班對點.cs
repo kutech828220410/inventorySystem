@@ -648,6 +648,7 @@ namespace 調劑台管理系統
                         else
                         {
                             Main_Form.Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值, 盤點藥師1);
+                            Main_Form.Function_從SQL取得儲位到本地資料();
                             Main_Form.Function_儲位刷新(藥碼);
                         }
                     }

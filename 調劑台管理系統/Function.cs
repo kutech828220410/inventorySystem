@@ -1772,7 +1772,7 @@ namespace 調劑台管理系統
 
         }
 
-        public void Function_從SQL取得儲位到本地資料()
+        static public void Function_從SQL取得儲位到本地資料()
         {
 
             MyTimer myTimer = new MyTimer();
@@ -1783,21 +1783,21 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer0 = new MyTimer();
                 myTimer0.StartTickTime(50000);
-                List_EPD583_本地資料 = this.drawerUI_EPD_583.SQL_GetAllDrawers();
+                List_EPD583_本地資料 = _drawerUI_EPD_583.SQL_GetAllDrawers();
                 Console.WriteLine($"讀取EPD583資料! 耗時 :{myTimer0.GetTickTime().ToString("0.000")} ");
             }));
             taskList.Add(Task.Run(() =>
             {
                 MyTimer myTimer0 = new MyTimer();
                 myTimer0.StartTickTime(50000);
-                List_EPD1020_本地資料 = this.drawerUI_EPD_1020.SQL_GetAllDrawers();
+                List_EPD1020_本地資料 = _drawerUI_EPD_1020.SQL_GetAllDrawers();
                 Console.WriteLine($"讀取EPD1020資料! 耗時 :{myTimer0.GetTickTime().ToString("0.000")} ");
             }));
             taskList.Add(Task.Run(() =>
             {
                 MyTimer myTimer1 = new MyTimer();
                 myTimer1.StartTickTime(50000);
-                List_EPD266_本地資料 = this.storageUI_EPD_266.SQL_GetAllStorage();
+                List_EPD266_本地資料 = _storageUI_EPD_266.SQL_GetAllStorage();
                 Console.WriteLine($"讀取EPD266資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
 
             }));
@@ -1805,23 +1805,23 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer2 = new MyTimer();
                 myTimer2.StartTickTime(50000);
-                List_RowsLED_本地資料 = this.rowsLEDUI.SQL_GetAllRowsLED();
+                List_RowsLED_本地資料 = _rowsLEDUI.SQL_GetAllRowsLED();
                 Console.WriteLine($"讀取RowsLED資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
             }));
-            taskList.Add(Task.Run(() =>
-            {
-                MyTimer myTimer2 = new MyTimer();
-                myTimer2.StartTickTime(50000);
-                List_RFID_本地資料 = this.rfiD_UI.SQL_GetAllRFIDClass();
-                Console.WriteLine($"外部設備資料資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
+            //taskList.Add(Task.Run(() =>
+            //{
+            //    MyTimer myTimer2 = new MyTimer();
+            //    myTimer2.StartTickTime(50000);
+            //    List_RFID_本地資料 = this.rfiD_UI.SQL_GetAllRFIDClass();
+            //    Console.WriteLine($"外部設備資料資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
-            }));
+            //}));
             taskList.Add(Task.Run(() =>
             {
                 MyTimer myTimer2 = new MyTimer();
                 myTimer2.StartTickTime(50000);
-                List_Pannel35_本地資料 = this.storageUI_WT32.SQL_GetAllStorage();
+                List_Pannel35_本地資料 = _storageUI_WT32.SQL_GetAllStorage();
                 Console.WriteLine($"讀取Pannel35資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
             }));
@@ -1904,7 +1904,7 @@ namespace 調劑台管理系統
         {
             List<List<Device>> list_list_devices = new List<List<Device>>();
             List<Device> devices = new List<Device>();
-            this.Function_從SQL取得儲位到本地資料();
+            Function_從SQL取得儲位到本地資料();
 
             list_list_devices.Add(List_EPD583_本地資料.GetAllDevice());
             list_list_devices.Add(List_EPD1020_本地資料.GetAllDevice());
