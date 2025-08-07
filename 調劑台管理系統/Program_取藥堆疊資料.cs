@@ -1859,7 +1859,12 @@ namespace 調劑台管理系統
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) return;
                             if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
-                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, lightOn.LCD_Color);
+                            if (lightOn.flag_Refresh_LCD)
+                            {
+                                Color color_fore = Color.White;
+                                if (lightOn.LCD_Color.R > 230 && lightOn.LCD_Color.G > 230 && lightOn.LCD_Color.B > 230) color_fore = Color.Black;
+                                storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), color_fore, lightOn.LCD_Color);
+                            }
 
                         }));
 
@@ -1890,7 +1895,12 @@ namespace 調劑台管理系統
                             string index_IP = Funcion_取得LCD114索引表_index_IP(device.IP);
                             if (index_IP.StringIsEmpty()) return;
                             if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
-                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, lightOn.LCD_Color);
+                            if (lightOn.flag_Refresh_LCD)
+                            {
+                                Color color_fore = Color.White;
+                                if (lightOn.LCD_Color.R > 230 && lightOn.LCD_Color.G > 230 && lightOn.LCD_Color.B > 230) color_fore = Color.Black;
+                                storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), color_fore, lightOn.LCD_Color);
+                            }
 
                         }));
                     }
