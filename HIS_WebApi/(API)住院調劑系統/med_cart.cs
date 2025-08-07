@@ -3450,9 +3450,16 @@ namespace HIS_WebApi
 
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
-
-                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
                 string API = Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<medGroupClass> medGroupClasses = new List<medGroupClass>();
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    medGroupClasses = medGroupClass.get_all_group(API);
+                    medGroupClasses = medGroupClasses.Where(m => System.Enum.GetNames(typeof(藥品總量群組)).Contains(m.名稱)).ToList();
+                })));
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
                 //List<medCpoeClass> sql_medCpoe = GetCpoe(sQLControl_med_cpoe);
@@ -3483,6 +3490,13 @@ namespace HIS_WebApi
                     .GroupBy(temp => temp.藥碼)
                     .Select(grouped =>
                     {
+                        //List<string> GetGroupNamesByCode(List<medGroupClass> medGroupClasses, string codeToCheck)
+                        //{
+                        //    return medGroupClasses
+                        //        .Where(g => g.MedClasses != null && g.MedClasses.Any(m => m.CODE == codeToCheck))
+                        //        .Select(g => g.NAME)
+                        //        .ToList();
+                        //}
                         medCpoeClass medCpoe = grouped.First();
                         string 調劑台 = "";
                         string 大瓶點滴 = "";
