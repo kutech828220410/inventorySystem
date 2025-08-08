@@ -921,7 +921,7 @@ namespace HIS_WebApi
                             medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
                             if (cpoe != null) continue;
                             if (medCpoeClass.PRI_KEY.Contains("[DC]") == true) continue;
-                            if (medCpoeClass.調劑狀態.Contains("Y") && medCpoeClass.覆核狀態.Contains("Y"))
+                            if (medCpoeClass.調劑狀態.Contains("Y"))
                             {
                                 medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                                 medCpoeClass.途徑 = "--";
