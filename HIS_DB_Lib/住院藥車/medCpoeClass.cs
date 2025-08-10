@@ -370,6 +370,8 @@ namespace HIS_DB_Lib
         public string PRN註記 { get; set; }
         [JsonPropertyName("prn_self")]
         public string 自費PRN註記 { get; set; }
+        [JsonPropertyName("med_group")]
+        public List<string> 藥品群組   { get; set; }
 
 
         public class ICP_By_Rank : IComparer<medCpoeClass>
