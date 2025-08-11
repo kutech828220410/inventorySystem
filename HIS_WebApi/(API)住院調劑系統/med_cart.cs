@@ -3415,6 +3415,42 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        ///以護理站取得藥品總量彈窗藥品群組
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_med_qty_group")]
+        public string get_med_qty_group([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+
+                List<medGroupClass> medGroupClasses = medGroupClass.get_all_group(APIServer);
+                medGroupClasses = medGroupClasses.Where(m => System.Enum.GetNames(typeof(藥品總量群組)).Contains(m.名稱) && m.MedClasses != null && m.MedClasses.Count > 0).ToList();
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
+                returnData.Data = medGroupClasses;
+                returnData.Result = $"取得藥品群組共{medGroupClasses.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
+        /// <summary>
         ///以護理站取得藥品總量
         /// </summary>
         /// <remarks>

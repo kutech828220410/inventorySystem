@@ -379,9 +379,13 @@ namespace HIS_WebApi._API_疾病
                         string icd10_json = Basic.Net.WEBApiGet(icd10_url);
                         CodeDescription iCD10Data = CodeDescription.ParseCodeDescription(icd10_json);
                         diseaseClass diseaseClass = new diseaseClass();
+                        string 疾病代碼_ = string.Empty;
+                        string 英文說明_ = string.Empty;
+                        if (iCD10Data != null) 英文說明_ = iCD10Data.Description;
                         diseaseClass.GUID = Guid.NewGuid().ToString();
-                        diseaseClass.疾病代碼 = iCD10Data.Code;
-                        diseaseClass.英文說明 = iCD10Data.Description;
+
+                        diseaseClass.疾病代碼 = item;
+                        diseaseClass.英文說明 = 英文說明_;
 
                         returnData returnData_update = new returnData();
                         returnData_update.Data = diseaseClass;
