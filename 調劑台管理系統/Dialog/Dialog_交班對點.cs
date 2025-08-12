@@ -288,22 +288,22 @@ namespace 調劑台管理系統
                     flag_program_init = true;
                     PlC_RJ_Button_盤點登入_MouseDownEvent(null);
 
-                    if (list_交班對點_buf != null)
+                    if (list_交班對點_buf != null && list_交班對點_buf.Count != 0)
                     {
                         if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                         {
                             LoadingForm.ShowLoadingForm();
-                        
+
                             for (int i = 0; i < list_交班對點_buf.Count; i++)
                             {
                                 string code = list_交班對點_buf[i][(int)enum_交班藥品.藥碼].ObjectToString();
                                 int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, code);
                                 double 庫存 = Main_Form.Function_從SQL取得庫存(code);
-                                list_交班對點_buf[i][(int)enum_交班藥品.庫存] = 差異值 + 庫存;                          
+                                list_交班對點_buf[i][(int)enum_交班藥品.庫存] = 差異值 + 庫存;
                             }
 
                             this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點_buf);
-                           
+
 
                             LoadingForm.CloseLoadingForm();
                         }
@@ -719,7 +719,11 @@ namespace 調劑台管理系統
                 _transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
                 _transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
                 _transactionsClass.操作時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
-                _transactionsClass.收支原因 = "交班對點";
+                _transactionsClass.收支原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
+                if(_transactionsClass.收支原因.StringIsEmpty())
+                {
+                    _transactionsClass.收支原因 = "交班對點";
+                }
                 _transactionsClass.備註 = 備註;
                 if (_transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
 
