@@ -226,8 +226,9 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = deviceName;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
-                    list_取藥堆疊資料_buf = (from temp in list_取藥堆疊資料
+                    list_取藥堆疊資料_buf = (from temp in list_堆疊資料
                                        where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == orderClass.GUID
+                                       where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() == deviceName
                                        select temp).ToList();
                     if(list_取藥堆疊資料_buf.Count > 0)
                     {
