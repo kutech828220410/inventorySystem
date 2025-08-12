@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Basic;
+using HIS_DB_Lib;
+using Microsoft.AspNetCore.Mvc;
+using MyOffice;
+using MySql.Data.MySqlClient;
+using MyUI;
+using SQLUI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using SQLUI;
-using Basic;
-using System.Text.Json;
-using System.Text.Encodings.Web;
-using System.Text.Json.Serialization;
 using System.Configuration;
-using HIS_DB_Lib;
-using MyOffice;
-using MyUI;
+using System.Data;
 using System.IO;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -1637,82 +1638,54 @@ namespace HIS_WebApi
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
                 List <OrderClass> input_orderClass = returnData.Data.ObjToClass<List<OrderClass>>();
-                string priKey = input_orderClass[0].PRI_KEY;
                 if (input_orderClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-                string 病房 = input_orderClass[0].病房;
-
-                DateTime today = DateTime.Now;
-                string starttime = today.GetStartDate().ToDateString();
-                string endtime = today.GetEndDate().ToDateString();
-                SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
-
-                //List<object[]> list_order_list = sQLControl_order_list.GetRowsByBetween(null, (int)enum_醫囑資料.展藥時間, starttime, endtime);
-                //List<OrderClass> sql_order_list = list_order_list.SQLToClass<OrderClass, enum_醫囑資料>();
-                //sql_order_list = sql_order_list.Where(temp => temp.病房 == 病房).ToList();
-                List<OrderClass> add_order_list = new List<OrderClass>();
-                List<OrderClass> update_order_list = new List<OrderClass>();
+                List<string> list_priKey = input_orderClass.Select(x => x.PRI_KEY).ToList();
+                string priKey = string.Join(", ", list_priKey.Select(key => $"'{key}'"));
                 
+                SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
+                string command = $"select * from {DB}.order_list where PRI_KEY in ({priKey});";
+                DataTable dataTable = sQLControl_order_list.WtrteCommandAndExecuteReader(command);
+                List<object[]> order_object = dataTable.DataTableToRowList();
+                List<OrderClass> orderClasses = order_object.SQLToClass<OrderClass, enum_醫囑資料>();
 
-                //Dictionary<string, List<OrderClass>> new_orderDicPriKey = OrderClass.ToDictByPriKey(input_orderClass);
-                //Dictionary<string, List<OrderClass>> old_orderDicPriKey = OrderClass.ToDictByPriKey(sql_order_list);
-                foreach(var item in input_orderClass)
+                List<OrderClass> add_order_list = new List<OrderClass>();
+                List<OrderClass> result = new List<OrderClass>();
+
+                foreach (var item in input_orderClass)
                 {
-                    OrderClass orderClass = OrderClass.get_by_pri_key(API, item.PRI_KEY);
+                    OrderClass orderClass = orderClasses.Where(order => order.PRI_KEY == item.PRI_KEY).FirstOrDefault();
                     if(orderClass == null)
                     {
                         item.GUID = Guid.NewGuid().ToString();
                         item.產出時間 = DateTime.Now.ToDateTimeString();
                         item.過帳時間 = DateTime.MinValue.ToDateTimeString();
                         item.展藥時間 = DateTime.MinValue.ToDateTimeString();
+                        if (item.結方日期.StringIsEmpty()) item.結方日期 = DateTime.Now.ToDateTimeString();
+                        if (item.就醫時間.StringIsEmpty()) item.就醫時間 = DateTime.Now.ToDateTimeString();
+                        if (item.開方日期.StringIsEmpty()) item.開方日期 = DateTime.Now.ToDateTimeString();
                         item.狀態 = "未過帳";
                         add_order_list.Add(item);
                     }
+                    else
+                    {
+                        result.Add(orderClass);
+                    }
                 }
-                //foreach (string PRI_KEY in new_orderDicPriKey.Keys)
-                //{
-                //    List<OrderClass> orderClass_new = OrderClass.GetByPriKey(new_orderDicPriKey, PRI_KEY);
-                //    List<OrderClass> orderClass_old = OrderClass.GetByPriKey(old_orderDicPriKey, PRI_KEY);              
-                //    foreach(OrderClass item in orderClass_new)
-                //    {
-                //        OrderClass order = orderClass_old.Where(temp => temp.批序 == item.批序).FirstOrDefault();
-                //        if(order == null)
-                //        {
-                //            item.GUID = Guid.NewGuid().ToString();
-                //            item.產出時間 = DateTime.Now.ToDateTimeString_6();
-                //            item.過帳時間 = DateTime.MinValue.ToDateTimeString_6();
-                //            item.展藥時間 = DateTime.MinValue.ToDateTimeString_6();
-                //            item.狀態 = "未過帳";
-                //            add_order_list.Add(item);
-                //        }
-                //    }
-                //    foreach(OrderClass item in orderClass_old)
-                //    {
-                //        OrderClass order = orderClass_new.Where(temp => temp.批序 == item.批序).FirstOrDefault();
-                //        if (order == null)
-                //        {
-                //            if (item.批序.Contains("DC") == false)
-                //            {
-                //                item.批序 += "-[DC]";
-                //                update_order_list.Add(item);
-                //            }
-                //        }
-                //    }
-                //}
+
                 
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
-                List<object[]> list_update_order_list = update_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
                 if (list_add_order_list.Count > 0) sQLControl_order_list.AddRows(null, list_add_order_list);
-                //if (list_update_order_list.Count > 0) sQLControl_order_list.UpdateByDefulteExtra(null, list_update_order_list);
+                result.AddRange(add_order_list);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                //returnData.Data = result_order_list;
+                returnData.Data = result;
                 returnData.Result = $"取得醫令成功,共<{input_orderClass.Count}>筆,新增<{list_add_order_list.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }

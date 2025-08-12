@@ -111,6 +111,14 @@ namespace HIS_DB_Lib
         中文名,
         數量
     }
+    public enum 藥品總量群組
+    {
+        針劑,
+        大瓶藥,
+        冷藏,
+        口服,
+        外用
+    }
     /// <summary>
     /// medCpoeClass資料
     /// </summary>
@@ -362,6 +370,8 @@ namespace HIS_DB_Lib
         public string PRN註記 { get; set; }
         [JsonPropertyName("prn_self")]
         public string 自費PRN註記 { get; set; }
+        [JsonPropertyName("med_group")]
+        public List<string> 藥品群組   { get; set; }
 
 
         public class ICP_By_Rank : IComparer<medCpoeClass>

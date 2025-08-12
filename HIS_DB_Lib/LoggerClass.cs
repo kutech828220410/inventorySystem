@@ -15,9 +15,11 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("來源,VARCHAR,250,NONE")]
+        來源,
         [Description("網址,VARCHAR,250,NONE")]
         網址,
-        [Description("項目,VARCHAR,100,INDEX")]
+        [Description("事件,VARCHAR,100,INDEX")]
         項目,
         [Description("操作類型,VARCHAR,50,INDEX")]
         操作類型,
@@ -38,15 +40,20 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         /// <summary>
+        /// 來源
+        /// </summary>
+        [JsonPropertyName("source")]
+        public string 來源 { get; set; }
+        /// <summary>
         /// 網址
         /// </summary>
         [JsonPropertyName("url")]
         public string 網址 { get; set; }
         /// <summary>
-        /// 項目
+        /// 事件
         /// </summary>
-        [JsonPropertyName("item")]
-        public string 項目 { get; set; }
+        [JsonPropertyName("event")]
+        public string 事件 { get; set; }
         /// <summary>
         /// 操作類型
         /// </summary>
@@ -76,8 +83,6 @@ namespace HIS_DB_Lib
 
         public class ICP_By_OP_Time : IComparer<loggerClass>
         {
-            //實作Compare方法
-            //依Speed由小排到大。
             public int Compare(loggerClass x, loggerClass y)
             {
                 return x.操作時間.CompareTo(y.操作時間);
