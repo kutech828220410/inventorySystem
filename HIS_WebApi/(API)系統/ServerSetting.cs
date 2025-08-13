@@ -566,6 +566,7 @@ namespace HIS_WebApi
             try
             {
                 this.CheckCreatTable();
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<object[]> list_value_returnData = new List<object[]>();
