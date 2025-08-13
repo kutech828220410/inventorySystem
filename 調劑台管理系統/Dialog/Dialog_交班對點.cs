@@ -397,11 +397,7 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
-                        if(flag_自動彈出詢問送出報表 == false)
-                        {
-                            PlC_RJ_Button_確認送出_MouseDownEvent(null);
-                            flag_自動彈出詢問送出報表 = true;
-                        }
+                        
                         plC_RJ_Button_確認送出.Enabled = true;
                     }));
                 }
@@ -632,7 +628,28 @@ namespace 調劑台管理系統
                 string 藥碼 = list_value[0][(int)enum_交班藥品.藥碼].ObjectToString();
                 Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
             }
-            
+            bool flag_全部盤點完成 = true;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string 盤點量 = list_value[i][(int)enum_交班藥品.盤點量].ObjectToString();
+                if(盤點量.StringIsEmpty() == false)
+                {
+                    flag_全部盤點完成 = false;
+                    break;
+                }
+              
+            }
+            if (flag_全部盤點完成 && list_value.Count > 0)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    if (flag_自動彈出詢問送出報表 == false)
+                    {
+                        PlC_RJ_Button_確認送出_MouseDownEvent(null);
+                        flag_自動彈出詢問送出報表 = true;
+                    }
+                }));
+            }
             if (selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
             {
                 this.stepViewer.Next();
