@@ -405,12 +405,13 @@ namespace HIS_DB_Lib
             return OrderClasses;
         }
 
-        static public OrderClass get_by_pri_key(string API_Server, string PRI_KEY)
+        static public OrderClass get_by_pri_key(string API_Server, string PRI_KEY , string value = null)
         {
             string url = $"{API_Server}/api/order/get_by_pri_key";
 
             returnData returnData = new returnData();
             returnData.ValueAry.Add(PRI_KEY);
+            returnData.Value = value;
 
 
             string json_in = returnData.JsonSerializationt();

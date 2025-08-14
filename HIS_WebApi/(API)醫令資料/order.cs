@@ -429,7 +429,18 @@ namespace HIS_WebApi
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 string TableName = "order_list";
                 SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByDefult(null, (int)enum_醫囑資料.PRI_KEY, PRI_KEY);
+                string command = string.Empty;
+                if(returnData.Value.StringIsEmpty() == false && returnData.Value == "fuzzy")
+                {
+                    command = $"SELECT * FROM {DB}.{TableName} WHERE PRI_KEY like '{PRI_KEY}%';";
+                }
+                else
+                {
+                    command = $"SELECT * FROM {DB}.{TableName} WHERE PRI_KEY = '{PRI_KEY}';";
+                }
+                DataTable dataTable = sQLControl_醫令資料.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_value_buf = dataTable.DataTableToRowList();
+
                 List<OrderClass> OrderClasses = list_value_buf.SQLToClass<OrderClass, enum_醫囑資料>();
                 if(OrderClasses.Count == 0)
                 {

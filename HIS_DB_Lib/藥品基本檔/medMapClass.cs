@@ -1,4 +1,5 @@
 ﻿using Basic;
+using H_Pannel_lib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+
 
 namespace HIS_DB_Lib
 {
@@ -44,6 +46,10 @@ namespace HIS_DB_Lib
         高度,
         [Description("燈條IP,VARCHAR,20,NONE")]
         燈條IP,
+        [Description("serverName,VARCHAR,20,NONE")]
+        serverName,
+        [Description("serverType,VARCHAR,20,NONE")]
+        serverType,
     }
     [EnumDescription("medMap_drawer")]
     public enum enum_medMap_drawer
@@ -60,6 +66,10 @@ namespace HIS_DB_Lib
         高度,
         [Description("抽屜IP,VARCHAR,20,NONE")]
         抽屜IP,
+        [Description("serverName,VARCHAR,20,NONE")]
+        serverName,
+        [Description("serverType,VARCHAR,20,NONE")]
+        serverType,
     }
     [EnumDescription("medMap_box")]
     public enum enum_medMap_box
@@ -76,6 +86,10 @@ namespace HIS_DB_Lib
         高度,
         [Description("藥盒IP,VARCHAR,20,NONE")]
         藥盒IP,
+        [Description("serverName,VARCHAR,20,NONE")]
+        serverName,
+        [Description("serverType,VARCHAR,20,NONE")]
+        serverType,
     }
     /// <summary>
     /// 藥品地圖_父容器
@@ -97,8 +111,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
-        public sys_serverSettingClass sys_ServerSettingClass { get; set; }
-        public List<medMap_sectionClass> medMap_SectionClasses {  get; set; }
+        public sys_serverSettingClass sys_ServerSetting { get; set; }
+        public List<medMap_sectionClass> medMap_Section {  get; set; }
     }
     /// <summary>
     /// 藥品地圖_子容器
@@ -120,8 +134,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
-        public List<medMap_shelfClass> medMap_ShelfClasses { get; set; }
-        public List<medMap_drawerClass> medMap_drawerClasses { get; set; }
+        public List<medMap_shelfClass> shelf { get; set; }
+        public List<medMap_drawerClass> drawer { get; set; }
 
     }
     /// <summary>
@@ -159,7 +173,18 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ip_light")]
         public string 燈條IP { get; set; }
-        public List<medMap_boxClass> medMap_BoxClasses { get; set; }
+        /// <summary>
+        /// serverName
+        /// </summary>
+        [JsonPropertyName("serverName")]
+        public string serverName { get; set; }
+        /// <summary>
+        /// serverType
+        /// </summary>
+        [JsonPropertyName("serverType")]
+        public string serverType { get; set; }
+        public List<medMap_boxClass> medMapBox { get; set; }
+        public RowsLED rowsLED { get; set; }
 
     }
     /// <summary>
@@ -197,6 +222,18 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ip_drawer")]
         public string 抽屜IP { get; set; }
+        /// <summary>
+        /// serverName
+        /// </summary>
+        [JsonPropertyName("serverName")]
+        public string serverName { get; set; }
+        /// <summary>
+        /// serverType
+        /// </summary>
+        [JsonPropertyName("serverType")]
+        public string serverType { get; set; }
+        public Drawer drawer { get; set; }
+        public Storage storage { get; set; }
 
     }
     /// <summary>
@@ -234,6 +271,18 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ip_box")]
         public string 藥盒IP { get; set; }
+        /// <summary>
+        /// serverName
+        /// </summary>
+        [JsonPropertyName("serverName")]
+        public string serverName { get; set; }
+        /// <summary>
+        /// serverType
+        /// </summary>
+        [JsonPropertyName("serverType")]
+        public string serverType { get; set; }
+        public Storage storage { get; set; }
+
 
     }
 }
