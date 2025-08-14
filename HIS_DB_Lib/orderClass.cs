@@ -953,12 +953,13 @@ namespace HIS_DB_Lib
             return OrderClasses_out;
         }
 
-        static public returnData update_UDorder_list(string API_Server, List<OrderClass> OrderClasses)
+        static public returnData update_UDorder_list(string API_Server, List<OrderClass> OrderClasses, string value = null)
         {
             string url = $"{API_Server}/api/order/update_UDorder_list";
 
             returnData returnData = new returnData();
             returnData.Data = OrderClasses;
+            if(value.StringIsEmpty() == false) returnData.Value = value;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
