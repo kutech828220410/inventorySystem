@@ -279,6 +279,7 @@ namespace 調劑台管理系統
         #region Function
         private bool flag_program_init = false;
         private bool flag_自動彈出詢問送出報表 = false;
+        private bool flag_繼續盤點 = false;
         private void sub_program()
         {
             try
@@ -303,7 +304,7 @@ namespace 調劑台管理系統
                             }
 
                             this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點_buf);
-
+                            flag_繼續盤點 = true;
 
                             LoadingForm.CloseLoadingForm();
                         }
@@ -360,7 +361,7 @@ namespace 調劑台管理系統
                         System.Threading.Thread.Sleep(100);
                     }
 
-                    if (list_交班對點_buf != null)
+                    if (list_交班對點_buf != null && flag_繼續盤點)
                     {
                         int index = 0;
                         for (int i = 0; i < list_交班對點_buf.Count; i++)
