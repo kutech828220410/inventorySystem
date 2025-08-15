@@ -1278,11 +1278,25 @@ namespace HIS_WebApi
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-
+                if (sql_patinfo.Count == 0)
+                {
+                    returnData.Code = 200;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Data = sql_patinfo;
+                    returnData.Result = $"沒有{藥局} {護理站} 所有病人資訊";
+                    return returnData.JsonSerializationt(true);
+                }
                 sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站)
-                    .GroupBy(temp => temp.床號)
-                    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
-
+                .GroupBy(temp => temp.床號)
+                .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
+                if (sql_patinfo.Count == 0)
+                {
+                    returnData.Code = 200;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Data = sql_patinfo;
+                    returnData.Result = $"沒有{藥局} {護理站} 所有病人資訊";
+                    return returnData.JsonSerializationt(true);
+                }
                 sql_patinfo = UpdateStatus(sql_patinfo, sql_medCpoe);
                 sql_patinfo.Sort(new patientInfoClass.ICP_By_bedNum());
 
