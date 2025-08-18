@@ -149,7 +149,7 @@ namespace HIS_WebApi
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt();
                 }
-
+                medGroupClass.MedClasses.Sort(new medClass.ICP_By_name());
                 returnData.Code = 200;
                 returnData.Data = medGroupClass;
                 returnData.TimeTaken = myTimer.ToString();
