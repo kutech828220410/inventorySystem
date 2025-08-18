@@ -843,63 +843,71 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_上傳至面板_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
-            if (list_value.Count == 0) return;
-
-            // 擷取選取的 IP 清單
-            List<string> ipList = list_value
-                .Select(row => row[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString())
-                .Where(ip => !string.IsNullOrWhiteSpace(ip))
-                .Distinct()
-                .ToList();
-
-            if (ipList.Count == 0) return;
-
-            // 呼叫後端 API
-            var (code, result) = deviceApiClass.refresh_canvas_by_ip_full(Main_Form.API_Server, ipList, Main_Form.ServerName, Main_Form.ServerType);
-
-            // 顯示結果（可依你系統決定是否彈窗或列印 log）
-            if (code == 200)
+            if(ControlMode)
             {
-                Console.WriteLine($"✅ 成功上傳 {ipList.Count} 筆面板資料！\n{result}");
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
+
+                // 擷取選取的 IP 清單
+                List<string> ipList = list_value
+                    .Select(row => row[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString())
+                    .Where(ip => !string.IsNullOrWhiteSpace(ip))
+                    .Distinct()
+                    .ToList();
+
+                if (ipList.Count == 0) return;
+
+                // 呼叫後端 API
+                var (code, result) = deviceApiClass.refresh_canvas_by_ip_full(Main_Form.API_Server, ipList, Main_Form.ServerName, Main_Form.ServerType);
+
+                // 顯示結果（可依你系統決定是否彈窗或列印 log）
+                if (code == 200)
+                {
+                    Console.WriteLine($"✅ 成功上傳 {ipList.Count} 筆面板資料！\n{result}");
+                }
+                else
+                {
+                    Console.WriteLine($"❌ 上傳失敗！\n{result}");
+                }
             }
             else
             {
-                Console.WriteLine($"❌ 上傳失敗！\n{result}");
+                List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
+                if (list_value.Count == 0) return;
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                    Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                    taskList.Add(Task.Run(() =>
+                    {
+                        if (drawer != null)
+                        {
+                            if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked)
+                            {
+                                if (!this.drawerUI_EPD_583.DrawToEpd_UDP(drawer))
+                                {
+                                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+                                }
+                            }
+                            else
+                            {
+                                if (!this.drawerUI_EPD_583.DrawToEpd_BarCode_UDP(drawer))
+                                {
+                                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+                                }
+                            }
+                            Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳成功!");
+                        }
+                    }));
+                }
+                Task allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
 
 
-            //List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
-            //if (list_value.Count == 0) return;
-            //List<Task> taskList = new List<Task>();
-            //for (int i = 0; i < list_value.Count; i++)
-            //{
-            //    string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-            //    Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            //    taskList.Add(Task.Run(() =>
-            //    {
-            //        if (drawer != null)
-            //        {
-            //            if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked)
-            //            {
-            //                if (!this.drawerUI_EPD_583.DrawToEpd_UDP(drawer))
-            //                {
-            //                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
-            //                }
-            //            }
-            //            else
-            //            {
-            //                if (!this.drawerUI_EPD_583.DrawToEpd_BarCode_UDP(drawer))
-            //                {
-            //                    //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
-            //                }
-            //            }
-            //            Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳成功!");
-            //        }
-            //    }));
-            //}
-            //Task allTask = Task.WhenAll(taskList);
-            //allTask.Wait();
+
+
 
 
         }

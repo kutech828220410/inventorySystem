@@ -279,6 +279,7 @@ namespace 調劑台管理系統
         #region Function
         private bool flag_program_init = false;
         private bool flag_自動彈出詢問送出報表 = false;
+        private bool flag_繼續盤點 = false;
         private void sub_program()
         {
             try
@@ -303,7 +304,7 @@ namespace 調劑台管理系統
                             }
 
                             this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點_buf);
-
+                            flag_繼續盤點 = true;
 
                             LoadingForm.CloseLoadingForm();
                         }
@@ -360,7 +361,7 @@ namespace 調劑台管理系統
                         System.Threading.Thread.Sleep(100);
                     }
 
-                    if (list_交班對點_buf != null)
+                    if (list_交班對點_buf != null && flag_繼續盤點)
                     {
                         int index = 0;
                         for (int i = 0; i < list_交班對點_buf.Count; i++)
@@ -621,9 +622,9 @@ namespace 調劑台管理系統
             {
                 $"數量正確".PlayGooleVoiceAsync(Main_Form.API_Server);
             }));
-            int selectRow =  this.sqL_DataGridView_交班藥品.GetSelectRow();
+            int selectRow = this.sqL_DataGridView_交班藥品.GetSelectRow();
             List<object[]> list_value = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
-            if(list_value.Count > 0)
+            if (list_value.Count > 0)
             {
                 string 藥碼 = list_value[0][(int)enum_交班藥品.藥碼].ObjectToString();
                 Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
@@ -632,29 +633,32 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_value.Count; i++)
             {
                 string 盤點量 = list_value[i][(int)enum_交班藥品.盤點量].ObjectToString();
-                if(盤點量.StringIsEmpty() == false)
+                if (盤點量.StringIsInt32() == false)
                 {
                     flag_全部盤點完成 = false;
                     break;
                 }
-              
+
             }
-            if (flag_全部盤點完成 && list_value.Count > 0)
-            {
-                this.Invoke(new Action(delegate
-                {
-                    if (flag_自動彈出詢問送出報表 == false)
-                    {
-                        PlC_RJ_Button_確認送出_MouseDownEvent(null);
-                        flag_自動彈出詢問送出報表 = true;
-                    }
-                }));
-            }
+
             if (selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
             {
-                this.stepViewer.Next();
-                cnt++;
-                return;
+
+                if (flag_全部盤點完成 && list_value.Count > 0)
+                {
+                    this.stepViewer.Next();
+                    this.Invoke(new Action(delegate
+                    {
+                        if (flag_自動彈出詢問送出報表 == false)
+                        {
+                            PlC_RJ_Button_確認送出_MouseDownEvent(null);
+                            flag_自動彈出詢問送出報表 = true;
+                        }
+                    }));
+                    cnt++;
+                    return;
+                }
+
             }
             this.Invoke(new Action(delegate
             {
