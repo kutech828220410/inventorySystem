@@ -434,6 +434,9 @@ namespace HIS_WebApi
                     medCpoe_sql_replace.AddRange(medCpoe_sql_replace_buff);
                 }
 
+                medCpoe_sql_add = CheckUpdateTime(medCpoe_sql_add);
+                medCpoe_sql_replace = CheckUpdateTime(medCpoe_sql_replace);
+                medCpoe_sql_delete = CheckUpdateTime(medCpoe_sql_delete);
 
 
                 List<object[]> list_medCpoe_add = medCpoe_sql_add.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -1036,7 +1039,7 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 sql_medCpoe[0].大瓶點滴 = 大瓶藥標記;
-                
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
                 List<object[]> list_medCpoe_replace = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
@@ -2601,7 +2604,13 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
+                if(sql_medCpoe.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"請刷新頁面";
+                    return returnData.JsonSerializationt(true);
+                }
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
                 settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
                 settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
@@ -2657,12 +2666,13 @@ namespace HIS_WebApi
                         }
                     }
                     medCpoe_sql_replace.Add(medCpoeClass);
-                }
+                }               
 
 
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
+
                     List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_replace.Count > 0)
                     {
@@ -2678,7 +2688,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
-                        Logger.Log($"patientInfo-{sql_medCpoe[0].護理站}", $"update_check_dispense \n {sql_patinfo.JsonSerializationt(true)}");
+                        //Logger.Log($"patientInfo-{sql_medCpoe[0].護理站}", $"update_check_dispense \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
                 })));
@@ -2749,11 +2759,12 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
 
                 List<medCpoeClass> medCpoe_sql_replace = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                medCpoe_sql_replace = CheckUpdateTime(medCpoe_sql_replace);
                 List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
                 List<medCpoeClass> refund_medcpoe = new List<medCpoeClass>();
                 if (medCpoe_sql_replace.Count == 0)
                 {
-                    returnData.Code = 200;
+                    returnData.Code = -200;
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
@@ -2875,7 +2886,7 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
                 List<medCpoeClass> refund_medcpoe = new List<medCpoeClass>();
-
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
                 if (sql_medCpoe.Count == 0)
                 {
                     returnData.Code = 200;
@@ -3139,6 +3150,13 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
+                if (sql_medCpoe.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無對應處方";
+                    return returnData.JsonSerializationt(true);
+                }
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
@@ -3240,7 +3258,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, GUID);
                 List<medCpoeClass> medCpoe_sql_replace = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-
+                medCpoe_sql_replace = CheckUpdateTime(medCpoe_sql_replace);
                 if (medCpoe_sql_replace.Count == 0)
                 {
                     returnData.Code = 200;
@@ -3314,11 +3332,12 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
                 List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
 
                 if (sql_medCpoe.Count == 0)
                 {
-                    returnData.Code = 200;
+                    returnData.Code = -200;
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
@@ -3476,7 +3495,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-
         /// <summary>
         ///以護理站取得藥品總量
         /// </summary>
@@ -4957,6 +4975,14 @@ namespace HIS_WebApi
         {
             string command = $"SELECT * FROM {tableName} WHERE 更新時間 >= '{StartTime}' AND 更新時間 <= '{Endtime}' AND 護理站 = '{護理站}'";
             return command;
+        }
+        private List<medCpoeClass> CheckUpdateTime(List<medCpoeClass> medCpoeClasses)
+        {
+            (string StartTime, string Endtime) = GetToday();
+            DateTime start = StartTime.StringToDateTime();
+            DateTime end = Endtime.StringToDateTime();
+            medCpoeClasses = medCpoeClasses.Where(temp => temp.更新時間.StringIsEmpty() == false && DateTime.TryParse(temp.更新時間, out DateTime parsedTime) && parsedTime >= start && parsedTime <= end).ToList();
+            return medCpoeClasses;
         }
 
 
