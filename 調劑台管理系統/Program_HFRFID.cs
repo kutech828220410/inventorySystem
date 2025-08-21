@@ -103,7 +103,8 @@ namespace 調劑台管理系統
 
         private static readonly object ReadAllUIDsOnceOnly_lock = new object();
 
-        public static List<string> ReadAllUIDsOnceOnly(bool HFRFID_debug = true)
+
+        public static List<string> ReadAllUIDsOnceOnly(bool HFRFID_debug = true, params int[] reader_index)
         {
             lock (ReadAllUIDsOnceOnly_lock)
             {
@@ -121,10 +122,21 @@ namespace 調劑台管理系統
 
                 if (!myConfigClass.HFRFID_1_COMPort.StringIsEmpty())
                 {
-                    for (int i = 0; i <= 10; i++)
+                    if (reader_index == null || reader_index.Length == 0)
                     {
-                        rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
-                        reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
+                        for (int i = 0; i <= 10; i++)
+                        {
+                            rfidReader_1.Inventory(i, out reader1_tagInfoList_temp);
+                            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < reader_index.Length; i++)
+                        {
+                            rfidReader_1.Inventory(reader_index[i], out reader1_tagInfoList_temp);
+                            reader1_tagInfoList.LockAdd(reader1_tagInfoList_temp);
+                        }
                     }
                 }
      
