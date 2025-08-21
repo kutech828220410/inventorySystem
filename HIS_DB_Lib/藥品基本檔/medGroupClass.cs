@@ -141,6 +141,8 @@ namespace HIS_DB_Lib
             var (code, result, group) = get_group_by_name_full(API_Server, groupName);
             return group;
         }
+        
+
         static public (int code, string result, medGroupClass group) get_group_by_name_full(string API_Server, string groupName)
         {
             string url = $"{API_Server}/api/medGroup/get_group_by_name";
@@ -204,10 +206,24 @@ namespace HIS_DB_Lib
         /// <returns>藥品群組名稱列表</returns>
         static public List<string> get_all_group_name(string API_Server)
         {
+
             List<medGroupClass> medGroupClasses = get_all_group(API_Server);
             List<string> vs = (from temp in medGroupClasses
                                select temp.名稱).Distinct().ToList();
             return vs;
+        }
+        static public async Task<List<medGroupClass>> get_group_name(string API_Server)
+        {
+            string url = $"{API_Server}/api/medGroup/get_group_name";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            Task<string> result = Net.WEBApiPostJsonAsync(url, json_in, false);
+            string json_out = await result;
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medGroupClass> medGroupClasses = returnData.Data.ObjToClass<List<medGroupClass>>();
+            return medGroupClasses;
         }
 
         /// <summary>

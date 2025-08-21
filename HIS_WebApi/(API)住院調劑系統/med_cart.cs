@@ -3467,21 +3467,28 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("get_med_qty_group")]
-        public string get_med_qty_group([FromBody] returnData returnData)
+        public async Task<string> get_med_qty_group([FromBody] returnData returnData)
         {
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
 
-                List<medGroupClass> medGroupClasses = medGroupClass.get_all_group(APIServer);
+                List<medGroupClass> medGroupClasses = await medGroupClass.get_group_name(APIServer);
+                
                 List<string> groupName = System.Enum.GetNames(typeof(藥品總量群組)).ToList();
                 List < medGroupClass > medGroupClass_buff = new List<medGroupClass>();
+                if (medGroupClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
+                    returnData.Result = $"藥品群組取得失敗";
+                    return returnData.JsonSerializationt(true);
+                }
                 foreach (var item in groupName)
                 {
-                    medGroupClass medGroup_buff = medGroupClasses.Where(m => m.名稱.Contains(item) && m.MedClasses != null && m.MedClasses.Count > 0).FirstOrDefault();
+                    medGroupClass medGroup_buff = medGroupClasses.Where(m => m.名稱.Contains(item)).FirstOrDefault();
                     if (medGroup_buff != null) medGroupClass_buff.Add(medGroup_buff);
                 }
-                //medGroupClasses = medGroupClasses.Where(m => System.Enum.GetNames(typeof(藥品總量群組)).Contains(m.名稱) && m.MedClasses != null && m.MedClasses.Count > 0).ToList();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
                 returnData.Data = medGroupClass_buff;
