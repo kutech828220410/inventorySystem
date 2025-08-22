@@ -130,6 +130,91 @@ namespace HIS_WebApi._API_系統
             }
         }
         /// <summary>
+        ///以page_name取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":["page_name"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_page_name_cht")]
+        public async Task<string> get_by_page_name_cht([FromBody] returnData returnData, CancellationToken ct)
+        {
+            loadData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_page_name";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"page_name\",\"cht\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 頁面名稱 = returnData.ValueAry[0];
+                string 欄位名稱 = returnData.ValueAry[1];
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
+                string command = $@"SELECT * 
+                        FROM {DB}.settingPage 
+                        WHERE 頁面名稱 = '{頁面名稱}'
+                        AND 欄位名稱 = '{欄位名稱}';";
+
+                List<object[]> list_settingPage = await sQLControl.WriteCommandAndExecuteReaderAsync(command, ct);
+
+                if (list_settingPage == null || list_settingPage.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
+                for (int i = 0; i < settingPageClasses.Count; i++)
+                {
+                    if (settingPageClasses[i].選項.StringIsEmpty() == false)
+                    {
+                        List<string> option = settingPageClasses[i].選項.Split(";").ToList();
+                        settingPageClasses[i].option = option;
+                    }
+                    if (settingPageClasses[i].欄位代碼 == "display_block" || settingPageClasses[i].欄位代碼 == "display_block_nocheck")
+                    {
+                        List<uiConfig> uiConfigs = Convert(settingPageClasses[i].設定值);
+                        settingPageClasses[i].value = uiConfigs;
+                    }
+                    else
+                    {
+                        settingPageClasses[i].value = settingPageClasses[i].設定值;
+
+                    }
+                }
+                returnData.Code = 200;
+                returnData.Data = settingPageClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"取得頁面 : {頁面名稱}{欄位名稱}的資料";
+                string result = await returnData.JsonSerializationtAsync(true);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                string result = await returnData.JsonSerializationtAsync(true);
+                return result;
+            }
+        }
+        /// <summary>
         ///取得頁面設定資料
         /// </summary>
         /// <remarks>
@@ -371,11 +456,19 @@ namespace HIS_WebApi._API_系統
         {
             init_settingPage(new returnData());
             string data = Basic.MyFileStream.LoadFileAllText(@"./setting_page.txt", "utf-8");
-            //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
             returnData returnData = data.JsonDeserializet<returnData>();
             add(returnData);
         }
-
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_by_page_name_cht(string 頁面名稱, string 欄位名稱) 
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry = new List<string> { 頁面名稱, 欄位名稱 };
+            string result =  await get_by_page_name_cht(returnData, CancellationToken.None);
+            returnData =  result.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) Logger.Log($"{returnData.JsonSerializationtAsync(true)}");
+            return returnData;
+        }
 
     }
 }

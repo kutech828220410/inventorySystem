@@ -10,14 +10,6 @@
         },
         {
             "page_name": "medicine_cart",
-            "cht": "逐床僅顯示有效處方",
-            "name": "per_bed_valid_orders_only",
-            "value_type": "checkbox",
-            "option_str": "",
-            "value_db": "True"
-        },
-        {
-            "page_name": "medicine_cart",
             "cht": "覆核_全選大瓶藥例外",
             "name": "check_big_bottle_exception",
             "value_type": "checkbox",

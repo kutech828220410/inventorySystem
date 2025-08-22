@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HIS_DB_Lib
 {
+    [EnumDescription("nearMiss")]
     public enum enum_nearMiss
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
