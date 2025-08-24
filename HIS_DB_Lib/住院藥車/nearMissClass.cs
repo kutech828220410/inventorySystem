@@ -30,8 +30,8 @@ namespace HIS_DB_Lib
         通報人ID,
         [Description("通報人姓名,VARCHAR,20,NONE")]
         通報人姓名,
-        [Description("通報時間,DATETIME,30,NONE")]
-        通報時間,
+        [Description("建立時間,DATETIME,30,NONE")]
+        建立時間,
         [Description("原因,VARCHAR,300,NONE")]
         原因,
         [Description("備註,VARCHAR,500,NONE")]
@@ -84,6 +84,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("reporter_name")]
         public string 通報人姓名 { get; set; }
+        /// <summary>
+        /// 建立時間
+        /// </summary>
+        [JsonPropertyName("creat_time")]
+        public string 建立時間 { get; set; }
         /// <summary>
         /// 原因
         /// </summary>
