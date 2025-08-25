@@ -215,6 +215,14 @@
             "value_type": "checkbox",
             "option_str": "",
             "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量為0自動調劑",
+            "name": "med_qty_autodispense",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
         }
 
         
