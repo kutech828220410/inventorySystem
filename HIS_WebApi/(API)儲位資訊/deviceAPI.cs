@@ -2686,7 +2686,7 @@ namespace HIS_WebApi
             }
         }
         [HttpPost("get_list_by_department")]
-        public string get_list_by_department([FromBody]returnData returnData)
+        public async Task<string> get_list_by_department([FromBody]returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -2704,7 +2704,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 ServerSettingController controller = new ServerSettingController();
-                string result = controller.POST_get_serversetting_by_department_type(returnData);
+                string result = await controller.POST_get_serversetting_by_department_type(returnData);
                 returnData returnData_get_serversetting_by_type = result.JsonDeserializet<returnData>();
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = returnData_get_serversetting_by_type.Data.ObjToClass<List<sys_serverSettingClass>>();

@@ -20,6 +20,8 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
+        [Description("絕對位置,VARCHAR,10,NONE")]
+        絕對位置,
         [Description("type,VARCHAR,30,NONE")]
         type
     }
@@ -133,6 +135,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
+        /// <summary>
+        /// 絕對位置
+        /// </summary>
+        [JsonPropertyName("absolute_position")]
+        public string 絕對位置 { get; set; }
         /// <summary>
         /// 種類
         /// </summary>
