@@ -167,21 +167,39 @@ namespace 調劑台管理系統
 
             LoadingForm.ShowLoadingForm();
             List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
+            drugHFTagClasses = (from temp in drugHFTagClasses
+                                where temp.存放位置 == Main_Form.ServerName
+                                select temp).ToList();
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             keyValuePairs_medRecheckLogClass = medRecheckLogClasses.CoverToDictionaryBy_Code();
             keyValuePairs_drugHFTagClasses = drugHFTagClasses.CoverToDictionaryBy_Code();
+            List<DrugHFTagClass> drugHFTagClasses_buf = new List<DrugHFTagClass>();
+         
+            List<string> drugCodes = keyValuePairs_drugHFTagClasses.Keys.ToList();
+            foreach (var code in drugCodes)
+            {
+                drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(code);
+                List<DrugHFTagClass> drugHFTagClasses_buf_set_stockin = (from temp in drugHFTagClasses_buf
+                                                                         where Main_Form.stocks_uids.Contains(temp.TagSN) == false
+                                                                         where temp.狀態 == "入庫註記"
+                                                                         select temp).ToList();
+                List<DrugHFTagClass> drugHFTagClasses_buf_set_other = (from temp in drugHFTagClasses_buf
+                                                                       where Main_Form.stocks_uids.Contains(temp.TagSN) == false
+                                                                       where temp.狀態 != "已銷毀"
+                                                                       select temp).ToList();
+                if (drugHFTagClasses_buf_set_stockin.Count > 0) DrugHFTagClass.set_tag_stockin(Main_Form.API_Server, drugHFTagClasses_buf_set_stockin);
+                if (drugHFTagClasses_buf_set_other.Count > 0) DrugHFTagClass.set_tag_broken(Main_Form.API_Server, drugHFTagClasses_buf_set_other);
+            }
+         
 
-            List<DrugHFTagClass> drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(this.drugCode);
-
-            drugHFTagClasses_buf = (from temp in drugHFTagClasses_buf
-                                    where Main_Form.stocks_uids.Contains(temp.TagSN)
-                                    select temp).ToList();
-
-            DrugHFTagClass.set_tag_stockin(Main_Form.API_Server, drugHFTagClasses_buf);
-
+            drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(this.drugCode);
+            List<DrugHFTagClass> drugHFTagClasses_buf_stockin = (from temp in drugHFTagClasses_buf
+                                                                 where Main_Form.stocks_uids.Contains(temp.TagSN)
+                                                                 where temp.狀態 == "入庫註記"
+                                                                 select temp).ToList();
 
             List<StockClass> stockClasses = new List<StockClass>();
-            stockClasses = drugHFTagClasses_buf.GetStockClasses();
+            stockClasses = drugHFTagClasses_buf_stockin.GetStockClasses();
             for (int i = 0; i < stockClasses.Count; i++)
             {
                 object[] value = new object[new enum_庫存訊息().GetLength()];

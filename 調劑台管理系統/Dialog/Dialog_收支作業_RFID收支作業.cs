@@ -398,7 +398,7 @@ namespace 調劑台管理系統
             {
                 bool isUIDMatch = uids.Contains(tag.TagSN);
                 bool isSameCode = tag.藥碼 == selectedDrugCode;
-
+                if (tag.存放位置 != Main_Form.ServerName) continue;
                 if (_Import_Export == IncomeOutcomeMode.收入 && isUIDMatch && isSameCode)
                 {
                     tag.狀態 = enum_DrugHFTagStatus.入庫註記.GetEnumName();
@@ -621,6 +621,7 @@ namespace 調劑台管理系統
             {
                 LoadingForm.ShowLoadingForm();
                 Dialog_收支異常提示.CloseAllDialog();
+                var errorLogs = new List<medRecheckLogClass>();
 
                 Logger.Log("dialog_HRFID", $"[處理RFID確認流程] 使用者: {Main_Form._登入者名稱}");
 
@@ -648,7 +649,7 @@ namespace 調劑台管理系統
                 double phase1Count = phase1Tags
                     .Where(t =>
                         (_Import_Export == IncomeOutcomeMode.收入 && t.狀態 == enum_DrugHFTagStatus.入庫註記.GetEnumName()) ||
-                        (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName()))
+                        (_Import_Export == IncomeOutcomeMode.支出 && t.狀態 == enum_DrugHFTagStatus.出庫註記.GetEnumName())) 
                     .Sum(t => t.數量.StringToDouble());
 
                 Logger.Log("dialog_HRFID", $"[Phase-1] 期望數量={qty}，實際標籤數量={phase1Count}");
@@ -660,7 +661,6 @@ namespace 調劑台管理系統
                     Logger.Log("dialog_HRFID", $"[Phase-1] 數量異常：期望 {qty}，實際 {phase1Count}");
 
                     // 僅建立「數量錯誤」的異常記錄（不處理品項）
-                    var errorLogs = new List<medRecheckLogClass>();
                     var qtyLog = new medRecheckLogClass
                     {
                         GUID = Guid.NewGuid().ToString(),
@@ -688,17 +688,10 @@ namespace 調劑台管理系統
                     dialog.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                     dialog.ShowDialog();
                     hasRetriedConfirmation = true;
-
-                    // 第二次仍失敗就寫入異常
-                    if (dialog.DialogResult == DialogResult.Abort)
-                    {
-                        Logger.Log("dialog_HRFID", "[Phase-1] 第二次驗證仍失敗，寫入數量異常記錄");
-                        LoadingForm.ShowLoadingForm();
-                        medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
-                        LoadingForm.CloseLoadingForm();
-                    }
-                    return;
+                    if (dialog.DialogResult != DialogResult.Abort) return;
+                    hasRetriedConfirmation = false;
                 }
+               
                 "數量驗證完成".PlayGooleVoiceAsync(Main_Form.API_Server);
                 // =========================
                 // ★ Phase-2：全層掃描檢查是否拿錯
@@ -720,7 +713,6 @@ namespace 調劑台管理系統
                 if (有品項錯誤)
                 {
                     string tts = "品項錯誤,請再次確認";
-                    var errorLogs = new List<medRecheckLogClass>();
 
                     foreach (var tag in errorTags)
                     {
@@ -759,7 +751,6 @@ namespace 調劑台管理系統
                     LoadingForm.ShowLoadingForm();
                     medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs);
                     LoadingForm.CloseLoadingForm();
-                    return;
                 }
 
                 // =========================

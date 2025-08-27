@@ -190,7 +190,9 @@ namespace 調劑台管理系統
                 if (debug) Console.WriteLine("取得最新可出庫標籤...");
                 drugHFTagClasses = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
             }
-
+            drugHFTagClasses = (from temp in drugHFTagClasses
+                                where temp.存放位置 == Main_Form.ServerName
+                                select temp).ToList();
             var list_取藥堆疊母資料 = Main_Form.Function_取藥堆疊資料_取得指定調劑台名稱母資料(_deviceName);
             takeMedicineStackClasses_temp = list_取藥堆疊母資料.ToTakeMedicineStackClassList();
 
@@ -240,7 +242,9 @@ namespace 調劑台管理系統
             List<DrugHFTagClass> drugHFTagClasses = (_Import_Export == IncomeOutcomeMode.收入)
                 ? DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server)
                 : DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
-
+            drugHFTagClasses = (from temp in drugHFTagClasses
+                                where temp.存放位置 == Main_Form.ServerName
+                                select temp).ToList();
             foreach (var value in list_value)
             {
                 string drugCode = value[(int)enum_TagList.藥碼]?.ToString();
@@ -387,7 +391,9 @@ namespace 調劑台管理系統
                 {
                     LoadingForm.CloseLoadingForm();
                 }
-
+                DBTags_phase1 = (from temp in DBTags_phase1
+                                 where temp.存放位置 == Main_Form.ServerName
+                                 select temp).ToList();
                 // 依 Phase-1 的 UID 做數量快速驗證（僅針對 TagList 裡的藥碼）
                 List<DrugHFTagClass> tagDisplayList_phase1 = new List<DrugHFTagClass>();
                 foreach (var tag in DBTags_phase1)
@@ -472,21 +478,18 @@ namespace 調劑台管理系統
                     dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                     dialog_收支異常提示.ShowDialog();
                     hasRetriedConfirmation = true;
-
-                    if (dialog_收支異常提示.DialogResult == DialogResult.Abort)
+                    if (dialog_收支異常提示.DialogResult != DialogResult.Abort) return;
+                    Logger.Log("dialog_main_HRFID", "[Phase-1] 第二次仍數量錯誤，寫入異常記錄");
+                    LoadingForm.ShowLoadingForm("寫入異常記錄...");
+                    try
                     {
-                        Logger.Log("dialog_main_HRFID", "[Phase-1] 第二次仍數量錯誤，寫入異常記錄");
-                        LoadingForm.ShowLoadingForm("寫入異常記錄...");
-                        try
-                        {
-                            medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs_phase1);
-                        }
-                        finally
-                        {
-                            LoadingForm.CloseLoadingForm();
-                        }
+                        medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs_phase1);
                     }
-                    return; // Phase-1 不通過就結束
+                    finally
+                    {
+                        LoadingForm.CloseLoadingForm();
+                    }
+                    hasRetriedConfirmation = false;
                 }
                 "數量驗證完成".PlayGooleVoiceAsync(Main_Form.API_Server);
                 // =========================================================
@@ -586,19 +589,16 @@ namespace 調劑台管理系統
                     dialog_收支異常提示.MouseDownEvent_LokcOpen += PlC_RJ_Button_解鎖_MouseDownEvent;
                     dialog_收支異常提示.ShowDialog();
                     hasRetriedConfirmation = true;
-
-                    if (dialog_收支異常提示.DialogResult == DialogResult.Abort)
+                    if (dialog_收支異常提示.DialogResult != DialogResult.Abort) return;
+                    Logger.Log("dialog_main_HRFID", "[Phase-2] 第二次仍有品項錯誤，寫入異常記錄");
+                    LoadingForm.ShowLoadingForm("寫入異常記錄...");
+                    try
                     {
-                        Logger.Log("dialog_main_HRFID", "[Phase-2] 第二次仍有品項錯誤，寫入異常記錄");
-                        LoadingForm.ShowLoadingForm("寫入異常記錄...");
-                        try
-                        {
-                            medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs_phase2);
-                        }
-                        finally
-                        {
-                            LoadingForm.CloseLoadingForm();
-                        }
+                        medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, errorLogs_phase2);
+                    }
+                    finally
+                    {
+                        LoadingForm.CloseLoadingForm();
                     }
                     return; // 有品項錯誤則結束流程
                 }
