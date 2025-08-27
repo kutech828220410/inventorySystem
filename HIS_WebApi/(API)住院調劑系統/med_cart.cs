@@ -2700,15 +2700,9 @@ namespace HIS_WebApi
                 }
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
                 settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
-                settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
-                if (settingPage_vaildOrder.設定值 == true.ToString())
-                {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains("DC") == false).ToList();
-                }
-                else
-                {
-                    if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
-                }
+                
+                if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
+                
                 
 
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
@@ -3258,16 +3252,8 @@ namespace HIS_WebApi
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
                 settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
-                settingPageClass settingPage_vaildOrder = settingPageClasses.myFind("medicine_cart", "逐床僅顯示有效處方");
-                if (settingPage_vaildOrder.設定值 == true.ToString())
-                {
-                    sql_medCpoe = sql_medCpoe.Where(temp => temp.PRI_KEY.Contains("DC") == false).ToList();
-                }
-                else
-                {
-                    if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
-                }
-                
+                                 
+                if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();                               
 
                 if (sql_medCpoe.Count == 0)
                 {
