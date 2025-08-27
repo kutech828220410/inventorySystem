@@ -244,6 +244,91 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 設定標籤重置
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [DrugHFTagClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("set_tag_reset")]
+        [HttpPost]
+        public string set_tag_reset([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "set_tag_reset";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<DrugHFTagClass> drugHFTagClasses = returnData.Data.ObjToClass<List<DrugHFTagClass>>();
+                if (drugHFTagClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_drugHFTag_buf = new List<object[]>();
+                List<object[]> list_drugHFTag_add = new List<object[]>();
+                List<object[]> list_drugHFTag_replace = new List<object[]>();
+                for (int i = 0; i < drugHFTagClasses.Count; i++)
+                {
+                    DrugHFTagClass drugHFTagClass = drugHFTagClasses[i];
+                    if (drugHFTagClass.TagSN.StringIsEmpty()) continue;
+                    if (drugHFTagClass.效期.StringIsEmpty()) continue;
+                    drugHFTagClass.GUID = Guid.NewGuid().ToString();
+                    drugHFTagClass.更新時間 = DateTime.Now.ToDateTimeString_6();
+                    drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
+                    list_drugHFTag_add.Add(drugHFTagClass.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
+                }
+                sQLControl_drugHFTag.AddRows(null, list_drugHFTag_add);
+                sQLControl_drugHFTag.UpdateByDefulteExtra(null, list_drugHFTag_replace);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = drugHFTagClasses;
+                returnData.Result = $"新增標籤資料成功,共新增<{list_drugHFTag_add.Count}>筆資料";
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+        }
+        /// <summary>
         /// 設定標籤銷毀
         /// </summary>
         /// <remarks>

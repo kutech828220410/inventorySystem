@@ -185,10 +185,10 @@ namespace 調劑台管理系統
                                                                          select temp).ToList();
                 List<DrugHFTagClass> drugHFTagClasses_buf_set_other = (from temp in drugHFTagClasses_buf
                                                                        where Main_Form.stocks_uids.Contains(temp.TagSN) == false
-                                                                       where temp.狀態 != "已銷毀"
+                                                                       where temp.狀態 != "已重置"
                                                                        select temp).ToList();
                 if (drugHFTagClasses_buf_set_stockin.Count > 0) DrugHFTagClass.set_tag_stockin(Main_Form.API_Server, drugHFTagClasses_buf_set_stockin);
-                if (drugHFTagClasses_buf_set_other.Count > 0) DrugHFTagClass.set_tag_broken(Main_Form.API_Server, drugHFTagClasses_buf_set_other);
+                if (drugHFTagClasses_buf_set_other.Count > 0) DrugHFTagClass.set_tag_reset(Main_Form.API_Server, drugHFTagClasses_buf_set_other);
             }
          
 

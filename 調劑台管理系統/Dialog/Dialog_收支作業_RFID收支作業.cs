@@ -267,11 +267,19 @@ namespace 調劑台管理系統
                     _cachedTagList = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
                 else
                     _cachedTagList = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
-
-                _cachedTagMaxUpdateTime = _cachedTagList.Max(x => x.更新時間.StringToDateTime());
-                _cachedReportStartTime = reportStart;
-                _cachedReportEndTime = reportEnd;
+                if(_cachedTagList.Count != 0)
+                {
+                    _cachedTagMaxUpdateTime = _cachedTagList.Max(x => x.更新時間.StringToDateTime());
+                    _cachedReportStartTime = reportStart;
+                    _cachedReportEndTime = reportEnd;
+                }
+    
             }
+
+            _cachedTagList = (from temp in _cachedTagList
+                              where temp.存放位置 == Main_Form.ServerName
+                              select temp).ToList();
+
             if (_Import_Export == IncomeOutcomeMode.收入)
             {
                 DBTags = _cachedTagList
