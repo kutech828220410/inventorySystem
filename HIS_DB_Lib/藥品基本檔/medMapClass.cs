@@ -20,7 +20,7 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
-        [Description("絕對位置,VARCHAR,10,NONE")]
+        [Description("絕對位置,VARCHAR,20,NONE")]
         絕對位置,
         [Description("type,VARCHAR,30,NONE")]
         type

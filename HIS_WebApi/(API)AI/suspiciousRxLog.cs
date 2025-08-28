@@ -1242,24 +1242,21 @@ namespace HIS_WebApi._API_AI
         }
         private List<suspiciousRxLogClass> Get_Value(List<suspiciousRxLogClass> suspiciousRxLogClasses)
         {
-            List<Task> tasks = new List<Task>();
             List<suspiciousRxLogClass> result = new List<suspiciousRxLogClass>();
             foreach (var item in suspiciousRxLogClasses)
             {
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    suspiciousRxLogClass suspiciousRxLogClass = new suspiciousRxLogClass();
+                
+                suspiciousRxLogClass suspiciousRxLogClass = new suspiciousRxLogClass();
 
-                    suspiciousRxLogClass = suspiciousRxLogClass.Get_diseaseClasses(item);
-                    suspiciousRxLogClass = suspiciousRxLogClass.Get_errorType(suspiciousRxLogClass);
-                    suspiciousRxLogClass = suspiciousRxLogClass.Get_ruleType(suspiciousRxLogClass);
-                    suspiciousRxLogClass = suspiciousRxLogClass.Get_ALLERGY(suspiciousRxLogClass);
-                    suspiciousRxLogClass = suspiciousRxLogClass.Get_INTERACT(suspiciousRxLogClass);
+                suspiciousRxLogClass = suspiciousRxLogClass.Get_diseaseClasses(item);
+                suspiciousRxLogClass = suspiciousRxLogClass.Get_errorType(suspiciousRxLogClass);
+                suspiciousRxLogClass = suspiciousRxLogClass.Get_ruleType(suspiciousRxLogClass);
+                suspiciousRxLogClass = suspiciousRxLogClass.Get_ALLERGY(suspiciousRxLogClass);
+                suspiciousRxLogClass = suspiciousRxLogClass.Get_INTERACT(suspiciousRxLogClass);
 
-                    result.LockAdd(suspiciousRxLogClass);
-                })));
+                result.Add(suspiciousRxLogClass);
+                
             }
-            Task.WhenAll(tasks).Wait();
             return result;
         }
         private suspiciousRxLogClass Get_Value(suspiciousRxLogClass suspiciousRxLogClass)

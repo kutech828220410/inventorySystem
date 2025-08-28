@@ -200,9 +200,9 @@ namespace HIS_WebApi._API_藥品資料
                 {
                     medMapClass medMap_buff = medMapClasses.Where(x => x.GUID == item.GUID).FirstOrDefault();
                     if (medMap_buff == null) continue;
-                    if (medMap_buff.位置.StringIsEmpty() && medMap_buff.位置.Split(",").Count() == 2) item.位置 = medMap_buff.位置;
-                    if (medMap_buff.絕對位置.StringIsEmpty() && medMap_buff.絕對位置.Split(",").Count() == 2) item.絕對位置 = medMap_buff.絕對位置;
-
+                    if (medMap_buff.位置.StringIsEmpty() == false && medMap_buff.位置.Split(",").Count() == 2) item.位置 = medMap_buff.位置;
+                    if (medMap_buff.絕對位置.StringIsEmpty() == false && medMap_buff.絕對位置.Split(",").Count() == 2) 
+                        item.絕對位置 = medMap_buff.絕對位置;
                 }
                 List<object[]> update = medMaps.ClassToSQL<medMapClass, enum_medMap>();
                 await sQLControl_medMap.UpdateRowsAsync(null, update);
@@ -605,7 +605,7 @@ namespace HIS_WebApi._API_藥品資料
                 {
                     medMap_sectionClass medMap_section_buff = medMap_sectionClasses.Where(x => x.GUID == item.GUID).FirstOrDefault();
                     if (medMap_section_buff == null) continue;
-                    if (medMap_section_buff.位置.StringIsEmpty() && medMap_section_buff.位置.Split(",").Count() == 2) item.位置 = medMap_section_buff.位置;
+                    if (medMap_section_buff.位置.StringIsEmpty() == false && medMap_section_buff.位置.Split(",").Count() == 2) item.位置 = medMap_section_buff.位置;
                 }
                 
                 List<object[]> update = medMaps_section.ClassToSQL<medMap_sectionClass, enum_medMap_section>();
@@ -940,10 +940,20 @@ namespace HIS_WebApi._API_藥品資料
                 {
                     medMap_shelfClass medMap_shelfClass_buff = medMap_ShelfClass.Where(x => x.GUID == item.GUID).FirstOrDefault();
                     if (medMap_shelfClass_buff == null) continue;
-                    if (medMap_shelfClass_buff.位置.StringIsEmpty() && medMap_shelfClass_buff.位置.Split(",").Count() == 2) item.位置 = medMap_shelfClass_buff.位置;
-                    if (medMap_shelfClass_buff.寬度.StringIsEmpty() && medMap_shelfClass_buff.寬度.Split(",").Count() == 2) item.寬度 = medMap_shelfClass_buff.寬度;
-                    if (medMap_shelfClass_buff.高度.StringIsEmpty() && medMap_shelfClass_buff.高度.Split(",").Count() == 2) item.高度 = medMap_shelfClass_buff.高度;
-                    if (medMap_shelfClass_buff.燈條IP.StringIsEmpty() && medMap_shelfClass_buff.燈條IP.Split(",").Count() == 2) item.燈條IP = medMap_shelfClass_buff.燈條IP;
+                    if (medMap_shelfClass_buff.位置.StringIsEmpty() == false&& medMap_shelfClass_buff.位置.Split(",").Count() == 2) item.位置 = medMap_shelfClass_buff.位置;
+                    if (medMap_shelfClass_buff.寬度.StringIsEmpty() == false) item.寬度 = medMap_shelfClass_buff.寬度;
+                    if (medMap_shelfClass_buff.高度.StringIsEmpty() == false) item.高度 = medMap_shelfClass_buff.高度;
+                    if (medMap_shelfClass_buff.燈條IP.StringIsEmpty() == false) item.燈條IP = medMap_shelfClass_buff.燈條IP;
+                    if (medMap_shelfClass_buff.Master_GUID.StringIsEmpty() == false && medMap_shelfClass_buff.serverName.StringIsEmpty() == false && medMap_shelfClass_buff.serverType.StringIsEmpty() == false) 
+                    {
+                        item.Master_GUID = medMap_shelfClass_buff.Master_GUID;
+                        item.serverName = medMap_shelfClass_buff.serverName;
+                        item.serverType = medMap_shelfClass_buff.serverType;
+
+                    }
+
+
+
                 }
                 List<object[]> update = medMap_shelfClasses.ClassToSQL<medMap_shelfClass, enum_medMap_shelf>();
 
@@ -1274,10 +1284,17 @@ namespace HIS_WebApi._API_藥品資料
                 {
                     medMap_drawerClass medMap_shelfClass_buff = medMap_drawerClass.Where(x => x.GUID == item.GUID).FirstOrDefault();
                     if (medMap_shelfClass_buff == null) continue;
-                    if (medMap_shelfClass_buff.位置.StringIsEmpty() && medMap_shelfClass_buff.位置.Split(",").Count() == 2) item.位置 = medMap_shelfClass_buff.位置;
-                    if (medMap_shelfClass_buff.寬度.StringIsEmpty() && medMap_shelfClass_buff.寬度.Split(",").Count() == 2) item.寬度 = medMap_shelfClass_buff.寬度;
-                    if (medMap_shelfClass_buff.高度.StringIsEmpty() && medMap_shelfClass_buff.高度.Split(",").Count() == 2) item.高度 = medMap_shelfClass_buff.高度;
-                    if (medMap_shelfClass_buff.抽屜IP.StringIsEmpty() && medMap_shelfClass_buff.抽屜IP.Split(",").Count() == 2) item.抽屜IP = medMap_shelfClass_buff.抽屜IP;
+                    if (medMap_shelfClass_buff.位置.StringIsEmpty() == false && medMap_shelfClass_buff.位置.Split(",").Count() == 2) item.位置 = medMap_shelfClass_buff.位置;
+                    if (medMap_shelfClass_buff.寬度.StringIsEmpty() == false) item.寬度 = medMap_shelfClass_buff.寬度;
+                    if (medMap_shelfClass_buff.高度.StringIsEmpty() == false) item.高度 = medMap_shelfClass_buff.高度;
+                    if (medMap_shelfClass_buff.抽屜IP.StringIsEmpty() == false) item.抽屜IP = medMap_shelfClass_buff.抽屜IP;
+                    if (medMap_shelfClass_buff.Master_GUID.StringIsEmpty() == false && medMap_shelfClass_buff.serverName.StringIsEmpty() == false && medMap_shelfClass_buff.serverType.StringIsEmpty() == false) 
+                    {
+                        item.Master_GUID = medMap_shelfClass_buff.Master_GUID;
+                        item.serverName = medMap_shelfClass_buff.serverName;
+                        item.serverType = medMap_shelfClass_buff.serverType;
+                    }
+
                 }
 
                 List<object[]> update = medMap_drawerClasses.ClassToSQL<medMap_drawerClass, enum_medMap_drawer>();
@@ -1486,13 +1503,18 @@ namespace HIS_WebApi._API_藥品資料
         /// <code>
         ///   {
         ///     "Data":
-        ///     {
-        ///         "GUID":"",
-        ///         "position":"位置",
-        ///         "width":"寬度",
-        ///         "height":"高度",
-        ///         "ip_light":"藥盒IP"
-        ///     },
+        ///     [
+        ///         {
+        ///             "GUID":"",
+        ///             "Master_GUID":"",
+        ///             "position":"位置",
+        ///             "width":"寬度",
+        ///             "height":"高度",
+        ///             "ip_light":"藥盒IP",
+        ///             "serverName":"",
+        ///             "serverType":"",
+        ///         }
+        ///     ],
         ///     "Value": "",
         ///     "ValueAry":[]
         ///     "TableName": "",
@@ -1534,10 +1556,16 @@ namespace HIS_WebApi._API_藥品資料
                 {
                     medMap_boxClass medMap_box_buff = medMap_boxClass.Where(x => x.GUID == item.GUID).FirstOrDefault();
                     if (medMap_box_buff == null) continue;
-                    if (medMap_box_buff.位置.StringIsEmpty() && medMap_box_buff.位置.Split(",").Count() == 2) item.位置 = medMap_box_buff.位置;
-                    if (medMap_box_buff.寬度.StringIsEmpty() && medMap_box_buff.寬度.Split(",").Count() == 2) item.寬度 = medMap_box_buff.寬度;
-                    if (medMap_box_buff.高度.StringIsEmpty() && medMap_box_buff.高度.Split(",").Count() == 2) item.高度 = medMap_box_buff.高度;
-                    if (medMap_box_buff.藥盒IP.StringIsEmpty() && medMap_box_buff.藥盒IP.Split(",").Count() == 2) item.藥盒IP = medMap_box_buff.藥盒IP;
+                    if (medMap_box_buff.位置.StringIsEmpty() == false && medMap_box_buff.位置.Split(",").Count() == 2) item.位置 = medMap_box_buff.位置;
+                    if (medMap_box_buff.寬度.StringIsEmpty() == false && medMap_box_buff.寬度.Split(",").Count() == 2) item.寬度 = medMap_box_buff.寬度;
+                    if (medMap_box_buff.高度.StringIsEmpty() == false) item.高度 = medMap_box_buff.高度;
+                    if (medMap_box_buff.藥盒IP.StringIsEmpty() == false) item.藥盒IP = medMap_box_buff.藥盒IP;
+                    if (medMap_box_buff.Master_GUID.StringIsEmpty() == false && medMap_box_buff.serverName.StringIsEmpty() == false && medMap_box_buff.serverType.StringIsEmpty() == false)
+                    {
+                        item.Master_GUID = medMap_box_buff.Master_GUID;
+                        item.serverName = medMap_box_buff.serverName;
+                        item.serverType = medMap_box_buff.serverType;
+                    }
                 }
                 
                 List<object[]> update = medMap_boxClasses.ClassToSQL<medMap_boxClass, enum_medMap_box>();
