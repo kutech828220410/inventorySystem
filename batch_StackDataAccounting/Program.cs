@@ -878,6 +878,26 @@ namespace batch_StackDataAccounting
             {
                 while (true)
                 {
+                    var originalConsole = Console.Out;
+                    Console.SetOut(TextWriter.Null); // 關掉輸出
+
+                    try
+                    {
+                        Function_從SQL取得儲位到本地資料();
+                        Function_從SQL取得儲位到雲端資料();
+                    }
+                    finally
+                    {
+                        Console.SetOut(originalConsole); // 還原輸出
+                    }
+
+                    System.Threading.Thread.Sleep(60000);
+                }
+            }));
+            Task.Run(new Action(delegate
+            {
+                while (true)
+                {
                     Function_從SQL取得儲位到本地資料();
                     Function_從SQL取得儲位到雲端資料();
                     System.Threading.Thread.Sleep(60000);
