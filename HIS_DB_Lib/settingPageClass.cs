@@ -90,6 +90,20 @@ namespace HIS_DB_Lib
             return settingPageClasses;
 
         }
+        static public async Task<List<settingPageClass>> get_by_page_name(string API_Server, string page_name)
+        {
+            string url = $"{API_Server}/api/settingPage/get_by_page_name";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            Task<string> result = Net.WEBApiPostJsonAsync(url, json_in, false);
+            string json_out = await result;
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<settingPageClass> settingPageClasses = returnData.Data.ObjToClass<List<settingPageClass>>();
+            return settingPageClasses;
+
+        }
         public class ICP_By_type : IComparer<settingPageClass>
         {
             public int Compare(settingPageClass x, settingPageClass y)

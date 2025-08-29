@@ -19,7 +19,11 @@ namespace HIS_DB_Lib
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
-        位置
+        位置,
+        [Description("絕對位置,VARCHAR,20,NONE")]
+        絕對位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type
     }
     [EnumDescription("medMap_section")]
     public enum enum_medMap_section
@@ -29,7 +33,21 @@ namespace HIS_DB_Lib
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
-        位置
+        位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type
+    }
+    [EnumDescription("medMap_sub_section")]
+    public enum enum_medMap_sub_section
+    {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
+        [Description("位置,VARCHAR,10,NONE")]
+        位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type
     }
     [EnumDescription("medMap_shelf")]
     public enum enum_medMap_shelf
@@ -40,6 +58,8 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type,
         [Description("寬度,VARCHAR,10,NONE")]
         寬度,
         [Description("高度,VARCHAR,10,NONE")]
@@ -60,6 +80,8 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type,
         [Description("寬度,VARCHAR,10,NONE")]
         寬度,
         [Description("高度,VARCHAR,10,NONE")]
@@ -80,6 +102,8 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
+        [Description("type,VARCHAR,30,NONE")]
+        type,
         [Description("寬度,VARCHAR,10,NONE")]
         寬度,
         [Description("高度,VARCHAR,10,NONE")]
@@ -111,6 +135,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
+        /// <summary>
+        /// 絕對位置
+        /// </summary>
+        [JsonPropertyName("absolute_position")]
+        public string 絕對位置 { get; set; }
+        /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type{ get; set; }
         public sys_serverSettingClass sys_ServerSetting { get; set; }
         public List<medMap_sectionClass> medMap_Section {  get; set; }
     }
@@ -134,6 +168,39 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
+        /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type { get; set; }
+        public List<medMap_sub_sectionClass> sub_section { get; set; }
+
+    }
+    /// <summary>
+    /// 藥品地圖_子容器
+    /// </summary>
+    public class medMap_sub_sectionClass
+    {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        /// <summary>
+        /// Master_GUID
+        /// </summary>
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        /// <summary>
+        /// 位置
+        /// </summary>
+        [JsonPropertyName("position")]
+        public string 位置 { get; set; }
+        /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type { get; set; }
         public List<medMap_shelfClass> shelf { get; set; }
         public List<medMap_drawerClass> drawer { get; set; }
 
@@ -158,6 +225,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
+        /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type { get; set; }
         /// <summary>
         /// 寬度
         /// </summary>
@@ -208,6 +280,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
         /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type { get; set; }
+        /// <summary>
         /// 寬度
         /// </summary>
         [JsonPropertyName("width")]
@@ -256,6 +333,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("position")]
         public string 位置 { get; set; }
+        /// <summary>
+        /// 種類
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string type { get; set; }
         /// <summary>
         /// 寬度
         /// </summary>

@@ -19,7 +19,7 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
-        [Description("更新時間,DATETIME,10,NONE")]
+        [Description("更新時間,DATETIME,10,INDEX")]
         更新時間,
         [Description("藥局,VARCHAR,10,INDEX")]
         藥局,

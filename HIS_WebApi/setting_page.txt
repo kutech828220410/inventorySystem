@@ -10,14 +10,6 @@
         },
         {
             "page_name": "medicine_cart",
-            "cht": "逐床僅顯示有效處方",
-            "name": "per_bed_valid_orders_only",
-            "value_type": "checkbox",
-            "option_str": "",
-            "value_db": "True"
-        },
-        {
-            "page_name": "medicine_cart",
             "cht": "覆核_全選大瓶藥例外",
             "name": "check_big_bottle_exception",
             "value_type": "checkbox",
@@ -207,6 +199,30 @@
             "value_type": "text",
             "option_str": "",
             "value_db": "全部"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品圖片使用base64",
+            "name": "med_pic_base64",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量預選功能",
+            "name": "med_qty_precheck",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量為0自動調劑",
+            "name": "med_qty_autodispense",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
         }
 
         

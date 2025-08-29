@@ -1661,7 +1661,15 @@ namespace HIS_WebApi
 
                 SQLControl sQLControl_order_list = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
                 string command = string.Empty;
-                string PRI_KEY = $"{input_orderClass[0].領藥號}-{input_orderClass[0].病歷號}";
+
+                string[] array_priKey = input_orderClass[0].PRI_KEY.Split("-");
+                if (array_priKey.Length < 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"PRI_KEY格式錯誤，應為 '開方時間-病歷號'";
+                    return returnData.JsonSerializationt();
+                }
+                string PRI_KEY = $"{array_priKey[0]}-{array_priKey[1]}";
                 string 開方日期 = input_orderClass[0].開方日期.StringToDateTime().ToString("yyyy-MM-dd");
                 if (returnData.Value.StringIsEmpty() == false && returnData.Value == "fuzzy")
                 {

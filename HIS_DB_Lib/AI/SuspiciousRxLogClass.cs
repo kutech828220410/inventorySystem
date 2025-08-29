@@ -467,7 +467,6 @@ namespace HIS_DB_Lib
         }
         static public suspiciousRxLogClass Get_ALLERGY(suspiciousRxLogClass suspiciousRxLogClass)
         {
-            suspiciousRxLogClass.過敏紀錄 = new List<MedicalCodeItem>();
             if (suspiciousRxLogClass.過敏藥碼.StringIsEmpty() == false && suspiciousRxLogClass.過敏藥名.StringIsEmpty() == false)
             {
                 List<MedicalCodeItem> 過敏紀錄 = new List<MedicalCodeItem>();

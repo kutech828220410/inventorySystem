@@ -23,6 +23,17 @@ namespace HIS_WebApi
             }
             return (sys_serverSettingClass.Server, sys_serverSettingClass.DBName, sys_serverSettingClass.User, sys_serverSettingClass.Password, (uint)sys_serverSettingClass.Port.StringToInt32());
         }
+        static public async Task<(string Server, string DB, string UserName, string Password, uint Port)> GetServerInfoAsync(string Name, string Type, string Content, CancellationToken ct = default)
+        {
+            List<sys_serverSettingClass> sys_serverSettingClass = await ServerSettingController.GetAllServerSettingasync(Name, Type, Content);
+
+            if (sys_serverSettingClass == null || sys_serverSettingClass.Count == 0)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return (sys_serverSettingClass[0].Server, sys_serverSettingClass[0].DBName, sys_serverSettingClass[0].User, sys_serverSettingClass[0].Password, (uint)sys_serverSettingClass[0].Port.StringToInt32());
+        }
+
         static public string GetServerAPI(string Name, string Type, string Content)
         {
             List<sys_serverSettingClass> serverSetting = ServerSettingController.GetAllServerSetting();
@@ -33,6 +44,26 @@ namespace HIS_WebApi
                 throw new Exception("找無Server資料");
             }
             return sys_serverSettingClass.Server;
+        }
+        static public async Task<string> GetServerApiAsync(string Name, string Type, string Content, CancellationToken ct = default)
+        {
+            List<sys_serverSettingClass> sys_serverSettingClass = await ServerSettingController.GetAllServerSettingasync(Name, Type, Content);
+
+            if (sys_serverSettingClass == null || sys_serverSettingClass.Count == 0)
+            {
+                throw new Exception("找無Server資料");
+            }
+            return sys_serverSettingClass[0].Server;
+        }
+        static public async Task<sys_serverSettingClass> GetServerAsync(string Name, string Type, string Content, CancellationToken ct = default)
+        {
+            List<sys_serverSettingClass> sys_serverSettingClass = await ServerSettingController.GetAllServerSettingasync(Name, Type, Content);
+
+            if (sys_serverSettingClass == null || sys_serverSettingClass.Count == 0)
+            {
+                return new sys_serverSettingClass();
+            }
+            return (sys_serverSettingClass[0]);
         }
         /// <summary>
         /// 取得目前請求的相對路徑（可選是否包含查詢字串）。若非 HTTP 呼叫則回傳 "[InternalCall]"。

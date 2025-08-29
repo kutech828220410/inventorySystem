@@ -149,7 +149,7 @@ namespace HIS_WebApi
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt();
                 }
-
+                medGroupClass.MedClasses.Sort(new medClass.ICP_By_name());
                 returnData.Code = 200;
                 returnData.Data = medGroupClass;
                 returnData.TimeTaken = myTimer.ToString();
@@ -243,6 +243,57 @@ namespace HIS_WebApi
                 returnData.Result = $"取得藥品群組資料成功!";
 
                 return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得所有藥品群組內容
+        /// </summary>
+        /// <remarks>
+        /// 無
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[medGroupClasses]</returns>
+        [Route("get_group_name")]
+        [HttpPost]
+        public async Task<string> get_group_name([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM dbvm.med_group";
+                List<object[]> tasks = await sQLControl_med_cpoe.WriteCommandAndExecuteReaderAsync(command);
+
+                List<medGroupClass> medGroupClasses = tasks.SQLToClass<medGroupClass, enum_medGroup>();
+
+                returnData.Code = 200;
+                returnData.Data = medGroupClasses;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_all_group";
+                returnData.Result = $"取得藥品群組資料成功!";
+
+                return await returnData.JsonSerializationtAsync(true);
             }
             catch (Exception e)
             {

@@ -131,7 +131,7 @@ namespace HIS_WebApi
 
                 }
                 returnData.Method = "POST_init";
-         
+
                 return CheckCreatTable();
             }
             catch (Exception e)
@@ -204,7 +204,7 @@ namespace HIS_WebApi
                 List<object[]> list_value_add = new List<object[]>();
                 List<object[]> list_value_replace = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
-      
+
                 List<sys_serverSettingClass> sys_serverSettingClasses = returnData.Data.ObjToListClass<sys_serverSettingClass>();
                 list_value_returnData = sys_serverSettingClasses.ClassToSQL<sys_serverSettingClass, enum_sys_serverSetting>();
                 for (int i = 0; i < list_value_returnData.Count; i++)
@@ -247,7 +247,7 @@ namespace HIS_WebApi
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
             }
-            
+
         }
         /// <summary>
         /// 刪除連線資訊
@@ -306,7 +306,7 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt(true);
-            }      
+            }
         }
         /// <summary>
         /// 以Type取得連線資訊(調劑台、藥庫...)
@@ -369,9 +369,9 @@ namespace HIS_WebApi
 
                 List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
                 sys_serverSettingClasses = (from temp in sys_serverSettingClasses
-                                        where temp.類別 == Type
-                                        where temp.內容 == "一般資料"
-                                        select temp).ToList();
+                                            where temp.類別 == Type
+                                            where temp.內容 == "一般資料"
+                                            select temp).ToList();
 
                 sys_serverSettingClasses.Sort(new sys_serverSettingClass.ICP_By_dps_name());
                 returnData.Code = 200;
@@ -479,7 +479,7 @@ namespace HIS_WebApi
             {
 
             }
-        
+
             returnData.Method = "get_department_type";
             try
             {
@@ -527,6 +527,66 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 以GUID取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "GUID"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_GUID")]
+        public async Task<string> get_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+
+            returnData.Method = "get_by_GUID";
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] GUID = returnData.ValueAry[0].Split(";").ToArray();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = await sQLControl.GetRowsByDefultAsync(null, (int)enum_sys_serverSetting.GUID, GUID);
+                List<sys_serverSettingClass> sys_ServerSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
+
+                returnData.Code = 200;
+                returnData.Result = $"取得伺服器服務,共<{sys_ServerSettingClasses.Count}>筆";
+                returnData.Data = sys_ServerSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
 
         /// <summary>
         /// 以單位別取得連線資訊(門診、急診、住院、藥庫...)
@@ -550,7 +610,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_serversetting_by_department_type")]
         [HttpPost]
-        public string POST_get_serversetting_by_department_type([FromBody] returnData returnData)
+        public async Task<string> POST_get_serversetting_by_department_type([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -566,13 +626,6 @@ namespace HIS_WebApi
             try
             {
                 this.CheckCreatTable();
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = sQLControl.GetAllRows(null);
-                List<object[]> list_value_returnData = new List<object[]>();
-                List<object[]> list_value_add = new List<object[]>();
-                List<object[]> list_value_replace = new List<object[]>();
-                List<object[]> list_value_buf = new List<object[]>();
 
                 if (returnData.ValueAry == null)
                 {
@@ -588,11 +641,11 @@ namespace HIS_WebApi
                 }
                 string department_type = returnData.ValueAry[0];
 
-                List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
+                List<sys_serverSettingClass> sys_serverSettingClasses = await GetAllServerSettingasync();
                 sys_serverSettingClasses = (from temp in sys_serverSettingClasses
-                                        where temp.單位 == department_type
-                                        where temp.內容 == "一般資料"
-                                        select temp).ToList();
+                                            where temp.單位 == department_type
+                                            where temp.內容 == "一般資料"
+                                            select temp).ToList();
 
                 sys_serverSettingClasses.Sort(new sys_serverSettingClass.ICP_By_dps_name());
                 returnData.Code = 200;
@@ -663,13 +716,13 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-    
+
                 List<sys_serverSettingClass> sys_serverSettingClasses = GetAllServerSetting();
                 List<sys_serverSettingClass> sys_serverSettingClasses_VM = (from temp in sys_serverSettingClasses
-                                                 where temp.類別 == "網頁"
-                                                 where temp.內容 == "VM端"
-                                                 select temp).ToList();
-                if(sys_serverSettingClasses_VM.Count == 0)
+                                                                            where temp.類別 == "網頁"
+                                                                            where temp.內容 == "VM端"
+                                                                            select temp).ToList();
+                if (sys_serverSettingClasses_VM.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"查無資料";
@@ -763,10 +816,10 @@ namespace HIS_WebApi
                 string 設備名稱 = returnData.ValueAry[0].ToUpper();
                 string 內容 = returnData.ValueAry[2].ToUpper();
                 List<sys_serverSettingClass> sys_serverSettingClasses_buf = (from temp in sys_serverSettingClasses
-                                                                     where temp.類別.ToUpper() == 類別
-                                                                     where temp.設備名稱.ToUpper() == 設備名稱
-                                                                     where temp.內容.ToUpper() == 內容
-                                                                     select temp).ToList();
+                                                                             where temp.類別.ToUpper() == 類別
+                                                                             where temp.設備名稱.ToUpper() == 設備名稱
+                                                                             where temp.內容.ToUpper() == 內容
+                                                                             select temp).ToList();
                 if (sys_serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
@@ -860,13 +913,13 @@ namespace HIS_WebApi
                 }
                 string 類別 = "網頁";
                 List<sys_serverSettingClass> sys_serverSettingClasses_temp = (from temp in sys_serverSettingClasses
-                                                                      where temp.類別.ToUpper() == 類別
-                                                                      where temp.程式類別.ToUpper() == "peremeter".ToUpper()
-                                                                      select temp).ToList();
+                                                                              where temp.類別.ToUpper() == 類別
+                                                                              where temp.程式類別.ToUpper() == "peremeter".ToUpper()
+                                                                              select temp).ToList();
                 List<sys_serverSettingClass> sys_serverSettingClasses_buf = new List<sys_serverSettingClass>();
                 for (int i = 0; i < sys_serverSettingClasses_temp.Count; i++)
                 {
-                    foreach(string str_temp in returnData.ValueAry)
+                    foreach (string str_temp in returnData.ValueAry)
                     {
                         if (sys_serverSettingClasses_temp[i].內容 == str_temp)
                         {
@@ -955,13 +1008,13 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-         
+
                 string 類別 = "網頁";
                 List<sys_serverSettingClass> sys_serverSettingClasses_temp = (from temp in sys_serverSettingClasses
-                                                                      where temp.類別.ToUpper() == 類別
-                                                                      where temp.程式類別.ToUpper() == "peremeter".ToUpper()
-                                                                      select temp).ToList();
-       
+                                                                              where temp.類別.ToUpper() == 類別
+                                                                              where temp.程式類別.ToUpper() == "peremeter".ToUpper()
+                                                                              select temp).ToList();
+
                 if (sys_serverSettingClasses_temp.Count == 0)
                 {
                     returnData.Code = -200;
@@ -1013,5 +1066,45 @@ namespace HIS_WebApi
             List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
             return sys_serverSettingClasses;
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public async Task<List<sys_serverSettingClass>> GetAllServerSettingasync()
+        {
+            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+            string command = $"SELECT * FROM {DB}.ServerSetting ;";
+            Task<List<object[]>> task = sQLControl.WriteCommandAndExecuteReaderAsync(command);
+            await Task.WhenAll(task);
+            List<object[]> list_value = task.Result;
+            List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
+            return sys_serverSettingClasses;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public async Task<List<sys_serverSettingClass>> GetAllServerSettingasync(string Name, string Type, string Content)
+        {
+            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+            string command = $"SELECT * FROM {DB}.ServerSetting WHERE 設備名稱 = '{Name}' AND 類別 = '{Type}' AND 內容 = '{Content}';";
+            Task<List<object[]>> task = sQLControl.WriteCommandAndExecuteReaderAsync(command);
+            await Task.WhenAll(task);
+            List<object[]> list_value = task.Result;
+            List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
+            return sys_serverSettingClasses;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_serversetting_by_department_type(string department_type)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(department_type);
+            string result = await POST_get_serversetting_by_department_type(returnData);
+            returnData = result.JsonDeserializet<returnData>();
+            return returnData;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_by_GUID(string GUID)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            string result = await get_by_GUID(returnData);
+            returnData = result.JsonDeserializet<returnData>();
+            return returnData;
+        } 
     }
 }
