@@ -3625,14 +3625,18 @@ namespace HIS_WebApi
 
                 List<medGroupClass> medGroupClasses = new List<medGroupClass>();
                 List<Task> tasks = new List<Task>();
-                string time_藥品群組 = string.Empty;
-                MyTimerBasic myTimerBasic_取得藥品群組 = new MyTimerBasic();
+                List < medGroupClass > medGroupClass_buff = new List<medGroupClass>();
+
 
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     medGroupClasses = medGroupClass.get_all_group(APIServer);
-                    medGroupClasses = medGroupClasses.Where(m => System.Enum.GetNames(typeof(藥品總量群組)).Contains(m.名稱)).ToList();
-                    time_藥品群組 = myTimerBasic_取得藥品群組.ToString();
+                    List<string> groupName = System.Enum.GetNames(typeof(藥品總量群組)).ToList();
+                    foreach (var item in groupName)
+                    {
+                        medGroupClass medGroup_buff = medGroupClasses.Where(m => m.名稱.Contains(item)).FirstOrDefault();
+                        if (medGroup_buff != null) medGroupClass_buff.Add(medGroup_buff);
+                    }
                 })));
 
                 List<settingPageClass> settingPageClasses = settingPageClass.get_all(APIServer);
@@ -3696,7 +3700,7 @@ namespace HIS_WebApi
                         medCpoeClass medCpoe = grouped.First();
                         string 調劑台 = "";
                         string 大瓶點滴 = "";
-                        List<string> 藥品群組 = GetGroupNamesByCode(medGroupClasses, grouped.Key);
+                        List<string> 藥品群組 = GetGroupNamesByCode(medGroupClass_buff, grouped.Key);
                         if (returnData.Value == "all")
                         {
                             調劑台 = "Y";
@@ -3754,7 +3758,7 @@ namespace HIS_WebApi
                     }).ToList();
                 time_藥品總量 = myTimerBasic_藥品總量.ToString();
                 returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic} 取得資料{time_取得資料} 藥品群組{time_藥品群組} 調劑台藥品{time_調劑台藥品} 藥品總量{time_藥品總量} " ;
+                returnData.TimeTaken = $"{myTimerBasic} 取得資料{time_取得資料}  調劑台藥品{time_調劑台藥品} 藥品總量{time_藥品總量} " ;
                 returnData.Data = medCpoeClasses;
                 returnData.Result = $"{藥局} {護理站} 的藥品清單";
                 return returnData.JsonSerializationt(true);
