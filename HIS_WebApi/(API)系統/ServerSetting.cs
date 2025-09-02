@@ -1071,7 +1071,7 @@ namespace HIS_WebApi
         {
             SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
             string command = $"SELECT * FROM {DB}.ServerSetting ;";
-            Task<List<object[]>> task = sQLControl.WriteCommandAndExecuteReaderAsync(command);
+            Task<List<object[]>> task = sQLControl.WriteCommandAsync(command);
             await Task.WhenAll(task);
             List<object[]> list_value = task.Result;
             List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();
@@ -1082,7 +1082,7 @@ namespace HIS_WebApi
         {
             SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
             string command = $"SELECT * FROM {DB}.ServerSetting WHERE 設備名稱 = '{Name}' AND 類別 = '{Type}' AND 內容 = '{Content}';";
-            Task<List<object[]>> task = sQLControl.WriteCommandAndExecuteReaderAsync(command);
+            Task<List<object[]>> task = sQLControl.WriteCommandAsync(command);
             await Task.WhenAll(task);
             List<object[]> list_value = task.Result;
             List<sys_serverSettingClass> sys_serverSettingClasses = list_value.SQLToClass<sys_serverSettingClass, enum_sys_serverSetting>();

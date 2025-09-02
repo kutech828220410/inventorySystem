@@ -107,7 +107,7 @@ namespace HIS_WebApi._API_住院調劑系統
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 List<string> cpoe_guids = nearMissClasses.Select(x => x.cpoe_GUID).Distinct().ToList();
                 string command = getCommand(DB, tableName, cpoe_guids);
-                List<object[]> objects = await sQLControl.WriteCommandAndExecuteReaderAsync(command);
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command);
                 List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
                 List<nearMissClass> add_nearMisses = new List<nearMissClass>();
                 List<nearMissClass> update_nearMisses = new List<nearMissClass>();
@@ -213,7 +213,7 @@ namespace HIS_WebApi._API_住院調劑系統
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 string command = getCommand(DB, tableName, startTime, endTime);
-                List<object[]> objects = await sQLControl.WriteCommandAndExecuteReaderAsync(command);
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command);
                 List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
                 
 
@@ -287,7 +287,7 @@ namespace HIS_WebApi._API_住院調劑系統
                     return await returnData.JsonSerializationtAsync(true);
                 }
                 string command = getCommand(DB, tableName, startTime, endTime, 藥局);
-                List<object[]> objects = await sQLControl.WriteCommandAndExecuteReaderAsync(command ,ct);
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command ,ct);
                 List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
 
                 returnData.Code = 200;

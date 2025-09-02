@@ -1019,6 +1019,34 @@ namespace HIS_DB_Lib
             }
             return new List<medClass>();
         }
+
+        static public Dictionary<string, List<medClass>> ToDictByMasterGuid(List<medClass> medClasses)
+        {
+            Dictionary<string, List<medClass>> dictionary = new Dictionary<string, List<medClass>>();
+            foreach (var item in medClasses)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<medClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<medClass>() { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medClass> GetDictByMasterGuid(Dictionary<string, List<medClass>> dict, string Master_GUID)
+        {
+            if (dict.TryGetValue(Master_GUID, out List<medClass> medClasses))
+            {
+                return medClasses;
+            }
+            else
+            {
+                return new List<medClass>();
+            }
+        }
         public static List<medClass> SortByIndex(this List<medClass> medClasses)
         {
             return medClasses

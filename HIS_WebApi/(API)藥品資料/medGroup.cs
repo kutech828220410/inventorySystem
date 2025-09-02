@@ -210,31 +210,21 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[medGroupClasses]</returns>
-        [Route("get_all_group")]
-        [HttpPost]
-        public string POST_get_all_group([FromBody] returnData returnData)
+        [HttpPost("get_all_group")]
+        public async Task<string> get_all_group([FromBody] returnData returnData)
         {
             try
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (sys_serverSettingClasses.Count == 0)
+                sys_serverSettingClass sys_serverSettingClass = await HIS_WebApi.Method.GetServerAsync("Main", "網頁", "VM端");     
+                if(sys_serverSettingClass == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
-
-
-                List<medGroupClass> medGroupClasses = Function_Get_medGroupClass(sys_serverSettingClasses[0]);
+                List<medGroupClass> medGroupClasses = await Function_Get_medGroupClassAsync(sys_serverSettingClass);
 
                 returnData.Code = 200;
                 returnData.Data = medGroupClasses;
@@ -283,7 +273,7 @@ namespace HIS_WebApi
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
                 string command = $"SELECT * FROM dbvm.med_group";
-                List<object[]> tasks = await sQLControl_med_cpoe.WriteCommandAndExecuteReaderAsync(command);
+                List<object[]> tasks = await sQLControl_med_cpoe.WriteCommandAsync(command);
 
                 List<medGroupClass> medGroupClasses = tasks.SQLToClass<medGroupClass, enum_medGroup>();
 
@@ -1181,7 +1171,6 @@ namespace HIS_WebApi
 
             return medGroupClasses;
         }
-
         [ApiExplorerSettings(IgnoreApi = true)]
         static public List<medGroupClass> Function_Get_medGroupClass(sys_serverSettingClass sys_serverSettingClass)
         {
@@ -1225,6 +1214,55 @@ namespace HIS_WebApi
                 medGroupClasses[i].MedClasses = medGroupClasses[i].MedClasses.SortByIndex();
 
 
+            }
+            return medGroupClasses;
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public async Task<List<medGroupClass>> Function_Get_medGroupClassAsync(sys_serverSettingClass sys_serverSettingClass)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            CheckCreatTable(sys_serverSettingClass);
+            string Server = sys_serverSettingClass.Server;
+            string DB = sys_serverSettingClass.DBName;
+            string UserName = sys_serverSettingClass.User;
+            string Password = sys_serverSettingClass.Password;
+            uint Port = (uint)sys_serverSettingClass.Port.StringToInt32();
+
+            SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+
+
+            Task<List<medClass>> task_medClasses = MED_pageController.Get_med_cloudAsync(sys_serverSettingClass);
+            Task<List<object[]>> task_list_med_group = sQLControl_med_group.GetAllRowsAsync(null);
+            Task<List<object[]>>  task_list_med_sub_group = sQLControl_med_sub_group.GetAllRowsAsync(null);
+
+            List<medClass> medClasses = await task_medClasses;
+            Dictionary<string, List<medClass>> keyValuePairs_medClass = medClasses.CoverToDictionaryByCode();
+
+            List<object[]> list_med_group = await task_list_med_group;
+            List<medGroupClass> medGroupClasses = list_med_group.SQLToClass<medGroupClass, enum_medGroup>();
+
+            List<object[]> list_med_sub_group = await task_list_med_sub_group;
+            List<medClass> sub_MedGroupClasses = list_med_sub_group.SQLToClass<medClass, enum_sub_medGroup>();
+            Dictionary<string, List<medClass>> dic_medClass = medClassMethod.ToDictByMasterGuid(sub_MedGroupClasses);
+
+            for (int i = 0; i < medGroupClasses.Count; i++)
+            {
+                List<medClass> meds = medClassMethod.GetDictByMasterGuid(dic_medClass, medGroupClasses[i].GUID);
+                medGroupClasses[i].MedClasses = meds;
+                for (int k = 0; k < medGroupClasses[i].MedClasses.Count; k++)
+                {
+                    List<medClass> medClasses_buf = keyValuePairs_medClass.SortDictionaryByCode(medGroupClasses[i].MedClasses[k].藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        string 排列號 = medGroupClasses[i].MedClasses[k].排列號;
+                        medGroupClasses[i].MedClasses[k] = medClasses_buf[0];
+                        medGroupClasses[i].MedClasses[k].排列號 = 排列號;
+                    }
+                }
+                medGroupClasses[i].MedClasses = medGroupClasses[i].MedClasses.SortByIndex();
             }
             return medGroupClasses;
         }
@@ -1296,6 +1334,16 @@ namespace HIS_WebApi
                 throw new Exception("找無Server資料");
             }
             return sys_serverSettingClass.Server;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public async Task<List<medGroupClass>> get_all_group()
+        {
+            returnData returnData = new returnData();
+            string result = await   new medGroup().get_all_group(returnData);
+            returnData = result.JsonDeserializet<returnData>();
+            if(returnData == null || returnData.Code != 200) return new List<medGroupClass>();
+            List<medGroupClass> medGroupClasses = returnData.Data.ObjToListClass<medGroupClass>();
+            return medGroupClasses;
         }
 
     }
