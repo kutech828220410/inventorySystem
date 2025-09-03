@@ -180,8 +180,8 @@ namespace 調劑台管理系統
             {
                 drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(code);
                 List<DrugHFTagClass> drugHFTagClasses_buf_set_stockin = (from temp in drugHFTagClasses_buf
-                                                                         where Main_Form.stocks_uids.Contains(temp.TagSN) == false
-                                                                         where temp.狀態 == "入庫註記"
+                                                                         where Main_Form.stocks_uids.Contains(temp.TagSN) == true
+                                                                         where temp.狀態 != "入庫註記"
                                                                          select temp).ToList();
                 List<DrugHFTagClass> drugHFTagClasses_buf_set_other = (from temp in drugHFTagClasses_buf
                                                                        where Main_Form.stocks_uids.Contains(temp.TagSN) == false
@@ -195,7 +195,6 @@ namespace 調劑台管理系統
             drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(this.drugCode);
             List<DrugHFTagClass> drugHFTagClasses_buf_stockin = (from temp in drugHFTagClasses_buf
                                                                  where Main_Form.stocks_uids.Contains(temp.TagSN)
-                                                                 where temp.狀態 == "入庫註記"
                                                                  select temp).ToList();
 
             List<StockClass> stockClasses = new List<StockClass>();
