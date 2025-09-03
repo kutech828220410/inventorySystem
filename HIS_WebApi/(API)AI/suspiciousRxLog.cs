@@ -150,6 +150,13 @@ namespace HIS_WebApi._API_AI
                     returnData.Data = suspiciousRxLogClass;
                     return returnData.JsonSerializationt(true);
                 }
+                suspiciousRxLogClass.加入時間 = DateTime.Now.ToDateTimeString();
+                if (suspiciousRxLogClass.開方時間.StringIsEmpty()) suspiciousRxLogClass.開方時間 = DateTime.MinValue.ToDateTimeString();
+                if (suspiciousRxLogClass.調劑時間.StringIsEmpty()) suspiciousRxLogClass.調劑時間 = DateTime.Now.ToDateTimeString();
+                if (suspiciousRxLogClass.提報時間.StringIsEmpty()) suspiciousRxLogClass.提報時間 = DateTime.MinValue.ToDateTimeString();
+                if (suspiciousRxLogClass.處理時間.StringIsEmpty()) suspiciousRxLogClass.處理時間 = DateTime.MinValue.ToDateTimeString();
+
+
                 List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClass }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 sQLControl.AddRows(null, add_suspiciousRxLog);
                 returnData.Code = 200;
