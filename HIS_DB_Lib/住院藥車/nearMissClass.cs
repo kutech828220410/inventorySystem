@@ -96,7 +96,7 @@ namespace HIS_DB_Lib
         public string 原因 { get; set; }
         [JsonPropertyName("note")]
         public string 備註 { get; set; }
-        public patientInfoClass patientInfoClass { get; set; }
-        public medCpoeClass medCpoeClass { get; set; }
+        public patientInfoClass patientInfo{ get; set; }
+        public medCpoeClass medCpoe { get; set; }
     }
 }

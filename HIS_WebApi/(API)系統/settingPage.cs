@@ -86,7 +86,7 @@ namespace HIS_WebApi._API_系統
                         FROM {DB}.settingPage 
                         WHERE 頁面名稱 = '{頁面名稱}';";
                 
-                List<object[]> list_settingPage = await sQLControl.WriteCommandAndExecuteReaderAsync(command , ct);
+                List<object[]> list_settingPage = await sQLControl.WriteCommandAsync(command , ct);
 
                 if (list_settingPage == null || list_settingPage.Count == 0)
                 {
@@ -172,7 +172,7 @@ namespace HIS_WebApi._API_系統
                         WHERE 頁面名稱 = '{頁面名稱}'
                         AND 欄位名稱 = '{欄位名稱}';";
 
-                List<object[]> list_settingPage = await sQLControl.WriteCommandAndExecuteReaderAsync(command, ct);
+                List<object[]> list_settingPage = await sQLControl.WriteCommandAsync(command, ct);
 
                 if (list_settingPage == null || list_settingPage.Count == 0)
                 {
@@ -181,6 +181,12 @@ namespace HIS_WebApi._API_系統
                     return returnData.JsonSerializationt(true);
                 }
                 List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
+                if(settingPageClasses == null || settingPageClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
                 for (int i = 0; i < settingPageClasses.Count; i++)
                 {
                     if (settingPageClasses[i].選項.StringIsEmpty() == false)
@@ -199,6 +205,7 @@ namespace HIS_WebApi._API_系統
 
                     }
                 }
+
                 returnData.Code = 200;
                 returnData.Data = settingPageClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -303,7 +310,7 @@ namespace HIS_WebApi._API_系統
                 string command = $@"SELECT * 
                         FROM {DB}.settingPage;";
 
-                List<object[]> list_settingPage = await sQLControl.WriteCommandAndExecuteReaderAsync(command);
+                List<object[]> list_settingPage = await sQLControl.WriteCommandAsync(command);
                 //List<object[]> list_settingPage = sQLControl.GetAllRows(null);
                 List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
 

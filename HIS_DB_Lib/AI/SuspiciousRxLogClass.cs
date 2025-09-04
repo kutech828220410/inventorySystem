@@ -269,7 +269,7 @@ namespace HIS_DB_Lib
         {
             public int Compare(suspiciousRxLogClass x, suspiciousRxLogClass y)
             {
-                return x.加入時間.CompareTo(y.加入時間);
+                return x.加入時間.CompareTo(y.加入時間) * -1;
             }
         }
         static public suspiciousRxLogClass add(string API_Server, suspiciousRxLogClass suspiciousRxLogClasses)
