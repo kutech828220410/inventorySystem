@@ -266,10 +266,8 @@ namespace HIS_WebApi._API_住院調劑系統
                     returnData.Result = $"returnData.ValueAry資料錯誤!";
                     return await returnData.JsonSerializationtAsync(true);
                 }
-                if (returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry.Count != 1 || returnData.ValueAry[0].StringIsEmpty())
                 {
-                    returnData.Code = -200;
-                    returnData.Result = "returnData.ValueAry資料錯誤，['藥局']!";
                     returnData.Code = -200;
                     returnData.Result = "returnData.ValueAry資料錯誤，['藥局']!";
                     return await returnData.JsonSerializationtAsync(true);
@@ -280,7 +278,7 @@ namespace HIS_WebApi._API_住院調劑系統
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 (string startTime, string endTime) = await taskGetToday;
-                if (startTime.StringIsEmpty())
+                if (startTime.StringIsEmpty() || endTime.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "取得交車時間失敗";
@@ -288,8 +286,23 @@ namespace HIS_WebApi._API_住院調劑系統
                 }
                 string command = getCommand(DB, tableName, startTime, endTime, 藥局);
                 List<object[]> objects = await sQLControl.WriteCommandAsync(command ,ct);
+                
                 List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
-
+                string GUIDs = string.Join(";", nearMisses.Select(x => x.cpoe_GUID).Distinct().ToList());
+                returnData task_cpoe = await new med_cart().get_medCpoe_by_GUID(GUIDs);
+                if(task_cpoe.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "取得處方失敗";
+                    return await returnData.JsonSerializationtAsync(true);
+                }
+                List<medCpoeClass> medCpoeClasses = task_cpoe.Data.ObjToClass<List<medCpoeClass>>();
+                foreach (var item in nearMisses)
+                {
+                    medCpoeClass medCpoe_buff = medCpoeClasses.Where(x => x.GUID == item.cpoe_GUID).FirstOrDefault();
+                    if (medCpoe_buff == null) continue;
+                    item.medCpoe = medCpoe_buff;
+                }
                 returnData.Code = 200;
                 returnData.Data = nearMisses;
                 returnData.TimeTaken = myTimerBasic.ToString();

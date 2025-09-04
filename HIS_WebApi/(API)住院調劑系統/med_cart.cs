@@ -2479,6 +2479,58 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 依GUID處方資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":""
+        ///         "ValueAry":["GUID1;GUID2"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medCpoe_by_GUID")]
+        public async Task<string> get_medCpoe_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medCpoe_by_GUID";
+            try
+            {
+                if (returnData.ValueAry.Count != 1 || returnData.ValueAry[0].StringIsEmpty())
+                {
+                    returnData.Result = "ValueAry應為[\"GUID\"]";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = await Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                string[] GUIDs = returnData.ValueAry[0].Split(";");
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.GetRowsByDefultAsync(null, (int)enum_med_cpoe.GUID, GUIDs);
+                if(list_med_cpoe.Count == 0)
+                {
+                    returnData.Result = $"查無此GUID({GUIDs})資料";
+                    returnData.Code = -200;
+                    return returnData.JsonSerializationt(true);
+                }
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = sql_medCpoe;
+                returnData.Result = $"取得處方資料共{sql_medCpoe.Count}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         ///取得所有處方資料
         /// </summary>
         /// <remarks>
@@ -5258,6 +5310,14 @@ namespace HIS_WebApi
             if (returnData.Data == null) return new List<patientInfoClass>();
             List<patientInfoClass> patientInfoClasses = returnData.Data.ObjToClass<List<patientInfoClass>>();
             return patientInfoClasses;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_medCpoe_by_GUID(string GUID)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            string result = await get_medCpoe_by_GUID(returnData);
+            return result.JsonDeserializet<returnData>();
         }
 
     }

@@ -1,23 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Basic;
+using H_Pannel_lib;
+using HIS_DB_Lib;
+using HIS_WebApi._API_藥品資料;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MyOffice;
+using MySql.Data.MySqlClient;
+using OfficeOpenXml;
+using SQLUI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using SQLUI;
-using Basic;
-using System.Text.Json;
-using System.Text.Encodings.Web;
-using System.Text.Json.Serialization;
 using System.Configuration;
-using HIS_DB_Lib;
-using H_Pannel_lib;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Text;
-using MyOffice;
-using OfficeOpenXml;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 
 namespace HIS_WebApi
@@ -132,9 +133,93 @@ namespace HIS_WebApi
         /// </code>
         /// </remarks>
         /// <returns></returns>
-        [Route("get_med_cloud")]
+        [HttpPost("get_med_cloud")]
+        public async Task<string> get_med_cloud(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_med_cloud";
+            try
+            {
+                returnData.ServerName = "Main";
+                returnData.ServerType = "網頁";
+                returnData.TableName = "medicine_page_cloud";
+                init(returnData);
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "藥檔資料");
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
+                Task<List<object[]>> task_list_med = sQLControl_med.GetAllRowsAsync(null);
+                Task<returnData> task_returnData = new medStorage().get_all();
+                returnData returnData_medStorage = await task_returnData;
+                if(returnData_medStorage == null || returnData_medStorage.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"儲位取得失敗!";
+                    return await returnData.JsonSerializationtAsync(true);
+                }
+                List<medStorageClass> medStorageClasses = returnData_medStorage.Data.ObjToClass<List<medStorageClass>>();
+                List<object[]> list_med = await task_list_med;
+                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+                if (medStorageClasses != null && medStorageClasses.Count > 0)
+                {
+                    Dictionary<string, List<medStorageClass>> dict_medStorage = medStorageClass.ToDictByCode(medStorageClasses);
+                    foreach (var item in medClasses)
+                    {
+                        List<medStorageClass> medStorages = medStorageClass.GetDictByCode(dict_medStorage, item.藥品碼);
+                        if (medStorages != null && medStorages.Count > 0)
+                        {
+                            item.STORAGE = medStorages;
+                        }
+                    }
+                }
+               
+                medClasses.Sort(new medClass.ICP_By_name());
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = "雲端藥檔取得成功!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] {returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 取得雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_med_cloud_old")]
         [HttpPost]
-        public string get_med_cloud(returnData returnData)
+        public string get_med_cloud_old(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -182,53 +267,53 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        [HttpPost("get_med_cloudAsync")]
-        public async Task<string> get_med_cloudAsync(returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            myTimerBasic.StartTickTime(50000);
-            returnData.Method = "get_med_cloud";
-            returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
-            try
-            {
+        //[HttpPost("get_med_cloudAsync")]
+        //public async Task<string> get_med_cloudAsync(returnData returnData)
+        //{
+        //    MyTimerBasic myTimerBasic = new MyTimerBasic();
+        //    myTimerBasic.StartTickTime(50000);
+        //    returnData.Method = "get_med_cloud";
+        //    returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+        //    try
+        //    {
 
-                sys_serverSettingClass sys_serverSettingClass = await HIS_WebApi.Method.GetServerAsync("Main", "網頁", "藥檔資料");
+        //        sys_serverSettingClass sys_serverSettingClass = await HIS_WebApi.Method.GetServerAsync("Main", "網頁", "藥檔資料");
 
-                if (sys_serverSettingClass == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
+        //        if (sys_serverSettingClass == null)
+        //        {
+        //            returnData.Code = -200;
+        //            returnData.Result = $"找無Server資料!";
+        //            return returnData.JsonSerializationt();
+        //        }
 
-                returnData.ServerName = "Main";
-                returnData.ServerType = "網頁";
-                returnData.TableName = "medicine_page_cloud";
-                init(returnData);
-                List<medClass> medClasses = await Get_med_cloudAsync(sys_serverSettingClass);
-                if (medClasses == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"藥檔取得失敗!";
-                    return returnData.JsonSerializationt();
-                }
-                medClasses.Sort(new medClass.ICP_By_name());
-                returnData.Data = medClasses;
-                returnData.Code = 200;
-                returnData.Result = "雲端藥檔取得成功!";
-                returnData.TimeTaken = myTimerBasic.ToString();
+        //        returnData.ServerName = "Main";
+        //        returnData.ServerType = "網頁";
+        //        returnData.TableName = "medicine_page_cloud";
+        //        init(returnData);
+        //        List<medClass> medClasses = await Get_med_cloudAsync(sys_serverSettingClass);
+        //        if (medClasses == null)
+        //        {
+        //            returnData.Code = -200;
+        //            returnData.Result = $"藥檔取得失敗!";
+        //            return returnData.JsonSerializationt();
+        //        }
+        //        medClasses.Sort(new medClass.ICP_By_name());
+        //        returnData.Data = medClasses;
+        //        returnData.Code = 200;
+        //        returnData.Result = "雲端藥檔取得成功!";
+        //        returnData.TimeTaken = myTimerBasic.ToString();
 
-                return returnData.JsonSerializationt(false);
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Data = null;
-                returnData.Result = $"{e.Message}";
-                Logger.Log($"MED_page", $"[異常] {returnData.Result}");
-                return returnData.JsonSerializationt(true);
-            }
-        }
+        //        return returnData.JsonSerializationt(false);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        returnData.Code = -200;
+        //        returnData.Data = null;
+        //        returnData.Result = $"{e.Message}";
+        //        Logger.Log($"MED_page", $"[異常] {returnData.Result}");
+        //        return returnData.JsonSerializationt(true);
+        //    }
+        //}
         /// <summary>
         /// 取得中藥雲端藥檔資料
         /// </summary>
@@ -2052,7 +2137,7 @@ namespace HIS_WebApi
             {
                 if (TableName == "medicine_page_cloud")
                 {
-                    string json_out = get_med_cloud(returnData);
+                    string json_out = get_med_cloud_old(returnData);
                     return json_out;
                 }
                 //藥庫藥品資料
@@ -4123,18 +4208,15 @@ namespace HIS_WebApi
                 return null;
             }
         }
-        static public async Task<List<medClass>> Get_med_cloudAsync(sys_serverSettingClass sys_serverSettingClass)
+        static public async Task<List<medClass>> Get_med_cloudAsync()
         {
             try
             {
-                string Server = sys_serverSettingClass.Server;
-                string DB = sys_serverSettingClass.DBName;
-                string UserName = sys_serverSettingClass.User;
-                string Password = sys_serverSettingClass.Password;
-                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
-                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
-                List<object[]> list_med = await sQLControl_med.GetAllRowsAsync(null);
-                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+                returnData returnData = new returnData();
+                string result = await new MED_pageController().get_med_cloud(returnData);
+                returnData = result.JsonDeserializet<returnData>();
+                if (returnData == null || returnData.Code != 200) return new List<medClass>();
+                List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
                 return medClasses;
             }
             catch

@@ -103,6 +103,46 @@ namespace HIS_WebApi._API_AI
             }
         }
         /// <summary>
+        /// 取得藥袋類型
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":[""]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_medbag_type")]
+        public async Task<string> get_medbag_type([FromBody] returnData returnData)
+        {
+            init();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_medbag_type";
+            try
+            {
+                List<string> typeName = System.Enum.GetNames(typeof(enum_medBag_type)).ToList();
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = typeName;
+                returnData.Result = $"取得藥袋類型，共{typeName.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 新增資料
         /// </summary>
         /// <remarks>
@@ -155,6 +195,8 @@ namespace HIS_WebApi._API_AI
                 if (suspiciousRxLogClass.調劑時間.StringIsEmpty()) suspiciousRxLogClass.調劑時間 = DateTime.Now.ToDateTimeString();
                 if (suspiciousRxLogClass.提報時間.StringIsEmpty()) suspiciousRxLogClass.提報時間 = DateTime.MinValue.ToDateTimeString();
                 if (suspiciousRxLogClass.處理時間.StringIsEmpty()) suspiciousRxLogClass.處理時間 = DateTime.MinValue.ToDateTimeString();
+                if (suspiciousRxLogClass.狀態.StringIsEmpty()) suspiciousRxLogClass.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
+
 
 
                 List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClass }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
@@ -688,6 +730,73 @@ namespace HIS_WebApi._API_AI
 
                 List<object[]> list_suspiciousRxLog = dataTable.DataTableToRowList();
 
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
+                suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = suspiciousRxLogClasses;
+                returnData.Result = $"取得{suspiciousRxLogClasses.Count}筆資料";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 以病歷號、科別、醫生姓名取得資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "ValueAry":["病歷號","科別","醫生姓名"]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_PATCODE_SECTNO_DOCTOR")]
+        public async Task<string> get_by_PATCODE_SECTNO_DOCTOR([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_PATCODE_SECTNO_DOCTOR";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                if (returnData.ValueAry.Count != 3 || returnData.ValueAry[0].StringIsEmpty() || returnData.ValueAry[1].StringIsEmpty() || returnData.ValueAry[2].StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry應該為[\"病歷號\",\"科別\",\"醫生姓名\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string 病歷號 = returnData.ValueAry[0];
+                string 科別 = returnData.ValueAry[1];
+                string 醫生姓名 = returnData.ValueAry[2];
+
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+
+                string TableName = "suspiciousRxLog";
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE 病歷號 = '{病歷號}' AND 科別 = '{科別}' AND 醫生姓名 = '{醫生姓名}' ;";
+
+
+                List<object[]> list_suspiciousRxLog = await sQLControl.WriteCommandAsync(command);
+                if(list_suspiciousRxLog.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無病例號:{病歷號} 科別:{科別} 醫生姓名:{醫生姓名} 相關資料";
+                    return returnData.JsonSerializationt();
+                }
                 List<suspiciousRxLogClass> suspiciousRxLogClasses = list_suspiciousRxLog.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
                 suspiciousRxLogClasses = Get_Value(suspiciousRxLogClasses);
                 suspiciousRxLogClasses.Sort(new suspiciousRxLogClass.ICP_By_OP_Time());

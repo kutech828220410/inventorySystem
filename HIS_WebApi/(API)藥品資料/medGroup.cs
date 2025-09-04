@@ -1234,7 +1234,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
 
 
-            Task<List<medClass>> task_medClasses = MED_pageController.Get_med_cloudAsync(sys_serverSettingClass);
+            Task<List<medClass>> task_medClasses = MED_pageController.Get_med_cloudAsync();
             Task<List<object[]>> task_list_med_group = sQLControl_med_group.GetAllRowsAsync(null);
             Task<List<object[]>>  task_list_med_sub_group = sQLControl_med_sub_group.GetAllRowsAsync(null);
 
