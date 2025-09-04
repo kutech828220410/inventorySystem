@@ -376,7 +376,7 @@ namespace 調劑台管理系統
 
             currentContext = BufferedGraphicsManager.Current;
             myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
-
+            
             // 在緩衝區域進行繪製
             Graphics g = myBuffer.Graphics;
             g.Clear(this.BackColor); // 清除背景
@@ -394,7 +394,7 @@ namespace 調劑台管理系統
             _pannel_Locker_Design = this.pannel_Locker_Design;
             _plC_ScreenPage_Main = this.plC_ScreenPage_Main;
 
-           
+            
 
             H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;

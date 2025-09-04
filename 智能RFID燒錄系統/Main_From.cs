@@ -92,7 +92,10 @@ namespace 智能RFID燒錄系統
 
             comboBox_藥品資料_搜尋方式.SelectedIndex = 0;
 
-
+            List<sys_serverSettingClass> sys_ServerSettingClasses = sys_serverSettingClass.get_serversetting_by_type(dBConfigClass.Api_Server,"調劑台");
+            comboBox_燒錄位置.DataSource = (from temp in sys_ServerSettingClasses
+                                        where temp.設備名稱.Contains("冰箱")
+                                        select temp.設備名稱).ToList();
             Table table = DrugHFTagClass.init(API_Server);
             this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(table);
@@ -245,6 +248,7 @@ namespace 智能RFID燒錄系統
                 drugHFTagClasses[i].效期 = rJ_DatePicker_效期.Value.ToDateString();
                 drugHFTagClasses[i].批號 = rJ_TextBox_批號.Text;
                 drugHFTagClasses[i].數量 = rJ_TextBox_數量.Text;
+                drugHFTagClasses[i].存放位置 = comboBox_燒錄位置.GetComboBoxText();
                 drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
                 drugHFTagClasses[i].更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 

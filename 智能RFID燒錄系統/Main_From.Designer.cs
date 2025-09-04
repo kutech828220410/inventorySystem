@@ -59,6 +59,8 @@
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
             this.sqL_DataGridView_TagList = new SQLUI.SQL_DataGridView();
+            this.comboBox_燒錄位置 = new System.Windows.Forms.ComboBox();
+            this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.rJ_Pannel2.SuspendLayout();
             this.rJ_Pannel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -140,6 +142,8 @@
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel2.BorderRadius = 10;
             this.rJ_Pannel2.BorderSize = 2;
+            this.rJ_Pannel2.Controls.Add(this.rJ_Lable7);
+            this.rJ_Pannel2.Controls.Add(this.comboBox_燒錄位置);
             this.rJ_Pannel2.Controls.Add(this.rJ_Lable_標籤數量);
             this.rJ_Pannel2.Controls.Add(this.rJ_Lable_device_info);
             this.rJ_Pannel2.Controls.Add(this.rJ_Lable4);
@@ -150,6 +154,7 @@
             this.rJ_Pannel2.IsSelected = false;
             this.rJ_Pannel2.Location = new System.Drawing.Point(14, 54);
             this.rJ_Pannel2.Name = "rJ_Pannel2";
+            this.rJ_Pannel2.Padding = new System.Windows.Forms.Padding(10);
             this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel2.ShadowSize = 3;
             this.rJ_Pannel2.Size = new System.Drawing.Size(1572, 97);
@@ -162,15 +167,16 @@
             this.rJ_Lable_標籤數量.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_標籤數量.BorderRadius = 5;
             this.rJ_Lable_標籤數量.BorderSize = 0;
+            this.rJ_Lable_標籤數量.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Lable_標籤數量.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable_標籤數量.Font = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_標籤數量.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_標籤數量.GUID = "";
-            this.rJ_Lable_標籤數量.Location = new System.Drawing.Point(1258, 13);
+            this.rJ_Lable_標籤數量.Location = new System.Drawing.Point(1405, 10);
             this.rJ_Lable_標籤數量.Name = "rJ_Lable_標籤數量";
             this.rJ_Lable_標籤數量.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_標籤數量.ShadowSize = 0;
-            this.rJ_Lable_標籤數量.Size = new System.Drawing.Size(157, 71);
+            this.rJ_Lable_標籤數量.Size = new System.Drawing.Size(157, 77);
             this.rJ_Lable_標籤數量.TabIndex = 163;
             this.rJ_Lable_標籤數量.Text = "標籤數量 : --";
             this.rJ_Lable_標籤數量.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,7 +197,7 @@
             this.rJ_Lable_device_info.Name = "rJ_Lable_device_info";
             this.rJ_Lable_device_info.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_device_info.ShadowSize = 0;
-            this.rJ_Lable_device_info.Size = new System.Drawing.Size(944, 71);
+            this.rJ_Lable_device_info.Size = new System.Drawing.Size(722, 71);
             this.rJ_Lable_device_info.TabIndex = 162;
             this.rJ_Lable_device_info.Text = "Device info : -------------";
             this.rJ_Lable_device_info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -753,6 +759,37 @@
             this.sqL_DataGridView_TagList.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_TagList.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // comboBox_燒錄位置
+            // 
+            this.comboBox_燒錄位置.Font = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_燒錄位置.FormattingEnabled = true;
+            this.comboBox_燒錄位置.Location = new System.Drawing.Point(1152, 33);
+            this.comboBox_燒錄位置.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox_燒錄位置.Name = "comboBox_燒錄位置";
+            this.comboBox_燒錄位置.Size = new System.Drawing.Size(166, 32);
+            this.comboBox_燒錄位置.TabIndex = 164;
+            // 
+            // rJ_Lable7
+            // 
+            this.rJ_Lable7.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable7.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable7.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable7.BorderRadius = 5;
+            this.rJ_Lable7.BorderSize = 0;
+            this.rJ_Lable7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable7.Font = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable7.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable7.GUID = "";
+            this.rJ_Lable7.Location = new System.Drawing.Point(1078, 13);
+            this.rJ_Lable7.Name = "rJ_Lable7";
+            this.rJ_Lable7.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable7.ShadowSize = 0;
+            this.rJ_Lable7.Size = new System.Drawing.Size(69, 71);
+            this.rJ_Lable7.TabIndex = 165;
+            this.rJ_Lable7.Text = "冰箱:";
+            this.rJ_Lable7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable7.TextColor = System.Drawing.Color.Black;
+            // 
             // Main_From
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -822,6 +859,8 @@
         private MyUI.RJ_Button rJ_Button_藥品資料_搜尋;
         private MyUI.RJ_TextBox rJ_TextBox_藥品資料_搜尋內容;
         private System.Windows.Forms.ComboBox comboBox_藥品資料_搜尋方式;
+        private MyUI.RJ_Lable rJ_Lable7;
+        private System.Windows.Forms.ComboBox comboBox_燒錄位置;
     }
 }
 
