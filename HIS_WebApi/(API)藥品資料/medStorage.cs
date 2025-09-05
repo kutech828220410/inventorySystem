@@ -240,7 +240,7 @@ namespace HIS_WebApi._API_藥品資料
             }
         }
         /// <summary>
-        /// 依照藥局取得當天資料
+        /// 依照藥碼取得資料
         /// </summary>
         /// <remarks>
         /// <code>
@@ -303,7 +303,7 @@ namespace HIS_WebApi._API_藥品資料
             }
         }
         /// <summary>
-        /// 依照藥局取得當天資料
+        /// 取得儲位資料
         /// </summary>
         /// <remarks>
         /// <code>

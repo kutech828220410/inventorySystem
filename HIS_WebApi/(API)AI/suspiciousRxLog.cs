@@ -159,7 +159,7 @@ namespace HIS_WebApi._API_AI
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("add")]
-        public string add([FromBody] returnData returnData)
+        public async Task<string> add([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "add";
@@ -177,34 +177,61 @@ namespace HIS_WebApi._API_AI
                 }
                 suspiciousRxLogClass = Get_Value(suspiciousRxLogClass);
 
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 string 藥袋條碼 = suspiciousRxLogClass.藥袋條碼;
 
                 string TableName = "suspiciousRxLog";
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> data = sQLControl.GetRowsByDefult(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
-                if (data.Count != 0)
+                List<object[]> data = await sQLControl.GetRowsByDefultAsync(null, (int)enum_suspiciousRxLog.藥袋條碼, 藥袋條碼);
+                List<suspiciousRxLogClass> suspiciousRxLogClasses = data.SQLToClass<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<suspiciousRxLogClass> add_Class = new List<suspiciousRxLogClass>();
+                List<suspiciousRxLogClass> update_Class = new List<suspiciousRxLogClass>();
+
+                if (suspiciousRxLogClasses.Count != 0)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"此Barcode{藥袋條碼}已存在";
-                    returnData.Data = suspiciousRxLogClass;
-                    return returnData.JsonSerializationt(true);
+                    if (suspiciousRxLogClass.病歷號.StringIsEmpty() == false && suspiciousRxLogClass.病歷號 != suspiciousRxLogClasses[0].病歷號) suspiciousRxLogClasses[0].病歷號 = suspiciousRxLogClass.病歷號;
+                    if (suspiciousRxLogClass.醫生姓名.StringIsEmpty() == false && suspiciousRxLogClass.醫生姓名 != suspiciousRxLogClasses[0].醫生姓名) suspiciousRxLogClasses[0].醫生姓名 = suspiciousRxLogClass.醫生姓名;
+                    if (suspiciousRxLogClass.科別.StringIsEmpty() == false && suspiciousRxLogClass.科別 != suspiciousRxLogClasses[0].科別) suspiciousRxLogClasses[0].科別 = suspiciousRxLogClass.科別;
+                    if (suspiciousRxLogClass.診斷碼.StringIsEmpty() == false && suspiciousRxLogClass.診斷碼 != suspiciousRxLogClasses[0].診斷碼) suspiciousRxLogClasses[0].診斷碼 = suspiciousRxLogClass.診斷碼;
+                    if (suspiciousRxLogClass.診斷內容.StringIsEmpty() == false && suspiciousRxLogClass.診斷內容 != suspiciousRxLogClasses[0].診斷內容) suspiciousRxLogClasses[0].診斷內容 = suspiciousRxLogClass.診斷內容;
+                    if (suspiciousRxLogClass.開方時間.StringIsEmpty() == false && suspiciousRxLogClass.開方時間 != suspiciousRxLogClasses[0].開方時間) suspiciousRxLogClasses[0].開方時間 = suspiciousRxLogClass.開方時間;
+                    if (suspiciousRxLogClass.藥袋類型.StringIsEmpty() == false && suspiciousRxLogClass.藥袋類型 != suspiciousRxLogClasses[0].藥袋類型) suspiciousRxLogClasses[0].藥袋類型 = suspiciousRxLogClass.藥袋類型;
+                    if (suspiciousRxLogClass.年齡.StringIsEmpty() == false && suspiciousRxLogClass.年齡 != suspiciousRxLogClasses[0].年齡) suspiciousRxLogClasses[0].年齡 = suspiciousRxLogClass.年齡;
+                    if (suspiciousRxLogClass.性別.StringIsEmpty() == false && suspiciousRxLogClass.性別 != suspiciousRxLogClasses[0].性別) suspiciousRxLogClasses[0].性別 = suspiciousRxLogClass.性別;
+                    if (suspiciousRxLogClass.錯誤類別.StringIsEmpty() == false && suspiciousRxLogClass.錯誤類別 != suspiciousRxLogClasses[0].錯誤類別) suspiciousRxLogClasses[0].錯誤類別 = suspiciousRxLogClass.錯誤類別;
+                    if (suspiciousRxLogClass.簡述事件.StringIsEmpty() == false && suspiciousRxLogClass.簡述事件 != suspiciousRxLogClasses[0].簡述事件) suspiciousRxLogClasses[0].簡述事件 = suspiciousRxLogClass.簡述事件;
+                    if (suspiciousRxLogClasses[0].錯誤類別.StringIsEmpty() == false) suspiciousRxLogClasses[0].狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
+                    if (suspiciousRxLogClass.備註.StringIsEmpty() == false && suspiciousRxLogClass.備註 != suspiciousRxLogClasses[0].備註) suspiciousRxLogClasses[0].備註 = suspiciousRxLogClass.備註;
+                    suspiciousRxLogClasses[0].加入時間 = DateTime.Now.ToDateTimeString();
+                    update_Class.Add(suspiciousRxLogClasses[0]);
                 }
-                suspiciousRxLogClass.加入時間 = DateTime.Now.ToDateTimeString();
-                if (suspiciousRxLogClass.開方時間.StringIsEmpty()) suspiciousRxLogClass.開方時間 = DateTime.MinValue.ToDateTimeString();
-                if (suspiciousRxLogClass.調劑時間.StringIsEmpty()) suspiciousRxLogClass.調劑時間 = DateTime.Now.ToDateTimeString();
-                if (suspiciousRxLogClass.提報時間.StringIsEmpty()) suspiciousRxLogClass.提報時間 = DateTime.MinValue.ToDateTimeString();
-                if (suspiciousRxLogClass.處理時間.StringIsEmpty()) suspiciousRxLogClass.處理時間 = DateTime.MinValue.ToDateTimeString();
-                if (suspiciousRxLogClass.狀態.StringIsEmpty()) suspiciousRxLogClass.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
+                else
+                {
+                    suspiciousRxLogClass.GUID = Guid.NewGuid().ToString();
+                    suspiciousRxLogClass.加入時間 = DateTime.Now.ToDateTimeString();
+                    if (suspiciousRxLogClass.開方時間.StringIsEmpty()) suspiciousRxLogClass.開方時間 = DateTime.MinValue.ToDateTimeString();
+                    if (suspiciousRxLogClass.調劑時間.StringIsEmpty()) suspiciousRxLogClass.調劑時間 = DateTime.Now.ToDateTimeString();
+                    if (suspiciousRxLogClass.提報時間.StringIsEmpty()) suspiciousRxLogClass.提報時間 = DateTime.MinValue.ToDateTimeString();
+                    if (suspiciousRxLogClass.處理時間.StringIsEmpty()) suspiciousRxLogClass.處理時間 = DateTime.MinValue.ToDateTimeString();
+                    if (suspiciousRxLogClass.錯誤類別.StringIsEmpty() == false)
+                        suspiciousRxLogClass.狀態 = enum_suspiciousRxLog_status.未更改.GetEnumName();
+                    else
+                        suspiciousRxLogClass.狀態 = enum_suspiciousRxLog_status.未辨識.GetEnumName();
+                    add_Class.Add(suspiciousRxLogClass);
+                }
 
 
 
-                List<object[]> add_suspiciousRxLog = new List<suspiciousRxLogClass>() { suspiciousRxLogClass }.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
-                sQLControl.AddRows(null, add_suspiciousRxLog);
+
+                List<object[]> add_suspiciousRxLog = add_Class.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                List<object[]> update_suspiciousRxLog = update_Class.ClassToSQL<suspiciousRxLogClass, enum_suspiciousRxLog>();
+                if (add_suspiciousRxLog.Count > 0) await sQLControl.AddRowsAsync(null, add_suspiciousRxLog);
+                if (update_suspiciousRxLog.Count > 0) await sQLControl.UpdateRowsAsync(null, update_suspiciousRxLog);
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = suspiciousRxLogClass;
-                returnData.Result = $"新增一筆資料";
+                returnData.Result = $"新增{add_suspiciousRxLog.Count}筆資料，更新{update_suspiciousRxLog.Count}筆資料";
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)

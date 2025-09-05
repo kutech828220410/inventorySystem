@@ -64,6 +64,26 @@ namespace HIS_DB_Lib
                 return new List<medStorageClass>();
             }
         }
+        static public returnData add_autoUpdate(string API_Server, List<medStorageClass> medStorageClass)
+        {
+            string url = $"{API_Server}/api/medStorage/add_autoUpdate";
+            returnData returnData = new returnData();
+            returnData.Data = medStorageClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
+        static public returnData add(string API_Server, List<medStorageClass> medStorageClass)
+        {
+            string url = $"{API_Server}/api/medStorage/add";
+            returnData returnData = new returnData();
+            returnData.Data = medStorageClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
+        }
 
     }
 }
