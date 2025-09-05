@@ -2,6 +2,7 @@
 using Google.Protobuf.WellKnownTypes;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using HIS_WebApi._API_住院調劑系統;
 using HIS_WebApi._API_系統;
 using HIS_WebApi._API_藥品資料;
 using K4os.Compression.LZ4.Internal;
@@ -1432,6 +1433,7 @@ namespace HIS_WebApi
                 string taskMedCpoe_command = getCommand(sQLControl_med_cpoe.TableName, GUID, "Master_GUID");
                 Task<List<object[]>> taskPat = sQLControl_patient_info.WriteCommandAsync(taskPat_command, ct);
                 Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(taskMedCpoe_command, ct);
+                Task<returnData> task_nearmiss = nearMiss.get_by_pat_GUID(GUID);
                 Task<returnData> taskSet = new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
                 List<object[]> list_pat_carInfo = await taskPat;
                 List<patientInfoClass> sql_patInfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
@@ -1454,6 +1456,9 @@ namespace HIS_WebApi
                 List<settingPageClass> settingPages = returnData_setting.Data.ObjToClass<List<settingPageClass>>();
                 if (settingPages != null && settingPages.Count > 0 && settingPages[0].設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
                 string API = await taskApi;
+                returnData returnData_nearmiss = await task_nearmiss;
+                if (returnData_nearmiss == null || returnData_nearmiss.Code != 200) returnData_nearmiss = new returnData();
+                List<nearMissClass> nearMisses = returnData_nearmiss.Data.ObjToClass<List<nearMissClass>>();
                 if (sql_medCpoe.Count > 0)
                 {
                     sql_medCpoe.Sort(new medCpoeClass.ICP_By_Rank());
@@ -4763,6 +4768,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_bed_Status = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_nearmiss = new SQLControl(Server, DB, "nearmiss", UserName, Password, Port, SSLMode);
+
 
 
 
@@ -4771,6 +4778,8 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
                 List<object[]> list_bed_Status = sQLControl_bed_Status.GetAllRows(null);
                 List<object[]> list_med_cpoe_rec = sQLControl_med_cpoe_rec.GetAllRows(null);
+                List<object[]> list_nearmissc = sQLControl_nearmiss.GetAllRows(null);
+
 
 
 
@@ -4778,6 +4787,8 @@ namespace HIS_WebApi
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<bedStatusClass> sql_bed_Status = list_bed_Status.SQLToClass<bedStatusClass, enum_bed_status>();
                 List<medCpoeRecClass> sql_medCpoeRec = list_med_cpoe_rec.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
+                List<nearMissClass> sql_nearmiss = list_nearmissc.SQLToClass<nearMissClass, enum_nearMiss>();
+
 
                 List<medCpoeRecClass> medCpoeRecClass_update = new List<medCpoeRecClass>();
 
@@ -4837,7 +4848,16 @@ namespace HIS_WebApi
                     List<string> validGuids = medCpoeRec_vaild.Select(x => x.GUID).ToList();
                     medCpoeRec_invalid = sql_medCpoeRec.Where(x => validGuids.Contains(x.GUID) == false).ToList();
                 })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    foreach (var item in sql_nearmiss)
+                    {
+                        DateTime dt = DateTime.Parse(item.建立時間);
 
+                        DateTime 新時間 = DateTime.Today.AddHours(dt.Hour).AddMinutes(dt.Minute).AddSeconds(dt.Second);
+                        item.建立時間 = 新時間.ToDateTimeString();
+                    }
+                })));
                 Task.WhenAll(tasks).Wait();
                 tasks.Clear();
                 tasks.Add(Task.Run(new Action(delegate
@@ -4871,6 +4891,8 @@ namespace HIS_WebApi
                 List<object[]> update_bedStatus = sql_bed_Status.ClassToSQL<bedStatusClass, enum_bed_status>();
                 List<object[]> update_medCpoeRec = medCpoeRec_vaild.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
                 List<object[]> delete_medCpoeRec = medCpoeRec_invalid.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
+                List<object[]> update_nearmiss = sql_nearmiss.ClassToSQL<nearMissClass, enum_nearMiss>();
+
 
 
 
@@ -4878,6 +4900,8 @@ namespace HIS_WebApi
                 if (update_medcpoe.Count > 0) sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medcpoe);
                 if (update_bedStatus.Count > 0) sQLControl_bed_Status.UpdateByDefulteExtra(null, update_bedStatus);
                 if (update_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.UpdateByDefulteExtra(null, update_medCpoeRec);
+                if (update_nearmiss.Count > 0) sQLControl_nearmiss.UpdateByDefulteExtra(null, update_nearmiss);
+
                 //if (delete_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.DeleteExtra(null, delete_medCpoeRec);
 
 
