@@ -211,7 +211,7 @@ namespace 調劑台管理系統
         {
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
-            List_EPD583_本地資料 = this.drawerUI_EPD_583.SQL_GetAllDrawers();
+            List_EPD583_本地資料 = deviceApiClass.Get_EPD583_Drawers(API_Server, ServerName, ServerType);
             Console.Write($"儲位管理EPD583:從SQL取得資料 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
             cnt++;
         }
@@ -405,7 +405,7 @@ namespace 調劑台管理系統
 
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
-                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                Drawer drawer = deviceApiClass.Get_EPD583_Drawer_ByIP(API_Server, ServerName, ServerType, IP);
                 List_EPD583_本地資料.Add_NewDrawer(drawer);
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Texts = drawer.Speaker;
                 if (drawer != null)
@@ -918,16 +918,20 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_分割儲位_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.epD_583_Pannel.SeparateBoxes();
-            this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            (List<int> cols, List<int> rows) = this.epD_583_Pannel.GetSelect();
+            Drawer drawer = deviceApiClass.separate_drawer_boxes(API_Server, ServerName, ServerType, this.epD_583_Pannel.CurrentDrawer, cols, rows);
+            deviceApiClass.Replace_EPD583_Drawers(API_Server, ServerName, ServerType, drawer);
+            this.epD_583_Pannel.DrawToPictureBox(drawer);
+            List_EPD583_本地資料.Add_NewDrawer(drawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_合併儲位_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.epD_583_Pannel.CombineBoxes();
-            this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            (List<int> cols, List<int> rows) = this.epD_583_Pannel.GetSelect();
+            Drawer drawer = deviceApiClass.combine_drawer_boxes(API_Server, ServerName, ServerType, this.epD_583_Pannel.CurrentDrawer, cols, rows);
+            deviceApiClass.Replace_EPD583_Drawers(API_Server, ServerName, ServerType, drawer);
+            this.epD_583_Pannel.DrawToPictureBox(drawer);
+            List_EPD583_本地資料.Add_NewDrawer(drawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_初始化儲位_MouseDownEvent(MouseEventArgs mevent)
