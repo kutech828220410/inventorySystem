@@ -265,26 +265,36 @@ namespace 智能RFID燒錄系統
         {
             this.Invoke(new Action(delegate
             {
-                _rfidReader.ConfigurePort(this.comboBox_Comport.Text, 115200);
-                _rfidReader.Open();
-                if (_rfidReader.IsOpen)
+                try
                 {
-                    string str = _rfidReader.ReadHardwareInfo();
-                    if (str.StringIsEmpty())
+                    _rfidReader.ConfigurePort(this.comboBox_Comport.Text, 115200);
+                    _rfidReader.Open();
+                    if (_rfidReader.IsOpen)
                     {
-                        MyMessageBox.ShowDialog("Failed to read RFID reader information.");
-                        return;
+                        string str = _rfidReader.ReadHardwareInfo();
+                        if (str.StringIsEmpty())
+                        {
+                            MyMessageBox.ShowDialog("Failed to read RFID reader information.");
+                            return;
+                        }
+                        rJ_Lable_device_info.Text = $"Device info :{str}";
+                        this.rJ_Button_Connect.Text = "Connected";
+                        this.rJ_Button_Connect.Enabled = false;
+                        this.comboBox_Comport.Enabled = false;
+                        IsComConnected = true;
                     }
-                    rJ_Lable_device_info.Text = $"Device info :{str}";
-                    this.rJ_Button_Connect.Text = "Connected";
-                    this.rJ_Button_Connect.Enabled = false;
-                    this.comboBox_Comport.Enabled = false;
-                    IsComConnected = true;
+                    else
+                    {
+                        MyMessageBox.ShowDialog("Failed to connect to RFID reader.");
+                    }
+
                 }
-                else
+                catch(Exception ex)
                 {
-                    MyMessageBox.ShowDialog("Failed to connect to RFID reader.");
+                    _rfidReader.Close();
+                    MyMessageBox.ShowDialog($"Exception : {ex.Message}");
                 }
+               
             }));
 
         }

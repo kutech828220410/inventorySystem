@@ -623,6 +623,7 @@ namespace 調劑台管理系統
 
                     List<DrugHFTagClass> drugHFTagClasses = (from temp in tagDisplayList
                                                              where temp.藥碼 == 藥碼
+                                                             where temp.存放位置 == Main_Form.ServerName
                                                              select temp).ToList();
                     drugHFTagClasses_replace.LockAdd(drugHFTagClasses);
 

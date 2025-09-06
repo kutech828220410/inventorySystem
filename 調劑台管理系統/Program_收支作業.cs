@@ -1025,9 +1025,12 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未選擇儲位!");
                 return;
             }
+            List<string> codes = (from temp in sqL_DataGridView_收支作業_單品入庫_儲位搜尋.GetAllRows()
+                                  select temp[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼].ObjectToString()).Distinct().ToList();
             string drug_code = value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼].ObjectToString();
             string drug_name = value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱].ObjectToString();
             Dialog_收支作業_RFID清點作業 dialog_收支作業_RFID清點作業 = new Dialog_收支作業_RFID清點作業(drug_code, drug_name);
+            dialog_收支作業_RFID清點作業.codes = codes;
             dialog_收支作業_RFID清點作業.ShowDialog();
 
             PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(null);
