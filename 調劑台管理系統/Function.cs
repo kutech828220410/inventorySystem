@@ -565,7 +565,10 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.批號 = 批號;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.收支原因 = "退回調劑";
-
+                    if (dialog_醫令退藥.收支原因.StringIsEmpty() == false)
+                    {
+                        takeMedicineStackClass.收支原因 = $"{takeMedicineStackClass.收支原因}[{dialog_醫令退藥.收支原因}]";
+                    }
 
          
 
