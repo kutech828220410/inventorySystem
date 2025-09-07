@@ -934,10 +934,7 @@ namespace 調劑台管理系統
                     string info_text = string.Join(",", storage_infos);
                     if (info_text.StringIsEmpty() == false)
                     {
-                        this.Invoke(new Action(delegate
-                        {
-                            rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Text = info_text;
-                        }));
+                        boxes[0].StorageName = info_text;
                     }
                 }
 

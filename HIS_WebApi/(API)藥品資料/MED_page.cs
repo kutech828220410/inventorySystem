@@ -386,7 +386,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以藥碼取得雲端藥檔資料
+        /// 以藥碼取得雲端藥檔資料（含儲位資訊）
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -407,7 +407,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_med_clouds_by_codes")]
         [HttpPost]
-        public string get_med_clouds_by_codes(returnData returnData)
+        public async Task<string> get_med_clouds_by_codes(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -432,20 +432,47 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2,藥碼3]";
                     return returnData.JsonSerializationt(true);
                 }
+
                 string[] Codes = returnData.ValueAry[0].Split(",");
                 List<medClass> medClasses = Get_med_cloud(sys_serverSettingClasses_buf[0], Codes);
-                List<medClass> medClasses_temp = new List<medClass>();
-                List<medClass> medClasses_buf = new List<medClass>();
                 if (medClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"藥檔取得失敗!";
                     return returnData.JsonSerializationt();
                 }
+
+                // 取得 medStorage 資料
+                Task<returnData> task_returnData = new medStorage().get_all();
+                returnData returnData_medStorage = await task_returnData;
+                if (returnData_medStorage == null || returnData_medStorage.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"儲位取得失敗!";
+                    return await returnData.JsonSerializationtAsync(true);
+                }
+                List<medStorageClass> medStorageClasses = returnData_medStorage.Data.ObjToClass<List<medStorageClass>>();
+
+                // 藥檔與儲位資料合併
+                if (medStorageClasses != null && medStorageClasses.Count > 0)
+                {
+                    Dictionary<string, List<medStorageClass>> dict_medStorage = medStorageClass.ToDictByCode(medStorageClasses);
+                    foreach (var item in medClasses)
+                    {
+                        List<medStorageClass> medStorages = medStorageClass.GetDictByCode(dict_medStorage, item.藥品碼);
+                        if (medStorages != null && medStorages.Count > 0)
+                        {
+                            item.storageInfo = medStorages;
+                        }
+                    }
+                }
+
+                // 按照輸入順序過濾
+                List<medClass> medClasses_buf = new List<medClass>();
                 Dictionary<string, List<medClass>> keyValuePairs_medClasses = medClass.CoverToDictionaryByCode(medClasses);
                 for (int i = 0; i < Codes.Length; i++)
                 {
-                    medClasses_temp = keyValuePairs_medClasses.SortDictionaryByCode(Codes[i]);
+                    var medClasses_temp = keyValuePairs_medClasses.SortDictionaryByCode(Codes[i]);
                     if (medClasses_temp.Count == 0) continue;
                     medClasses_buf.Add(medClasses_temp[0]);
                 }
@@ -466,6 +493,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+
         /// <summary>
         /// 以藥名取得雲端藥檔資料
         /// </summary>

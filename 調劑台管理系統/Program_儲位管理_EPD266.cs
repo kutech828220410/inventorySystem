@@ -579,6 +579,26 @@ namespace 調劑台管理系統
             storage.StorageName = this.rJ_TextBox_儲位管理_EPD266_儲位名稱.Texts;
             storage.Min_Package_Num = this.rJ_TextBox_儲位管理_EPD266_包裝數量.Texts;
 
+            medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, storage.Code);
+            if (_medClass != null)
+            {
+                if (_medClass.storageInfo != null)
+                {
+                    List<string> storage_infos = new List<string>();
+                    foreach (var storageInfo in _medClass.storageInfo)
+                    {
+                        storage_infos.Add(storageInfo.儲位描述);
+
+                    }
+                    string info_text = string.Join(",", storage_infos);
+                    if (info_text.StringIsEmpty() == false)
+                    {
+                        storage.StorageName = info_text;
+                        value[(int)enum_儲位管理_EPD266_儲位資料.儲位名稱] = info_text;
+                    }
+                }
+
+            }
 
             List_EPD266_本地資料.Add_NewStorage(storage);
             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
