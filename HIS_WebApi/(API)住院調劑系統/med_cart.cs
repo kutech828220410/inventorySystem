@@ -1531,6 +1531,9 @@ namespace HIS_WebApi
                         cpoe.雲端藥檔 = medClass.SortDictionaryByCode(medCloudDict, cpoe.藥碼);
                         cpoe.藥品價格 = medPriceClass.GetByCode(medPriceDict, cpoe.藥碼);
                         cpoe.調劑紀錄 = medInventoryLogClass.SortDictByMasterGUID(medInvenDict, cpoe.GUID);
+                        nearMissClass nearMiss = nearMisses.Where(temp => temp.cpoe_GUID == cpoe.GUID).FirstOrDefault();
+                        if (nearMiss != null ) cpoe.nearmiss = nearMiss;
+                        else cpoe.nearmiss = new nearMissClass();
                     }
                     sql_patInfo[0].處方 = sql_medCpoe;
                     str_result_temp += $"轉換字典搜尋 , {myTimerBasic}ms \n";
@@ -1540,8 +1543,6 @@ namespace HIS_WebApi
                 {
                     sql_patInfo[0].處方 = new List<medCpoeClass>();
                 }
-                //patientInfoClass patientInfoClasses = new patientInfoClass();
-                //patientInfoClasses = sql_patinfo[0];
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
