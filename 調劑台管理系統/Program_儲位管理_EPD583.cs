@@ -15,6 +15,7 @@ using System.Text.Json.Serialization;
 using H_Pannel_lib;
 using MyOffice;
 using HIS_DB_Lib;
+using DrawingClass;
 
 namespace 調劑台管理系統
 {
@@ -147,13 +148,19 @@ namespace 調劑台管理系統
 
             this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.SelectedIndex = 0;
 
+            List<string> enum_PictureType_strings = new enum_PictureType().GetEnumNames().ToList();
+            enum_PictureType_strings.Remove("藥品圖片");
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.DataSource = enum_PictureType_strings.ToArray();
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.DataSource = enum_PictureType_strings.ToArray();
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_儲位內容_儲存_MouseDownEvent;
+
             this.epD_583_Pannel.Init(this.drawerUI_EPD_583.List_UDP_Local);
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
             this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD583);
         }
 
-  
+
 
         private void Program_儲位管理_EPD583()
         {
@@ -500,6 +507,11 @@ namespace 調劑台管理系統
                     this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Checked = (bool)Boxes[0].GetValue(Device.ValueName.藥品碼, Device.ValueType.Visable);
                     this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Checked = (bool)Boxes[0].GetValue(Device.ValueName.庫存, Device.ValueType.Visable);
 
+                    if (Boxes[0].Picture1_Name.StringIsEmpty()) comboBox_儲位管理_EPD583_儲位內容_圖片1.Text = "無";
+                    else comboBox_儲位管理_EPD583_儲位內容_圖片1.Text = Boxes[0].Picture1_Name;
+
+                    if (Boxes[0].Picture2_Name.StringIsEmpty()) comboBox_儲位管理_EPD583_儲位內容_圖片2.Text = "無";
+                    else comboBox_儲位管理_EPD583_儲位內容_圖片2.Text = Boxes[0].Picture2_Name;
                 }));
 
 
@@ -1864,6 +1876,18 @@ namespace 調劑台管理系統
                 System.Threading.Thread.Sleep(10);
             }
 
+        }
+
+        private void PlC_RJ_Button_儲位管理_EPD583_儲位內容_儲存_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Drawer drawer = this.epD_583_Pannel.CurrentDrawer;
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0) return;
+            boxes[0].Picture1_Name = comboBox_儲位管理_EPD583_儲位內容_圖片1.GetComboBoxText();
+            boxes[0].Picture2_Name = comboBox_儲位管理_EPD583_儲位內容_圖片2.GetComboBoxText();
+            deviceApiClass.Replace_EPD583_Drawers(API_Server, ServerName, ServerType, drawer);
+            this.epD_583_Pannel.DrawToPictureBox(drawer);
+            MyMessageBox.ShowDialog("儲存完成!");
         }
         #endregion
 

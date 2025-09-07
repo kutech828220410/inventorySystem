@@ -683,11 +683,6 @@
             this.rJ_RatioButton_儲位管理_EPD583_單格亮燈_綠 = new MyUI.RJ_RatioButton();
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_GroupBox4 = new MyUI.PLC_RJ_GroupBox();
-            this.plC_RJ_GroupBox5 = new MyUI.PLC_RJ_GroupBox();
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期 = new MyUI.PLC_RJ_Button();
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存 = new SQLUI.SQL_DataGridView();
             this.panel187 = new System.Windows.Forms.Panel();
             this.plC_CheckBox_儲位管理_EPD583_儲位內容_效期顯示 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動 = new MyUI.PLC_RJ_Button();
@@ -1146,6 +1141,8 @@
             this.plC_CheckBox_面板於調劑結束更新 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_面板於過帳後更新 = new MyUI.PLC_CheckBox();
             this.tabPage40 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox16 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox15 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox13 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox10 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox9 = new MyUI.PLC_CheckBox();
@@ -1584,8 +1581,16 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.plC_CheckBox15 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox16 = new MyUI.PLC_CheckBox();
+            this.panel56 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期 = new MyUI.PLC_RJ_Button();
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存 = new SQLUI.SQL_DataGridView();
+            this.label40 = new System.Windows.Forms.Label();
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2 = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1769,8 +1774,6 @@
             this.rJ_Pannel6.SuspendLayout();
             this.plC_RJ_GroupBox4.ContentsPanel.SuspendLayout();
             this.plC_RJ_GroupBox4.SuspendLayout();
-            this.plC_RJ_GroupBox5.ContentsPanel.SuspendLayout();
-            this.plC_RJ_GroupBox5.SuspendLayout();
             this.panel187.SuspendLayout();
             this.panel189.SuspendLayout();
             this.panel62.SuspendLayout();
@@ -2021,6 +2024,7 @@
             this.panel128.SuspendLayout();
             this.panel134.SuspendLayout();
             this.panel129.SuspendLayout();
+            this.panel56.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -19079,7 +19083,12 @@
             this.plC_RJ_GroupBox4.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox4.ContentsPanel.BorderRadius = 5;
             this.plC_RJ_GroupBox4.ContentsPanel.BorderSize = 2;
-            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_GroupBox5);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.comboBox_儲位管理_EPD583_儲位內容_圖片2);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.label41);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.comboBox_儲位管理_EPD583_儲位內容_圖片1);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.label40);
+            this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel56);
             this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel187);
             this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel62);
             this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel29);
@@ -19087,7 +19096,7 @@
             this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel13);
             this.plC_RJ_GroupBox4.ContentsPanel.Controls.Add(this.panel10);
             this.plC_RJ_GroupBox4.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_GroupBox4.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox4.ContentsPanel.ForeColor = System.Drawing.Color.Black;
             this.plC_RJ_GroupBox4.ContentsPanel.IsSelected = false;
             this.plC_RJ_GroupBox4.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox4.ContentsPanel.Name = "ContentsPanel";
@@ -19115,268 +19124,6 @@
             this.plC_RJ_GroupBox4.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox4.TitleTexts = "儲位內容";
             this.plC_RJ_GroupBox4.致能讀取位置 = "S39013";
-            // 
-            // plC_RJ_GroupBox5
-            // 
-            // 
-            // plC_RJ_GroupBox5.ContentsPanel
-            // 
-            this.plC_RJ_GroupBox5.ContentsPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.plC_RJ_GroupBox5.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_GroupBox5.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
-            this.plC_RJ_GroupBox5.ContentsPanel.BorderRadius = 5;
-            this.plC_RJ_GroupBox5.ContentsPanel.BorderSize = 2;
-            this.plC_RJ_GroupBox5.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號);
-            this.plC_RJ_GroupBox5.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存);
-            this.plC_RJ_GroupBox5.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期);
-            this.plC_RJ_GroupBox5.ContentsPanel.Controls.Add(this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存);
-            this.plC_RJ_GroupBox5.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_GroupBox5.ContentsPanel.ForeColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox5.ContentsPanel.IsSelected = false;
-            this.plC_RJ_GroupBox5.ContentsPanel.Location = new System.Drawing.Point(0, 37);
-            this.plC_RJ_GroupBox5.ContentsPanel.Name = "ContentsPanel";
-            this.plC_RJ_GroupBox5.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox5.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_GroupBox5.ContentsPanel.ShadowSize = 0;
-            this.plC_RJ_GroupBox5.ContentsPanel.Size = new System.Drawing.Size(582, 160);
-            this.plC_RJ_GroupBox5.ContentsPanel.TabIndex = 2;
-            this.plC_RJ_GroupBox5.GUID = "";
-            this.plC_RJ_GroupBox5.Location = new System.Drawing.Point(10, 233);
-            this.plC_RJ_GroupBox5.Name = "plC_RJ_GroupBox5";
-            this.plC_RJ_GroupBox5.PannelBackColor = System.Drawing.SystemColors.Window;
-            this.plC_RJ_GroupBox5.PannelBorderColor = System.Drawing.Color.SkyBlue;
-            this.plC_RJ_GroupBox5.PannelBorderRadius = 5;
-            this.plC_RJ_GroupBox5.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox5.Size = new System.Drawing.Size(582, 197);
-            this.plC_RJ_GroupBox5.TabIndex = 138;
-            this.plC_RJ_GroupBox5.TitleBackColor = System.Drawing.SystemColors.Window;
-            this.plC_RJ_GroupBox5.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_GroupBox5.TitleBorderRadius = 5;
-            this.plC_RJ_GroupBox5.TitleBorderSize = 0;
-            this.plC_RJ_GroupBox5.TitleFont = new System.Drawing.Font("新細明體", 12F);
-            this.plC_RJ_GroupBox5.TitleForeColor = System.Drawing.Color.White;
-            this.plC_RJ_GroupBox5.TitleHeight = 37;
-            this.plC_RJ_GroupBox5.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.plC_RJ_GroupBox5.TitleTexts = "效期管理";
-            this.plC_RJ_GroupBox5.致能讀取位置 = "S39012";
-            // 
-            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號
-            // 
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.AutoResetState = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Bool = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderRadius = 20;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.but_press = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.GUID = "";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Location = new System.Drawing.Point(465, 109);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字內容 = "修正批號";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_BorderSize = 5;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字內容 = "修正批號";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShadowSize = 3;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.State = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TabIndex = 135;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Text = "修正批號";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TextHeight = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Texts = "修正批號";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.字型鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.文字鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.背景圖片 = null;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.致能讀取位置 = "S39012";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.音效 = true;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.顯示 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存
-            // 
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.AutoResetState = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Bool = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderRadius = 20;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.but_press = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.GUID = "";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Location = new System.Drawing.Point(465, 59);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字內容 = "修正庫存";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_BorderSize = 5;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字內容 = "修正庫存";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShadowSize = 3;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.State = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TabIndex = 129;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Text = "修正庫存";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TextHeight = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.字型鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.文字鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.背景圖片 = null;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.致能讀取位置 = "S39012";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.音效 = true;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.顯示 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期
-            // 
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.AutoResetState = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Bool = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderRadius = 20;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.but_press = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.GUID = "";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Location = new System.Drawing.Point(465, 9);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字內容 = "新增效期";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_BorderSize = 5;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字內容 = "新增效期";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShadowSize = 3;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.State = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TabIndex = 128;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Text = "新增效期";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TextHeight = 0;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.字型鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.文字鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.背景圖片 = null;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.致能讀取位置 = "S39012";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.音效 = true;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.顯示 = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.顯示狀態 = false;
-            // 
-            // sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存
-            // 
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.AutoSelectToDeep = true;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderRadius = 0;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderSize = 2;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.CellBorderColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.checkedRowBackColor = System.Drawing.Color.YellowGreen;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersHeight = 18;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.DataKeyEnable = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Font = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.ImageBox = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Location = new System.Drawing.Point(5, 5);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Margin = new System.Windows.Forms.Padding(5);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Name = "sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存";
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Password = "user82822040";
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Port = ((uint)(3306u));
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsHeight = 40;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedBorderSize = 0;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Server = "127.0.0.0";
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Size = new System.Drawing.Size(435, 150);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.TabIndex = 0;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.UserName = "root";
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.可選擇多列 = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.自動換行 = true;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.表單字體 = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示CheckBox = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示首列 = false;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示首行 = true;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // panel187
             // 
@@ -32576,6 +32323,46 @@
             this.tabPage40.Text = "調劑設定";
             this.tabPage40.UseVisualStyleBackColor = true;
             // 
+            // plC_CheckBox16
+            // 
+            this.plC_CheckBox16.AutoSize = true;
+            this.plC_CheckBox16.Bool = false;
+            this.plC_CheckBox16.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox16.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox16.Location = new System.Drawing.Point(489, 158);
+            this.plC_CheckBox16.Name = "plC_CheckBox16";
+            this.plC_CheckBox16.Size = new System.Drawing.Size(212, 20);
+            this.plC_CheckBox16.TabIndex = 242;
+            this.plC_CheckBox16.Text = "[手輸醫令]要選擇收支原因";
+            this.plC_CheckBox16.UseVisualStyleBackColor = true;
+            this.plC_CheckBox16.寫入元件位置 = "S5055";
+            this.plC_CheckBox16.文字內容 = "[手輸醫令]要選擇收支原因";
+            this.plC_CheckBox16.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox16.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox16.讀取元件位置 = "S5055";
+            this.plC_CheckBox16.讀寫鎖住 = false;
+            this.plC_CheckBox16.音效 = false;
+            // 
+            // plC_CheckBox15
+            // 
+            this.plC_CheckBox15.AutoSize = true;
+            this.plC_CheckBox15.Bool = false;
+            this.plC_CheckBox15.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox15.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox15.Location = new System.Drawing.Point(254, 80);
+            this.plC_CheckBox15.Name = "plC_CheckBox15";
+            this.plC_CheckBox15.Size = new System.Drawing.Size(180, 20);
+            this.plC_CheckBox15.TabIndex = 241;
+            this.plC_CheckBox15.Text = "[退藥]要選擇收支原因";
+            this.plC_CheckBox15.UseVisualStyleBackColor = true;
+            this.plC_CheckBox15.寫入元件位置 = "S5056";
+            this.plC_CheckBox15.文字內容 = "[退藥]要選擇收支原因";
+            this.plC_CheckBox15.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox15.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox15.讀取元件位置 = "S5056";
+            this.plC_CheckBox15.讀寫鎖住 = false;
+            this.plC_CheckBox15.音效 = false;
+            // 
             // plC_CheckBox13
             // 
             this.plC_CheckBox13.AutoSize = true;
@@ -43491,45 +43278,325 @@
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
             // 
-            // plC_CheckBox15
+            // panel56
             // 
-            this.plC_CheckBox15.AutoSize = true;
-            this.plC_CheckBox15.Bool = false;
-            this.plC_CheckBox15.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox15.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox15.Location = new System.Drawing.Point(254, 80);
-            this.plC_CheckBox15.Name = "plC_CheckBox15";
-            this.plC_CheckBox15.Size = new System.Drawing.Size(180, 20);
-            this.plC_CheckBox15.TabIndex = 241;
-            this.plC_CheckBox15.Text = "[退藥]要選擇收支原因";
-            this.plC_CheckBox15.UseVisualStyleBackColor = true;
-            this.plC_CheckBox15.寫入元件位置 = "S5056";
-            this.plC_CheckBox15.文字內容 = "[退藥]要選擇收支原因";
-            this.plC_CheckBox15.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox15.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox15.讀取元件位置 = "S5056";
-            this.plC_CheckBox15.讀寫鎖住 = false;
-            this.plC_CheckBox15.音效 = false;
+            this.panel56.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號);
+            this.panel56.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存);
+            this.panel56.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期);
+            this.panel56.Controls.Add(this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存);
+            this.panel56.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel56.Location = new System.Drawing.Point(5, 278);
+            this.panel56.Name = "panel56";
+            this.panel56.Size = new System.Drawing.Size(587, 160);
+            this.panel56.TabIndex = 138;
             // 
-            // plC_CheckBox16
+            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號
             // 
-            this.plC_CheckBox16.AutoSize = true;
-            this.plC_CheckBox16.Bool = false;
-            this.plC_CheckBox16.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox16.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox16.Location = new System.Drawing.Point(489, 158);
-            this.plC_CheckBox16.Name = "plC_CheckBox16";
-            this.plC_CheckBox16.Size = new System.Drawing.Size(212, 20);
-            this.plC_CheckBox16.TabIndex = 242;
-            this.plC_CheckBox16.Text = "[手輸醫令]要選擇收支原因";
-            this.plC_CheckBox16.UseVisualStyleBackColor = true;
-            this.plC_CheckBox16.寫入元件位置 = "S5055";
-            this.plC_CheckBox16.文字內容 = "[手輸醫令]要選擇收支原因";
-            this.plC_CheckBox16.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox16.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox16.讀取元件位置 = "S5055";
-            this.plC_CheckBox16.讀寫鎖住 = false;
-            this.plC_CheckBox16.音效 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderRadius = 20;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Location = new System.Drawing.Point(470, 109);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字內容 = "修正批號";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字內容 = "修正批號";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShadowSize = 3;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TabIndex = 139;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Text = "修正批號";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TextHeight = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Texts = "修正批號";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.背景圖片 = null;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.致能讀取位置 = "S39012";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存
+            // 
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderRadius = 20;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Location = new System.Drawing.Point(470, 59);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字內容 = "修正庫存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字內容 = "修正庫存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShadowSize = 3;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TabIndex = 138;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Text = "修正庫存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TextHeight = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.背景圖片 = null;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.致能讀取位置 = "S39012";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期
+            // 
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderRadius = 20;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Location = new System.Drawing.Point(470, 9);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字內容 = "新增效期";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字內容 = "新增效期";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShadowSize = 3;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TabIndex = 137;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Text = "新增效期";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TextHeight = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.背景圖片 = null;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.致能讀取位置 = "S39012";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.顯示狀態 = false;
+            // 
+            // sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存
+            // 
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.AutoSelectToDeep = true;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderRadius = 0;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.BorderSize = 2;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.checkedRowBackColor = System.Drawing.Color.YellowGreen;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.DataKeyEnable = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.ImageBox = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Margin = new System.Windows.Forms.Padding(5);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Name = "sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存";
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Password = "user82822040";
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeaderBorderStyleOption = SQLUI.SQL_DataGridView.RowBorderStyleOption.All;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsColor = System.Drawing.SystemColors.Window;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RowsHeight = 40;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedBorderSize = 0;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Server = "127.0.0.0";
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Size = new System.Drawing.Size(435, 160);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.TabIndex = 136;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.UserName = "root";
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.可選擇多列 = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.自動換行 = true;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示CheckBox = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示首列 = false;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.顯示首行 = true;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label40.Location = new System.Drawing.Point(17, 241);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(56, 21);
+            this.label40.TabIndex = 139;
+            this.label40.Text = "圖片1:";
+            // 
+            // comboBox_儲位管理_EPD583_儲位內容_圖片1
+            // 
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.FormattingEnabled = true;
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.Location = new System.Drawing.Point(79, 238);
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.Name = "comboBox_儲位管理_EPD583_儲位內容_圖片1";
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.Size = new System.Drawing.Size(126, 28);
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片1.TabIndex = 140;
+            // 
+            // comboBox_儲位管理_EPD583_儲位內容_圖片2
+            // 
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.FormattingEnabled = true;
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.Location = new System.Drawing.Point(273, 238);
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.Name = "comboBox_儲位管理_EPD583_儲位內容_圖片2";
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.Size = new System.Drawing.Size(126, 28);
+            this.comboBox_儲位管理_EPD583_儲位內容_圖片2.TabIndex = 142;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label41.Location = new System.Drawing.Point(211, 241);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(56, 21);
+            this.label41.TabIndex = 141;
+            this.label41.Text = "圖片2:";
+            // 
+            // plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存
+            // 
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.BorderRadius = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Location = new System.Drawing.Point(410, 233);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.OFF_文字內容 = "儲存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ON_文字內容 = "儲存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ShadowSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Size = new System.Drawing.Size(62, 36);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.TabIndex = 143;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.Text = "儲存";
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.TextHeight = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.背景圖片 = null;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存.顯示狀態 = false;
             // 
             // Main_Form
             // 
@@ -43760,9 +43827,8 @@
             this.rJ_Pannel6.ResumeLayout(false);
             this.rJ_Pannel6.PerformLayout();
             this.plC_RJ_GroupBox4.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox4.ContentsPanel.PerformLayout();
             this.plC_RJ_GroupBox4.ResumeLayout(false);
-            this.plC_RJ_GroupBox5.ContentsPanel.ResumeLayout(false);
-            this.plC_RJ_GroupBox5.ResumeLayout(false);
             this.panel187.ResumeLayout(false);
             this.panel187.PerformLayout();
             this.panel189.ResumeLayout(false);
@@ -44053,6 +44119,7 @@
             this.panel128.ResumeLayout(false);
             this.panel134.ResumeLayout(false);
             this.panel129.ResumeLayout(false);
+            this.panel56.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -44185,7 +44252,6 @@
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_EPD266;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_EPD583;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存;
         private System.Windows.Forms.TabPage tabPage8;
         private SQLUI.SQL_DataGridView sqL_DataGridView_批次領藥_未領取領藥清單;
         private MyUI.RJ_GroupBox rJ_GroupBox26;
@@ -44286,8 +44352,6 @@
         private MyUI.RJ_Lable rJ_Lable8;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD583_儲位內容_藥品名稱;
-        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox5;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期;
         private MyUI.RJ_Pannel rJ_Pannel6;
         private MyUI.RJ_RatioButton rJ_RatioButton_儲位管理_EPD583_單格亮燈_紅;
         private MyUI.RJ_RatioButton rJ_RatioButton_儲位管理_EPD583_單格亮燈_白;
@@ -44452,8 +44516,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_登錄;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_一維條碼;
         private System.Windows.Forms.Label label7;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_識別圖案;
@@ -45471,7 +45533,6 @@
         private MyUI.RJ_RatioButton radioButton_儲位管理_EPD266_面板亮燈_藍;
         private MyUI.RJ_RatioButton radioButton_儲位管理_EPD266_面板亮燈_綠;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_面板亮燈;
-        private MyUI.RJ_Pannel ContentsPanel;
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Panel panel140;
         private System.Windows.Forms.GroupBox groupBox11;
@@ -45619,6 +45680,17 @@
         private MyUI.PLC_CheckBox plC_CheckBox14;
         private MyUI.PLC_CheckBox plC_CheckBox16;
         private MyUI.PLC_CheckBox plC_CheckBox15;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_儲存;
+        private System.Windows.Forms.ComboBox comboBox_儲位管理_EPD583_儲位內容_圖片2;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.ComboBox comboBox_儲位管理_EPD583_儲位內容_圖片1;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Panel panel56;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存;
+        private MyUI.RJ_Pannel ContentsPanel;
     }
 }
 

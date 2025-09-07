@@ -73,14 +73,19 @@ namespace 調劑台管理系統
             this.label9 = new System.Windows.Forms.Label();
             this.numTextBox_數量欄位寬度 = new MyUI.NumTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numTextBox_每格高度 = new MyUI.NumTextBox();
+            this.plC_CheckBox_圖文辨識樣式 = new MyUI.PLC_CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.numTextBox_藥物辨識圖片大小 = new MyUI.NumTextBox();
             this.plC_RJ_Button_確認送出 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable_標題 = new MyUI.RJ_Lable();
             this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.plC_CheckBox_圖文辨識樣式 = new MyUI.PLC_CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.numTextBox_每格高度 = new MyUI.NumTextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button_儲位描述字型 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numTextBox_儲位描述欄位寬度 = new MyUI.NumTextBox();
+            this.plC_CheckBox_儲位描述顯示 = new MyUI.PLC_CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -91,6 +96,7 @@ namespace 調劑台管理系統
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -123,7 +129,7 @@ namespace 調劑台管理系統
             this.label1.Font = new System.Drawing.Font("新細明體", 12F);
             this.label1.Location = new System.Drawing.Point(22, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.Size = new System.Drawing.Size(71, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "欄位寬度";
             // 
@@ -147,7 +153,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_批序顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_批序顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_批序顯示.Name = "plC_CheckBox_批序顯示";
-            this.plC_CheckBox_批序顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_批序顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_批序顯示.TabIndex = 0;
             this.plC_CheckBox_批序顯示.Text = "顯示";
             this.plC_CheckBox_批序顯示.UseVisualStyleBackColor = true;
@@ -187,7 +193,7 @@ namespace 調劑台管理系統
             this.label2.Font = new System.Drawing.Font("新細明體", 12F);
             this.label2.Location = new System.Drawing.Point(22, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(71, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "欄位寬度";
             // 
@@ -211,7 +217,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_藥碼顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_藥碼顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_藥碼顯示.Name = "plC_CheckBox_藥碼顯示";
-            this.plC_CheckBox_藥碼顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_藥碼顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_藥碼顯示.TabIndex = 0;
             this.plC_CheckBox_藥碼顯示.Text = "顯示";
             this.plC_CheckBox_藥碼顯示.UseVisualStyleBackColor = true;
@@ -251,7 +257,7 @@ namespace 調劑台管理系統
             this.label3.Font = new System.Drawing.Font("新細明體", 12F);
             this.label3.Location = new System.Drawing.Point(22, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 16);
+            this.label3.Size = new System.Drawing.Size(71, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "欄位寬度";
             // 
@@ -275,7 +281,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_單位顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_單位顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_單位顯示.Name = "plC_CheckBox_單位顯示";
-            this.plC_CheckBox_單位顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_單位顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_單位顯示.TabIndex = 0;
             this.plC_CheckBox_單位顯示.Text = "顯示";
             this.plC_CheckBox_單位顯示.UseVisualStyleBackColor = true;
@@ -315,7 +321,7 @@ namespace 調劑台管理系統
             this.label4.Font = new System.Drawing.Font("新細明體", 12F);
             this.label4.Location = new System.Drawing.Point(22, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 16);
+            this.label4.Size = new System.Drawing.Size(71, 16);
             this.label4.TabIndex = 2;
             this.label4.Text = "欄位寬度";
             // 
@@ -339,7 +345,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_庫存量顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_庫存量顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_庫存量顯示.Name = "plC_CheckBox_庫存量顯示";
-            this.plC_CheckBox_庫存量顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_庫存量顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_庫存量顯示.TabIndex = 0;
             this.plC_CheckBox_庫存量顯示.Text = "顯示";
             this.plC_CheckBox_庫存量顯示.UseVisualStyleBackColor = true;
@@ -379,7 +385,7 @@ namespace 調劑台管理系統
             this.label5.Font = new System.Drawing.Font("新細明體", 12F);
             this.label5.Location = new System.Drawing.Point(22, 76);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 16);
+            this.label5.Size = new System.Drawing.Size(71, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "欄位寬度";
             // 
@@ -403,7 +409,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_結存量顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_結存量顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_結存量顯示.Name = "plC_CheckBox_結存量顯示";
-            this.plC_CheckBox_結存量顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_結存量顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_結存量顯示.TabIndex = 0;
             this.plC_CheckBox_結存量顯示.Text = "顯示";
             this.plC_CheckBox_結存量顯示.UseVisualStyleBackColor = true;
@@ -443,7 +449,7 @@ namespace 調劑台管理系統
             this.label6.Font = new System.Drawing.Font("新細明體", 12F);
             this.label6.Location = new System.Drawing.Point(22, 76);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 16);
+            this.label6.Size = new System.Drawing.Size(71, 16);
             this.label6.TabIndex = 2;
             this.label6.Text = "欄位寬度";
             // 
@@ -467,7 +473,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_盤點量顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_盤點量顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_盤點量顯示.Name = "plC_CheckBox_盤點量顯示";
-            this.plC_CheckBox_盤點量顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_盤點量顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_盤點量顯示.TabIndex = 0;
             this.plC_CheckBox_盤點量顯示.Text = "顯示";
             this.plC_CheckBox_盤點量顯示.UseVisualStyleBackColor = true;
@@ -507,7 +513,7 @@ namespace 調劑台管理系統
             this.label7.Font = new System.Drawing.Font("新細明體", 12F);
             this.label7.Location = new System.Drawing.Point(22, 76);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 16);
+            this.label7.Size = new System.Drawing.Size(71, 16);
             this.label7.TabIndex = 2;
             this.label7.Text = "欄位寬度";
             // 
@@ -531,7 +537,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_狀態顯示.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_狀態顯示.Location = new System.Drawing.Point(25, 41);
             this.plC_CheckBox_狀態顯示.Name = "plC_CheckBox_狀態顯示";
-            this.plC_CheckBox_狀態顯示.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_狀態顯示.Size = new System.Drawing.Size(58, 20);
             this.plC_CheckBox_狀態顯示.TabIndex = 0;
             this.plC_CheckBox_狀態顯示.Text = "顯示";
             this.plC_CheckBox_狀態顯示.UseVisualStyleBackColor = true;
@@ -570,7 +576,7 @@ namespace 調劑台管理系統
             this.label8.Font = new System.Drawing.Font("新細明體", 12F);
             this.label8.Location = new System.Drawing.Point(22, 76);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 16);
+            this.label8.Size = new System.Drawing.Size(71, 16);
             this.label8.TabIndex = 2;
             this.label8.Text = "欄位寬度";
             // 
@@ -615,7 +621,7 @@ namespace 調劑台管理系統
             this.label9.Font = new System.Drawing.Font("新細明體", 12F);
             this.label9.Location = new System.Drawing.Point(22, 76);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 16);
+            this.label9.Size = new System.Drawing.Size(71, 16);
             this.label9.TabIndex = 2;
             this.label9.Text = "欄位寬度";
             // 
@@ -643,8 +649,49 @@ namespace 調劑台管理系統
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1346, 105);
+            this.panel1.Size = new System.Drawing.Size(1463, 105);
             this.panel1.TabIndex = 15;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(630, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(94, 21);
+            this.label11.TabIndex = 151;
+            this.label11.Text = "每格高度";
+            // 
+            // numTextBox_每格高度
+            // 
+            this.numTextBox_每格高度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numTextBox_每格高度.Location = new System.Drawing.Point(634, 48);
+            this.numTextBox_每格高度.Name = "numTextBox_每格高度";
+            this.numTextBox_每格高度.Size = new System.Drawing.Size(167, 46);
+            this.numTextBox_每格高度.TabIndex = 150;
+            this.numTextBox_每格高度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_每格高度.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_每格高度.小數點位置 = 0;
+            this.numTextBox_每格高度.音效 = false;
+            this.numTextBox_每格高度.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_CheckBox_圖文辨識樣式
+            // 
+            this.plC_CheckBox_圖文辨識樣式.AutoSize = true;
+            this.plC_CheckBox_圖文辨識樣式.Bool = false;
+            this.plC_CheckBox_圖文辨識樣式.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_圖文辨識樣式.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_圖文辨識樣式.Location = new System.Drawing.Point(1109, 74);
+            this.plC_CheckBox_圖文辨識樣式.Name = "plC_CheckBox_圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.Size = new System.Drawing.Size(122, 20);
+            this.plC_CheckBox_圖文辨識樣式.TabIndex = 149;
+            this.plC_CheckBox_圖文辨識樣式.Text = "圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_圖文辨識樣式.文字內容 = "圖文辨識樣式";
+            this.plC_CheckBox_圖文辨識樣式.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_圖文辨識樣式.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_圖文辨識樣式.讀寫鎖住 = false;
+            this.plC_CheckBox_圖文辨識樣式.音效 = false;
             // 
             // label10
             // 
@@ -687,7 +734,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認送出.GUID = "";
             this.plC_RJ_Button_確認送出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_確認送出.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button_確認送出.Location = new System.Drawing.Point(1238, 0);
+            this.plC_RJ_Button_確認送出.Location = new System.Drawing.Point(1355, 0);
             this.plC_RJ_Button_確認送出.Name = "plC_RJ_Button_確認送出";
             this.plC_RJ_Button_確認送出.OFF_文字內容 = "確認送出";
             this.plC_RJ_Button_確認送出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -745,46 +792,69 @@ namespace 調劑台管理系統
             this.rJ_Lable_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable_標題.TextColor = System.Drawing.Color.White;
             // 
-            // plC_CheckBox_圖文辨識樣式
+            // groupBox10
             // 
-            this.plC_CheckBox_圖文辨識樣式.AutoSize = true;
-            this.plC_CheckBox_圖文辨識樣式.Bool = false;
-            this.plC_CheckBox_圖文辨識樣式.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_CheckBox_圖文辨識樣式.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_圖文辨識樣式.Location = new System.Drawing.Point(1109, 74);
-            this.plC_CheckBox_圖文辨識樣式.Name = "plC_CheckBox_圖文辨識樣式";
-            this.plC_CheckBox_圖文辨識樣式.Size = new System.Drawing.Size(123, 20);
-            this.plC_CheckBox_圖文辨識樣式.TabIndex = 149;
-            this.plC_CheckBox_圖文辨識樣式.Text = "圖文辨識樣式";
-            this.plC_CheckBox_圖文辨識樣式.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_圖文辨識樣式.文字內容 = "圖文辨識樣式";
-            this.plC_CheckBox_圖文辨識樣式.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_CheckBox_圖文辨識樣式.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_圖文辨識樣式.讀寫鎖住 = false;
-            this.plC_CheckBox_圖文辨識樣式.音效 = false;
+            this.groupBox10.Controls.Add(this.button_儲位描述字型);
+            this.groupBox10.Controls.Add(this.label12);
+            this.groupBox10.Controls.Add(this.numTextBox_儲位描述欄位寬度);
+            this.groupBox10.Controls.Add(this.plC_CheckBox_儲位描述顯示);
+            this.groupBox10.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox10.Location = new System.Drawing.Point(1323, 216);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(138, 196);
+            this.groupBox10.TabIndex = 16;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "儲位描述";
             // 
-            // label11
+            // button_儲位描述字型
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(630, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 21);
-            this.label11.TabIndex = 151;
-            this.label11.Text = "每格高度";
+            this.button_儲位描述字型.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_儲位描述字型.Location = new System.Drawing.Point(25, 145);
+            this.button_儲位描述字型.Name = "button_儲位描述字型";
+            this.button_儲位描述字型.Size = new System.Drawing.Size(93, 41);
+            this.button_儲位描述字型.TabIndex = 17;
+            this.button_儲位描述字型.Text = "字型";
+            this.button_儲位描述字型.UseVisualStyleBackColor = true;
             // 
-            // numTextBox_每格高度
+            // label12
             // 
-            this.numTextBox_每格高度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numTextBox_每格高度.Location = new System.Drawing.Point(634, 48);
-            this.numTextBox_每格高度.Name = "numTextBox_每格高度";
-            this.numTextBox_每格高度.Size = new System.Drawing.Size(167, 46);
-            this.numTextBox_每格高度.TabIndex = 150;
-            this.numTextBox_每格高度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTextBox_每格高度.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
-            this.numTextBox_每格高度.小數點位置 = 0;
-            this.numTextBox_每格高度.音效 = false;
-            this.numTextBox_每格高度.顯示螢幕小鍵盤 = false;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label12.Location = new System.Drawing.Point(22, 76);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 16);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "欄位寬度";
+            // 
+            // numTextBox_儲位描述欄位寬度
+            // 
+            this.numTextBox_儲位描述欄位寬度.Location = new System.Drawing.Point(25, 104);
+            this.numTextBox_儲位描述欄位寬度.Name = "numTextBox_儲位描述欄位寬度";
+            this.numTextBox_儲位描述欄位寬度.Size = new System.Drawing.Size(93, 35);
+            this.numTextBox_儲位描述欄位寬度.TabIndex = 1;
+            this.numTextBox_儲位描述欄位寬度.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTextBox_儲位描述欄位寬度.字元長度 = MyUI.NumTextBox.WordLengthEnum.單字元;
+            this.numTextBox_儲位描述欄位寬度.小數點位置 = 0;
+            this.numTextBox_儲位描述欄位寬度.音效 = false;
+            this.numTextBox_儲位描述欄位寬度.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_CheckBox_儲位描述顯示
+            // 
+            this.plC_CheckBox_儲位描述顯示.AutoSize = true;
+            this.plC_CheckBox_儲位描述顯示.Bool = false;
+            this.plC_CheckBox_儲位描述顯示.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位描述顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位描述顯示.Location = new System.Drawing.Point(25, 41);
+            this.plC_CheckBox_儲位描述顯示.Name = "plC_CheckBox_儲位描述顯示";
+            this.plC_CheckBox_儲位描述顯示.Size = new System.Drawing.Size(58, 20);
+            this.plC_CheckBox_儲位描述顯示.TabIndex = 0;
+            this.plC_CheckBox_儲位描述顯示.Text = "顯示";
+            this.plC_CheckBox_儲位描述顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位描述顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位描述顯示.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位描述顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位描述顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位描述顯示.音效 = false;
             // 
             // Dialog_調劑畫面顯示調整
             // 
@@ -792,9 +862,10 @@ namespace 調劑台管理系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CaptionHeight = 60;
-            this.ClientSize = new System.Drawing.Size(1354, 449);
+            this.ClientSize = new System.Drawing.Size(1471, 449);
             this.CloseBoxSize = new System.Drawing.Size(40, 40);
             this.ControlBox = true;
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -830,6 +901,8 @@ namespace 調劑台管理系統
             this.groupBox9.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -888,5 +961,10 @@ namespace 調劑台管理系統
         private MyUI.PLC_CheckBox plC_CheckBox_圖文辨識樣式;
         private System.Windows.Forms.Label label11;
         private MyUI.NumTextBox numTextBox_每格高度;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Button button_儲位描述字型;
+        private System.Windows.Forms.Label label12;
+        private MyUI.NumTextBox numTextBox_儲位描述欄位寬度;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位描述顯示;
     }
 }
