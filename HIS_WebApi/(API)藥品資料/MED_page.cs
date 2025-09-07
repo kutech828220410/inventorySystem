@@ -175,7 +175,7 @@ namespace HIS_WebApi
                         List<medStorageClass> medStorages = medStorageClass.GetDictByCode(dict_medStorage, item.藥品碼);
                         if (medStorages != null && medStorages.Count > 0)
                         {
-                            item.STORAGE = medStorages;
+                            item.storageInfo = medStorages;
                         }
                     }
                 }

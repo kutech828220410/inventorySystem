@@ -98,14 +98,14 @@ namespace HIS_WebApi._API_藥品資料
                 string tableName = "medStorage";
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
-                string[] codes = medStorageClasses.Select(x => x.藥品碼).Distinct().ToArray();              
-                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥品碼, codes);
+                string[] codes = medStorageClasses.Select(x => x.藥碼).Distinct().ToArray();              
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥碼, codes);
                 List<medStorageClass> medStorages = objects.SQLToClass<medStorageClass, enum_medStroage>();
                 List<medStorageClass> add_medStorageClass = new List<medStorageClass>();
                 foreach (var item in medStorageClasses)
                 {
-                    if (item.藥品碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
-                    medStorageClass medStorageClass = medStorages.Where(x => x.藥品碼 == item.藥品碼 && x.儲位描述 == item.儲位描述).FirstOrDefault();
+                    if (item.藥碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
+                    medStorageClass medStorageClass = medStorages.Where(x => x.藥碼 == item.藥碼 && x.儲位描述 == item.儲位描述).FirstOrDefault();
                     if (medStorageClass != null) continue;
                     item.GUID = Guid.NewGuid().ToString();
                     add_medStorageClass.Add(item);
@@ -176,8 +176,8 @@ namespace HIS_WebApi._API_藥品資料
                 string tableName = "medStorage";
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
-                string[] codes = medStorageClasses.Select(x => x.藥品碼).Distinct().ToArray();
-                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥品碼, codes);
+                string[] codes = medStorageClasses.Select(x => x.藥碼).Distinct().ToArray();
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥碼, codes);
                 List<medStorageClass> medStorages = objects.SQLToClass<medStorageClass, enum_medStroage>();
                 Dictionary<string, List<medStorageClass>> medStorageDict = medStorageClass.ToDictByCode(medStorageClasses);
                 List<medStorageClass> add_medStorageClass = new List<medStorageClass>();
@@ -190,7 +190,7 @@ namespace HIS_WebApi._API_藥品資料
                         List<medStorageClass> storageClasses = medStorageClass.GetDictByCode(medStorageDict, code);
                         foreach (var item in storageClasses)
                         {
-                            if (item.藥品碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
+                            if (item.藥碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
                             item.GUID = Guid.NewGuid().ToString();
                             add_medStorageClass.Add(item);
                         }
@@ -207,7 +207,7 @@ namespace HIS_WebApi._API_藥品資料
                         List<medStorageClass> storageClasses = medStorageClass.GetDictByCode(medStorageDict, code);
                         foreach (var item in storageClasses)
                         {
-                            if (item.藥品碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
+                            if (item.藥碼.StringIsEmpty() || item.儲位描述.StringIsEmpty()) continue;
                             item.GUID = Guid.NewGuid().ToString();
                             add_medStorageClass.Add(item);
                         }
@@ -284,7 +284,7 @@ namespace HIS_WebApi._API_藥品資料
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 
-                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥品碼, codes);
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medStroage.藥碼, codes);
                 List<medStorageClass> medStorages = objects.SQLToClass<medStorageClass, enum_medStroage>();
 
                 

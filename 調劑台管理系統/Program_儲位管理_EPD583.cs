@@ -920,12 +920,34 @@ namespace 調劑台管理系統
                 boxes[0].BackColor = Color.White;
                 boxes[0].ForeColor = Color.Black;
             }
+            medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, boxes[0].Code);
+            if (_medClass != null)
+            {
+                if (_medClass.storageInfo != null)
+                {
+                    List<string> storage_infos = new List<string>();
+                   foreach (var storage in _medClass.storageInfo)
+                    {
+                        storage_infos.Add(storage.儲位描述);
+            
+                    }
+                    string info_text = string.Join(",", storage_infos);
+                    if (info_text.StringIsEmpty() == false)
+                    {
+                        this.Invoke(new Action(delegate
+                        {
+                            rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Text = info_text;
+                        }));
+                    }
+                }
 
+            }
 
             if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
             else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
-            this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            Drawer drawer = this.epD_583_Pannel.CurrentDrawer;
+            deviceApiClass.Replace_EPD583_Drawers(API_Server, ServerName, ServerType, drawer);
+            List_EPD583_本地資料.Add_NewDrawer(drawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_分割儲位_MouseDownEvent(MouseEventArgs mevent)
