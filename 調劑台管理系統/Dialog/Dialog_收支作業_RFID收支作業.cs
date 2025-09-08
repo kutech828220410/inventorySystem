@@ -263,10 +263,23 @@ namespace 調劑台管理系統
             if (needFetchTags)
             {
                 Console.WriteLine($"[{DateTime.Now:HH:mm:ss.fff}]  [重新讀取 RFID 標籤資料]");
-                if (_Import_Export == IncomeOutcomeMode.收入)
-                    _cachedTagList = DrugHFTagClass.get_latest_stockin_eligible_tags(Main_Form.API_Server);
+                List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
+                if (_Import_Export == IncomeOutcomeMode.支出)
+                {
+                    _cachedTagList = (from temp in drugHFTagClasses
+                                      where temp.存放位置 == Main_Form.ServerName
+                                      where temp.狀態 == "入庫註記"
+                                      select temp).ToList();
+                }
                 else
-                    _cachedTagList = DrugHFTagClass.get_latest_stockout_eligible_tags(Main_Form.API_Server);
+                {
+                    _cachedTagList = (from temp in drugHFTagClasses
+                                      where temp.存放位置 == Main_Form.ServerName
+                                      where temp.狀態 == "已重置" || temp.狀態 == "出庫註記"
+                                      select temp).ToList();
+                }
+
+
                 if(_cachedTagList.Count != 0)
                 {
                     _cachedTagMaxUpdateTime = _cachedTagList.Max(x => x.更新時間.StringToDateTime());

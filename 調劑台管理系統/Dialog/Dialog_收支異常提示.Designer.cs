@@ -33,7 +33,7 @@ namespace 調劑台管理系統
             this.rJ_Button_跳過 = new MyUI.RJ_Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Button_開鎖 = new MyUI.RJ_Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_Tile = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dragDropListBox = new DragDropListBox();
             this.rJ_Pannel1.SuspendLayout();
@@ -136,17 +136,17 @@ namespace 調劑台管理系統
             this.rJ_Button_開鎖.TextHeight = 0;
             this.rJ_Button_開鎖.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // label_Tile
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(721, 116);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "數量/品項錯誤,請再次確認!";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Tile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label_Tile.Font = new System.Drawing.Font("微软雅黑", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Tile.ForeColor = System.Drawing.Color.White;
+            this.label_Tile.Location = new System.Drawing.Point(4, 8);
+            this.label_Tile.Name = "label_Tile";
+            this.label_Tile.Size = new System.Drawing.Size(721, 116);
+            this.label_Tile.TabIndex = 3;
+            this.label_Tile.Text = "數量/品項錯誤,請再次確認!";
+            this.label_Tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -190,7 +190,7 @@ namespace 調劑台管理系統
             this.ClientSize = new System.Drawing.Size(729, 489);
             this.Controls.Add(this.dragDropListBox);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_Tile);
             this.Controls.Add(this.rJ_Pannel1);
             this.Name = "Dialog_收支異常提示";
             this.Radius = 30;
@@ -202,7 +202,7 @@ namespace 調劑台管理系統
         #endregion
 
         private MyUI.RJ_Pannel rJ_Pannel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_Tile;
         private MyUI.RJ_Button rJ_Button_開鎖;
         private MyUI.RJ_Button rJ_Button_跳過;
         private System.Windows.Forms.Panel panel3;

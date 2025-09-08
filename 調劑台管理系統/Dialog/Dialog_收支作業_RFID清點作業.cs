@@ -168,9 +168,7 @@ namespace 調劑台管理系統
 
             LoadingForm.ShowLoadingForm();
             List<DrugHFTagClass> drugHFTagClasses = DrugHFTagClass.get_latest_tags(Main_Form.API_Server);
-            //drugHFTagClasses = (from temp in drugHFTagClasses
-            //                    where temp.存放位置 == Main_Form.ServerName
-            //                    select temp).ToList();
+
             List<medRecheckLogClass> medRecheckLogClasses = medRecheckLogClass.get_all_unresolved_data(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             keyValuePairs_medRecheckLogClass = medRecheckLogClasses.CoverToDictionaryBy_Code();
             keyValuePairs_drugHFTagClasses = drugHFTagClasses.CoverToDictionaryBy_Code();
@@ -179,18 +177,29 @@ namespace 調劑台管理系統
             List<string> drugCodes = keyValuePairs_drugHFTagClasses.Keys.ToList();
             foreach (var code in codes)
             {
+
                 drugHFTagClasses_buf = keyValuePairs_drugHFTagClasses.SortDictionaryBy_Code(code);
-            
+                drugHFTagClasses_buf = (from temp in drugHFTagClasses_buf
+                                        where temp.存放位置 == Main_Form.ServerName
+                                        select temp).ToList();
                 List<DrugHFTagClass> drugHFTagClasses_buf_set_stockin = (from temp in drugHFTagClasses_buf
                                                                          where Main_Form.stocks_uids.Contains(temp.TagSN) == true
                                                                          where temp.狀態 != "入庫註記"
-                                                                         where temp.存放位置 != Main_Form.ServerName
                                                                          select temp).ToList();
+                List<DrugHFTagClass> drugHFTagClasses_stockin = (from temp in drugHFTagClasses_buf
+                                                                         where Main_Form.stocks_uids.Contains(temp.TagSN) == true
+                                                                         where temp.狀態 == "入庫註記"
+                                                                         select temp).ToList();
+
                 List<DrugHFTagClass> drugHFTagClasses_buf_set_other = (from temp in drugHFTagClasses_buf
                                                                        where Main_Form.stocks_uids.Contains(temp.TagSN) == false
                                                                        where temp.狀態 != "已重置"
-                                                                       where temp.存放位置 != Main_Form.ServerName
                                                                        select temp).ToList();
+
+                List<DrugHFTagClass> drugHFTagClasses_other = (from temp in drugHFTagClasses_buf
+                                                                 where Main_Form.stocks_uids.Contains(temp.TagSN) == true
+                                                                 where temp.狀態 != "入庫註記"
+                                                                 select temp).ToList();
                 for (int i = 0; i < drugHFTagClasses_buf_set_stockin.Count; i++)
                 {
                     drugHFTagClasses_buf_set_stockin[i].存放位置 = Main_Form.ServerName;
