@@ -288,12 +288,22 @@ namespace HIS_WebApi._API_住院調劑系統
                 List<object[]> objects = await sQLControl.WriteCommandAsync(command ,ct);
                 
                 List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
+                if(nearMisses.Count == 0)
+                {
+                    returnData.Code = 200;
+                    returnData.Data = nearMisses;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Method = "get_by_phar";
+                    returnData.Result = $"查無今日調劑錯誤資料!";
+                    return await returnData.JsonSerializationtAsync(true);
+                }
                 string GUIDs = string.Join(";", nearMisses.Select(x => x.cpoe_GUID).Distinct().ToList());
                 returnData task_cpoe = await new med_cart().get_medCpoe_by_GUID(GUIDs);
                 if(task_cpoe.Code != 200)
                 {
                     returnData.Code = -200;
                     returnData.Result = "取得處方失敗";
+                    returnData.Method = "get_by_phar";
                     return await returnData.JsonSerializationtAsync(true);
                 }
                 List<medCpoeClass> medCpoeClasses = task_cpoe.Data.ObjToClass<List<medCpoeClass>>();
@@ -315,6 +325,68 @@ namespace HIS_WebApi._API_住院調劑系統
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
                 return await returnData.JsonSerializationtAsync(true);
+            }
+        }
+        /// <summary>
+        /// 依照病人GUID取得資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     [
+        ///         {
+        ///         }
+        ///     ]
+        ///     "Value": "",
+        ///     "ValueAry":["PAT_GUID"]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_by_pat_GUID")]
+        public async Task<string> get_by_pat_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry資料錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1 || returnData.ValueAry[0].StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.ValueAry資料錯誤，['pat_GUID']!";
+                    return returnData.JsonSerializationt();
+                }
+                
+                string tableName = "nearMiss";
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_nearMiss.pat_GUID, returnData.ValueAry[0]);
+                List<nearMissClass> nearMisses = objects.SQLToClass<nearMissClass, enum_nearMiss>();
+
+
+                returnData.Code = 200;
+                returnData.Data = nearMisses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_by_pat_GUID";
+                returnData.Result = $"病人({returnData.ValueAry[0]})調劑錯誤資料，共{nearMisses.Count}筆!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
             }
         }
 
@@ -393,6 +465,15 @@ namespace HIS_WebApi._API_住院調劑系統
             string startTime = startTime_datetime.ToDateTimeString_6().Replace("/", "-");
             string endTime = endTime_datetime.ToDateTimeString_6().Replace("/", "-");
             return (startTime, endTime);
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public static async Task<returnData> get_by_pat_GUID(string GUID)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            string result = await new nearMiss().get_by_pat_GUID(returnData);
+            returnData = await result.JsonDeserializetAsync<returnData>();
+            return returnData;
         }
 
 
