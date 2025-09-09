@@ -14,8 +14,8 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        [Description("藥品碼,VARCHAR,50,INDEX")]
-        藥品碼,
+        [Description("藥碼,VARCHAR,50,INDEX")]
+        藥碼,
         [Description("儲位描述,VARCHAR,50,NONE")]
         儲位描述,
     
@@ -31,31 +31,31 @@ namespace HIS_DB_Lib
         /// 藥品碼
         /// </summary>
         [JsonPropertyName("code")]
-        public string 藥品碼 { get; set; }
+        public string 藥碼 { get; set; }
         /// <summary>
         /// 儲位描述
         /// </summary>
-        [JsonPropertyName("storage")]
+        [JsonPropertyName("info")]
         public string 儲位描述 { get; set; }
         static public Dictionary<string, List<medStorageClass>> ToDictByCode(List<medStorageClass> medStorageClasses)
         {
             Dictionary<string, List<medStorageClass>> dictionary = new Dictionary<string, List<medStorageClass>>();
             foreach (var item in medStorageClasses)
             {
-                if (dictionary.TryGetValue(item.藥品碼, out List<medStorageClass> list))
+                if (dictionary.TryGetValue(item.藥碼, out List<medStorageClass> list))
                 {
                     list.Add(item);
                 }
                 else
                 {
-                    dictionary[item.藥品碼] = new List<medStorageClass>() { item };
+                    dictionary[item.藥碼] = new List<medStorageClass>() { item };
                 }
             }
             return dictionary;
         }
-        static public List<medStorageClass> GetDictByCode(Dictionary<string, List<medStorageClass>> dict, string 藥品碼)
+        static public List<medStorageClass> GetDictByCode(Dictionary<string, List<medStorageClass>> dict, string 藥碼)
         {
-            if (dict.TryGetValue(藥品碼, out List<medStorageClass> medStorageClass))
+            if (dict.TryGetValue(藥碼, out List<medStorageClass> medStorageClass))
             {
                 return medStorageClass;
             }

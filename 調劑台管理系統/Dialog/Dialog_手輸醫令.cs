@@ -129,6 +129,17 @@ namespace 調劑台管理系統
             Dialog_處方資訊填寫 dialog_處方資訊填寫 = new Dialog_處方資訊填寫(transactionsClass);
             if (dialog_處方資訊填寫.ShowDialog() != DialogResult.Yes) return;
             this.transactionsClass = dialog_處方資訊填寫.transactionsClass;
+
+            if (Main_Form.PLC_Device_手輸醫令要選擇收支原因.Bool)
+            {
+                Dialog_收支原因選擇 dialog_收支原因 = new Dialog_收支原因選擇();
+                if (dialog_收支原因.ShowDialog() != DialogResult.Yes)
+                {
+                    this.Close();
+                    return;
+                }
+                this.transactionsClass.收支原因 = dialog_收支原因.Value;
+            }
         }
 
         private void sub_program()
@@ -229,7 +240,7 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-            this.Main_Form_buf.Function_從SQL取得儲位到本地資料();
+            Main_Form.Function_從SQL取得儲位到本地資料();
             Main_Form.commonSapceClasses = Main_Form.Function_取得共用區所有儲位();
 
             List<object[]> RowsList_buf = new List<object[]>();
@@ -311,19 +322,21 @@ namespace 調劑台管理系統
         }
         private void RJ_Button_藥品資料_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
+            List<medClass> medClasses = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
+            
             if (this.rJ_TextBox_藥品資料_藥品名稱.Texts.StringIsEmpty())
             {
-                this.sqL_DataGridView_藥品資料.SQL_GetAllRows(true);
+                this.sqL_DataGridView_藥品資料.RefreshGrid(medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>());
                 return;
             }
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<object[]> list_value = this.sqL_DataGridView_藥品資料.SQL_GetAllRows(false);
-            Console.Write($"從SQL取得藥品資料,耗時{myTimer.ToString()}ms\n");
-            list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, this.rJ_TextBox_藥品資料_藥品名稱.Texts , true);
-            Console.Write($"搜尋藥品資料,耗時{myTimer.ToString()}ms\n");
-            this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
-            Console.Write($"更新藥品資料,耗時{myTimer.ToString()}ms\n");
+            string serch_text = this.rJ_TextBox_藥品資料_藥品名稱.Texts.ToUpper();
+            medClasses = (from temp in medClasses
+                          where temp.藥品名稱.ToUpper().Contains(serch_text) || temp.藥品學名.ToUpper().Contains(serch_text)
+                          select temp).ToList();
+
+            this.sqL_DataGridView_藥品資料.RefreshGrid(medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>());
         }
         private void RJ_Button_藥品資料_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {

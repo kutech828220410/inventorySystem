@@ -166,6 +166,46 @@ namespace HIS_DB_Lib
             DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
             return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
         }
+
+
+        static public List<DrugHFTagClass> set_tag_reset(string API_Server, DrugHFTagClass DrugHFTagClass, string serverName = "", string serverType = "")
+        {
+            var (code, result, list) = set_tag_reset_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass }, serverName, serverType);
+            return list;
+        }
+        static public List<DrugHFTagClass> set_tag_reset(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
+        {
+            var (code, result, list) = set_tag_reset_full(API_Server, DrugHFTagClasses, serverName, serverType);
+            return list;
+        }
+        static public (int code, string result, List<DrugHFTagClass>) set_tag_reset_full(string API_Server, List<DrugHFTagClass> DrugHFTagClasses, string serverName = "", string serverType = "")
+        {
+            string url = $"{API_Server}/api/DrugHFTag/set_tag_reset";
+
+            returnData returnData = new returnData();
+            returnData.Data = DrugHFTagClasses;
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return (0, "returnData_out == null", null);
+            }
+            if (returnData_out.Data == null)
+            {
+                return (0, "returnData_out.Data == null", null);
+            }
+            Console.WriteLine($"{returnData_out}");
+            DrugHFTagClasses = returnData_out.Data.ObjToClass<List<DrugHFTagClass>>();
+            return (returnData_out.Code, returnData_out.Result, DrugHFTagClasses);
+        }
+
+
+
         static public List<DrugHFTagClass> set_tag_broken(string API_Server, DrugHFTagClass DrugHFTagClass, string serverName = "", string serverType = "")
         {
             var (code, result, list) = set_tag_broken_full(API_Server, new List<DrugHFTagClass> { DrugHFTagClass }, serverName, serverType);

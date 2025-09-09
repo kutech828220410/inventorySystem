@@ -194,7 +194,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("all")]
         [HttpPost]
-        public string POST_all(returnData returnData)
+        public string all(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -252,7 +252,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("get_form_storehouse_by_codes")]
         [HttpPost]
-        public string POST_get_form_storehouse_by_codes(returnData returnData)
+        public string get_form_storehouse_by_codes(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -340,7 +340,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("get_from_pharma_by_code")]
         [HttpPost]
-        public string POST_get_from_pharma_by_code(returnData returnData)
+        public string get_from_pharma_by_code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -418,7 +418,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("update_deviceBasic")]
         [HttpPost]
-        public string POST_update_deviceBasic(returnData returnData)
+        public string update_deviceBasic(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -484,7 +484,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_device")]
         [HttpPost]
-        public string POST_get_device(returnData returnData)
+        public string get_device(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -552,7 +552,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_rowLEDs")]
         [HttpPost]
-        public string POST_get_rowLEDs(returnData returnData)
+        public string get_rowLEDs(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -620,7 +620,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_rowLED_By_Code")]
         [HttpPost]
-        public string POST_get_rowLED_By_Code(returnData returnData)
+        public string get_rowLED_By_Code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -701,7 +701,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_rowLED_DeviceBasics_By_Code")]
         [HttpPost]
-        public string POST_get_rowLED_DeviceBasics_By_Code(returnData returnData)
+        public string get_rowLED_DeviceBasics_By_Code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -782,7 +782,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_rowLED_ByIP")]
         [HttpPost]
-        public string POST_get_rowLED_ByIP(returnData returnData)
+        public string get_rowLED_ByIP(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -863,7 +863,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("update_rowsLEDs")]
         [HttpPost]
-        public string POST_update_rowsLED(returnData returnData)
+        public string update_rowsLED(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -935,28 +935,60 @@ namespace HIS_WebApi
         }
 
         /// <summary>
-        /// 取得儲位資料(Drawer)
+        /// 取得所有儲位資料 (EPD583)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD583 顯示裝置的所有儲位資料，並回傳完整的 <c>Drawer</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ServerName</c> 與 <c>ServerType</c>，並取得資料庫連線資訊。  
+        /// 2. 連線至 <c>epd583_jsonstring</c> 資料表，讀取所有抽屜 (Drawer) 資料。  
+        /// 3. 將資料轉換為 <c>Drawer</c> 陣列並回傳。  
+        ///
+        /// <b>注意事項：</b>
+        /// - 此 API 會一次回傳所有 EPD583 的抽屜資料。  
+        /// - 若資料庫連線設定錯誤，將回傳錯誤訊息。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "drawers 取得成功!,共15筆資料,TableName : epd583_jsonstring",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Name": "抽屜1", "Boxes": [[{},{},{}]] },
+        ///     { "IP": "192.168.0.11", "Name": "抽屜2", "Boxes": [[{},{},{}]] }
+        ///   ],
+        ///   "TimeTaken": "0.124 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "找無Server資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd583_Drawers")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 可為 null，僅需提供 <c>ServerName</c> 與 <c>ServerType</c>。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為 <c>Drawer</c> 陣列結構。
+        /// </returns>
+        [Route("get_epd583_drawers")]
         [HttpPost]
-        public string POST_get_epd583_Drawers(returnData returnData)
+        public string get_epd583_drawers(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1003,28 +1035,63 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以藥碼取得儲位資料(Drawer)
+        /// 依據藥碼取得儲位資料 (EPD583)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       [藥碼]
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD583 顯示裝置的儲位資料，會依據傳入的 <c>藥碼 (Code)</c> 回傳對應的 <c>Drawer</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個藥碼。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd583_jsonstring</c> 資料表，依據傳入的藥碼取得對應的 Drawer 清單。  
+        /// 4. 若找到資料，回傳 <c>Drawer</c> 陣列；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個藥碼。  
+        /// - 若藥碼在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 可能回傳多筆資料，因為同一藥碼可能存在於多個抽屜 (Drawer)。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "18217" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "取得成功共2筆資料!,TableName : epd583_jsonstring , Code : 18217",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Code": "18217", "Name": "抽屜1", "Boxes": [[{},{},{}]] },
+        ///     { "IP": "192.168.0.11", "Code": "18217", "Name": "抽屜2", "Boxes": [[{},{},{}]] }
+        ///   ],
+        ///   "TimeTaken": "0.121 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd583_Drawer_By_Code")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個藥碼 (Code)，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為符合條件的 <c>Drawer</c> 陣列結構。
+        /// </returns>
+        [Route("get_epd583_drawer_by_code")]
         [HttpPost]
-        public string POST_get_epd583_Drawer_By_Code(returnData returnData)
+        public string get_epd583_drawer_by_code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1083,28 +1150,63 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以藥碼取得儲位資料(Drawer.DeviceBasics)
+        /// 依據藥碼取得裝置基礎資料 (EPD583)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       [藥碼]
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD583 顯示裝置的基礎資訊，會依據傳入的 <c>藥碼 (Code)</c> 回傳對應的 <c>DeviceBasic</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個藥碼。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd583_jsonstring</c> 資料表，依據傳入的藥碼取得對應的 DeviceBasic 清單。  
+        /// 4. 若找到資料，回傳 <c>DeviceBasic</c> 陣列；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個藥碼。  
+        /// - 若藥碼在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 可能回傳多筆資料，因為同一藥碼可能存在於多個裝置。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "18217" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "取得成功共2筆資料!,TableName : epd583_jsonstring , Code : 18217",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Code": "18217", "Name": "裝置1", "Value": "some data" },
+        ///     { "IP": "192.168.0.11", "Code": "18217", "Name": "裝置2", "Value": "some data" }
+        ///   ],
+        ///   "TimeTaken": "0.137 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd583_DeviceBasics_By_Code")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個藥碼 (Code)，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為符合條件的 <c>DeviceBasic</c> 陣列結構。
+        /// </returns>
+        [Route("get_epd583_deviceBasics_by_code")]
         [HttpPost]
-        public string POST_get_epd583_DeviceBasics_By_Code(returnData returnData)
+        public string get_epd583_deviceBasics_by_code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1163,28 +1265,64 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以IP取得儲位資料(Drawer)
+        /// 依據 IP 取得指定的儲位資料 (EPD583)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD583 顯示裝置的儲位資料，會依據傳入的 <c>IP</c> 回傳對應的 <c>Drawer</c>。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個 <c>IP</c>。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd583_jsonstring</c> 資料表，依據傳入的 IP 取得對應的 Drawer。  
+        /// 4. 若找到資料，回傳 Drawer 結構；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個 <c>IP</c>。  
+        /// - 若 IP 在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 僅支援單一 IP 查詢。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "192.168.0.10" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "jsonStr取得成功!,TableName : epd583_jsonstring , IP : 192.168.0.10",
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Name": "抽屜1",
+        ///     "Boxes": [[{},{},{}]]
+        ///   },
+        ///   "TimeTaken": "0.103 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd583_Drawer_ByIP")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個 <c>IP</c>，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為對應的 <c>Drawer</c> 結構。
+        /// </returns>
+        [Route("get_epd583_drawer_byIP")]
         [HttpPost]
-        public string POST_get_epd583_Drawer_ByIP(returnData returnData)
+        public string get_epd583_drawer_byIP(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1243,27 +1381,52 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 更新儲位資料(Drawers)
+        /// 更新儲位資料 (EPD583)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "Data" : 
-        ///     {
-        ///       [rowsLED陣列]
-        ///     }
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於更新 EPD583 顯示裝置的儲位資料，會依據 <c>IP</c> 進行比對並更新對應的資料。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 Data 欄位不可為空，且必須為 <c>Drawer</c> 陣列。
+        /// 2. 依據傳入資料的 <c>IP</c>，比對資料庫中的既有儲位紀錄。
+        /// 3. 若 IP 存在，則更新該筆紀錄的 JSON 值。
+        /// 4. 批次更新資料庫，完成後回傳更新結果。
+        ///
+        /// <b>注意事項：</b>
+        /// - Data 必須為 <c>Drawer</c> 陣列格式。
+        /// - 系統會依據 <c>IP</c> 進行比對，若 IP 在資料庫不存在則不會新增。
+        /// - 僅更新傳入有對應 IP 的紀錄，其餘資料保持不變。
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Name": "抽屜1", "Boxes": [[{},{},{}]] },
+        ///     { "IP": "192.168.0.11", "Name": "抽屜2", "Boxes": [[{},{},{}]] }
+        ///   ]
+        /// }
+        ///```
+        /// <b>JSON 回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "更新Drawers成功!,共2筆資料,TableName : epd583_jsonstring",
+        ///   "Data": null,
+        ///   "TimeTaken": "0.145 秒"
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
-        [Route("update_epd583_Drawers")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須為 <c>Drawer</c> 陣列，且包含 <c>IP</c> 欄位。
+        /// </param>
+        /// <returns>
+        /// [returnData.Result] 為更新結果，[returnData.Code] 為狀態碼，[returnData.Data] 為處理後資料。
+        /// </returns>
+        [Route("update_epd583_drawers")]
         [HttpPost]
-        public string POST_update_epd583_Drawers(returnData returnData)
+        public string update_epd583_drawers(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1333,29 +1496,323 @@ namespace HIS_WebApi
 
 
         }
+
         /// <summary>
-        /// 取得儲位資料(EPD266)
+        /// 合併儲位 (CombineBoxes)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       
-        ///     ]
-        ///     
+        /// 此 API 用於合併指定 Drawer 內的多個 Box，會依據 <c>ValueAry</c> 內傳入的 <c>SelectColumns</c> 與 <c>SelectRows</c> 進行設定：  
+        /// - 第一個 Box 作為 Master。  
+        /// - 中間的 Box 設為 Slave，並指向下一個 Box。  
+        /// - 最後一個 Box 設為 Slave，不再指向下一個。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 Data（Drawer）不可為空。  
+        /// 2. 驗證 <c>ValueAry</c> 必須同時包含 <c>SelectColumns</c> 與 <c>SelectRows</c>，且數量需一致。  
+        /// 3. 將指定座標的 Box 重設屬性（Name、Code 清空），並依規則建立 Master/Slave 關聯。  
+        /// 4. 回傳更新後的 Drawer。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>SelectColumns</c> 與 <c>SelectRows</c> 長度必須相同。  
+        /// - 若傳入的座標數量小於等於 1，不會執行合併。  
+        /// - 所有被合併的 Box 資料（Name、Code）會被清空。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     "SelectColumns=0,1,2",
+        ///     "SelectRows=0,0,0"
+        ///   ],
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Boxes": [[{},{},{}]]
         ///   }
-        /// </code>
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "CombineBoxes 執行成功！",
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Boxes": [[{},{},{}]]
+        ///   },
+        ///   "TimeTaken": "0.087 秒"
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須包含 Drawer，ValueAry 必須有 SelectColumns 與 SelectRows
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 會回傳更新後的 Drawer 結構
+        /// </returns>
+        [Route("combine_drawer_boxes")]
+        [HttpPost]
+        public string combine_drawer_boxes([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "combine_drawer_boxes";
+            try
+            {
+                // 取得 Server 資料
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 驗證 Data 是否正確
+                Drawer drawer = returnData.Data.ObjToClass<Drawer>();
+                if (drawer == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入 Data 格式錯誤，必須為 Drawer";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 從 ValueAry 解析 SelectColumns / SelectRows
+                List<int> selectColumns = new List<int>();
+                List<int> selectRows = new List<int>();
+                if (returnData.ValueAry != null)
+                {
+                    foreach (var item in returnData.ValueAry)
+                    {
+                        if (item.StartsWith("SelectColumns="))
+                        {
+                            string cols = item.Replace("SelectColumns=", "");
+                            selectColumns = cols.Split(',').Select(s => s.StringToInt32()).ToList();
+                        }
+                        else if (item.StartsWith("SelectRows="))
+                        {
+                            string rows = item.Replace("SelectRows=", "");
+                            selectRows = rows.Split(',').Select(s => s.StringToInt32()).ToList();
+                        }
+                    }
+                }
+
+                if (selectColumns.Count == 0 || selectRows.Count == 0 || selectColumns.Count != selectRows.Count)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 中缺少 SelectColumns 或 SelectRows";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 呼叫 CombineBoxes 靜態函式
+
+                Drawer updatedDrawer = DrawerMethod.CombineBoxes(drawer, selectColumns, selectRows);
+
+                // 回傳更新後的 Drawer
+                returnData.Data = updatedDrawer;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = "CombineBoxes 執行成功！";
+
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"CombineBoxes 發生錯誤: {e.Message}";
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 分離儲位 (SeparateBoxes)
+        /// </summary>
+        /// <remarks>
+        /// 此 API 用於分離指定 Drawer 內已合併的 Box，會依據 <c>ValueAry</c> 內傳入的 <c>SelectColumns</c> 與 <c>SelectRows</c> 進行重置：  
+        /// - 將所有指定 Box 的 Master/Slave 屬性清空。  
+        /// - 清除關聯欄位（SlaveBox_Column, SlaveBox_Row, MasterBox_Column, MasterBox_Row）。  
+        /// - 清空 Name、Code。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 Data（Drawer）不可為空。  
+        /// 2. 驗證 <c>ValueAry</c> 必須同時包含 <c>SelectColumns</c> 與 <c>SelectRows</c>，且數量需一致。  
+        /// 3. 將指定座標的 Box 重設為獨立狀態（Slave=false, Master=-1,-1）。  
+        /// 4. 回傳更新後的 Drawer。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>SelectColumns</c> 與 <c>SelectRows</c> 長度必須相同。  
+        /// - 若傳入的座標數量小於等於 1，不會執行分離。  
+        /// - 所有被分離的 Box 資料（Name、Code）會被清空。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [
+        ///     "SelectColumns=0,1,2",
+        ///     "SelectRows=0,0,0"
+        ///   ],
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Boxes": [[{},{},{}]]
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "SeparateBoxes 執行成功！",
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Boxes": [[{},{},{}]]
+        ///   },
+        ///   "TimeTaken": "0.092 秒"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須包含 Drawer，ValueAry 必須有 SelectColumns 與 SelectRows
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 會回傳更新後的 Drawer 結構
+        /// </returns>
+        [Route("separate_drawer_boxes")]
+        [HttpPost]
+        public string separate_boxes([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "separate_drawer_boxes";
+            try
+            {
+                // 取得 Server 資料
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 驗證 Data 是否正確
+                Drawer drawer = returnData.Data.ObjToClass<Drawer>();
+                if (drawer == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入 Data 格式錯誤，必須為 Drawer";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 從 ValueAry 解析 SelectColumns / SelectRows
+                List<int> selectColumns = new List<int>();
+                List<int> selectRows = new List<int>();
+                if (returnData.ValueAry != null)
+                {
+                    foreach (var item in returnData.ValueAry)
+                    {
+                        if (item.StartsWith("SelectColumns="))
+                        {
+                            string cols = item.Replace("SelectColumns=", "");
+                            selectColumns = cols.Split(',').Select(s => s.StringToInt32()).ToList();
+                        }
+                        else if (item.StartsWith("SelectRows="))
+                        {
+                            string rows = item.Replace("SelectRows=", "");
+                            selectRows = rows.Split(',').Select(s => s.StringToInt32()).ToList();
+                        }
+                    }
+                }
+
+                if (selectColumns.Count == 0 || selectRows.Count == 0 || selectColumns.Count != selectRows.Count)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 中缺少 SelectColumns 或 SelectRows";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 呼叫 SeparateBoxes 靜態函式
+                Drawer updatedDrawer = DrawerMethod.SeparateBoxes(drawer, selectColumns, selectRows);
+
+                // 回傳更新後的 Drawer
+                returnData.Data = updatedDrawer;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = "SeparateBoxes 執行成功！";
+
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"SeparateBoxes 發生錯誤: {e.Message}";
+                return returnData.JsonSerializationt();
+            }
+        }
+
+
+        /// <summary>
+        /// 取得所有儲位資料 (EPD266)
+        /// </summary>
+        /// <remarks>
+        /// 此 API 用於查詢 EPD266 顯示裝置的所有儲位資料，並回傳完整的 <c>Storage</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ServerName</c> 與 <c>ServerType</c>，並取得資料庫連線資訊。  
+        /// 2. 連線至 <c>epd266_jsonstring</c> 資料表，讀取所有儲位資料。  
+        /// 3. 將資料轉換為 <c>Storage</c> 陣列並回傳。  
+        ///
+        /// <b>注意事項：</b>
+        /// - 此 API 會一次回傳所有 EPD266 的儲位資料。  
+        /// - 若資料庫連線設定錯誤，將回傳錯誤訊息。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "storages 取得成功!,共25筆資料,TableName : epd266_jsonstring",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Name": "儲位1", "Value": "some data" },
+        ///     { "IP": "192.168.0.11", "Name": "儲位2", "Value": "some data" }
+        ///   ],
+        ///   "TimeTaken": "0.115 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "找無Server資料",
+        ///   "Data": null
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 可為 null，僅需提供 <c>ServerName</c> 與 <c>ServerType</c>。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為 <c>Storage</c> 陣列結構。
+        /// </returns>
         [Route("get_epd266_storage")]
         [HttpPost]
-        public string POST_get_epd266_storage(returnData returnData)
+        public string get_epd266_storage(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1401,29 +1858,65 @@ namespace HIS_WebApi
 
             }
         }
+
         /// <summary>
-        /// 以藥碼取得儲位資料(EPD266)
+        /// 依據藥碼取得儲位資料 (EPD266)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///        [藥碼]
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD266 顯示裝置的儲位資料，會依據傳入的 <c>藥碼 (Code)</c> 回傳對應的 <c>Storage</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個藥碼。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd266_jsonstring</c> 資料表，依據傳入的藥碼取得對應的 Storage 清單。  
+        /// 4. 若找到資料，回傳 <c>Storage</c> 陣列；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個藥碼。  
+        /// - 若藥碼在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 可能回傳多筆資料，因為同一藥碼可能存在於多個儲位。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "18217" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "已取得資料共2筆!,TableName : epd266_jsonstring , Code : 18217",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Code": "18217", "Name": "儲位1", "Value": "some data" },
+        ///     { "IP": "192.168.0.11", "Code": "18217", "Name": "儲位2", "Value": "some data" }
+        ///   ],
+        ///   "TimeTaken": "0.134 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd266_storage_By_Code")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個藥碼 (Code)，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為符合條件的 <c>Storage</c> 陣列結構。
+        /// </returns>
+        [Route("get_epd266_storage_by_code")]
         [HttpPost]
-        public string POST_get_epd266_storage_By_Code(returnData returnData)
+        public string get_epd266_storage_by_code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1482,28 +1975,63 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以藥碼取得儲位資料(EPD266.DeviceBasics)
+        /// 依據藥碼取得裝置基礎資料 (EPD266)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///        [藥碼]
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD266 顯示裝置的基礎資訊，會依據傳入的 <c>藥碼 (Code)</c> 回傳對應的 <c>DeviceBasic</c> 陣列。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個藥碼。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd266_jsonstring</c> 資料表，依據傳入的藥碼取得對應的 DeviceBasic 清單。  
+        /// 4. 若找到資料，回傳 <c>DeviceBasic</c> 陣列；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個藥碼。  
+        /// - 若藥碼在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 可能回傳多筆資料，因為同一藥碼可能存在於多個裝置。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "18217" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "已取得資料共2筆!,TableName : epd266_jsonstring , Code : 18217",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Code": "18217", "Name": "裝置1", "Value": "some data" },
+        ///     { "IP": "192.168.0.11", "Code": "18217", "Name": "裝置2", "Value": "some data" }
+        ///   ],
+        ///   "TimeTaken": "0.142 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_epd266_DeviceBasics_By_Code")]
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個藥碼 (Code)，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為符合條件的 <c>DeviceBasic</c> 陣列結構。
+        /// </returns>
+        [Route("get_epd266_deviceBasics_by_code")]
         [HttpPost]
-        public string POST_get_epd266_DeviceBasics_By_Code(returnData returnData)
+        public string get_epd266_deviceBasics_by_code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1562,28 +2090,65 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以IP取得儲位資料(EPD266)
+        /// 依據 IP 取得指定的儲位資料 (EPD266)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "TableName" : "",
-        ///     "ValueAry" : 
-        ///     [
-        ///       
-        ///     ]
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於查詢 EPD266 顯示裝置的儲位資料，會依據傳入的 <c>IP</c> 回傳對應的 <c>Storage</c>。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 <c>ValueAry</c> 不可為空，且必須只包含一個 <c>IP</c>。  
+        /// 2. 依據 <c>ServerName</c>、<c>ServerType</c> 取得資料庫連線資訊。  
+        /// 3. 查詢 <c>epd266_jsonstring</c> 資料表，依據傳入的 IP 取得對應的 Storage。  
+        /// 4. 若找到資料，回傳 Storage 結構；若查無資料，回傳錯誤訊息。  
+        ///
+        /// <b>注意事項：</b>
+        /// - <c>ValueAry</c> 必須只包含一個 <c>IP</c>。  
+        /// - 若 IP 在資料庫中不存在，則回傳錯誤訊息。  
+        /// - 此 API 僅支援單一 IP 查詢。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "ValueAry": [ "192.168.0.10" ],
+        ///   "Data": null
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "jsonStr取得成功!,TableName : epd266_jsonstring , IP : 192.168.0.10",
+        ///   "Data": {
+        ///     "IP": "192.168.0.10",
+        ///     "Code": "18217",
+        ///     "Name": "儲位1",
+        ///     "Value": "some data"
+        ///   },
+        ///   "TimeTaken": "0.098 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "查無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，ValueAry 必須包含一個 <c>IP</c>，Data 可為 null。
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 為對應的 <c>Storage</c> 結構。
+        /// </returns>
         [Route("get_epd266_storage_ByIP")]
         [HttpPost]
-        public string POST_get_epd266_storage_ByIP(returnData returnData)
+        public string get_epd266_storage_ByIP(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1642,27 +2207,62 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 更新儲位資料(EPD266)
+        /// 更新儲位資料 (EPD266)
         /// </summary>
         /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName": "口服2",
-        ///     "ServerType": "調劑台",
-        ///     "Data" : 
-        ///     {
-        ///       [rowsLED陣列]
-        ///     }
-        ///     
-        ///   }
-        /// </code>
+        /// 此 API 用於更新 EPD266 顯示裝置的儲位資料，會依據 <c>IP</c> 進行比對並更新對應的資料。  
+        ///
+        /// <b>邏輯流程：</b>
+        /// 1. 驗證 Data 欄位不可為空，且必須為 <c>Storage</c> 陣列。  
+        /// 2. 依據傳入資料的 <c>IP</c>，比對資料庫中的既有儲位紀錄。  
+        /// 3. 若 IP 存在，則更新該筆紀錄的 JSON 值。  
+        /// 4. 批次更新資料庫，完成後回傳更新結果。  
+        ///
+        /// <b>注意事項：</b>
+        /// - Data 必須為 <c>Storage</c> 陣列格式。  
+        /// - 系統會依據 <c>IP</c> 進行比對，若 IP 在資料庫不存在則不會新增。  
+        /// - 僅更新傳入有對應 IP 的紀錄，其餘資料保持不變。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "口服2",
+        ///   "ServerType": "調劑台",
+        ///   "Data": [
+        ///     { "IP": "192.168.0.10", "Name": "儲位1", "Value": "some data" },
+        ///     { "IP": "192.168.0.11", "Name": "儲位2", "Value": "some data" }
+        ///   ]
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (成功)：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "更新storages成功!,共2筆資料,TableName : epd266_jsonstring",
+        ///   "Data": null,
+        ///   "TimeTaken": "0.134 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 回應範例 (失敗)：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "傳入Data無資料",
+        ///   "Data": null
+        /// }
+        /// ```
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須為 <c>Storage</c> 陣列，且包含 <c>IP</c> 欄位。
+        /// </param>
+        /// <returns>
+        /// [returnData.Result] 為更新結果，[returnData.Code] 為狀態碼，[returnData.Data] 為處理後資料。
+        /// </returns>
         [Route("update_epd266_storages")]
         [HttpPost]
-        public string POST_update_epd266_storages(returnData returnData)
+        public string update_epd266_storages(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1754,7 +2354,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_panel35_storage")]
         [HttpPost]
-        public string POST_get_panel35_storage(returnData returnData)
+        public string get_panel35_storage(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1822,7 +2422,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_Panel35_storage_By_Code")]
         [HttpPost]
-        public string POST_get_Panel35_storage_By_Code(returnData returnData)
+        public string get_Panel35_storage_By_Code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1902,7 +2502,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_Panel35_DeviceBasics_By_Code")]
         [HttpPost]
-        public string POST_get_Panel35_DeviceBasics_By_Code(returnData returnData)
+        public string get_Panel35_DeviceBasics_By_Code(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1982,7 +2582,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
         [Route("get_panel35_storage_ByIP")]
         [HttpPost]
-        public string POST_get_panel35_storage_ByIP(returnData returnData)
+        public string get_panel35_storage_ByIP(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -2061,7 +2661,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("update_panel35_storages")]
         [HttpPost]
-        public string POST_update_panel35_storages(returnData returnData)
+        public string update_panel35_storages(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -2153,7 +2753,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("light_on_by_code")]
         [HttpPost]
-        public string POST_light_on_by_code(returnData returnData)
+        public string light_on_by_code(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -2541,7 +3141,7 @@ namespace HIS_WebApi
 
         [Route("light")]
         [HttpPost]
-        public string POST_light(returnData returnData)
+        public string light(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -2623,7 +3223,7 @@ namespace HIS_WebApi
 
         [Route("sort_by_ip")]
         [HttpPost]
-        public string POST_sort_by_ip(returnData returnData)
+        public string sort_by_ip(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -2686,7 +3286,7 @@ namespace HIS_WebApi
             }
         }
         [HttpPost("get_list_by_department")]
-        public async Task<string> get_list_by_department([FromBody]returnData returnData)
+        public string get_list_by_department([FromBody]returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -2703,15 +3303,13 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[Type]";
                     return returnData.JsonSerializationt(true);
                 }
-                ServerSettingController controller = new ServerSettingController();
-                string result = await controller.POST_get_serversetting_by_department_type(returnData);
-                returnData returnData_get_serversetting_by_type = result.JsonDeserializet<returnData>();
 
-                List<sys_serverSettingClass> sys_serverSettingClasses = returnData_get_serversetting_by_type.Data.ObjToClass<List<sys_serverSettingClass>>();
-                if(sys_serverSettingClasses == null)
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = sys_serverSettingClass.get_serversetting_by_department_type(API_Server, returnData.ValueAry[0]);
+                if (sys_serverSettingClasses == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"POST_get_serversetting_by_type 回傳為空";
+                    returnData.Result = $"get_serversetting_by_type 回傳為空";
                     return returnData.JsonSerializationt(true);
                 }
                 List<Task> tasks = new List<Task>();
@@ -2746,6 +3344,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+
 
         [ApiExplorerSettings(IgnoreApi = true)]
         static public List<DeviceBasic> Function_Get_device()

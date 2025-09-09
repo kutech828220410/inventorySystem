@@ -71,6 +71,7 @@ namespace 調劑台管理系統
         {
             this.DialogResult = DialogResult.Yes;
             this.Value = this.sqL_DataGridView_醫令資料.Get_All_Checked_RowsValuesEx();
+            OrderClasses = this.Value.SQLToClass<OrderClass , enum_醫囑資料>();
         }
 
 

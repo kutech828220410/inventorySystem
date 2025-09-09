@@ -215,7 +215,7 @@ namespace 調劑台管理系統
                 }
                 if (!this.flag_藥品資料_藥檔資料_頁面更新)
                 {
-                    this.Function_從SQL取得儲位到本地資料();
+                    Function_從SQL取得儲位到本地資料();
          
                     this.flag_藥品資料_藥檔資料_頁面更新 = true;
                 }

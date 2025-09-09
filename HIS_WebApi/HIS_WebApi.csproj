@@ -87,9 +87,11 @@
     </Reference>
     <Reference Include="HIS_DB_Lib">
       <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="H_Pannel_lib">
       <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\0.DLL\ICSharpCode.SharpZipLib.dll</HintPath>

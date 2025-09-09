@@ -18,7 +18,7 @@ namespace 調劑台管理系統
     {
         private List<object[]> list_醫令資料_buf = new List<object[]>();
         private SQL_DataGridView _sqL_DataGridView_醫令資料;
-  
+        public string 收支原因 = "";
         private object[] value;
         public object[] Value
         {
@@ -99,6 +99,18 @@ namespace 調劑台管理系統
         }
         private void Dialog_醫令退藥_LoadFinishedEvent(EventArgs e)
         {
+ 
+
+            if (Main_Form.PLC_Device_退藥要選擇收支原因.Bool)
+            {
+                Dialog_收支原因選擇 dialog_收支原因 = new Dialog_收支原因選擇();
+                if (dialog_收支原因.ShowDialog() != DialogResult.Yes)
+                {
+                    this.Close();
+                    return;
+                }
+                this.收支原因 = dialog_收支原因.Value;
+            }
             if (this.list_醫令資料_buf.Count == 1)
             {
                 this.sqL_DataGridView_醫令資料.SetSelectRow(0);
@@ -165,6 +177,7 @@ namespace 調劑台管理系統
             }
             value[(int)enum_醫囑資料.備註] = $"[效期]:{stockClass.Validity_period},[批號]:{stockClass.Lot_number},[數量]:{num}";
             if (num == 0) value[(int)enum_醫囑資料.備註] = "";
+
             this.sqL_DataGridView_醫令資料.ReplaceExtra(value, true);
             if(list_醫令資料_buf.Count == 1)
             {
@@ -180,13 +193,19 @@ namespace 調劑台管理系統
         {
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.GetAllRows();
             List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
-            
+           
             for(int i = 0 ; i < orderClasses.Count; i++)
             {
                 if (Main_Form.convert_note(orderClasses[i].備註) != null)
                 {
                     this.orderClasses.Add(orderClasses[i]);
                 }
+            }
+            if (this.orderClasses.Count == 0)
+            {
+                "未選擇退藥資訊".PlayGooleVoiceAsync(Main_Form.API_Server);
+                MyMessageBox.ShowDialog("未選擇退藥資訊");
+                return;
             }
             this.DialogResult = DialogResult.Yes;
             this.Close();

@@ -873,6 +873,34 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
 
         }
+        static public void update_by_guid(string API_Server, List<transactionsClass> transactionsClasses, string serverName, string serverType)
+        {
+            string url = $"{API_Server}/api/transactions/update_by_guid";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+            returnData.Data = transactionsClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+
         static public List<H_Pannel_lib.StockClass> get_stock_by_code(string API_Server, string 藥碼, string serverName, string serverType)
         {
             string url = $"{API_Server}/api/transactions/get_stock_by_code";

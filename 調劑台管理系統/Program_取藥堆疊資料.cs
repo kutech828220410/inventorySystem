@@ -216,7 +216,7 @@ namespace 調劑台管理系統
                     && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.DC處方.GetEnumName()
                     && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.未授權.GetEnumName()) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
 
-                if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
+                //if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業.GetEnumName()) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.掃碼領藥.GetEnumName())
                 {
                     if (takeMedicineStackClasses[i].總異動量.StringToDouble() > 0) takeMedicineStackClasses[i].動作 = enum_交易記錄查詢動作.掃碼退藥.GetEnumName();
@@ -353,6 +353,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_堆疊母資料_add.Count; i++)
                 {
                     string 狀態 = list_堆疊母資料_add[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
+                    list_堆疊母資料_add[i][(int)enum_取藥堆疊母資料.儲位描述] = list_堆疊母資料_add[i][(int)enum_取藥堆疊母資料.調劑台名稱];
                     if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName() || 狀態 == enum_取藥堆疊母資料_狀態.DC處方.GetEnumName() || 狀態 == enum_取藥堆疊母資料_狀態.未授權.GetEnumName()) continue;
                     if (Function_取藥堆疊資料_取得作業模式(list_堆疊母資料_add[i], enum_取藥堆疊母資料_作業模式.雙人覆核)) Function_外門片解鎖(list_lock_IP);
                     else
@@ -803,7 +804,7 @@ namespace 調劑台管理系統
                 if (Num.StringIsEmpty()) Num = "-1";
                 list_堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
                 list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.IP, IP);
-                list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
+                //list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Num, Num);
                 list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.致能, true.ToString());
                 if (plC_CheckBox_需等待手勢感測_關閉抽屜才可入帳.Checked) list_堆疊子資料 = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.流程作業完成, true.ToString());
                 Console.WriteLine($"「設定配藥完成」IP : {IP} ,PC_NAME : {調劑台名稱} , connt : {list_取藥堆疊子資料.Count}");
@@ -1859,7 +1860,12 @@ namespace 調劑台管理系統
                             string index_IP = Funcion_取得LCD114索引表_index_IP(storage.IP);
                             if (index_IP.StringIsEmpty()) return;
                             if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
-                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, lightOn.LCD_Color);
+                            if (lightOn.flag_Refresh_LCD)
+                            {
+                                Color color_fore = Color.White;
+                                if (lightOn.LCD_Color.R > 230 && lightOn.LCD_Color.G > 230 && lightOn.LCD_Color.B > 230) color_fore = Color.Black;
+                                storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), color_fore, lightOn.LCD_Color);
+                            }
 
                         }));
 
@@ -1890,7 +1896,12 @@ namespace 調劑台管理系統
                             string index_IP = Funcion_取得LCD114索引表_index_IP(device.IP);
                             if (index_IP.StringIsEmpty()) return;
                             if (color == Color.Black) storageUI_LCD_114.ClearCanvas(index_IP, 29008);
-                            if (lightOn.flag_Refresh_LCD) storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), Color.White, lightOn.LCD_Color);
+                            if (lightOn.flag_Refresh_LCD)
+                            {
+                                Color color_fore = Color.White;
+                                if (lightOn.LCD_Color.R > 230 && lightOn.LCD_Color.G > 230 && lightOn.LCD_Color.B > 230) color_fore = Color.Black;
+                                storageUI_LCD_114.DrawImage(index_IP, 29008, 數量.ToString(), new Font("標楷體", 70, FontStyle.Bold), color_fore, lightOn.LCD_Color);
+                            }
 
                         }));
                     }
@@ -2020,7 +2031,7 @@ namespace 調劑台管理系統
                         Task.Run(() =>
                         {
                             Function_從SQL取得儲位到本地資料(藥品碼);
-                            this.Function_儲位刷新(藥品碼);
+                            Function_儲位刷新(藥品碼);
                         });
                     }
                     if (IP.StringIsEmpty() == false)
@@ -2200,7 +2211,7 @@ namespace 調劑台管理系統
                     string Jsonstring = Basic.Net.WEBApiGet(dBConfigClass.Med_Update_ApiURL);
                     Console.WriteLine(Jsonstring);
                 }
-                this.Function_從SQL取得儲位到雲端資料();
+                Function_從SQL取得儲位到雲端資料();
                 PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料.Bool = false;
             }
 
@@ -2385,7 +2396,7 @@ namespace 調劑台管理系統
                 List<object> list_code = Code_LINQ.ToList();
                 for (int i = 0; i < list_code.Count; i++)
                 {
-                    this.Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
+                    Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
                 }
 
                 List<object[]> list_取藥堆疊母資料_buf = new List<object[]>();
@@ -2407,7 +2418,7 @@ namespace 調劑台管理系統
                     藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     調劑台名稱 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString();
                     總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
-                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
+                    庫存量 = Function_從雲端資料取得庫存(藥品碼);
                     結存量 = (庫存量 + 總異動量);
                     flag_獨立作業 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
                     flag_雙人覆核 = Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
@@ -2670,7 +2681,7 @@ namespace 調劑台管理系統
                     調劑台名稱 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString();
                     藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToDouble();
-                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
+                    庫存量 = Function_從雲端資料取得庫存(藥品碼);
                     結存量 = (庫存量 + 總異動量);
                     效期 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
                     批號 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.批號].ObjectToString();
@@ -2726,7 +2737,15 @@ namespace 調劑台管理系統
 
                             if (效期.StringIsEmpty())
                             {
-                                儲位資訊 = this.Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
+                              
+                                if (IP.StringIsEmpty())
+                                {
+                                    儲位資訊 = Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量);
+                                }
+                                else
+                                {
+                                    儲位資訊 = Function_取得異動儲位資訊從雲端資料(藥品碼, 總異動量, 效期, IP);
+                                }
                             }
                             else
                             {
@@ -2755,7 +2774,7 @@ namespace 調劑台管理系統
                                     }
                                 }
 
-                                儲位資訊 = Function_新增效期至雲端資料(藥品碼, 總異動量, 效期, 批號);
+                                儲位資訊 = Function_新增效期至雲端資料(藥品碼, 總異動量, 效期, 批號, IP);
                             }
 
                             List<object[]> list_sortValue = new List<object[]>();
@@ -2800,7 +2819,7 @@ namespace 調劑台管理系統
                                     object[] value = this.Function_取藥堆疊資料_新增子資料(GUID, 儲位資訊_GUID, 調劑台名稱, 藥品碼, 儲位資訊_IP, 儲位資訊_Num, 儲位資訊_TYPE, 儲位資訊_效期, 儲位資訊_批號, 儲位資訊_異動量);
 
                                     list_取藥堆疊子資料_buf.Add(value);
-                                    this.Function_庫存異動至雲端資料(儲位資訊[k]);
+                                    Function_庫存異動至雲端資料(儲位資訊[k]);
                                 }
                                 else
                                 {
@@ -2811,7 +2830,7 @@ namespace 調劑台管理系統
                                     }
                                     if (list_sortValue[0][(int)enum_取藥堆疊子資料.已入帳].ObjectToString() == false.ToString())
                                     {
-                                        this.Function_庫存異動至雲端資料(儲位資訊[k]);
+                                        Function_庫存異動至雲端資料(儲位資訊[k]);
                                     }
                                 }
                             }

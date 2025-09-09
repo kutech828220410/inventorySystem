@@ -50,7 +50,20 @@ namespace 調劑台管理系統
             [Description("備註,VARCHAR,200,NONE")]
             備註,
         }
-        static public List<object[]> list_交班對點 = null;
+        static public List<object[]> _list_交班對點_buf = null;
+        static public List<object[]> list_交班對點_buf
+        {
+            get
+            {
+                return _list_交班對點_buf;
+            }
+            set
+            {
+                _list_交班對點_buf = value;
+                if (value == null) guid = string.Empty;
+            }
+        }
+        static string guid = string.Empty;
         public bool flag_單人交班 = false;  
         private bool flag_確認輸入 = false;
         private MyThread myThread_program;
@@ -90,72 +103,85 @@ namespace 調劑台管理系統
 
         private void Main_Form_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
-            string input_adress = PLC_Device_Input.GetAdress();
-            Logger.Log($"[確認輸入] 取得輸入位置: {input_adress}");
-
-            List<object[]> list_locker_table_value = Main_Form._sqL_DataGridView_Locker_Index_Table.SQL_GetRows((int)enum_lockerIndex.輸入位置, input_adress, false);
-            Logger.Log($"[確認輸入] Locker Index 查詢筆數: {list_locker_table_value.Count}");
-
-            List<lockerIndexClass> lockerIndexClasses = list_locker_table_value.SQLToClass<lockerIndexClass, enum_lockerIndex>();
-            if (lockerIndexClasses.Count == 0)
+            try
             {
-                Logger.Log($"[確認輸入] 查無對應 Locker Index");
-                return;
-            }
+                string input_adress = PLC_Device_Input.GetAdress();
+                Logger.Log($"[確認輸入] 取得輸入位置: {input_adress}");
 
-            lockerIndexClass _lockerIndexClass = lockerIndexClasses[0];
-            Logger.Log($"[確認輸入] 對應儲位 IP: {_lockerIndexClass.IP}");
+                List<object[]> list_locker_table_value = Main_Form._sqL_DataGridView_Locker_Index_Table.SQL_GetRows((int)enum_lockerIndex.輸入位置, input_adress, false);
+                Logger.Log($"[確認輸入] Locker Index 查詢筆數: {list_locker_table_value.Count}");
 
-            object device = Main_Form.Fucnction_從雲端資料取得儲位(_lockerIndexClass.IP);
-            if (device == null)
-            {
-                Logger.Log($"[確認輸入] 無法取得儲位 Device，IP: {_lockerIndexClass.IP}");
-                return;
-            }
-            List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
-
-            string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
-            if (list_交班對點.Count == 0) return;
-            if (device is DeviceBasic)
-            {
-                DeviceBasic deviceBasic = (DeviceBasic)device;
-                Logger.Log($"[確認輸入] 取得 DeviceBasic，藥碼: {deviceBasic.Code}");
-
-                if (list_交班對點.Count == 0)
+                List<lockerIndexClass> lockerIndexClasses = list_locker_table_value.SQLToClass<lockerIndexClass, enum_lockerIndex>();
+                if (lockerIndexClasses.Count == 0)
                 {
-                    Logger.Log($"[確認輸入] 無交班藥品被選取");
+                    Logger.Log($"[確認輸入] 查無對應 Locker Index");
                     return;
                 }
 
-                Logger.Log($"[確認輸入] 被選取藥碼: {藥碼}");
+                lockerIndexClass _lockerIndexClass = lockerIndexClasses[0];
+                Logger.Log($"[確認輸入] 對應儲位 IP: {_lockerIndexClass.IP}");
 
-                if (藥碼 == deviceBasic.Code)
+                object device = Main_Form.Fucnction_從雲端資料取得儲位(_lockerIndexClass.IP);
+                if (device == null)
                 {
-                    Logger.Log($"[確認輸入] 藥碼比對成功: {藥碼}");
-                    flag_確認輸入 = true;
+                    Logger.Log($"[確認輸入] 無法取得儲位 Device，IP: {_lockerIndexClass.IP}");
+                    return;
+                }
+                List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
+
+                string 藥碼 = list_交班對點[0][(int)enum_交班藥品.藥碼].ObjectToString();
+                if (list_交班對點.Count == 0) return;
+                if (device is DeviceBasic)
+                {
+                    DeviceBasic deviceBasic = (DeviceBasic)device;
+                    Logger.Log($"[確認輸入] 取得 DeviceBasic，藥碼: {deviceBasic.Code}");
+
+                    if (list_交班對點.Count == 0)
+                    {
+                        Logger.Log($"[確認輸入] 無交班藥品被選取");
+                        return;
+                    }
+
+                    Logger.Log($"[確認輸入] 被選取藥碼: {藥碼}");
+
+                    if (藥碼 == deviceBasic.Code)
+                    {
+                        Logger.Log($"[確認輸入] 藥碼比對成功: {藥碼}");
+                        flag_確認輸入 = true;
+                    }
+                    else
+                    {
+                        Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {deviceBasic.IP}, 選取藥碼: {藥碼}");
+                    }
+                }
+                else if (device is Drawer)
+                {
+                    Drawer drawer = (Drawer)device;
+                    if (drawer.SortByCode(藥碼).Count > 0)
+                    {
+                        Logger.Log($"[確認輸入] 藥碼比對成功: {藥碼}");
+                        flag_確認輸入 = true;
+                    }
+                    else
+                    {
+                        Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {drawer.IP}, 選取藥碼: {藥碼}");
+                    }
                 }
                 else
                 {
-                    Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {deviceBasic.IP}, 選取藥碼: {藥碼}");
+                    Logger.Log($"[確認輸入] 取得的 device 並非 DeviceBasic 類型，實際型別: {device.GetType().Name}");
                 }
             }
-            else if(device is Drawer)
+            catch(Exception ex)
             {
-                Drawer drawer = (Drawer)device;
-                if (drawer.SortByCode(藥碼).Count > 0)
-                {
-                    Logger.Log($"[確認輸入] 藥碼比對成功: {藥碼}");
-                    flag_確認輸入 = true;
-                }
-                else
-                {
-                    Logger.Log($"[確認輸入] 藥碼比對失敗，DeviceIP: {drawer.IP}, 選取藥碼: {藥碼}");
-                }
+                Console.WriteLine($"Exception : { ex.Message}");
+
             }
-            else
+            finally
             {
-                Logger.Log($"[確認輸入] 取得的 device 並非 DeviceBasic 類型，實際型別: {device.GetType().Name}");
+
             }
+          
 
         }
 
@@ -253,6 +279,7 @@ namespace 調劑台管理系統
         #region Function
         private bool flag_program_init = false;
         private bool flag_自動彈出詢問送出報表 = false;
+        private bool flag_繼續盤點 = false;
         private void sub_program()
         {
             try
@@ -262,23 +289,28 @@ namespace 調劑台管理系統
                     flag_program_init = true;
                     PlC_RJ_Button_盤點登入_MouseDownEvent(null);
 
-                    if (list_交班對點 != null)
+                    if (list_交班對點_buf != null && list_交班對點_buf.Count != 0)
                     {
                         if (MyMessageBox.ShowDialog("有交班表未完成,是否繼續盤點?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                         {
-                            for (int i = 0; i < list_交班對點.Count; i++)
+                            LoadingForm.ShowLoadingForm();
+
+                            for (int i = 0; i < list_交班對點_buf.Count; i++)
                             {
-                                string code = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                                string code = list_交班對點_buf[i][(int)enum_交班藥品.藥碼].ObjectToString();
                                 int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, code);
                                 double 庫存 = Main_Form.Function_從SQL取得庫存(code);
-                                list_交班對點[i][(int)enum_交班藥品.庫存] = 差異值 + 庫存;
-                            }                 
+                                list_交班對點_buf[i][(int)enum_交班藥品.庫存] = 差異值 + 庫存;
+                            }
 
-                            this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點);
+                            this.sqL_DataGridView_交班藥品.RefreshGrid(list_交班對點_buf);
+                            flag_繼續盤點 = true;
+
+                            LoadingForm.CloseLoadingForm();
                         }
                         else
                         {
-                            list_交班對點 = null;
+                            list_交班對點_buf = null;
                         }
                     }
                 }
@@ -308,12 +340,33 @@ namespace 調劑台管理系統
                 if (this.stepViewer.CurrentStep == 3)
                 {
                     plC_RJ_Button_解鎖.Enabled = true;
-                    if (list_交班對點 != null)
+
+                    List<string> list_IP = new List<string>();
+                    List<object[]> _list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
+                    for (int i = 0; i < _list_交班對點.Count; i++)
+                    {
+                        string code = _list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+
+                        list_IP.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(code));
+                    }
+                    
+                    list_IP = (from temp in list_IP
+                               select temp).Distinct().ToList();
+
+                    for (int i = 0; i < list_IP.Count; i++)
+                    {
+                        List<string> IPs = new List<string>();
+                        IPs.LockAdd(list_IP[i]);
+                        Main_Form.Function_抽屜解鎖(IPs);
+                        System.Threading.Thread.Sleep(100);
+                    }
+
+                    if (list_交班對點_buf != null && flag_繼續盤點)
                     {
                         int index = 0;
-                        for (int i = 0; i < list_交班對點.Count; i++)
+                        for (int i = 0; i < list_交班對點_buf.Count; i++)
                         {
-                            if (list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString().StringIsEmpty())
+                            if (list_交班對點_buf[i][(int)enum_交班藥品.盤點量].ObjectToString().StringIsEmpty())
                             {
                                 index = i;
                                 break;
@@ -345,11 +398,7 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
-                        if(flag_自動彈出詢問送出報表 == false)
-                        {
-                            PlC_RJ_Button_確認送出_MouseDownEvent(null);
-                            flag_自動彈出詢問送出報表 = true;
-                        }
+                        
                         plC_RJ_Button_確認送出.Enabled = true;
                     }));
                 }
@@ -573,19 +622,43 @@ namespace 調劑台管理系統
             {
                 $"數量正確".PlayGooleVoiceAsync(Main_Form.API_Server);
             }));
-            int selectRow =  this.sqL_DataGridView_交班藥品.GetSelectRow();
+            int selectRow = this.sqL_DataGridView_交班藥品.GetSelectRow();
             List<object[]> list_value = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
-            if(list_value.Count > 0)
+            if (list_value.Count > 0)
             {
                 string 藥碼 = list_value[0][(int)enum_交班藥品.藥碼].ObjectToString();
                 Main_Form.Function_儲位亮燈(new Main_Form.LightOn(藥碼, Color.Black));
             }
-            
+            bool flag_全部盤點完成 = true;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string 盤點量 = list_value[i][(int)enum_交班藥品.盤點量].ObjectToString();
+                if (盤點量.StringIsInt32() == false)
+                {
+                    flag_全部盤點完成 = false;
+                    break;
+                }
+
+            }
+
             if (selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
             {
-                this.stepViewer.Next();
-                cnt++;
-                return;
+
+                if (flag_全部盤點完成 && list_value.Count > 0)
+                {
+                    this.stepViewer.Next();
+                    this.Invoke(new Action(delegate
+                    {
+                        if (flag_自動彈出詢問送出報表 == false)
+                        {
+                            PlC_RJ_Button_確認送出_MouseDownEvent(null);
+                            flag_自動彈出詢問送出報表 = true;
+                        }
+                    }));
+                    cnt++;
+                    return;
+                }
+
             }
             this.Invoke(new Action(delegate
             {
@@ -599,6 +672,8 @@ namespace 調劑台管理系統
         #endregion
         private void Function_寫入交易紀錄(string 備註)
         {
+            if (personPageClass_盤點人員 == null) return;
+            if (personPageClass_覆盤人員 == null) personPageClass_覆盤人員 = new personPageClass();
             List<object[]> list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
             if (備註 == "交班盤點完成")
             {
@@ -608,57 +683,87 @@ namespace 調劑台管理系統
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].ObjectToString().StringIsDouble() == false) continue;
                     if (list_交班對點[i][(int)enum_交班藥品.差異值].StringToDouble() != 0)
                     {
-                        medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
-                        medRecheckLogClass.發生類別 = "交班對點";
-                        medRecheckLogClass.藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
-                        medRecheckLogClass.藥名 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
-                        medRecheckLogClass.庫存值 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
-                        medRecheckLogClass.盤點值 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
-                        medRecheckLogClass.盤點藥師1 = personPageClass_盤點人員.姓名;
-                        medRecheckLogClass.盤點藥師ID1 = personPageClass_盤點人員.ID;
-                        medRecheckLogClass.盤點藥師2 = personPageClass_覆盤人員.姓名;
-                        medRecheckLogClass.盤點藥師ID2 = personPageClass_覆盤人員.ID;
-                        medRecheckLogClass.異常原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
+                        string 藥碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                        string 藥名 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
+                        double 差異值 = list_交班對點[i][(int)enum_交班藥品.差異值].StringToDouble();
+                        string 盤點藥師1 = personPageClass_盤點人員.姓名;
+                        if (Main_Form.PLC_Device_盤點異常量直接寫入庫存.Bool == false)
+                        {
+                            medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
+                            medRecheckLogClass.發生類別 = "交班對點";
+                            medRecheckLogClass.藥碼 = 藥碼;
+                            medRecheckLogClass.藥名 = 藥名;
+                            medRecheckLogClass.庫存值 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
+                            medRecheckLogClass.盤點值 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
+                            medRecheckLogClass.盤點藥師1 = personPageClass_盤點人員.姓名;
+                            medRecheckLogClass.盤點藥師ID1 = personPageClass_盤點人員.ID;
+                            medRecheckLogClass.盤點藥師2 = personPageClass_覆盤人員.姓名;
+                            medRecheckLogClass.盤點藥師ID2 = personPageClass_覆盤人員.ID;
+                            medRecheckLogClass.異常原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
 
-                        medRecheckLogClasses.Add(medRecheckLogClass);
+                            medRecheckLogClasses.Add(medRecheckLogClass);
+                        }
+                        else
+                        {
+                            Main_Form.Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值, 盤點藥師1);
+                            Main_Form.Function_從SQL取得儲位到本地資料();
+                            Main_Form.Function_儲位刷新(藥碼);
+                        }
                     }
 
                 }
                 medRecheckLogClass.add(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medRecheckLogClasses);
             }
-         
 
-            List<transactionsClass> transactionsClasses = new List<transactionsClass>();
+
+            List<transactionsClass> transactionsClasses_add = new List<transactionsClass>();
+            List<transactionsClass> transactionsClasses_update = new List<transactionsClass>();
+            List<transactionsClass> transactionsClasses_old = new List<transactionsClass>();
             for (int i = 0; i < list_交班對點.Count; i++)
             {
-                transactionsClass transactionsClass = new transactionsClass();
-                transactionsClass.動作 = enum_交易記錄查詢動作.交班對點.GetEnumName();
-                transactionsClass.藥品碼 = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
-                transactionsClass.藥品名稱 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
-                transactionsClass.庫存量 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
-                transactionsClass.盤點量 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
-                transactionsClass.操作人 = personPageClass_盤點人員.姓名;
-                transactionsClass.藥師證字號 = personPageClass_盤點人員.藥師證字號;
-                transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
-                transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
-                transactionsClass.操作時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
-                transactionsClass.收支原因 = "交班對點";
-                transactionsClass.備註 = 備註;
-                if (transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
+                string Code = list_交班對點[i][(int)enum_交班藥品.藥碼].ObjectToString();
+                string op_time = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
+                string Order_GUID = $"{Code}-{op_time}";
+                transactionsClasses_old = transactionsClass.get_datas_by_order_guid(Main_Form.API_Server, Order_GUID, Main_Form.ServerName, Main_Form.ServerType);
+          
+                transactionsClass _transactionsClass = new transactionsClass();
+                _transactionsClass.Order_GUID = $"{Order_GUID}";
+                if (transactionsClasses_old.Count > 0) _transactionsClass = transactionsClasses_old[0];
+                _transactionsClass.動作 = enum_交易記錄查詢動作.交班對點.GetEnumName();
+    
+                _transactionsClass.藥品碼 = Code;
+                _transactionsClass.藥品名稱 = list_交班對點[i][(int)enum_交班藥品.藥名].ObjectToString();
+                _transactionsClass.庫存量 = list_交班對點[i][(int)enum_交班藥品.庫存].ObjectToString();
+                _transactionsClass.盤點量 = list_交班對點[i][(int)enum_交班藥品.盤點量].ObjectToString();
+                _transactionsClass.操作人 = personPageClass_盤點人員.姓名;
+                _transactionsClass.藥師證字號 = personPageClass_盤點人員.藥師證字號;
+                _transactionsClass.覆核藥師 = personPageClass_覆盤人員.姓名;
+                _transactionsClass.開方時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
+                _transactionsClass.操作時間 = list_交班對點[i][(int)enum_交班藥品.確認時間].ObjectToString();
+                _transactionsClass.收支原因 = list_交班對點[i][(int)enum_交班藥品.收支原因].ObjectToString();
+                if(_transactionsClass.收支原因.StringIsEmpty())
+                {
+                    _transactionsClass.收支原因 = "交班對點";
+                }
+                _transactionsClass.備註 = 備註;
+                if (_transactionsClass.盤點量.ObjectToString().StringIsEmpty()) continue;
 
-                transactionsClasses.Add(transactionsClass);
+                if (transactionsClasses_old.Count > 0) transactionsClasses_update.Add(_transactionsClass);
+                else transactionsClasses_add.Add(_transactionsClass);
             }
             if (備註 == "交班盤點完成")
             {
                 transactionsClass transactionsClass = new transactionsClass();
                 transactionsClass.動作 = enum_交易記錄查詢動作.交班對點.GetEnumName();
+                transactionsClass.Order_GUID = guid;
                 transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.備註 = 備註;
-                transactionsClasses.Add(transactionsClass);
+                transactionsClasses_add.Add(transactionsClass);
             }
                 
-            transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
+            transactionsClass.add(Main_Form.API_Server, transactionsClasses_add, Main_Form.ServerName, Main_Form.ServerType);
+            transactionsClass.update_by_guid(Main_Form.API_Server, transactionsClasses_update, Main_Form.ServerName, Main_Form.ServerType);
         }
         #endregion
         #region Event
@@ -747,7 +852,7 @@ namespace 調劑台管理系統
             if (DialogResult != DialogResult.Yes)
             {
                 Function_寫入交易紀錄("盤點中斷");
-                list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
+                list_交班對點_buf = this.sqL_DataGridView_交班藥品.GetAllRows();
                 List<object[]> list_value = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
                 if (list_value.Count > 0)
                 {
@@ -757,7 +862,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                list_交班對點 = null;
+                list_交班對點_buf = null;
                 Main_Form.LockClosingEvent -= Main_Form_LockClosingEvent;
             }
         }
@@ -765,78 +870,88 @@ namespace 調劑台管理系統
         string CodeLast = "";
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
+            try
+            {
+                LoadingForm.ShowLoadingForm();
+                string text = this.comboBox_藥品群組.GetComboBoxText();
 
-            string text = this.comboBox_藥品群組.GetComboBoxText();
-            
-            List<DeviceBasic> devices_buf = new List<DeviceBasic>();
-            List<object[]> list_value = new List<object[]>();
-            List<object[]> list_value_buf = new List<object[]>();
-            List<string> list_IP = new List<string>();
-            List<medClass> medClasses = new List<medClass>();
-            if(text == "自選藥品")
-            {
-                Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
-                if(dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
-                medClasses.Add(dialog_藥品搜尋.Value);
-            }
-            else
-            {
-                medGroupClass _medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, text);
-                if (_medGroupClass == null)
+                List<DeviceBasic> devices_buf = new List<DeviceBasic>();
+                List<object[]> list_value = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+                List<string> list_IP = new List<string>();
+                List<medClass> medClasses = new List<medClass>();
+                if (text == "自選藥品")
                 {
-                    MyMessageBox.ShowDialog("藥品群組不存在");
-                    return;
-                }
-                medClasses = _medGroupClass.MedClasses;
-
-            }
-          
-            for (int i = 0; i < medClasses.Count; i++)
-            {
-
-                medClass medClass = medClasses[i];
-                object[] value = new object[new enum_交班藥品().GetLength()];
-                value[(int)enum_交班藥品.GUID] = medClass.GUID;
-                if(Main_Form.PLC_Device_使用藥品群組排序盤點.Bool)
-                {
-                    value[(int)enum_交班藥品.排列號] = medClass.排列號;
+                    Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
+                    if (dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
+                    medClasses.Add(dialog_藥品搜尋.Value);
                 }
                 else
                 {
-                    value[(int)enum_交班藥品.排列號] = Main_Form.Function_從SQL取得排列號(medClass.藥品碼).ToString();
+                    medGroupClass _medGroupClass = medGroupClass.get_group_by_name(Main_Form.API_Server, text);
+                    if (_medGroupClass == null)
+                    {
+                        MyMessageBox.ShowDialog("藥品群組不存在");
+                        return;
+                    }
+                    medClasses = _medGroupClass.MedClasses;
+
                 }
 
-                value[(int)enum_交班藥品.藥碼] = medClass.藥品碼;
-                value[(int)enum_交班藥品.藥名] = medClass.藥品名稱;
-                value[(int)enum_交班藥品.單位] = medClass.包裝單位;
-                int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
-                double 庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼);
-                value[(int)enum_交班藥品.庫存] = 差異值 + 庫存;
-                list_IP.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(medClass.藥品碼));
-                list_value.Add(value);
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+
+                    medClass medClass = medClasses[i];
+                    object[] value = new object[new enum_交班藥品().GetLength()];
+                    value[(int)enum_交班藥品.GUID] = medClass.GUID;
+                    if (Main_Form.PLC_Device_使用藥品群組排序盤點.Bool)
+                    {
+                        value[(int)enum_交班藥品.排列號] = medClass.排列號;
+                    }
+                    else
+                    {
+                        value[(int)enum_交班藥品.排列號] = Main_Form.Function_從SQL取得排列號(medClass.藥品碼).ToString();
+                    }
+
+                    value[(int)enum_交班藥品.藥碼] = medClass.藥品碼;
+                    value[(int)enum_交班藥品.藥名] = medClass.藥品名稱;
+                    value[(int)enum_交班藥品.單位] = medClass.包裝單位;
+                    int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.藥品碼);
+                    double 庫存 = Main_Form.Function_從SQL取得庫存(medClass.藥品碼);
+                    value[(int)enum_交班藥品.庫存] = 差異值 + 庫存;
+                    list_IP.LockAdd(Main_Form.Function_取得抽屜以藥品碼解鎖IP(medClass.藥品碼));
+                    list_value.Add(value);
+                }
+
+                list_IP = (from temp in list_IP
+                           select temp).Distinct().ToList();
+
+                for (int i = 0; i < list_IP.Count; i++)
+                {
+                    List<string> IPs = new List<string>();
+                    IPs.LockAdd(list_IP[i]);
+                    Main_Form.Function_抽屜解鎖(IPs);
+                    System.Threading.Thread.Sleep(100);
+                }
+
+                list_value.Sort(new ICP_交班藥品());
+                this.sqL_DataGridView_交班藥品.RefreshGrid(list_value);
+                this.Invoke(new Action(delegate
+                {
+                    this.sqL_DataGridView_交班藥品.SetSelectRow(0);
+                }));
+                list_交班對點_buf = this.sqL_DataGridView_交班藥品.GetAllRows();
+                PLC_Device_交班對點.Bool = true;
+                this.stepViewer.Next();
             }
-
-            list_IP = (from temp in list_IP
-                       select temp).Distinct().ToList();
-
-            for (int i = 0; i < list_IP.Count; i++)
+            catch(Exception ex)
             {
-                List<string> IPs = new List<string>();
-                IPs.LockAdd(list_IP[i]);
-                Main_Form.Function_抽屜解鎖(IPs);
-                System.Threading.Thread.Sleep(100);
+                MyMessageBox.ShowDialog(ex.Message);
             }
-
-            list_value.Sort(new ICP_交班藥品());
-            this.sqL_DataGridView_交班藥品.RefreshGrid(list_value);
-            this.Invoke(new Action(delegate
+            finally
             {
-                this.sqL_DataGridView_交班藥品.SetSelectRow(0);
-            }));
-            list_交班對點 = this.sqL_DataGridView_交班藥品.GetAllRows();
-            PLC_Device_交班對點.Bool = true;
-            this.stepViewer.Next();
-
+                LoadingForm.CloseLoadingForm();
+            }           
         }
         private void PlC_RJ_Button_盤點登入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -900,7 +1015,7 @@ namespace 調劑台管理系統
 
             this.stepViewer.CurrentStep = 1;
             this.sqL_DataGridView_交班藥品.ClearGrid();
-            list_交班對點 = null;
+            list_交班對點_buf = null;
         }
 
         private void RJ_Button_確認輸入_MouseDownEvent(MouseEventArgs mevent)

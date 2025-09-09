@@ -20,6 +20,7 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Data;
 using System.Net.Http.Json;
+using System.Diagnostics;
 
 namespace HIS_WebApi
 {
@@ -221,6 +222,91 @@ namespace HIS_WebApi
                     drugHFTagClass.GUID = Guid.NewGuid().ToString();
                     drugHFTagClass.更新時間 = DateTime.Now.ToDateTimeString_6();
                     drugHFTagClass.狀態 = enum_DrugHFTagStatus.已銷毀.GetEnumName();
+                    list_drugHFTag_add.Add(drugHFTagClass.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
+                }
+                sQLControl_drugHFTag.AddRows(null, list_drugHFTag_add);
+                sQLControl_drugHFTag.UpdateByDefulteExtra(null, list_drugHFTag_replace);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = drugHFTagClasses;
+                returnData.Result = $"新增標籤資料成功,共新增<{list_drugHFTag_add.Count}>筆資料";
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                string json = returnData.JsonSerializationt(true);
+                Logger.Log("DrugHFTag", json);
+                return json;
+            }
+        }
+        /// <summary>
+        /// 設定標籤重置
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [DrugHFTagClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("set_tag_reset")]
+        [HttpPost]
+        public string set_tag_reset([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "set_tag_reset";
+            try
+            {
+                returnData.RequestUrl = Method.GetRequestPath(HttpContext, includeQuery: false);
+
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+
+                List<sys_serverSettingClass> _sys_serverSettingClasses = new List<sys_serverSettingClass>();
+
+                if (returnData.ServerType.StringIsEmpty() || returnData.ServerName.StringIsEmpty()) _sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                else _sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM_DB");
+
+                if (_sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<DrugHFTagClass> drugHFTagClasses = returnData.Data.ObjToClass<List<DrugHFTagClass>>();
+                if (drugHFTagClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = _sys_serverSettingClasses[0].Server;
+                string DB = _sys_serverSettingClasses[0].DBName;
+                string UserName = _sys_serverSettingClasses[0].User;
+                string Password = _sys_serverSettingClasses[0].Password;
+                uint Port = (uint)_sys_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = new enum_DrugHFTag().GetEnumDescription();
+                SQLControl sQLControl_drugHFTag = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_drugHFTag_buf = new List<object[]>();
+                List<object[]> list_drugHFTag_add = new List<object[]>();
+                List<object[]> list_drugHFTag_replace = new List<object[]>();
+                for (int i = 0; i < drugHFTagClasses.Count; i++)
+                {
+                    DrugHFTagClass drugHFTagClass = drugHFTagClasses[i];
+                    if (drugHFTagClass.TagSN.StringIsEmpty()) continue;
+                    if (drugHFTagClass.效期.StringIsEmpty()) continue;
+                    drugHFTagClass.GUID = Guid.NewGuid().ToString();
+                    drugHFTagClass.更新時間 = DateTime.Now.ToDateTimeString_6();
+                    drugHFTagClass.狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
                     list_drugHFTag_add.Add(drugHFTagClass.ClassToSQL<DrugHFTagClass, enum_DrugHFTag>());
                 }
                 sQLControl_drugHFTag.AddRows(null, list_drugHFTag_add);
@@ -531,13 +617,17 @@ namespace HIS_WebApi
                 string statusCol = enum_DrugHFTag.狀態.GetEnumName();
 
                 string command = $@"
-                        SELECT * FROM {DB}.{TableName} t1
-                        WHERE t1.{statusCol} = '入庫註記'
-                          AND t1.{timeCol} = (
-                            SELECT MAX(t2.{timeCol})
-                            FROM {DB}.{TableName} t2
-                            WHERE UPPER(t2.{tagCol}) = UPPER(t1.{tagCol})
-                          )";
+                                                SELECT t1.*
+                        FROM {DB}.{TableName} t1
+                        INNER JOIN (
+                            SELECT {tagCol}, MAX({timeCol}) AS 最新時間
+                            FROM {DB}.{TableName}
+                            WHERE {statusCol} = '入庫註記'
+                            GROUP BY {tagCol}
+                        ) t2
+                        ON t1.{tagCol} = t2.{tagCol} 
+                        AND t1.{timeCol} = t2.最新時間
+                        WHERE t1.{statusCol} = '入庫註記';";
 
                 DataTable dataTable = sQLControl_drugHFTag.WtrteCommandAndExecuteReader(command);
                 list_value = dataTable.DataTableToRowList();
@@ -818,35 +908,72 @@ namespace HIS_WebApi
         public async Task<string> get_stockin_status_detail_summary_by_codes([FromBody] returnData returnData)
         {
             returnData.Method = "get_stockin_status_detail_summary_by_codes";
+            Stopwatch swTotal = Stopwatch.StartNew(); // 總計時間
+            List<string> logTimes = new();            // 紀錄每步驟耗時
+
             try
             {
+                // 計算單一 API 耗時的封裝方法
+                async Task<(string name, string result, long elapsedMs)> CallApiWithTime(string apiUrl, string body, string name)
+                {
+                    Stopwatch sw = Stopwatch.StartNew();
+                    var result = await Basic.Net.WEBApiPostJsonAsync(apiUrl, body, false);
+                    sw.Stop();
+                    return (name, result, sw.ElapsedMilliseconds);
+                }
+
+                Stopwatch sw = Stopwatch.StartNew();
+
+                // 解析藥碼
                 List<string> drugCodes = returnData.Data.ObjToClass<List<string>>();
+                logTimes.Add($"解析藥碼: {sw.ElapsedMilliseconds} ms");
+
                 string API_Server = "http://127.0.0.1:4433";
 
-                // 建立 HttpClient 並設定
+                // 建立 HttpClient
+                sw.Restart();
                 using HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(API_Server);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                logTimes.Add($"建立 HttpClient: {sw.ElapsedMilliseconds} ms");
 
+                // 建立 RequestBody
+                sw.Restart();
                 var requestBody = new returnData().JsonSerializationt(); // 空參數即可
+                logTimes.Add($"建立 RequestBody: {sw.ElapsedMilliseconds} ms");
 
-                // 執行四個 API 呼叫
-                var stockinEligibleTask = Basic.Net.WEBApiPostJsonAsync($"{API_Server}/api/DrugHFTag/get_latest_stockin_eligible_tags", requestBody, false);
-                var stockoutEligibleTask = Basic.Net.WEBApiPostJsonAsync($"{API_Server}/api/DrugHFTag/get_latest_stockout_eligible_tags", requestBody, false); 
-                var stockinTagTask = Basic.Net.WEBApiPostJsonAsync($"{API_Server}/api/DrugHFTag/get_latest_stockin_tag", requestBody, false); 
-                var stockoutTagTask = Basic.Net.WEBApiPostJsonAsync($"{API_Server}/api/DrugHFTag/get_latest_stockout_tag", requestBody, false); 
+                // 四個 API 平行呼叫
+                var stockinEligibleTask = CallApiWithTime($"{API_Server}/api/DrugHFTag/get_latest_stockin_eligible_tags", requestBody, "get_latest_stockin_eligible_tags");
+                var stockoutEligibleTask = CallApiWithTime($"{API_Server}/api/DrugHFTag/get_latest_stockout_eligible_tags", requestBody, "get_latest_stockout_eligible_tags");
+                var stockinTagTask = CallApiWithTime($"{API_Server}/api/DrugHFTag/get_latest_stockin_tag", requestBody, "get_latest_stockin_tag");
+                var stockoutTagTask = CallApiWithTime($"{API_Server}/api/DrugHFTag/get_latest_stockout_tag", requestBody, "get_latest_stockout_tag");
 
                 await Task.WhenAll(stockinEligibleTask, stockoutEligibleTask, stockinTagTask, stockoutTagTask);
 
-                // 回傳資料解析
-                var stockinEligible = (await stockinEligibleTask).JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
-                var stockoutEligible = (await stockoutEligibleTask).JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
-                var stockinTag = (await stockinTagTask).JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
-                var stockoutTag = (await stockoutTagTask).JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
+                // 取得結果
+                var stockinEligibleResult = await stockinEligibleTask;
+                var stockoutEligibleResult = await stockoutEligibleTask;
+                var stockinTagResult = await stockinTagTask;
+                var stockoutTagResult = await stockoutTagTask;
 
+                // 記錄各自耗時
+                logTimes.Add($"API {stockinEligibleResult.name}: {stockinEligibleResult.elapsedMs} ms");
+                logTimes.Add($"API {stockoutEligibleResult.name}: {stockoutEligibleResult.elapsedMs} ms");
+                logTimes.Add($"API {stockinTagResult.name}: {stockinTagResult.elapsedMs} ms");
+                logTimes.Add($"API {stockoutTagResult.name}: {stockoutTagResult.elapsedMs} ms");
+
+                // 反序列化
+                sw.Restart();
+                var stockinEligible = stockinEligibleResult.result.JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
+                var stockoutEligible = stockoutEligibleResult.result.JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
+                var stockinTag = stockinTagResult.result.JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
+                var stockoutTag = stockoutTagResult.result.JsonDeserializet<returnData>().Data.ObjToClass<List<DrugHFTagClass>>();
+                logTimes.Add($"資料解析完成: {sw.ElapsedMilliseconds} ms");
+
+                // 統計
+                sw.Restart();
                 List<DrugHFTagStatusSummaryByCode> result = new();
-
                 foreach (var code in drugCodes)
                 {
                     double 可入庫數量 = stockinEligible.Count(t => t.藥碼 == code);
@@ -864,16 +991,21 @@ namespace HIS_WebApi
                         總數量 = 可入庫數量 + 可出庫數量
                     });
                 }
+                logTimes.Add($"統計計算完成: {sw.ElapsedMilliseconds} ms");
 
+                swTotal.Stop();
                 returnData.Code = 200;
                 returnData.Data = result;
-                returnData.Result = $"成功統計共 {result.Count} 筆藥碼資料";
+                returnData.Result = $"成功統計共 {result.Count} 筆藥碼資料, 總耗時 {swTotal.ElapsedMilliseconds} ms\n" +
+                                    string.Join("\n", logTimes);
                 return returnData.JsonSerializationt();
             }
             catch (Exception ex)
             {
+                swTotal.Stop();
                 returnData.Code = -200;
-                returnData.Result = $"錯誤: {ex.Message}";
+                returnData.Result = $"錯誤: {ex.Message}, 總耗時 {swTotal.ElapsedMilliseconds} ms\n" +
+                                    string.Join("\n", logTimes);
                 return returnData.JsonSerializationt();
             }
         }

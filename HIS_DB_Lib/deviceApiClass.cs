@@ -264,6 +264,112 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_result}");
 
         }
+        /// <summary>
+        /// 呼叫 API: 合併儲位 (CombineBoxes)
+        /// </summary>
+        /// <param name="API_Server">API 伺服器位址 (例如: http://127.0.0.1:5000)</param>
+        /// <param name="ServerName">伺服器名稱</param>
+        /// <param name="ServerType">伺服器類型</param>
+        /// <param name="drawer">要進行合併的 Drawer 物件</param>
+        /// <param name="selectColumns">要合併的欄位清單</param>
+        /// <param name="selectRows">要合併的列清單</param>
+        /// <returns>回傳更新後的 Drawer，如果失敗則回傳 null</returns>
+        public static Drawer combine_drawer_boxes( string API_Server, string ServerName, string ServerType, Drawer drawer, List<int> selectColumns, List<int> selectRows)
+        {
+            string url = $"{API_Server}/api/device/combine_drawer_boxes";
+
+            // 準備 returnData 結構
+            returnData returnData = new returnData
+            {
+                ServerName = ServerName,
+                ServerType = ServerType,
+                Data = drawer,
+                ValueAry = new List<string>
+        {
+            $"SelectColumns={string.Join(",", selectColumns)}",
+            $"SelectRows={string.Join(",", selectRows)}"
+        }
+            };
+
+            try
+            {
+                // JSON 輸入
+                string json_in = returnData.JsonSerializationt();
+
+                // 呼叫 API
+                string json_out = Net.WEBApiPostJson(url, json_in);
+
+                // 解析回傳
+                returnData returnData_result = json_out.JsonDeserializet<returnData>();
+                if (returnData_result.Code != 200)
+                {
+                    Console.WriteLine($"[CombineBoxes API Error] {returnData_result.Result}");
+                    return null;
+                }
+
+                // 成功 → 轉換回 Drawer
+                Drawer updatedDrawer = returnData_result.Data.ObjToClass<Drawer>();
+                return updatedDrawer;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CombineBoxes API Exception] {ex.Message}");
+                return null;
+            }
+        }
+        /// <summary>
+        /// 呼叫 API: 分割儲位 (CombineBoxes)
+        /// </summary>
+        /// <param name="API_Server">API 伺服器位址 (例如: http://127.0.0.1:5000)</param>
+        /// <param name="ServerName">伺服器名稱</param>
+        /// <param name="ServerType">伺服器類型</param>
+        /// <param name="drawer">要進行合併的 Drawer 物件</param>
+        /// <param name="selectColumns">要合併的欄位清單</param>
+        /// <param name="selectRows">要合併的列清單</param>
+        /// <returns>回傳更新後的 Drawer，如果失敗則回傳 null</returns>
+        public static Drawer separate_drawer_boxes(string API_Server, string ServerName, string ServerType, Drawer drawer, List<int> selectColumns, List<int> selectRows)
+        {
+            string url = $"{API_Server}/api/device/separate_drawer_boxes";
+
+            // 準備 returnData 結構
+            returnData returnData = new returnData
+            {
+                ServerName = ServerName,
+                ServerType = ServerType,
+                Data = drawer,
+                ValueAry = new List<string>
+        {
+            $"SelectColumns={string.Join(",", selectColumns)}",
+            $"SelectRows={string.Join(",", selectRows)}"
+        }
+            };
+
+            try
+            {
+                // JSON 輸入
+                string json_in = returnData.JsonSerializationt();
+
+                // 呼叫 API
+                string json_out = Net.WEBApiPostJson(url, json_in);
+
+                // 解析回傳
+                returnData returnData_result = json_out.JsonDeserializet<returnData>();
+                if (returnData_result.Code != 200)
+                {
+                    Console.WriteLine($"[CombineBoxes API Error] {returnData_result.Result}");
+                    return null;
+                }
+
+                // 成功 → 轉換回 Drawer
+                Drawer updatedDrawer = returnData_result.Data.ObjToClass<Drawer>();
+                return updatedDrawer;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CombineBoxes API Exception] {ex.Message}");
+                return null;
+            }
+        }
 
         static public List<Storage> Get_EPD266_Storage(string API_Server, string ServerName, string ServerType)
         {

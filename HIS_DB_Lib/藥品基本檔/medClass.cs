@@ -284,7 +284,8 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
-        public List<medStorageClass> STORAGE { get; set; } = new List<medStorageClass>();
+        [JsonPropertyName("STORAGE")]
+        public List<medStorageClass> storageInfo { get; set; } = new List<medStorageClass>();
 
         [JsonPropertyName("DeviceBasics")]
         public List<DeviceBasic> DeviceBasics { get => deviceBasics; set => deviceBasics = value; }

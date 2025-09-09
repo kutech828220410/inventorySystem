@@ -92,7 +92,10 @@ namespace 智能RFID燒錄系統
 
             comboBox_藥品資料_搜尋方式.SelectedIndex = 0;
 
-
+            List<sys_serverSettingClass> sys_ServerSettingClasses = sys_serverSettingClass.get_serversetting_by_type(dBConfigClass.Api_Server,"調劑台");
+            comboBox_燒錄位置.DataSource = (from temp in sys_ServerSettingClasses
+                                        where temp.設備名稱.Contains("冰箱")
+                                        select temp.設備名稱).ToList();
             Table table = DrugHFTagClass.init(API_Server);
             this.sqL_DataGridView_TagList.RowsHeight = 50;
             this.sqL_DataGridView_TagList.Init(table);
@@ -245,6 +248,7 @@ namespace 智能RFID燒錄系統
                 drugHFTagClasses[i].效期 = rJ_DatePicker_效期.Value.ToDateString();
                 drugHFTagClasses[i].批號 = rJ_TextBox_批號.Text;
                 drugHFTagClasses[i].數量 = rJ_TextBox_數量.Text;
+                drugHFTagClasses[i].存放位置 = comboBox_燒錄位置.GetComboBoxText();
                 drugHFTagClasses[i].狀態 = enum_DrugHFTagStatus.已重置.GetEnumName();
                 drugHFTagClasses[i].更新時間 = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
@@ -261,26 +265,36 @@ namespace 智能RFID燒錄系統
         {
             this.Invoke(new Action(delegate
             {
-                _rfidReader.ConfigurePort(this.comboBox_Comport.Text, 115200);
-                _rfidReader.Open();
-                if (_rfidReader.IsOpen)
+                try
                 {
-                    string str = _rfidReader.ReadHardwareInfo();
-                    if (str.StringIsEmpty())
+                    _rfidReader.ConfigurePort(this.comboBox_Comport.Text, 115200);
+                    _rfidReader.Open();
+                    if (_rfidReader.IsOpen)
                     {
-                        MyMessageBox.ShowDialog("Failed to read RFID reader information.");
-                        return;
+                        string str = _rfidReader.ReadHardwareInfo();
+                        if (str.StringIsEmpty())
+                        {
+                            MyMessageBox.ShowDialog("Failed to read RFID reader information.");
+                            return;
+                        }
+                        rJ_Lable_device_info.Text = $"Device info :{str}";
+                        this.rJ_Button_Connect.Text = "Connected";
+                        this.rJ_Button_Connect.Enabled = false;
+                        this.comboBox_Comport.Enabled = false;
+                        IsComConnected = true;
                     }
-                    rJ_Lable_device_info.Text = $"Device info :{str}";
-                    this.rJ_Button_Connect.Text = "Connected";
-                    this.rJ_Button_Connect.Enabled = false;
-                    this.comboBox_Comport.Enabled = false;
-                    IsComConnected = true;
+                    else
+                    {
+                        MyMessageBox.ShowDialog("Failed to connect to RFID reader.");
+                    }
+
                 }
-                else
+                catch(Exception ex)
                 {
-                    MyMessageBox.ShowDialog("Failed to connect to RFID reader.");
+                    _rfidReader.Close();
+                    MyMessageBox.ShowDialog($"Exception : {ex.Message}");
                 }
+               
             }));
 
         }

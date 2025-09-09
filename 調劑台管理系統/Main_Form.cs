@@ -20,8 +20,9 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.25.08015")]
-[assembly: AssemblyFileVersion("1.0.25.08015")]
+using H_Pannel_lib;
+[assembly: AssemblyVersion("1.0.25.09072")]
+[assembly: AssemblyFileVersion("1.0.25.09072")]
 namespace 調劑台管理系統
 {
 
@@ -110,6 +111,11 @@ namespace 調劑台管理系統
         static public PLC_Device PLC_Device_批次領藥_藥品總量調劑 = new PLC_Device("S5022");
         static public PLC_Device PLC_Device_盤點_顯示庫存量及預帶盤點量 = new PLC_Device("S5050");
         static public PLC_Device PLC_Device_退藥不選擇效期批號 = new PLC_Device("S5053");
+        static public PLC_Device PLC_Device_盤點異常量直接寫入庫存 = new PLC_Device("S5054");
+        static public PLC_Device PLC_Device_手輸醫令要選擇收支原因 = new PLC_Device("S5055");
+        static public PLC_Device PLC_Device_退藥要選擇收支原因 = new PLC_Device("S5056");
+
+
         static public PLC_Device PLC_Device_使用藥品群組排序盤點 = new PLC_Device("S5051");
         static public PLC_Device PLC_Device_多醫令模式 = new PLC_Device("S5013");
 
@@ -372,7 +378,7 @@ namespace 調劑台管理系統
 
             currentContext = BufferedGraphicsManager.Current;
             myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
-
+            
             // 在緩衝區域進行繪製
             Graphics g = myBuffer.Graphics;
             g.Clear(this.BackColor); // 清除背景
@@ -390,7 +396,7 @@ namespace 調劑台管理系統
             _pannel_Locker_Design = this.pannel_Locker_Design;
             _plC_ScreenPage_Main = this.plC_ScreenPage_Main;
 
-           
+            
 
             H_Pannel_lib.Communication.ConsoleWrite = false;
             Net.DebugLog = false;
@@ -580,7 +586,12 @@ namespace 調劑台管理系統
 
       
             this.Program_Scanner_RS232_Init();
-         
+
+            _drawerUI_EPD_1020 = this.drawerUI_EPD_1020;
+            _storageUI_EPD_266 = this.storageUI_EPD_266;
+            _storageUI_WT32 = this.storageUI_WT32;
+            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
+            _storageUI_LCD_114 = this.storageUI_LCD_114;
 
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();
@@ -647,10 +658,7 @@ namespace 調劑台管理系統
             this.storageUI_LCD_114.Set_UDP_WriteTime(1);
             this.storageUI_WT32.Set_UDP_WriteTime(5);
 
-            _storageUI_EPD_266 = this.storageUI_EPD_266;
-            _storageUI_WT32 = this.storageUI_WT32;
-            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
-            _storageUI_LCD_114 = this.storageUI_LCD_114;
+       
 
             DateTime dateTime = sys_serverSettingClass.GetServerTime(API_Server);
             Console.WriteLine($"從伺服器取得時間: {dateTime:yyyy/MM/dd HH:mm:ss}");

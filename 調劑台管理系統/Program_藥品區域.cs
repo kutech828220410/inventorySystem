@@ -288,6 +288,7 @@ namespace 調劑台管理系統
                     if (燈號更新旗標.StringToBool())
                     {
                         int port = Port.StringToInt32();
+                        if (port == -1) return;
                         if (port == 29005)
                         {
                             int num = Num.StringToInt32();

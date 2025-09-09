@@ -124,7 +124,9 @@ namespace HIS_DB_Lib
         [Description("收支原因,VARCHAR,200,None")]
         收支原因,
         [Description("診別,VARCHAR,20,None")]
-        診別
+        診別,
+        [Description("儲位描述,VARCHAR,200,None")]
+        儲位描述
 
     }
     [EnumDescription("take_medicine_substack_new")]
@@ -433,7 +435,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("clinic_type")]
         public string 診別 { get; set; }
-
+        /// <summary>
+        /// 儲位描述
+        /// </summary>
+        [JsonPropertyName("storage_note")]
+        public string 儲位描述 { get; set; }
 
         static public List<SQLUI.Table> init(string API_Server, string ServerName, string ServerType)
         {

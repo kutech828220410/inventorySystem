@@ -78,7 +78,7 @@ namespace 調劑台管理系統
                     notifyExceptionClass.GUID = medRecheckLogClasses[i].GUID;
                     notifyExceptionClass.發生時間 = medRecheckLogClasses[i].發生時間;
                     notifyExceptionClass.類別 = medRecheckLogClasses[i].發生類別;
-                    if (medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.交班對點.GetEnumName())
+                    if (medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.交班對點.GetEnumName() || medRecheckLogClasses[i].發生類別 == enum_medRecheckLog_ICDT_TYPE.盤點異常.GetEnumName())
                     {
                         notifyExceptionClass.內容 = $"({medRecheckLogClasses[i].藥碼}){medRecheckLogClasses[i].藥名} ,盤點量:{medRecheckLogClasses[i].盤點值}";
                     }
