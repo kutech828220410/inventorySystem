@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_bbs_ReportLevel
+    public enum enum_controlpanelLevel
     {
         [Description("Normal")]
         Normal,       // 一般
@@ -18,8 +18,8 @@ namespace HIS_DB_Lib
         [Description("Critical")]
         Critical      // 緊急
     }
-    [EnumDescription("bbs")]
-    public enum enum_bbs
+    [EnumDescription("controlpanel")]
+    public enum enum_controlpanel
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -40,7 +40,7 @@ namespace HIS_DB_Lib
         [Description("公告結束時間,DATETIME,20,INDEX")]
         公告結束時間,
     }
-    public class bbsClass
+    public class controlpanelClass
     {
         /// <summary>
         /// GUID
@@ -96,9 +96,9 @@ namespace HIS_DB_Lib
         [JsonPropertyName("end_time")]
         public string 公告結束時間 { get; set; }
 
-        public class ICP_By_ct_time : IComparer<bbsClass>
+        public class ICP_By_ct_time : IComparer<controlpanelClass>
         {
-            public int Compare(bbsClass x, bbsClass y)
+            public int Compare(controlpanelClass x, controlpanelClass y)
             {
                 return x.建立時間.CompareTo(y.建立時間) * -1;
             }
