@@ -335,8 +335,8 @@ namespace 調劑台管理系統
             medClasses = (from temp in medClasses
                           where temp.藥品名稱.ToUpper().Contains(serch_text) || temp.藥品學名.ToUpper().Contains(serch_text)
                           select temp).ToList();
-
-            this.sqL_DataGridView_藥品資料.RefreshGrid(medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>());
+            var list = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+            this.sqL_DataGridView_藥品資料.RefreshGrid(list);
         }
         private void RJ_Button_藥品資料_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -48,6 +48,7 @@ namespace 調劑台管理系統
             }
             this.list_醫令資料_buf = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
             this._sqL_DataGridView_醫令資料 = Main_Form._sqL_DataGridView_醫令資料;
+            this.LoadFinishedEvent += Dialog_醫令退藥_LoadFinishedEvent;
             //InitializeComponent();
         }
         public Dialog_醫令退藥(List<object[]> list_醫令資料)
