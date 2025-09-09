@@ -1897,7 +1897,7 @@ namespace HIS_WebApi
                     inv_combinelist_stock_Class inv_Combinelist_Stock_Class = new inv_combinelist_stock_Class();
                     inv_Combinelist_Stock_Class.GUID = Guid.NewGuid().ToString();
                     inv_Combinelist_Stock_Class.合併單號 = returnData.Value;
-                    inv_Combinelist_Stock_Class.藥碼 = 藥碼;
+                    inv_Combinelist_Stock_Class.藥碼 = code;
                     inv_Combinelist_Stock_Class.藥名 = 藥名;
                     inv_Combinelist_Stock_Class.數量 = "0";
                     inv_Combinelist_Stock_Class.加入時間 = DateTime.Now.ToDateTimeString_6();
@@ -2229,7 +2229,7 @@ namespace HIS_WebApi
                     inv_combinelist_price_Class inv_Combinelist_Price_Class = inv_Combinelist_Price_Classes[i];
                     inv_Combinelist_Price_Class.GUID = Guid.NewGuid().ToString();
                     inv_Combinelist_Price_Class.合併單號 = returnData.Value;
-                    inv_Combinelist_Price_Class.藥碼 = 藥碼;
+                    inv_Combinelist_Price_Class.藥碼 = code;
                     inv_Combinelist_Price_Class.藥名 = 藥名;
                     inv_Combinelist_Price_Class.加入時間 = DateTime.Now.ToDateTimeString_6();
 
@@ -2550,7 +2550,7 @@ namespace HIS_WebApi
                     inv_combinelist_note_Class inv_Combinelist_note_Class = inv_Combinelist_note_Classes[i];
                     inv_Combinelist_note_Class.GUID = Guid.NewGuid().ToString();
                     inv_Combinelist_note_Class.合併單號 = returnData.Value;
-                    inv_Combinelist_note_Class.藥碼 = 藥碼;
+                    inv_Combinelist_note_Class.藥碼 = code;
                     inv_Combinelist_note_Class.藥名 = 藥名;
                     inv_Combinelist_note_Class.加入時間 = DateTime.Now.ToDateTimeString_6();
 
@@ -3566,7 +3566,7 @@ namespace HIS_WebApi
                 {
                     bool flag_覆盤 = false;
                     string 藥碼 = contents[i].藥品碼;
-                    string __料號 = contents[i].料號;
+                    string 料號 = contents[i].料號;
                     inv_combinelist_report_Class inv_Combinelist_Report_Class = new inv_combinelist_report_Class();
 
                     inv_Combinelist_Report_Class.GUID = Guid.NewGuid().ToString();
@@ -3580,15 +3580,15 @@ namespace HIS_WebApi
                     inv_Combinelist_Report_Class.合併單號 = 合併單號;
 
 
-                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = inv_CombinelistClass.GetStockByCode(藥碼);
-                    inv_combinelist_price_Class inv_Combinelist_Price_Class = inv_CombinelistClass.GetMedPriceByCode(藥碼);
-                    inv_combinelist_note_Class inv_Combinelist_Note_Class = inv_CombinelistClass.GetMedNoteByCode(藥碼);
+                    inv_combinelist_stock_Class inv_Combinelist_Stock_Class = inv_CombinelistClass.GetStockByCode(藥碼, 料號);
+                    inv_combinelist_price_Class inv_Combinelist_Price_Class = inv_CombinelistClass.GetMedPriceByCode(藥碼, 料號);
+                    inv_combinelist_note_Class inv_Combinelist_Note_Class = inv_CombinelistClass.GetMedNoteByCode(藥碼, 料號);
                     inv_combinelist_review_Class inv_Combinelist_Review_Class = inv_CombinelistClass.GetMedReviewByCode(藥碼);
 
                     if (inv_Combinelist_Stock_Class != null) inv_Combinelist_Report_Class.庫存量 = inv_Combinelist_Stock_Class.數量;
+                    if (inv_Combinelist_Price_Class != null) inv_Combinelist_Report_Class.單價 = inv_Combinelist_Price_Class.單價;
                     if (inv_Combinelist_Note_Class != null) inv_Combinelist_Report_Class.備註 = inv_Combinelist_Note_Class.備註;
                     if (inv_Combinelist_Review_Class != null) inv_Combinelist_Report_Class.覆盤量 = inv_Combinelist_Review_Class.數量;
-                    if (inv_Combinelist_Price_Class != null) inv_Combinelist_Report_Class.單價 = inv_Combinelist_Price_Class.單價;
 
                     inv_Combinelist_Report_Class.庫存金額 = (inv_Combinelist_Report_Class.庫存量.StringToDouble() * inv_Combinelist_Report_Class.單價.StringToDouble()).ToString("0.00");
                     if (inv_Combinelist_Report_Class.覆盤量.StringIsEmpty())

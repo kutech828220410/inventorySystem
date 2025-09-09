@@ -406,29 +406,17 @@ namespace HIS_DB_Lib
                                                        select temp).ToList();
             records_Ary = records_Ary_buf;
         }
-        public inv_combinelist_stock_Class GetStockByCode(string code)
+        public inv_combinelist_stock_Class GetStockByCode(string code, string stockCode = null)
         {
-            List<inv_combinelist_stock_Class> stocks_buf = (from temp in stocks
-                                                            where temp.藥碼 == code
-                                                            select temp).ToList();
-            if (stocks_buf.Count == 0) return null;
-            return stocks_buf[0];
+            return stocks.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
-        public inv_combinelist_price_Class GetMedPriceByCode(string code)
-        {
-            List<inv_combinelist_price_Class> medPrice_buf = (from temp in medPrices
-                                                              where temp.藥碼 == code
-                                                              select temp).ToList();
-            if (medPrice_buf.Count == 0) return null;
-            return medPrice_buf[0];
+        public inv_combinelist_price_Class GetMedPriceByCode(string code, string stockCode = null)
+        { 
+            return medPrices.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
-        public inv_combinelist_note_Class GetMedNoteByCode(string code)
-        {
-            List<inv_combinelist_note_Class> medNote_buf = (from temp in medNotes
-                                                            where temp.藥碼 == code
-                                                            select temp).ToList();
-            if (medNote_buf.Count == 0) return null;
-            return medNote_buf[0];
+        public inv_combinelist_note_Class GetMedNoteByCode(string code, string stockCode = null)
+        {           
+            return medNotes.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
         public inv_combinelist_review_Class GetMedReviewByCode(string code)
         {

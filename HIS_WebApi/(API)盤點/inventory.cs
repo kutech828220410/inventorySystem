@@ -1868,7 +1868,7 @@ namespace HIS_WebApi
         /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add")]
         [HttpPost]
-        public string sub_content_add([FromBody] returnData returnData)
+        public async Task<string> sub_content_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -1893,34 +1893,40 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
             List<object[]> list_inventory_content = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.GUID, Master_GUID);
-            List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_add = new List<object[]>();
 
-
-            list_inventory_content_buf = list_inventory_content;
-            //if (list_inventory_content_buf.Count == 0)
-            //{
-            //    returnData.Code = -5;
-            //    returnData.TimeTaken = myTimer.ToString();
-            //    returnData.Result = $"找無資料!";
-            //    returnData.Method = "sub_content_add";
-            //    returnData.Data = null;
-            //    return returnData.JsonSerializationt();
-            //}
-
-            if(sub_content.效期.Check_Date_String() == false)
+            if (list_inventory_content.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"找無資料!";
+                returnData.Method = "sub_content_add";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+            medClass medClass = await MED_pageController.Get_med_cloudAsync(sys_serverSettingClasses[0], list_inventory_content[0][(int)enum_盤點內容.藥品碼].ToString());
+            if(medClass == null || medClass.開檔狀態.Contains("關檔中"))
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"此藥品關檔中!";
+                returnData.Method = "sub_content_add";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+            
+            if (sub_content.效期.Check_Date_String() == false)
             {
                 sub_content.效期 = "1911-01-01";
             }
 
             object[] value = new object[new enum_盤點明細().GetLength()];
             value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
-            value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
-            value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
+            value[(int)enum_盤點明細.藥品碼] = list_inventory_content[0][(int)enum_盤點內容.藥品碼];
+            value[(int)enum_盤點明細.料號] = list_inventory_content[0][(int)enum_盤點內容.料號];
 
-            value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
-            //value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
-            //value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
+            value[(int)enum_盤點明細.盤點單號] = list_inventory_content[0][(int)enum_盤點內容.盤點單號];
+            value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content[0][(int)enum_盤點內容.藥品條碼1];
+            value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content[0][(int)enum_盤點內容.藥品條碼2];
 
             value[(int)enum_盤點明細.Master_GUID] = Master_GUID;
             value[(int)enum_盤點明細.效期] = sub_content.效期;
@@ -1930,9 +1936,8 @@ namespace HIS_WebApi
             value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString();
             value[(int)enum_盤點明細.狀態] = "未鎖定";
 
-            list_add.Add(value);
 
-            sQLControl_inventory_sub_content.AddRows(null, list_add);
+            await sQLControl_inventory_sub_content.AddRowAsync(null, value);
 
             inventoryClass.content content = new inventoryClass.content();
             content.GUID = Master_GUID;
