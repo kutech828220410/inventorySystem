@@ -1684,7 +1684,7 @@ namespace HIS_WebApi
         /// </returns>
         [Route("separate_drawer_boxes")]
         [HttpPost]
-        public string separate_boxes([FromBody] returnData returnData)
+        public string separate_drawer_boxes([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -1756,7 +1756,160 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 更新儲位藥碼 (update_drawer_medcode)
+        /// </summary>
+        /// <remarks>
+        /// 此 API 用於更新指定 Drawer 內某個 Box 的藥品資訊，會依據 <c>ValueAry</c> 內傳入的 <c>guid</c> 與 <c>code</c> 進行更新：  
+        /// - 依據 guid 找到對應的 Box。  
+        /// - 透過藥碼 code 查詢雲端藥檔資料。  
+        /// - 更新該 Box 的藥品資訊（Name、Code、藥品屬性等）。  
+        ///
+        /// <b>邏輯流程：</b>  
+        /// 1. 驗證 Server 設定是否存在。  
+        /// 2. 驗證 Data 必須為 <c>Drawer</c> 結構。  
+        /// 3. 驗證 <c>ValueAry</c> 必須包含 <c>guid</c> 與 <c>code</c>。  
+        /// 4. 查詢雲端藥檔 (medClass)。  
+        /// 5. 更新指定 Box 的藥品資訊。  
+        /// 6. 回傳更新後的 Drawer。  
+        ///
+        /// <b>注意事項：</b>  
+        /// - <c>guid</c> 為 Box 的唯一識別碼，必須存在於 Drawer 內。  
+        /// - <c>code</c> 必須能在雲端藥檔找到對應藥品。  
+        /// - <c>ValueAry</c> 的格式為「key=value」字串，例如 "guid=BOX123"。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "ValueAry": [
+        ///     "guid=BOX-1234567890",
+        ///     "code=MED-00123"
+        ///   ],
+        ///   "Data": {
+        ///     "GUID": "DRAWER-ABCDEF123456",
+        ///     "Name": "藥局抽屜-01",
+        ///     "Boxes": [
+        ///       {
+        ///         "GUID": "BOX-1234567890",
+        ///         "Column": 0,
+        ///         "Row": 0,
+        ///         "Name": "",
+        ///         "Code": ""
+        ///       }
+        ///     ]
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 成功回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "update_drawer_medcode 執行成功！",
+        ///   "Data": {
+        ///     "GUID": "DRAWER-ABCDEF123456",
+        ///     "Name": "藥局抽屜-01",
+        ///     "Boxes": [
+        ///       {
+        ///         "GUID": "BOX-1234567890",
+        ///         "Column": 0,
+        ///         "Row": 0,
+        ///         "Name": "普拿疼錠劑 500mg",
+        ///         "Code": "MED-00123"
+        ///       }
+        ///     ]
+        ///   },
+        ///   "TimeTaken": "0.084 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 錯誤回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "找無藥碼 : MED-00123 的藥品資料"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須包含 Drawer，ValueAry 必須有「guid=...」與「code=...」
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 會回傳更新後的 Drawer 結構
+        /// </returns>
+        [Route("update_drawer_medcode")]
+        [HttpPost]
+        public string update_drawer_medcode([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_drawer_medcode";
+            try
+            {
+                // 取得 Server 資料
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                // 驗證 Data 是否正確
+                Drawer drawer = returnData.Data.ObjToClass<Drawer>();
+                if (drawer == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入 Data 格式錯誤，必須為 Drawer";
+                    return returnData.JsonSerializationt();
+                }
+                string guid = returnData.ValueAry.GetVal("guid", "");
+                string code = returnData.ValueAry.GetVal("code", "");
+
+
+                if (guid.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ValueAry 中缺少 guid";
+                    return returnData.JsonSerializationt();
+                }
+                Box box = drawer.GetByGUID(guid);
+                if (box == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無 GUID : {guid} 的 Box";
+                    return returnData.JsonSerializationt();
+                }
+
+                medClass medClass = medClass.get_med_clouds_by_code(API_Server, code);
+                if (medClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無藥碼 : {code} 的藥品資料";
+                    return returnData.JsonSerializationt();
+                }
+                box.SetMedClass(medClass);
+
+
+                // 回傳更新後的 Drawer
+                returnData.Data = drawer;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = "update_drawer_medcode 執行成功！";
+
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"update_drawer_medcode 發生錯誤: {e.Message}";
+                return returnData.JsonSerializationt();
+            }
+        }
 
         /// <summary>
         /// 取得所有儲位資料 (EPD266)
@@ -2332,6 +2485,144 @@ namespace HIS_WebApi
 
 
         }
+        /// <summary>
+        /// 更新 EPD266 儲位藥碼 (update_epd266_medcode)
+        /// </summary>
+        /// <remarks>
+        /// 此 API 用於更新指定 EPD266 儲位的藥品資訊，會依據 <c>ValueAry</c> 內傳入的 <c>code</c> 更新 Storage 內容：  
+        /// - 透過藥碼 code 查詢雲端藥檔資料。  
+        /// - 更新目標 Storage 的藥品屬性 (Name、Code、其他屬性)。  
+        ///
+        /// <b>邏輯流程：</b>  
+        /// 1. 驗證 Server 設定是否存在。  
+        /// 2. 驗證 Data 必須為 <c>Storage</c> 結構。  
+        /// 3. 驗證 <c>ValueAry</c> 必須包含 <c>code</c>。  
+        /// 4. 呼叫 <c>medClass.get_med_clouds_by_code</c> 查詢雲端藥檔。  
+        /// 5. 更新 Storage 的藥品資訊。  
+        /// 6. 回傳更新後的 Storage。  
+        ///
+        /// <b>注意事項：</b>  
+        /// - <c>code</c> 為必填欄位，格式為「code=藥碼」。  
+        /// - 若傳入的藥碼無法在雲端藥檔中找到，將回傳錯誤。  
+        /// - Data 必須為有效的 <c>Storage</c> 物件。  
+        ///
+        /// <b>JSON 請求範例：</b>
+        /// ```json
+        /// {
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "ValueAry": [
+        ///     "code=MED-00123"
+        ///   ],
+        ///   "Data": {
+        ///     "StorageID": "EPD266-01",
+        ///     "Name": "EPD266 儲位 A1",
+        ///     "MedCode": "",
+        ///     "MedName": ""
+        ///   }
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 成功回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "更新medcode成功!,TableName : epd266_jsonstring",
+        ///   "Data": {
+        ///     "StorageID": "EPD266-01",
+        ///     "Name": "EPD266 儲位 A1",
+        ///     "MedCode": "MED-00123",
+        ///     "MedName": "普拿疼錠劑 500mg"
+        ///   },
+        ///   "TimeTaken": "0.092 秒"
+        /// }
+        /// ```
+        ///
+        /// <b>JSON 錯誤回應範例：</b>
+        /// ```json
+        /// {
+        ///   "Code": -200,
+        ///   "Result": "傳入ValueAry無code資料"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="returnData">
+        /// 共用傳遞資料結構，Data 必須包含 Storage，ValueAry 必須有「code=...」
+        /// </param>
+        /// <returns>
+        /// [returnData.Data] 會回傳更新後的 Storage 結構
+        /// </returns>
+        [Route("update_epd266_medcode")]
+        [HttpPost]
+        public string update_epd266_medcode(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "update_epd266_medcode";
+            try
+            {
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string tableName = "epd266_jsonstring";
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                Storage storage = returnData.Data.ObjToClass<Storage>();
+          
+                if (storage == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+
+                string code = returnData.ValueAry.GetVal("code", "");
+
+                if (code == "")
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入ValueAry無code資料";
+                    return returnData.JsonSerializationt();
+                }
+                medClass medClass = medClass.get_med_clouds_by_code(API_Server, code);
+                if(medClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無藥碼資料";
+                    return returnData.JsonSerializationt();
+                }
+                storage.SetMedClass(medClass);
+                          
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = storage;
+                returnData.Result = $"更新medcode成功!,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+
         /// <summary>
         /// 取得儲位資料(Panel35)
         /// </summary>

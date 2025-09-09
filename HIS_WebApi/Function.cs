@@ -78,6 +78,9 @@ namespace HIS_WebApi
 
             return context.Request.Path;
         }
+        public static string GetVal(this List<string> valueAry, string key, string defaultVal = null)
+    => valueAry?.FirstOrDefault(x => x.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase))?.Split('=')[1] ?? defaultVal;
+
     }
 
 
