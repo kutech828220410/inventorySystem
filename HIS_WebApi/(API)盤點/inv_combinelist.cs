@@ -3278,7 +3278,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             GET_init(returnData);
-            returnData.Method = "get_full_inv_DataTable_by_SN_extra";
+            returnData.Method = "get_full_inv_DataTable_by_SN";
             
             if (returnData.Value.StringIsEmpty() == true)
             {
@@ -3480,6 +3480,34 @@ namespace HIS_WebApi
             List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
             dataTable.TableName = "盤點總表";
+            foreach (var dt in dataTables_creat)
+            {
+                string colName = dt.TableName;
+                dataTable.Columns.Add(colName, typeof(decimal));
+                foreach (DataRow row in dt.Rows)
+                {
+                    string drugCode = row["料號"].ToString();
+                    string qty = row["盤點量"].ToString();
+
+                    // 找看看 mergedTable 是否已經有這個藥碼
+                    DataRow[] existingRows = dataTable.Select($"料號 = '{drugCode}'");
+
+                    if (existingRows.Length > 0)
+                    {
+                        object currentVal = existingRows[0][colName];
+
+                        double currentQty = 0;
+                        if (currentVal != DBNull.Value && currentVal != null && currentVal.ToString() != "")
+                        {
+                            currentQty = Convert.ToDouble(currentVal);
+                        }
+
+                        // 累加
+                        existingRows[0][colName] = currentQty + Convert.ToDouble(qty);
+                    }
+
+                }
+            }
             dataTables.Add(dataTable);
 
 
