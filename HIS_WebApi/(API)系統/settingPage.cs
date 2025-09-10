@@ -467,12 +467,22 @@ namespace HIS_WebApi._API_系統
             add(returnData);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<returnData> get_by_page_name_cht(string 頁面名稱, string 欄位名稱, CancellationToken ct) 
+        public async Task<returnData> get_by_page_name_cht(string 頁面名稱, string 欄位名稱, CancellationToken ct = default) 
         {
             returnData returnData = new returnData();
             returnData.ValueAry = new List<string> { 頁面名稱, 欄位名稱 };
             string result =  await get_by_page_name_cht(returnData, ct);
             returnData =  result.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) Logger.Log($"{returnData.JsonSerializationtAsync(true)}");
+            return returnData;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_by_page_name(string 頁面名稱, CancellationToken ct = default)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry = new List<string> { 頁面名稱};
+            string result = await get_by_page_name(returnData, ct);
+            returnData = result.JsonDeserializet<returnData>();
             if (returnData.Code != 200) Logger.Log($"{returnData.JsonSerializationtAsync(true)}");
             return returnData;
         }

@@ -3747,6 +3747,87 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 更新總表註記覆盤資料
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Value" : ""
+        ///    "Data": 
+        ///    [
+        ///     {  
+        ///         "GUID":"",
+        ///         "COMMENT":"",   
+        ///     }
+        ///    ] 
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [HttpPost("update_report")]
+        public async Task<string> update_report([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "returnData.Data 空白,請輸入inv_combinelist_report_Class!";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<inv_combinelist_report_Class> inv_Combinelist_Report_Classes = returnData.Data.ObjToClass<List<inv_combinelist_report_Class>>();
+
+                string[] guids = inv_Combinelist_Report_Classes.Select(temp => temp.GUID).ToArray();
+                string 合併單號 = returnData.Value;
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "inv_combinelist_report", UserName, Password, Port, SSLMode);
+
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_inv_combinelist_report.GUID, guids);
+                List<inv_combinelist_report_Class> inv_Combinelist_Report = objects.SQLToClass<inv_combinelist_report_Class, enum_inv_combinelist_report>();
+
+                if (inv_Combinelist_Report_Classes.Count == 0)
+                {
+                    returnData.Data = inv_Combinelist_Report_Classes;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"無總表資料";
+                    returnData.Method = "update_report";
+                    returnData.Code = 200;
+                    return returnData.JsonSerializationt(true);
+                }
+                foreach(var item in inv_Combinelist_Report)
+                {
+                    inv_combinelist_report_Class inv_Combinelist_Report_Class = inv_Combinelist_Report_Classes.FirstOrDefault(temp => temp.GUID == item.GUID);
+                    if (inv_Combinelist_Report_Class == null) continue;
+                    item.註記 = inv_Combinelist_Report_Class.註記;
+                }
+
+                List<object[]> objects_update = inv_Combinelist_Report.ClassToSQL<inv_combinelist_report_Class, enum_inv_combinelist_report>();
+                await sQLControl.UpdateRowsAsync(null, objects_update);
+
+                returnData.Data = inv_Combinelist_Report;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"更新總表，共{inv_Combinelist_Report_Classes.Count}筆";
+                returnData.Method = "update_report";
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Index was outside the bounds of the array.") GET_init(returnData);
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 以合併單號取得完整合併單
         /// </summary>
         /// <remarks>
