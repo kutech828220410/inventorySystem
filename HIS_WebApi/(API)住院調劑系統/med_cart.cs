@@ -3276,48 +3276,20 @@ namespace HIS_WebApi
                 string tableName_med_cpoe = "med_cpoe";
                 (string StartTime, string Endtime) = await taskGetToday;
 
-                string command_patInfo = @$"SELECT * FROM {DB}.{tableName_patient_info} 
-                    WHERE 更新時間 >= '{StartTime}' 
-                    AND 更新時間 <= '{Endtime}' 
-                    AND 護理站 = '{護理站}'   
-                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
-                string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
-                    WHERE 更新時間 >= '{StartTime}' 
-                    AND 更新時間 <= '{Endtime}' 
-                    AND 護理站 = '{護理站}'   
-                    AND GUID IN ({GUID_str})
-                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
-                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
-                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
-
-                List<object[]> list_pat_carInfo = await taskPatInfo;
-                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-                if (sql_patinfo.Count == 0)
-                {
-                    returnData.Code = 200;
-                    returnData.TimeTaken = $"{myTimerBasic}";
-                    returnData.Data = sql_patinfo;
-                    returnData.Result = $"取得{護理站} 沒有未調劑資料";
-                    return await returnData.JsonSerializationtAsync(true);
-                }
-                List<object[]> list_med_cpoe = await taskCpoe;
+                (string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, Endtime, 護理站, GUID_str);
+                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                if (sql_patinfo.Count == 0)
+                if (sql_medCpoe.Count == 0)
                 {
-                    returnData.Code = 200;
+                    returnData.Code = -200;
                     returnData.TimeTaken = $"{myTimerBasic}";
                     returnData.Data = sql_medCpoe;
-                    returnData.Result = $"取得{護理站} 沒有未調劑處方";
+                    returnData.Result = $"查無資料";
                     return await returnData.JsonSerializationtAsync(true);
                 }
-
+                List<string> patientGUID = new List<string>();
                 List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
                 List<medCpoeClass> refund_medcpoe = new List<medCpoeClass>();
-
-                List<string> carinfo_GUID = new List<string>();
-
-                List<string> patientGUID = new List<string>();
-                int buff = 0;
                 foreach (var item in sql_medCpoe)
                 {
                     patientGUID.Add(item.Master_GUID);
@@ -3334,31 +3306,49 @@ namespace HIS_WebApi
                     item.調劑狀態 = "Y";
                     item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
+                string GUID_str_patInfo = string.Join(",", patientGUID.Distinct().Select(x => $"'{x}'"));
+
+                (string sqlPat, object paramPat) = getCommandGuid(tableName_patient_info, StartTime, Endtime, 護理站, GUID_str_patInfo);
+                List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
+                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
+                                                             
                 List<Task> tasks = new List<Task>();
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0) tasks.Add(sQLControl_med_cpoe.UpdateRowsAsync(null, update_medCpoe));
-                sql_patinfo = sql_patinfo.Where(temp => patientGUID.Contains(temp.GUID)).ToList();
+                string now = DateTime.Now.ToDateTimeString();
                 foreach (var item in sql_patinfo)
                 {
-                    item.調劑時間 = DateTime.Now.ToDateString();
+                    item.調劑時間 = now;
                 }
                 List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                 if (list_patInfo_replace.Count > 0) tasks.Add(sQLControl_patient_info.UpdateRowsAsync(null, list_patInfo_replace));
 
                 returnData returnData_debit = new returnData();
                 returnData returnData_refund = new returnData();
-                //扣帳
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
-                })));
-                //退帳
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
-                })));
 
-                Task.WhenAll(tasks).Wait();
+                Task<returnData>? debitTask = null;
+                Task<returnData>? refundTask = null;
+                if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(new returnData(), debit_medcpoe, "系統領藥"));
+                if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(new returnData(), refund_medcpoe, "系統退藥"));
+
+               
+                List<Task> all = new List<Task>(tasks);
+                if (debitTask != null) all.Add(debitTask);
+                if (refundTask != null) all.Add(refundTask);
+
+                await Task.WhenAll(all).ConfigureAwait(false);
+                ////扣帳
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                //})));
+                ////退帳
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                //})));
+
+                //Task.WhenAll(tasks).Wait();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoe;
@@ -5362,12 +5352,26 @@ namespace HIS_WebApi
 
             return (sql, parameters);
         }
+        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime,string station,string guidStr)
+        {
+            string sql = $@"
+                    SELECT *
+                    FROM dbvm.{tableName}
+                    WHERE 更新時間 >= @start
+                    AND 更新時間 < @end
+                    AND 護理站 = @station
+                    AND GUID IN ({guidStr});";
 
-        //private string getCommand(string tableName, string StartTime, string Endtime, string 護理站)
-        //{
-        //    string command = $"SELECT * FROM dbvm.{tableName} WHERE 更新時間 >= '{StartTime}' AND 更新時間 <= '{Endtime}' AND 護理站 = '{護理站}';";
-        //    return command;
-        //}
+            var parameters = new
+            {
+                start = startTime,
+                end = endTime,
+                station = station
+            };
+
+            return (sql, parameters);
+        }
+
         private string getCommand(string tableName, string GUID, string type = null)
         {
             string command = string.Empty;
