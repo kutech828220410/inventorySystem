@@ -1620,7 +1620,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 更新西藥醫令
+        /// 更新西藥醫令(限同一位病人的處方)
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -1639,11 +1639,11 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("update_UDorder_list")]
-        public string update_order_list([FromBody] returnData returnData)
+        [HttpPost("update_order_list")]
+        public async Task<string> update_order_list([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_UDorder_list";
+            returnData.Method = "update_order_list";
             try
             {
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
@@ -1671,24 +1671,20 @@ namespace HIS_WebApi
                 }
                 string PRI_KEY = $"{array_priKey[0]}-{array_priKey[1]}";
                 string 開方日期 = input_orderClass[0].開方日期.StringToDateTime().ToString("yyyy-MM-dd");
-                if (returnData.Value.StringIsEmpty() == false && returnData.Value == "fuzzy")
-                {
-                    command = $"SELECT * FROM {DB}.order_list " +
-                        $"WHERE PRI_KEY like '{PRI_KEY}%' " +
-                        $" AND 開方日期 >= '{開方日期} 00:00:00'" +
-                        $" AND 開方日期 <= '{開方日期} 23:59:59';";
-                }
-                else
-                {
-                    command = $"SELECT * FROM {DB}.order_list WHERE PRI_KEY in ({priKey});";
-                }
-                DataTable dataTable = sQLControl_order_list.WtrteCommandAndExecuteReader(command);
-                List<object[]> order_object = dataTable.DataTableToRowList();
+                
+                command = $"SELECT * FROM {DB}.order_list " +
+                    $"WHERE PRI_KEY like '{PRI_KEY}%' " +
+                    $" AND 開方日期 >= '{開方日期} 00:00:00'" +
+                    $" AND 開方日期 <= '{開方日期} 23:59:59';";
+                
+                
+                List<object[]> order_object = await sQLControl_order_list.WriteCommandAsync(command);
                 List<OrderClass> orderClasses = order_object.SQLToClass<OrderClass, enum_醫囑資料>();
 
                 List<OrderClass> add_order_list = new List<OrderClass>();
                 List<OrderClass> result = new List<OrderClass>();
                 List<OrderClass> order_buff = new List<OrderClass>();
+
                 foreach (var item in input_orderClass)
                 {
                     OrderClass orderClass = orderClasses.Where(order => order.PRI_KEY == item.PRI_KEY).FirstOrDefault();
@@ -1712,22 +1708,18 @@ namespace HIS_WebApi
                 }
                 List<OrderClass> update_order_list = new List<OrderClass>();
                 List<OrderClass> dc_order = new List<OrderClass>();
-                if (returnData.Value.StringIsEmpty() == false && returnData.Value == "fuzzy")
+                
+                
+                List<string> list_priKey_buff = order_buff.Select(x => x.PRI_KEY).ToList();
+                dc_order = orderClasses.Where(x => list_priKey_buff.Contains(x.PRI_KEY) == false).ToList();
+                foreach (var item in dc_order)
                 {
-                    List<string> list_priKey_buff = order_buff.Select(x => x.PRI_KEY).ToList();
-                    dc_order = orderClasses.Where(x => list_priKey_buff.Contains(x.PRI_KEY) == false).ToList();
-                    foreach (var item in dc_order)
-                    {
-                        if (item.批序.Contains("[DC]")) continue;
-                        item.批序 += $"-[DC]";
+                    if (item.批序.Contains("[DC]")) continue;
+                    item.批序 += $"-[DC]";
 
-                        update_order_list.Add(item);
-                    }
+                    update_order_list.Add(item);
                 }
-
-
-
-
+                
                 List<object[]> list_add_order_list = add_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
                 List<object[]> list_update_order_list = update_order_list.ClassToSQL<OrderClass, enum_醫囑資料>();
 
