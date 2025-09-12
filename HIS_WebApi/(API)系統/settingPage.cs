@@ -164,15 +164,14 @@ namespace HIS_WebApi._API_系統
                 }
                 string 頁面名稱 = returnData.ValueAry[0];
                 string 欄位名稱 = returnData.ValueAry[1];
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
 
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
-                string command = $@"SELECT * 
-                        FROM {DB}.settingPage 
-                        WHERE 頁面名稱 = '{頁面名稱}'
-                        AND 欄位名稱 = '{欄位名稱}';";
 
-                List<object[]> list_settingPage = await sQLControl.WriteCommandAsync(command, ct);
+                (string sql, object param) = getCommand(頁面名稱, 欄位名稱);
+                
+
+                List<object[]> list_settingPage = await sQLControl.WriteCommandAsync(sql, param, ct);
 
                 if (list_settingPage == null || list_settingPage.Count == 0)
                 {
@@ -181,12 +180,7 @@ namespace HIS_WebApi._API_系統
                     return returnData.JsonSerializationt(true);
                 }
                 List<settingPageClass> settingPageClasses = list_settingPage.SQLToClass<settingPageClass, enum_settingPage>();
-                if(settingPageClasses == null || settingPageClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "查無資料";
-                    return returnData.JsonSerializationt(true);
-                }
+               
                 for (int i = 0; i < settingPageClasses.Count; i++)
                 {
                     if (settingPageClasses[i].選項.StringIsEmpty() == false)
@@ -466,6 +460,22 @@ namespace HIS_WebApi._API_系統
             returnData returnData = data.JsonDeserializet<returnData>();
             add(returnData);
         }
+        private (string Sql, object Parameters) getCommand(string page_name, string cht)
+        {
+            string sql = $@"
+                SELECT *
+                FROM dbvm.settingPage
+                WHERE 頁面名稱 = @page_name
+                AND 欄位名稱 =  @cht";
+
+            var parameters = new
+            {
+                page_name = page_name,
+                cht = cht,
+            };
+
+            return (sql, parameters);
+        }
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<returnData> get_by_page_name_cht(string 頁面名稱, string 欄位名稱, CancellationToken ct = default) 
         {
@@ -486,6 +496,7 @@ namespace HIS_WebApi._API_系統
             if (returnData.Code != 200) Logger.Log($"{returnData.JsonSerializationtAsync(true)}");
             return returnData;
         }
+
 
     }
 }
