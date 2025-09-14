@@ -258,30 +258,15 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (sys_serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                string Server = sys_serverSettingClasses[0].Server;
-                string DB = sys_serverSettingClasses[0].DBName;
-                string UserName = sys_serverSettingClasses[0].User;
-                string Password = sys_serverSettingClasses[0].Password;
-                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
-                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
-                string command = $"SELECT * FROM dbvm.med_group";
-                List<object[]> tasks = await sQLControl_med_cpoe.WriteCommandAsync(command);
-
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                List<object[]> tasks = await sQLControl.GetAllRowsAsync(null);
                 List<medGroupClass> medGroupClasses = tasks.SQLToClass<medGroupClass, enum_medGroup>();
-
                 returnData.Code = 200;
                 returnData.Data = medGroupClasses;
                 returnData.TimeTaken = myTimer.ToString();
-                returnData.Method = "get_all_group";
-                returnData.Result = $"取得藥品群組資料成功!";
+                returnData.Method = "get_group_name";
+                returnData.Result = $"取得藥品群組名稱成功!";
 
                 return await returnData.JsonSerializationtAsync(true);
             }
@@ -1342,6 +1327,16 @@ namespace HIS_WebApi
             string result = await   new medGroup().get_all_group(returnData);
             returnData = result.JsonDeserializet<returnData>();
             if(returnData == null || returnData.Code != 200) return new List<medGroupClass>();
+            List<medGroupClass> medGroupClasses = returnData.Data.ObjToListClass<medGroupClass>();
+            return medGroupClasses;
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public async Task<List<medGroupClass>> get_group_name()
+        {
+            returnData returnData = new returnData();
+            string result = await new medGroup().get_group_name(returnData);
+            returnData = result.JsonDeserializet<returnData>();
+            if (returnData == null || returnData.Code != 200) return null;
             List<medGroupClass> medGroupClasses = returnData.Data.ObjToListClass<medGroupClass>();
             return medGroupClasses;
         }

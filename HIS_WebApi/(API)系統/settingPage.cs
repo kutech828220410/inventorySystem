@@ -20,6 +20,10 @@ namespace HIS_WebApi._API_系統
     public class settingPage : ControllerBase
     {
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
+        private static readonly Lazy<Task<(string Server, string DB, string UserName, string Password, uint Port)>> serverInfoTask
+        = new Lazy<Task<(string, string, string, string, uint)>>(() =>
+            Method.GetServerInfoAsync("Main", "網頁", "VM端")
+        );
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "settingPageClass物件", typeof(settingPageClass))]
 
         [HttpPost("init_settingPage")]
@@ -145,7 +149,6 @@ namespace HIS_WebApi._API_系統
         [HttpPost("get_by_page_name_cht")]
         public async Task<string> get_by_page_name_cht([FromBody] returnData returnData, CancellationToken ct)
         {
-            loadData();
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_page_name";
             try
@@ -164,7 +167,7 @@ namespace HIS_WebApi._API_系統
                 }
                 string 頁面名稱 = returnData.ValueAry[0];
                 string 欄位名稱 = returnData.ValueAry[1];
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
 
                 SQLControl sQLControl = new SQLControl(Server, DB, "settingPage", UserName, Password, Port, SSLMode);
 
@@ -477,14 +480,19 @@ namespace HIS_WebApi._API_系統
             return (sql, parameters);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<returnData> get_by_page_name_cht(string 頁面名稱, string 欄位名稱, CancellationToken ct = default) 
+        public async Task<settingPageClass> get_by_page_name_cht(string 頁面名稱, string 欄位名稱, CancellationToken ct = default) 
         {
             returnData returnData = new returnData();
             returnData.ValueAry = new List<string> { 頁面名稱, 欄位名稱 };
             string result =  await get_by_page_name_cht(returnData, ct);
             returnData =  result.JsonDeserializet<returnData>();
-            if (returnData.Code != 200) Logger.Log($"{returnData.JsonSerializationtAsync(true)}");
-            return returnData;
+            if (returnData == null || returnData.Code != 200) 
+            {
+                Logger.Log($"{result}");
+                return null;
+            } 
+            settingPageClass settingPageClass = returnData.Data.ObjToClass<List<settingPageClass>>().FirstOrDefault();
+            return settingPageClass;
         }
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<returnData> get_by_page_name(string 頁面名稱, CancellationToken ct = default)

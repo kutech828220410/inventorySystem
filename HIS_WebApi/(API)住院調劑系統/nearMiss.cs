@@ -431,39 +431,36 @@ namespace HIS_WebApi._API_住院調劑系統
         }
         private async Task<(string StartTime, string Endtime)> GetTodayAsync(CancellationToken ct = default)
         {
-            Task<returnData> taskSet = new settingPage().get_by_page_name_cht("medicine_cart", "交車時間", ct);
-            returnData returnData = await taskSet;
-            if (returnData.Code != 200)
+
+            settingPageClass settingPageClass = await new settingPage().get_by_page_name_cht("medicine_cart", "交車時間", ct);
+            if (settingPageClass == null)
             {
                 return ("", "");
             }
-            List<settingPageClass> settingPageClasses = returnData.Data.ObjToClass<List<settingPageClass>>();
-
-
-            DateTime startTime_datetime = new DateTime();
-            DateTime endTime_datetime = new DateTime();
-            if (settingPageClasses != null && settingPageClasses.Count == 0) return ("", "");
-
-            string 交車 = settingPageClasses[0].設定值;
-            TimeSpan 交車時間 = TimeSpan.Parse(交車);
-
-            DateTime 現在 = DateTime.Now;
-            TimeSpan 現在時間 = 現在.TimeOfDay;
-            if (現在時間 >= 交車時間)
+            string 交車 = settingPageClass.設定值;
+            if (TimeSpan.TryParse(交車, out TimeSpan 交車時間) == false)
             {
-                // 現在時間已經過了交車時間：今天~明天
-                startTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                return ("", "");
+            }
+            DateTime startTime_datetime, endTime_datetime;
+            DateTime 現在 = DateTime.Now;
+            if (現在.TimeOfDay >= 交車時間)
+            {
+                // 今天交車時間 ~ 明天交車時間
+                startTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day,
+                                                  交車時間.Hours, 交車時間.Minutes, 0);
                 endTime_datetime = startTime_datetime.AddDays(1);
             }
             else
             {
                 // 現在時間還沒到交車時間：昨天~今天
-                endTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 交車時間.Hours, 交車時間.Minutes, 0);
+                endTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day,
+                                        交車時間.Hours, 交車時間.Minutes, 0);
                 startTime_datetime = endTime_datetime.AddDays(-1);
             }
 
-            string startTime = startTime_datetime.ToDateTimeString_6().Replace("/", "-");
-            string endTime = endTime_datetime.ToDateTimeString_6().Replace("/", "-");
+            string startTime = startTime_datetime.ToString("yyyy-MM-dd HH:mm:ss");
+            string endTime = endTime_datetime.ToString("yyyy-MM-dd HH:mm:ss");
             return (startTime, endTime);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
