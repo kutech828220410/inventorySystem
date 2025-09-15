@@ -278,6 +278,99 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 取得住院藥車使用藥品群組名稱
+        /// </summary>
+        /// <remarks>
+        /// 無
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[medGroupClasses]</returns>
+        [Route("get_UDgroup_name")]
+        [HttpPost]
+        public async Task<string> get_UDgroup_name([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+
+                List<object[]> tasks = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medGroup.住院藥車, "Y");
+                List<medGroupClass> medGroupClasses = tasks.SQLToClass<medGroupClass, enum_medGroup>();
+                returnData.Code = 200;
+                returnData.Data = medGroupClasses;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_group_name";
+                returnData.Result = $"取得住院藥車使用藥品群組名稱成功!";
+
+                return await returnData.JsonSerializationtAsync(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 取得住院藥車使用藥品群組內容
+        /// </summary>
+        /// <remarks>
+        /// 無
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[medGroupClasses]</returns>
+        [Route("get_UDgroup")]
+        [HttpPost]
+        public async Task<string> get_UDgroup([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+
+
+                List<object[]> list_med_group = await sQLControl_med_group.GetRowsByDefultAsync(null, (int)enum_medGroup.住院藥車, "Y");
+                List<medGroupClass> medGroupClasses = list_med_group.SQLToClass<medGroupClass, enum_medGroup>();
+                List<string> GUID = (medGroupClasses.Select(x => x.GUID)).ToList();
+                List<object[]> list_med_sub_group = await sQLControl_med_sub_group.GetRowsByDefultAsync(null, (int)enum_sub_medGroup.Master_GUID, GUID.ToArray());
+                List<medClass> sub_MedGroupClasses = list_med_sub_group.SQLToClass<medClass, enum_sub_medGroup>();
+
+
+                List<medClass> medClasses = await MED_pageController.Get_med_cloudAsync();
+                Dictionary<string, List<medClass>> keyValuePairs_medClass = medClasses.CoverToDictionaryByCode();
+
+
+                Dictionary<string, List<medClass>> dic_medClass = medClassMethod.ToDictByMasterGuid(sub_MedGroupClasses);
+                for (int i = 0; i < medGroupClasses.Count; i++)
+                {
+                    List<medClass> meds = medClassMethod.GetDictByMasterGuid(dic_medClass, medGroupClasses[i].GUID);
+                    medGroupClasses[i].MedClasses = meds;
+
+                }
+
+                returnData.Code = 200;
+                returnData.Data = medGroupClasses;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_UDgroup";
+                returnData.Result = $"取得住院藥車使用藥品群組成功!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 以GUID取得藥品群組內容
         /// </summary>
         /// <remarks>

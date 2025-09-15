@@ -20,7 +20,9 @@ namespace HIS_DB_Lib
         [Description("顯示資訊,VARCHAR,500,NONE")]
         顯示資訊,
         [Description("建立時間,DATETIME,200,NONE")]
-        建立時間,        
+        建立時間,
+        [Description("住院藥車,VARCHAR,20,NONE")]
+        住院藥車,
     }
     [EnumDescription("med_sub_group")]
     public enum enum_sub_medGroup
@@ -44,6 +46,8 @@ namespace HIS_DB_Lib
         public string 顯示資訊 { get; set; } = "";
         [JsonPropertyName("CT_TIME")]
         public string 建立時間 { get; set; }
+        [JsonPropertyName("UD")]
+        public string 住院藥車 { get; set; }
 
         private List<medClass> medClasses = new List<medClass>();
         public List<medClass> MedClasses { get => medClasses; set => medClasses = value; }
