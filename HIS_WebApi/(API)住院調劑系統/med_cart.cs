@@ -1570,7 +1570,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
 
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
-                (string sqlPat, object paramPat) = getCommandDischarge_patInfo(tableName_patient_info, StartTime, Endtime, 藥局);
+                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已出院);
            
                 List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
                 if (list_pat_carInfo.Count == 0)
@@ -1583,7 +1583,7 @@ namespace HIS_WebApi
                 }
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
-                (string sqlCpoe, object paramCpoe) = getCommandDischarge_medCpoe(tableName_med_cpoe, StartTime, Endtime, guids);
+                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已出院);
                
                 List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
@@ -1648,8 +1648,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, tableName_patient_info, UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
-                (string sqlPat, object paramPat) = getCommandDischarge_patInfo(tableName_patient_info, StartTime, Endtime, 藥局,護理站);
-       
+                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已出院, 護理站);
+
                 List<object[]> list_pat_Info = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
                 if (list_pat_Info.Count == 0)
                 {
@@ -1661,7 +1661,7 @@ namespace HIS_WebApi
                 }
                 List<patientInfoClass> sql_patinfo = list_pat_Info.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
-                (string sqlCpoe, object paramCpoe) = getCommandDischarge_medCpoe(tableName_med_cpoe, StartTime, Endtime, guids);
+                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已出院);
                 List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
@@ -1728,7 +1728,7 @@ namespace HIS_WebApi
                     return await returnData.JsonSerializationtAsync(true);
                 }
                 string 藥局 = returnData.ValueAry[0];
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = await serverInfoTask.Value;
 
                 string tableName_patient_info = "patient_info";
                 string tableName_med_cpoe = "med_cpoe";
@@ -1737,13 +1737,15 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
 
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
+                if(StartTime.StringIsEmpty() || Endtime.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"取得更新時間區間失敗";
+                    return await returnData.JsonSerializationtAsync(true);
+                }
+                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已佔床);
 
-                string command_patInfo = @$"SELECT * FROM {DB}.{tableName_patient_info} 
-                                    WHERE 更新時間 >= '{StartTime}' 
-                                    AND 更新時間 <= '{Endtime}' 
-                                    AND 藥局 = '{藥局}' 
-                                    AND 占床狀態 = '{enum_bed_status_string.已佔床.GetEnumName()}'
-                                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
+               
                 string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
                                     WHERE 更新時間 >= '{StartTime}' 
                                     AND 更新時間 <= '{Endtime}' 
@@ -1751,8 +1753,7 @@ namespace HIS_WebApi
                                     AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
 
 
-                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
-                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
+                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
 
                 List<object[]> list_pat_carInfo = await taskPatInfo;
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
@@ -1764,7 +1765,10 @@ namespace HIS_WebApi
                     returnData.Result = $"取得{藥局} 沒有未完成調劑資料";
                     return await returnData.JsonSerializationtAsync(true);
                 }
-                List<object[]> list_med_cpoe = await taskCpoe;
+                List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
+                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已佔床);
+
+                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
                 List<string> cart = new List<string>();
@@ -5398,9 +5402,10 @@ namespace HIS_WebApi
             return (sql, parameters);
         }
         
-        private (string Sql, object Parameters) getCommandDischarge_patInfo(string tableName, string startTime, string endTime, string phar, string station = null)
+        private (string Sql, object Parameters) command_藥局_占床狀態_護理站(string tableName, string startTime, string endTime, string phar, int status, string station = null)
         {
             string sql;
+            string bedStatus = ((enum_bed_status_string)status).GetEnumName();
             if (station.StringIsEmpty())
             {
                 sql = $@"
@@ -5432,15 +5437,21 @@ namespace HIS_WebApi
                 end = endTime,
                 phar = phar,
                 station = station,
-                bedStatus = enum_bed_status_string.已出院.GetEnumName()
+                bedStatus = bedStatus
             };
 
 
             return (sql, parameters);
         }
-        private (string Sql, object Parameters) getCommandDischarge_medCpoe(string tableName, string startTime, string endTime, List<string> master_guids)
+        private (string Sql, object Parameters) command_MasterGUID(string tableName, string startTime, string endTime, List<string> master_guids, int status)
         {
-            string sql = $@"
+            string sql = string.Empty;
+            string pri_key = string.Empty;
+            string bedStatus = ((enum_bed_status_string)status).GetEnumName();
+            if(bedStatus == $"{enum_bed_status_string.已出院.GetEnumName()}")
+            {
+                pri_key = "%出院退藥%";
+                sql = $@"
                 SELECT *
                 FROM dbvm.{tableName}
                 WHERE 更新時間 >= @start
@@ -5448,13 +5459,24 @@ namespace HIS_WebApi
                 AND Master_GUID IN @master_guids
                 AND PRI_KEY like @pri_key
                 AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-                  
+            }
+            else if (bedStatus == $"{enum_bed_status_string.已佔床.GetEnumName()}")
+            {
+                sql = $@"
+                SELECT *
+                FROM dbvm.{tableName}
+                WHERE 更新時間 >= @start
+                AND 更新時間 <  @end
+                AND Master_GUID IN @master_guids
+                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
+            }
+
             var parameters = new
             {
                 start = startTime,
                 end = endTime,
                 master_guids,
-                pri_key = "%出院退藥%"
+                pri_key = pri_key
             };
 
 
