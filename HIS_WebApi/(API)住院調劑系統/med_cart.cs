@@ -42,6 +42,7 @@ namespace HIS_WebApi
     public class med_cart : ControllerBase
     {
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
+        private string APIServer = Method.GetServerAPI("Main", "網頁", "API01");
         private static readonly Lazy<Task<(string Server, string DB, string UserName, string Password, uint Port)>> serverInfoTask
         = new Lazy<Task<(string, string, string, string, uint)>>(() =>
             Method.GetServerInfoAsync("Main", "網頁", "VM端")
@@ -103,6 +104,7 @@ namespace HIS_WebApi
             returnData.Method = "update_patientInfo";
             try
             {
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
                 returnData taskSet = await new settingPage().get_by_page_name("medicine_cart", ct);
                 if (taskSet == null || taskSet.Code != 200 || taskSet.Data == null)
                 {
@@ -121,7 +123,7 @@ namespace HIS_WebApi
                     returnData.Result = $"已超過切帳時間";
                     return returnData.JsonSerializationt(true);
                 }
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
 
                 List<patientInfoClass> patInfo_sql_add = new List<patientInfoClass>();
                 List<patientInfoClass> medCart_sql_update = new List<patientInfoClass>();
@@ -144,9 +146,14 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 (string StartTime, string EndTime) = await tak_time;
-                
-                (string sqlPat, object paramPat) = getCommandLatestByBed(sQLControl_patient_info.TableName, StartTime, EndTime, 護理站);
+
+                (string sqlPat, object paramPat) = getCommand(sQLControl_patient_info.TableName, StartTime, EndTime, 護理站);
                 (string sqlCpoe, object paramCpoe) = getCommand(sQLControl_med_cpoe.TableName, StartTime, EndTime, 護理站);
+
+
+
+                Task<List<object[]>> taskPat = sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
+                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
 
                 List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat);
 
@@ -154,9 +161,9 @@ namespace HIS_WebApi
 
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
-                //sql_patinfo = sql_patinfo
-                //    .GroupBy(temp => temp.床號)
-                //    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
+                sql_patinfo = sql_patinfo
+                    .GroupBy(temp => temp.床號)
+                    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
                 Dictionary<string, List<patientInfoClass>> patInfoDictBedNum = patientInfoClass.ToDictByBedNum(sql_patinfo);
                 List<Task> tasks = new List<Task>();
 
@@ -253,9 +260,9 @@ namespace HIS_WebApi
                         if (item.調劑狀態.Contains("Y") && item.DC確認.StringIsEmpty())
                         {
                             if (item.數量.Contains("-") == false) item.數量 = $"-{item.數量}";
-                            item.劑量 = "--";
                             item.途徑 = "--";
                             item.單位 = "--";
+                            item.劑量 = "--";
                             item.調劑狀態 = string.Empty;
                             item.覆核狀態 = "Y";
                             item.狀態 = "DC";
@@ -275,7 +282,10 @@ namespace HIS_WebApi
                 list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
                 sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
-                List<patientInfoClass> patientInfoClasses = sql_patinfo.Where(temp => temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
+                List<patientInfoClass> patientInfoClasses = sql_patinfo.Where(temp => temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName())
+                    .GroupBy(temp => temp.床號)
+                    .Select(g => g.OrderByDescending(x => x.更新時間).First()).ToList();
+                //patientInfoClasses.Sort(new patientInfoClass.ICP_By_bedNum());
                 patientInfoClasses = sortByBedNum(patientInfoClasses);
 
                 returnData.Code = 200;
@@ -305,21 +315,15 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("update_med_cpoe")]
-        public async Task<string> update_med_cpoe([FromBody] returnData returnData, CancellationToken ct = default)
+        public string update_med_cpoe([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "update_med_cpoe";
             try
             {
-                returnData taskSet = await new settingPage().get_by_page_name("medicine_cart", ct);
-                if (taskSet == null || taskSet.Code != 200 || taskSet.Data == null)
-                {
-                    returnData.Code = -200;
-                    returnData.TimeTaken = $"{myTimerBasic}";
-                    returnData.Result = $"取得設定失敗";
-                    return returnData.JsonSerializationt(true);
-                }
-                List<settingPageClass> settingPageClasses = taskSet.Data.ObjToClass<List<settingPageClass>>();
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
                 settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
                 settingPageClass 交車設定 = settingPageClasses.myFind("medicine_cart", "交車時間");
                 if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
@@ -329,39 +333,35 @@ namespace HIS_WebApi
                     returnData.Result = $"已超過切帳時間";
                     return returnData.JsonSerializationt(true);
                 }
-
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
-                if (input_medCpoe == null || input_medCpoe.Count == 0)
+                if (input_medCpoe == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"傳入Data([medCpoeClass])資料異常";
+                    returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
                 string 藥局 = input_medCpoe[0].藥局;
                 string 護理站 = input_medCpoe[0].護理站;
-             
-                (string StartTime, string EndTime) = await GetTodayAsync();
 
-                string table_patInfo = "patient_info";
-                string table_cpoe = "med_cpoe";
+                (string StartTime, string Endtime) = GetToday();
 
-                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, table_patInfo, UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
-
-                (string sqlPat, object paramPat) = getCommand_patInfo(table_patInfo, StartTime, EndTime, 藥局, 護理站);
-                
-                List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat,ct);
-                (string sqlCpoe, object paramCpoe) = getCommand_medCpoe(table_patInfo, StartTime, EndTime, 藥局, 護理站);
-
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
+                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByBetween(null, (int)enum_patient_info.更新時間, StartTime, Endtime);
 
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
+
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
+                //List<medCpoeClass> medCpoe_sql_delete_buf = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete = new List<medCpoeClass>();
+                //List<patientInfoClass> update_patInfo = new List<patientInfoClass>();
 
                 Dictionary<string, List<patientInfoClass>> patInfoDict = patientInfoClass.ToDictByGUID(sql_patinfo);
                 Dictionary<string, List<medCpoeClass>> sqlMedCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
@@ -382,100 +382,118 @@ namespace HIS_WebApi
                     List<medCpoeClass> Cpoe_public_old = Cpoe_old.Where(temp => temp.公藥 == "Y").ToList();
                     Cpoe_new = Cpoe_new.Where(temp => temp.公藥.StringIsEmpty()).ToList();
                     Cpoe_old = Cpoe_old.Where(temp => temp.公藥.StringIsEmpty()).ToList();
-                    foreach (medCpoeClass medCpoeClass in Cpoe_public_new)
+
+
+                    List<Task> tasks = new List<Task>();
+                    tasks.Add(Task.Run(new Action(delegate
                     {
-                        medCpoeClass cpoe = Cpoe_public_old.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                        if (cpoe == null) medCpoe_sql_add.LockAdd(medCpoeClass);
-                    }
-                    foreach (medCpoeClass medCpoeClass in Cpoe_public_old)
-                    {
-                        medCpoeClass cpoe = Cpoe_public_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                        if (cpoe == null) medCpoe_sql_delete.LockAdd(medCpoeClass);
-                    }
-                    foreach (medCpoeClass medCpoeClass in Cpoe_new)
-                    {
-                        medCpoeClass cpoe = Cpoe_old.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                        if (cpoe == null)
+                        foreach (medCpoeClass medCpoeClass in Cpoe_public_new)
                         {
-                            if (調劑時間 != 預設時間 && 現在時間 > 調劑時間)
+                            medCpoeClass cpoe = Cpoe_public_old.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
+                            if (cpoe == null) medCpoe_sql_add.LockAdd(medCpoeClass);
+                        }
+                    })));
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        foreach (medCpoeClass medCpoeClass in Cpoe_public_old)
+                        {
+                            medCpoeClass cpoe = Cpoe_public_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
+                            if (cpoe == null) medCpoe_sql_delete.LockAdd(medCpoeClass);
+                        }
+
+                    })));
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        foreach (medCpoeClass medCpoeClass in Cpoe_new)
+                        {
+                            medCpoeClass cpoe = Cpoe_old.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
+                            if (cpoe == null)
                             {
-                                medCpoeClass.調劑異動 = "Y";
-                                medCpoeClass.狀態 = "NEW";
+                                if (調劑時間 != 預設時間 && 現在時間 > 調劑時間)
+                                {
+                                    medCpoeClass.調劑異動 = "Y";
+                                    medCpoeClass.狀態 = "NEW";
+                                }
+                                medCpoe_sql_add_buff.LockAdd(medCpoeClass);
                             }
-                            medCpoe_sql_add_buff.LockAdd(medCpoeClass);
                         }
-                    }
-                    string now = DateTime.Now.ToDateTimeString();
-                    foreach (medCpoeClass medCpoeClass in Cpoe_old)
+                    })));
+                    tasks.Add(Task.Run(new Action(delegate
                     {
-                        medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
-                        if (cpoe != null) continue;
-                        if (medCpoeClass.PRI_KEY.Contains("[DC]") == true) continue;
-                        if (medCpoeClass.調劑狀態.Contains("Y"))
+                        foreach (medCpoeClass medCpoeClass in Cpoe_old)
                         {
-                            medCpoeClass.數量 = $"-{medCpoeClass.數量}";
-                            medCpoeClass.途徑 = "--";
-                            medCpoeClass.單位 = "--";
-                            medCpoeClass.劑量 = "--";
-                            medCpoeClass.調劑狀態 = string.Empty;
-                            medCpoeClass.覆核狀態 = string.Empty;
-                            medCpoeClass.狀態 = "DC";
-                            medCpoeClass.調劑異動 = "Y";
-                            medCpoeClass.PRI_KEY += $"-[DC]-{now}";
-                            medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
+                            medCpoeClass cpoe = Cpoe_new.Where(temp => temp.PRI_KEY.Contains(medCpoeClass.PRI_KEY)).FirstOrDefault();
+                            if (cpoe != null) continue;
+                            if (medCpoeClass.PRI_KEY.Contains("[DC]") == true) continue;
+                            if (medCpoeClass.調劑狀態.Contains("Y"))
+                            {
+                                medCpoeClass.數量 = $"-{medCpoeClass.數量}";
+                                medCpoeClass.途徑 = "--";
+                                medCpoeClass.劑量 = "--";
+                                medCpoeClass.單位 = "--";
+                                medCpoeClass.調劑狀態 = string.Empty;
+                                medCpoeClass.覆核狀態 = string.Empty;
+                                medCpoeClass.狀態 = "DC";
+                                medCpoeClass.調劑異動 = "Y";
+                                medCpoeClass.PRI_KEY += $"-[DC]-{DateTime.Now.ToDateTimeString()}";
+                                medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
+                            }
+                            else
+                            {
+                                medCpoeClass.數量 = $"-{medCpoeClass.數量}";
+                                medCpoeClass.途徑 = "--";
+                                medCpoeClass.單位 = "--";
+                                medCpoeClass.調劑狀態 = "Y";
+                                medCpoeClass.覆核狀態 = "Y";
+                                medCpoeClass.狀態 = "DC";
+                                medCpoeClass.調劑異動 = "Y";
+                                medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
+                                medCpoeClass.DC確認 += "Y";
+                                medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
+                            }
                         }
-                        else
-                        {
-                            medCpoeClass.數量 = $"-{medCpoeClass.數量}";
-                            medCpoeClass.途徑 = "--";
-                            medCpoeClass.單位 = "--";
-                            medCpoeClass.劑量 = "--";
-                            medCpoeClass.調劑狀態 = "Y";
-                            medCpoeClass.覆核狀態 = "Y";
-                            medCpoeClass.狀態 = "DC";
-                            medCpoeClass.調劑異動 = "Y";
-                            medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
-                            medCpoeClass.DC確認 += "Y";
-                            medCpoe_sql_replace_buff.LockAdd(medCpoeClass);
-                        }
-                    }
-                    
+                    })));
+                    Task.WhenAll(tasks).Wait();
+                    tasks.Clear();
                     medCpoe_sql_add.AddRange(medCpoe_sql_add_buff);
                     medCpoe_sql_replace.AddRange(medCpoe_sql_replace_buff);
                 }
-             
+
+                medCpoe_sql_add = CheckUpdateTime(medCpoe_sql_add);
+                medCpoe_sql_replace = CheckUpdateTime(medCpoe_sql_replace);
+                medCpoe_sql_delete = CheckUpdateTime(medCpoe_sql_delete);
+
+
                 List<object[]> list_medCpoe_add = medCpoe_sql_add.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 List<object[]> list_medCpoe_delete = medCpoe_sql_delete.ClassToSQL<medCpoeClass, enum_med_cpoe>();
-                List<Task> tasks = new List<Task>();
+
                 if (list_medCpoe_add.Count > 0)
                 {
+                    //Logger.Log($"medCpoe-{護理站}", $"add_update_med_cpoe \n {medCpoe_sql_add.JsonSerializationt(true)}");
                     List<string> guidList = medCpoe_sql_add.Select(x => x.GUID).ToList();
                     add_log("系統_新增", string.Join(";", guidList));
-                    tasks.Add(sQLControl_med_cpoe.AddRowsAsync(null, list_medCpoe_add));
+                    sQLControl_med_cpoe.AddRows(null, list_medCpoe_add);
                 }
                 if (list_medCpoe_replace.Count > 0)
                 {
+                    //Logger.Log($"medCpoe-{護理站}", $"update_update_med_cpoe \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     List<string> guidList = medCpoe_sql_replace.Select(x => x.GUID).ToList();
                     add_log("系統_DC", string.Join(";", guidList));
-                    tasks.Add(sQLControl_med_cpoe.UpdateRowsAsync(null, list_medCpoe_replace));
+                    sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
                 if (list_medCpoe_delete.Count > 0)
                 {
-                    tasks.Add(sQLControl_med_cpoe.DeleteRowsAsync(null, list_medCpoe_delete));
+                    //Logger.Log($"medCpoe-{護理站}", $"delete_update_med_cpoe \n {medCpoe_sql_delete.JsonSerializationt(true)}");
+                    sQLControl_med_cpoe.DeleteExtra(null, list_medCpoe_delete);
                 }
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-                list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+
+                list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                try
-                {
-                    await UpdateStatusAsync(sql_patinfo, medCpoe);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log("UpdateStatus", $"{ex.Message}");
-                }
-                
+                medCpoe = medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
+
+                UpdateStatus(sql_patinfo, medCpoe);
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = medCpoe;
@@ -504,13 +522,18 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("update_med_cpoe_DC_by_medChange")]
-        public async Task<string> update_med_cpoe_DC_by_medChange([FromBody] returnData returnData)
+        public string update_med_cpoe_DC_by_medChange([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-               
-                if (returnData.ValueAry == null|| returnData.ValueAry.Count != 2)
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
@@ -518,43 +541,43 @@ namespace HIS_WebApi
                 }
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
-                (string StartTime, string EndTime) = await GetTodayAsync();
 
-                List<medCpoeRecClass> medCpoeRecClasses = await get_medChange_by_ST_EN(藥局, 護理站, StartTime, EndTime);
-                if (medCpoeRecClasses == null || medCpoeRecClasses.Count == 0)
-                {
-                    returnData.Code = 200;
-                    returnData.Result = $"護理站({護理站})暫無DC資料";
-                    return returnData.JsonSerializationt(true);
-                }
-                settingPageClass 切帳設定 = await new settingPage().get_by_page_name_cht("medicine_cart", "切帳時間");
-                if (切帳設定 == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"取得切帳時間失敗";
-                    return returnData.JsonSerializationt(true);
-                }
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
 
                 TimeSpan 切帳時間 = TimeSpan.Parse(切帳設定.設定值);
                 DateTime 現在 = DateTime.Now;
 
                 DateTime 切帳_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 切帳時間.Hours, 切帳時間.Minutes, 0);
+                //if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
+                //{
+                //    returnData.Code = 200;
+                //    returnData.TimeTaken = $"{myTimerBasic}";
+                //    returnData.Result = $"已超過切帳時間";
+                //    return returnData.JsonSerializationt(true);
+                //}
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                (string StartTime, string Endtime) = GetToday();
+                List<string> ValueAry = new List<string> { 藥局, 護理站, StartTime, Endtime };
+                returnData.ValueAry = ValueAry;
+                string result = get_medChange_by_ST_EN(returnData);
+                returnData = result.JsonDeserializet<returnData>();
+                List<medCpoeRecClass> medCpoeRecClasses = returnData.Data.ObjToClass<List<medCpoeRecClass>>();
                 medCpoeRecClasses = medCpoeRecClasses.Where(item => item.結束時間.StringToDateTime() <= 切帳_datetime).ToList();
 
-                string tableName_patient_info = "patient_info";
-                string tableName_med_cpoe = "med_cpoe";
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
-                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, tableName_patient_info, UserName, Password, Port, SSLMode);
-                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
-                (string sqlCpoe, object paramCpoe) = getCommand(tableName_med_cpoe, StartTime, EndTime, 護理站);
-                (string sqlPat, object paramPat) = getCommand_patInfo(tableName_patient_info, StartTime, EndTime, 藥局, 護理站);
-                
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe);
-                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
+                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByBetween(null, (int)enum_patient_info.更新時間, StartTime, Endtime);
 
-                List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat);
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
 
+                sql_patinfo = sql_patinfo.Where(temp => temp.護理站 == 護理站 && temp.占床狀態 != enum_bed_status_string.已出院.GetEnumName()).ToList();
+                sql_medCpoe = sql_medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete = new List<medCpoeClass>();
@@ -564,51 +587,55 @@ namespace HIS_WebApi
 
                 foreach (string Master_GUID in inputMedCpoeRecDict.Keys)
                 {
+                    List<medCpoeClass> medCpoe_sql_replace_buff = new List<medCpoeClass>();
                     List<medCpoeRecClass> CpoeRec = medCpoeRecClass.GetDictByMasterGUID(inputMedCpoeRecDict, Master_GUID);
 
                     List<medCpoeClass> Cpoe = medCpoeClass.GetByMasterGUID(sqlMedCpoeDict, Master_GUID);
-                    
+                    if (Master_GUID == "eb63652c-4521-4c2f-a5ba-d239ce7d839b")
+                    {
+
+                    }
                     for (int i = 0; i < CpoeRec.Count(); i++)
                     {
                         if (CpoeRec[i].狀態.Contains("DC") == false) continue;
 
                         string 序號 = CpoeRec[i].序號;
-                        medCpoeClass medCpoeClass = Cpoe.FirstOrDefault(temp => temp.序號.Contains(序號));
+                        medCpoeClass medCpoeClass = Cpoe.Where(temp => temp.序號.Contains(序號)).FirstOrDefault();
                         if (medCpoeClass == null) continue;
                         if (medCpoeClass.公藥.Contains("Y"))
                         {
                             medCpoe_sql_delete.Add(medCpoeClass);
                             continue;
                         }
-                        if (medCpoeClass.PRI_KEY.Contains("DC") == true) continue;
+                        if (medCpoeClass.PRI_KEY.Contains("[DC]") == true) continue;
                         if (medCpoeClass.調劑狀態.Contains("Y"))
                         {
                             medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                             medCpoeClass.途徑 = "--";
-                            medCpoeClass.劑量 = "--";
                             medCpoeClass.單位 = "--";
                             medCpoeClass.調劑狀態 = string.Empty;
                             medCpoeClass.覆核狀態 = string.Empty;
                             medCpoeClass.狀態 = "DC";
                             medCpoeClass.調劑異動 = "Y";
                             medCpoeClass.PRI_KEY += $"-[DC]-{DateTime.Now.ToDateTimeString()}";
-                            medCpoe_sql_replace.Add(medCpoeClass);
+                            medCpoe_sql_replace_buff.Add(medCpoeClass);
                         }
                         else
                         {
                             medCpoeClass.數量 = $"-{medCpoeClass.數量}";
                             medCpoeClass.途徑 = "--";
                             medCpoeClass.單位 = "--";
-                            medCpoeClass.劑量 = "--";
                             medCpoeClass.調劑狀態 = "Y";
                             medCpoeClass.覆核狀態 = "Y";
                             medCpoeClass.狀態 = "DC";
                             medCpoeClass.調劑異動 = "Y";
                             medCpoeClass.PRI_KEY += $"-[DC]系統-{DateTime.Now.ToDateTimeString()}";
-                            medCpoeClass.DC確認 = "Y";
-                            medCpoe_sql_replace.Add(medCpoeClass);
+                            medCpoeClass.DC確認 += "Y";
+                            medCpoe_sql_replace_buff.Add(medCpoeClass);
                         }
                     }
+
+                    medCpoe_sql_replace.AddRange(medCpoe_sql_replace_buff);
                 }
 
 
@@ -619,25 +646,22 @@ namespace HIS_WebApi
 
                 if (list_medCpoe_replace.Count > 0)
                 {
+                    //Logger.Log($"medCpoe-{護理站}", $"update_update_med_cpoe \n {medCpoe_sql_replace.JsonSerializationt(true)}");
                     List<string> guidList = medCpoe_sql_replace.Select(x => x.GUID).ToList();
                     add_log("系統_DC", string.Join(";", guidList));
-                    await sQLControl_med_cpoe.UpdateRowsAsync(null, list_medCpoe_replace);
+                    sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
                 if (list_medCpoe_delete.Count > 0)
                 {
-                    await sQLControl_med_cpoe.DeleteRowsAsync(null, list_medCpoe_delete);
+                    //Logger.Log($"medCpoe-{護理站}", $"delete_update_med_cpoe \n {medCpoe_sql_delete.JsonSerializationt(true)}");
+                    sQLControl_med_cpoe.DeleteExtra(null, list_medCpoe_delete);
                 }
-                list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe);
+
+                list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
                 List<medCpoeClass> medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                try
-                {
-                    await UpdateStatusAsync(sql_patinfo, sql_medCpoe);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log("UpdateStatus", $"{ex.Message}");
-                }
-                
+                medCpoe = medCpoe.Where(temp => temp.護理站 == 護理站).ToList();
+
+                UpdateStatus(sql_patinfo, medCpoe);
                 returnData.Method = "update_med_cpoe_DC_by_medChange";
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -681,7 +705,13 @@ namespace HIS_WebApi
 
                 DateTime startTime_datetime = new DateTime(現在.Year, 現在.Month, 現在.Day, 切帳時間.Hours, 切帳時間.Minutes, 0);
 
-               
+                //if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
+                //{
+                //    returnData.Code = 200;
+                //    returnData.TimeTaken = $"{myTimerBasic}";
+                //    returnData.Result = $"已超過切帳時間";
+                //    return returnData.JsonSerializationt(true);
+                //}
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
                 List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
                 if (input_medCpoe == null)
@@ -766,6 +796,7 @@ namespace HIS_WebApi
 
                 if (list_medCpoe_add.Count > 0)
                 {
+                    //Logger.Log($"medCpoe-{護理站}", $"add_update_med_cpoe \n {medCpoe_sql_add.JsonSerializationt(true)}");
                     List<string> guidList = medCpoe_sql_add.Select(x => x.GUID).ToList();
                     add_log("系統_新增", string.Join(";", guidList));
                     sQLControl_med_cpoe.AddRows(null, list_medCpoe_add);
@@ -1073,31 +1104,43 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("update_med_cpoe_rec")]
-        public async Task<string> update_med_cpoe_rec([FromBody] returnData returnData)
+        public string update_med_cpoe_rec([FromBody] returnData returnData)
         {
 
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "update_med_cpoe_rec";
             try
             {
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
+                settingPageClass 交車設定 = settingPageClasses.myFind("medicine_cart", "交車時間");
+                //if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
+                //{
+                //    returnData.Code = 200;
+                //    returnData.TimeTaken = $"{myTimerBasic}";
+                //    returnData.Result = $"已超過切帳時間";
+                //    return returnData.JsonSerializationt(true);
+                //}
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+
                 List<medCpoeRecClass> input_medCpoe_rec = returnData.Data.ObjToClass<List<medCpoeRecClass>>();
-                if(input_medCpoe_rec == null || input_medCpoe_rec.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data([medCpoeRecClass])資料異常";
-                    return await returnData.JsonSerializationtAsync(true);
-                }
                 string 藥局 = input_medCpoe_rec[0].藥局;
                 string 護理站 = input_medCpoe_rec[0].護理站;
-                
-                (string StartTime, string Endtime) = await GetTodayAsync();
-                string table_name = "med_cpoe_rec";
-                (string sql, object param) = getCommand(table_name, StartTime, Endtime, 護理站);
-                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, table_name, UserName, Password, Port, SSLMode);
-                
-                List<object[]> sql_medCpoeRecClass = await sQLControl_med_cpoe_rec.WriteCommandAsync(sql, param);
+                if (input_medCpoe_rec == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                (string StartTime, string Endtime) = GetToday();
+
+                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
+
+                List<object[]> sql_medCpoeRecClass = sQLControl_med_cpoe_rec.GetRowsByBetween(null, (int)enum_med_cpoe_rec.更新時間, StartTime, Endtime);
                 List<medCpoeRecClass> list_medCpoeRecClass = sql_medCpoeRecClass.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
+                list_medCpoeRecClass = list_medCpoeRecClass.Where(temp => temp.護理站 == 護理站).ToList();
                 Dictionary<string, List<medCpoeRecClass>> inputMedCpoeRecDict = medCpoeRecClass.ToDictByMasterGUID(input_medCpoe_rec);
                 Dictionary<string, List<medCpoeRecClass>> sqlMedCpoeRecDict = medCpoeRecClass.ToDictByMasterGUID(list_medCpoeRecClass);
                 List<medCpoeRecClass> add_medCpoeRecClass = new List<medCpoeRecClass>();
@@ -1114,12 +1157,13 @@ namespace HIS_WebApi
                 List<object[]> list_medCpoe_add = add_medCpoeRecClass.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
                 if (list_medCpoe_add.Count > 0)
                 {
-                    await sQLControl_med_cpoe_rec.AddRowsAsync(null, list_medCpoe_add);
+                    //Logger.Log($"medCpoeRec-{護理站}", $"add_update_med_cpoe_rec \n {add_medCpoeRecClass.JsonSerializationt(true)}");
+                    sQLControl_med_cpoe_rec.AddRows(null, list_medCpoe_add);
                 }
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = add_medCpoeRecClass;
+                returnData.Data = list_medCpoe_add;
                 returnData.Result = $"更新處方異動表成功，共{list_medCpoe_add.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
@@ -1146,28 +1190,38 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("update_bed_status")]
-        public async Task<string> update_bed_status([FromBody] returnData returnData)
+        public string update_bed_status([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "update_bed_status";
             try
             {
-                
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
-                
-              
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
+                settingPageClass 交車設定 = settingPageClasses.myFind("medicine_cart", "交車時間");
+                if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
+                {
+                    returnData.Code = 200;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Result = $"已超過切帳時間";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+
                 List<bedStatusClass> input_bedStatus = returnData.Data.ObjToClass<List<bedStatusClass>>();
-                if (input_bedStatus == null || input_bedStatus.Count == 0)
+                if (input_bedStatus == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"傳入Data([bedStatusClass])資料異常";
+                    returnData.Result = $"傳入Data資料異常";
                     return returnData.JsonSerializationt();
                 }
-                string table = "bed_status";
-                SQLControl sQLControl = new SQLControl(Server, DB, table, UserName, Password, Port, SSLMode);
-                (string StartTime, string Endtime) = await GetTodayAsync();
-                (string sql, object par) = getCommand_bedStatus(table, StartTime, Endtime);
-                List<object[]> sql_bedStatusClass = await sQLControl.WriteCommandAsync(sql, par);
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "bed_status", UserName, Password, Port, SSLMode);
+                (string StartTime, string Endtime) = GetToday();
+                List<object[]> sql_bedStatusClass = sQLControl.GetRowsByBetween(null, (int)enum_bed_status.轉床時間, StartTime, Endtime);
                 List<bedStatusClass> list_bedStatusClass = sql_bedStatusClass.SQLToClass<bedStatusClass, enum_bed_status>();
 
                 Dictionary<string, List<bedStatusClass>> inputBedStatusDict = bedStatusClass.ToDictByID(input_bedStatus);
@@ -1176,16 +1230,17 @@ namespace HIS_WebApi
                 foreach (var Master_GUID in inputBedStatusDict.Keys)
                 {
                     List<bedStatusClass> input = bedStatusClass.GetByID(inputBedStatusDict, Master_GUID);
-                    List<bedStatusClass> sqlData = bedStatusClass.GetByID(sqlBedStatusDict, Master_GUID);
+                    List<bedStatusClass> sql = bedStatusClass.GetByID(sqlBedStatusDict, Master_GUID);
 
                     List<bedStatusClass> result = input
-                        .Where(inputItem => !sqlData.Any(sqlItem => sqlItem.PRI_KEY == inputItem.PRI_KEY))
+                        .Where(inputItem => !sql.Any(sqlItem => sqlItem.PRI_KEY == inputItem.PRI_KEY))
                         .ToList();
                     if (result.Count > 0) add_bedStatusClass.AddRange(result);
                 }
                 List<object[]> list_bedStatus_add = add_bedStatusClass.ClassToSQL<bedStatusClass, enum_bed_status>();
                 if (list_bedStatus_add.Count > 0)
                 {
+                    //Logger.Log("bedStatus", $"add_update_bed_status \n {add_bedStatusClass.JsonSerializationt(true)}");
                     sQLControl.AddRows(null, list_bedStatus_add);
                 }
 
@@ -1233,7 +1288,6 @@ namespace HIS_WebApi
                 }
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
 
-
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
 
@@ -1241,7 +1295,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
 
                 (string StartTime, string Endtime) = await GetTodayAsync();
-                if(StartTime.StringIsEmpty() || Endtime.StringIsEmpty())
+                if (StartTime.StringIsEmpty() || Endtime.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "交車時間取得失敗";
@@ -1268,14 +1322,14 @@ namespace HIS_WebApi
                     returnData.Result = $"沒有{藥局} {護理站} 所有病人資訊，共{sql_patInfo.Count}筆";
                     return returnData.JsonSerializationt(true);
                 }
-              
+
                 try
                 {
                     sql_patInfo = await UpdateStatusAsync(sql_patInfo, sql_medCpoe);
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log("UpdateStatus", $"{ex.Message}");
+                    Basic.Logger.Log("UpdateStatus", $"{ex.Message}");
                 }
                 finally
                 {
@@ -1397,15 +1451,14 @@ namespace HIS_WebApi
                 string GUID = returnData.ValueAry[0];
                 Task<string> taskApi = HIS_WebApi.Method.GetServerApiAsync("Main", "網頁", "API01");
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
-                (string StartTime, string EndTime) = await GetTodayAsync();
+
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
-                (string sqlPat, object paramPat) = getCommandGuid(sQLControl_patient_info.TableName, StartTime, EndTime, GUID);
-                (string sqlCpoe, object paramCpoe) = getCommandMaster_GUID(sQLControl_med_cpoe.TableName, StartTime, EndTime, GUID);
-                Task<List<object[]>> taskPat = sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
-                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+                string taskPat_command = getCommand(sQLControl_patient_info.TableName, GUID);
+                string taskMedCpoe_command = getCommand(sQLControl_med_cpoe.TableName, GUID, "Master_GUID");
+                Task<List<object[]>> taskPat = sQLControl_patient_info.WriteCommandAsync(taskPat_command, ct);
+                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(taskMedCpoe_command, ct);
                 Task<returnData> task_nearmiss = nearMiss.get_by_pat_GUID(GUID);
-                Task<settingPageClass> taskSet = new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
                 List<object[]> list_pat_carInfo = await taskPat;
                 List<patientInfoClass> sql_patInfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 if (sql_patInfo.Count == 0)
@@ -1416,16 +1469,15 @@ namespace HIS_WebApi
                 }
                 List<object[]> list_med_cpoe = await taskCpoe;
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-
-                settingPageClass settingPages = await taskSet;
+               
+                settingPageClass settingPages = await new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
                 if (settingPages == null)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = "設定取得失敗";
+                    returnData.Code = 200;
+                    returnData.Result = "設定資料取得失敗";
                     return returnData.JsonSerializationt(true);
                 }
-                if (settingPages.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
-
+                if (settingPages != null && settingPages.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
                 string API = await taskApi;
                 returnData returnData_nearmiss = await task_nearmiss;
                 if (returnData_nearmiss == null || returnData_nearmiss.Code != 200) returnData_nearmiss = new returnData();
@@ -1570,8 +1622,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
 
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
-                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已出院);
-           
+                (string sqlPat, object paramPat) = getCommandDischarge_patInfo(tableName_patient_info, StartTime, Endtime, 藥局);
+
                 List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
                 if (list_pat_carInfo.Count == 0)
                 {
@@ -1583,11 +1635,11 @@ namespace HIS_WebApi
                 }
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
-                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已出院);
-               
+                (string sqlCpoe, object paramCpoe) = getCommandDischarge_medCpoe(tableName_med_cpoe, StartTime, Endtime, guids);
+
                 List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-                
+
                 List<string> cart = sql_medCpoe.Select(x => x.護理站).Distinct().ToList();
                 cart.Sort();
 
@@ -1639,8 +1691,7 @@ namespace HIS_WebApi
                 }
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
-
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
                 Task<List<bedStatusClass>> task_get_bed_status = get_bed_status(藥局, 護理站, ct);
 
                 string tableName_patient_info = "patient_info";
@@ -1648,23 +1699,35 @@ namespace HIS_WebApi
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, tableName_patient_info, UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
-                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已出院, 護理站);
 
-                List<object[]> list_pat_Info = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
-                if (list_pat_Info.Count == 0)
+                string command_patInfo = @$"SELECT * FROM {DB}.{tableName_patient_info} 
+                                    WHERE 更新時間 >= '{StartTime}' 
+                                    AND 更新時間 <= '{Endtime}' 
+                                    AND 藥局 = '{藥局}' 
+                                    AND 護理站 = '{護理站}'   
+                                    AND 占床狀態 = '{enum_bed_status_string.已出院.GetEnumName()}'
+                                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
+                string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
+                                    WHERE 更新時間 >= '{StartTime}' 
+                                    AND 更新時間 <= '{Endtime}' 
+                                    AND 藥局 = '{藥局}'
+                                    AND PRI_KEY LIKE '%DC%'
+                                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
+                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
+                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
+
+                List<object[]> list_pat_carInfo = await taskPatInfo;
+                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
+                if (sql_patinfo.Count == 0)
                 {
                     returnData.Code = 200;
                     returnData.TimeTaken = $"{myTimerBasic}";
-                    returnData.Data = new List<string>();
+                    returnData.Data = sql_patinfo;
                     returnData.Result = $"取得{藥局}{護理站} 沒有出院資料";
                     return await returnData.JsonSerializationtAsync(true);
                 }
-                List<patientInfoClass> sql_patinfo = list_pat_Info.SQLToClass<patientInfoClass, enum_patient_info>();
-                List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
-                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已出院);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+                List<object[]> list_med_cpoe = await taskCpoe;
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
-
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
                 List<bedStatusClass> bedStatusClasses = await task_get_bed_status;
                 Dictionary<string, List<bedStatusClass>> inputBedStatusDict = bedStatusClass.ToDictByID(bedStatusClasses);
@@ -1672,13 +1735,13 @@ namespace HIS_WebApi
                 foreach (var item in sql_patinfo)
                 {
                     List<medCpoeClass> targetCpoe = medCpoeClass.GetByMasterGUID(medCpoeDict, item.GUID);
-                    if (targetCpoe == null && targetCpoe.Count == 0) continue;
-                    item.處方 = targetCpoe;
+                    if (targetCpoe != null && targetCpoe.Count > 0) item.處方 = targetCpoe;
                     List<bedStatusClass> bedStatus_buff = bedStatusClass.GetByID(inputBedStatusDict, item.病歷號);
                     bedStatusClass bedStatus = bedStatus_buff.Where(temp => temp.狀態 == "轉床").OrderByDescending(x => x.轉床時間).FirstOrDefault();
                     if (bedStatus != null) item.轉床狀態 = bedStatus;
-                    sql_patinfo_buff.Add(item);
+                    if (item.處方 != null && item.處方.Count > 0) sql_patinfo_buff.Add(item);
                 }
+                //sql_patinfo_buff.Sort(new patientInfoClass.ICP_By_bedNum());
                 sql_patinfo_buff = sortByBedNum(sql_patinfo_buff);
 
                 returnData.Code = 200;
@@ -1728,7 +1791,7 @@ namespace HIS_WebApi
                     return await returnData.JsonSerializationtAsync(true);
                 }
                 string 藥局 = returnData.ValueAry[0];
-                (string Server, string DB, string UserName, string Password, uint Port) = await serverInfoTask.Value;
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
 
                 string tableName_patient_info = "patient_info";
                 string tableName_med_cpoe = "med_cpoe";
@@ -1737,15 +1800,13 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
 
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
-                if(StartTime.StringIsEmpty() || Endtime.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"取得更新時間區間失敗";
-                    return await returnData.JsonSerializationtAsync(true);
-                }
-                (string sqlPat, object paramPat) = command_藥局_占床狀態_護理站(tableName_patient_info, StartTime, Endtime, 藥局, (int)enum_bed_status_string.已佔床);
 
-               
+                string command_patInfo = @$"SELECT * FROM {DB}.{tableName_patient_info} 
+                                    WHERE 更新時間 >= '{StartTime}' 
+                                    AND 更新時間 <= '{Endtime}' 
+                                    AND 藥局 = '{藥局}' 
+                                    AND 占床狀態 = '{enum_bed_status_string.已佔床.GetEnumName()}'
+                                    AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
                 string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
                                     WHERE 更新時間 >= '{StartTime}' 
                                     AND 更新時間 <= '{Endtime}' 
@@ -1753,7 +1814,8 @@ namespace HIS_WebApi
                                     AND (調劑狀態 != 'Y' OR 調劑狀態 IS NULL);";
 
 
-                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
+                Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
+                Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
 
                 List<object[]> list_pat_carInfo = await taskPatInfo;
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
@@ -1765,10 +1827,7 @@ namespace HIS_WebApi
                     returnData.Result = $"取得{藥局} 沒有未完成調劑資料";
                     return await returnData.JsonSerializationtAsync(true);
                 }
-                List<string> guids = sql_patinfo.Select(temp => temp.GUID).ToList();
-                (string sqlCpoe, object paramCpoe) = command_MasterGUID(tableName_med_cpoe, StartTime, Endtime, guids, (int)enum_bed_status_string.已佔床);
-
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
+                List<object[]> list_med_cpoe = await taskCpoe;
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
                 Dictionary<string, List<medCpoeClass>> medCpoeDict = medCpoeClass.ToDictByMasterGUID(sql_medCpoe);
                 List<string> cart = new List<string>();
@@ -2005,12 +2064,16 @@ namespace HIS_WebApi
                 {
                     string GUIDs = string.Join(";", GUID);
                     returnData returnData_dispensed = new returnData();
+                    medInventoryLogClass medInventory = new medInventoryLogClass();
+                    medInventory.操作者代號 = "系統";
+                    medInventory.操作者姓名 = "系統";
+                    returnData_dispensed.Data = medInventory;
                     returnData_dispensed.ValueAry.Add(GUIDs);
                     returnData_dispensed.ValueAry.Add(護理站);
 
                     string result = await dispensed_by_cart(returnData_dispensed);
 
-                    add_log("自動調劑", GUIDs);
+                    //add_log("自動調劑", GUIDs);
                 }
                 //patientInfoClasses.Sort(new patientInfoClass.ICP_By_bedNum());
                 patientInfoClasses = sortByBedNum(patientInfoClasses);
@@ -2077,12 +2140,16 @@ namespace HIS_WebApi
                 if (GUID.Count > 0)
                 {
                     string GUIDs = string.Join(";", GUID);
+                    medInventoryLogClass medInventory = new medInventoryLogClass();
+                    medInventory.操作者代號 = "系統";
+                    medInventory.操作者姓名 = "系統";
+                    returnData_dispensed.Data = medInventory;
                     returnData_dispensed.ValueAry.Add(GUIDs);
                     returnData_dispensed.ValueAry.Add(護理站);
 
                     dispensed_by_cart(returnData_dispensed);
 
-                    add_log("自動調劑", GUIDs);
+                    //add_log("自動調劑", GUIDs);
                 }
                 returnData.Method = "med_Cart/get_patient_with_NOdispens_summary_dispense";
                 returnData.Code = 200;
@@ -2136,12 +2203,12 @@ namespace HIS_WebApi
                             AND 更新時間 <= '{Endtime}' 
                             AND 藥局 = '{藥局}' 
                             AND 占床狀態 = '{enum_bed_status_string.已佔床.GetEnumName()}'
-                            AND 覆核狀態 != 'Y';";
+                            AND (覆核狀態 != 'Y' OR 覆核狀態 IS NULL);";
                 string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
                             WHERE 更新時間 >= '{StartTime}' 
                             AND 更新時間 <= '{Endtime}' 
                             AND 藥局 = '{藥局}'
-                            AND 覆核狀態 != 'Y';";
+                            AND (覆核狀態 <> 'Y' OR 覆核狀態 IS NULL);";
 
                 Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
                 Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
@@ -2230,18 +2297,18 @@ namespace HIS_WebApi
                 (string StartTime, string Endtime) = await GetTodayAsync(ct);
 
                 string command_patInfo = @$"SELECT * FROM {DB}.{tableName_patient_info} 
-                            WHERE 更新時間 >= '{StartTime}' 
-                            AND 更新時間 <= '{Endtime}' 
-                            AND 藥局 = '{藥局}' 
-                            AND 護理站 = '{護理站}'   
-                            AND 占床狀態 = '{enum_bed_status_string.已佔床.GetEnumName()}'
-                            AND 覆核狀態 != 'Y';";
+                    WHERE 更新時間 >= '{StartTime}' 
+                    AND 更新時間 <= '{Endtime}' 
+                    AND 藥局 = '{藥局}' 
+                    AND 護理站 = '{護理站}'   
+                    AND 占床狀態 = '{enum_bed_status_string.已佔床.GetEnumName()}'
+                    AND (覆核狀態 <> 'Y' OR 覆核狀態 IS NULL);";
                 string command_cpoe = @$"SELECT * FROM {DB}.{tableName_med_cpoe} 
-                            WHERE 更新時間 >= '{StartTime}' 
-                            AND 更新時間 <= '{Endtime}' 
-                            AND 藥局 = '{藥局}'
-                            AND 護理站 = '{護理站}'   
-                            AND 覆核狀態 != 'Y';";
+                    WHERE 更新時間 >= '{StartTime}' 
+                    AND 更新時間 <= '{Endtime}' 
+                    AND 藥局 = '{藥局}'
+                    AND 護理站 = '{護理站}'   
+                    AND (覆核狀態 <> 'Y' OR 覆核狀態 IS NULL);";
 
                 Task<List<object[]>> taskPatInfo = sQLControl_patient_info.WriteCommandAsync(command_patInfo, ct);
                 Task<List<object[]>> taskCpoe = sQLControl_med_cpoe.WriteCommandAsync(command_cpoe, ct);
@@ -2551,8 +2618,13 @@ namespace HIS_WebApi
             returnData.Method = "med_cart/get_bed_status";
             try
             {
-                
-                if (returnData.ValueAry == null ||　returnData.ValueAry.Count != 2 || returnData.ValueAry[0].StringIsEmpty() || returnData.ValueAry[1].StringIsEmpty())
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2 || returnData.ValueAry[0].StringIsEmpty() || returnData.ValueAry[1].StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 應為[\"藥局\",\"護理站\"]";
@@ -2560,23 +2632,18 @@ namespace HIS_WebApi
                 }
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
-
-                string 病歷號 = returnData.Value;
-                List<string> patid = new List<string>();
-                if (病歷號.StringIsEmpty() == false) patid = 病歷號.Split(";").ToList();
-         
                 string tableName = "bed_status";
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 Task<(string StartTime, string Endtime)> taskGetToday = GetTodayAsync(ct);
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
                 (string StartTime, string Endtime) = await taskGetToday;
-                
-                (string sqlBedSta, object paramBedSta) = getCommand_bedStatus(tableName, StartTime, Endtime, 護理站, patid);
+                string command = @$"SELECT * FROM {DB}.{tableName} 
+                                    WHERE 轉床時間 >= '{StartTime}' 
+                                    AND 轉床時間 <= '{Endtime}' 
+                                    AND (轉床前護理站床號 LIKE '%{護理站}%' OR 轉床後護理站床號 LIKE '%{護理站}%');";
 
 
-
-
-                List<object[]> list_bed_status = await sQLControl.WriteCommandAsync(sqlBedSta, paramBedSta, ct);
+                List<object[]> list_bed_status = await sQLControl.WriteCommandAsync(command);
                 List<bedStatusClass> bedStatusClasses = list_bed_status.SQLToClass<bedStatusClass, enum_bed_status>();
                 bedStatusClasses.Sort(new bedStatusClass.ICP_By_UP_Time());
                 returnData.Code = 200;
@@ -2704,21 +2771,26 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "ValueAry":["藥局","護理站","2025-05-19 00:00:00(開始時間)","2025-05-19 23:59:59(結束時間)"]
+        ///         "ValueAry":["病床GUID"]
         ///     }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("get_medChange_by_ST_EN")]
-        public async Task<string> get_medChange_by_ST_EN([FromBody] returnData returnData)
+        public string get_medChange_by_ST_EN([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "med_cart/get_medChange_by_ST_EN";
             try
             {
-                
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 4)
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 4)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"UC02\",\"C039\",\"2025-05-19 00:00:00\",\"2025-05-19 23:59:59\"]";
@@ -2729,18 +2801,22 @@ namespace HIS_WebApi
                 string 開始時間 = returnData.ValueAry[2];
                 string 結束時間 = returnData.ValueAry[3];
                 string tableName = "med_cpoe_rec";
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
-                
-                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
-                (string sql, object parm) = getCommand_medChange(tableName, 開始時間, 結束時間, 護理站, "DC");
-                List<object[]> list_med_cpoe_rec = await sQLControl_med_cpoe_rec.WriteCommandAsync(sql, parm);
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
+                string command = $"SELECT * FROM {DB}.{tableName} WHERE 更新時間 BETWEEN '{開始時間}' AND '{結束時間}' AND 藥局 = '{藥局}' AND 護理站 = '{護理站}' AND 狀態 = 'DC';";
+                DataTable dataTable_med_cpoe_rec = sQLControl_med_cpoe_rec.WtrteCommandAndExecuteReader(command);
+                List<object[]> list_med_cpoe_rec = dataTable_med_cpoe_rec.DataTableToRowList();
 
                 List<medCpoeRecClass> sql_medCpoeRec = list_med_cpoe_rec.SQLToClass<medCpoeRecClass, enum_med_cpoe_rec>();
                 sql_medCpoeRec.Sort(new medCpoeRecClass.ICP_By_UP_BedNum());
+
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoeRec;
-                returnData.Result = $"護理站({護理站})處方異動(DC)資料共{sql_medCpoeRec.Count}筆";
+                returnData.Result = $"處方異動資料共{sql_medCpoeRec.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -2938,7 +3014,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 medInventoryLogClass medInventoryLog = returnData.Data.ObjToClass<medInventoryLogClass>();
-                if(medInventoryLog == null || medInventoryLog.操作者代號.StringIsEmpty() || medInventoryLog.操作者姓名.StringIsEmpty())
+                if (medInventoryLog == null || medInventoryLog.操作者代號.StringIsEmpty() || medInventoryLog.操作者姓名.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = $"請指定操作者代號與姓名";
@@ -2999,8 +3075,8 @@ namespace HIS_WebApi
                     List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (list_medCpoe_replace.Count > 0)
                     {
-                        add_log(動作, GUID, 操作者代號, 操作者姓名);
                         sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
+                        add_log(動作, GUID, 操作者代號, 操作者姓名);
                     }
                 })));
                 tasks.Add(Task.Run(new Action(delegate
@@ -3011,6 +3087,7 @@ namespace HIS_WebApi
                     List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
                     if (list_patInfo_replace.Count > 0)
                     {
+                        //Logger.Log($"patientInfo-{護理站}", $"update_check_dispense_by_GUID \n {sql_patinfo.JsonSerializationt(true)}");
                         sQLControl_patient_info.UpdateByDefulteExtra(null, list_patInfo_replace);
                     }
 
@@ -3050,15 +3127,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
-        ///         {
-        ///             "op_id":"",
-        ///             "op_name":""
-        ///         },
-        ///         
-        ///         "ValueAry":["處方GUID;處方GUID", "處方Master_GUID"],
-        ///         "ServerName":"調劑台",
-        ///         "UserName":"操作人"
+        ///         "ValueAry":["處方GUID","處方GUID", "處方Master_GUID"]";
         ///     }
         /// </code>
         /// </remarks>
@@ -3089,13 +3158,16 @@ namespace HIS_WebApi
                 medInventoryLogClass medInventoryLog = returnData.Data.ObjToClass<medInventoryLogClass>();
                 if (medInventoryLog == null || medInventoryLog.操作者代號.StringIsEmpty() || medInventoryLog.操作者姓名.StringIsEmpty())
                 {
+
                     returnData.Code = -200;
                     returnData.Result = $"請指定操作者代號與姓名";
+
+
                     return returnData.JsonSerializationt(true);
                 }
+
                 string 操作者代號 = medInventoryLog.操作者代號;
                 string 操作者姓名 = medInventoryLog.操作者姓名;
-
                 List<string> GUIDs = returnData.ValueAry[0].Split(";").ToList();
                 string Master_GUID = returnData.ValueAry[1];
 
@@ -3111,6 +3183,7 @@ namespace HIS_WebApi
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
+                sql_medCpoe = sql_medCpoe.Where(x => GUIDs.Contains(x.GUID)).ToList();
                 string 護理站 = sql_medCpoe[0].護理站;
                 for (int i = 0; i < sql_medCpoe.Count; i++)
                 {
@@ -3138,9 +3211,9 @@ namespace HIS_WebApi
                     List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                     if (update_medCpoe.Count > 0)
                     {
+                        sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                         string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());
                         add_log("調劑", GUID, 操作者代號, 操作者姓名);
-                        sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                     }
                 })));
                 tasks.Add(Task.Run(new Action(delegate
@@ -3184,7 +3257,7 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Result = $"Exception:{ex.Message}";
-                Logger.Log(returnData.JsonSerializationt(true));
+                Basic.Logger.Log(returnData.JsonSerializationt(true));
                 return returnData.JsonSerializationt(true);
             }
         }
@@ -3195,14 +3268,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
-        ///         {
-        ///             "op_id":"",
-        ///             "op_name":""
-        ///         },
-        ///         "ValueAry":["處方GUID;處方GUID", "護理站"]";
-        ///         "ServerName":"調劑台",
-        ///         "UserName":"操作人"
+        ///         "ValueAry":["處方GUID";"處方GUID", "護理站"]";
         ///     }
         /// </code>
         /// </remarks>
@@ -3225,17 +3291,17 @@ namespace HIS_WebApi
                 medInventoryLogClass medInventoryLog = returnData.Data.ObjToClass<medInventoryLogClass>();
                 if (medInventoryLog == null || medInventoryLog.操作者代號.StringIsEmpty() || medInventoryLog.操作者姓名.StringIsEmpty())
                 {
+
                     returnData.Code = -200;
                     returnData.Result = $"請指定操作者代號與姓名";
                     return returnData.JsonSerializationt(true);
                 }
                 string 操作者代號 = medInventoryLog.操作者代號;
                 string 操作者姓名 = medInventoryLog.操作者姓名;
-
                 Task<(string StartTime, string Endtime)> taskGetToday = GetTodayAsync(ct);
 
                 (string Server, string DB, string UserName, string Password, uint Port) = await Method.GetServerInfoAsync("Main", "網頁", "VM端");
-                string[] GUIDs = returnData.ValueAry[0].Split(";");
+                List<string> GUIDs = returnData.ValueAry[0].Split(";").ToList();
                 string 護理站 = returnData.ValueAry[1];
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
@@ -3243,11 +3309,28 @@ namespace HIS_WebApi
                 string tableName_med_cpoe = "med_cpoe";
                 (string StartTime, string Endtime) = await taskGetToday;
 
-                (string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, Endtime,GUIDs);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+                //(string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, Endtime, 護理站, GUID_str);
+                string sql = $@"
+                    SELECT *
+                    FROM dbvm.{tableName_med_cpoe}
+                    WHERE 更新時間 >= @start
+                    AND 更新時間 < @end
+                    AND 護理站 = @station
+                    AND GUID IN @guid";
+
+                var parameters = new
+                {
+                    start = StartTime,
+                    end = Endtime,
+                    station = 護理站,
+                    guid = GUIDs,
+                };
+                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sql, parameters, ct);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
                 if (sql_medCpoe.Count == 0)
                 {
+                    Basic.Logger.Log("未調查無資料", $"{returnData.JsonSerializationt(true)}");
                     returnData.Code = -200;
                     returnData.TimeTaken = $"{myTimerBasic}";
                     returnData.Data = sql_medCpoe;
@@ -3273,20 +3356,22 @@ namespace HIS_WebApi
                     item.調劑狀態 = "Y";
                     item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
+                string GUID_str_patInfo = string.Join(",", patientGUID.Distinct().Select(x => $"'{x}'"));
 
-                (string sqlPat, object paramPat) = getCommandGuid(tableName_patient_info, StartTime, Endtime, patientGUID.Distinct().ToArray());
+                (string sqlPat, object paramPat) = getCommandGuid(tableName_patient_info, StartTime, Endtime, 護理站, GUID_str_patInfo);
                 List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
                 List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-                                                             
+
                 List<Task> tasks = new List<Task>();
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
-                if (update_medCpoe.Count > 0) 
+                if (update_medCpoe.Count > 0)
                 {
-                    string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());
-                    add_log("調劑", GUID, 操作者代號, 操作者姓名);
                     tasks.Add(sQLControl_med_cpoe.UpdateRowsAsync(null, update_medCpoe));
+                    string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());
+                    string 動作 = "調劑";
+                    if (操作者代號 == "系統") 動作 = "自動調劑";
+                    add_log(動作, GUID, 操作者代號, 操作者姓名);
                 }
-                
                 string now = DateTime.Now.ToDateTimeString();
                 foreach (var item in sql_patinfo)
                 {
@@ -3303,13 +3388,24 @@ namespace HIS_WebApi
                 if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(new returnData(), debit_medcpoe, "系統領藥"));
                 if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(new returnData(), refund_medcpoe, "系統退藥"));
 
-               
+
                 List<Task> all = new List<Task>(tasks);
                 if (debitTask != null) all.Add(debitTask);
                 if (refundTask != null) all.Add(refundTask);
 
                 await Task.WhenAll(all).ConfigureAwait(false);
-           
+                ////扣帳
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                //})));
+                ////退帳
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+                //})));
+
+                //Task.WhenAll(tasks).Wait();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoe;
@@ -3339,13 +3435,19 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("double_check")]
-        public async Task<string> double_check([FromBody] returnData returnData, CancellationToken ct = default)
+        public string double_check([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "double_check";
             try
             {
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無調劑藥品";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"藥品GUID; 藥品GUID; 藥品GUID\"]";
@@ -3357,43 +3459,28 @@ namespace HIS_WebApi
                     returnData.Result = $"請指定GUID";
                     return returnData.JsonSerializationt(true);
                 }
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
 
-                (string StartTime, string EndTime) = await GetTodayAsync();
-                if(StartTime.StringIsEmpty() || EndTime.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"取得更新時間失敗";
-                    return returnData.JsonSerializationt(true);
-                }
-
-                List<string> Master_GUID = new List<string> { returnData.Value };
+                string Master_GUID = returnData.Value;
                 string[] GUID = returnData.ValueAry[0].Split(";");
-                string table_patInfo = "patient_info";
-                string table_cpoe = "med_cpoe";
-                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, table_cpoe, UserName, Password, Port, SSLMode);
-                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, table_patInfo, UserName, Password, Port, SSLMode);
-                (string sqlCpoe, object paramCpoe) = getCommandMaster_GUID(table_cpoe, StartTime, EndTime, Master_GUID);
-                (string sqlPat, object paramPat) = getCommandGuid(table_patInfo, StartTime, EndTime, Master_GUID);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
-                Task<List<object[]>> taskPat = sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
+
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
                 if (sql_medCpoe.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
+                List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
 
-                settingPageClass settingPage_DC = await new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
-                if (settingPage_DC == null)
-                {
-                    returnData.Code = -200;
-                    returnData.TimeTaken = $"{myTimerBasic}";
-                    returnData.Result = $"取得設定失敗";
-                    return returnData.JsonSerializationt(true);
-                }
-              
+                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                settingPageClass settingPage_DC = settingPageClasses.myFind("medicine_cart", "DC處方確認後取消顯示");
+
                 if (settingPage_DC.設定值 == true.ToString()) sql_medCpoe = sql_medCpoe.Where(temp => temp.DC確認.StringIsEmpty()).ToList();
 
                 if (sql_medCpoe.Count == 0)
@@ -3403,8 +3490,6 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string 護理站 = sql_medCpoe[0].護理站;
-                string now = DateTime.Now.ToDateTimeString();
-                List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
                 foreach (var medCpoeClass in sql_medCpoe)
                 {
                     if (GUID.Contains(medCpoeClass.GUID))
@@ -3412,8 +3497,7 @@ namespace HIS_WebApi
                         if (medCpoeClass.覆核狀態.StringIsEmpty())
                         {
                             medCpoeClass.覆核狀態 = "Y";
-                            medCpoeClass.更新時間 = now;
-                            medCpoe_sql_replace.Add(medCpoeClass);
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                         }
                     }
                     else
@@ -3421,25 +3505,17 @@ namespace HIS_WebApi
                         if (medCpoeClass.覆核狀態.StringIsEmpty() == false)
                         {
                             medCpoeClass.覆核狀態 = string.Empty;
-                            medCpoeClass.更新時間 = now;
-                            medCpoe_sql_replace.Add(medCpoeClass);
+                            medCpoeClass.更新時間 = DateTime.Now.ToDateTimeString();
                         }
-                    }                
+                    }
+
+                    medCpoe_sql_replace.Add(medCpoeClass);
                 }
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
-                    await sQLControl_med_cpoe.UpdateRowsAsync(null, list_medCpoe_replace);
-                }
-                List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat);
-                List<patientInfoClass> sql_patInfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-                try
-                {
-                    await UpdateStatusAsync(sql_patInfo, sql_medCpoe);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log("UpdateStatus", $"{ex.Message}");
+                    //Logger.Log($"medCpoe-{護理站}", $"update_double_check \n {medCpoe_sql_replace.JsonSerializationt(true)}");
+                    sQLControl_med_cpoe.UpdateByDefulteExtra(null, list_medCpoe_replace);
                 }
 
                 returnData.Code = 200;
@@ -3463,21 +3539,14 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
-        ///         {
-        ///             "op_id":"",
-        ///             "op_name":""
-        ///         },
-        ///         "ValueAry":["病人GUID","藥品GUID", "Y/ "],
-        ///         "ServerName":"調劑台",
-        ///         "UserName":"操作人"   
+        ///         "ValueAry":["病人GUID","藥品GUID", "Y/ "]";
         ///     }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("double_check_by_GUID")]
-        public async Task<string> double_check_by_GUID([FromBody] returnData returnData)
+        public string double_check_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "double_check_by_GUID";
@@ -3496,46 +3565,40 @@ namespace HIS_WebApi
                     returnData.Result = $"請指定操作者代號與姓名";
                     return returnData.JsonSerializationt(true);
                 }
-                (string StartTime, string EndTime) = await GetTodayAsync();
-                if (StartTime.StringIsEmpty() || EndTime.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"取得更新時間失敗";
-                    return returnData.JsonSerializationt(true);
-                }
-
                 string 操作者代號 = medInventoryLog.操作者代號;
                 string 操作者姓名 = medInventoryLog.操作者姓名;
 
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
+
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+
                 string Master_GUID = returnData.ValueAry[0];
-                string GUID = returnData.ValueAry[1]; //處方GUID
+                string GUID = returnData.ValueAry[1];
                 string 覆核狀態 = returnData.ValueAry[2];
-
-                string tableName_med_cpoe = "med_cpoe";
-
-                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
-                (string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, EndTime, GUID);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe);
+                string 動作 = string.Empty;
+                if (覆核狀態.StringIsEmpty())
+                {
+                    動作 = "取消覆核";
+                }
+                else
+                {
+                    動作 = "覆核";
+                }
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.GUID, GUID);
                 List<medCpoeClass> medCpoe_sql_replace = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                medCpoe_sql_replace = CheckUpdateTime(medCpoe_sql_replace);
                 if (medCpoe_sql_replace.Count == 0)
                 {
                     returnData.Code = 200;
                     returnData.Result = $"無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
-                
+
                 medCpoe_sql_replace[0].覆核狀態 = 覆核狀態;
                 medCpoe_sql_replace[0].更新時間 = DateTime.Now.ToDateTimeString();
-                string 動作 = string.Empty;
-                if (覆核狀態.StringIsEmpty()) //取消覆核
-                {
-                    動作 = "取消覆核";
-                }
-                else //確認覆核
-                {
-                    動作 = "覆核";
-                }
+                //string 護理站 = medCpoe_sql_replace[0].護理站;
                 List<object[]> list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (list_medCpoe_replace.Count > 0)
                 {
@@ -3564,39 +3627,33 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
-        ///         {
-        ///             "op_id":"",
-        ///             "op_name":""
-        ///         },
-        ///         "ValueAry":["處方GUID;處方GUID", "處方Master_GUID"],
-        ///         "ServerName":"調劑台",
-        ///         "UserName":"操作人"
+        ///         "ValueAry":["處方GUID;處方GUID", "處方Master_GUID"]";
         ///     }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("check_by_GUID")]
-        public async Task<string> check_by_GUID([FromBody] returnData returnData)
+        public string check_by_GUID([FromBody] returnData returnData)
         {
             ///未調藥品的全部覆核
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "check_by_GUID";
             try
             {
-             
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 空白，請輸入對應欄位資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"處方GUID1;處方GUID2\",\"處方Master_GUID\"]";
-                    return returnData.JsonSerializationt(true);
-                }
-                (string StartTime, string EndTime) = await GetTodayAsync();
-                if (StartTime.StringIsEmpty() || EndTime.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"取得更新時間失敗";
                     return returnData.JsonSerializationt(true);
                 }
                 medInventoryLogClass medInventoryLog = returnData.Data.ObjToClass<medInventoryLogClass>();
@@ -3609,16 +3666,14 @@ namespace HIS_WebApi
                 string 操作者代號 = medInventoryLog.操作者代號;
                 string 操作者姓名 = medInventoryLog.操作者姓名;
 
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
                 List<string> GUIDs = returnData.ValueAry[0].Split(";").ToList();
-                string Master_GUID = returnData.ValueAry[1]; //病人GUID
-                string tableName_med_cpoe = "med_cpoe";
+                string Master_GUID = returnData.ValueAry[1];
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
-                (string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, EndTime, GUIDs);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe);
-
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.Master_GUID, Master_GUID);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                sql_medCpoe = CheckUpdateTime(sql_medCpoe);
+                List<medCpoeClass> debit_medcpoe = new List<medCpoeClass>();
 
                 if (sql_medCpoe.Count == 0)
                 {
@@ -3637,8 +3692,8 @@ namespace HIS_WebApi
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
                 if (update_medCpoe.Count > 0)
                 {
-                    string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());                    
                     sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
+                    string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());
                     add_log("覆核", GUID, 操作者代號, 操作者姓名);
                 }
 
@@ -3662,30 +3717,38 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":
-        ///         {
-        ///             "op_id":"",
-        ///             "op_name":""
-        ///         },
-        ///         "ValueAry":["處方GUID;處方GUID", "護理站"],
-        ///         "ServerName":"調劑台",
-        ///         "UserName":"操作人"
+        ///         "ValueAry":["處方GUID;處方GUID", "護理站"]";
         ///     }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("check_by_cart")]
-        public async Task<string> check_by_cart([FromBody] returnData returnData, CancellationToken ct = default)
+        public string check_by_cart([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "check_by_cart";
             try
             {
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
+                (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
+                string API = Method.GetServerAPI("Main", "網頁", "API01");
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 空白，請輸入對應欄位資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[\"處方GUID1;處方GUID2\",\"護理站\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry[0].StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"無可覆核處方";
                     return returnData.JsonSerializationt(true);
                 }
                 medInventoryLogClass medInventoryLog = returnData.Data.ObjToClass<medInventoryLogClass>();
@@ -3698,62 +3761,48 @@ namespace HIS_WebApi
                 string 操作者代號 = medInventoryLog.操作者代號;
                 string 操作者姓名 = medInventoryLog.操作者姓名;
 
-                (string StartTime, string EndTime) = await GetTodayAsync();
-                var (Server, DB, UserName, Password, Port) = await serverInfoTask.Value;
-
                 string[] GUIDs = returnData.ValueAry[0].Split(";");
                 string 護理站 = returnData.ValueAry[1];
-                string tableName_patient_info = "patient_info";
-                string tableName_med_cpoe = "med_cpoe";
 
-                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, tableName_med_cpoe, UserName, Password, Port, SSLMode);
-                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, tableName_patient_info, UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
 
-                (string sqlCpoe, object paramCpoe) = getCommandGuid(tableName_med_cpoe, StartTime, EndTime, GUIDs);
-                List<object[]> list_med_cpoe = await sQLControl_med_cpoe.WriteCommandAsync(sqlCpoe, paramCpoe, ct);
+                (string StartTime, string Endtime) = GetToday();
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByBetween(null, (int)enum_med_cpoe.更新時間, StartTime, Endtime);
+                List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByBetween(null, (int)enum_patient_info.更新時間, StartTime, Endtime);
+
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
                 if (sql_medCpoe.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.TimeTaken = $"{myTimerBasic}";
-                    returnData.Data = sql_medCpoe;
-                    returnData.Result = $"查無資料";
-                    return await returnData.JsonSerializationtAsync(true);
+                    returnData.Result = $"無對應處方";
+                    return returnData.JsonSerializationt(true);
                 }
+
+                List<string> carinfo_GUID = new List<string>();
+
+                sql_medCpoe = sql_medCpoe.Where(temp => GUIDs.Contains(temp.GUID)).ToList();
                 List<string> patientGUID = new List<string>();
-                string now = DateTime.Now.ToDateTimeString();   
                 foreach (var item in sql_medCpoe)
                 {
                     patientGUID.Add(item.Master_GUID);
                     item.覆核狀態 = "Y";
-                    item.更新時間 = now;
+                    item.更新時間 = DateTime.Now.ToDateTimeString();
                 }
 
-                (string sqlPat, object paramPat) = getCommandGuid(tableName_patient_info, StartTime, EndTime, patientGUID.Distinct().ToArray());
-                List<object[]> list_pat_carInfo = await sQLControl_patient_info.WriteCommandAsync(sqlPat, paramPat, ct);
-                List<patientInfoClass> sql_patinfo = list_pat_carInfo.SQLToClass<patientInfoClass, enum_patient_info>();
-
-                List<Task> tasks = new List<Task>();
                 List<object[]> update_medCpoe = sql_medCpoe.ClassToSQL<medCpoeClass, enum_med_cpoe>();
-                if (update_medCpoe.Count > 0) 
+                if (update_medCpoe.Count > 0)
                 {
-                    tasks.Add(sQLControl_med_cpoe.UpdateRowsAsync(null, update_medCpoe));
                     string GUID = string.Join(";", sql_medCpoe.Select(x => x.GUID).ToArray());
+
+                    sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medCpoe);
                     add_log("覆核", GUID, 操作者代號, 操作者姓名);
                 }
-                foreach (var item in sql_patinfo)
-                {
-                    item.調劑時間 = now;
-                }
-                List<object[]> list_patInfo_replace = sql_patinfo.ClassToSQL<patientInfoClass, enum_patient_info>();
-                if (list_patInfo_replace.Count > 0) tasks.Add(sQLControl_patient_info.UpdateRowsAsync(null, list_patInfo_replace));
-
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = sql_medCpoe;
-                returnData.Result = $"覆核 {護理站}處方，共{sql_medCpoe.Count}筆";
+                returnData.Result = $"更新藥車: {護理站}處方紀錄共{GUIDs.Length}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -3783,7 +3832,7 @@ namespace HIS_WebApi
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
 
-                List<medGroupClass> medGroupClasses = await medGroup.get_group_name();
+                List<medGroupClass> medGroupClasses = await medGroupClass.get_group_name(APIServer);
 
                 List<string> groupName = System.Enum.GetNames(typeof(藥品總量群組)).ToList();
                 List<medGroupClass> medGroupClass_buff = new List<medGroupClass>();
@@ -3833,8 +3882,13 @@ namespace HIS_WebApi
             returnData.Method = "med_cart/get_med_qty";
             try
             {
-                
-                if (returnData.Value == null ||returnData.ValueAry.Count != 2)
+                if (returnData.Value == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
@@ -3849,13 +3903,6 @@ namespace HIS_WebApi
                 List<medGroupClass> medGroupClass_buff = new List<medGroupClass>();
                 Task<List<medGroupClass>> task_medGroupClasses = medGroup.get_all_group();
                 List<string> groupName = System.Enum.GetNames(typeof(藥品總量群組)).ToList();
-                settingPageClass settingPages = await new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
-                if (settingPages == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "設定取得失敗";
-                    return returnData.JsonSerializationt(true);
-                }
 
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
@@ -3868,7 +3915,13 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 
-                
+                settingPageClass settingPages = await new settingPage().get_by_page_name_cht("medicine_cart", "DC處方確認後取消顯示", ct);
+                if (settingPages == null )
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "設定取得失敗";
+                    return returnData.JsonSerializationt(true);
+                }
                 string command = string.Empty;
                 if (settingPages.設定值 == true.ToString())
                 {
@@ -3900,7 +3953,6 @@ namespace HIS_WebApi
 
                 List<medClass> medClasses = new List<medClass>();
                 Dictionary<string, List<medClass>> medClassDict = new Dictionary<string, List<medClass>>();
-                string APIServer = await Method.GetServerApiAsync("Main", "網頁", "API01");
 
                 if (returnData.Value != "all")
                 {
@@ -5025,13 +5077,10 @@ namespace HIS_WebApi
         }
         private async Task<(string StartTime, string Endtime)> GetTodayAsync(CancellationToken ct = default)
         {
-
-            settingPageClass settingPageClass = await settingPageTask.Value;
-            if (settingPageClass == null)
-            {
-                return ("", "");
-            }
-            string 交車 = settingPageClass.設定值;
+           
+            settingPageClass settingPageClasses = await settingPageTask.Value;
+            if (settingPageClasses == null ) return ("", "");
+            string 交車 = settingPageClasses.設定值;
             if (TimeSpan.TryParse(交車, out TimeSpan 交車時間) == false)
             {
                 return ("", "");
@@ -5138,7 +5187,7 @@ namespace HIS_WebApi
                         if (c.覆核狀態.StringIsEmpty()) anyCheckEmpty = true;
                         if (anyDispenseEmpty && anyCheckEmpty) break;
                     }
-                    
+
 
                     if (anyDispenseEmpty)
                     {
@@ -5171,7 +5220,7 @@ namespace HIS_WebApi
 
                 if (modified) changed.Add(item);
             }
-            if ( changed.Count > 0)
+            if (changed.Count > 0)
             {
                 List<object[]> updateRows = changed.ClassToSQL<patientInfoClass, enum_patient_info>();
                 if (updateRows.Count > 0)
@@ -5184,7 +5233,7 @@ namespace HIS_WebApi
                     await sQLControl_patient_info.UpdateRowsAsync(null, updateRows, ct);
                 }
             }
-           
+
 
             return patientInfoClasses;
         }
@@ -5363,25 +5412,6 @@ namespace HIS_WebApi
                 .Select(g => g.名稱)
                 .ToList();
         }
-        private (string Sql, object Parameters) getCommand(string tableName, string startTime, string endTime, string station)
-        {
-            string sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 更新時間 >= @start
-                    AND 更新時間 <  @end   
-                    AND 護理站 = @station;
-    ";
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                station = station
-            };
-
-            return (sql, parameters);
-        }
         private (string Sql, object Parameters) getCommandLatestByBed(string tableName, string startTime, string endTime, string station)
         {
             string sql = $@"
@@ -5401,156 +5431,45 @@ namespace HIS_WebApi
             var parameters = new { station = station, start = startTime, end = endTime };
             return (sql, parameters);
         }
-        
-        private (string Sql, object Parameters) command_藥局_占床狀態_護理站(string tableName, string startTime, string endTime, string phar, int status, string station = null)
+        private (string Sql, object Parameters) getCommand(string tableName, string startTime, string endTime, string station)
         {
-            string sql;
-            string bedStatus = ((enum_bed_status_string)status).GetEnumName();
-            if (station.StringIsEmpty())
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar
-                AND 占床狀態 = @bedStatus
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-            }
-            else
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar
-                AND 護理站 = @station
-                AND 占床狀態 = @bedStatus
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-
-            }
+            string sql = $@"
+                    SELECT *
+                    FROM dbvm.{tableName}
+                    WHERE 更新時間 >= @start
+                    AND 更新時間 <  @end   
+                    AND 護理站 = @station;
+    ";
 
             var parameters = new
             {
                 start = startTime,
                 end = endTime,
-                phar = phar,
-                station = station,
-                bedStatus = bedStatus
+                station = station
             };
-
 
             return (sql, parameters);
         }
-        private (string Sql, object Parameters) command_MasterGUID(string tableName, string startTime, string endTime, List<string> master_guids, int status)
-        {
-            string sql = string.Empty;
-            string pri_key = string.Empty;
-            string bedStatus = ((enum_bed_status_string)status).GetEnumName();
-            if(bedStatus == $"{enum_bed_status_string.已出院.GetEnumName()}")
-            {
-                pri_key = "%出院退藥%";
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND Master_GUID IN @master_guids
-                AND PRI_KEY like @pri_key
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-            }
-            else if (bedStatus == $"{enum_bed_status_string.已佔床.GetEnumName()}")
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND Master_GUID IN @master_guids
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-            }
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                master_guids,
-                pri_key = pri_key
-            };
-
-
-            return (sql, parameters);
-        }
-        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime, string guids)
-        {
-            List<string> list_guid = new List<string> { guids };
-            return getCommandGuid(tableName, startTime, endTime, list_guid);
-        }
-        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime, string[] guids)
-        {
-            List<string> list_guid = guids.ToList();
-            return getCommandGuid(tableName, startTime, endTime, list_guid);
-        }     
-        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime ,List<string> guids)
+        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime, string station, string guidStr)
         {
             string sql = $@"
                     SELECT *
                     FROM dbvm.{tableName}
                     WHERE 更新時間 >= @start
                     AND 更新時間 < @end
-                    AND GUID IN @guids;";
+                    AND 護理站 = @station
+                    AND GUID IN ({guidStr})";
 
             var parameters = new
             {
                 start = startTime,
                 end = endTime,
-                guids = guids
+                station = station
             };
 
             return (sql, parameters);
         }
-        private (string Sql, object Parameters) getCommandMaster_GUID(string tableName, string startTime, string endTime, string master_guid)
-        {
-            List<string> list_master_guid = new List<string> { master_guid };
-            return getCommandMaster_GUID(tableName, startTime, endTime, list_master_guid);
-        }
-        private (string Sql, object Parameters) getCommandMaster_GUID(string tableName, string startTime, string endTime, List<string> master_guids)
-        {
-            string sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND Master_GUID IN @master_guids";
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                master_guids,
-            };
-
-
-            return (sql, parameters);
-        }
-        private async Task<List<medCpoeRecClass>> get_medChange_by_ST_EN(string phar, string station, string startTime, string endTime)
-        {
-            returnData returnData = new returnData();
-            List<string> ValueAry = new List<string> { phar, station, startTime, endTime };
-            returnData.ValueAry = ValueAry;
-            string result = await get_medChange_by_ST_EN(returnData);
-            returnData = result.JsonDeserializet<returnData>();
-            if (returnData == null || returnData.Code != 200)
-            {
-                Logger.Log($"{result}");
-                return null;
-            }
-            List<medCpoeRecClass> medCpoeRecClasses = returnData.Data.ObjToClass<List<medCpoeRecClass>>();
-            return medCpoeRecClasses;
-        }
-
-        private (string Sql, object Parameters) getCommand_patInfo(string tableName, string startTime, string endTime, string phar, string station = null)
+        private (string Sql, object Parameters) getCommandDischarge_patInfo(string tableName, string startTime, string endTime, string phar, string station = null)
         {
             string sql;
             if (station.StringIsEmpty())
@@ -5561,7 +5480,8 @@ namespace HIS_WebApi
                 WHERE 更新時間 >= @start
                 AND 更新時間 <  @end
                 AND 藥局 = @phar
-                AND 占床狀態 <> @bedStatus";
+                AND 占床狀態 = @bedStatus
+                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
             }
             else
             {
@@ -5572,7 +5492,8 @@ namespace HIS_WebApi
                 AND 更新時間 <  @end
                 AND 藥局 = @phar
                 AND 護理站 = @station
-                AND 占床狀態 <> @bedStatus";
+                AND 占床狀態 = @bedStatus
+                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
 
             }
 
@@ -5588,126 +5509,35 @@ namespace HIS_WebApi
 
             return (sql, parameters);
         }
-        private (string Sql, object Parameters) getCommand_medCpoe(string tableName, string startTime, string endTime, string phar, string station = null)
-        {
-            string sql;
-            if (station.StringIsEmpty())
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar";
-            }
-            else
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar
-                AND 護理站 = @station";
-            }
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                phar = phar,
-                station = station,
-            };
-
-
-            return (sql, parameters);
-        }
-        private (string Sql, object Parameters) getCommand_bedStatus(string tableName, string startTime, string endTime)
+        private (string Sql, object Parameters) getCommandDischarge_medCpoe(string tableName, string startTime, string endTime, List<string> master_guids)
         {
             string sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 轉床時間 >= @start
-                    AND 轉床時間 <  @end ";  
+                SELECT *
+                FROM dbvm.{tableName}
+                WHERE 更新時間 >= @start
+                AND 更新時間 <  @end
+                AND Master_GUID IN @master_guids
+                AND PRI_KEY like @pri_key
+                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
 
             var parameters = new
             {
                 start = startTime,
                 end = endTime,
+                master_guids,
+                pri_key = "%已出院%"
             };
+
 
             return (sql, parameters);
         }
-        private (string Sql, object Parameters) getCommand_bedStatus(string tableName, string startTime, string endTime, string station, List<string> patID = null)
+        private string getCommand(string tableName, string GUID, string type = null)
         {
-            string sql;
-            if (patID == null || patID.Count == 0)
-            {
-                sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 轉床時間 >= @start
-                    AND 轉床時間 < @end
-                    AND (轉床前護理站床號 LIKE @station OR 轉床後護理站床號 LIKE @station)";
-            }
-            else
-            {
-                sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 轉床時間 >= @start
-                    AND 轉床時間 < @end
-                    AND 病歷號 IN @patID
-                    AND (轉床前護理站床號 LIKE @station OR 轉床後護理站床號 LIKE @station)";
-            }
-
-
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                station = $"%{station}%",
-                patID = patID
-            };
-
-            return (sql, parameters);
+            string command = string.Empty;
+            if (type.StringIsEmpty()) command = $"SELECT * FROM dbvm.{tableName} WHERE GUID = '{GUID}';";
+            else if (type == "Master_GUID") command = $"SELECT * FROM dbvm.{tableName} WHERE Master_GUID = '{GUID}';";
+            return command;
         }
-        private (string Sql, object Parameters) getCommand_medChange(string tableName, string startTime, string endTime, string station, string status = null)
-        {
-            string sql;
-            if (status.StringIsEmpty())
-            {
-                sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 更新時間 >= @start
-                    AND 更新時間 <  @end
-                    AND 護理站 = @station";
-            }
-            else
-            {
-                sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 更新時間 >= @start
-                    AND 更新時間 <  @end
-                    AND 護理站 = @station
-                    AND 狀態 = @status";
-            }
-
-
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                status = status,
-            };
-
-            return (sql, parameters);
-        }
-
         private List<medCpoeClass> CheckUpdateTime(List<medCpoeClass> medCpoeClasses)
         {
             (string StartTime, string Endtime) = GetToday();
