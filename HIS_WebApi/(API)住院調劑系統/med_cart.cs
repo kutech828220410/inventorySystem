@@ -1113,9 +1113,9 @@ namespace HIS_WebApi
             {
                 string API = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
 
-                List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
-                settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
-                settingPageClass 交車設定 = settingPageClasses.myFind("medicine_cart", "交車時間");
+                //List<settingPageClass> settingPageClasses = settingPageClass.get_all(API);
+                //settingPageClass 切帳設定 = settingPageClasses.myFind("medicine_cart", "切帳時間");
+                //settingPageClass 交車設定 = settingPageClasses.myFind("medicine_cart", "交車時間");
                 //if (IsInCutoffRange(切帳設定.設定值, 交車設定.設定值))
                 //{
                 //    returnData.Code = 200;
@@ -2735,7 +2735,6 @@ namespace HIS_WebApi
                 }
                 string GUID = returnData.ValueAry[0];
                 (string Server, string DB, string UserName, string Password, uint Port) = Method.GetServerInfo("Main", "網頁", "VM端");
-                string API = Method.GetServerAPI("Main", "網頁", "API01");
                 SQLControl sQLControl_patient_info = new SQLControl(Server, DB, "patient_info", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe_rec = new SQLControl(Server, DB, "med_cpoe_rec", UserName, Password, Port, SSLMode);
                 List<object[]> list_pat_carInfo = sQLControl_patient_info.GetRowsByDefult(null, (int)enum_patient_info.GUID, GUID);
@@ -3382,11 +3381,12 @@ namespace HIS_WebApi
 
                 returnData returnData_debit = new returnData();
                 returnData returnData_refund = new returnData();
+               
 
                 Task<returnData>? debitTask = null;
                 Task<returnData>? refundTask = null;
-                if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(new returnData(), debit_medcpoe, "系統領藥"));
-                if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(new returnData(), refund_medcpoe, "系統退藥"));
+                if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(returnData, debit_medcpoe, "系統領藥"));
+                if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(returnData, refund_medcpoe, "系統退藥"));
 
 
                 List<Task> all = new List<Task>(tasks);
@@ -5644,6 +5644,25 @@ namespace HIS_WebApi
                 int.TryParse(s, out var n) ? n : fallback;
 
             return list;
+        }
+        private returnData debit(string UserName, string ServerName,string GUIDs)
+        {
+            returnData returnData = new returnData();
+            returnData.UserName = UserName;
+            returnData.ServerName = ServerName;
+            returnData.ValueAry.Add(GUIDs);
+            string result = debit(returnData);
+            return result.JsonDeserializet<returnData>();
+        }
+        private returnData refund(string UserName, string ServerName, string GUIDs)
+        {
+            returnData returnData = new returnData();
+            returnData.UserName = UserName;
+            returnData.ServerName = ServerName;
+            returnData.ValueAry.Add(GUIDs);
+            string result = refund(returnData);
+            return result.JsonDeserializet<returnData>();
+
         }
 
     }
