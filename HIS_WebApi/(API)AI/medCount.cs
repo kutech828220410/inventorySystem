@@ -115,35 +115,33 @@ namespace HIS_WebApi
                 //    log_task_1 += $" done,{myTimerBasic_task}\n";
 
                 //})));
-                tasks.Add(Task.Run(new Action(delegate
+               
+                if (returnData.Value == "True")
                 {
-                    if (returnData.Value == "True")
-                    {
-                        string picfile = file + ".jpg";
-                        string base64 = json_in[0].圖片;
-                        string pre = "data:image/jpeg;base64,";
-                        base64 = base64.Replace(pre, "");
-                        string folderPath = Path.Combine(fileDirectory, project);
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                    string picfile = file + ".jpg";
+                    string base64 = json_in[0].圖片;
+                    string pre = "data:image/jpeg;base64,";
+                    base64 = base64.Replace(pre, "");
+                    string folderPath = Path.Combine(fileDirectory, project);
+                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-                        string filePath = Path.Combine(folderPath, picfile);
-                        byte[] imageBytes = Convert.FromBase64String(base64);
-                        SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                        SKBitmap bitmap = SKBitmap.Decode(stream);
-                        using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                    string filePath = Path.Combine(folderPath, picfile);
+                    byte[] imageBytes = Convert.FromBase64String(base64);
+                    SKMemoryStream stream = new SKMemoryStream(imageBytes);
+                    SKBitmap bitmap = SKBitmap.Decode(stream);
+                    using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+                    {
+                        using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
                         {
-                            using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
+                            using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
                             {
-                                using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
-                                {
-                                    data.SaveTo(fileStream);
-                                }
+                                data.SaveTo(fileStream);
                             }
                         }
                     }
-                })));
+                }
+           
 
-                Task.WhenAll(tasks).Wait();
                 
                 //if (out_medCountClass.Count == 0)
                 //{
@@ -156,7 +154,6 @@ namespace HIS_WebApi
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = out_medCountClass;
                 returnData.Result = $"藥物數粒辨識成功 檔案名稱{file},{log_task_1}";
-                Logger.Log(file, project, returnData.JsonSerializationt());
 ;               return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

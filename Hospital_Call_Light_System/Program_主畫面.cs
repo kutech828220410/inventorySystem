@@ -115,17 +115,17 @@ namespace Hospital_Call_Light_System
         /// - 英文：單字內字母間距與單字間距自動計算，整體壓在 titleTextWidth 內置中。  
         /// </summary>
         private Bitmap GetTextBitmap(
-            string titleText,
-            Font titleFont,
-            Size titleSize,
-            int titleTextWidth,
-            Color titleFontColor,
-            Color titleBackColor,    // 整體背景色
-            Color contentBackColor,  // 文字框背景色
-            int padding,             // 內框 padding
-            int borderRadius,
-            float letterRatio = 0.4f,
-            float wordRatio = 0.6f)
+       string titleText,
+       Font titleFont,
+       Size titleSize,
+       int titleTextWidth,
+       Color titleFontColor,
+       Color titleBackColor,    // 整體背景色
+       Color contentBackColor,  // 文字框背景色
+       int padding,             // 內框 padding
+       int borderRadius,
+       float letterRatio = 0.4f,
+       float wordRatio = 0.6f)
         {
             try
             {
@@ -174,84 +174,42 @@ namespace Hospital_Call_Light_System
                     int xStart = contentRect.Left + (contentRect.Width - titleTextWidth) / 2;
                     int yCenter = contentRect.Top + contentRect.Height / 2;
 
+              
+
                     bool hasEnglish = Regex.IsMatch(titleText, "[A-Za-z]");
 
                     if (hasEnglish)
                     {
                         using (Brush textBrush = new SolidBrush(titleFontColor))
                         {
-                            // 測量字串大小
                             SizeF size = g_bmp.MeasureString(titleText, titleFont);
-
-                            // 計算置中位置
                             float x = xStart + (titleTextWidth - size.Width) / 2;
                             float y = yCenter - size.Height / 2;
 
-                            // 直接繪製完整字串
                             g_bmp.DrawString(titleText, titleFont, textBrush, x, y);
                         }
-                        //// ===== 英文模式 =====
-                        //string[] words = titleText.Split(' ');
-
-                        //float totalLettersWidth = 0;
-                        //foreach (string w in words)
-                        //    foreach (char c in w)
-                        //        totalLettersWidth += g_bmp.MeasureString(c.ToString(), titleFont).Width;
-
-                        //int totalLetterGaps = words.Sum(w => Math.Max(0, w.Length - 1));
-                        //int totalWordGaps = Math.Max(0, words.Length - 1);
-
-                        //float remaining = titleTextWidth - totalLettersWidth;
-                        //if (remaining < 0) remaining = 0;
-
-                        //float sumRatio = letterRatio + wordRatio;
-                        //if (sumRatio <= 0) { letterRatio = 0.5f; wordRatio = 0.5f; sumRatio = 1; }
-
-                        //float letterSpace = (totalLetterGaps > 0) ? remaining * (letterRatio / sumRatio) / totalLetterGaps : 0;
-                        //float wordSpace = (totalWordGaps > 0) ? remaining * (wordRatio / sumRatio) / totalWordGaps : 0;
-
-                        //float totalDrawWidth = totalLettersWidth + letterSpace * totalLetterGaps + wordSpace * totalWordGaps;
-                        //float curX = xStart + (titleTextWidth - totalDrawWidth) / 2;
-
-                        //using (Brush textBrush = new SolidBrush(titleFontColor))
-                        //{
-                        //    for (int wi = 0; wi < words.Length; wi++)
-                        //    {
-                        //        string word = words[wi];
-                        //        for (int ci = 0; ci < word.Length; ci++)
-                        //        {
-                        //            string s = word[ci].ToString();
-                        //            SizeF size = g_bmp.MeasureString(s, titleFont);
-                        //            float y = yCenter - size.Height / 2;
-
-                        //            g_bmp.DrawString(s, titleFont, textBrush, curX, y);
-
-                        //            curX += size.Width;
-                        //            if (ci < word.Length - 1) curX += letterSpace;
-                        //        }
-                        //        if (wi < words.Length - 1) curX += wordSpace;
-                        //    }
-                        //}
                     }
                     else
                     {
-                        int verticalOffset = 0;
-                        // ===== 中文模式 =====
                         int charCount = titleText.Length;
                         float cellWidth = (float)titleTextWidth / charCount;
                         float curX = xStart;
 
-                        // 取得字型度量 (ascent / descent)
+                        // 取得字型度量
                         FontFamily ff = titleFont.FontFamily;
-                        float ascent = ff.GetCellAscent(titleFont.Style);
-                        float descent = ff.GetCellDescent(titleFont.Style);
                         float emHeight = ff.GetEmHeight(titleFont.Style);
+                        float ascent = ff.GetCellAscent(titleFont.Style);
+                        float lineSpacing = ff.GetLineSpacing(titleFont.Style);
 
                         float ascentPixel = titleFont.Size * ascent / emHeight;
-                        float descentPixel = titleFont.Size * descent / emHeight;
+                        float lineSpacingPixel = titleFont.Size * lineSpacing / emHeight;
 
-                        // 基線調整 (置中 + 可微調)
-                        float baseline = yCenter + (ascentPixel / 2 - descentPixel / 2) + verticalOffset;
+                        // ✅ 使用 lineSpacing 計算 baseline
+                        float baseline = yCenter + (lineSpacingPixel / 2 - ascentPixel);
+
+                     
+       
+
 
                         using (Brush textBrush = new SolidBrush(titleFontColor))
                         {
@@ -261,14 +219,15 @@ namespace Hospital_Call_Light_System
                                 SizeF size = g_bmp.MeasureString(s, titleFont, PointF.Empty, StringFormat.GenericTypographic);
 
                                 float x = curX + (cellWidth - size.Width) / 2;
-                                float y = baseline - ascentPixel;
+                                float y = baseline - ascentPixel / 2;  // baseline 減去 ascent
 
                                 g_bmp.DrawString(s, titleFont, textBrush, x, y, StringFormat.GenericTypographic);
                                 curX += cellWidth;
                             }
                         }
-
                     }
+
+
                 }
                 return bitmap;
             }
@@ -277,6 +236,7 @@ namespace Hospital_Call_Light_System
                 return null;
             }
         }
+
 
 
 
@@ -429,11 +389,11 @@ namespace Hospital_Call_Light_System
                             if (叫號台01_號碼 == 0)
                             {
                                 bitmap_叫號_0 = null;
-                                bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_0.Height - bitmap_英文標題_0.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_0.Height - bitmap_英文標題_0.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
                             }
                             else
                             {
-                                bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
 
                             }
                         }
@@ -451,11 +411,11 @@ namespace Hospital_Call_Light_System
                             if (叫號台02_號碼 == 0)
                             {
                                 bitmap_叫號_1 = null;
-                                bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_1.Height - bitmap_英文標題_1.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_1.Height - bitmap_英文標題_1.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
                             }
                             else
                             {
-                                bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
                             }
                         }
 
