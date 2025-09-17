@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyOffice;
 using MySql.Data.MySqlClient;
+using NPOI.SS.Formula.Functions;
 using OfficeOpenXml;
 using SQLUI;
 using System;
@@ -4229,6 +4230,37 @@ namespace HIS_WebApi
                 
                 List<object[]> list_med = sQLControl_med.GetAllRows(null);
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+                return medClasses;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        static public async Task<medClass> Get_med_cloudAsync(sys_serverSettingClass sys_serverSettingClass, string Code)
+        {
+            List<medClass> medClasses = await Get_med_cloudAsync(sys_serverSettingClass, new string[] { Code });
+            if (medClasses.Count == 0) return null;
+            return medClasses[0];
+        }
+        static public async Task<List<medClass>> Get_med_cloudAsync(sys_serverSettingClass sys_serverSettingClass, string[] Codes)
+        {
+            try
+            {
+
+                string Server = sys_serverSettingClass.Server;
+                string DB = sys_serverSettingClass.DBName;
+                string UserName = sys_serverSettingClass.User;
+                string Password = sys_serverSettingClass.Password;
+                uint Port = (uint)sys_serverSettingClass.Port.StringToDouble();
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
+                string sqlList = string.Join(", ", Codes.Select(code => $"'{code}'"));
+                string command = $"select * from {DB}.{"medicine_page_cloud"} where UPPER({enum_雲端藥檔.藥品碼.GetEnumName()}) in ({sqlList});";
+                List<object[]> list_med = await sQLControl_med.WriteCommandAsync(command);
+
+                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+
                 return medClasses;
             }
             catch

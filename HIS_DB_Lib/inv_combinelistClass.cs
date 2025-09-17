@@ -411,11 +411,11 @@ namespace HIS_DB_Lib
             return stocks.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
         public inv_combinelist_price_Class GetMedPriceByCode(string code, string stockCode = null)
-        {
+        { 
             return medPrices.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
         public inv_combinelist_note_Class GetMedNoteByCode(string code, string stockCode = null)
-        {
+        {           
             return medNotes.FirstOrDefault(temp => temp.藥碼 == code || temp.藥碼 == stockCode);
         }
         public inv_combinelist_review_Class GetMedReviewByCode(string code)

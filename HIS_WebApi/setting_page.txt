@@ -223,6 +223,14 @@
             "value_type": "checkbox",
             "option_str": "",
             "value_db": "True"
+        },
+        {
+            "page_name": "medicine_cart",
+            "cht": "藥品總量彈窗預選功能開啟",
+            "name": "med_qty_popup_prefill",
+            "value_type": "checkbox",
+            "option_str": "",
+            "value_db": "True"
         }
 
         

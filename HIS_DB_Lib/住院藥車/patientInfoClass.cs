@@ -383,15 +383,17 @@ namespace HIS_DB_Lib
         {
             public int Compare(patientInfoClass x, patientInfoClass y)
             {
-                
-                //int result = (x.床號.Split('-')[0].Trim().StringToInt32()).CompareTo(y.床號.Split('-')[0].Trim().StringToInt32());
-                //if (result == 0)
-                //{
-                //    result = string.Compare(x.更新時間, y.更新時間) * -1;
-                //}
 
-                string[] xParts = x.床號.Split('_');
-                string[] yParts = y.床號.Split('_');
+                //int result = (x.床號.Split('-')[0].Trim().StringToInt32()).CompareTo(y.床號.Split('-')[0].Trim().StringToInt32());
+
+                //return result;
+                List<string> xParts = new List<string>();
+                List<string> yParts = new List<string>();
+                if (x.床號.Contains("-")) xParts =  x.床號.Split('-').ToList();
+                if (x.床號.Contains("_")) xParts = x.床號.Split('_').ToList();
+                if (y.床號.Contains("-")) yParts = y.床號.Split('-').ToList();
+                if (y.床號.Contains("_")) yParts = y.床號.Split('_').ToList();
+                
 
                 int xMain = xParts[0].Trim().StringToInt32();
                 int yMain = yParts[0].Trim().StringToInt32();
@@ -402,23 +404,30 @@ namespace HIS_DB_Lib
                     return result;
 
                 // 如果主床號相同，處理子床號
-                bool xHasSub = xParts.Length > 1;
-                bool yHasSub = yParts.Length > 1;
+                bool xHasSub = xParts.Count > 1;
+                bool yHasSub = yParts.Count > 1;
 
                 // 無子床號的先排（ex: 51 比 51_01 更前面）
                 if (!xHasSub && yHasSub) return -1;
                 if (xHasSub && !yHasSub) return 1;
-                if (!xHasSub && !yHasSub) return 0;
-
+                if (!xHasSub && !yHasSub) result = 0;
+                if (result == 0)
+                {
+                    result = string.Compare(x.更新時間, y.更新時間) * -1;
+                    return result;
+                }
                 // 兩者都有子床號，轉成數字比較
                 if (xParts[1].StartsWith("0")) xParts[1] = xParts[1].Replace("0", "");
                 if (yParts[1].StartsWith("0")) yParts[1] = yParts[1].Replace("0", "");
 
                 int xSub = xParts[1].Trim().StringToInt32();
                 int ySub = yParts[1].Trim().StringToInt32();
-
-
-                return xSub.CompareTo(ySub);
+                result = xSub.CompareTo(ySub);
+                if (result == 0)
+                {
+                    result = string.Compare(x.更新時間, y.更新時間) * -1;
+                }
+                return result;
             }
         }
         static public returnData update_patientInfo(string API_Server, List<patientInfoClass> patientInfoClasses)

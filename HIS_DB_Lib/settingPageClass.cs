@@ -34,7 +34,7 @@ namespace HIS_DB_Lib
         public static settingPageClass myFind(this List<settingPageClass> settingPageClasses, string 頁面名稱, string 欄位名稱)
         {
             if (settingPageClasses == null) return null;
-            settingPageClass settingPageClass = settingPageClasses.Where(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱).FirstOrDefault();
+            settingPageClass settingPageClass = settingPageClasses.FirstOrDefault(temp => temp.頁面名稱 == 頁面名稱 && temp.欄位名稱 == 欄位名稱);
             return settingPageClass;
         }
     }

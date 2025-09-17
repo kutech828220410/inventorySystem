@@ -338,7 +338,6 @@ C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\
 C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe
 C:\Users\User\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital.DBFEDD3D.Up2Date
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe.config
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AudioProcessingLibrary.dll
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.WinMM.dll
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.Core.dll
@@ -346,3 +345,10 @@ C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\Microsoft.Win32.Registry.dll
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.Wasapi.dll
 C:\Users\user\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital.DBFEDD3D.Up2Date
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\AudioProcessingLibrary.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.WinMM.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.Core.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\NAudio.Wasapi.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe.config

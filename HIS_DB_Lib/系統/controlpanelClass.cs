@@ -27,6 +27,8 @@ namespace HIS_DB_Lib
         主旨,
         [Description("內容,VARCHAR,200,NONE")]
         內容,
+        [Description("備註,VARCHAR,200,NONE")]
+        備註,
         [Description("重要程度,VARCHAR,20,NONE")]
         重要程度,
         [Description("建立人員科別,VARCHAR,20,NONE")]
@@ -59,6 +61,12 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("content")]
         public string 內容 { get; set; }
+
+        /// <summary>
+        /// 備註
+        /// </summary>
+        [JsonPropertyName("note")]
+        public string 備註 { get; set; }
 
         /// <summary>
         /// 重要程度

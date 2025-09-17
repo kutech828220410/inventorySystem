@@ -904,6 +904,21 @@ namespace HIS_WebApi._API_AI
                 string 藥袋條碼 = orders[0].藥袋條碼;
                 string 藥師姓名 = orders[0].藥師姓名;
                 List<suspiciousRxLogClass> suspiciousRxLoges = suspiciousRxLogClass.get_by_barcode(API_Server, 藥袋條碼);
+                string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
+                if (suspiciousRxLoges == null)
+                {
+                    returnData.Code = 200;
+                    returnData.Data = new suspiciousRxLogClass();
+                    returnData.Result = $"條碼{藥袋條碼}查無診斷資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (url.StringIsEmpty())
+                {
+                    returnData.Code = 200;
+                    returnData.Data = suspiciousRxLoges;
+                    returnData.Result = $"取得條碼{藥袋條碼}診斷資料成功 ";
+                    return returnData.JsonSerializationt(true);
+                }
                 if (suspiciousRxLoges.Count > 0 & suspiciousRxLoges[0].狀態 != enum_suspiciousRxLog_status.未辨識.GetEnumName())
                 {
                     suspiciousRxLoges[0].辨識註記 = "Y";
@@ -912,6 +927,7 @@ namespace HIS_WebApi._API_AI
                     returnData.Result = $"條碼{藥袋條碼}已辨識過";
                     return returnData.JsonSerializationt(true);
                 }
+                
 
                 suspiciousRxLogClass suspiciousRxLogClasses = suspiciousRxLoges[0];
 
@@ -963,7 +979,6 @@ namespace HIS_WebApi._API_AI
                 //    returnData.Data = result;
                 //    return returnData.JsonSerializationt(true);
                 //}
-                string url = Method.GetServerAPI("Main", "網頁", "medgpt_api");
 
                 Logger.Log("suspiciousRxLog_input", result.JsonSerializationt(true));
                 suspiciousRxLogClass suspiciousRxLog = suspiciousRxLogClass.Excute(url, result);

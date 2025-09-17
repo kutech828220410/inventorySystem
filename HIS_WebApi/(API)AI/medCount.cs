@@ -115,7 +115,7 @@ namespace HIS_WebApi
                 //    log_task_1 += $" done,{myTimerBasic_task}\n";
 
                 //})));
-               
+                
                 if (returnData.Value == "True")
                 {
                     string picfile = file + ".jpg";
@@ -126,21 +126,18 @@ namespace HIS_WebApi
                     if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
                     string filePath = Path.Combine(folderPath, picfile);
+
+                    // 把 Base64 解碼成 byte[]
                     byte[] imageBytes = Convert.FromBase64String(base64);
-                    SKMemoryStream stream = new SKMemoryStream(imageBytes);
-                    SKBitmap bitmap = SKBitmap.Decode(stream);
-                    using (SKImage image = SKImage.FromBitmap(bitmap)) // 明確類型為 SKImage
+
+                    // 直接寫檔（取代 SkiaSharp）
+                    using (FileStream fileStream = System.IO.File.OpenWrite(filePath))
                     {
-                        using (SKData data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) // 明確類型為 SKData
-                        {
-                            using (System.IO.FileStream fileStream = System.IO.File.OpenWrite(filePath)) // 明確類型為 FileStream
-                            {
-                                data.SaveTo(fileStream);
-                            }
-                        }
+                        fileStream.Write(imageBytes, 0, imageBytes.Length);
                     }
+                    
                 }
-           
+               
 
                 
                 //if (out_medCountClass.Count == 0)

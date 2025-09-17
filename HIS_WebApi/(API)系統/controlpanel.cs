@@ -2,6 +2,7 @@
 using HIS_DB_Lib;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using NPOI.SS.Formula.Functions;
 using SQLUI;
 using System;
 using System.Collections.Generic;
@@ -316,7 +317,7 @@ namespace HIS_WebApi._API_系統
                 string command = @$"SELECT * FROM {DB}.{tableName}
                                     WHERE 公告開始時間 <= '{now}' 
                                     AND 公告結束時間 >= '{now}'
-                                    AND 主旨 NOT IN('缺貨通知');";
+                                    AND 主旨 NOT IN('缺貨通知','藥品替換');";
                 List<object[]> objects = await sQLControl.WriteCommandAsync(command,ct);
                 List<controlpanelClass> bbsClasses = objects.SQLToClass<controlpanelClass, enum_controlpanel>();
                 bbsClasses.Sort(new controlpanelClass.ICP_By_ct_time());
@@ -391,7 +392,7 @@ namespace HIS_WebApi._API_系統
             }
         }
         /// <summary>
-        /// 取得所有資料
+        /// 取得公告時間區間內的資料(缺貨通知)
         /// </summary>
         /// <remarks>
         /// <code>
@@ -412,16 +413,22 @@ namespace HIS_WebApi._API_系統
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("get_all")]
-        public async Task<string> get_all([FromBody] returnData returnData, CancellationToken ct = default)
+        [HttpPost("get_by_startendtime_changeMed")]
+        public async Task<string> get_by_startendtime_changeMed([FromBody] returnData returnData, CancellationToken ct = default)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
+                await init(returnData);
+                string now = DateTime.Now.ToDateTimeString();
+
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
-
-                List<object[]> objects = await sQLControl.GetAllRowsAsync(null);
+                string command = @$"SELECT * FROM {DB}.{tableName}
+                                    WHERE 公告開始時間 <= '{now}' 
+                                    AND 公告結束時間 >= '{now}'
+                                    AND 主旨 IN('藥品替換');";
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command, ct);
                 List<controlpanelClass> bbsClasses = objects.SQLToClass<controlpanelClass, enum_controlpanel>();
                 bbsClasses.Sort(new controlpanelClass.ICP_By_ct_time());
 
@@ -429,6 +436,156 @@ namespace HIS_WebApi._API_系統
                 returnData.Data = bbsClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "get_by_startendtime";
+                returnData.Result = $"取得藥品替換公告時間內資料，共{bbsClasses.Count}筆!";
+                return await returnData.JsonSerializationtAsync(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return await returnData.JsonSerializationtAsync(true);
+            }
+        }
+        /// <summary>
+        /// 取得公告欄所有資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     [
+        ///         {
+        ///         }
+        ///     ]
+        ///     "Value": "",
+        ///     "ValueAry":[]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_bbs")]
+        public async Task<string> get_bbs([FromBody] returnData returnData, CancellationToken ct = default)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                string command = @$"SELECT * FROM {DB}.{tableName}
+                                    WHERE 主旨 NOT IN ('缺貨通知','藥品替換');";
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command, ct);
+                List<controlpanelClass> bbsClasses = objects.SQLToClass<controlpanelClass, enum_controlpanel>();
+                bbsClasses.Sort(new controlpanelClass.ICP_By_ct_time());
+
+                returnData.Code = 200;
+                returnData.Data = bbsClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_bbs";
+                returnData.Result = $"取得資料，共{bbsClasses.Count}筆!";
+                return await returnData.JsonSerializationtAsync(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return await returnData.JsonSerializationtAsync(true);
+            }
+        }
+        /// <summary>
+        /// 取得缺貨通知所有資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     [
+        ///         {
+        ///         }
+        ///     ]
+        ///     "Value": "",
+        ///     "ValueAry":[]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_out_of_stock")]
+        public async Task<string> get_out_of_stock([FromBody] returnData returnData, CancellationToken ct = default)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                string command = @$"SELECT * FROM {DB}.{tableName}
+                                    WHERE 主旨 IN ('缺貨通知');";
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command, ct);
+                List<controlpanelClass> bbsClasses = objects.SQLToClass<controlpanelClass, enum_controlpanel>();
+                bbsClasses.Sort(new controlpanelClass.ICP_By_ct_time());
+
+                returnData.Code = 200;
+                returnData.Data = bbsClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_out_of_stock";
+                returnData.Result = $"取得資料，共{bbsClasses.Count}筆!";
+                return await returnData.JsonSerializationtAsync(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return await returnData.JsonSerializationtAsync(true);
+            }
+        }
+        /// <summary>
+        /// 取得藥品替換所有資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     [
+        ///         {
+        ///         }
+        ///     ]
+        ///     "Value": "",
+        ///     "ValueAry":[]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_changeMed")]
+        public async Task<string> get_changeMed([FromBody] returnData returnData, CancellationToken ct = default)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                string command = @$"SELECT * FROM {DB}.{tableName}
+                                    WHERE 主旨 IN ('藥品替換');";
+                List<object[]> objects = await sQLControl.WriteCommandAsync(command, ct);
+                List<controlpanelClass> bbsClasses = objects.SQLToClass<controlpanelClass, enum_controlpanel>();
+                bbsClasses.Sort(new controlpanelClass.ICP_By_ct_time());
+
+                returnData.Code = 200;
+                returnData.Data = bbsClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_changeMed";
                 returnData.Result = $"取得資料，共{bbsClasses.Count}筆!";
                 return await returnData.JsonSerializationtAsync(true);
             }
