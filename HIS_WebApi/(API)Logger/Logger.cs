@@ -150,6 +150,20 @@ namespace HIS_WebApi.Anna_Logger
 
                 List<loggerClass> profile_sql_add = new List<loggerClass>();
                 List<loggerClass> input = returnData.Data.ObjToClass<List<loggerClass>>();
+                if(input == null)
+                {
+                    
+                    loggerClass loggerClass = returnData.Data.ObjToClass<loggerClass>();
+                    if(loggerClass == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = "returnData.Data 空白，請輸入對應欄位資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                    input = new List<loggerClass>();
+                    input.Add(loggerClass);
+                }
+             
 
                 for (int i = 0; i < input.Count; i++)
                 {
