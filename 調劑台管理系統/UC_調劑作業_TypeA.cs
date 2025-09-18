@@ -61,6 +61,7 @@ namespace 調劑台管理系統
         public string 藥師證字號 = "";
         public string 一維碼 = "";
         public string 醫令條碼 = "";
+        public string 年齡_ = "";
         public PLC_Device PLC_Device_已登入;
         public PLC_Device PLC_Device_單醫令模式;
         public FpMatchLib.FpMatchClass FpMatchClass_指紋資訊;
@@ -854,7 +855,7 @@ namespace 調劑台管理系統
                     string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                     string 姓名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
-                    string 年齡 = "";
+                    string 年齡 = 年齡_;
                     string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
                     病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
                     開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
@@ -1728,6 +1729,12 @@ namespace 調劑台管理系統
                         suspiciousRxLog = suspiciousRxLogClass;
 
                         if (suspiciousRxLog == null) return;
+                        if(suspiciousRxLog.年齡.StringIsEmpty() == false)
+                        {
+                            年齡_ = suspiciousRxLog.年齡;
+                        }
+                      
+                        
                         string text = "";
                         int text_height = 30;
                         int text_height_basic = TextRenderer.MeasureText("測試", rJ_Lable_診斷.Font).Height;
