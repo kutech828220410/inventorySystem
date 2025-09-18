@@ -231,6 +231,14 @@
             "value_type": "checkbox",
             "option_str": "",
             "value_db": "True"
+        },
+        {
+            "page_name": "med_map",
+            "cht": "藥庫層架最小單位長度",
+            "name": "shelf_unit_length",
+            "value_type": "text",
+            "option_str": "",
+            "value_db": "15"
         }
 
         

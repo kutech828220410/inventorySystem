@@ -1863,8 +1863,7 @@ namespace HIS_WebApi._API_藥品資料
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_shelf()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_drawer()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_box()));
-
-
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medSize()));
             return tables.JsonSerializationt(true);
         }
         private async Task<string> get_medMap_by_GUID(string GUID)
