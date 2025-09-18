@@ -986,6 +986,22 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return returnData;
         }
+        static public returnData update_order_list(string API_Server, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/update_order_list";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            //if (returnData == null) return null;
+            //if (returnData.Code != 200) return null;
+            List<OrderClass> out_OrderClass = returnData.Data.ObjToClass<List<OrderClass>>();
+            Console.WriteLine($"{returnData}");
+            return returnData;
+        }
 
         static public (int code,string result ,List<OrderClass> orderClasses) add_and_updete_by_guid(string API_Server, string ServerName, string ServerType, List<OrderClass> OrderClasses)
         {

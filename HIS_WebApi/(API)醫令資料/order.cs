@@ -1721,7 +1721,7 @@ namespace HIS_WebApi
         public string update_order_list([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_order_list_new";
+            returnData.Method = "update_order_list";
             try
             {
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
