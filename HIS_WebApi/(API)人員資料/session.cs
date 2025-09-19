@@ -54,7 +54,9 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(sys_serverSettingClasses[0]);
+                string result = CheckCreatTable(sys_serverSettingClasses[0]);
+                loadData();
+                return result;
 
             }
             catch (Exception e)
@@ -1013,8 +1015,8 @@ namespace HIS_WebApi
             init_login_data_index(new returnData());
             string data = Basic.MyFileStream.LoadFileAllText(@"./login_data_index.txt", "utf-8");
             //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
-
-            List<loginDataIndexClass> loginDataIndexClasses = loginDataIndexClass.update_login_data_index(API,data);
+            returnData returnData = data.JsonDeserializet<returnData>();
+            update_login_data_index(returnData);
         }
 
     }

@@ -23,6 +23,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static Basic.Net;
 
 namespace HIS_WebApi
 {
@@ -2140,6 +2141,201 @@ namespace HIS_WebApi
             returnData.Method = "sub_contents_delete_by_GUID";
 
             return returnData.JsonSerializationt();
+        }
+        /// <summary>
+        /// 依藥碼 (CODE) 查詢驗收子明細 (inspection_sub_content)。
+        /// </summary>
+        /// <remarks>
+        /// 本 API 會：  
+        /// 1. 從 <c>returnData.Data</c> 或 <c>ValueAry</c> 解析藥碼清單 (欄位 CODE)。  
+        /// 2. 至資料表 <c>inspection_sub_content</c> 查詢符合的子明細資料。  
+        /// 3. 將結果依 <c>OP_TIME</c> 排序後回傳。  
+        ///
+        /// ✅ 支援輸入格式：  
+        /// - <c>Data</c>：可為單筆或多筆 <c>inspectionClass.sub_content</c>，取其 <c>CODE</c> 欄位。  
+        /// - <c>ValueAry</c>：可直接傳入多個藥碼字串。  
+        ///
+        /// 🔄 請求範例 (單筆)：
+        /// <code>
+        /// {
+        ///   "Data": {
+        ///     "CODE": "OARC2"
+        ///   },
+        ///   "Value": "",
+        ///   "ValueAry": [],
+        ///   "TableName": "inspection_sub_content",
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "TimeTaken": ""
+        /// }
+        /// </code>
+        ///
+        /// 🔄 請求範例 (多筆)：
+        /// <code>
+        /// {
+        ///   "Data": null,
+        ///   "Value": "",
+        ///   "ValueAry": ["OARC2", "OPER7", "OTEST1"],
+        ///   "TableName": "inspection_sub_content",
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "TimeTaken": ""
+        /// }
+        /// </code>
+        ///
+        /// 🟩 成功回傳範例：
+        /// <code>
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "查詢驗收明細&lt;1&gt;筆成功!",
+        ///   "Method": "sub_contents_get_by_code",
+        ///   "Data": [
+        ///     {
+        ///       "GUID": "8258d773-b642-4dc6-83a5-ec33d3853e90",
+        ///       "Master_GUID": "f6109304-9c41-4741-bc28-cdf3725fc2c2",
+        ///       "ACPT_SN": "20250911-0",
+        ///       "CODE": "OARC2",
+        ///       "NAME": "",
+        ///       "SKDIACODE": "ETOO10",
+        ///       "BARCODE1": "",
+        ///       "BARCODE2": "",
+        ///       "END_QTY": "50",
+        ///       "VAL": "2025/09/16 00:00:00",
+        ///       "LOT": "gasdgasd",
+        ///       "OP_TIME": "2025/09/15 16:27:17",
+        ///       "OP": "鴻森智能科技",
+        ///       "STATE": "未鎖定",
+        ///       "NOTE": ""
+        ///     }
+        ///   ],
+        ///   "TimeTaken": "00:00:00.712"
+        /// }
+        /// </code>
+        ///
+        /// 🟥 失敗回傳範例：
+        /// <code>
+        /// {
+        ///   "Code": -5,
+        ///   "Result": "請提供至少一個藥碼 (CODE)!",
+        ///   "Data": null,
+        ///   "TimeTaken": "00:00:00.003",
+        ///   "Method": "sub_contents_get_by_code"
+        /// }
+        /// </code>
+        ///
+        /// 📝 備註：  
+        /// - 若輸入無 CODE，回傳 Code = -5。  
+        /// - 查詢時會自動去重並去除空白。  
+        /// - 結果依 OP_TIME 排序。  
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構，包含 Data/ValueAry 等輸入。</param>
+        /// <returns>
+        /// JSON 字串：  
+        /// - <c>Code</c>：200 成功，-200 系統錯誤，-5 輸入錯誤  
+        /// - <c>Result</c>：執行結果描述  
+        /// - <c>Data</c>：查詢結果 (sub_content 清單，依 OP_TIME 排序)  
+        /// - <c>TimeTaken</c>：執行耗時  
+        /// - <c>Method</c>：API 方法名稱 (sub_contents_get_by_code)  
+        /// </returns>
+        [HttpPost("sub_contents_get_by_code")]
+        public string sub_contents_get_by_code([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            // 1) 取連線設定
+            List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (sys_serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string Server = sys_serverSettingClasses[0].Server;
+            string DB = sys_serverSettingClasses[0].DBName;
+            string UserName = sys_serverSettingClasses[0].User;
+            string Password = sys_serverSettingClasses[0].Password;
+            uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+            // 2) 建立資料表控制
+            SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+
+            // 3) 解析輸入，收集要查的「藥碼」
+            List<string> codes = new List<string>();
+
+            // 3-1) 從 Data 嘗試解析成 sub_content（可單筆或多筆）
+            List<inspectionClass.sub_content> sub_contents_from_data = returnData.Data.ObjToListClass<inspectionClass.sub_content>();
+            if (sub_contents_from_data != null && sub_contents_from_data.Count > 0)
+            {
+                foreach (var sc in sub_contents_from_data)
+                {
+                    // 依你的類別命名，JSON 常用 "code" 對應到中文屬性「藥碼」
+                    if (sc.藥品碼.StringIsEmpty() == false) codes.Add(sc.藥品碼);
+                }
+            }
+            else
+            {
+                // 若 Data 不是清單，再試單筆
+                var sc = returnData.Data.ObjToClass<inspectionClass.sub_content>();
+                if (sc != null && sc.藥品碼.StringIsEmpty() == false) codes.Add(sc.藥品碼);
+            }
+
+            // 3-2) 也支援從 ValueAry 傳入多個 code
+            if (returnData.ValueAry != null && returnData.ValueAry.Count > 0)
+            {
+                foreach (var v in returnData.ValueAry)
+                {
+                    if (v.StringIsEmpty() == false) codes.Add(v);
+                }
+            }
+
+            // 去重與清理
+            codes = codes.Where(x => x.StringIsEmpty() == false).Select(x => x.Trim()).Distinct().ToList();
+
+            if (codes.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"請提供至少一個藥碼 (code)!";
+                returnData.Method = "sub_contents_get_by_code";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+
+            try
+            {
+                // 4) 依「藥碼」查詢 inspection_sub_content
+                string codeStr = string.Join(",", codes.Select(x => $"'{x}'"));
+                string command = $@"
+                    SELECT * 
+                    FROM {DB}.{sQLControl_inspection_sub_content.TableName} 
+                    WHERE 藥品碼 IN ({codeStr});";
+                DataTable dt = sQLControl_inspection_sub_content.WtrteCommandAndExecuteReader(command);
+                List<object[]> rows = dt.DataTableToRowList();
+                List<inspectionClass.sub_content> sub_contents = rows.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+
+                // 5) 依操作時間排序
+                sub_contents = sub_contents.OrderByDescending(sc => DateTime.Parse(sc.操作時間)).ToList();
+
+                // 6) 組回傳
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"查詢驗收明細<{sub_contents.Count}>筆成功!";
+                returnData.Method = "sub_contents_get_by_code";
+                returnData.Data = sub_contents;
+
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = ex.Message;
+                returnData.Method = "sub_contents_get_by_code";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
         }
 
         /// <summary>

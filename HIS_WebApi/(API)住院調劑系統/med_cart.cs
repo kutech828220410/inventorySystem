@@ -4439,23 +4439,24 @@ namespace HIS_WebApi
                 }
                 string 操作人 = returnData.UserName;
                 string 調劑台 = returnData.ServerName;
-                string[] GUIDs = returnData.ValueAry[0].Split(";");
-                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
-                List<OrderClass> orderClasses = new List<OrderClass>();
-                for (int i = 0; i < GUIDs.Length; i++)
+                returnData returnData_order = new order().get_by_pri_key(returnData.ValueAry[0]);
+                if(returnData_order == null || returnData_order.Code != 200)
                 {
-                    string GUID = GUIDs[i].Trim();
-                    OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
-
-                    if (orderClass != null && orderClass.狀態 == "未過帳") orderClasses.Add(orderClass);
-                    if (orderClass.狀態 == "已過帳" && orderClass.實際調劑量 == "0") orderClasses.Add(orderClass);
+                    returnData.Code = -200;
+                    returnData.Result = "取得order失敗";
+                    return returnData.JsonSerializationt(true);
                 }
+                List<OrderClass> orderClasses = returnData_order.Data.ObjToClass<List<OrderClass>>();
+                orderClasses = orderClasses.Where(temp => temp.狀態 == "未過帳" || (temp.狀態 == "已過帳" && temp.實際調劑量 == "0")).ToList();
                 if (orderClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "order資料狀態不符";
                     return returnData.JsonSerializationt(true);
                 }
+                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+                
+                
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 List<string> Codes = orderClasses.Select(temp => temp.藥品碼).Distinct().ToList();
                 if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
@@ -4543,28 +4544,28 @@ namespace HIS_WebApi
                 }
                 string 操作人 = returnData.UserName;
                 string 調劑台 = returnData.ServerName;
-                string[] GUIDs = returnData.ValueAry[0].Split(";");
-                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
-                List<OrderClass> orderClasses = new List<OrderClass>();
-                for (int i = 0; i < GUIDs.Length; i++)
+                returnData returnData_order = new order().get_by_pri_key(returnData.ValueAry[0]);
+                if (returnData_order == null || returnData_order.Code != 200)
                 {
-                    string GUID = GUIDs[i].Trim();
-                    OrderClass orderClass = OrderClass.get_by_pri_key(API_Server, GUID);
-                    if (orderClass != null && orderClass.實際調劑量 == orderClass.交易量) orderClasses.Add(orderClass);
+                    returnData.Code = -200;
+                    returnData.Result = "取得order失敗";
+                    return returnData.JsonSerializationt(true);
                 }
+                List<OrderClass> orderClasses = returnData_order.Data.ObjToClass<List<OrderClass>>();
+                orderClasses = orderClasses.Where(temp =>  temp.實際調劑量 == temp.交易量).ToList();
                 if (orderClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "order資料狀態不符";
                     return returnData.JsonSerializationt(true);
-                }
+                }                            
+                string API_Server = HIS_WebApi.Method.GetServerAPI("Main", "網頁", "API01");
+
                 List<class_OutTakeMed_data> outTakeMed_Datas = new List<class_OutTakeMed_data>();
                 List<string> Codes = orderClasses.Select(temp => temp.藥品碼).Distinct().ToList();
                 if (Codes.Count == 1) Codes[0] = Codes[0] + ",";
                 List<medClass> medClasses = medClass.get_dps_medClass_by_code(API_Server, 調劑台, Codes);
                 Dictionary<string, List<medClass>> medClassDict = medClass.CoverToDictionaryByCode(medClasses);
-
-
 
                 foreach (var item in orderClasses)
                 {
@@ -5525,87 +5526,6 @@ namespace HIS_WebApi
                 end = endTime,
                 station = station
             };
-
-            return (sql, parameters);
-        }
-        private (string Sql, object Parameters) getCommandGuid(string tableName, string startTime, string endTime, string station, string guidStr)
-        {
-            string sql = $@"
-                    SELECT *
-                    FROM dbvm.{tableName}
-                    WHERE 更新時間 >= @start
-                    AND 更新時間 < @end
-                    AND 護理站 = @station
-                    AND GUID IN ({guidStr})";
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                station = station
-            };
-
-            return (sql, parameters);
-        }
-        private (string Sql, object Parameters) getCommandDischarge_patInfo(string tableName, string startTime, string endTime, string phar, string station = null)
-        {
-            string sql;
-            if (station.StringIsEmpty())
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar
-                AND 占床狀態 = @bedStatus
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-            }
-            else
-            {
-                sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND 藥局 = @phar
-                AND 護理站 = @station
-                AND 占床狀態 = @bedStatus
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-
-            }
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                phar = phar,
-                station = station,
-                bedStatus = enum_bed_status_string.已出院.GetEnumName()
-            };
-
-
-            return (sql, parameters);
-        }
-        private (string Sql, object Parameters) getCommandDischarge_medCpoe(string tableName, string startTime, string endTime, List<string> master_guids)
-        {
-            string sql = $@"
-                SELECT *
-                FROM dbvm.{tableName}
-                WHERE 更新時間 >= @start
-                AND 更新時間 <  @end
-                AND Master_GUID IN @master_guids
-                AND PRI_KEY like @pri_key
-                AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
-
-            var parameters = new
-            {
-                start = startTime,
-                end = endTime,
-                master_guids,
-                pri_key = "%已出院%"
-            };
-
 
             return (sql, parameters);
         }
