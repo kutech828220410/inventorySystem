@@ -68,48 +68,48 @@ namespace Hospital_Call_Light_System
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox1 = new MyUI.RJ_GroupBox();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_第一台_存檔 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_樣式設定_存檔 = new MyUI.PLC_RJ_Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rJ_Lable29 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_叫號_備註高度 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_叫號_備註高度 = new MyUI.RJ_TextBox();
             this.rJ_Lable30 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_叫號_備註字體 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_叫號_備註字體 = new MyUI.RJ_TextBox();
             this.rJ_Lable31 = new MyUI.RJ_Lable();
-            this.button_第一台_叫號_備註字體 = new System.Windows.Forms.Button();
-            this.button_第一台_叫號_背景顏色 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_叫號_背景顏色 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_叫號_備註字體 = new System.Windows.Forms.Button();
+            this.button_樣式設定_叫號_背景顏色 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_叫號_背景顏色 = new MyUI.RJ_TextBox();
             this.rJ_Lable11 = new MyUI.RJ_Lable();
-            this.button_第一台_叫號_字體顏色 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_叫號_字體顏色 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_叫號_字體顏色 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_叫號_字體顏色 = new MyUI.RJ_TextBox();
             this.rJ_Lable12 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_叫號_字體 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_叫號_字體 = new MyUI.RJ_TextBox();
             this.rJ_Lable13 = new MyUI.RJ_Lable();
-            this.button_第一台_叫號_字體 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_叫號_寬度 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_叫號_字體 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_叫號_寬度 = new MyUI.RJ_TextBox();
             this.rJ_Lable14 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_設定_讀取 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_樣式設定_讀取 = new MyUI.PLC_RJ_Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rJ_TextBox_第一台_標題_英文高度 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_標題_英文高度 = new MyUI.RJ_TextBox();
             this.rJ_Lable28 = new MyUI.RJ_Lable();
             this.rJ_Lable26 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_標題_英文字體 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_標題_英文字體 = new MyUI.RJ_TextBox();
             this.rJ_Lable27 = new MyUI.RJ_Lable();
-            this.button_第一台_標題_英文字體 = new System.Windows.Forms.Button();
+            this.button_樣式設定_標題_英文字體 = new System.Windows.Forms.Button();
             this.rJ_Lable25 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_標題_高度 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_標題_高度 = new MyUI.RJ_TextBox();
             this.rJ_Lable9 = new MyUI.RJ_Lable();
-            this.button_第一台_標題_背景顏色 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_標題_背景顏色 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_標題_背景顏色 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_標題_背景顏色 = new MyUI.RJ_TextBox();
             this.rJ_Lable8 = new MyUI.RJ_Lable();
-            this.button_第一台_標題_字體顏色 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_標題_字體顏色 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_標題_字體顏色 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_標題_字體顏色 = new MyUI.RJ_TextBox();
             this.rJ_Lable7 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_第一台_標題_字體 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_樣式設定_標題_字體 = new MyUI.RJ_TextBox();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
-            this.button_第一台_標題_字體 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_第一台_標題_寬度 = new MyUI.RJ_TextBox();
+            this.button_樣式設定_標題_字體 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_樣式設定_標題_寬度 = new MyUI.RJ_TextBox();
             this.rJ_Lable5 = new MyUI.RJ_Lable();
-            this.comboBox_代碼 = new System.Windows.Forms.ComboBox();
+            this.comboBox_樣式設定_代碼 = new System.Windows.Forms.ComboBox();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox4 = new MyUI.RJ_GroupBox();
             this.plC_RJ_Button_公告設定_重新整理 = new MyUI.PLC_RJ_Button();
@@ -224,6 +224,10 @@ namespace Hospital_Call_Light_System
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.rJ_TextBox_樣式設定_叫號_邊界距離 = new MyUI.RJ_TextBox();
+            this.rJ_Lable46 = new MyUI.RJ_Lable();
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角 = new MyUI.RJ_TextBox();
+            this.rJ_Lable47 = new MyUI.RJ_Lable();
             this.panel_Main.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.主畫面.SuspendLayout();
@@ -281,10 +285,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_全螢幕顯示
             // 
             this.plC_RJ_Button_全螢幕顯示.AutoResetState = false;
-            this.plC_RJ_Button_全螢幕顯示.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_全螢幕顯示.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_全螢幕顯示.Bool = false;
             this.plC_RJ_Button_全螢幕顯示.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_全螢幕顯示.BorderRadius = 5;
+            this.plC_RJ_Button_全螢幕顯示.BorderRadius = 20;
             this.plC_RJ_Button_全螢幕顯示.BorderSize = 0;
             this.plC_RJ_Button_全螢幕顯示.but_press = false;
             this.plC_RJ_Button_全螢幕顯示.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -295,18 +299,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_全螢幕顯示.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_全螢幕顯示.GUID = "";
             this.plC_RJ_Button_全螢幕顯示.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_全螢幕顯示.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_全螢幕顯示.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_全螢幕顯示.Location = new System.Drawing.Point(956, 0);
             this.plC_RJ_Button_全螢幕顯示.Name = "plC_RJ_Button_全螢幕顯示";
             this.plC_RJ_Button_全螢幕顯示.OFF_文字內容 = "全螢幕顯示";
             this.plC_RJ_Button_全螢幕顯示.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_全螢幕顯示.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_全螢幕顯示.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_全螢幕顯示.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_全螢幕顯示.ON_BorderSize = 5;
             this.plC_RJ_Button_全螢幕顯示.ON_文字內容 = "全螢幕顯示";
             this.plC_RJ_Button_全螢幕顯示.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_全螢幕顯示.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_全螢幕顯示.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_全螢幕顯示.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_全螢幕顯示.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_全螢幕顯示.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_全螢幕顯示.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_全螢幕顯示.ProhibitionSymbolSize = 30;
@@ -348,7 +352,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_刷新音效.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_刷新音效.GUID = "";
             this.plC_RJ_Button_刷新音效.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_刷新音效.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_刷新音效.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_刷新音效.Location = new System.Drawing.Point(1405, 6);
             this.plC_RJ_Button_刷新音效.Name = "plC_RJ_Button_刷新音效";
             this.plC_RJ_Button_刷新音效.OFF_文字內容 = "刷新音效";
@@ -402,7 +406,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_檢查按鈕.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_檢查按鈕.GUID = "";
             this.plC_RJ_Button_檢查按鈕.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_檢查按鈕.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_檢查按鈕.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_檢查按鈕.Location = new System.Drawing.Point(1165, 6);
             this.plC_RJ_Button_檢查按鈕.Name = "plC_RJ_Button_檢查按鈕";
             this.plC_RJ_Button_檢查按鈕.OFF_文字內容 = "檢查按鈕";
@@ -476,7 +480,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_刷新螢幕.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_刷新螢幕.GUID = "";
             this.plC_RJ_Button_刷新螢幕.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_刷新螢幕.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_刷新螢幕.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_刷新螢幕.Location = new System.Drawing.Point(1285, 6);
             this.plC_RJ_Button_刷新螢幕.Name = "plC_RJ_Button_刷新螢幕";
             this.plC_RJ_Button_刷新螢幕.OFF_文字內容 = "刷新螢幕";
@@ -920,10 +924,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_叫號內容設定_刪除
             // 
             this.plC_RJ_Button_叫號內容設定_刪除.AutoResetState = false;
-            this.plC_RJ_Button_叫號內容設定_刪除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_刪除.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_刪除.Bool = false;
             this.plC_RJ_Button_叫號內容設定_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_叫號內容設定_刪除.BorderRadius = 5;
+            this.plC_RJ_Button_叫號內容設定_刪除.BorderRadius = 20;
             this.plC_RJ_Button_叫號內容設定_刪除.BorderSize = 0;
             this.plC_RJ_Button_叫號內容設定_刪除.but_press = false;
             this.plC_RJ_Button_叫號內容設定_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -933,18 +937,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_叫號內容設定_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_叫號內容設定_刪除.GUID = "";
             this.plC_RJ_Button_叫號內容設定_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_叫號內容設定_刪除.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_叫號內容設定_刪除.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_叫號內容設定_刪除.Location = new System.Drawing.Point(842, 543);
             this.plC_RJ_Button_叫號內容設定_刪除.Name = "plC_RJ_Button_叫號內容設定_刪除";
             this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字內容 = "刪除";
             this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號內容設定_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_刪除.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_刪除.ON_BorderSize = 5;
             this.plC_RJ_Button_叫號內容設定_刪除.ON_文字內容 = "刪除";
             this.plC_RJ_Button_叫號內容設定_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_叫號內容設定_刪除.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號內容設定_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_刪除.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_叫號內容設定_刪除.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_叫號內容設定_刪除.ProhibitionSymbolSize = 30;
@@ -973,10 +977,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_叫號內容設定_登錄
             // 
             this.plC_RJ_Button_叫號內容設定_登錄.AutoResetState = false;
-            this.plC_RJ_Button_叫號內容設定_登錄.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_登錄.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_登錄.Bool = false;
             this.plC_RJ_Button_叫號內容設定_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_叫號內容設定_登錄.BorderRadius = 5;
+            this.plC_RJ_Button_叫號內容設定_登錄.BorderRadius = 20;
             this.plC_RJ_Button_叫號內容設定_登錄.BorderSize = 0;
             this.plC_RJ_Button_叫號內容設定_登錄.but_press = false;
             this.plC_RJ_Button_叫號內容設定_登錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -986,18 +990,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_叫號內容設定_登錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_叫號內容設定_登錄.GUID = "";
             this.plC_RJ_Button_叫號內容設定_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_叫號內容設定_登錄.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_叫號內容設定_登錄.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_叫號內容設定_登錄.Location = new System.Drawing.Point(957, 543);
             this.plC_RJ_Button_叫號內容設定_登錄.Name = "plC_RJ_Button_叫號內容設定_登錄";
             this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字內容 = "登錄";
             this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號內容設定_登錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_登錄.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_登錄.ON_BorderSize = 5;
             this.plC_RJ_Button_叫號內容設定_登錄.ON_文字內容 = "登錄";
             this.plC_RJ_Button_叫號內容設定_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_叫號內容設定_登錄.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號內容設定_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_叫號內容設定_登錄.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_叫號內容設定_登錄.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_叫號內容設定_登錄.ProhibitionSymbolSize = 30;
@@ -1189,11 +1193,11 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox1.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox1.ContentsPanel.BorderSize = 2;
             this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.rJ_Lable1);
-            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.plC_RJ_Button_第一台_存檔);
+            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.plC_RJ_Button_樣式設定_存檔);
             this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.groupBox2);
-            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.plC_RJ_Button_設定_讀取);
+            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.plC_RJ_Button_樣式設定_讀取);
             this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.groupBox1);
-            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.comboBox_代碼);
+            this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.comboBox_樣式設定_代碼);
             this.rJ_GroupBox1.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox1.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox1.ContentsPanel.IsSelected = false;
@@ -1245,82 +1249,86 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
-            // plC_RJ_Button_第一台_存檔
+            // plC_RJ_Button_樣式設定_存檔
             // 
-            this.plC_RJ_Button_第一台_存檔.AutoResetState = false;
-            this.plC_RJ_Button_第一台_存檔.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_第一台_存檔.Bool = false;
-            this.plC_RJ_Button_第一台_存檔.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_第一台_存檔.BorderRadius = 5;
-            this.plC_RJ_Button_第一台_存檔.BorderSize = 0;
-            this.plC_RJ_Button_第一台_存檔.but_press = false;
-            this.plC_RJ_Button_第一台_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_第一台_存檔.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_第一台_存檔.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_第一台_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_第一台_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_第一台_存檔.GUID = "";
-            this.plC_RJ_Button_第一台_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_第一台_存檔.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.plC_RJ_Button_第一台_存檔.Location = new System.Drawing.Point(676, 12);
-            this.plC_RJ_Button_第一台_存檔.Name = "plC_RJ_Button_第一台_存檔";
-            this.plC_RJ_Button_第一台_存檔.OFF_文字內容 = "存檔";
-            this.plC_RJ_Button_第一台_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_第一台_存檔.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_第一台_存檔.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_第一台_存檔.ON_BorderSize = 5;
-            this.plC_RJ_Button_第一台_存檔.ON_文字內容 = "存檔";
-            this.plC_RJ_Button_第一台_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_第一台_存檔.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_第一台_存檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_第一台_存檔.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_第一台_存檔.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_第一台_存檔.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_第一台_存檔.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_第一台_存檔.ShadowSize = 3;
-            this.plC_RJ_Button_第一台_存檔.ShowLoadingForm = false;
-            this.plC_RJ_Button_第一台_存檔.Size = new System.Drawing.Size(109, 84);
-            this.plC_RJ_Button_第一台_存檔.State = false;
-            this.plC_RJ_Button_第一台_存檔.TabIndex = 17;
-            this.plC_RJ_Button_第一台_存檔.Text = "存檔";
-            this.plC_RJ_Button_第一台_存檔.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_第一台_存檔.TextHeight = 0;
-            this.plC_RJ_Button_第一台_存檔.Texts = "存檔";
-            this.plC_RJ_Button_第一台_存檔.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_第一台_存檔.字型鎖住 = false;
-            this.plC_RJ_Button_第一台_存檔.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_第一台_存檔.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_第一台_存檔.文字鎖住 = false;
-            this.plC_RJ_Button_第一台_存檔.背景圖片 = null;
-            this.plC_RJ_Button_第一台_存檔.讀取位元反向 = false;
-            this.plC_RJ_Button_第一台_存檔.讀寫鎖住 = false;
-            this.plC_RJ_Button_第一台_存檔.音效 = true;
-            this.plC_RJ_Button_第一台_存檔.顯示 = false;
-            this.plC_RJ_Button_第一台_存檔.顯示狀態 = false;
+            this.plC_RJ_Button_樣式設定_存檔.AutoResetState = false;
+            this.plC_RJ_Button_樣式設定_存檔.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_存檔.Bool = false;
+            this.plC_RJ_Button_樣式設定_存檔.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_樣式設定_存檔.BorderRadius = 20;
+            this.plC_RJ_Button_樣式設定_存檔.BorderSize = 0;
+            this.plC_RJ_Button_樣式設定_存檔.but_press = false;
+            this.plC_RJ_Button_樣式設定_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_樣式設定_存檔.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_樣式設定_存檔.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_樣式設定_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_樣式設定_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_樣式設定_存檔.GUID = "";
+            this.plC_RJ_Button_樣式設定_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_樣式設定_存檔.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_樣式設定_存檔.Location = new System.Drawing.Point(676, 12);
+            this.plC_RJ_Button_樣式設定_存檔.Name = "plC_RJ_Button_樣式設定_存檔";
+            this.plC_RJ_Button_樣式設定_存檔.OFF_文字內容 = "存檔";
+            this.plC_RJ_Button_樣式設定_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_樣式設定_存檔.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_存檔.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_存檔.ON_BorderSize = 5;
+            this.plC_RJ_Button_樣式設定_存檔.ON_文字內容 = "存檔";
+            this.plC_RJ_Button_樣式設定_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_樣式設定_存檔.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_存檔.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_存檔.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_樣式設定_存檔.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_樣式設定_存檔.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_樣式設定_存檔.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_樣式設定_存檔.ShadowSize = 3;
+            this.plC_RJ_Button_樣式設定_存檔.ShowLoadingForm = false;
+            this.plC_RJ_Button_樣式設定_存檔.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_樣式設定_存檔.State = false;
+            this.plC_RJ_Button_樣式設定_存檔.TabIndex = 17;
+            this.plC_RJ_Button_樣式設定_存檔.Text = "存檔";
+            this.plC_RJ_Button_樣式設定_存檔.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_存檔.TextHeight = 0;
+            this.plC_RJ_Button_樣式設定_存檔.Texts = "存檔";
+            this.plC_RJ_Button_樣式設定_存檔.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_樣式設定_存檔.字型鎖住 = false;
+            this.plC_RJ_Button_樣式設定_存檔.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_樣式設定_存檔.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_樣式設定_存檔.文字鎖住 = false;
+            this.plC_RJ_Button_樣式設定_存檔.背景圖片 = null;
+            this.plC_RJ_Button_樣式設定_存檔.讀取位元反向 = false;
+            this.plC_RJ_Button_樣式設定_存檔.讀寫鎖住 = false;
+            this.plC_RJ_Button_樣式設定_存檔.音效 = true;
+            this.plC_RJ_Button_樣式設定_存檔.顯示 = false;
+            this.plC_RJ_Button_樣式設定_存檔.顯示狀態 = false;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_邊框圓角);
+            this.groupBox2.Controls.Add(this.rJ_Lable47);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_邊界距離);
+            this.groupBox2.Controls.Add(this.rJ_Lable46);
             this.groupBox2.Controls.Add(this.rJ_Lable29);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_備註高度);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_備註高度);
             this.groupBox2.Controls.Add(this.rJ_Lable30);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_備註字體);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_備註字體);
             this.groupBox2.Controls.Add(this.rJ_Lable31);
-            this.groupBox2.Controls.Add(this.button_第一台_叫號_備註字體);
-            this.groupBox2.Controls.Add(this.button_第一台_叫號_背景顏色);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_背景顏色);
+            this.groupBox2.Controls.Add(this.button_樣式設定_叫號_備註字體);
+            this.groupBox2.Controls.Add(this.button_樣式設定_叫號_背景顏色);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_背景顏色);
             this.groupBox2.Controls.Add(this.rJ_Lable11);
-            this.groupBox2.Controls.Add(this.button_第一台_叫號_字體顏色);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_字體顏色);
+            this.groupBox2.Controls.Add(this.button_樣式設定_叫號_字體顏色);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_字體顏色);
             this.groupBox2.Controls.Add(this.rJ_Lable12);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_字體);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_字體);
             this.groupBox2.Controls.Add(this.rJ_Lable13);
-            this.groupBox2.Controls.Add(this.button_第一台_叫號_字體);
-            this.groupBox2.Controls.Add(this.rJ_TextBox_第一台_叫號_寬度);
+            this.groupBox2.Controls.Add(this.button_樣式設定_叫號_字體);
+            this.groupBox2.Controls.Add(this.rJ_TextBox_樣式設定_叫號_寬度);
             this.groupBox2.Controls.Add(this.rJ_Lable14);
             this.groupBox2.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox2.Location = new System.Drawing.Point(8, 357);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(777, 312);
+            this.groupBox2.Size = new System.Drawing.Size(1062, 312);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "叫號";
@@ -1346,29 +1354,29 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable29.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_叫號_備註高度
+            // rJ_TextBox_樣式設定_叫號_備註高度
             // 
-            this.rJ_TextBox_第一台_叫號_備註高度.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_備註高度.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_備註高度.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_備註高度.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_備註高度.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_備註高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_備註高度.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_備註高度.GUID = "";
-            this.rJ_TextBox_第一台_叫號_備註高度.Location = new System.Drawing.Point(174, 249);
-            this.rJ_TextBox_第一台_叫號_備註高度.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_備註高度.Name = "rJ_TextBox_第一台_叫號_備註高度";
-            this.rJ_TextBox_第一台_叫號_備註高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_備註高度.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_備註高度.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_備註高度.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_備註高度.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_備註高度.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_叫號_備註高度.TabIndex = 25;
-            this.rJ_TextBox_第一台_叫號_備註高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_備註高度.Texts = "";
-            this.rJ_TextBox_第一台_叫號_備註高度.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_備註高度.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Location = new System.Drawing.Point(174, 249);
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Name = "rJ_TextBox_樣式設定_叫號_備註高度";
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_備註高度.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_備註高度.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_備註高度.TabIndex = 25;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_備註高度.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_備註高度.UnderlineStyle = false;
             // 
             // rJ_Lable30
             // 
@@ -1391,30 +1399,30 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable30.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_叫號_備註字體
+            // rJ_TextBox_樣式設定_叫號_備註字體
             // 
-            this.rJ_TextBox_第一台_叫號_備註字體.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_備註字體.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_備註字體.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_備註字體.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_備註字體.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_備註字體.Enabled = false;
-            this.rJ_TextBox_第一台_叫號_備註字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_備註字體.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_備註字體.GUID = "";
-            this.rJ_TextBox_第一台_叫號_備註字體.Location = new System.Drawing.Point(174, 194);
-            this.rJ_TextBox_第一台_叫號_備註字體.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_備註字體.Name = "rJ_TextBox_第一台_叫號_備註字體";
-            this.rJ_TextBox_第一台_叫號_備註字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_備註字體.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_備註字體.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_備註字體.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_備註字體.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_備註字體.Size = new System.Drawing.Size(139, 32);
-            this.rJ_TextBox_第一台_叫號_備註字體.TabIndex = 23;
-            this.rJ_TextBox_第一台_叫號_備註字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_備註字體.Texts = "";
-            this.rJ_TextBox_第一台_叫號_備註字體.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Enabled = false;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_備註字體.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Location = new System.Drawing.Point(174, 194);
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Name = "rJ_TextBox_樣式設定_叫號_備註字體";
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_備註字體.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_備註字體.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Size = new System.Drawing.Size(139, 32);
+            this.rJ_TextBox_樣式設定_叫號_備註字體.TabIndex = 23;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_備註字體.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_備註字體.UnderlineStyle = false;
             // 
             // rJ_Lable31
             // 
@@ -1437,52 +1445,52 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable31.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_叫號_備註字體
+            // button_樣式設定_叫號_備註字體
             // 
-            this.button_第一台_叫號_備註字體.BackColor = System.Drawing.Color.White;
-            this.button_第一台_叫號_備註字體.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_叫號_備註字體.Location = new System.Drawing.Point(319, 190);
-            this.button_第一台_叫號_備註字體.Name = "button_第一台_叫號_備註字體";
-            this.button_第一台_叫號_備註字體.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_叫號_備註字體.TabIndex = 21;
-            this.button_第一台_叫號_備註字體.Text = "...";
-            this.button_第一台_叫號_備註字體.UseVisualStyleBackColor = false;
+            this.button_樣式設定_叫號_備註字體.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_叫號_備註字體.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_叫號_備註字體.Location = new System.Drawing.Point(319, 190);
+            this.button_樣式設定_叫號_備註字體.Name = "button_樣式設定_叫號_備註字體";
+            this.button_樣式設定_叫號_備註字體.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_叫號_備註字體.TabIndex = 21;
+            this.button_樣式設定_叫號_備註字體.Text = "...";
+            this.button_樣式設定_叫號_備註字體.UseVisualStyleBackColor = false;
             // 
-            // button_第一台_叫號_背景顏色
+            // button_樣式設定_叫號_背景顏色
             // 
-            this.button_第一台_叫號_背景顏色.BackColor = System.Drawing.Color.White;
-            this.button_第一台_叫號_背景顏色.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_叫號_背景顏色.Location = new System.Drawing.Point(632, 93);
-            this.button_第一台_叫號_背景顏色.Name = "button_第一台_叫號_背景顏色";
-            this.button_第一台_叫號_背景顏色.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_叫號_背景顏色.TabIndex = 17;
-            this.button_第一台_叫號_背景顏色.Text = "...";
-            this.button_第一台_叫號_背景顏色.UseVisualStyleBackColor = false;
+            this.button_樣式設定_叫號_背景顏色.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_叫號_背景顏色.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_叫號_背景顏色.Location = new System.Drawing.Point(632, 93);
+            this.button_樣式設定_叫號_背景顏色.Name = "button_樣式設定_叫號_背景顏色";
+            this.button_樣式設定_叫號_背景顏色.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_叫號_背景顏色.TabIndex = 17;
+            this.button_樣式設定_叫號_背景顏色.Text = "...";
+            this.button_樣式設定_叫號_背景顏色.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_叫號_背景顏色
+            // rJ_TextBox_樣式設定_叫號_背景顏色
             // 
-            this.rJ_TextBox_第一台_叫號_背景顏色.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_背景顏色.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_背景顏色.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_背景顏色.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_背景顏色.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_背景顏色.Enabled = false;
-            this.rJ_TextBox_第一台_叫號_背景顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_背景顏色.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_背景顏色.GUID = "";
-            this.rJ_TextBox_第一台_叫號_背景顏色.Location = new System.Drawing.Point(507, 94);
-            this.rJ_TextBox_第一台_叫號_背景顏色.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_背景顏色.Name = "rJ_TextBox_第一台_叫號_背景顏色";
-            this.rJ_TextBox_第一台_叫號_背景顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_背景顏色.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_背景顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_背景顏色.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_背景顏色.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_背景顏色.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_叫號_背景顏色.TabIndex = 16;
-            this.rJ_TextBox_第一台_叫號_背景顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_背景顏色.Texts = "";
-            this.rJ_TextBox_第一台_叫號_背景顏色.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Enabled = false;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Location = new System.Drawing.Point(507, 94);
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Name = "rJ_TextBox_樣式設定_叫號_背景顏色";
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.TabIndex = 16;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_背景顏色.UnderlineStyle = false;
             // 
             // rJ_Lable11
             // 
@@ -1505,41 +1513,41 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable11.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_叫號_字體顏色
+            // button_樣式設定_叫號_字體顏色
             // 
-            this.button_第一台_叫號_字體顏色.BackColor = System.Drawing.Color.White;
-            this.button_第一台_叫號_字體顏色.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_叫號_字體顏色.Location = new System.Drawing.Point(300, 93);
-            this.button_第一台_叫號_字體顏色.Name = "button_第一台_叫號_字體顏色";
-            this.button_第一台_叫號_字體顏色.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_叫號_字體顏色.TabIndex = 14;
-            this.button_第一台_叫號_字體顏色.Text = "...";
-            this.button_第一台_叫號_字體顏色.UseVisualStyleBackColor = false;
+            this.button_樣式設定_叫號_字體顏色.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_叫號_字體顏色.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_叫號_字體顏色.Location = new System.Drawing.Point(300, 93);
+            this.button_樣式設定_叫號_字體顏色.Name = "button_樣式設定_叫號_字體顏色";
+            this.button_樣式設定_叫號_字體顏色.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_叫號_字體顏色.TabIndex = 14;
+            this.button_樣式設定_叫號_字體顏色.Text = "...";
+            this.button_樣式設定_叫號_字體顏色.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_叫號_字體顏色
+            // rJ_TextBox_樣式設定_叫號_字體顏色
             // 
-            this.rJ_TextBox_第一台_叫號_字體顏色.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_字體顏色.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_字體顏色.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_字體顏色.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_字體顏色.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_字體顏色.Enabled = false;
-            this.rJ_TextBox_第一台_叫號_字體顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_字體顏色.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_字體顏色.GUID = "";
-            this.rJ_TextBox_第一台_叫號_字體顏色.Location = new System.Drawing.Point(175, 94);
-            this.rJ_TextBox_第一台_叫號_字體顏色.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_字體顏色.Name = "rJ_TextBox_第一台_叫號_字體顏色";
-            this.rJ_TextBox_第一台_叫號_字體顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_字體顏色.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_字體顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_字體顏色.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_字體顏色.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_字體顏色.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_叫號_字體顏色.TabIndex = 13;
-            this.rJ_TextBox_第一台_叫號_字體顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_字體顏色.Texts = "";
-            this.rJ_TextBox_第一台_叫號_字體顏色.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Enabled = false;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Location = new System.Drawing.Point(175, 94);
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Name = "rJ_TextBox_樣式設定_叫號_字體顏色";
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.TabIndex = 13;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_字體顏色.UnderlineStyle = false;
             // 
             // rJ_Lable12
             // 
@@ -1562,30 +1570,30 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable12.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_叫號_字體
+            // rJ_TextBox_樣式設定_叫號_字體
             // 
-            this.rJ_TextBox_第一台_叫號_字體.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_字體.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_字體.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_字體.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_字體.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_字體.Enabled = false;
-            this.rJ_TextBox_第一台_叫號_字體.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_字體.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_字體.GUID = "";
-            this.rJ_TextBox_第一台_叫號_字體.Location = new System.Drawing.Point(174, 38);
-            this.rJ_TextBox_第一台_叫號_字體.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_字體.Name = "rJ_TextBox_第一台_叫號_字體";
-            this.rJ_TextBox_第一台_叫號_字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_字體.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_字體.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_字體.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_字體.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_字體.Size = new System.Drawing.Size(244, 36);
-            this.rJ_TextBox_第一台_叫號_字體.TabIndex = 11;
-            this.rJ_TextBox_第一台_叫號_字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_字體.Texts = "";
-            this.rJ_TextBox_第一台_叫號_字體.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_字體.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_字體.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_字體.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_字體.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_字體.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_字體.Enabled = false;
+            this.rJ_TextBox_樣式設定_叫號_字體.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_字體.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_字體.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_字體.Location = new System.Drawing.Point(174, 38);
+            this.rJ_TextBox_樣式設定_叫號_字體.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_字體.Name = "rJ_TextBox_樣式設定_叫號_字體";
+            this.rJ_TextBox_樣式設定_叫號_字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_字體.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_字體.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_字體.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_字體.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_字體.Size = new System.Drawing.Size(244, 36);
+            this.rJ_TextBox_樣式設定_叫號_字體.TabIndex = 11;
+            this.rJ_TextBox_樣式設定_叫號_字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_字體.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_字體.UnderlineStyle = false;
             // 
             // rJ_Lable13
             // 
@@ -1608,40 +1616,40 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable13.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_叫號_字體
+            // button_樣式設定_叫號_字體
             // 
-            this.button_第一台_叫號_字體.BackColor = System.Drawing.Color.White;
-            this.button_第一台_叫號_字體.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_叫號_字體.Location = new System.Drawing.Point(424, 37);
-            this.button_第一台_叫號_字體.Name = "button_第一台_叫號_字體";
-            this.button_第一台_叫號_字體.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_叫號_字體.TabIndex = 9;
-            this.button_第一台_叫號_字體.Text = "...";
-            this.button_第一台_叫號_字體.UseVisualStyleBackColor = false;
+            this.button_樣式設定_叫號_字體.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_叫號_字體.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_叫號_字體.Location = new System.Drawing.Point(424, 37);
+            this.button_樣式設定_叫號_字體.Name = "button_樣式設定_叫號_字體";
+            this.button_樣式設定_叫號_字體.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_叫號_字體.TabIndex = 9;
+            this.button_樣式設定_叫號_字體.Text = "...";
+            this.button_樣式設定_叫號_字體.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_叫號_寬度
+            // rJ_TextBox_樣式設定_叫號_寬度
             // 
-            this.rJ_TextBox_第一台_叫號_寬度.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_叫號_寬度.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_叫號_寬度.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_叫號_寬度.BorderRadius = 0;
-            this.rJ_TextBox_第一台_叫號_寬度.BorderSize = 2;
-            this.rJ_TextBox_第一台_叫號_寬度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_叫號_寬度.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_叫號_寬度.GUID = "";
-            this.rJ_TextBox_第一台_叫號_寬度.Location = new System.Drawing.Point(631, 38);
-            this.rJ_TextBox_第一台_叫號_寬度.Multiline = false;
-            this.rJ_TextBox_第一台_叫號_寬度.Name = "rJ_TextBox_第一台_叫號_寬度";
-            this.rJ_TextBox_第一台_叫號_寬度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_叫號_寬度.PassWordChar = false;
-            this.rJ_TextBox_第一台_叫號_寬度.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_叫號_寬度.PlaceholderText = "";
-            this.rJ_TextBox_第一台_叫號_寬度.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_叫號_寬度.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_叫號_寬度.TabIndex = 8;
-            this.rJ_TextBox_第一台_叫號_寬度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_叫號_寬度.Texts = "";
-            this.rJ_TextBox_第一台_叫號_寬度.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_叫號_寬度.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_寬度.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_寬度.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_寬度.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_寬度.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_寬度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_寬度.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_寬度.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_寬度.Location = new System.Drawing.Point(631, 38);
+            this.rJ_TextBox_樣式設定_叫號_寬度.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_寬度.Name = "rJ_TextBox_樣式設定_叫號_寬度";
+            this.rJ_TextBox_樣式設定_叫號_寬度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_寬度.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_寬度.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_寬度.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_寬度.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_寬度.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_寬度.TabIndex = 8;
+            this.rJ_TextBox_樣式設定_叫號_寬度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_寬度.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_寬度.UnderlineStyle = false;
             // 
             // rJ_Lable14
             // 
@@ -1664,81 +1672,81 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable14.TextColor = System.Drawing.Color.White;
             // 
-            // plC_RJ_Button_設定_讀取
+            // plC_RJ_Button_樣式設定_讀取
             // 
-            this.plC_RJ_Button_設定_讀取.AutoResetState = false;
-            this.plC_RJ_Button_設定_讀取.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_設定_讀取.Bool = false;
-            this.plC_RJ_Button_設定_讀取.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_設定_讀取.BorderRadius = 5;
-            this.plC_RJ_Button_設定_讀取.BorderSize = 0;
-            this.plC_RJ_Button_設定_讀取.but_press = false;
-            this.plC_RJ_Button_設定_讀取.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_設定_讀取.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_設定_讀取.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_設定_讀取.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_設定_讀取.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_設定_讀取.GUID = "";
-            this.plC_RJ_Button_設定_讀取.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_設定_讀取.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.plC_RJ_Button_設定_讀取.Location = new System.Drawing.Point(561, 12);
-            this.plC_RJ_Button_設定_讀取.Name = "plC_RJ_Button_設定_讀取";
-            this.plC_RJ_Button_設定_讀取.OFF_文字內容 = "讀取";
-            this.plC_RJ_Button_設定_讀取.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_設定_讀取.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_設定_讀取.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_設定_讀取.ON_BorderSize = 5;
-            this.plC_RJ_Button_設定_讀取.ON_文字內容 = "讀取";
-            this.plC_RJ_Button_設定_讀取.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_設定_讀取.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_設定_讀取.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_設定_讀取.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_設定_讀取.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_設定_讀取.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_設定_讀取.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_設定_讀取.ShadowSize = 3;
-            this.plC_RJ_Button_設定_讀取.ShowLoadingForm = false;
-            this.plC_RJ_Button_設定_讀取.Size = new System.Drawing.Size(109, 84);
-            this.plC_RJ_Button_設定_讀取.State = false;
-            this.plC_RJ_Button_設定_讀取.TabIndex = 18;
-            this.plC_RJ_Button_設定_讀取.Text = "讀取";
-            this.plC_RJ_Button_設定_讀取.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_設定_讀取.TextHeight = 0;
-            this.plC_RJ_Button_設定_讀取.Texts = "讀取";
-            this.plC_RJ_Button_設定_讀取.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_設定_讀取.Visible = false;
-            this.plC_RJ_Button_設定_讀取.字型鎖住 = false;
-            this.plC_RJ_Button_設定_讀取.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_設定_讀取.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_設定_讀取.文字鎖住 = false;
-            this.plC_RJ_Button_設定_讀取.背景圖片 = null;
-            this.plC_RJ_Button_設定_讀取.讀取位元反向 = false;
-            this.plC_RJ_Button_設定_讀取.讀寫鎖住 = false;
-            this.plC_RJ_Button_設定_讀取.音效 = true;
-            this.plC_RJ_Button_設定_讀取.顯示 = false;
-            this.plC_RJ_Button_設定_讀取.顯示狀態 = false;
+            this.plC_RJ_Button_樣式設定_讀取.AutoResetState = false;
+            this.plC_RJ_Button_樣式設定_讀取.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_讀取.Bool = false;
+            this.plC_RJ_Button_樣式設定_讀取.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_樣式設定_讀取.BorderRadius = 20;
+            this.plC_RJ_Button_樣式設定_讀取.BorderSize = 0;
+            this.plC_RJ_Button_樣式設定_讀取.but_press = false;
+            this.plC_RJ_Button_樣式設定_讀取.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_樣式設定_讀取.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_樣式設定_讀取.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_樣式設定_讀取.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_樣式設定_讀取.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_樣式設定_讀取.GUID = "";
+            this.plC_RJ_Button_樣式設定_讀取.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_樣式設定_讀取.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_樣式設定_讀取.Location = new System.Drawing.Point(561, 12);
+            this.plC_RJ_Button_樣式設定_讀取.Name = "plC_RJ_Button_樣式設定_讀取";
+            this.plC_RJ_Button_樣式設定_讀取.OFF_文字內容 = "讀取";
+            this.plC_RJ_Button_樣式設定_讀取.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_樣式設定_讀取.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_讀取.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_讀取.ON_BorderSize = 5;
+            this.plC_RJ_Button_樣式設定_讀取.ON_文字內容 = "讀取";
+            this.plC_RJ_Button_樣式設定_讀取.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_樣式設定_讀取.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_讀取.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_樣式設定_讀取.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_樣式設定_讀取.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_樣式設定_讀取.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_樣式設定_讀取.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_樣式設定_讀取.ShadowSize = 3;
+            this.plC_RJ_Button_樣式設定_讀取.ShowLoadingForm = false;
+            this.plC_RJ_Button_樣式設定_讀取.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_樣式設定_讀取.State = false;
+            this.plC_RJ_Button_樣式設定_讀取.TabIndex = 18;
+            this.plC_RJ_Button_樣式設定_讀取.Text = "讀取";
+            this.plC_RJ_Button_樣式設定_讀取.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_樣式設定_讀取.TextHeight = 0;
+            this.plC_RJ_Button_樣式設定_讀取.Texts = "讀取";
+            this.plC_RJ_Button_樣式設定_讀取.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_樣式設定_讀取.Visible = false;
+            this.plC_RJ_Button_樣式設定_讀取.字型鎖住 = false;
+            this.plC_RJ_Button_樣式設定_讀取.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_樣式設定_讀取.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_樣式設定_讀取.文字鎖住 = false;
+            this.plC_RJ_Button_樣式設定_讀取.背景圖片 = null;
+            this.plC_RJ_Button_樣式設定_讀取.讀取位元反向 = false;
+            this.plC_RJ_Button_樣式設定_讀取.讀寫鎖住 = false;
+            this.plC_RJ_Button_樣式設定_讀取.音效 = true;
+            this.plC_RJ_Button_樣式設定_讀取.顯示 = false;
+            this.plC_RJ_Button_樣式設定_讀取.顯示狀態 = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_英文高度);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_英文高度);
             this.groupBox1.Controls.Add(this.rJ_Lable28);
             this.groupBox1.Controls.Add(this.rJ_Lable26);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_英文字體);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_英文字體);
             this.groupBox1.Controls.Add(this.rJ_Lable27);
-            this.groupBox1.Controls.Add(this.button_第一台_標題_英文字體);
+            this.groupBox1.Controls.Add(this.button_樣式設定_標題_英文字體);
             this.groupBox1.Controls.Add(this.rJ_Lable25);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_高度);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_高度);
             this.groupBox1.Controls.Add(this.rJ_Lable9);
-            this.groupBox1.Controls.Add(this.button_第一台_標題_背景顏色);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_背景顏色);
+            this.groupBox1.Controls.Add(this.button_樣式設定_標題_背景顏色);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_背景顏色);
             this.groupBox1.Controls.Add(this.rJ_Lable8);
-            this.groupBox1.Controls.Add(this.button_第一台_標題_字體顏色);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_字體顏色);
+            this.groupBox1.Controls.Add(this.button_樣式設定_標題_字體顏色);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_字體顏色);
             this.groupBox1.Controls.Add(this.rJ_Lable7);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_字體);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_字體);
             this.groupBox1.Controls.Add(this.rJ_Lable6);
-            this.groupBox1.Controls.Add(this.button_第一台_標題_字體);
-            this.groupBox1.Controls.Add(this.rJ_TextBox_第一台_標題_寬度);
+            this.groupBox1.Controls.Add(this.button_樣式設定_標題_字體);
+            this.groupBox1.Controls.Add(this.rJ_TextBox_樣式設定_標題_寬度);
             this.groupBox1.Controls.Add(this.rJ_Lable5);
             this.groupBox1.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(8, 91);
@@ -1748,29 +1756,29 @@ namespace Hospital_Call_Light_System
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "標題";
             // 
-            // rJ_TextBox_第一台_標題_英文高度
+            // rJ_TextBox_樣式設定_標題_英文高度
             // 
-            this.rJ_TextBox_第一台_標題_英文高度.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_英文高度.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_英文高度.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_英文高度.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_英文高度.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_英文高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_英文高度.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_英文高度.GUID = "";
-            this.rJ_TextBox_第一台_標題_英文高度.Location = new System.Drawing.Point(514, 201);
-            this.rJ_TextBox_第一台_標題_英文高度.Multiline = false;
-            this.rJ_TextBox_第一台_標題_英文高度.Name = "rJ_TextBox_第一台_標題_英文高度";
-            this.rJ_TextBox_第一台_標題_英文高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_英文高度.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_英文高度.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_英文高度.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_英文高度.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_英文高度.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_標題_英文高度.TabIndex = 28;
-            this.rJ_TextBox_第一台_標題_英文高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_英文高度.Texts = "";
-            this.rJ_TextBox_第一台_標題_英文高度.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_英文高度.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_英文高度.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_英文高度.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_英文高度.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_英文高度.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_英文高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_英文高度.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_英文高度.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_英文高度.Location = new System.Drawing.Point(514, 201);
+            this.rJ_TextBox_樣式設定_標題_英文高度.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_英文高度.Name = "rJ_TextBox_樣式設定_標題_英文高度";
+            this.rJ_TextBox_樣式設定_標題_英文高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_英文高度.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_英文高度.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_英文高度.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_英文高度.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_英文高度.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_標題_英文高度.TabIndex = 28;
+            this.rJ_TextBox_樣式設定_標題_英文高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_英文高度.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_英文高度.UnderlineStyle = false;
             // 
             // rJ_Lable28
             // 
@@ -1814,30 +1822,30 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable26.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_標題_英文字體
+            // rJ_TextBox_樣式設定_標題_英文字體
             // 
-            this.rJ_TextBox_第一台_標題_英文字體.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_英文字體.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_英文字體.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_英文字體.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_英文字體.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_英文字體.Enabled = false;
-            this.rJ_TextBox_第一台_標題_英文字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_英文字體.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_英文字體.GUID = "";
-            this.rJ_TextBox_第一台_標題_英文字體.Location = new System.Drawing.Point(514, 146);
-            this.rJ_TextBox_第一台_標題_英文字體.Multiline = false;
-            this.rJ_TextBox_第一台_標題_英文字體.Name = "rJ_TextBox_第一台_標題_英文字體";
-            this.rJ_TextBox_第一台_標題_英文字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_英文字體.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_英文字體.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_英文字體.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_英文字體.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_英文字體.Size = new System.Drawing.Size(139, 32);
-            this.rJ_TextBox_第一台_標題_英文字體.TabIndex = 25;
-            this.rJ_TextBox_第一台_標題_英文字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_英文字體.Texts = "";
-            this.rJ_TextBox_第一台_標題_英文字體.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_英文字體.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_英文字體.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_英文字體.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_英文字體.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_英文字體.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_英文字體.Enabled = false;
+            this.rJ_TextBox_樣式設定_標題_英文字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_英文字體.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_英文字體.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_英文字體.Location = new System.Drawing.Point(514, 146);
+            this.rJ_TextBox_樣式設定_標題_英文字體.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_英文字體.Name = "rJ_TextBox_樣式設定_標題_英文字體";
+            this.rJ_TextBox_樣式設定_標題_英文字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_英文字體.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_英文字體.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_英文字體.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_英文字體.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_英文字體.Size = new System.Drawing.Size(139, 32);
+            this.rJ_TextBox_樣式設定_標題_英文字體.TabIndex = 25;
+            this.rJ_TextBox_樣式設定_標題_英文字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_英文字體.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_英文字體.UnderlineStyle = false;
             // 
             // rJ_Lable27
             // 
@@ -1860,16 +1868,16 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable27.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_標題_英文字體
+            // button_樣式設定_標題_英文字體
             // 
-            this.button_第一台_標題_英文字體.BackColor = System.Drawing.Color.White;
-            this.button_第一台_標題_英文字體.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_標題_英文字體.Location = new System.Drawing.Point(659, 142);
-            this.button_第一台_標題_英文字體.Name = "button_第一台_標題_英文字體";
-            this.button_第一台_標題_英文字體.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_標題_英文字體.TabIndex = 23;
-            this.button_第一台_標題_英文字體.Text = "...";
-            this.button_第一台_標題_英文字體.UseVisualStyleBackColor = false;
+            this.button_樣式設定_標題_英文字體.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_標題_英文字體.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_標題_英文字體.Location = new System.Drawing.Point(659, 142);
+            this.button_樣式設定_標題_英文字體.Name = "button_樣式設定_標題_英文字體";
+            this.button_樣式設定_標題_英文字體.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_標題_英文字體.TabIndex = 23;
+            this.button_樣式設定_標題_英文字體.Text = "...";
+            this.button_樣式設定_標題_英文字體.UseVisualStyleBackColor = false;
             // 
             // rJ_Lable25
             // 
@@ -1892,29 +1900,29 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable25.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_標題_高度
+            // rJ_TextBox_樣式設定_標題_高度
             // 
-            this.rJ_TextBox_第一台_標題_高度.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_高度.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_高度.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_高度.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_高度.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_高度.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_高度.GUID = "";
-            this.rJ_TextBox_第一台_標題_高度.Location = new System.Drawing.Point(155, 201);
-            this.rJ_TextBox_第一台_標題_高度.Multiline = false;
-            this.rJ_TextBox_第一台_標題_高度.Name = "rJ_TextBox_第一台_標題_高度";
-            this.rJ_TextBox_第一台_標題_高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_高度.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_高度.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_高度.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_高度.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_高度.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_標題_高度.TabIndex = 19;
-            this.rJ_TextBox_第一台_標題_高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_高度.Texts = "";
-            this.rJ_TextBox_第一台_標題_高度.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_高度.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_高度.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_高度.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_高度.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_高度.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_高度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_高度.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_高度.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_高度.Location = new System.Drawing.Point(155, 201);
+            this.rJ_TextBox_樣式設定_標題_高度.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_高度.Name = "rJ_TextBox_樣式設定_標題_高度";
+            this.rJ_TextBox_樣式設定_標題_高度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_高度.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_高度.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_高度.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_高度.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_高度.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_標題_高度.TabIndex = 19;
+            this.rJ_TextBox_樣式設定_標題_高度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_高度.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_高度.UnderlineStyle = false;
             // 
             // rJ_Lable9
             // 
@@ -1937,41 +1945,41 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable9.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_標題_背景顏色
+            // button_樣式設定_標題_背景顏色
             // 
-            this.button_第一台_標題_背景顏色.BackColor = System.Drawing.Color.White;
-            this.button_第一台_標題_背景顏色.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_標題_背景顏色.Location = new System.Drawing.Point(718, 39);
-            this.button_第一台_標題_背景顏色.Name = "button_第一台_標題_背景顏色";
-            this.button_第一台_標題_背景顏色.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_標題_背景顏色.TabIndex = 17;
-            this.button_第一台_標題_背景顏色.Text = "...";
-            this.button_第一台_標題_背景顏色.UseVisualStyleBackColor = false;
+            this.button_樣式設定_標題_背景顏色.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_標題_背景顏色.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_標題_背景顏色.Location = new System.Drawing.Point(718, 39);
+            this.button_樣式設定_標題_背景顏色.Name = "button_樣式設定_標題_背景顏色";
+            this.button_樣式設定_標題_背景顏色.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_標題_背景顏色.TabIndex = 17;
+            this.button_樣式設定_標題_背景顏色.Text = "...";
+            this.button_樣式設定_標題_背景顏色.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_標題_背景顏色
+            // rJ_TextBox_樣式設定_標題_背景顏色
             // 
-            this.rJ_TextBox_第一台_標題_背景顏色.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_背景顏色.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_背景顏色.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_背景顏色.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_背景顏色.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_背景顏色.Enabled = false;
-            this.rJ_TextBox_第一台_標題_背景顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_背景顏色.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_背景顏色.GUID = "";
-            this.rJ_TextBox_第一台_標題_背景顏色.Location = new System.Drawing.Point(632, 40);
-            this.rJ_TextBox_第一台_標題_背景顏色.Multiline = false;
-            this.rJ_TextBox_第一台_標題_背景顏色.Name = "rJ_TextBox_第一台_標題_背景顏色";
-            this.rJ_TextBox_第一台_標題_背景顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_背景顏色.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_背景顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_背景顏色.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_背景顏色.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_背景顏色.Size = new System.Drawing.Size(80, 36);
-            this.rJ_TextBox_第一台_標題_背景顏色.TabIndex = 16;
-            this.rJ_TextBox_第一台_標題_背景顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_背景顏色.Texts = "";
-            this.rJ_TextBox_第一台_標題_背景顏色.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Enabled = false;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_背景顏色.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Location = new System.Drawing.Point(632, 40);
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Name = "rJ_TextBox_樣式設定_標題_背景顏色";
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_背景顏色.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_背景顏色.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Size = new System.Drawing.Size(80, 36);
+            this.rJ_TextBox_樣式設定_標題_背景顏色.TabIndex = 16;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_背景顏色.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_背景顏色.UnderlineStyle = false;
             // 
             // rJ_Lable8
             // 
@@ -1994,41 +2002,41 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable8.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_標題_字體顏色
+            // button_樣式設定_標題_字體顏色
             // 
-            this.button_第一台_標題_字體顏色.BackColor = System.Drawing.Color.White;
-            this.button_第一台_標題_字體顏色.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_標題_字體顏色.Location = new System.Drawing.Point(455, 39);
-            this.button_第一台_標題_字體顏色.Name = "button_第一台_標題_字體顏色";
-            this.button_第一台_標題_字體顏色.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_標題_字體顏色.TabIndex = 14;
-            this.button_第一台_標題_字體顏色.Text = "...";
-            this.button_第一台_標題_字體顏色.UseVisualStyleBackColor = false;
+            this.button_樣式設定_標題_字體顏色.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_標題_字體顏色.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_標題_字體顏色.Location = new System.Drawing.Point(455, 39);
+            this.button_樣式設定_標題_字體顏色.Name = "button_樣式設定_標題_字體顏色";
+            this.button_樣式設定_標題_字體顏色.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_標題_字體顏色.TabIndex = 14;
+            this.button_樣式設定_標題_字體顏色.Text = "...";
+            this.button_樣式設定_標題_字體顏色.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_標題_字體顏色
+            // rJ_TextBox_樣式設定_標題_字體顏色
             // 
-            this.rJ_TextBox_第一台_標題_字體顏色.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_字體顏色.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_字體顏色.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_字體顏色.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_字體顏色.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_字體顏色.Enabled = false;
-            this.rJ_TextBox_第一台_標題_字體顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_字體顏色.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_字體顏色.GUID = "";
-            this.rJ_TextBox_第一台_標題_字體顏色.Location = new System.Drawing.Point(369, 40);
-            this.rJ_TextBox_第一台_標題_字體顏色.Multiline = false;
-            this.rJ_TextBox_第一台_標題_字體顏色.Name = "rJ_TextBox_第一台_標題_字體顏色";
-            this.rJ_TextBox_第一台_標題_字體顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_字體顏色.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_字體顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_字體顏色.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_字體顏色.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_字體顏色.Size = new System.Drawing.Size(80, 36);
-            this.rJ_TextBox_第一台_標題_字體顏色.TabIndex = 13;
-            this.rJ_TextBox_第一台_標題_字體顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_字體顏色.Texts = "";
-            this.rJ_TextBox_第一台_標題_字體顏色.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Enabled = false;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_字體顏色.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Location = new System.Drawing.Point(369, 40);
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Name = "rJ_TextBox_樣式設定_標題_字體顏色";
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_字體顏色.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_字體顏色.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Size = new System.Drawing.Size(80, 36);
+            this.rJ_TextBox_樣式設定_標題_字體顏色.TabIndex = 13;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_字體顏色.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_字體顏色.UnderlineStyle = false;
             // 
             // rJ_Lable7
             // 
@@ -2051,30 +2059,30 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable7.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_第一台_標題_字體
+            // rJ_TextBox_樣式設定_標題_字體
             // 
-            this.rJ_TextBox_第一台_標題_字體.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_字體.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_字體.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_字體.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_字體.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_字體.Enabled = false;
-            this.rJ_TextBox_第一台_標題_字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_字體.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_字體.GUID = "";
-            this.rJ_TextBox_第一台_標題_字體.Location = new System.Drawing.Point(155, 146);
-            this.rJ_TextBox_第一台_標題_字體.Multiline = false;
-            this.rJ_TextBox_第一台_標題_字體.Name = "rJ_TextBox_第一台_標題_字體";
-            this.rJ_TextBox_第一台_標題_字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_字體.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_字體.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_字體.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_字體.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_字體.Size = new System.Drawing.Size(139, 32);
-            this.rJ_TextBox_第一台_標題_字體.TabIndex = 11;
-            this.rJ_TextBox_第一台_標題_字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_字體.Texts = "";
-            this.rJ_TextBox_第一台_標題_字體.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_字體.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_字體.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_字體.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_字體.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_字體.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_字體.Enabled = false;
+            this.rJ_TextBox_樣式設定_標題_字體.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_字體.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_字體.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_字體.Location = new System.Drawing.Point(155, 146);
+            this.rJ_TextBox_樣式設定_標題_字體.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_字體.Name = "rJ_TextBox_樣式設定_標題_字體";
+            this.rJ_TextBox_樣式設定_標題_字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_字體.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_字體.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_字體.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_字體.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_字體.Size = new System.Drawing.Size(139, 32);
+            this.rJ_TextBox_樣式設定_標題_字體.TabIndex = 11;
+            this.rJ_TextBox_樣式設定_標題_字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_字體.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_字體.UnderlineStyle = false;
             // 
             // rJ_Lable6
             // 
@@ -2097,40 +2105,40 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable6.TextColor = System.Drawing.Color.White;
             // 
-            // button_第一台_標題_字體
+            // button_樣式設定_標題_字體
             // 
-            this.button_第一台_標題_字體.BackColor = System.Drawing.Color.White;
-            this.button_第一台_標題_字體.ForeColor = System.Drawing.Color.Black;
-            this.button_第一台_標題_字體.Location = new System.Drawing.Point(300, 142);
-            this.button_第一台_標題_字體.Name = "button_第一台_標題_字體";
-            this.button_第一台_標題_字體.Size = new System.Drawing.Size(53, 39);
-            this.button_第一台_標題_字體.TabIndex = 9;
-            this.button_第一台_標題_字體.Text = "...";
-            this.button_第一台_標題_字體.UseVisualStyleBackColor = false;
+            this.button_樣式設定_標題_字體.BackColor = System.Drawing.Color.White;
+            this.button_樣式設定_標題_字體.ForeColor = System.Drawing.Color.Black;
+            this.button_樣式設定_標題_字體.Location = new System.Drawing.Point(300, 142);
+            this.button_樣式設定_標題_字體.Name = "button_樣式設定_標題_字體";
+            this.button_樣式設定_標題_字體.Size = new System.Drawing.Size(53, 39);
+            this.button_樣式設定_標題_字體.TabIndex = 9;
+            this.button_樣式設定_標題_字體.Text = "...";
+            this.button_樣式設定_標題_字體.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_第一台_標題_寬度
+            // rJ_TextBox_樣式設定_標題_寬度
             // 
-            this.rJ_TextBox_第一台_標題_寬度.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_第一台_標題_寬度.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_第一台_標題_寬度.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_第一台_標題_寬度.BorderRadius = 0;
-            this.rJ_TextBox_第一台_標題_寬度.BorderSize = 2;
-            this.rJ_TextBox_第一台_標題_寬度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_第一台_標題_寬度.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_第一台_標題_寬度.GUID = "";
-            this.rJ_TextBox_第一台_標題_寬度.Location = new System.Drawing.Point(126, 40);
-            this.rJ_TextBox_第一台_標題_寬度.Multiline = false;
-            this.rJ_TextBox_第一台_標題_寬度.Name = "rJ_TextBox_第一台_標題_寬度";
-            this.rJ_TextBox_第一台_標題_寬度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_第一台_標題_寬度.PassWordChar = false;
-            this.rJ_TextBox_第一台_標題_寬度.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_第一台_標題_寬度.PlaceholderText = "";
-            this.rJ_TextBox_第一台_標題_寬度.ShowTouchPannel = false;
-            this.rJ_TextBox_第一台_標題_寬度.Size = new System.Drawing.Size(119, 36);
-            this.rJ_TextBox_第一台_標題_寬度.TabIndex = 8;
-            this.rJ_TextBox_第一台_標題_寬度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_第一台_標題_寬度.Texts = "";
-            this.rJ_TextBox_第一台_標題_寬度.UnderlineStyle = false;
+            this.rJ_TextBox_樣式設定_標題_寬度.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_標題_寬度.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_標題_寬度.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_標題_寬度.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_標題_寬度.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_標題_寬度.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_標題_寬度.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_標題_寬度.GUID = "";
+            this.rJ_TextBox_樣式設定_標題_寬度.Location = new System.Drawing.Point(126, 40);
+            this.rJ_TextBox_樣式設定_標題_寬度.Multiline = false;
+            this.rJ_TextBox_樣式設定_標題_寬度.Name = "rJ_TextBox_樣式設定_標題_寬度";
+            this.rJ_TextBox_樣式設定_標題_寬度.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_標題_寬度.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_標題_寬度.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_標題_寬度.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_標題_寬度.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_標題_寬度.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_標題_寬度.TabIndex = 8;
+            this.rJ_TextBox_樣式設定_標題_寬度.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_標題_寬度.Texts = "";
+            this.rJ_TextBox_樣式設定_標題_寬度.UnderlineStyle = false;
             // 
             // rJ_Lable5
             // 
@@ -2153,12 +2161,12 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable5.TextColor = System.Drawing.Color.White;
             // 
-            // comboBox_代碼
+            // comboBox_樣式設定_代碼
             // 
-            this.comboBox_代碼.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_代碼.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_代碼.FormattingEnabled = true;
-            this.comboBox_代碼.Items.AddRange(new object[] {
+            this.comboBox_樣式設定_代碼.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_樣式設定_代碼.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_樣式設定_代碼.FormattingEnabled = true;
+            this.comboBox_樣式設定_代碼.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -2168,10 +2176,10 @@ namespace Hospital_Call_Light_System
             "7",
             "8",
             "9"});
-            this.comboBox_代碼.Location = new System.Drawing.Point(164, 25);
-            this.comboBox_代碼.Name = "comboBox_代碼";
-            this.comboBox_代碼.Size = new System.Drawing.Size(116, 32);
-            this.comboBox_代碼.TabIndex = 7;
+            this.comboBox_樣式設定_代碼.Location = new System.Drawing.Point(164, 25);
+            this.comboBox_樣式設定_代碼.Name = "comboBox_樣式設定_代碼";
+            this.comboBox_樣式設定_代碼.Size = new System.Drawing.Size(116, 32);
+            this.comboBox_樣式設定_代碼.TabIndex = 7;
             // 
             // tabPage11
             // 
@@ -2244,10 +2252,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_公告設定_重新整理
             // 
             this.plC_RJ_Button_公告設定_重新整理.AutoResetState = false;
-            this.plC_RJ_Button_公告設定_重新整理.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_重新整理.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_重新整理.Bool = false;
             this.plC_RJ_Button_公告設定_重新整理.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_公告設定_重新整理.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_重新整理.BorderRadius = 20;
             this.plC_RJ_Button_公告設定_重新整理.BorderSize = 0;
             this.plC_RJ_Button_公告設定_重新整理.but_press = false;
             this.plC_RJ_Button_公告設定_重新整理.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -2257,18 +2265,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_重新整理.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_重新整理.GUID = "";
             this.plC_RJ_Button_公告設定_重新整理.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_公告設定_重新整理.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_公告設定_重新整理.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_公告設定_重新整理.Location = new System.Drawing.Point(887, 722);
             this.plC_RJ_Button_公告設定_重新整理.Name = "plC_RJ_Button_公告設定_重新整理";
             this.plC_RJ_Button_公告設定_重新整理.OFF_文字內容 = "重新整理";
             this.plC_RJ_Button_公告設定_重新整理.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_重新整理.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_公告設定_重新整理.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_重新整理.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_重新整理.ON_BorderSize = 5;
             this.plC_RJ_Button_公告設定_重新整理.ON_文字內容 = "重新整理";
             this.plC_RJ_Button_公告設定_重新整理.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_公告設定_重新整理.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_公告設定_重新整理.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_重新整理.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_重新整理.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_重新整理.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_公告設定_重新整理.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_公告設定_重新整理.ProhibitionSymbolSize = 30;
@@ -2279,7 +2287,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_重新整理.State = false;
             this.plC_RJ_Button_公告設定_重新整理.TabIndex = 31;
             this.plC_RJ_Button_公告設定_重新整理.Text = "重新整理";
-            this.plC_RJ_Button_公告設定_重新整理.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_重新整理.TextColor = System.Drawing.Color.White;
             this.plC_RJ_Button_公告設定_重新整理.TextHeight = 0;
             this.plC_RJ_Button_公告設定_重新整理.Texts = "重新整理";
             this.plC_RJ_Button_公告設定_重新整理.UseVisualStyleBackColor = false;
@@ -2338,10 +2346,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_公告設定_刪除
             // 
             this.plC_RJ_Button_公告設定_刪除.AutoResetState = false;
-            this.plC_RJ_Button_公告設定_刪除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_刪除.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_刪除.Bool = false;
             this.plC_RJ_Button_公告設定_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_公告設定_刪除.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_刪除.BorderRadius = 20;
             this.plC_RJ_Button_公告設定_刪除.BorderSize = 0;
             this.plC_RJ_Button_公告設定_刪除.but_press = false;
             this.plC_RJ_Button_公告設定_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -2351,18 +2359,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_刪除.GUID = "";
             this.plC_RJ_Button_公告設定_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_公告設定_刪除.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_公告設定_刪除.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_公告設定_刪除.Location = new System.Drawing.Point(1002, 722);
             this.plC_RJ_Button_公告設定_刪除.Name = "plC_RJ_Button_公告設定_刪除";
             this.plC_RJ_Button_公告設定_刪除.OFF_文字內容 = "刪除";
             this.plC_RJ_Button_公告設定_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_刪除.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_公告設定_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_刪除.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_刪除.ON_BorderSize = 5;
             this.plC_RJ_Button_公告設定_刪除.ON_文字內容 = "刪除";
             this.plC_RJ_Button_公告設定_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_公告設定_刪除.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_公告設定_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_刪除.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_刪除.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_刪除.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_公告設定_刪除.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_公告設定_刪除.ProhibitionSymbolSize = 30;
@@ -2373,7 +2381,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_刪除.State = false;
             this.plC_RJ_Button_公告設定_刪除.TabIndex = 27;
             this.plC_RJ_Button_公告設定_刪除.Text = "刪除";
-            this.plC_RJ_Button_公告設定_刪除.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_刪除.TextColor = System.Drawing.Color.White;
             this.plC_RJ_Button_公告設定_刪除.TextHeight = 0;
             this.plC_RJ_Button_公告設定_刪除.Texts = "刪除";
             this.plC_RJ_Button_公告設定_刪除.UseVisualStyleBackColor = false;
@@ -2391,10 +2399,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_公告設定_登錄
             // 
             this.plC_RJ_Button_公告設定_登錄.AutoResetState = false;
-            this.plC_RJ_Button_公告設定_登錄.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_登錄.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_登錄.Bool = false;
             this.plC_RJ_Button_公告設定_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_公告設定_登錄.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_登錄.BorderRadius = 20;
             this.plC_RJ_Button_公告設定_登錄.BorderSize = 0;
             this.plC_RJ_Button_公告設定_登錄.but_press = false;
             this.plC_RJ_Button_公告設定_登錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -2404,18 +2412,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_登錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_登錄.GUID = "";
             this.plC_RJ_Button_公告設定_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_公告設定_登錄.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_公告設定_登錄.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_公告設定_登錄.Location = new System.Drawing.Point(1117, 722);
             this.plC_RJ_Button_公告設定_登錄.Name = "plC_RJ_Button_公告設定_登錄";
             this.plC_RJ_Button_公告設定_登錄.OFF_文字內容 = "登錄";
             this.plC_RJ_Button_公告設定_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_公告設定_登錄.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_公告設定_登錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_登錄.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_登錄.ON_BorderSize = 5;
             this.plC_RJ_Button_公告設定_登錄.ON_文字內容 = "登錄";
             this.plC_RJ_Button_公告設定_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_公告設定_登錄.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_公告設定_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_登錄.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_登錄.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_公告設定_登錄.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_公告設定_登錄.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_公告設定_登錄.ProhibitionSymbolSize = 30;
@@ -2426,7 +2434,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_公告設定_登錄.State = false;
             this.plC_RJ_Button_公告設定_登錄.TabIndex = 26;
             this.plC_RJ_Button_公告設定_登錄.Text = "登錄";
-            this.plC_RJ_Button_公告設定_登錄.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_登錄.TextColor = System.Drawing.Color.White;
             this.plC_RJ_Button_公告設定_登錄.TextHeight = 0;
             this.plC_RJ_Button_公告設定_登錄.Texts = "登錄";
             this.plC_RJ_Button_公告設定_登錄.UseVisualStyleBackColor = false;
@@ -3106,10 +3114,10 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_按鈕設定_存檔
             // 
             this.plC_RJ_Button_按鈕設定_存檔.AutoResetState = false;
-            this.plC_RJ_Button_按鈕設定_存檔.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_按鈕設定_存檔.BackgroundColor = System.Drawing.Color.Black;
             this.plC_RJ_Button_按鈕設定_存檔.Bool = false;
             this.plC_RJ_Button_按鈕設定_存檔.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_按鈕設定_存檔.BorderRadius = 5;
+            this.plC_RJ_Button_按鈕設定_存檔.BorderRadius = 20;
             this.plC_RJ_Button_按鈕設定_存檔.BorderSize = 0;
             this.plC_RJ_Button_按鈕設定_存檔.but_press = false;
             this.plC_RJ_Button_按鈕設定_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -3119,18 +3127,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_按鈕設定_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_按鈕設定_存檔.GUID = "";
             this.plC_RJ_Button_按鈕設定_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_按鈕設定_存檔.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.plC_RJ_Button_按鈕設定_存檔.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_按鈕設定_存檔.Location = new System.Drawing.Point(778, 12);
             this.plC_RJ_Button_按鈕設定_存檔.Name = "plC_RJ_Button_按鈕設定_存檔";
             this.plC_RJ_Button_按鈕設定_存檔.OFF_文字內容 = "存檔";
             this.plC_RJ_Button_按鈕設定_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_按鈕設定_存檔.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_按鈕設定_存檔.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_按鈕設定_存檔.OFF_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_按鈕設定_存檔.ON_BorderSize = 5;
             this.plC_RJ_Button_按鈕設定_存檔.ON_文字內容 = "存檔";
             this.plC_RJ_Button_按鈕設定_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_按鈕設定_存檔.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_按鈕設定_存檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_按鈕設定_存檔.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_按鈕設定_存檔.ON_背景顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_按鈕設定_存檔.ProhibitionBorderLineWidth = 1;
             this.plC_RJ_Button_按鈕設定_存檔.ProhibitionLineWidth = 4;
             this.plC_RJ_Button_按鈕設定_存檔.ProhibitionSymbolSize = 30;
@@ -3141,7 +3149,7 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_按鈕設定_存檔.State = false;
             this.plC_RJ_Button_按鈕設定_存檔.TabIndex = 34;
             this.plC_RJ_Button_按鈕設定_存檔.Text = "存檔";
-            this.plC_RJ_Button_按鈕設定_存檔.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_按鈕設定_存檔.TextColor = System.Drawing.Color.White;
             this.plC_RJ_Button_按鈕設定_存檔.TextHeight = 0;
             this.plC_RJ_Button_按鈕設定_存檔.Texts = "存檔";
             this.plC_RJ_Button_按鈕設定_存檔.UseVisualStyleBackColor = false;
@@ -4222,7 +4230,7 @@ namespace Hospital_Call_Light_System
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1234, 834);
+            this.tabPage2.Size = new System.Drawing.Size(178, 42);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "參數";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -4268,7 +4276,7 @@ namespace Hospital_Call_Light_System
             this.sqL_DataGridView_參數.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_參數.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_參數.Server = "127.0.0.0";
-            this.sqL_DataGridView_參數.Size = new System.Drawing.Size(1228, 313);
+            this.sqL_DataGridView_參數.Size = new System.Drawing.Size(172, 313);
             this.sqL_DataGridView_參數.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_參數.TabIndex = 3;
             this.sqL_DataGridView_參數.TableName = "parameter";
@@ -4290,7 +4298,7 @@ namespace Hospital_Call_Light_System
             this.tabPage12.Controls.Add(this.sqL_DataGridView_圖片列表);
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1234, 834);
+            this.tabPage12.Size = new System.Drawing.Size(178, 42);
             this.tabPage12.TabIndex = 2;
             this.tabPage12.Text = "圖片";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -4336,7 +4344,7 @@ namespace Hospital_Call_Light_System
             this.sqL_DataGridView_圖片列表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_圖片列表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_圖片列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_圖片列表.Size = new System.Drawing.Size(1234, 463);
+            this.sqL_DataGridView_圖片列表.Size = new System.Drawing.Size(178, 463);
             this.sqL_DataGridView_圖片列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_圖片列表.TabIndex = 4;
             this.sqL_DataGridView_圖片列表.TableName = "parameter";
@@ -4370,6 +4378,96 @@ namespace Hospital_Call_Light_System
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "設定4";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // rJ_TextBox_樣式設定_叫號_邊界距離
+            // 
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Location = new System.Drawing.Point(904, 38);
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Name = "rJ_TextBox_樣式設定_叫號_邊界距離";
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.TabIndex = 28;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_邊界距離.UnderlineStyle = false;
+            // 
+            // rJ_Lable46
+            // 
+            this.rJ_Lable46.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable46.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable46.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable46.BorderRadius = 12;
+            this.rJ_Lable46.BorderSize = 0;
+            this.rJ_Lable46.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable46.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable46.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable46.GUID = "";
+            this.rJ_Lable46.Location = new System.Drawing.Point(756, 34);
+            this.rJ_Lable46.Name = "rJ_Lable46";
+            this.rJ_Lable46.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable46.ShadowSize = 3;
+            this.rJ_Lable46.Size = new System.Drawing.Size(141, 45);
+            this.rJ_Lable46.TabIndex = 27;
+            this.rJ_Lable46.Text = "邊界距離";
+            this.rJ_Lable46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable46.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_TextBox_樣式設定_叫號_邊框圓角
+            // 
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.BorderRadius = 0;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.BorderSize = 2;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.GUID = "";
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Location = new System.Drawing.Point(904, 94);
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Multiline = false;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Name = "rJ_TextBox_樣式設定_叫號_邊框圓角";
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.PassWordChar = false;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.PlaceholderText = "";
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.ShowTouchPannel = false;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Size = new System.Drawing.Size(119, 36);
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.TabIndex = 30;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.Texts = "";
+            this.rJ_TextBox_樣式設定_叫號_邊框圓角.UnderlineStyle = false;
+            // 
+            // rJ_Lable47
+            // 
+            this.rJ_Lable47.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable47.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable47.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable47.BorderRadius = 12;
+            this.rJ_Lable47.BorderSize = 0;
+            this.rJ_Lable47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable47.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable47.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable47.GUID = "";
+            this.rJ_Lable47.Location = new System.Drawing.Point(756, 90);
+            this.rJ_Lable47.Name = "rJ_Lable47";
+            this.rJ_Lable47.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable47.ShadowSize = 3;
+            this.rJ_Lable47.Size = new System.Drawing.Size(141, 45);
+            this.rJ_Lable47.TabIndex = 29;
+            this.rJ_Lable47.Text = "邊框圓角";
+            this.rJ_Lable47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable47.TextColor = System.Drawing.Color.White;
             // 
             // Form1
             // 
@@ -4442,32 +4540,32 @@ namespace Hospital_Call_Light_System
         private LadderUI.LowerMachine_Panel lowerMachine_Panel;
         private MyUI.RJ_Lable rJ_Lable1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_寬度;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_寬度;
         private MyUI.RJ_Lable rJ_Lable5;
         private MyUI.RJ_Lable rJ_Lable6;
-        private System.Windows.Forms.Button button_第一台_標題_字體;
+        private System.Windows.Forms.Button button_樣式設定_標題_字體;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button_第一台_叫號_背景顏色;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_背景顏色;
+        private System.Windows.Forms.Button button_樣式設定_叫號_背景顏色;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_背景顏色;
         private MyUI.RJ_Lable rJ_Lable11;
-        private System.Windows.Forms.Button button_第一台_叫號_字體顏色;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_字體顏色;
+        private System.Windows.Forms.Button button_樣式設定_叫號_字體顏色;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_字體顏色;
         private MyUI.RJ_Lable rJ_Lable12;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_字體;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_字體;
         private MyUI.RJ_Lable rJ_Lable13;
-        private System.Windows.Forms.Button button_第一台_叫號_字體;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_寬度;
+        private System.Windows.Forms.Button button_樣式設定_叫號_字體;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_寬度;
         private MyUI.RJ_Lable rJ_Lable14;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_高度;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_高度;
         private MyUI.RJ_Lable rJ_Lable9;
-        private System.Windows.Forms.Button button_第一台_標題_背景顏色;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_背景顏色;
+        private System.Windows.Forms.Button button_樣式設定_標題_背景顏色;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_背景顏色;
         private MyUI.RJ_Lable rJ_Lable8;
-        private System.Windows.Forms.Button button_第一台_標題_字體顏色;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_字體顏色;
+        private System.Windows.Forms.Button button_樣式設定_標題_字體顏色;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_字體顏色;
         private MyUI.RJ_Lable rJ_Lable7;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_字體;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_第一台_存檔;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_字體;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_樣式設定_存檔;
         private MyUI.RJ_TextBox rJ_TextBox_第一台_減二號;
         private MyUI.RJ_Lable rJ_Lable17;
         private MyUI.RJ_TextBox rJ_TextBox_第一台_加二號;
@@ -4478,8 +4576,8 @@ namespace Hospital_Call_Light_System
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.ColorDialog colorDialog;
         private MyUI.RJ_TextBox rJ_TextBox_第一台_減一號;
-        private System.Windows.Forms.ComboBox comboBox_代碼;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_設定_讀取;
+        private System.Windows.Forms.ComboBox comboBox_樣式設定_代碼;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_樣式設定_讀取;
         private MyUI.PLC_RJ_Button plC_RJ_Button_全螢幕顯示;
         private MyUI.PLC_Button plC_Button_Enter;
         private MyUI.PLC_RJ_Button plC_RJ_Button_刷新螢幕;
@@ -4517,19 +4615,19 @@ namespace Hospital_Call_Light_System
         private MyUI.RJ_Lable rJ_Lable24;
         private MyUI.RJ_TextBox rJ_TextBox_叫號內容設定_英文名;
         private MyUI.RJ_Lable rJ_Lable23;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_英文高度;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_英文高度;
         private MyUI.RJ_Lable rJ_Lable28;
         private MyUI.RJ_Lable rJ_Lable26;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_英文字體;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_標題_英文字體;
         private MyUI.RJ_Lable rJ_Lable27;
-        private System.Windows.Forms.Button button_第一台_標題_英文字體;
+        private System.Windows.Forms.Button button_樣式設定_標題_英文字體;
         private MyUI.RJ_Lable rJ_Lable25;
         private MyUI.RJ_Lable rJ_Lable29;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_備註高度;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_備註高度;
         private MyUI.RJ_Lable rJ_Lable30;
-        private MyUI.RJ_TextBox rJ_TextBox_第一台_叫號_備註字體;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_備註字體;
         private MyUI.RJ_Lable rJ_Lable31;
-        private System.Windows.Forms.Button button_第一台_叫號_備註字體;
+        private System.Windows.Forms.Button button_樣式設定_叫號_備註字體;
         private MyUI.RJ_Lable rJ_Lable34;
         private MyUI.RJ_Lable rJ_Lable35;
         private MyUI.RJ_TextBox rJ_TextBox_第二台_加十號;
@@ -4624,6 +4722,10 @@ namespace Hospital_Call_Light_System
         private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片02;
         private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片01;
         private MyUI.RJ_Lable rJ_Lable44;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_邊框圓角;
+        private MyUI.RJ_Lable rJ_Lable47;
+        private MyUI.RJ_TextBox rJ_TextBox_樣式設定_叫號_邊界距離;
+        private MyUI.RJ_Lable rJ_Lable46;
     }
 }
 

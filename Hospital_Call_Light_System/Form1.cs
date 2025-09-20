@@ -17,8 +17,8 @@ using System.Text.Json.Serialization;
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-[assembly: AssemblyVersion("1.0.0.3")]
-[assembly: AssemblyFileVersion("1.0.0.3")]
+[assembly: AssemblyVersion("1.0.0.5")]
+[assembly: AssemblyFileVersion("1.0.0.5")]
 namespace Hospital_Call_Light_System
 {
 
@@ -453,8 +453,8 @@ namespace Hospital_Call_Light_System
         {
             if (PageText == "設定")
             {
-                comboBox_代碼.SelectedIndex = 0;
-                Function_設定讀取(comboBox_代碼.Text);
+                comboBox_樣式設定_代碼.SelectedIndex = 0;
+                Function_樣式設定讀取(comboBox_樣式設定_代碼.Text);
 
                 this.sqL_DataGridView_叫號內容設定.SQL_GetAllRows(true);
                 comboBox_叫號內容設定_代碼.SelectedIndex = 0;

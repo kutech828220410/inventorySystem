@@ -7,16 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 using MyUI;
 using Basic;
-using SQLUI;
-using System.Text.Json;
-using System.Text.Encodings.Web;
-using System.Text.Json.Serialization;
-
-using System.Reflection;
-using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using System.Text.RegularExpressions;
+using hcls_DB_Lib;
 
 namespace Hospital_Call_Light_System
 {
@@ -94,47 +90,144 @@ namespace Hospital_Call_Light_System
             list_樣式設定 = this.sqL_DataGridView_樣式設定.SQL_GetAllRows(false);
             list_公告設定 = this.sqL_DataGridView_公告設定.SQL_GetAllRows(false);
         }
-        private Bitmap Function_主畫面_取得文字Bitmap(string 標題名稱, Font 標題字體, Size 標題大小, int 標題文字寬度, Color 標題字體顏色, Color 標題背景顏色)
+
+        /// <summary>
+        /// 產生一個包含標題文字的 Bitmap 影像，並可設定背景與外框。
+        /// 文字會在指定區域內水平與垂直置中顯示。
+        /// </summary>
+        /// <param name="titleText">要繪製的標題文字。</param>
+        /// <param name="titleFont">標題文字所使用的字型。</param>
+        /// <param name="titleSize">整體影像大小 (寬度與高度)。</param>
+        /// <param name="titleTextWidth">標題文字可使用的寬度範圍。</param>
+        /// <param name="titleFontColor">標題文字顏色。</param>
+        /// <param name="titleBackColor">影像背景顏色。</param>
+        /// <returns>
+        /// 回傳產生的 <see cref="Bitmap"/> 物件。  
+        /// 若產生失敗，則回傳 <c>null</c>。
+        /// </returns>
+        private Bitmap GetTextBitmap(string titleText, Font titleFont, Size titleSize, int titleTextWidth, Color titleFontColor, Color titleBackColor)
+        {
+            return GetTextBitmap(titleText, titleFont, titleSize, titleTextWidth, titleFontColor, titleBackColor, titleBackColor, 0, 0);
+        }
+        /// <summary>
+        /// 產生一個包含標題文字的 Bitmap 影像，並可設定背景、內框(padding)、圓角。  
+        /// - 中文：逐字平均分配並置中。  
+        /// - 英文：單字內字母間距與單字間距自動計算，整體壓在 titleTextWidth 內置中。  
+        /// </summary>
+        private Bitmap GetTextBitmap(
+       string titleText,
+       Font titleFont,
+       Size titleSize,
+       int titleTextWidth,
+       Color titleFontColor,
+       Color titleBackColor,    // 整體背景色
+       Color contentBackColor,  // 文字框背景色
+       int padding,             // 內框 padding
+       int borderRadius,
+       float letterRatio = 0.4f,
+       float wordRatio = 0.6f)
         {
             try
             {
-                Bitmap bitmap = new Bitmap(標題大小.Width, 標題大小.Height);
+                Bitmap bitmap = new Bitmap(titleSize.Width, titleSize.Height);
                 using (Graphics g_bmp = Graphics.FromImage(bitmap))
                 {
+                    g_bmp.SmoothingMode = SmoothingMode.AntiAlias;
+                    g_bmp.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g_bmp.CompositingQuality = CompositingQuality.HighQuality;
+                    g_bmp.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
 
-                    DrawingClass.Draw.方框繪製(new PointF(0, 0), bitmap.Size, Color.Transparent, 2, true, g_bmp, 1, 1);
-                    DrawingClass.Draw.方框繪製(new PointF(0, 0), new Size(bitmap.Width - 2, bitmap.Height), 標題背景顏色, 1, true, g_bmp, 1, 1);
-                    Size size_font = TextRenderer.MeasureText(標題名稱, 標題字體);
-                    int x = (標題大小.Width - 標題文字寬度) / 2;
-                    int y = (bitmap.Height - size_font.Height) / 2;
+                    // === 整體背景 ===
+                    using (SolidBrush backBrush = new SolidBrush(titleBackColor))
+                        g_bmp.FillRectangle(backBrush, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
 
+                    // === 文字框區域 ===
+                    Rectangle contentRect = new Rectangle(
+                        padding,
+                        padding,
+                        bitmap.Width - padding * 2,
+                        bitmap.Height - padding * 2
+                    );
 
-                    DrawingClass.Draw.文字左上繪製(標題名稱, 標題文字寬度, new PointF(x, y), 標題字體, 標題字體顏色, 標題背景顏色, g_bmp);
-                }
-                return bitmap;
-            }
-            catch
-            {
-                return null;
-            }
+                    using (GraphicsPath path = new GraphicsPath())
+                    {
+                        if (borderRadius > 0)
+                        {
+                            int r = borderRadius;
+                            path.AddArc(contentRect.Left, contentRect.Top, r * 2, r * 2, 180, 90);
+                            path.AddArc(contentRect.Right - r * 2, contentRect.Top, r * 2, r * 2, 270, 90);
+                            path.AddArc(contentRect.Right - r * 2, contentRect.Bottom - r * 2, r * 2, r * 2, 0, 90);
+                            path.AddArc(contentRect.Left, contentRect.Bottom - r * 2, r * 2, r * 2, 90, 90);
+                            path.CloseFigure();
+                        }
+                        else
+                        {
+                            path.AddRectangle(contentRect);
+                        }
+
+                        // 填滿框背景
+                        using (SolidBrush contentBrush = new SolidBrush(contentBackColor))
+                            g_bmp.FillPath(contentBrush, path);
+                    }
+
+                    // === 繪製文字 ===
+                    int xStart = contentRect.Left + (contentRect.Width - titleTextWidth) / 2;
+                    int yCenter = contentRect.Top + contentRect.Height / 2;
+
+              
+
+                    bool hasEnglish = Regex.IsMatch(titleText, "[A-Za-z]");
+
+                    if (hasEnglish)
+                    {
+                        using (Brush textBrush = new SolidBrush(titleFontColor))
+                        {
+                            SizeF size = g_bmp.MeasureString(titleText, titleFont);
+                            float x = xStart + (titleTextWidth - size.Width) / 2;
+                            float y = yCenter - size.Height / 2;
+
+                            g_bmp.DrawString(titleText, titleFont, textBrush, x, y);
+                        }
+                    }
+                    else
+                    {
+                        int charCount = titleText.Length;
+                        float cellWidth = (float)titleTextWidth / charCount;
+                        float curX = xStart;
+
+                        // 取得字型度量
+                        FontFamily ff = titleFont.FontFamily;
+                        float emHeight = ff.GetEmHeight(titleFont.Style);
+                        float ascent = ff.GetCellAscent(titleFont.Style);
+                        float lineSpacing = ff.GetLineSpacing(titleFont.Style);
+
+                        float ascentPixel = titleFont.Size * ascent / emHeight;
+                        float lineSpacingPixel = titleFont.Size * lineSpacing / emHeight;
+
+                        // ✅ 使用 lineSpacing 計算 baseline
+                        float baseline = yCenter + (lineSpacingPixel / 2 - ascentPixel);
+
+                     
        
-        }
-        private Bitmap Function_主畫面_取得英文文字Bitmap(string 標題名稱, Font 標題字體, Size 標題大小, int 標題文字寬度, Color 標題字體顏色, Color 標題背景顏色)
-        {
-            try
-            {
-                Bitmap bitmap = new Bitmap(標題大小.Width, 標題大小.Height);
-                using (Graphics g_bmp = Graphics.FromImage(bitmap))
-                {
-
-                    DrawingClass.Draw.方框繪製(new PointF(0, 0), bitmap.Size, Color.Transparent, 2, true, g_bmp, 1, 1);
-                    DrawingClass.Draw.方框繪製(new PointF(0, 0), new Size(bitmap.Width - 2, bitmap.Height), 標題背景顏色, 1, true, g_bmp, 1, 1);
-                    Size size_font = TextRenderer.MeasureText(標題名稱, 標題字體);
-                    int x = (標題大小.Width - 標題文字寬度) / 2;
-                    int y = (bitmap.Height - size_font.Height) / 2;
 
 
-                    DrawingClass.Draw.文字左上繪製(標題名稱, 標題文字寬度, new PointF(x, y), 標題字體, 標題字體顏色, 標題背景顏色, g_bmp);
+                        using (Brush textBrush = new SolidBrush(titleFontColor))
+                        {
+                            foreach (char c in titleText)
+                            {
+                                string s = c.ToString();
+                                SizeF size = g_bmp.MeasureString(s, titleFont, PointF.Empty, StringFormat.GenericTypographic);
+
+                                float x = curX + (cellWidth - size.Width) / 2;
+                                float y = baseline - ascentPixel / 2;  // baseline 減去 ascent
+
+                                g_bmp.DrawString(s, titleFont, textBrush, x, y, StringFormat.GenericTypographic);
+                                curX += cellWidth;
+                            }
+                        }
+                    }
+
+
                 }
                 return bitmap;
             }
@@ -142,12 +235,13 @@ namespace Hospital_Call_Light_System
             {
                 return null;
             }
-
         }
-        #region Event
-   
 
- 
+
+
+
+        #region Event
+
         private void PlC_RJ_Button_刷新音效_MouseDownEvent(MouseEventArgs mevent)
         {
             if (this.myConfigClass.全局音效)
@@ -200,10 +294,10 @@ namespace Hospital_Call_Light_System
                 using (Graphics g = this.panel_叫號.CreateGraphics())
                 {
 
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //使繪圖質量最高，即消除鋸齒
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+                    g.SmoothingMode = SmoothingMode.HighQuality; //使繪圖質量最高，即消除鋸齒
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
 
                     string 一號台名稱 = "";
                     string 二號台名稱 = "";
@@ -237,48 +331,51 @@ namespace Hospital_Call_Light_System
                         {
                             list_叫號內容設定_buf = list_叫號內容設定.GetRows((int)enum_叫號內容設定.名稱, 一號台名稱);
                             if (list_叫號內容設定_buf.Count == 0) continue;
-                            list_樣式設定_buf = list_樣式設定.GetRows((int)enum_樣式設定.代碼, list_叫號內容設定_buf[0][(int)enum_叫號內容設定.樣式代碼].ObjectToString());
+                            list_樣式設定_buf = list_樣式設定.GetRows((int)enum_sytle_setting.代碼, list_叫號內容設定_buf[0][(int)enum_叫號內容設定.樣式代碼].ObjectToString());
                             if (list_樣式設定_buf.Count == 0) continue;
                         }
                         if (i == 1)
                         {
                             list_叫號內容設定_buf = list_叫號內容設定.GetRows((int)enum_叫號內容設定.名稱, 二號台名稱);
                             if (list_叫號內容設定_buf.Count == 0) continue;
-                            list_樣式設定_buf = list_樣式設定.GetRows((int)enum_樣式設定.代碼, list_叫號內容設定_buf[0][(int)enum_叫號內容設定.樣式代碼].ObjectToString());
+                            list_樣式設定_buf = list_樣式設定.GetRows((int)enum_sytle_setting.代碼, list_叫號內容設定_buf[0][(int)enum_叫號內容設定.樣式代碼].ObjectToString());
                             if (list_樣式設定_buf.Count == 0) continue;
                         }
                         if (list_叫號內容設定_buf.Count == 0) continue;
-                        int 寬度 = (width - 0) / 2;
+                        int panel_width = (width - 0) / 2;
                         int temp = 0;
                         if (!radioButton_一號台_不顯示.Checked) temp++;
                         if (!radioButton_二號台_不顯示.Checked) temp++;
+                        if (temp == 1) panel_width = (width - 0) / 1;
 
-                        if (temp == 1) 寬度 = (width - 0) / 1;
+                        styleSettingClass styleSetting = list_樣式設定_buf[0].ObjectToStyleSetting();
 
-                        string 標題名稱 = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.名稱].ObjectToString();
-                        Font 標題字體 = list_樣式設定_buf[0][(int)enum_樣式設定.標題字體].ObjectToString().ToFont();
-                        int 標題文字寬度 = list_樣式設定_buf[0][(int)enum_樣式設定.標題文字寬度].StringToInt32();
-                        Color 標題字體顏色 = list_樣式設定_buf[0][(int)enum_樣式設定.標題字體顏色].ObjectToString().ToColor();
-                        Color 標題背景顏色 = list_樣式設定_buf[0][(int)enum_樣式設定.標題背景顏色].ObjectToString().ToColor();
-                        int 標題高度 = list_樣式設定_buf[0][(int)enum_樣式設定.標題高度].StringToInt32();
+                        string titleName = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.名稱].ObjectToString();
+                        string engTitleName = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.英文名].ObjectToString();
+                        string callNote = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.叫號備註].ObjectToString();
 
-                        string 英文標題名稱 = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.英文名].ObjectToString();
-                        Font 英文標題字體 = list_樣式設定_buf[0][(int)enum_樣式設定.英文標題字體].ObjectToString().ToFont();
-                        int 英文標題高度 = list_樣式設定_buf[0][(int)enum_樣式設定.英文標題高度].StringToInt32();
 
-                        string 叫號名稱 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號號碼].ObjectToString();
-                        Font 叫號字體 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號字體].ObjectToString().ToFont();
-                        int 叫號文字寬度 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號文字寬度].StringToInt32();
-                        Color 叫號字體顏色 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號字體顏色].ObjectToString().ToColor();
-                        Color 叫號背景顏色 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號背景顏色].ObjectToString().ToColor();
-                   
+                        Font titleFont = styleSetting.Title.TitleFont.ToFont();
+                        int titleTextWidth = styleSetting.Title.TitleTextWidth.StringToInt32();
+                        Color titleFontColor = styleSetting.Title.TitleFontColor.ToColor();
+                        Color titleBackColor = styleSetting.Title.TitleBackColor.ToColor();
+                        int titleHeight = styleSetting.Title.TitleHeight.StringToInt32();
 
-                        string 叫號備註 = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.叫號備註].ObjectToString();
+                        Font engTitleFont = styleSetting.Title.EngTitleFont.ToFont();
+                        int engTitleHeight = styleSetting.Title.EngTitleHeight.StringToInt32();
 
-                        Font 叫號備註字體 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號備註字體].ObjectToString().ToFont();
-                        int 叫號備註高度 = list_樣式設定_buf[0][(int)enum_樣式設定.叫號備註高度].StringToInt32();
+                        Font callFont = styleSetting.Call.CallFont.ToFont();
+                        int callTextWidth = styleSetting.Call.CallTextWidth.StringToInt32();
+                        Color callFontColor = styleSetting.Call.CallFontColor.ToColor();
+                        Color callBackColor = styleSetting.Call.CallBackColor.ToColor();                 
+                        Font callNoteFont = styleSetting.Call.CallNoteFont.ToFont();
+                        int callNoteHeight = styleSetting.Call.CallNoteHeight.StringToInt32();
+                        if (callNote.StringIsEmpty()) callNoteHeight = 0;
+                        int callHeight = styleSetting.CaculateCallHeight(height, 公告高度 + callNoteHeight);
 
-                        int 叫號高度 = height - (標題高度 + 英文標題高度 + 叫號備註高度 + 公告高度);
+                        int callBorderRadius = styleSetting.Call.CallBorderRadius.StringToInt32();
+                        int callMargin = styleSetting.Call.CallMargin.StringToInt32();
+
                         if (i == 0 && radioButton_一號台_號碼.Checked)
                         {
                             if (叫號台01_號碼 != list_叫號內容設定_buf[0][(int)enum_叫號內容設定.號碼].StringToInt32())
@@ -286,10 +383,19 @@ namespace Hospital_Call_Light_System
                                 flag_RING = true;
                             }
                             叫號台01_號碼 = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.號碼].StringToInt32();
-                            bitmap_標題_0 = Function_主畫面_取得文字Bitmap(標題名稱, 標題字體, new Size(寬度, 標題高度), 標題文字寬度, 標題字體顏色, 標題背景顏色);
-                            bitmap_英文標題_0 = Function_主畫面_取得英文文字Bitmap(英文標題名稱, 英文標題字體, new Size(寬度, 英文標題高度), 標題文字寬度, 標題字體顏色, 標題背景顏色);
-                            bitmap_叫號_0 = Function_主畫面_取得文字Bitmap(叫號台01_號碼.ToString("0000"), 叫號字體, new Size(寬度, 叫號高度), 叫號文字寬度, 叫號字體顏色, 叫號背景顏色);
-                            bitmap_叫號備註_0 = Function_主畫面_取得文字Bitmap(叫號備註, 叫號備註字體, new Size(寬度, 叫號備註高度), 叫號文字寬度, 叫號字體顏色, 叫號背景顏色);
+                            bitmap_標題_0 = GetTextBitmap(titleName, titleFont, new Size(panel_width, titleHeight), titleTextWidth, titleFontColor, titleBackColor);
+                            bitmap_英文標題_0 = GetTextBitmap(engTitleName, engTitleFont, new Size(panel_width, engTitleHeight), titleTextWidth, titleFontColor, titleBackColor);
+                            bitmap_叫號_0 = GetTextBitmap(叫號台01_號碼.ToString("0000"), callFont, new Size(panel_width, callHeight), callTextWidth, callFontColor, titleBackColor, callBackColor , callMargin, callBorderRadius);
+                            if (叫號台01_號碼 == 0)
+                            {
+                                bitmap_叫號_0 = null;
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_0.Height - bitmap_英文標題_0.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
+                            }
+                            else
+                            {
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+
+                            }
                         }
                         if (i == 1 && radioButton_二號台_號碼.Checked)
                         {
@@ -299,10 +405,18 @@ namespace Hospital_Call_Light_System
                             }
 
                             叫號台02_號碼 = list_叫號內容設定_buf[0][(int)enum_叫號內容設定.號碼].StringToInt32();
-                            bitmap_標題_1 = Function_主畫面_取得文字Bitmap(標題名稱, 標題字體, new Size(寬度, 標題高度), 標題文字寬度, 標題字體顏色, 標題背景顏色);
-                            bitmap_英文標題_1 = Function_主畫面_取得英文文字Bitmap(英文標題名稱, 英文標題字體, new Size(寬度, 英文標題高度), 標題文字寬度, 標題字體顏色, 標題背景顏色);
-                            bitmap_叫號_1 = Function_主畫面_取得文字Bitmap(叫號台02_號碼.ToString("0000"), 叫號字體, new Size(寬度, 叫號高度), 叫號文字寬度, 叫號字體顏色, 叫號背景顏色);
-                            bitmap_叫號備註_1 = Function_主畫面_取得文字Bitmap(叫號備註, 叫號備註字體, new Size(寬度, 叫號備註高度), 叫號文字寬度, 叫號字體顏色, 叫號背景顏色);
+                            bitmap_標題_1 = GetTextBitmap(titleName, titleFont, new Size(panel_width, titleHeight), titleTextWidth, titleFontColor, titleBackColor);
+                            bitmap_英文標題_1 = GetTextBitmap(engTitleName, engTitleFont, new Size(panel_width, engTitleHeight), titleTextWidth, titleFontColor, titleBackColor);
+                            bitmap_叫號_1 = GetTextBitmap(叫號台02_號碼.ToString("0000"), callFont, new Size(panel_width, callHeight), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
+                            if (叫號台02_號碼 == 0)
+                            {
+                                bitmap_叫號_1 = null;
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, height - bitmap_標題_1.Height - bitmap_英文標題_1.Height), callTextWidth, callFontColor, titleBackColor, callBackColor, callMargin, callBorderRadius);
+                            }
+                            else
+                            {
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+                            }
                         }
 
                         if (i == 0 && radioButton_一號台_圖片.Checked)
@@ -318,7 +432,7 @@ namespace Hospital_Call_Light_System
                                     {
                                         if(bitmap != null)
                                         {
-                                            bitmap_圖片_0 = bitmap.ScaleImage(寬度, height - 公告高度);       
+                                            bitmap_圖片_0 = bitmap.ScaleImage(panel_width, height - 公告高度);       
                                         }
                                         
                                     }
@@ -343,7 +457,7 @@ namespace Hospital_Call_Light_System
                                     {
                                         if (bitmap != null)
                                         {
-                                            bitmap_圖片_1 = bitmap.ScaleImage(寬度, height - 公告高度);
+                                            bitmap_圖片_1 = bitmap.ScaleImage(panel_width, height - 公告高度);
                                         }
 
                                     }
@@ -375,8 +489,8 @@ namespace Hospital_Call_Light_System
                     {
                         g.DrawImage(bitmap_標題_0, new PointF(posx, 0));
                         g.DrawImage(bitmap_英文標題_0, new PointF(posx, bitmap_標題_0.Height));
-                        g.DrawImage(bitmap_叫號_0, new PointF(posx, bitmap_標題_0.Height + bitmap_英文標題_0.Height));
-                        g.DrawImage(bitmap_叫號備註_0, new PointF(posx, bitmap_標題_0.Height + bitmap_英文標題_0.Height + bitmap_叫號_0.Height));
+                        if (bitmap_叫號_0 != null) g.DrawImage(bitmap_叫號_0, new PointF(posx, bitmap_標題_0.Height + bitmap_英文標題_0.Height));
+                        g.DrawImage(bitmap_叫號備註_0, new PointF(posx, bitmap_標題_0.Height + bitmap_英文標題_0.Height + (bitmap_叫號_0 == null ? 0 : bitmap_叫號_0.Height)));
                     }
 
 
@@ -384,8 +498,8 @@ namespace Hospital_Call_Light_System
                     {
                         g.DrawImage(bitmap_標題_1, new PointF(posx + bitmap_標題_1.Width, 0));
                         g.DrawImage(bitmap_英文標題_1, new PointF(posx + bitmap_標題_1.Width, bitmap_標題_1.Height));
-                        g.DrawImage(bitmap_叫號_1, new PointF(posx + bitmap_標題_1.Width, bitmap_標題_1.Height + bitmap_英文標題_1.Height));
-                        g.DrawImage(bitmap_叫號備註_1, new PointF(posx + bitmap_標題_1.Width, bitmap_標題_1.Height + bitmap_英文標題_1.Height + bitmap_叫號_1.Height));
+                        if (bitmap_叫號_1 != null) g.DrawImage(bitmap_叫號_1, new PointF(posx + bitmap_標題_1.Width, bitmap_標題_1.Height + bitmap_英文標題_1.Height));
+                        g.DrawImage(bitmap_叫號備註_1, new PointF(posx + bitmap_標題_1.Width, bitmap_標題_1.Height + bitmap_英文標題_1.Height + (bitmap_叫號_1 == null ? 0 : bitmap_叫號_1.Height)));
                     }
                     if (bitmap_圖片_0 != null && radioButton_一號台_圖片.Checked)
                     {
@@ -807,6 +921,10 @@ namespace Hospital_Call_Light_System
             {
                 Bitmap bitmap = new Bitmap(Width, Height);
                 Graphics graphics = Graphics.FromImage(bitmap);
+                graphics.SmoothingMode = SmoothingMode.HighQuality; //使繪圖質量最高，即消除鋸齒
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
 
                 graphics.Clear(BgColor);
                 SizeF textSize = graphics.MeasureString(Text, Font);
