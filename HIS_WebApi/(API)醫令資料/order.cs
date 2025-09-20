@@ -446,7 +446,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Data = OrderClasses[0];
+                returnData.Data = OrderClasses;
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)

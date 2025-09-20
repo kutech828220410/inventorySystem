@@ -1165,8 +1165,11 @@ namespace HIS_WebApi
                     List<medCpoeRecClass> sql_medCpoeRec = medCpoeRecClass.GetDictByMasterGUID(sqlMedCpoeRecDict, Master_GUID);
 
                     List<medCpoeRecClass> result = input_medCpoeRec
-                        .Where(inputItem => !sql_medCpoeRec.Any(sqlItem => sqlItem.序號 == inputItem.序號))
-                        .ToList();
+                    .Where(inputItem => !sql_medCpoeRec.Any(sqlItem => sqlItem.序號 == inputItem.序號))
+                    .GroupBy(item => item.序號)                // 以序號分組
+                    .Select(g => g.First())                    // 每組取第一筆
+                    .ToList();
+
                     if (result.Count > 0) add_medCpoeRecClass.AddRange(result);
                 }
                 List<object[]> list_medCpoe_add = add_medCpoeRecClass.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
@@ -1782,7 +1785,6 @@ namespace HIS_WebApi
                 AND 更新時間 <  @end
                 AND Master_GUID IN @master_guids
                 AND PRI_KEY like @pri_key
-                AND 狀態 = @status
                 AND (調劑狀態 IS NULL OR 調劑狀態 <> 'Y')";
 
                 var paramCpoe = new
@@ -1790,7 +1792,6 @@ namespace HIS_WebApi
                     start = StartTime,
                     end = Endtime,
                     master_guids = guids,
-                    status = "DC",
                     pri_key = "%已出院%"
                 };
 
@@ -3160,19 +3161,35 @@ namespace HIS_WebApi
                     }
 
                 })));
-                returnData returnData_debit = new returnData();
-                returnData returnData_refund = new returnData();
-                //扣帳
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
 
-                })));
-                //退帳
-                tasks.Add(Task.Run(new Action(delegate
+                returnData debitTask = null;
+                returnData refundTask = null;
+                string userName_ = returnData.UserName;
+                string serverName_ = returnData.ServerName;
+                //if (userName_.StringIsEmpty() == false && serverName_.StringIsEmpty() == false)
+                //{
+                //    if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => debit(userName_, serverName_, debit_medcpoe));
+                //    if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => refund(userName_, serverName_, refund_medcpoe));
+                //}
+                if (userName_.StringIsEmpty() == false && serverName_.StringIsEmpty() == false)
                 {
-                    returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
-                })));
+                    if (debit_medcpoe.Count > 0) debitTask = debit(userName_, serverName_, debit_medcpoe);
+                    if (refund_medcpoe.Count > 0) refundTask = refund(userName_, serverName_, refund_medcpoe);
+                }
+                //if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(returnData, debit_medcpoe, "系統領藥"));
+                //if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(returnData, refund_medcpoe, "系統退藥"));
+
+
+                //if (debitTask != null) tasks.Add(debitTask);
+                //if (refundTask != null) tasks.Add(refundTask);
+
+                //await Task.WhenAll(all).ConfigureAwait(false);
+
+                //returnData returnData_debit = new returnData();
+                //returnData returnData_refund = new returnData();
+                //returnData_debit = ExcuteTrade(returnData, debit_medcpoe, "系統領藥");
+                //returnData_refund = ExcuteTrade(returnData, refund_medcpoe, "系統退藥");
+              
                 Task.WhenAll(tasks).Wait();
 
                 returnData.Code = 200;
@@ -3463,8 +3480,15 @@ namespace HIS_WebApi
 
                 Task<returnData>? debitTask = null;
                 Task<returnData>? refundTask = null;
-                if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(returnData, debit_medcpoe, "系統領藥"));
-                if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(returnData, refund_medcpoe, "系統退藥"));
+                string userName_ = returnData.UserName;
+                string serverName_ = returnData.ServerName;
+                if(userName_.StringIsEmpty() == false && serverName_.StringIsEmpty() == false)
+                {
+                    if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => debit(userName_, serverName_, debit_medcpoe));
+                    if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => refund(userName_, serverName_, refund_medcpoe));
+                }
+                //if (debit_medcpoe.Count > 0) debitTask = Task.Run(() => ExcuteTrade(returnData, debit_medcpoe, "系統領藥"));
+                //if (refund_medcpoe.Count > 0) refundTask = Task.Run(() => ExcuteTrade(returnData, refund_medcpoe, "系統退藥"));
 
 
                 List<Task> all = new List<Task>(tasks);
@@ -3910,22 +3934,24 @@ namespace HIS_WebApi
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
 
-                List<medGroupClass> medGroupClasses = await medGroupClass.get_group_name(APIServer);
-
-                List<string> groupName = System.Enum.GetNames(typeof(藥品總量群組)).ToList();
-                List<medGroupClass> medGroupClass_buff = new List<medGroupClass>();
-                if (medGroupClasses == null)
+                string result = await new medGroup().get_UDgroup_name(returnData);
+                returnData = result.JsonDeserializet<returnData>();
+                if (returnData == null || returnData.Code != 200)
                 {
                     returnData.Code = -200;
                     returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
                     returnData.Result = $"藥品群組取得失敗";
                     return returnData.JsonSerializationt(true);
                 }
-                foreach (var item in groupName)
+                List<medGroupClass> medGroupClass_buff = returnData.Data.ObjToClass<List<medGroupClass>>();
+                if (medGroupClass_buff == null)
                 {
-                    medGroupClass medGroup_buff = medGroupClasses.Where(m => m.名稱.Contains(item)).FirstOrDefault();
-                    if (medGroup_buff != null) medGroupClass_buff.Add(medGroup_buff);
+                    returnData.Code = -200;
+                    returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
+                    returnData.Result = $"藥品群組取得失敗";
+                    return returnData.JsonSerializationt(true);
                 }
+                
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic.ToString()}  ";
                 returnData.Data = medGroupClass_buff;
@@ -5643,21 +5669,23 @@ namespace HIS_WebApi
 
             return list;
         }
-        private returnData debit(string UserName, string ServerName,string GUIDs)
+        private returnData debit(string UserName, string ServerName,List<medCpoeClass> medCpoeClasses)
         {
+            string cpoeGuid = string.Join(";", medCpoeClasses.Select(x => x.GUID).ToList());
             returnData returnData = new returnData();
             returnData.UserName = UserName;
             returnData.ServerName = ServerName;
-            returnData.ValueAry.Add(GUIDs);
+            returnData.ValueAry.Add(cpoeGuid);
             string result = debit(returnData);
             return result.JsonDeserializet<returnData>();
         }
-        private returnData refund(string UserName, string ServerName, string GUIDs)
+        private returnData refund(string UserName, string ServerName, List<medCpoeClass> medCpoeClasses)
         {
+            string cpoeGuid = string.Join(";", medCpoeClasses.Select(x => x.GUID).ToList());
             returnData returnData = new returnData();
             returnData.UserName = UserName;
             returnData.ServerName = ServerName;
-            returnData.ValueAry.Add(GUIDs);
+            returnData.ValueAry.Add(cpoeGuid);
             string result = refund(returnData);
             return result.JsonDeserializet<returnData>();
 
