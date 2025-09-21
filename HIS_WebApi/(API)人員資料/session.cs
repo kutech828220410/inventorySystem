@@ -688,7 +688,7 @@ namespace HIS_WebApi
         {
             try
             {
-
+                init_login_data_index(returnData);
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 if (returnData.ValueAry == null)
                 {
@@ -714,7 +714,6 @@ namespace HIS_WebApi
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo(ServerName, ServerType, Content); 
                 int level = returnData.ValueAry[0].StringToInt32();
                 string 類別 = returnData.ValueAry[1];
-                loadData();
                 List<PermissionsClass> PermissionsClasses = GetPermissions(level, ServerName, ServerType);
 
                 PermissionsClasses = PermissionsClasses.Where(item => item.類別 == 類別).ToList();
@@ -1012,7 +1011,6 @@ namespace HIS_WebApi
         }
         private void loadData()
         {
-            init_login_data_index(new returnData());
             string data = Basic.MyFileStream.LoadFileAllText(@"./login_data_index.txt", "utf-8");
             //string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
             returnData returnData = data.JsonDeserializet<returnData>();

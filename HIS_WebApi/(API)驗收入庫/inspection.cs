@@ -604,6 +604,159 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 依指定時間區間（<c>新增時間</c>）查詢驗收主檔 <c>inspection_content</c>，並載入其子明細
+        /// <c>inspection_sub_content</c>；回傳對應的 <c>content</c> 物件清單（含 <c>Sub_content</c> 與 <c>textVision</c>）。
+        /// </summary>
+        /// <param name="returnData">
+        /// 請求/回應包裹物件：
+        /// <list type="bullet">
+        /// <item><description>
+        /// <c>ValueAry</c>：必填、長度 2。格式：<c>["開始時間","結束時間"]</c>（字串；建議使用 <c>yyyy-MM-dd HH:mm:ss</c>）。<br/>
+        /// 查詢條件為：<c>新增時間 &gt;= 開始時間</c> 且 <c>新增時間 &lt; 結束時間</c>（右半開區間）。</description></item>
+        /// </list>
+        /// </param>
+        /// <returns>
+        /// 回傳 <see cref="returnData"/> 序列化字串：
+        /// <list type="bullet">
+        /// <item><description><b>成功：</b><c>Code = 200</c>；<c>Data</c> 為 <c>List&lt;content&gt;</c>；<c>Result</c> 為區間與筆數摘要；<c>TimeTaken</c> 為耗時。</description></item>
+        /// <item><description><b>失敗：</b><c>Code = -200</c>；<c>Result</c> 為錯誤訊息。</description></item>
+        /// </list>
+        /// </returns>
+        /// <remarks>
+        /// <para><b>資料來源與連線</b></para>
+        /// 透過 <c>HIS_WebApi.Method.GetServerInfoAsync("Main","網頁","VM端")</c> 取得 DB 連線；使用 <c>SQLControl</c>
+        /// 連線至 <c>dbvm.inspection_content</c> 與 <c>dbvm.inspection_sub_content</c>。
+        ///
+        /// <para><b>查詢流程</b></para>
+        /// <list type="number">
+        /// <item><description>主檔：<c>SELECT * FROM dbvm.inspection_content WHERE 新增時間 &gt;= @startTime AND 新增時間 &lt; @endTime</c></description></item>
+        /// <item><description>彙整主檔 <c>GUID</c> 後，一次取回子明細：<c>SELECT * FROM dbvm.inspection_sub_content WHERE Master_GUID IN @guidList</c></description></item>
+        /// <item><description>依 <c>Master_GUID</c> 關聯回填至對應主檔的 <c>Sub_content</c>；若無明細則為空集合。</description></item>
+        /// </list>
+        ///
+        /// <para><b>回傳模型（主檔 <c>content</c>）欄位</b></para>
+        /// <list type="bullet">
+        /// <item><description><c>GUID</c>：主檔唯一識別碼</description></item>
+        /// <item><description><c>Master_GUID</c>：上層/批次識別（如有）</description></item>
+        /// <item><description><c>請購單號</c>（<c>PON</c>）</description></item>
+        /// <item><description><c>驗收單號</c>（<c>IC_SN</c>）</description></item>
+        /// <item><description><c>藥品碼</c>（<c>CODE</c>）</description></item>
+        /// <item><description><c>廠牌</c>（<c>BRD</c>）</description></item>
+        /// <item><description><c>料號</c>（<c>SKDIACODE</c>）</description></item>
+        /// <item><description><c>中文名稱</c>（<c>CHT_NAME</c>）</description></item>
+        /// <item><description><c>藥品名稱</c>（<c>NAME</c>）</description></item>
+        /// <item><description><c>包裝單位</c>（<c>PAKAGE</c>）</description></item>
+        /// <item><description><c>藥品條碼1</c>（<c>BARCODE1</c>）</description></item>
+        /// <item><description><c>藥品條碼2</c>（<c>BARCODE2</c>）</description></item>
+        /// <item><description><c>應收數量</c>（<c>START_QTY</c>）</description></item>
+        /// <item><description><c>實收數量</c>（<c>END_QTY</c>）</description></item>
+        /// <item><description><c>新增時間</c>（<c>ADD_TIME</c>）</description></item>
+        /// <item><description><c>編號</c>（<c>SEQ</c>）</description></item>
+        /// <item><description><c>贈品註記</c>（<c>FREE_CHARGE_FLAG</c>）</description></item>
+        /// <item><description><c>API回寫註記</c>（<c>API_RETURN_NOTE</c>）</description></item>
+        /// <item><description><c>備註</c>（<c>NOTE</c>）</description></item>
+        /// <item><description><c>Sub_content</c>：對應的子明細集合（<c>List&lt;sub_content&gt;</c>）。</description></item>
+        /// <item><description><c>textVision</c>：OCR/辨識結果等文字分析集合（如有；可為 <c>null</c>）。</description></item>
+        /// </list>
+        ///
+        /// <para><b>回傳模型（子檔 <c>sub_content</c>）欄位</b></para>
+        /// <list type="bullet">
+        /// <item><description><c>GUID</c>、<c>Master_GUID</c></description></item>
+        /// <item><description><c>驗收單號</c>（<c>ACPT_SN</c>）</description></item>
+        /// <item><description><c>藥品碼</c>（<c>CODE</c>）</description></item>
+        /// <item><description><c>料號</c>（<c>SKDIACODE</c>）</description></item>
+        /// <item><description><c>中文名稱</c>（<c>CHT_NAME</c>）</description></item>
+        /// <item><description><c>藥品名稱</c>（<c>NAME</c>）</description></item>
+        /// <item><description><c>包裝單位</c>（<c>PAKAGE</c>）</description></item>
+        /// <item><description><c>藥品條碼1</c>（<c>BARCODE1</c>）</description></item>
+        /// <item><description><c>藥品條碼2</c>（<c>BARCODE2</c>）</description></item>
+        /// <item><description><c>實收數量</c>（<c>END_QTY</c>）</description></item>
+        /// <item><description><c>總量</c>（<c>TOLTAL_QTY</c>）</description></item>
+        /// <item><description><c>效期</c>（<c>VAL</c>）</description></item>
+        /// <item><description><c>批號</c>（<c>LOT</c>）</description></item>
+        /// <item><description><c>操作人</c>（<c>OP</c>）</description></item>
+        /// <item><description><c>操作時間</c>（<c>OP_TIME</c>）</description></item>
+        /// <item><description><c>狀態</c>（<c>STATE</c>）</description></item>
+        /// <item><description><c>備註</c>（<c>NOTE</c>）</description></item>
+        /// </list>
+        ///
+        /// <para><b>效能與索引建議</b></para>
+        /// <list type="bullet">
+        /// <item><description>使用參數化查詢避免 SQL Injection。</description></item>
+        /// <item><description>批次以 <c>IN @guidList</c> 擷取子明細，減少往返。</description></item>
+        /// <item><description>建議在 <c>inspection_content(新增時間)</c> 與 <c>inspection_sub_content(Master_GUID)</c> 建索引。</description></item>
+        /// </list>
+        /// </remarks>
+        /// <example>
+        /// <code language="json"><![CDATA[
+        /// // Request
+        /// {
+        ///   "ValueAry": [
+        ///     "2025-09-01 00:00:00",
+        ///     "2025-09-20 23:59:59"
+        ///   ]
+        /// }
+        ///
+        /// // Response (節錄；欄位與 CLASS 對應)
+        /// {
+        ///   "Code": 200,
+        ///   "Method": "content_get_by_addTime",
+        ///   "Result": "此時間區域2025-09-01 00:00:00-2025-09-20 23:59:59資料，共11筆",
+        ///   "TimeTaken": "891.714ms",
+        ///   "Data": [
+        ///     {
+        ///       "GUID": "f6109304-9c41-4741-bc28-cdf3725fc2c2",
+        ///       "Master_GUID": "5f75cdb3-f372-45a6-a156-1ffb25eed353",
+        ///       "PON": "1140515001-13",
+        ///       "IC_SN": "20250911-0",
+        ///       "CODE": "OARC2",
+        ///       "BRD": "",
+        ///       "SKDIACODE": "ETOO10",
+        ///       "CHT_NAME": "Etor 中文名(如有)",
+        ///       "NAME": "Etor",
+        ///       "PAKAGE": "盒",
+        ///       "BARCODE1": "",
+        ///       "BARCODE2": "",
+        ///       "START_QTY": "1680",
+        ///       "END_QTY": "",
+        ///       "ADD_TIME": "2025/09/11 14:38:17",
+        ///       "SEQ": "",
+        ///       "FREE_CHARGE_FLAG": "",
+        ///       "API_RETURN_NOTE": "",
+        ///       "NOTE": "",
+        ///       "Sub_content": [
+        ///         {
+        ///           "GUID": "8258d773-b642-4dc6-83a5-ec33d3853e90",
+        ///           "Master_GUID": "f6109304-9c41-4741-bc28-cdf3725fc2c2",
+        ///           "ACPT_SN": "20250911-0",
+        ///           "CODE": "OARC2",
+        ///           "SKDIACODE": "ETOO10",
+        ///           "CHT_NAME": "Etor 中文名(如有)",
+        ///           "NAME": "Etor",
+        ///           "PAKAGE": "盒",
+        ///           "BARCODE1": "",
+        ///           "BARCODE2": "",
+        ///           "END_QTY": "50",
+        ///           "TOLTAL_QTY": "50",
+        ///           "VAL": "2025/09/16 00:00:00",
+        ///           "LOT": "gasdgasd",
+        ///           "OP": "鴻森智能科技",
+        ///           "OP_TIME": "2025/09/15 16:27:17",
+        ///           "STATE": "未鎖定",
+        ///           "NOTE": ""
+        ///         }
+        ///       ],
+        ///       "textVision": null
+        ///     }
+        ///   ]
+        /// }
+        /// ]]></code>
+        /// </example>
+        /// <exception cref="System.Exception">
+        /// 任何在連線、查詢、資料轉型或序列化過程中拋出的未處理例外；伺服端將以 <c>Code = -200</c>
+        /// 與例外訊息回填至 <c>Result</c> 後回傳。
+        /// </exception>
         [HttpPost("content_get_by_addTime")]
         public async Task<string> content_get_by_addTime([FromBody] returnData returnData)
         {
