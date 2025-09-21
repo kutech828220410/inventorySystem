@@ -724,6 +724,33 @@ namespace HIS_DB_Lib
             }
             return sub_Contents;
         }
+        static public Dictionary<string, List<inspectionClass.sub_content>> ToDictByMasterGUID(this List<inspectionClass.sub_content> sub_Contents)
+        {
+            Dictionary<string, List<inspectionClass.sub_content>> dictionary = new Dictionary<string, List<inspectionClass.sub_content>>();
+            foreach (var item in sub_Contents)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<inspectionClass.sub_content> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<inspectionClass.sub_content> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<inspectionClass.sub_content> GetByMasterGUID(this Dictionary<string, List<inspectionClass.sub_content>> dict, string master_GUID)
+        {
+            if (dict.TryGetValue(master_GUID, out List<inspectionClass.sub_content> content))
+            {
+                return content;
+            }
+            else
+            {
+                return new List<inspectionClass.sub_content>();
+            }
+        }
     }
 
 }

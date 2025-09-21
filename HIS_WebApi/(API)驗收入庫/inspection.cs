@@ -604,6 +604,69 @@ namespace HIS_WebApi
             }
 
         }
+        [HttpPost("content_get_by_addTime")]
+        public async Task<string> content_get_by_addTime([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"開始時間\",\"結束時間\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
+                string tableName_inspection_content = "inspection_content";
+                string tableName_inspection_sub_content = "inspection_sub_content";
+
+                SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, tableName_inspection_content, UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+                                     
+                string 開始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+                string command = $"SELECT * FROM dbvm.{tableName_inspection_content} WHERE 新增時間 >= @startTime AND 新增時間 < @endTime";
+                object param = new { startTime = 開始時間, endTime = 結束時間 };
+                List<object[]> list_inspection_content = await sQLControl_inspection_content.WriteCommandAsync(command, param);
+                List<inspectionClass.content> contents = list_inspection_content.SQLToClass<inspectionClass.content, enum_驗收內容>();
+                if (contents.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無此時間區域{開始時間}-{結束時間}資料!";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<string> guids = contents.Select(x => x.GUID).ToList();
+                string command_sub_content = $"SELECT * FROM dbvm.{tableName_inspection_sub_content} WHERE Master_GUID IN @guidList";
+                object param_sub_content = new { guidList = guids };
+                List<object[]> list_inspection_sub_content = await sQLControl_inspection_sub_content.WriteCommandAsync(command_sub_content, param_sub_content);
+                List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+
+                if (sub_Contents.Count > 0)
+                {
+                    Dictionary<string, List<inspectionClass.sub_content>> dic = sub_Contents.ToDictByMasterGUID();
+                    foreach (var item in contents)
+                    {
+                        List<inspectionClass.sub_content> subs = dic.GetByMasterGUID(item.GUID);
+                        item.Sub_content = subs;
+                    }
+                }
+
+                returnData.Data = contents;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"此時間區域{開始時間}-{結束時間}資料，共{contents.Count}筆";
+                returnData.Method = "content_get_by_addTime";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
         [Route("sub_content_get_by_PON")]
         [HttpPost]
         public string sub_content_get_by_PON([FromBody] returnData returnData)
