@@ -29,8 +29,6 @@ namespace HIS_DB_Lib
         床號,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
-        [Description("調劑台,VARCHAR,30,NONE")]
-        調劑台,
         [Description("序號,VARCHAR,10,NONE")]
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
@@ -55,20 +53,6 @@ namespace HIS_DB_Lib
         單位,
         [Description("頻次代碼,VARCHAR,10,NONE")]
         頻次代碼,
-        [Description("頻次屬性,VARCHAR,10,NONE")]
-        頻次屬性,
-        [Description("處方醫師,VARCHAR,10,NONE")]
-        處方醫師,
-        [Description("處方醫師姓名,VARCHAR,10,NONE")]
-        處方醫師姓名,
-        [Description("操作人員,VARCHAR,10,NONE")]
-        操作人員,
-        [Description("藥局代碼,VARCHAR,10,NONE")]
-        藥局代碼,
-        [Description("藥局名稱,VARCHAR,20,NONE")]
-        藥局名稱,
-        [Description("大瓶點滴,VARCHAR,10,NONE")]
-        大瓶點滴,
     }
     /// <summary>
     /// medCpoeClass資料
@@ -110,11 +94,6 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
-        /// <summary>
-        /// 調劑台
-        /// </summary>
-        [JsonPropertyName("dispens_name")]
-        public string 調劑台 { get; set; }
         /// <summary>
         /// 序號
         /// </summary>
@@ -174,42 +153,7 @@ namespace HIS_DB_Lib
         /// 頻次代碼
         /// </summary>
         [JsonPropertyName("freqn")]
-        public string 頻次代碼 { get; set; }
-        /// <summary>
-        /// 頻次屬性
-        /// </summary>
-        [JsonPropertyName("frqatr")]
-        public string 頻次屬性 { get; set; }
-        /// <summary>
-        /// 處方醫師
-        /// </summary>
-        [JsonPropertyName("orsign")]
-        public string 處方醫師 { get; set; }
-        /// <summary>
-        /// 處方醫師姓名
-        /// </summary>
-        [JsonPropertyName("signam")]
-        public string 處方醫師姓名 { get; set; }
-        /// <summary>
-        /// 操作人員
-        /// </summary>
-        [JsonPropertyName("luser")]
-        public string 操作人員 { get; set; }
-        /// <summary>
-        /// 藥局代碼
-        /// </summary>
-        [JsonPropertyName("pharm_code")]
-        public string 藥局代碼 { get; set; }
-        /// <summary>
-        /// 藥局名稱
-        /// </summary>
-        [JsonPropertyName("pharm_name")]
-        public string 藥局名稱 { get; set; }
-        /// <summary>
-        /// 大瓶點滴
-        /// </summary>
-        [JsonPropertyName("large")]
-        public string 大瓶點滴 { get; set; }
+        public string 頻次 { get; set; }
 
         public class ICP_By_UP_Time : IComparer<medCpoeRecClass>
         {
