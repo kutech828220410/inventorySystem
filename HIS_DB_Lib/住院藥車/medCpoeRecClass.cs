@@ -51,8 +51,8 @@ namespace HIS_DB_Lib
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
         單位,
-        [Description("頻次代碼,VARCHAR,10,NONE")]
-        頻次代碼,
+        [Description("頻次,VARCHAR,10,NONE")]
+        頻次,
     }
     /// <summary>
     /// medCpoeClass資料

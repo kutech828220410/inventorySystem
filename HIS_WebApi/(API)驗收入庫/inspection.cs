@@ -31,12 +31,16 @@ namespace HIS_WebApi
     [ApiController]
     public class inspectionController : Controller
     {
-        private IHostingEnvironment _environment;
-        public inspectionController(IHostingEnvironment env)
-        {
-            _environment = env;
+        //private IHostingEnvironment _environment;
+        private static readonly Lazy<Task<(string Server, string DB, string UserName, string Password, uint Port)>> serverInfoTask
+        = new Lazy<Task<(string, string, string, string, uint)>>(() =>
+            Method.GetServerInfoAsync("Main", "網頁", "VM端")
+        );
+        //public inspectionController(IHostingEnvironment env)
+        //{
+        //    _environment = env;
 
-        }
+        //}
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         static private string API = "http://127.0.0.1:4433";
@@ -594,6 +598,68 @@ namespace HIS_WebApi
                 returnData.Result = $"取得驗收資料成功!";
                 returnData.Method = "content_get_by_PON";
 
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        [HttpPost("content_get_by_IC_SN")]
+        public async Task<string> content_get_by_IC_SN([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"請購單號空白";
+                    return returnData.JsonSerializationt();
+                }
+                string 請購單號 = returnData.ValueAry[0];
+
+                (string Server, string DB, string UserName, string Password, uint Port) = await serverInfoTask.Value;
+
+                SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+                
+
+                List<object[]> list_inspection_content = await sQLControl_inspection_content.GetRowsByDefultAsync(null, (int)enum_驗收內容.請購單號, 請購單號);
+                if (list_inspection_content.Count == 0)
+                {
+                    string 請購單號_ = 請購單號.Split('-')[0];
+                    list_inspection_content = await sQLControl_inspection_content.GetRowsByDefultAsync(null, (int)enum_驗收內容.請購單號, 請購單號_);
+                }
+                if (list_inspection_content.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無此單請購單號[{請購單號}]!";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                List<inspectionClass.content> contents = list_inspection_content.SQLToClass<inspectionClass.content, enum_驗收內容>();
+                string[] guids = contents.Select(x => x.GUID).ToArray();
+                List<object[]> list_inspection_sub_content = await sQLControl_inspection_sub_content.GetRowsByDefultAsync(null, (int)enum_驗收明細.Master_GUID, guids);
+                List<inspectionClass.sub_content> sub_Contents = list_inspection_sub_content.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+                
+                if (sub_Contents.Count > 0)
+                {
+                    foreach (var content in contents)
+                    {
+                        content.Sub_content = sub_Contents.Where(x => x.Master_GUID == content.GUID).ToList();
+                    }
+                }
+
+                returnData.Data = contents;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = $"取得請購單號({請購單號})資料";
+                returnData.Method = "content_get_by_IC_SN";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -3216,6 +3282,15 @@ namespace HIS_WebApi
             returnData.Data = content;
 
             string result = await content_get_by_content_GUID(returnData);
+            return result.JsonDeserializet<returnData>();
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public  async Task<returnData> content_get_by_IC_SN(string IC_SN)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(IC_SN);
+           
+            string result = await content_get_by_IC_SN(returnData);
             return result.JsonDeserializet<returnData>();
         }
     }

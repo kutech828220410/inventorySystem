@@ -5031,26 +5031,26 @@ namespace HIS_WebApi
                 })));
                 Task.WhenAll(tasks).Wait();
                 tasks.Clear();
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    foreach (var cpoeRec in medCpoeRec_vaild)
-                    {
-                        DateTime 開始時間 = DateTime.Parse(cpoeRec.開始時間);
-                        DateTime 新開始時間 = DateTime.Today.AddHours(開始時間.Hour).AddMinutes(開始時間.Minute).AddSeconds(開始時間.Second);
+                //tasks.Add(Task.Run(new Action(delegate
+                //{
+                //    foreach (var cpoeRec in medCpoeRec_vaild)
+                //    {
+                //        DateTime 開始時間 = DateTime.Parse(cpoeRec.開始時間);
+                //        DateTime 新開始時間 = DateTime.Today.AddHours(開始時間.Hour).AddMinutes(開始時間.Minute).AddSeconds(開始時間.Second);
 
-                        DateTime 結束時間 = DateTime.Parse(cpoeRec.結束時間);
-                        DateTime 新結束時間 = DateTime.Today.AddHours(結束時間.Hour).AddMinutes(結束時間.Minute).AddSeconds(結束時間.Second);
+                //        DateTime 結束時間 = DateTime.Parse(cpoeRec.結束時間);
+                //        DateTime 新結束時間 = DateTime.Today.AddHours(結束時間.Hour).AddMinutes(結束時間.Minute).AddSeconds(結束時間.Second);
 
-                        DateTime 更新時間 = DateTime.Parse(cpoeRec.更新時間);
-                        DateTime 新更新時間 = DateTime.Today.AddHours(更新時間.Hour).AddMinutes(更新時間.Minute).AddSeconds(更新時間.Second);
+                //        DateTime 更新時間 = DateTime.Parse(cpoeRec.更新時間);
+                //        DateTime 新更新時間 = DateTime.Today.AddHours(更新時間.Hour).AddMinutes(更新時間.Minute).AddSeconds(更新時間.Second);
 
-                        cpoeRec.開始時間 = 新開始時間.ToDateTimeString();
-                        cpoeRec.結束時間 = 新結束時間.ToDateTimeString();
-                        cpoeRec.更新時間 = 新更新時間.ToDateTimeString();
-                        //cpoeRec.操作人員 = "鴻森智能";
+                //        cpoeRec.開始時間 = 新開始時間.ToDateTimeString();
+                //        cpoeRec.結束時間 = 新結束時間.ToDateTimeString();
+                //        cpoeRec.更新時間 = 新更新時間.ToDateTimeString();
+                //        //cpoeRec.操作人員 = "鴻森智能";
 
-                    }
-                })));
+                //    }
+                //})));
 
                 Task.WhenAll(tasks).Wait();
                 tasks.Clear();
@@ -5070,7 +5070,7 @@ namespace HIS_WebApi
                 if (update_med_carInfo.Count > 0) sQLControl_patient_info.UpdateByDefulteExtra(null, update_med_carInfo);
                 if (update_medcpoe.Count > 0) sQLControl_med_cpoe.UpdateByDefulteExtra(null, update_medcpoe);
                 if (update_bedStatus.Count > 0) sQLControl_bed_Status.UpdateByDefulteExtra(null, update_bedStatus);
-                if (update_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.UpdateByDefulteExtra(null, update_medCpoeRec);
+                //if (update_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.UpdateByDefulteExtra(null, update_medCpoeRec);
                 if (update_nearmiss.Count > 0) sQLControl_nearmiss.UpdateByDefulteExtra(null, update_nearmiss);
 
                 //if (delete_medCpoeRec.Count > 0) sQLControl_med_cpoe_rec.DeleteExtra(null, delete_medCpoeRec);
