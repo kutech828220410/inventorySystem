@@ -1468,6 +1468,7 @@ namespace HIS_WebApi
                 List<nearMissClass> nearMisses = returnData_nearmiss.Data.ObjToClass<List<nearMissClass>>();
                 if (sql_medCpoe.Count > 0)
                 {
+
                     sql_medCpoe.Sort(new medCpoeClass.ICP_By_Rank());
 
                     List<string> Codes = sql_medCpoe.Select(temp => temp.藥碼).Distinct().ToList();

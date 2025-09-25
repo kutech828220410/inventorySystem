@@ -7,6 +7,8 @@ using Basic;
 using MySql.Data.MySqlClient;
 using SQLUI;
 using HIS_DB_Lib;
+using System.Runtime.InteropServices;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,9 +33,9 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [HttpPost("init_med_carList")]
+        [HttpPost("init")]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarListClass物件", typeof(medCarListClass))]
-        public string init_med_carinfo([FromBody] returnData returnData)
+        public string init([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "medCarList/init_med_carList";
@@ -328,7 +330,9 @@ namespace HIS_WebApi
 
                 List<object[]> list_medCartList = sQLControl_med_carList.GetRowsByDefult(null, (int)enum_med_carList.藥局, 藥局);
                 List<medCarListClass> medCartList_sql = list_medCartList.SQLToClass<medCarListClass, enum_med_carList>();
-                medCartList_sql.Sort(new medCarListClass.ICP_By_phar_name());
+
+                //medCartList_sql.Sort(new medCarListClass.ICP_By_phar_name());
+                medCartList_sql = medCartList_sql.OrderBy(x => x.排序, new NaturalComparer()).ToList();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -391,8 +395,9 @@ namespace HIS_WebApi
                     .GroupBy(medCart => medCart.藥局)
                     .Select(group => group.First())
                     .ToList();
-               
-                medCart_sql_buf.Sort(new medCarListClass.ICP_By_phar_name());
+                medCart_sql_buf = medCart_sql_buf.OrderBy(x => x.藥局, new NaturalComparer()).ToList();
+
+                //medCart_sql_buf.Sort(new medCarListClass.ICP_By_phar_name());
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = medCart_sql_buf;
@@ -465,6 +470,16 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
 
+        }
+        public class NaturalComparer : IComparer<string>
+        {
+            [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
+            private static extern int StrCmpLogicalW(string psz1, string psz2);
+
+            public int Compare(string x, string y)
+            {
+                return StrCmpLogicalW(x, y);
+            }
         }
 
 
