@@ -332,7 +332,15 @@ namespace HIS_WebApi
                 List<medCarListClass> medCartList_sql = list_medCartList.SQLToClass<medCarListClass, enum_med_carList>();
 
                 //medCartList_sql.Sort(new medCarListClass.ICP_By_phar_name());
-                medCartList_sql = medCartList_sql.OrderBy(x => x.排序, new NaturalComparer()).ToList();
+                if (medCartList_sql[0].排序.StringIsEmpty())
+                {
+                    medCartList_sql = medCartList_sql.OrderBy(x => x.護理站, new NaturalComparer()).ToList();
+
+                }
+                else
+                {
+                    medCartList_sql = medCartList_sql.OrderBy(x => x.排序, new NaturalComparer()).ToList();
+                }
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -406,6 +414,7 @@ namespace HIS_WebApi
             }
             catch (Exception ex)
             {
+                if (ex.Message == "Index was outside the bounds of the array.") init(returnData);
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);

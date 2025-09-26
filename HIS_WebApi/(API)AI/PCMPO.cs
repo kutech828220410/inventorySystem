@@ -1220,7 +1220,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("delete_by_GUID")]
-        public string delete_by_GUID([FromBody] returnData returnData)
+        public async Task<string> delete_by_GUID([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "delete_by_GUID";
@@ -1240,11 +1240,11 @@ namespace HIS_WebApi
                 }
 
                 (string Server, string DB, string UserName, string Password, uint Port) = GetServerInfo("Main", "網頁", "VM端");
-                string GUID = returnData.ValueAry[0];
+                string[] GUID = returnData.ValueAry[0].Split(";").ToArray();
                 SQLControl sQLControl_textVision = new SQLControl(Server, DB, "textVision", UserName, Password, Port, SSLMode);
                 //SQLControl sQLControl_sub_textVision = new SQLControl(Server, DB, "sub_textVision", UserName, Password, Port, SSLMode);
 
-                List<object[]> list_textVision = sQLControl_textVision.GetRowsByDefult(null, (int)enum_textVision.GUID, GUID);
+                List<object[]> list_textVision = await sQLControl_textVision.GetRowsByDefultAsync(null, (int)enum_textVision.GUID, GUID);
                 //List<object[]> list_sub_textVision = sQLControl_sub_textVision.GetRowsByDefult(null, (int)enum_sub_textVision.Master_GUID, GUID);
 
                 if (list_textVision.Count == 0)
@@ -1254,12 +1254,8 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
 
-                sQLControl_textVision.DeleteExtra(null, list_textVision);
+                await sQLControl_textVision.DeleteRowsAsync(null, list_textVision);
                 //sQLControl_sub_textVision.DeleteExtra(null, list_sub_textVision);
-
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Result = $"成功刪除<{list_textVision.Count}>筆資料";
                 Logger.Log(project, returnData.JsonSerializationt());
                 Logger.Log(project, Message);
                 return returnData.JsonSerializationt(true);
