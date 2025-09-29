@@ -237,6 +237,76 @@ namespace Hospital_Call_Light_System
             }
         }
 
+        private Bitmap DrawNormalText(string text, Font font, Size size, Color textColor, Color backColor)
+        {
+            return DrawNormalText(text, font, size, textColor, backColor, backColor, 0, 0);
+        }
+        /// <summary>
+        /// 一般繪製文字 (不平均分配，依字型自然排版)
+        /// </summary>
+        private Bitmap DrawNormalText(string text, Font font, Size size, Color textColor, Color backColor, Color contentBackColor, int padding, int borderRadius)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(size.Width, size.Height);
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+
+                    // === 整體背景 ===
+                    using (SolidBrush backBrush = new SolidBrush(backColor))
+                        g.FillRectangle(backBrush, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                    // === 文字框區域 ===
+                    Rectangle contentRect = new Rectangle(
+                        padding,
+                        padding,
+                        bmp.Width - padding * 2,
+                        bmp.Height - padding * 2
+                    );
+
+                    using (GraphicsPath path = new GraphicsPath())
+                    {
+                        if (borderRadius > 0)
+                        {
+                            int r = borderRadius;
+                            path.AddArc(contentRect.Left, contentRect.Top, r * 2, r * 2, 180, 90);
+                            path.AddArc(contentRect.Right - r * 2, contentRect.Top, r * 2, r * 2, 270, 90);
+                            path.AddArc(contentRect.Right - r * 2, contentRect.Bottom - r * 2, r * 2, r * 2, 0, 90);
+                            path.AddArc(contentRect.Left, contentRect.Bottom - r * 2, r * 2, r * 2, 90, 90);
+                            path.CloseFigure();
+                        }
+                        else
+                        {
+                            path.AddRectangle(contentRect);
+                        }
+
+                        // 填滿框背景
+                        using (SolidBrush contentBrush = new SolidBrush(contentBackColor))
+                            g.FillPath(contentBrush, path);
+                    }
+
+                    // === 量測文字大小 ===
+                    SizeF textSize = g.MeasureString(text, font);
+
+                    // 置中繪製
+                    float x = contentRect.Left + (contentRect.Width - textSize.Width) / 2f;
+                    float y = contentRect.Top + (contentRect.Height - textSize.Height) / 2f;
+
+                    using (SolidBrush textBrush = new SolidBrush(textColor))
+                        g.DrawString(text, font, textBrush, x, y);
+                }
+
+                return bmp;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
 
 
@@ -393,7 +463,7 @@ namespace Hospital_Call_Light_System
                             }
                             else
                             {
-                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callFontColor, callBackColor);
 
                             }
                         }
@@ -415,7 +485,7 @@ namespace Hospital_Call_Light_System
                             }
                             else
                             {
-                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = GetTextBitmap(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callTextWidth, callFontColor, callBackColor);
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callFontColor, callBackColor);
                             }
                         }
 
