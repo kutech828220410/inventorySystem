@@ -1189,6 +1189,7 @@ namespace HIS_WebApi
             {
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
+                creat.Contents[i].交貨時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
 
@@ -1246,6 +1247,7 @@ namespace HIS_WebApi
                 {
                     item.GUID = Guid.NewGuid().ToString();
                     item.新增時間 = DateTime.Now.ToDateTimeString();
+                    if (item.交貨時間.StringIsEmpty()) item.交貨時間 = DateTime.Now.ToDateTimeString();
                 }
                 List<object[]> list_inspection_content_add = content.ClassToSQL<inspectionClass.content, enum_驗收內容>();
                 await sQLControl_inspection_content.AddRowsAsync(null, list_inspection_content_add);
@@ -1387,6 +1389,8 @@ namespace HIS_WebApi
             {
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
+                creat.Contents[i].交貨時間 = DateTime.Now.ToDateTimeString();
+
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
 
@@ -3093,6 +3097,39 @@ namespace HIS_WebApi
 
             return creat_add(returnData);
         }
+        /// <summary>
+        /// 由前端上傳 Excel 檔（表單 <c>multipart/form-data</c>）後，解析每一列資料，
+        /// 依藥碼或料號對照雲端藥檔（過濾「關檔中」），組裝為 <see cref="inspectionClass.content"/> 清單，
+        /// 最後以 <c>returnData.Data</c> 帶入後呼叫 <c>content_add</c> 進行資料新增處理。
+        /// </summary>
+        /// <remarks>
+        /// 路由：<c>[POST] /excel_upload_extra</c><br/>
+        /// 上傳檔案透過 <c>Request.Form.Files</c> 取得第一個檔案並讀取副檔名，
+        /// 使用 <c>ExcelClass.NPOI_LoadFile</c> 讀入成 <c>DataTable</c>，
+        /// 依 <c>enum_驗收單匯入</c> 欄位索引取值並轉為 <see cref="inspectionClass.content"/> 欄位：
+        /// <list type="bullet">
+        /// <item><description><c>藥品碼</c>：若能在 <c>medClass.get_med_cloud()</c> 結果中以「藥品碼 / 料號」符合，且「開檔狀態」不含「關檔中」，則以該筆的「藥品碼 / 料號」覆蓋；否則填入「無」。</description></item>
+        /// <item><description><c>藥品名稱、廠牌、請購單號、應收數量、實收數量</c>：由 Excel 對應欄位帶入。</description></item>
+        /// </list>
+        /// 完成後將集合指定至 <c>returnData.Data</c>，並回傳 <c>content_add(returnData)</c> 的結果字串。
+        /// </remarks>
+        /// <param name="file">
+        /// 由 <c>multipart/form-data</c> 上傳的檔案欄位（方法內實際以 <c>Request.Form.Files.FirstOrDefault()</c> 取得）。  
+        /// 若未上傳檔案或檔案為空，將擲出例外。</param>
+        /// <returns>
+        /// 非同步回傳字串結果，內容為 <c>content_add</c> 的回應（通常為序列化後的 <c>returnData</c>）。
+        /// </returns>
+        /// <exception cref="System.Exception">
+        /// 當未取得任何上傳檔案時，擲出訊息為「文件不能為空」的例外。
+        /// </exception>
+        /// <example>
+        /// 範例（前端）：
+        /// <code>
+        /// POST /excel_upload_extra
+        /// Content-Type: multipart/form-data
+        /// Form-Field: file = &lt;Excel 檔案&gt;
+        /// </code>
+        /// </example>
         [Route("excel_upload_extra")]
         [HttpPost]
         public async Task<string> excel_upload_extra([FromForm] IFormFile file)

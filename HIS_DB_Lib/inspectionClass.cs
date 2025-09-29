@@ -88,6 +88,8 @@ namespace HIS_DB_Lib
         應收數量,
         [Description("新增時間,DATETIME,50,INDEX")]
         新增時間,
+        [Description("交貨時間,DATETIME,50,INDEX")]
+        交貨時間,
         [Description("編號,VARCHAR,10,NONE")]
         編號,
         [Description("贈品註記,VARCHAR,10,NONE")]
@@ -634,6 +636,8 @@ namespace HIS_DB_Lib
             public string 實收數量 { get; set; }
             [JsonPropertyName("ADD_TIME")]
             public string 新增時間 { get; set; }
+            [JsonPropertyName("DELIVERY_TIME")]
+            public string 交貨時間 { get; set; }
             [JsonPropertyName("SEQ")]
             public string 編號 { get; set; }
             [JsonPropertyName("FREE_CHARGE_FLAG")]
