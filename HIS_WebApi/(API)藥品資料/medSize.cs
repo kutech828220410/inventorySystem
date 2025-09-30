@@ -334,7 +334,7 @@ namespace HIS_WebApi._API_藥品資料
                 (string Server, string DB, string UserName, string Password, uint Port) = await serverInfoTask.Value;
                 SQLControl sQLControl = new SQLControl(Server, DB, tableName_medSize, UserName, Password, Port, SSLMode);
                 string[] codes = medSizeClasses.Select(x => x.GUID).ToArray();
-                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medSize.藥品碼, codes);
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medSize.藥碼, codes);
                 List<medSizeClass> medSizes = objects.SQLToClass<medSizeClass, enum_medSize>();
 
                 List<medSizeClass> update_medSizeClass = new List<medSizeClass>();
@@ -474,6 +474,170 @@ namespace HIS_WebApi._API_藥品資料
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 依藥碼查詢藥品貨物尺寸與數量資料。
+        /// </summary>
+        /// <remarks>
+        /// 本 API 會：
+        /// 1. 從 <c>returnData.Data</c>（可為單筆或多筆 <c>medSizeClass</c>）或 <c>ValueAry</c> 解析藥碼清單。  
+        /// 2. 以藥碼 (<c>code/藥碼</c>) 至資料表 <c>tableName_medSize</c> 查詢符合的資料列。  
+        /// 3. 依藥碼排序後回傳。  
+        ///
+        /// ✅ 支援輸入：  
+        /// - <c>Data</c>：單筆或多筆 <c>medSizeClass</c>，取其 <c>藥碼</c> 欄位。  
+        /// - <c>ValueAry</c>：字串陣列，直接放多個藥碼。  
+        ///
+        /// 🔄 請求範例（單筆）：
+        /// <code>
+        /// {
+        ///   "Data": { "code": "00013" },
+        ///   "Value": "",
+        ///   "ValueAry": [],
+        ///   "TableName": "med_size",
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "TimeTaken": ""
+        /// }
+        /// </code>
+        ///
+        /// 🔄 請求範例（多筆）：
+        /// <code>
+        /// {
+        ///   "Data": null,
+        ///   "Value": "",
+        ///   "ValueAry": ["00013", "00014", "00015"],
+        ///   "TableName": "med_size",
+        ///   "ServerName": "Main",
+        ///   "ServerType": "網頁",
+        ///   "TimeTaken": ""
+        /// }
+        /// </code>
+        ///
+        /// 🟩 成功回傳範例：
+        /// <code>
+        /// {
+        ///   "Code": 200,
+        ///   "Result": "依藥碼查詢&lt;2&gt;筆成功",
+        ///   "Data": [
+        ///     {
+        ///       "GUID": "11111111-1111-1111-1111-111111111111",
+        ///       "code": "00013",
+        ///       "length": "20",
+        ///       "height": "10",
+        ///       "depth": "15",
+        ///       "quantity": "50"
+        ///     },
+        ///     {
+        ///       "GUID": "22222222-2222-2222-2222-222222222222",
+        ///       "code": "00014",
+        ///       "length": "25",
+        ///       "height": "12",
+        ///       "depth": "18",
+        ///       "quantity": "30"
+        ///     }
+        ///   ],
+        ///   "TimeTaken": "00:00:00.076"
+        /// }
+        /// </code>
+        ///
+        /// 🟥 失敗回傳範例（未提供藥碼）：
+        /// <code>
+        /// {
+        ///   "Code": -5,
+        ///   "Result": "請提供至少一個藥碼(code)!",
+        ///   "Data": null,
+        ///   "TimeTaken": "00:00:00.002"
+        /// }
+        /// </code>
+        ///
+        /// 📝 備註：  
+        /// - 系統會自動去除空白並去重複藥碼。  
+        /// - 若無有效藥碼，回傳 Code = -5。  
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構（可自 <c>Data</c>/<c>ValueAry</c> 解析藥碼）。</param>
+        /// <returns>
+        /// JSON 字串：  
+        /// - <c>Code</c>：200 成功、-200 失敗、-5 輸入錯誤  
+        /// - <c>Result</c>：執行結果描述  
+        /// - <c>Data</c>：依藥碼排序後的查詢清單  
+        /// - <c>TimeTaken</c>：執行耗時  
+        /// </returns>
+        [HttpPost("get_by_code")]
+        public async Task<string> get_by_code([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                // 收集要查詢的藥碼
+                List<string> codes = new List<string>();
+
+                // 嘗試解析 Data 為多筆
+                List<medSizeClass> listFromData = returnData.Data.ObjToClass<List<medSizeClass>>();
+                if (listFromData != null && listFromData.Count > 0)
+                {
+                    foreach (var x in listFromData)
+                    {
+                        if (x.藥碼.StringIsEmpty() == false) codes.Add(x.藥碼);
+                    }
+                }
+                else
+                {
+                    // 再嘗試解析單筆
+                    medSizeClass one = returnData.Data.ObjToClass<medSizeClass>();
+                    if (one != null && one.藥碼.StringIsEmpty() == false) codes.Add(one.藥碼);
+                }
+
+                // 也支援從 ValueAry 帶入
+                if (returnData.ValueAry != null && returnData.ValueAry.Count > 0)
+                {
+                    foreach (var v in returnData.ValueAry)
+                    {
+                        if (v.StringIsEmpty() == false) codes.Add(v);
+                    }
+                }
+
+                // 去空白/去重
+                codes = codes
+                    .Where(s => s.StringIsEmpty() == false)
+                    .Select(s => s.Trim())
+                    .Distinct()
+                    .ToList();
+
+                if (codes.Count == 0)
+                {
+                    returnData.Code = -5;
+                    returnData.TimeTaken = $"{myTimerBasic}";
+                    returnData.Result = "請提供至少一個藥碼(code)!";
+                    returnData.Data = null;
+                    return await returnData.JsonSerializationtAsync(true);
+                }
+
+                // 連線資訊
+                (string Server, string DB, string UserName, string Password, uint Port) = await serverInfoTask.Value;
+                SQLControl sQLControl = new SQLControl(Server, DB, tableName_medSize, UserName, Password, Port, SSLMode);
+
+                // 查詢
+                List<object[]> rows = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medSize.藥碼, codes.ToArray());
+                List<medSizeClass> medSizeClasses = rows.SQLToClass<medSizeClass, enum_medSize>();
+
+                // 排序（依藥碼）
+                medSizeClasses = medSizeClasses.OrderBy(m => m.藥碼).ToList();
+
+                // 回傳
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medSizeClasses;
+                returnData.Result = $"依藥碼查詢<{medSizeClasses.Count}>筆成功";
+                return await returnData.JsonSerializationtAsync(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
 
 
         private string CheckCreatTable()

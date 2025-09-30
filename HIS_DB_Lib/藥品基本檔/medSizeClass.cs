@@ -15,8 +15,8 @@ namespace HIS_DB_Lib
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
 
-        [Description("藥品碼,VARCHAR,50,INDEX")]
-        藥品碼,
+        [Description("藥碼,VARCHAR,50,INDEX")]
+        藥碼,
 
         [Description("貨品長,VARCHAR,50,NONE")]
         貨品長,
@@ -43,7 +43,7 @@ namespace HIS_DB_Lib
         /// 藥品碼
         /// </summary>
         [JsonPropertyName("code")]
-        [Description("藥品碼,VARCHAR,50,INDEX")]
+        [Description("藥碼,VARCHAR,50,INDEX")]
         public string 藥碼 { get; set; }
 
         /// <summary>
