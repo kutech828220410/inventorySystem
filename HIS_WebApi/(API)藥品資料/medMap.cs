@@ -1852,9 +1852,10 @@ namespace HIS_WebApi._API_藥品資料
                 if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry須為[\"code\"]";
+                    returnData.Result = $"returnData.ValueAry須為[\"GUID\"]";
                     return returnData.JsonSerializationt();
                 }
+
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
