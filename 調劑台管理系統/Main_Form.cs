@@ -21,8 +21,8 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.25.09241")]
-[assembly: AssemblyFileVersion("1.0.25.09241")]
+[assembly: AssemblyVersion("1.0.25.10031")]
+[assembly: AssemblyFileVersion("1.0.25.10031")]
 namespace 調劑台管理系統
 {
 

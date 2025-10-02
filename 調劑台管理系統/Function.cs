@@ -226,15 +226,7 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = deviceName;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
-                    list_取藥堆疊資料_buf = (from temp in list_堆疊資料
-                                       where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == orderClass.GUID
-                                       where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() == deviceName
-                                       select temp).ToList();
-                    if(list_取藥堆疊資料_buf.Count > 0)
-                    {
-                        flag_重複刷取++;
-                        continue;
-                    }
+                  
                     medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(orderClass.藥品碼);
                     bool flag_檢查過帳 = false;
                  
@@ -261,6 +253,15 @@ namespace 調劑台管理系統
                         if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
                         {
                             flag_檢查過帳 = true;
+                        }
+                        list_取藥堆疊資料_buf = (from temp in list_堆疊資料
+                                           where temp[(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString() == orderClass.GUID
+                                           where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() == deviceName
+                                           select temp).ToList();
+                        if (list_取藥堆疊資料_buf.Count > 0 && flag_檢查過帳)
+                        {
+                            flag_重複刷取++;
+                            continue;
                         }
                         PermissionsClass permissionsClass = _sessionClass.GetPermission("調劑台", "禁止調劑1-3級管制藥品");
                         if (permissionsClass != null)
