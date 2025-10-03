@@ -475,137 +475,101 @@ namespace HIS_WebApi._API_藥品資料
             }
         }
         /// <summary>
-        /// 依藥碼查詢藥品貨物尺寸與數量資料。
+        /// 依藥碼批次查詢 <c>med_size</c>（<c>tableName_medSize</c>）的尺寸與數量資料，回傳 English 欄位格式的清單。
         /// </summary>
         /// <remarks>
-        /// 本 API 會：
-        /// 1. 從 <c>returnData.Data</c>（可為單筆或多筆 <c>medSizeClass</c>）或 <c>ValueAry</c> 解析藥碼清單。  
-        /// 2. 以藥碼 (<c>code/藥碼</c>) 至資料表 <c>tableName_medSize</c> 查詢符合的資料列。  
-        /// 3. 依藥碼排序後回傳。  
+        /// 📌 使用方式
+        /// - 路由：<c>POST api/.../get_by_code</c>
+        /// - 參數：於 <c>returnData.ValueAry[0]</c> 放入以分號 <c>;</c> 分隔的藥碼字串（伺服端會 Distinct）
+        /// - 結果：依藥碼升冪排序回傳
         ///
-        /// ✅ 支援輸入：  
-        /// - <c>Data</c>：單筆或多筆 <c>medSizeClass</c>，取其 <c>藥碼</c> 欄位。  
-        /// - <c>ValueAry</c>：字串陣列，直接放多個藥碼。  
-        ///
-        /// 🔄 請求範例（單筆）：
-        /// <code>
-        /// {
-        ///   "Data": { "code": "00013" },
-        ///   "Value": "",
-        ///   "ValueAry": [],
-        ///   "TableName": "med_size",
-        ///   "ServerName": "Main",
-        ///   "ServerType": "網頁",
-        ///   "TimeTaken": ""
-        /// }
-        /// </code>
-        ///
-        /// 🔄 請求範例（多筆）：
+        /// 📥 請求 Body 範例
         /// <code>
         /// {
         ///   "Data": null,
         ///   "Value": "",
-        ///   "ValueAry": ["00013", "00014", "00015"],
-        ///   "TableName": "med_size",
-        ///   "ServerName": "Main",
-        ///   "ServerType": "網頁",
-        ///   "TimeTaken": ""
+        ///   "ValueAry": [ "EPAR;AB123;ZX999" ],
         /// }
         /// </code>
         ///
-        /// 🟩 成功回傳範例：
+        /// 📤 成功回應（200）範例
         /// <code>
         /// {
-        ///   "Code": 200,
-        ///   "Result": "依藥碼查詢&lt;2&gt;筆成功",
         ///   "Data": [
         ///     {
-        ///       "GUID": "11111111-1111-1111-1111-111111111111",
-        ///       "code": "00013",
-        ///       "length": "20",
-        ///       "height": "10",
-        ///       "depth": "15",
-        ///       "quantity": "50"
-        ///     },
-        ///     {
-        ///       "GUID": "22222222-2222-2222-2222-222222222222",
-        ///       "code": "00014",
-        ///       "length": "25",
-        ///       "height": "12",
-        ///       "depth": "18",
+        ///       "GUID": "d165706f-eb88-4abd-be3e-bf5026e8db23",
+        ///       "code": "EPAR",
+        ///       "length": "35",
+        ///       "height": "20",
+        ///       "depth": "35",
         ///       "quantity": "30"
         ///     }
         ///   ],
-        ///   "TimeTaken": "00:00:00.076"
+        ///   "Code": 200,
+        ///   "Method": "",
+        ///   "Result": "依藥碼查詢&lt;1&gt;筆成功",
+        ///   "Value": "",
+        ///   "ValueAry": [ "EPAR" ],
+        ///   "TimeTaken": "72.182ms",
+        ///   "Token": "",
+        ///   "Server": "",
+        ///   "DbName": "",
+        ///   "TableName": "",
+        ///   "Port": 0,
+        ///   "UserName": "",
+        ///   "Password": "",
+        ///   "ServerType": "",
+        ///   "ServerName": "",
+        ///   "ServerContent": "",
+        ///   "RequestUrl": ""
         /// }
         /// </code>
         ///
-        /// 🟥 失敗回傳範例（未提供藥碼）：
-        /// <code>
-        /// {
-        ///   "Code": -5,
-        ///   "Result": "請提供至少一個藥碼(code)!",
-        ///   "Data": null,
-        ///   "TimeTaken": "00:00:00.002"
-        /// }
-        /// </code>
+        /// ⚠️ 失敗回應
+        /// - 參數錯誤（<c>ValueAry</c> 為 null 或長度不為 1）
+        /// <code>{ "Code": -200, "Result": "請提供至少一個藥碼(code)!", "Data": null }</code>
+        /// - 無有效藥碼（分割後長度為 0）
+        /// <code>{ "Code": -200, "Result": "請提供至少一個藥碼(code)!", "Data": null }</code>
+        /// - 系統例外
+        /// <code>{ "Code": -200, "Result": "(Exception.Message)", "Data": null }</code>
         ///
-        /// 📝 備註：  
-        /// - 系統會自動去除空白並去重複藥碼。  
-        /// - 若無有效藥碼，回傳 Code = -5。  
+        /// 🔎 邏輯重點
+        /// - 僅接受 <c>ValueAry.Count == 1</c>，以 <c>;</c> 分隔多碼；伺服端會 <c>Distinct()</c>
+        /// - 查詢欄位：<c>enum_medSize.藥碼</c>，回傳欄位為 English 命名（<c>code/length/height/depth/quantity</c>）
+        /// - 回傳 <c>Data</c> 為 <c>List&lt;medSizeClass&gt;</c>（其屬性序列化為上述英文字段）
+        ///
+        /// 📝 前端整合建議
+        /// - 以分號組字串：<c>"CODE1;CODE2;CODE3"</c> 放入 <c>ValueAry[0]</c>
+        /// - 欄位皆為字串型別（例如長、寬、高、數量）—若要運算請在前端轉型
+        /// - 若需標示查無資料的藥碼，可用原輸入清單對回傳的 <c>code</c> 清單比對
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構（可自 <c>Data</c>/<c>ValueAry</c> 解析藥碼）。</param>
-        /// <returns>
-        /// JSON 字串：  
-        /// - <c>Code</c>：200 成功、-200 失敗、-5 輸入錯誤  
-        /// - <c>Result</c>：執行結果描述  
-        /// - <c>Data</c>：依藥碼排序後的查詢清單  
-        /// - <c>TimeTaken</c>：執行耗時  
-        /// </returns>
+        /// <param name="returnData">
+        /// 於 <c>ValueAry[0]</c> 傳入以 <c>;</c> 分隔的藥碼清單；<c>Data</c> 不需使用。
+        /// </param>
+        /// <returns>標準回傳模型 JSON 字串（含 <c>Code</c>、<c>Result</c>、<c>Data</c>、<c>TimeTaken</c>）。</returns>
+
         [HttpPost("get_by_code")]
         public async Task<string> get_by_code([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                // 收集要查詢的藥碼
-                List<string> codes = new List<string>();
-
-                // 嘗試解析 Data 為多筆
-                List<medSizeClass> listFromData = returnData.Data.ObjToClass<List<medSizeClass>>();
-                if (listFromData != null && listFromData.Count > 0)
+                // 收集要查詢的藥碼              
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
                 {
-                    foreach (var x in listFromData)
-                    {
-                        if (x.藥碼.StringIsEmpty() == false) codes.Add(x.藥碼);
-                    }
-                }
-                else
-                {
-                    // 再嘗試解析單筆
-                    medSizeClass one = returnData.Data.ObjToClass<medSizeClass>();
-                    if (one != null && one.藥碼.StringIsEmpty() == false) codes.Add(one.藥碼);
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = "請提供至少一個藥碼(code)!";
+                    returnData.Data = null;
+                    return await returnData.JsonSerializationtAsync(true);
                 }
 
-                // 也支援從 ValueAry 帶入
-                if (returnData.ValueAry != null && returnData.ValueAry.Count > 0)
-                {
-                    foreach (var v in returnData.ValueAry)
-                    {
-                        if (v.StringIsEmpty() == false) codes.Add(v);
-                    }
-                }
 
-                // 去空白/去重
-                codes = codes
-                    .Where(s => s.StringIsEmpty() == false)
-                    .Select(s => s.Trim())
-                    .Distinct()
-                    .ToList();
+                string[] codes = returnData.ValueAry[0].Split(";").Distinct().ToArray();
 
-                if (codes.Count == 0)
+                if (codes.Length == 0)
                 {
-                    returnData.Code = -5;
+                    returnData.Code = -200;
                     returnData.TimeTaken = $"{myTimerBasic}";
                     returnData.Result = "請提供至少一個藥碼(code)!";
                     returnData.Data = null;
@@ -655,6 +619,15 @@ namespace HIS_WebApi._API_藥品資料
             List<Table> tables = new List<Table>();
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medSize()));
             return tables.JsonSerializationt(true);
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_by_code(string guid)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(guid);
+
+            string result = await get_by_code(returnData);
+            return result.JsonDeserializet<returnData>();
         }
     }
 }
