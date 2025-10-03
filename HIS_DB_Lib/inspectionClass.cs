@@ -88,6 +88,10 @@ namespace HIS_DB_Lib
         應收數量,
         [Description("新增時間,DATETIME,50,INDEX")]
         新增時間,
+        [Description("訂單時間,DATETIME,50,INDEX")]
+        訂單時間,
+        [Description("交貨時間,DATETIME,50,INDEX")]
+        交貨時間,
         [Description("編號,VARCHAR,10,NONE")]
         編號,
         [Description("贈品註記,VARCHAR,10,NONE")]
@@ -356,6 +360,19 @@ namespace HIS_DB_Lib
                 return;
             }
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+        static public returnData content_add(string API_Server, List<inspectionClass.content> contents)
+        {
+            string url = $"{API_Server}/api/inspection/content_add";
+            returnData returnData = new returnData();
+            returnData.Data = contents;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            return returnData_out;
+
+
 
         }
         static public inspectionClass.content content_get_by_content_GUID(string API_Server, inspectionClass.content content)
@@ -634,6 +651,10 @@ namespace HIS_DB_Lib
             public string 實收數量 { get; set; }
             [JsonPropertyName("ADD_TIME")]
             public string 新增時間 { get; set; }
+            [JsonPropertyName("ORDER_TIME")]
+            public string 訂單時間 { get; set; }
+            [JsonPropertyName("DELIVERY_TIME")]
+            public string 交貨時間 { get; set; }
             [JsonPropertyName("SEQ")]
             public string 編號 { get; set; }
             [JsonPropertyName("FREE_CHARGE_FLAG")]
@@ -645,9 +666,9 @@ namespace HIS_DB_Lib
 
             private List<sub_content> _sub_content = new List<sub_content>();
             public List<sub_content> Sub_content { get => _sub_content; set => _sub_content = value; }
-            public List<textVisionClass> textVision { get; set; }
+            public textVisionClass textVision { get; set; }
 
-          
+
         }
         public class sub_content
         {
@@ -723,6 +744,33 @@ namespace HIS_DB_Lib
                 }
             }
             return sub_Contents;
+        }
+        static public Dictionary<string, List<inspectionClass.sub_content>> ToDictByMasterGUID(this List<inspectionClass.sub_content> sub_Contents)
+        {
+            Dictionary<string, List<inspectionClass.sub_content>> dictionary = new Dictionary<string, List<inspectionClass.sub_content>>();
+            foreach (var item in sub_Contents)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<inspectionClass.sub_content> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<inspectionClass.sub_content> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<inspectionClass.sub_content> GetByMasterGUID(this Dictionary<string, List<inspectionClass.sub_content>> dict, string master_GUID)
+        {
+            if (dict.TryGetValue(master_GUID, out List<inspectionClass.sub_content> content))
+            {
+                return content;
+            }
+            else
+            {
+                return new List<inspectionClass.sub_content>();
+            }
         }
     }
 

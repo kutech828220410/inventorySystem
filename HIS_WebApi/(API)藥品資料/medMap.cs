@@ -1843,7 +1843,29 @@ namespace HIS_WebApi._API_藥品資料
                 return returnData.JsonSerializationt(true);
             }
         }
-        
+        [HttpPost("get_available_shelves")]
+        public async Task<string> get_available_shelves([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry須為[\"GUID\"]";
+                    return returnData.JsonSerializationt();
+                }
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
         private string CheckCreatTable()
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -1863,15 +1885,8 @@ namespace HIS_WebApi._API_藥品資料
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_shelf()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_drawer()));
             tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medMap_box()));
-
-
+            tables.Add(MethodClass.CheckCreatTable(sys_serverSettingClasses[0], new enum_medSize()));
             return tables.JsonSerializationt(true);
-        }
-        private async Task<string> get_medMap_by_GUID(string GUID)
-        {
-            returnData returnData = new returnData();
-            returnData.ValueAry.Add(GUID);
-            return await get_medMap_by_GUID(returnData);
         }
         private async Task<returnData> get_medMap_section_by_Master_GUID(string Master_GUID)
         {
@@ -1914,13 +1929,7 @@ namespace HIS_WebApi._API_藥品資料
             string result = await get_medMap_by_name_type(returnData);
             return result.JsonDeserializet<returnData>();
         }
-        private string Getcommand(SQLControl sQLControl, string colunnName, string value)
-        {
-            string db = sQLControl.Server;
-            string tableName = sQLControl.TableName;
-            string command = $"SELECT * FROM {db}.{tableName} WHERE {colunnName} = {value}";
-            return command;
-        }
+       
 
 
 

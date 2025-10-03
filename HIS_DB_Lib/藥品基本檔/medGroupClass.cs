@@ -8,6 +8,7 @@ using Basic;
 using System.ComponentModel;
 using System.Reflection;
 
+
 namespace HIS_DB_Lib
 {
     [EnumDescription("med_group")]
@@ -247,7 +248,40 @@ namespace HIS_DB_Lib
             if (returnData_out.Code != 200) return;
             Console.WriteLine($"{returnData}");
         }
+        /// <summary>
+        /// 新增藥品群組
+        /// </summary>
+        /// <param name="API_Server">API伺服器地址</param>
+        /// <param name="medGroupClass">藥品群組</param>
+        static public void add_sub_group(string API_Server, List<medClass> medClass)
+        {
+            string url = $"{API_Server}/api/medGroup/add_sub_group";
+            returnData returnData = new returnData();
+            returnData.Data = medClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return;
+            if (returnData_out.Code != 200) return;
+        }
+        /// <summary>
+        /// 取得藥品群組List<string>
+        /// </summary>
+        /// <param name="API_Server">API伺服器地址</param>
+        /// <param name="medGroupClass">藥品群組</param>
+        static public List<string> get_sub_group_by_Master_GUID(string API_Server, string master_guid)
+        {
+            string url = $"{API_Server}/api/medGroup/get_sub_group_by_Master_GUID";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(master_guid);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return null;
+            if (returnData_out.Code != 200) return null;
+            return returnData_out.Data.ObjToClass<List<string>>();
 
+        }
         /// <summary>
         /// 根據GUID刪除藥品群組
         /// </summary>

@@ -382,9 +382,8 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [Route("get_by_pri_key")]
-        [HttpPost]
-        public string POST_get_by_pri_key([FromBody] returnData returnData)
+        [HttpPost("get_by_pri_key")]
+        public string get_by_pri_key([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "get_by_pri_key";
@@ -407,7 +406,8 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[PRI_KEY]";
                     return returnData.JsonSerializationt(true);
                 }
-                string PRI_KEY = returnData.ValueAry[0];
+                List<string> PRI_KEY = returnData.ValueAry[0].Split(";").ToList();
+                
                 if (returnData.ServerName.StringIsEmpty() || returnData.ServerType.StringIsEmpty())
                 {
                     sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -429,15 +429,10 @@ namespace HIS_WebApi
                 uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
                 string TableName = "order_list";
                 SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                string command = string.Empty;
-                if(returnData.Value.StringIsEmpty() == false && returnData.Value == "fuzzy")
-                {
-                    command = $"SELECT * FROM {DB}.{TableName} WHERE PRI_KEY like '{PRI_KEY}%';";
-                }
-                else
-                {
-                    command = $"SELECT * FROM {DB}.{TableName} WHERE PRI_KEY = '{PRI_KEY}';";
-                }
+
+                string priKeyStr = string.Join(",", PRI_KEY.Select(x => $"'{x}'"));
+                string command = $"SELECT * FROM {DB}.{TableName} WHERE PRI_KEY IN ({priKeyStr});";
+                
                 DataTable dataTable = sQLControl_醫令資料.WtrteCommandAndExecuteReader(command);
                 List<object[]> list_value_buf = dataTable.DataTableToRowList();
 
@@ -451,7 +446,7 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Result = $"取得西藥醫令!共<{OrderClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Data = OrderClasses[0];
+                returnData.Data = OrderClasses;
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)
@@ -2447,6 +2442,14 @@ namespace HIS_WebApi
             Table table = MethodClass.CheckCreatTable(sys_serverSettingClass, new enum_醫囑資料());               
             return table.JsonSerializationt(true);
         }
-      
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public returnData get_by_pri_key(string pri_key)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(pri_key);
+            string result = get_by_pri_key(returnData);
+            return result.JsonDeserializet<returnData>();
+        }
+
     }
 }

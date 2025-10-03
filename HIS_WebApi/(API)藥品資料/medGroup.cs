@@ -445,6 +445,52 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        [HttpPost("get_sub_group_by_Master_GUID")]
+        public async Task<string> get_sub_group_by_Master_GUID([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[Master_GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string master_GUID = returnData.ValueAry[0];
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+                List<object[]> sub_group_sql = await sQLControl_med_sub_group.GetRowsByDefultAsync(null, (int)enum_sub_medGroup.Master_GUID, master_GUID);
+                if (sub_group_sql.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<string> code = new List<string>();
+                for (int i = 0; i < sub_group_sql.Count(); i++)
+                {
+                    string 藥品碼 = sub_group_sql[i][(int)enum_sub_medGroup.藥品碼].ObjectToString();
+                    code.Add(藥品碼);
+                }
+                returnData.Code = 200;
+                returnData.Data = code;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_sub_group_by_Master_GUID";
+                returnData.Result = $"取得藥品群組資料成功";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         /// <summary>
         /// 新增或修改藥品群組
         /// </summary>
@@ -619,6 +665,78 @@ namespace HIS_WebApi
      
 
        
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        
+        [HttpPost("add_sub_group")]
+        public async Task<string> add_sub_group([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤!須為[medclass]";
+                    return returnData.JsonSerializationt();
+                }
+                List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤!須為[medclass]";
+                    return returnData.JsonSerializationt();
+                }
+                string[] master_GUID = medClasses.Select(x => x.Master_GUID).Distinct().ToArray();
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+                List<object[]> sub_group_sql = await sQLControl_med_sub_group.GetRowsByDefultAsync(null, (int)enum_sub_medGroup.Master_GUID, master_GUID);
+                List<object[]> list_sub_group_add = new List<object[]>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    //List<object[]> buff = sub_group_sql.GetRows((int)enum_sub_medGroup.Master_GUID, medClasses[i].Master_GUID);
+                    //if (buff.Count == 0) continue;
+                    List<object[]> buff_ = sub_group_sql.GetRows((int)enum_sub_medGroup.藥品碼, medClasses[i].藥品碼);
+                    if (buff_.Count() == 0)
+                    {
+                        object[] sub_group = new object[new enum_sub_medGroup().GetLength()];
+                        sub_group[(int)enum_sub_medGroup.GUID] = Guid.NewGuid().ToString();
+                        sub_group[(int)enum_sub_medGroup.Master_GUID] = medClasses[i].Master_GUID;
+                        sub_group[(int)enum_sub_medGroup.藥品碼] = medClasses[i].藥品碼;
+
+                        list_sub_group_add.Add(sub_group);
+                    }
+                    else
+                    {
+                        List<object[]> buff = buff_.GetRows((int)enum_sub_medGroup.Master_GUID, medClasses[i].Master_GUID);
+                        if (buff.Count > 0) continue;
+                        object[] sub_group = new object[new enum_sub_medGroup().GetLength()];
+                        sub_group[(int)enum_sub_medGroup.GUID] = Guid.NewGuid().ToString();
+                        sub_group[(int)enum_sub_medGroup.Master_GUID] = medClasses[i].Master_GUID;
+                        sub_group[(int)enum_sub_medGroup.藥品碼] = medClasses[i].藥品碼;
+
+                        list_sub_group_add.Add(sub_group);
+                    }
+
+
+                }
+                if (list_sub_group_add.Count > 0) sQLControl_med_sub_group.AddRows(null, list_sub_group_add);
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "add_sub_group";
+                returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品";
+
+                return returnData.JsonSerializationt(true);              
+
             }
             catch (Exception e)
             {

@@ -167,6 +167,7 @@
     <Compile Include="藥品基本檔\medPriceClass.cs" />
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
+    <Compile Include="藥品基本檔\medSizeClass.cs" />
     <Compile Include="藥品基本檔\medSMDSClass.cs" />
     <Compile Include="藥品基本檔\medStorageClass.cs" />
     <Compile Include="藥品基本檔\medTypeClass.cs" />

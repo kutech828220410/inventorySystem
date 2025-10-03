@@ -20,6 +20,8 @@ namespace HIS_DB_Lib
         藥局名,
         [Description("護理站,VARCHAR,10,NONE")]
         護理站,
+        [Description("排序,VARCHAR,10,NONE")]
+        排序,
         [Description("交車時間,DATETIME,10,NONE")]
         交車時間,
         [Description("交車狀態,VARCHAR,10,NONE")]
@@ -35,6 +37,8 @@ namespace HIS_DB_Lib
         public string 藥局名 { get; set; }
         [JsonPropertyName("hnursta")]
         public string 護理站 { get; set; }
+        [JsonPropertyName("sequence")]
+        public string 排序 { get; set; }
         [JsonPropertyName("hand_time")]
         public string 交車時間 { get; set; }
         [JsonPropertyName("hand_status")]
@@ -65,7 +69,7 @@ namespace HIS_DB_Lib
             return out_medCarListClass;
         }
 
-        static public List<medCarListClass> get_all(string API_Server, String 藥局)
+        static public List<medCarListClass> get_all(string API_Server)
         {
             string url = $"{API_Server}/api/medCarList/get_all";
 
@@ -81,5 +85,6 @@ namespace HIS_DB_Lib
             return out_medCarListClass;
         }
     }
+    
 
 }

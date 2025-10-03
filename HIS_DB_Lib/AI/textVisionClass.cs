@@ -398,23 +398,23 @@ namespace HIS_DB_Lib
             List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
             return out_textVisionClass;
         }
-        static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
-        {
-            //string url = $"{API}/PO_Vision";
-            string url = API;
+        //static public returnData ai_analyze(string API, List<textVisionClass> textVisionClasses)
+        //{
+        //    //string url = $"{API}/PO_Vision";
+        //    string url = API;
 
-            returnData returnData = new returnData();
-            returnData.Data = textVisionClasses;
+        //    returnData returnData = new returnData();
+        //    returnData.Data = textVisionClasses;
 
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
-            returnData returnData_AI = json_out.JsonDeserializet<returnData>();
-            if (returnData_AI == null) return null;
-            //if (returnData_AI.Result == "False") return null;
-            //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
-            Console.WriteLine($"{returnData}");
-            return returnData_AI;
-        }
+        //    string json_in = returnData.JsonSerializationt();
+        //    string json_out = Net.WEBApiPostJson(url, json_in);
+        //    returnData returnData_AI = json_out.JsonDeserializet<returnData>();
+        //    if (returnData_AI == null) return null;
+        //    //if (returnData_AI.Result == "False") return null;
+        //    //List<textVisionClass> out_textVisionClass = returnData.Data.ObjToClass<List<textVisionClass>>();
+        //    Console.WriteLine($"{returnData}");
+        //    return returnData_AI;
+        //}
         public enum enum_point_type
         {
             批號位置,
