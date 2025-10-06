@@ -46,6 +46,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("名稱,VARCHAR,20,NONE")]
+        名稱,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
         [Description("type,VARCHAR,30,NONE")]
@@ -220,6 +222,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
+        /// <summary>
+        /// 名稱
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string 名稱 { get; set; }
         /// <summary>
         /// 位置
         /// </summary>
@@ -491,7 +498,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [Description("數量,VARCHAR,10,NONE")]
         [JsonPropertyName("qty")]
-        public double 數量 { get; set; }
+        public string 數量 { get; set; }
     }
 
     public static class medMapMethod
@@ -521,6 +528,33 @@ namespace HIS_DB_Lib
             else
             {
                 return new List<medMap_stockClass>();
+            }
+        }
+        static public Dictionary<string, List<medMap_shelfClass>> ToDictByMasterGUID(this List<medMap_shelfClass> shelfClasses)
+        {
+            Dictionary<string, List<medMap_shelfClass>> dictionary = new Dictionary<string, List<medMap_shelfClass>>();
+            foreach (var item in shelfClasses)
+            {
+                if (dictionary.TryGetValue(item.Master_GUID, out List<medMap_shelfClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Master_GUID] = new List<medMap_shelfClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medMap_shelfClass> GetByMasterGUID(this Dictionary<string, List<medMap_shelfClass>> dict, string Master_GUID)
+        {
+            if (dict.TryGetValue(Master_GUID, out List<medMap_shelfClass> shelfClasses))
+            {
+                return shelfClasses;
+            }
+            else
+            {
+                return new List<medMap_shelfClass>();
             }
         }
 

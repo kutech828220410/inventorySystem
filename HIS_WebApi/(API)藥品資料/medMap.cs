@@ -629,8 +629,7 @@ namespace HIS_WebApi._API_藥品資料
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }
-        
+        }   
         /// <summary>
         /// 以Master_GUID取得子容器資料
         /// </summary>
@@ -839,11 +838,13 @@ namespace HIS_WebApi._API_藥品資料
                 }
                 foreach (var item in medMaps_sub_section)
                 {
-                    medMap_sub_sectionClass medMap_sub_section_buff = medMaps_sub_section.FirstOrDefault(x => x.GUID == item.GUID);
+                    medMap_sub_sectionClass medMap_sub_section_buff = medMap_sub_sectionClasses.FirstOrDefault(x => x.GUID == item.GUID);
                     if (medMap_sub_section_buff == null) continue;
                     if (medMap_sub_section_buff.位置.StringIsEmpty() == false && medMap_sub_section_buff.位置.Split(",").Count() == 2) item.位置 = medMap_sub_section_buff.位置;
                     if (medMap_sub_section_buff.Master_GUID.StringIsEmpty() == false ) item.Master_GUID = medMap_sub_section_buff.Master_GUID;
                     if (medMap_sub_section_buff.type.StringIsEmpty() == false) item.type = medMap_sub_section_buff.type;
+                    if (medMap_sub_section_buff.名稱.StringIsEmpty() == false) item.名稱 = medMap_sub_section_buff.名稱;
+
                 }
 
                 List<object[]> update = medMaps_sub_section.ClassToSQL<medMap_sub_sectionClass, enum_medMap_sub_section>();
@@ -856,6 +857,64 @@ namespace HIS_WebApi._API_藥品資料
                 returnData.Result = $"sub_section資料更新成功!";
                 return returnData.JsonSerializationt(true);
 
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以GUID取得子容器資料
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "Value": "",
+        ///     "ValueAry":["GUID"]
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_sub_section_by_GUID")]
+        public async Task<string> get_sub_section_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry不得為空";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry資料錯誤，須為 [\"GUID\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string[] GUID = returnData.ValueAry[0].Split(";").Distinct().ToArray();
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl = new SQLControl(Server, DB, "medMap_sub_section", UserName, Password, Port, SSLMode);
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medMap_sub_section.GUID, GUID);
+                List<medMap_sub_sectionClass> medMap_Sub_Sections = objects.SQLToClass<medMap_sub_sectionClass, enum_medMap_sub_section>();                
+
+                returnData.Code = 200;
+                returnData.Data = medMap_Sub_Sections;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_sub_section_by_GUID";
+                returnData.Result = $"取得子容器資料成功，共{medMap_Sub_Sections.Count}筆!";
+                return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
             {
@@ -972,7 +1031,9 @@ namespace HIS_WebApi._API_藥品資料
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("add_medMap_shelf")]
-        public async Task<string> add_medMap_shelf([FromBody] returnData returnData)
+        [HttpPost("add_shelf")]
+
+        public async Task<string> add_shelf([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -1090,7 +1151,9 @@ namespace HIS_WebApi._API_藥品資料
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("update_medMap_shelf")]
-        public async Task<string> update_medMap_shelf([FromBody] returnData returnData)
+        [HttpPost("update_shelf")]
+
+        public async Task<string> update_shelf([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
@@ -1122,6 +1185,8 @@ namespace HIS_WebApi._API_藥品資料
                     if (medMap_shelfClass_buff.寬度.StringIsEmpty() == false) item.寬度 = medMap_shelfClass_buff.寬度;
                     if (medMap_shelfClass_buff.高度.StringIsEmpty() == false) item.高度 = medMap_shelfClass_buff.高度;
                     if (medMap_shelfClass_buff.燈條IP.StringIsEmpty() == false) item.燈條IP = medMap_shelfClass_buff.燈條IP;
+                    if (medMap_shelfClass_buff.名稱.StringIsEmpty() == false) item.名稱 = medMap_shelfClass_buff.名稱;
+
                     if (medMap_shelfClass_buff.Master_GUID.StringIsEmpty() == false && medMap_shelfClass_buff.serverName.StringIsEmpty() == false && medMap_shelfClass_buff.serverType.StringIsEmpty() == false) 
                     {
                         item.Master_GUID = medMap_shelfClass_buff.Master_GUID;
@@ -1293,6 +1358,83 @@ namespace HIS_WebApi._API_藥品資料
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "get_medMap_shelf_by_GUID";
                 returnData.Result = $"取得層架資料成功，共{medMap_shelfClass.Count}筆!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [HttpPost("get_sub_section_by_shelf_type")]
+        public async Task<string> get_sub_section_by_shelf_type([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry不得為空";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry資料錯誤，須為 [\"shelf OR dispensing_shelves\"]";
+                    return returnData.JsonSerializationt();
+                }
+                string type = returnData.ValueAry[0];
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_medMap = new SQLControl(Server, DB, "medMap_shelf", UserName, Password, Port, SSLMode);
+                List<object[]> objects = sQLControl_medMap.GetRowsByDefult(null, (int)enum_medMap_shelf.type, type);
+                if (objects.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"資料不存在!";
+                    return returnData.JsonSerializationt();
+                }
+                List<medMap_shelfClass> medMap_ShelfClasses = objects.SQLToClass<medMap_shelfClass, enum_medMap_shelf>();
+                string GUID = string.Join(";", medMap_ShelfClasses.Select(x => x.GUID).ToArray());
+                string master_GUID = string.Join(";", medMap_ShelfClasses.Select(x => x.Master_GUID).ToArray());
+                Task<returnData> task_get_sub_section_by_GUID = get_sub_section_by_GUID(master_GUID);
+                returnData returnData_get_stock_by_shelf_GUID = await get_stock_by_shelf_GUID(GUID);
+
+                if (returnData_get_stock_by_shelf_GUID.Code != 200)
+                {
+                    returnData_get_stock_by_shelf_GUID.Method = "get_shelf_by_type";
+                    returnData_get_stock_by_shelf_GUID.TimeTaken = myTimerBasic.ToString();
+                    return returnData_get_stock_by_shelf_GUID.JsonSerializationt(true);
+                }
+                List<medMap_stockClass> medMap_stockClasses = returnData_get_stock_by_shelf_GUID.Data.ObjToClass<List<medMap_stockClass>>();
+                Dictionary<string, List<medMap_stockClass>> dic_stock = medMap_stockClasses.ToDictByShelfGUID();
+                foreach (var item in medMap_ShelfClasses)
+                {
+                    List<medMap_stockClass> medMap_stock = dic_stock.GetByShelfGUID(item.GUID);
+                    item.medMapStock = medMap_stock;
+                }
+                Dictionary<string, List<medMap_shelfClass>> dic_shelf = medMap_ShelfClasses.ToDictByMasterGUID();
+                returnData returnData_get_sub_section_by_GUID = await task_get_sub_section_by_GUID;
+                if (returnData_get_sub_section_by_GUID.Code != 200)
+                {
+                    returnData_get_sub_section_by_GUID.Method = "get_shelf_by_type";
+                    returnData_get_sub_section_by_GUID.TimeTaken = myTimerBasic.ToString();
+                    return returnData_get_sub_section_by_GUID.JsonSerializationt(true);
+                }
+                List<medMap_sub_sectionClass> medMap_Sub_SectionClasses = returnData_get_sub_section_by_GUID.Data.ObjToClass<List<medMap_sub_sectionClass>>();
+                foreach (var item in medMap_Sub_SectionClasses)
+                {
+                    List<medMap_shelfClass> shelf = dic_shelf.GetByMasterGUID(item.GUID);
+                    shelf = shelf.OrderBy(x => x.位置).ToList();
+                    item.shelf = shelf;
+                }
+
+                returnData.Code = 200;
+                returnData.Data = medMap_Sub_SectionClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "get_sub_section_by_shelf_type";
+                returnData.Result = $"取得層架資料成功!";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -1996,9 +2138,11 @@ namespace HIS_WebApi._API_藥品資料
                     }
                     medMap_StockClasses = new List<medMap_stockClass>() { medMap_stock };
                 }
+                DateTime dateTime = DateTime.Now;
                 foreach (var item in medMap_StockClasses)
                 {
                     item.GUID = Guid.NewGuid().ToString();
+                    if (item.效期.StringIsEmpty()) item.效期 = dateTime.ToDateTimeString('-');
                 }               
                 // DB 連線與資料表
                 (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
@@ -2117,14 +2261,8 @@ namespace HIS_WebApi._API_藥品資料
                 string[] shelf_GUID = returnData.ValueAry[0].Split(";").Distinct().ToArray() ;
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
 
-                SQLControl sQLControl = new SQLControl(Server, DB, "medMap_shelf", UserName, Password, Port, SSLMode);
-                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medMap_stock.shelf_GUID, shelf_GUID);
-                if (objects.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"資料不存在!";
-                    return returnData.JsonSerializationt();
-                }
+                SQLControl sQLControl = new SQLControl(Server, DB, "medMap_stock", UserName, Password, Port, SSLMode);
+                List<object[]> objects = await sQLControl.GetRowsByDefultAsync(null, (int)enum_medMap_stock.shelf_GUID, shelf_GUID);               
                 List<medMap_stockClass> medMap_StockClasses = objects.SQLToClass<medMap_stockClass>();
                 //List<Task> tasks = new List<Task>();
                 //foreach (var item in medMap_BoxClasses)
@@ -2151,67 +2289,7 @@ namespace HIS_WebApi._API_藥品資料
                 return returnData.JsonSerializationt(true);
             }
         }
-        [HttpPost("get_shelf_by_type")]
-        public async Task<string> get_shelf_by_type([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            try
-            {
-                if (returnData.ValueAry == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry不得為空";
-                    return returnData.JsonSerializationt();
-                }
-                if (returnData.ValueAry.Count != 1)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry資料錯誤，須為 [\"shelf OR dispensing_shelves\"]";
-                    return returnData.JsonSerializationt();
-                }
-                string type = returnData.ValueAry[0];
-                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
-                SQLControl sQLControl_medMap = new SQLControl(Server, DB, "medMap_shelf", UserName, Password, Port, SSLMode);
-                List<object[]> objects = sQLControl_medMap.GetRowsByDefult(null, (int)enum_medMap_shelf.type, type);
-                if (objects.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"資料不存在!";
-                    return returnData.JsonSerializationt();
-                }
-                List<medMap_shelfClass> medMap_ShelfClasses = objects.SQLToClass<medMap_shelfClass, enum_medMap_shelf>();
-                string GUID = string.Join(";", medMap_ShelfClasses.Select(x => x.GUID).ToArray());
-                returnData returnData_get_stock_by_shelf_GUID = await get_stock_by_shelf_GUID(GUID);
-
-                if (returnData_get_stock_by_shelf_GUID.Code != 200) 
-                {
-                    returnData_get_stock_by_shelf_GUID.Method = "get_shelf_by_type";
-                    returnData_get_stock_by_shelf_GUID.TimeTaken = myTimerBasic.ToString();
-                    return returnData_get_stock_by_shelf_GUID.JsonSerializationt(true);
-                }
-                List<medMap_stockClass> medMap_stockClasses = returnData_get_stock_by_shelf_GUID.Data.ObjToClass<List<medMap_stockClass>>();
-                Dictionary<string, List<medMap_stockClass>> dic_stock = medMap_stockClasses.ToDictByShelfGUID();
-                foreach (var item in medMap_ShelfClasses)
-                {
-                    List<medMap_stockClass> medMap_stock = dic_stock.GetByShelfGUID(item.GUID);
-                    item.medMapStock = medMap_stock;
-                }
-                medMap_ShelfClasses = medMap_ShelfClasses
-                    .OrderBy(x => x.Master_GUID).ToList();
-                returnData.Code = 200;
-                returnData.Data = medMap_ShelfClasses;
-                returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Method = "get_shelf_by_type";
-                returnData.Result = $"取得層架資料成功!";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = ex.Message;
-                return returnData.JsonSerializationt(true);
-            }
-        }
+        
         
         [HttpPost("get_available_shelves")]
         public async Task<string> get_available_shelves([FromBody] returnData returnData)
@@ -2340,8 +2418,13 @@ namespace HIS_WebApi._API_藥品資料
             string result = await get_stock_by_shelf_GUID(returnData);
             return await result.JsonDeserializetAsync<returnData>();
         }
-
-
+        private async Task<returnData> get_sub_section_by_GUID(string GUID)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            string result = await get_sub_section_by_GUID(returnData);
+            return await result.JsonDeserializetAsync<returnData>();
+        }
 
     }
     
