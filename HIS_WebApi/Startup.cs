@@ -13,6 +13,7 @@ using System.Reflection;
 using IGeekFan.AspNetCore.Knife4jUI;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Configuration;
+using System.Text;
 namespace HIS_WebApi
 {
     public class ContainerChecker
@@ -72,7 +73,7 @@ namespace HIS_WebApi
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             _environment = environment;
-
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ContainerChecker.UpdateAppSettings();
             //if (_environment.IsDevelopment())
             //{
