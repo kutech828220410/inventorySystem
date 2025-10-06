@@ -13,8 +13,6 @@ using MyOffice;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
-using Google.Protobuf.WellKnownTypes;
-
 
 namespace HIS_WebApi
 {
@@ -150,7 +148,8 @@ namespace HIS_WebApi
         public string light_action(returnData returnData)
         {
             try
-            {           
+            {
+                returnData.Method = "light_action";
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 // 解析參數
                 string GetVal(string key) =>
@@ -253,6 +252,74 @@ namespace HIS_WebApi
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }       
+        }
+
+        [Route("print_paper")]
+        [HttpPost]
+        public string print_paper(returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "print_paper";
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                // 解析參數
+                string GetVal(string key) =>
+                   returnData.ValueAry.FirstOrDefault(x => x.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase))
+                    ?.Split('=')[1];
+                string ip = GetVal("ip") ?? "";
+                string start_num = GetVal("start_num") ?? "";
+                string end_num = GetVal("end_num") ?? "";
+                string color = GetVal("color") ?? "";
+                string lightness = GetVal("lightness") ?? "";
+                string device_type = GetVal("device_type") ?? "";
+                double _lightness = 0.9;
+                if (lightness.StringIsDouble()) _lightness = lightness.StringToDouble();
+                if (ip.Check_IP_Adress() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ip 檢核失敗";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (device_type.Contains("EPD420G") == true)
+                {
+                    UDP_Class uDP_Class = new UDP_Class(ip, EPD_port, false);
+                    Storage storage = storages.Where(x => x.IP == ip).FirstOrDefault();
+                    if (storage == null)
+                    {
+                        storage = new Storage(ip, EPD_port);
+                        storages.Add(storage);
+                    }
+
+                    bool flag = false;
+                    if (flag == false)
+                    {
+                        returnData.Code = -200;
+                        returnData.TimeTaken = myTimerBasic.ToString();
+                        returnData.Result = $"裝置觸發失敗";
+                        return returnData.JsonSerializationt(true);
+                    }
+                    else
+                    {
+                        returnData.Code = 200;
+                        returnData.TimeTaken = myTimerBasic.ToString();
+                        returnData.Result = $"裝置觸發成功";
+                        return returnData.JsonSerializationt(true);
+                    }
+                }
+                else
+                {
+                    returnData.Code = 200;
+                    returnData.Result = $"請傳入有效 device_type";
+                    return returnData.JsonSerializationt(true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Exception : {ex.Message}";
+                return returnData.JsonSerializationt(true);
+            }
         }
 
         static public byte[] Get_Rows_Empty_LEDBytes()
