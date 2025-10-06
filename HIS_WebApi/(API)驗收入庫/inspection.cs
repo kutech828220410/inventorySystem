@@ -2821,6 +2821,15 @@ namespace HIS_WebApi
 
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
                 List<object[]> rows = await sQLControl_inspection_sub_content.GetRowsByDefultAsync(null, (int)enum_驗收明細.GUID, guids);
+                if (rows.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    returnData.Result = $"查無資料";
+                    returnData.Method = "sub_contents_get_by_GUID";
+                    returnData.Data = null;
+                    return returnData.JsonSerializationt();
+                }
                 List<inspectionClass.sub_content> sub_contents = rows.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
                 sub_contents = sub_contents.OrderByDescending(sc => DateTime.Parse(sc.操作時間)).ToList();
 
@@ -3504,6 +3513,15 @@ namespace HIS_WebApi
             returnData.ValueAry.Add(IC_SN);
            
             string result = await content_get_by_IC_SN(returnData);
+            return result.JsonDeserializet<returnData>();
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> sub_contents_get_by_GUID(string guid)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(guid);
+
+            string result = await sub_contents_get_by_GUID(returnData);
             return result.JsonDeserializet<returnData>();
         }
         [ApiExplorerSettings(IgnoreApi = true)]

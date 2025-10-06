@@ -58,6 +58,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("名稱,VARCHAR,20,NONE")]
+        名稱,
         [Description("位置,VARCHAR,10,NONE")]
         位置,
         [Description("type,VARCHAR,30,NONE")]
@@ -121,6 +123,21 @@ namespace HIS_DB_Lib
         serverName,
         [Description("serverType,VARCHAR,20,NONE")]
         serverType,
+    }
+    public enum enum_medMap_stock
+    {
+        GUID,
+        shelf_GUID,
+        device_type,
+        位置,
+        IP,
+        燈條亮燈位置,
+        藥碼,
+        藥名,
+        料號,
+        批號,
+        效期,
+        數量
     }
     /// <summary>
     /// 藥品地圖_父容器
@@ -233,6 +250,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
         /// <summary>
+        /// 名稱
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string 名稱 { get; set; }
+        /// <summary>
         /// 位置
         /// </summary>
         [JsonPropertyName("position")]
@@ -268,6 +290,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("serverType")]
         public string serverType { get; set; }
         public List<medMap_boxClass> medMapBox { get; set; }
+        public List<medMap_stockClass> medMapStock { get; set; }
         public RowsLED rowsLED { get; set; }
 
     }
@@ -377,6 +400,129 @@ namespace HIS_DB_Lib
         public string serverType { get; set; }
         public Storage storage { get; set; }
 
+
+    }
+    /// <summary>
+    /// 貨品表資料結構  
+    /// 用於紀錄藥品在各層架或裝置上的位置、批號、效期與數量。
+    /// </summary>
+    [Description("medMap_stock")]
+    public class medMap_stockClass
+    {
+        /// <summary>
+        /// 唯一識別碼 (GUID)
+        /// </summary>
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+
+        /// <summary>
+        /// 對應的層架 GUID
+        /// </summary>
+        [Description("shelf_GUID,VARCHAR,50,INDEX")]
+        [JsonPropertyName("shelf_guid")]
+        public string Shelf_GUID { get; set; }
+
+        /// <summary>
+        /// 裝置類型 (例如 shelf、drawer、cabinet)
+        /// </summary>
+        [Description("device_type,VARCHAR,50,NONE")]
+        [JsonPropertyName("device_type")]
+        public string Device_Type { get; set; }
+
+        /// <summary>
+        /// 位置描述 (例如 上層第2層第3格)
+        /// </summary>
+        [Description("位置,VARCHAR,100,NONE")]
+        [JsonPropertyName("location")]
+        public string 位置 { get; set; }
+
+        /// <summary>
+        /// 裝置 IP 位址
+        /// </summary>
+        [Description("IP,VARCHAR,50,NONE")]
+        [JsonPropertyName("ip")]
+        public string IP { get; set; }
+
+        /// <summary>
+        /// 燈條亮燈位置 (LED Index)
+        /// </summary>
+        [Description("燈條亮燈位置,VARCHAR,50,NONE")]
+        [JsonPropertyName("led_index")]
+        public string 燈條亮燈位置 { get; set; }
+
+        /// <summary>
+        /// 藥品代碼
+        /// </summary>
+        [Description("藥碼,VARCHAR,50,INDEX")]
+        [JsonPropertyName("code")]
+        public string 藥碼 { get; set; }
+
+        /// <summary>
+        /// 藥品名稱
+        /// </summary>
+        [Description("藥名,VARCHAR,200,NONE")]
+        [JsonPropertyName("name")]
+        public string 藥名 { get; set; }
+
+        /// <summary>
+        /// 料號 (Material Number)
+        /// </summary>
+        [Description("料號,VARCHAR,100,NONE")]
+        [JsonPropertyName("material_no")]
+        public string 料號 { get; set; }
+
+        /// <summary>
+        /// 批號 (Lot Number)
+        /// </summary>
+        [Description("批號,VARCHAR,100,NONE")]
+        [JsonPropertyName("lot")]
+        public string 批號 { get; set; }
+
+        /// <summary>
+        /// 效期 (Expiry Date)
+        /// </summary>
+        [Description("效期,DATETIME,10,NONE")]
+        [JsonPropertyName("expiry_date")]
+        public string 效期 { get; set; }
+
+        /// <summary>
+        /// 數量 (Quantity)
+        /// </summary>
+        [Description("數量,VARCHAR,10,NONE")]
+        [JsonPropertyName("qty")]
+        public double 數量 { get; set; }
+    }
+
+    public static class medMapMethod
+    {
+        static public Dictionary<string, List<medMap_stockClass>> ToDictByShelfGUID(this List<medMap_stockClass> stockClasses)
+        {
+            Dictionary<string, List<medMap_stockClass>> dictionary = new Dictionary<string, List<medMap_stockClass>>();
+            foreach (var item in stockClasses)
+            {
+                if (dictionary.TryGetValue(item.Shelf_GUID, out List<medMap_stockClass> list))
+                {
+                    list.Add(item);
+                }
+                else
+                {
+                    dictionary[item.Shelf_GUID] = new List<medMap_stockClass> { item };
+                }
+            }
+            return dictionary;
+        }
+        static public List<medMap_stockClass> GetByShelfGUID(this Dictionary<string, List<medMap_stockClass>> dict, string Shelf_GUID)
+        {
+            if (dict.TryGetValue(Shelf_GUID, out List<medMap_stockClass> stockClasses))
+            {
+                return stockClasses;
+            }
+            else
+            {
+                return new List<medMap_stockClass>();
+            }
+        }
 
     }
 }

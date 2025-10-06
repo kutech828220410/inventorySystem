@@ -6,6 +6,8 @@ using SQLUI;
 using HIS_DB_Lib;
 using MySql.Data;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
 namespace HIS_WebApi
 {
     public class MethodClass
@@ -53,5 +55,34 @@ namespace HIS_WebApi
             else sQLControl.CheckAllColumnName(table, true);
             return table;
         }
+        static public Table CheckCreatTable<T>(sys_serverSettingClass serverSettingClass)
+        {
+            Type typeFromHandle = typeof(T);
+            string text = typeFromHandle.GetCustomAttribute<DescriptionAttribute>()?.Description ?? typeFromHandle.Name;
+            Table table = new Table(typeFromHandle);
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            table.Server = Server;
+            table.DBName = DB;
+            table.Username = UserName;
+            table.Password = Password;
+            table.Port = Port.ToString();
+            SQLControl sQLControl = new SQLControl(table);
+            if (!sQLControl.IsTableCreat())
+            {
+               sQLControl.CreatTable(table);
+            }
+            else
+            {
+               sQLControl.CheckAllColumnName(table, autoAdd: true);
+            }
+
+            return table;
+        }
+
+
     }
 }

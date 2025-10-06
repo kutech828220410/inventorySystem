@@ -1120,25 +1120,25 @@
     {
       "GUID": "b3b4ede2-aeeb-4087-973a-94fef57aad14",
       "index": "146",
-      "name": "None",
-      "type": "",
-      "group": "",
+      "name": "藥品地圖",
+      "type": "網頁",
+      "group": "共同管理",
       "description": ""
     },
     {
       "GUID": "c13402de-0a0f-4631-adf7-515f42dde3a1",
       "index": "147",
-      "name": "None",
-      "type": "",
-      "group": "",
+      "name": "環境監控",
+      "type": "網頁",
+      "group": "共同管理",
       "description": ""
     },
     {
       "GUID": "02964aba-b0b1-4019-94ce-f1c0d99704f4",
       "index": "148",
-      "name": "None",
-      "type": "",
-      "group": "",
+      "name": "醫師處方疑義",
+      "type": "網頁",
+      "group": "藥局",
       "description": ""
     },
     {
