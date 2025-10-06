@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <!-- 停用自動生成的 AssemblyInfo -->

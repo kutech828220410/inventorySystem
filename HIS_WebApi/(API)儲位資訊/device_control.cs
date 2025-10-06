@@ -150,9 +150,7 @@ namespace HIS_WebApi
         public string light_action(returnData returnData)
         {
             try
-            {
-             
-
+            {           
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 // 解析參數
                 string GetVal(string key) =>
@@ -281,7 +279,7 @@ namespace HIS_WebApi
 
         static public byte[] Get_Storage_LEDBytes(ref byte[] LED_Bytes, Color color, double _lightness)
         {
-            for (int i = 0; i < LED_Bytes.Length; i++)
+            for (int i = 0; i < LED_Bytes.Length / 3; i++)
             {
                 if (i > LED_Bytes.Length) break;
                 LED_Bytes[i * 3 + 0] = (byte)(color.R * _lightness);
