@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace HIS_WebApi._API_藥品資料
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]

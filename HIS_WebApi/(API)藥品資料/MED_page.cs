@@ -4284,6 +4284,15 @@ namespace HIS_WebApi
                 return null;
             }
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<returnData> get_by_code(string code)
+        {
+            returnData returnData = new returnData();
+            returnData.Value = code;
+            returnData.TableName = "medicine_page_cloud";
+            string result = get_by_code(returnData);
+            return result.JsonDeserializet<returnData>();
+        }
 
         public class Icp_藥品資料_藥檔資料 : IComparer<object[]>
         {
