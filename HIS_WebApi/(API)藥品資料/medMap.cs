@@ -1044,74 +1044,46 @@ namespace HIS_WebApi._API_藥品資料
                     returnData.Result = $"returnData.Data不得為空";
                     return returnData.JsonSerializationt();
                 }
-                medMap_shelfClass medMap_ShelfClass = returnData.Data.ObjToClass<medMap_shelfClass>();
-                if (returnData.Data == null)
+                List<medMap_shelfClass> medMap_ShelfClasses = returnData.Data.ObjToClass<List<medMap_shelfClass>>();
+                if (medMap_ShelfClasses == null)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.Data資料錯誤，須為 medMap_shelfClass";
-                    return returnData.JsonSerializationt();
+                    medMap_shelfClass medMap_ShelfClass = returnData.Data.ObjToClass<medMap_shelfClass>();
+                    if (medMap_ShelfClass == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"returnData.Data資料錯誤";
+                        return returnData.JsonSerializationt();
+                    }
+                    medMap_ShelfClasses = new List<medMap_shelfClass> { medMap_ShelfClass };
                 }
-                if (medMap_ShelfClass.位置.StringIsEmpty() || medMap_ShelfClass.位置.Split(",").Count() != 2)
+                foreach(var item in medMap_ShelfClasses)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"位置資料為空，須為 \"0,1\"";
-                    return returnData.JsonSerializationt();
+                    item.GUID = Guid.NewGuid().ToString();
                 }
                 
-                if (medMap_ShelfClass.Master_GUID.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"Master_GUID資料為空";
-                    return returnData.JsonSerializationt();
-                }
-                if (medMap_ShelfClass.寬度.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"寬度資料為空";
-                    return returnData.JsonSerializationt();
-                }
-                if (medMap_ShelfClass.高度.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"高度資料為空";
-                    return returnData.JsonSerializationt();
-                }
-                if (medMap_ShelfClass.type.StringIsEmpty())
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"類別資料為空";
-                    return returnData.JsonSerializationt();
-                }
-                List<string> shelfType = System.Enum.GetNames(typeof(enum_shelfType)).ToList();
-                if (shelfType.Contains(medMap_ShelfClass.type) == false)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"類別資料應為 'store_shelves' or 'dispensing_shelves'";
-                    return returnData.JsonSerializationt();
-                }
 
                 (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "VM端");
                 SQLControl sQLControl_medMap_shelf = new SQLControl(Server, DB, "medMap_shelf", UserName, Password, Port, SSLMode);
-                string commnand = @$"SELECT * FROM {DB}.medMap_section 
-                                    WHERE Master_GUID = '{medMap_ShelfClass.Master_GUID}'
-                                    AND 位置 = '{medMap_ShelfClass.位置}';";
-                List<object[]> objects = await sQLControl_medMap_shelf.WriteCommandAsync(commnand);
-                List<medMap_shelfClass> medMap_ShelfClasses = objects.SQLToClass<medMap_shelfClass, enum_medMap_shelf>();
-                if(medMap_ShelfClasses.Count > 0)
-                {                    
-                    returnData.Code = -200;
-                    returnData.Result = $"位置已重複!";
-                    return returnData.JsonSerializationt();                    
-                }
-               
-                medMap_ShelfClass.GUID = Guid.NewGuid().ToString();
+                //string commnand = @$"SELECT * FROM {DB}.medMap_section 
+                //                    WHERE Master_GUID = '{medMap_ShelfClass.Master_GUID}'
+                //                    AND 位置 = '{medMap_ShelfClass.位置}';";
+                //List<object[]> objects = await sQLControl_medMap_shelf.WriteCommandAsync(commnand);
+                //List<medMap_shelfClass> medMap_ShelfClasses = objects.SQLToClass<medMap_shelfClass, enum_medMap_shelf>();
+                //if(medMap_ShelfClasses.Count > 0)
+                //{                    
+                //    returnData.Code = -200;
+                //    returnData.Result = $"位置已重複!";
+                //    return returnData.JsonSerializationt();                    
+                //}
 
+                List<object[]> add = medMap_ShelfClasses.ClassToSQL<medMap_shelfClass, enum_medMap_shelf>();
+                await sQLControl_medMap_shelf.AddRowsAsync(null, add);
 
-                object[] add = medMap_ShelfClass.ClassToSQL<medMap_shelfClass, enum_medMap_shelf>();
-                await sQLControl_medMap_shelf.AddRowAsync(null, add);
+                //object[] add = medMap_ShelfClass.ClassToSQL<medMap_shelfClass, enum_medMap_shelf>();
+                //await sQLControl_medMap_shelf.AddRowAsync(null, add);
 
                 returnData.Code = 200;
-                returnData.Data = medMap_ShelfClass;
+                returnData.Data = medMap_ShelfClasses;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Method = "add_medMap_shelf";
                 returnData.Result = $"層架資料寫入成功!";
