@@ -131,6 +131,7 @@ namespace HIS_DB_Lib
         GUID,
         shelf_GUID,
         device_type,
+        device_Type1,
         位置,
         IP,
         燈條亮燈位置,
@@ -436,6 +437,12 @@ namespace HIS_DB_Lib
         [Description("device_type,VARCHAR,50,NONE")]
         [JsonPropertyName("device_type")]
         public string Device_Type { get; set; }
+        /// <summary>
+        /// 裝置類型 (例如 shelf、drawer、cabinet)
+        /// </summary>
+        [Description("device_type1,VARCHAR,50,NONE")]
+        [JsonPropertyName("device_type1")]
+        public string Device_Type1 { get; set; }
 
         /// <summary>
         /// 位置描述 (例如 上層第2層第3格)

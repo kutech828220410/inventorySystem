@@ -281,13 +281,15 @@ namespace HIS_WebApi
 
         static public byte[] Get_Storage_LEDBytes(ref byte[] LED_Bytes, Color color, double _lightness)
         {
-            for (int i = 0; i < LED_Bytes.Length; i++)
+            int ledCount = LED_Bytes.Length / 3;  // 每3個byte代表一顆LED
+
+            for (int i = 0; i < ledCount; i++)
             {
-                if (i > LED_Bytes.Length) break;
                 LED_Bytes[i * 3 + 0] = (byte)(color.R * _lightness);
                 LED_Bytes[i * 3 + 1] = (byte)(color.G * _lightness);
                 LED_Bytes[i * 3 + 2] = (byte)(color.B * _lightness);
             }
+
             return LED_Bytes;
         }
     }
