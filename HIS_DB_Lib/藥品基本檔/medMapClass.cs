@@ -72,6 +72,8 @@ namespace HIS_DB_Lib
         高度,
         [Description("燈條IP,VARCHAR,20,NONE")]
         燈條IP,
+        [Description("device_type,VARCHAR,50,NONE")]
+        device_type,
         [Description("serverName,VARCHAR,20,NONE")]
         serverName,
         [Description("serverType,VARCHAR,20,NONE")]
@@ -238,6 +240,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("type")]
         public string type { get; set; }
+        public string section_position { get; set; }
         public List<medMap_shelfClass> shelf { get; set; }
         public List<medMap_drawerClass> drawer { get; set; }
 
@@ -287,6 +290,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ip_light")]
         public string 燈條IP { get; set; }
+        /// <summary>
+        /// 裝置類型
+        /// </summary>
+        [JsonPropertyName("device_type")]
+        public string device_type { get; set; }
         /// <summary>
         /// serverName
         /// </summary>
@@ -429,20 +437,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [Description("shelf_GUID,VARCHAR,50,INDEX")]
         [JsonPropertyName("shelf_guid")]
-        public string Shelf_GUID { get; set; }
-
-        /// <summary>
-        /// 裝置類型 (例如 shelf、drawer、cabinet)
-        /// </summary>
-        [Description("device_type,VARCHAR,50,NONE")]
-        [JsonPropertyName("device_type")]
-        public string Device_Type { get; set; }
-        /// <summary>
-        /// 裝置類型 (例如 shelf、drawer、cabinet)
-        /// </summary>
-        [Description("device_type1,VARCHAR,50,NONE")]
-        [JsonPropertyName("device_type1")]
-        public string Device_Type1 { get; set; }
+        public string Shelf_GUID { get; set; }       
 
         /// <summary>
         /// 位置描述 (例如 上層第2層第3格)
@@ -457,6 +452,13 @@ namespace HIS_DB_Lib
         [Description("IP,VARCHAR,50,NONE")]
         [JsonPropertyName("ip")]
         public string IP { get; set; }
+
+        /// <summary>
+        /// 裝置類型 (例如 shelf、drawer、cabinet)
+        /// </summary>
+        [Description("device_type,VARCHAR,50,NONE")]
+        [JsonPropertyName("device_type")]
+        public string device_type { get; set; }
 
         /// <summary>
         /// 燈條亮燈位置 (LED Index)
