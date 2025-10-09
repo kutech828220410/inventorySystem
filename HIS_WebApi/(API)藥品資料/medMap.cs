@@ -826,6 +826,60 @@ namespace HIS_WebApi._API_藥品資料
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("add_sub_section_data")]
+        public string add_sub_section_data([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data不得為空";
+                    return returnData.JsonSerializationt();
+                }
+                List<medMap_sub_sectionClass> medMap_sub_sectionClasses = returnData.Data.ObjToClass<List<medMap_sub_sectionClass>>();
+                if (medMap_sub_sectionClasses == null)
+                {
+                    medMap_sub_sectionClass medMap_sub_sectionClass = returnData.Data.ObjToClass<medMap_sub_sectionClass>();
+                    if (medMap_sub_sectionClass == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"returnData.Data不得為空";
+                        return returnData.JsonSerializationt();
+                    }
+                    medMap_sub_sectionClasses = new List<medMap_sub_sectionClass> { medMap_sub_sectionClass };
+                }
+                foreach (var item in medMap_sub_sectionClasses)
+                {
+                    item.GUID = Guid.NewGuid().ToString();
+                    item.type = "sub_section";
+                }
+               
+                (string Server, string DB, string UserName, string Password, uint Port) = HIS_WebApi.Method.GetServerInfo("Main", "網頁", "VM端");
+                SQLControl sQLControl_medMap_sub_section = new SQLControl(Server, DB, "medMap_sub_section", UserName, Password, Port, SSLMode);
+                
+
+                
+
+                List<object[]> add = medMap_sub_sectionClasses.ClassToSQL<medMap_sub_sectionClass, enum_medMap_sub_section>();
+                sQLControl_medMap_sub_section.AddRows(null, add);
+
+                returnData.Code = 200;
+                returnData.Data = medMap_sub_sectionClasses;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Method = "add_sub_section_data";
+                returnData.Result = $"sub_section資料寫入成功!";
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
         /// <summary>
         /// 更新sub_section位置
         /// </summary>
