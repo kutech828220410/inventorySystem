@@ -69,8 +69,12 @@ namespace HIS_DB_Lib
         申領單號,
         [Description("藥碼,VARCHAR,50,INDEX")]
         藥碼,
+        [Description("料號,VARCHAR,50,INDEX")]
+        料號,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
+        [Description("中文名,VARCHAR,300,NONE")]
+        中文名,
         [Description("包裝單位,VARCHAR,50,NONE")]
         包裝單位,
         [Description("包裝量,VARCHAR,10,NONE")]
@@ -87,6 +91,10 @@ namespace HIS_DB_Lib
         實撥量,
         [Description("實撥庫結存,VARCHAR,10,NONE")]
         實撥庫結存,
+        [Description("簽收量,VARCHAR,10,NONE")]
+        簽收量,
+        [Description("簽收庫結存,VARCHAR,10,NONE")]
+        簽收庫結存,
         [Description("申領單位,VARCHAR,10,NONE")]
         申領單位,
         [Description("申領人員,VARCHAR,50,NONE")]
@@ -103,6 +111,14 @@ namespace HIS_DB_Lib
         核撥人員ID,
         [Description("核撥時間,DATETIME,10,INDEX")]
         核撥時間,
+        [Description("簽收單位,VARCHAR,10,NONE")]
+        簽收單位,
+        [Description("簽收人員,VARCHAR,50,NONE")]
+        簽收人員,
+        [Description("簽收人員ID,VARCHAR,10,NONE")]
+        簽收人員ID,
+        [Description("簽收時間,DATETIME,10,INDEX")]
+        簽收時間,
         [Description("申領細節,VARCHAR,500,NONE")]
         申領細節,
         [Description("核撥細節,VARCHAR,500,NONE")]
@@ -190,6 +206,16 @@ namespace HIS_DB_Lib
         [JsonPropertyName("actualStoreBalance")]
         public string 實撥庫結存 { get; set; }
         /// <summary>
+        /// 實撥量。
+        /// </summary>
+        [JsonPropertyName("signedQuantity")]
+        public string 簽收量 { get; set; }
+        /// <summary>
+        /// 實撥庫結存。
+        /// </summary>
+        [JsonPropertyName("signedStoreBalance")]
+        public string 簽收庫結存 { get; set; }
+        /// <summary>
         /// 申領單位。
         /// </summary>
         [JsonPropertyName("requestingUnit")]
@@ -229,6 +255,21 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("issueTime")]
         public string 核撥時間 { get; set; }
+        /// <summary>
+        /// 簽收人員。
+        /// </summary>
+        [JsonPropertyName("signedPerson")]
+        public string 簽收人員 { get; set; }
+        /// <summary>
+        /// 簽收人員ID。
+        /// </summary>
+        [JsonPropertyName("signedPersonID")]
+        public string 簽收人員ID { get; set; }
+        /// <summary>
+        /// 簽收時間。
+        /// </summary>
+        [JsonPropertyName("signedTime")]
+        public string 簽收時間 { get; set; }
         /// <summary>
         /// 申領細節。
         /// </summary>

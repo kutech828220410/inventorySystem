@@ -130,6 +130,8 @@ namespace HIS_WebApi
                     materialRequisitionClasses[i].GUID = Guid.NewGuid().ToString();
                     materialRequisitionClasses[i].申領時間 = DateTime.Now.ToDateTimeString_6();
                     materialRequisitionClasses[i].核撥時間 = DateTime.MinValue.ToDateTimeString_6();
+                    materialRequisitionClasses[i].簽收時間 = DateTime.MinValue.ToDateTimeString_6();
+
                     materialRequisitionClasses[i].申領庫庫存 = "";
                     materialRequisitionClasses[i].申領庫結存 = "";
                     //materialRequisitionClasses[i].實撥庫庫存 = "";
