@@ -2693,10 +2693,62 @@ namespace HIS_WebApi._API_藥品資料
                 return returnData.JsonSerializationt(true);
             }
         }
-
-
         [HttpPost("get_available_shelves")]
         public async Task<string> get_available_shelves([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry須為[\"GUID\"]";
+                    return returnData.JsonSerializationt();
+                }
+                returnData returnData_sub_content = await new inspectionController().sub_contents_get_by_GUID(returnData.ValueAry[0]);
+                if (returnData_sub_content == null || returnData_sub_content.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"sub_content取得失敗";
+                    return returnData.JsonSerializationt();
+                }
+                List<inspectionClass.sub_content> sub_contents = returnData_sub_content.Data.ObjToClass<List<inspectionClass.sub_content>>();
+                if (sub_contents == null || sub_contents.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"sub_content取得失敗";
+                    return returnData.JsonSerializationt();
+                }
+                string code = sub_contents[0].藥品碼;
+                returnData returnData_medSize = await new medSize().get_by_code(code);
+                if (returnData_medSize == null || returnData_medSize.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"medsize取得失敗";
+                    return returnData.JsonSerializationt();
+                }
+                List<medSizeClass> medSizeClasses = returnData_medSize.Data.ObjToClass<List<medSizeClass>>();
+                if (medSizeClasses == null || medSizeClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"medsize取得失敗";
+                    return returnData.JsonSerializationt();
+                }
+
+
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        [HttpPost("get_med_by_code_name_type")]
+        public async Task<string> get_med_by_code_name_type([FromBody] returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try

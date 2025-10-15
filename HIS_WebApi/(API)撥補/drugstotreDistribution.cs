@@ -137,6 +137,8 @@ namespace HIS_WebApi
                     list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.加入時間] = DateTime.Now.ToDateTimeString_6();
                     list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.報表生成時間] = DateTime.Now.ToDateTimeString_6();
                     list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.撥發時間] = DateTime.MinValue.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.簽收時間] = DateTime.MinValue.ToDateTimeString_6();
+
                 }
 
                 sQLControl_drugstotreDistribution.AddRows(null, list_drugstotreDistributions);

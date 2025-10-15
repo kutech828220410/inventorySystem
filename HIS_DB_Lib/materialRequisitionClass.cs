@@ -111,8 +111,6 @@ namespace HIS_DB_Lib
         核撥人員ID,
         [Description("核撥時間,DATETIME,10,INDEX")]
         核撥時間,
-        [Description("簽收單位,VARCHAR,10,NONE")]
-        簽收單位,
         [Description("簽收人員,VARCHAR,50,NONE")]
         簽收人員,
         [Description("簽收人員ID,VARCHAR,10,NONE")]

@@ -481,6 +481,86 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 修改實撥量。
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "GUID": "unique-guid",
+        ///        "actualQuantity": "new-actual-quantity"
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("update_signed_quantity")]
+        [HttpPost]
+        public string update_signed_quantity([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "update_signed_quantity";
+            try
+            {
+                GET_init(returnData);
+                List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                sys_serverSettingClasses = sys_serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (sys_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = sys_serverSettingClasses[0].Server;
+                string DB = sys_serverSettingClasses[0].DBName;
+                string UserName = sys_serverSettingClasses[0].User;
+                string Password = sys_serverSettingClasses[0].Password;
+                uint Port = (uint)sys_serverSettingClasses[0].Port.StringToInt32();
+
+                materialRequisitionClass updatedData = returnData.Data.ObjToClass<materialRequisitionClass>();
+                if (updatedData == null || updatedData.GUID.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常!";
+                    return returnData.JsonSerializationt();
+                }
+
+                Table table = new Table(new enum_materialRequisition());
+                SQLControl sQLControl_materialRequisition = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+
+                List<object[]> list_value = sQLControl_materialRequisition.GetRowsByDefult(null, (int)enum_materialRequisition.GUID, updatedData.GUID);
+                if (list_value.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+                materialRequisitionClass existingData = list_value[0].SQLToClass<materialRequisitionClass, enum_materialRequisition>();
+                existingData.簽收量 = updatedData.簽收量;
+
+                List<object[]> updatedListValue = new List<object[]> { existingData.ClassToSQL<materialRequisitionClass, enum_materialRequisition>() };
+
+                sQLControl_materialRequisition.UpdateByDefulteExtra(null, updatedListValue);
+
+                returnData.Code = 200;
+                returnData.Result = $"更新成功! 簽收量 : {updatedData.簽收量}";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = existingData;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 修改申領量。
         /// </summary>
         /// <remarks>
