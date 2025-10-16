@@ -2753,44 +2753,33 @@ namespace HIS_WebApi._API_藥品資料
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                if (returnData.ValueAry == null || returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry == null || returnData.ValueAry.Count != 3)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry須為[\"GUID\"]";
+                    returnData.Result = $"returnData.ValueAry須為[\"設備名稱\", \"類別\", \"藥碼\"]";
                     return returnData.JsonSerializationt();
                 }
-                returnData returnData_sub_content = await new inspectionController().sub_contents_get_by_GUID(returnData.ValueAry[0]);
-                if (returnData_sub_content == null || returnData_sub_content.Code != 200)
+                string 藥碼 = returnData.ValueAry[2];
+                returnData returnData_get_medMap_by_name_type = await get_medMap_by_name_type(returnData.ValueAry[0], returnData.ValueAry[1]);
+                medMapClass medMapClass = returnData_get_medMap_by_name_type.Data.ObjToClass<medMapClass>();
+                List<medMap_shelfClass> medMap_ShelfClasses = new List<medMap_shelfClass>();
+                foreach (var item in medMapClass.medMap_Section)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = $"sub_content取得失敗";
-                    return returnData.JsonSerializationt();
-                }
-                List<inspectionClass.sub_content> sub_contents = returnData_sub_content.Data.ObjToClass<List<inspectionClass.sub_content>>();
-                if (sub_contents == null || sub_contents.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"sub_content取得失敗";
-                    return returnData.JsonSerializationt();
-                }
-                string code = sub_contents[0].藥品碼;
-                returnData returnData_medSize = await new medSize().get_by_code(code);
-                if (returnData_medSize == null || returnData_medSize.Code != 200)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"medsize取得失敗";
-                    return returnData.JsonSerializationt();
-                }
-                List<medSizeClass> medSizeClasses = returnData_medSize.Data.ObjToClass<List<medSizeClass>>();
-                if (medSizeClasses == null || medSizeClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"medsize取得失敗";
-                    return returnData.JsonSerializationt();
+                    if (item.sub_section == null || item.sub_section.Count == 0) continue;
+                    foreach (var sub_section in item.sub_section)
+                    {
+                        if (sub_section.shelf == null || sub_section.shelf.Count == 0) continue;
+                        foreach (var shelf in sub_section.shelf)
+                        {
+                            List<medMap_stockClass> medMap_Stocks_buff = shelf.medMapStock.Where(x => x.藥碼 == 藥碼).ToList();
+                            shelf.medMapStock = medMap_Stocks_buff;
+                            if (medMap_Stocks_buff.Count > 0) medMap_ShelfClasses.Add(shelf);
+                        }
+
+                    }
                 }
 
-
-
+                returnData.Data = medMap_ShelfClasses;
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -2801,7 +2790,74 @@ namespace HIS_WebApi._API_藥品資料
             }
 
         }
+        [HttpPost("light_by_code_name_type")]
+        public async Task<string> light_by_code_name_type([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                string GetVal(string key) =>
+                   returnData.ValueAry.FirstOrDefault(x => x.StartsWith($"{key}=", StringComparison.OrdinalIgnoreCase))
+                    ?.Split('=')[1];
+                string ServerName = GetVal("ServerName") ?? "";
+                string ServerType = GetVal("ServerType") ?? "";
+                string code = GetVal("code") ?? "";
+                string color = GetVal("color") ?? "";
+                string lightness = GetVal("lightness") ?? "";
 
+                if (ServerName.StringIsEmpty() || ServerType.StringIsEmpty()|| code.StringIsEmpty() || color.StringIsEmpty()
+                    || lightness.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry錯誤";
+                    return returnData.JsonSerializationt();
+                }
+                
+                returnData returnData_get_med_by_code_name_type = await get_med_by_code_name_type(ServerName, ServerType, code);
+                
+                List<medMap_shelfClass> medMap_ShelfClasses = returnData_get_med_by_code_name_type.Data.ObjToClass<List<medMap_shelfClass>>();
+                List<string> list_light = new List<string>();
+                foreach (var item in medMap_ShelfClasses)
+                {
+                    string shelf_ip = item.燈條IP;
+                    string shelf_device_type = item.device_type;
+                    string stock_ip = string.Empty;
+                    string stock_device_type = string.Empty;
+                    string start = string.Empty;
+                    string end = string.Empty;
+                    if (item.medMapStock != null)
+                    {
+                        foreach (var med in item.medMapStock)
+                        {
+                            stock_ip = med.IP;
+                            stock_device_type = med.device_type;
+                            start = med.燈條亮燈位置.Split(",")[0];
+                            end = med.燈條亮燈位置.Split(",").Last();
+                            string command = $"ip={shelf_ip};start_num={start};end_num={end};color={color};lightness={lightness};device_type={shelf_device_type}";
+                            string command_1 = $"ip={stock_ip};start_num={start};end_num={end};color={color};lightness={lightness};device_type={stock_device_type}";
+                            list_light.Add(command);
+                            list_light.Add(command_1);
+                        }
+                    }                  
+                }
+                List<Task<returnData>> tasks = new List<Task<returnData>>();
+                foreach (var light_ in list_light)
+                {
+                    List<string> command_arry = light_.Split(";").ToList();
+                    Task<returnData> task  = deviceApiClass.light_action(API_server, command_arry);
+                    tasks.Add(task);
+                }
+                returnData[] results = await Task.WhenAll(tasks);
+                return results.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
         private string CheckCreatTable()
         {
             List<sys_serverSettingClass> sys_serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -2895,6 +2951,16 @@ namespace HIS_WebApi._API_藥品資料
             string result = await get_section_by_GUID(returnData);
             return await result.JsonDeserializetAsync<returnData>();
         }
+        private async Task<returnData> get_med_by_code_name_type(string ServerName, string ServerType, string code)
+        {
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(ServerName);
+            returnData.ValueAry.Add(ServerType);
+            returnData.ValueAry.Add(code);
+            string result = await get_med_by_code_name_type(returnData);
+            return await result.JsonDeserializetAsync<returnData>();
+        }
+       
     }
 
 }
