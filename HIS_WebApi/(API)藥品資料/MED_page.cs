@@ -142,32 +142,49 @@ namespace HIS_WebApi
             returnData.Method = "get_med_cloud";
             try
             {
+                var sbLog = new StringBuilder();
+
                 returnData.ServerName = "Main";
                 returnData.ServerType = "網頁";
                 returnData.TableName = "medicine_page_cloud";
                 init(returnData);
 
-                (string Server, string DB, string UserName, string Password, uint Port) = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "藥檔資料");
+                // === 取得 Server Info ===
+                (string Server, string DB, string UserName, string Password, uint Port)
+                    = await HIS_WebApi.Method.GetServerInfoAsync("Main", "網頁", "藥檔資料");
+                sbLog.AppendLine($"[取得ServerInfo] {myTimerBasic.GetTickTime()} ms");
+
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
+                // === 同步執行藥檔與儲位讀取 ===
                 Task<List<object[]>> task_list_med = sQLControl_med.GetAllRowsAsync(null);
                 Task<returnData> task_returnData = new medStorage().get_all();
+
                 returnData returnData_medStorage = await task_returnData;
-                if(returnData_medStorage == null || returnData_medStorage.Code != 200)
+                sbLog.AppendLine($"[取得儲位資料] {myTimerBasic.GetTickTime()} ms");
+
+                if (returnData_medStorage == null || returnData_medStorage.Code != 200)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"儲位取得失敗!";
+                    returnData.Result = $"儲位取得失敗! (耗時: {myTimerBasic.ToString()})";
                     return await returnData.JsonSerializationtAsync(true);
                 }
+
                 List<medStorageClass> medStorageClasses = returnData_medStorage.Data.ObjToClass<List<medStorageClass>>();
                 List<object[]> list_med = await task_list_med;
+                sbLog.AppendLine($"[取得雲端藥檔Raw] {myTimerBasic.GetTickTime()} ms");
+
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+                sbLog.AppendLine($"[轉換雲端藥檔Class] {myTimerBasic.GetTickTime()} ms");
+
                 if (medClasses == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"藥檔取得失敗!";
+                    returnData.Result = $"藥檔取得失敗! (耗時: {myTimerBasic.ToString()})";
                     return returnData.JsonSerializationt();
                 }
+
+                // === 合併儲位資訊 ===
                 if (medStorageClasses != null && medStorageClasses.Count > 0)
                 {
                     Dictionary<string, List<medStorageClass>> dict_medStorage = medStorageClass.ToDictByCode(medStorageClasses);
@@ -180,11 +197,16 @@ namespace HIS_WebApi
                         }
                     }
                 }
-               
+                sbLog.AppendLine($"[合併藥檔與儲位] {myTimerBasic.GetTickTime()} ms");
+
+                // === 排序 ===
                 medClasses.Sort(new medClass.ICP_By_name());
+                sbLog.AppendLine($"[排序] {myTimerBasic.GetTickTime()} ms");
+
+                // === 成功回傳 ===
                 returnData.Data = medClasses;
                 returnData.Code = 200;
-                returnData.Result = "雲端藥檔取得成功!";
+                returnData.Result = "雲端藥檔取得成功!" + Environment.NewLine + sbLog.ToString();
                 returnData.TimeTaken = myTimerBasic.ToString();
 
                 return returnData.JsonSerializationt(true);
@@ -193,8 +215,8 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Data = null;
-                returnData.Result = $"{e.Message}";
-                Logger.Log($"MED_page", $"[異常] {returnData.Result}");
+                returnData.Result = $"[異常] {e.Message} (耗時: {myTimerBasic.ToString()})";
+                Logger.Log($"MED_page", returnData.Result);
                 return returnData.JsonSerializationt(true);
             }
         }
