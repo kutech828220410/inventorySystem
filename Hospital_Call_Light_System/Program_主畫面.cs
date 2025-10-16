@@ -463,7 +463,7 @@ namespace Hospital_Call_Light_System
                             }
                             else
                             {
-                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callFontColor, callBackColor);
+                                if (bitmap_標題_0 != null) bitmap_叫號備註_0 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), titleFontColor, titleBackColor);
 
                             }
                         }
@@ -485,7 +485,7 @@ namespace Hospital_Call_Light_System
                             }
                             else
                             {
-                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), callFontColor, callBackColor);
+                                if (bitmap_標題_1 != null) bitmap_叫號備註_1 = DrawNormalText(callNote, callNoteFont, new Size(panel_width, callNoteHeight), titleFontColor, titleBackColor);
                             }
                         }
 

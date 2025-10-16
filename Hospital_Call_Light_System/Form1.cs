@@ -17,8 +17,8 @@ using System.Text.Json.Serialization;
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-[assembly: AssemblyVersion("1.0.0.6")]
-[assembly: AssemblyFileVersion("1.0.0.6")]
+[assembly: AssemblyVersion("1.0.0.7")]
+[assembly: AssemblyFileVersion("1.0.0.7")]
 namespace Hospital_Call_Light_System
 {
 
