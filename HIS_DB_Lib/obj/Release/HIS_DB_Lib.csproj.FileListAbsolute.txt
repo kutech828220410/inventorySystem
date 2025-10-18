@@ -28,7 +28,6 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Newto
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Interop.SpeechLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MySql.Data.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll
@@ -37,12 +36,9 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Ladde
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\FontAwesome.Sharp.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MeasureSystemUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MVSDKUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SLDUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\LeadShineUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PortControlUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\LightControlUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\ZealTechUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HCGUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Win32.Registry.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\NAudio.Wasapi.dll
