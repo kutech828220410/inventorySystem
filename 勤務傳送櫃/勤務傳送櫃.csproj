@@ -68,10 +68,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\CallBackUI.dll</HintPath>
     </Reference>
-    <Reference Include="cjwdev.windowsapi, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\0.DLL\cjwdev.windowsapi.dll</HintPath>
-    </Reference>
     <Reference Include="DrawingClass, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\DrawingClass.dll</HintPath>
@@ -119,12 +115,6 @@
     <Reference Include="MeasureSystemUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\MeasureSystemUI.dll</HintPath>
-    </Reference>
-    <Reference Include="MVSDK">
-      <HintPath>..\0.DLL\MVSDK.dll</HintPath>
-    </Reference>
-    <Reference Include="MVSDKUI">
-      <HintPath>..\0.DLL\MVSDKUI.dll</HintPath>
     </Reference>
     <Reference Include="MyEmail, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

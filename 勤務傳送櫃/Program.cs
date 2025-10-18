@@ -15,6 +15,7 @@ namespace 勤務傳送櫃
         [STAThread]
         static void Main()
         {
+
             string ProcessName = Process.GetCurrentProcess().ProcessName;
             Process[] process = Process.GetProcesses();
             int num = 0;
@@ -24,6 +25,8 @@ namespace 勤務傳送櫃
             }
             if (num <= 1)
             {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Main_Form());
             }
             else
