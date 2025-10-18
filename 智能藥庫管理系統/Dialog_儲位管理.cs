@@ -1163,9 +1163,9 @@ namespace 智能藥庫系統
             }
 
             Box box = boxes[0];
-            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.Code_ForeColor);
-            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
-            box.Code_ForeColor = dialog_EPD730_顏色選擇.Value;
+            Dialog_7color_select Dialog_7color_select = new Dialog_7color_select(box.Code_ForeColor);
+            if (Dialog_7color_select.ShowDialog() != DialogResult.Yes) return;
+            box.Code_ForeColor = Dialog_7color_select.Value;
 
             this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
             this.epD_583_Pannel.DrawToPictureBox();
@@ -1180,9 +1180,9 @@ namespace 智能藥庫系統
             }
 
             Box box = boxes[0];
-            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.Name_ForeColor);
-            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
-            box.Name_ForeColor = dialog_EPD730_顏色選擇.Value;
+            Dialog_7color_select Dialog_7color_select = new Dialog_7color_select(box.Name_ForeColor);
+            if (Dialog_7color_select.ShowDialog() != DialogResult.Yes) return;
+            box.Name_ForeColor = Dialog_7color_select.Value;
 
             this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
             this.epD_583_Pannel.DrawToPictureBox();
@@ -1197,9 +1197,9 @@ namespace 智能藥庫系統
             }
 
             Box box = boxes[0];
-            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.BackColor);
-            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
-            box.BackColor = dialog_EPD730_顏色選擇.Value;
+            Dialog_7color_select Dialog_7color_select = new Dialog_7color_select(box.BackColor);
+            if (Dialog_7color_select.ShowDialog() != DialogResult.Yes) return;
+            box.BackColor = Dialog_7color_select.Value;
 
             this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
             this.epD_583_Pannel.DrawToPictureBox();

@@ -104,7 +104,6 @@ C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Newtonsoft.Jso
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Interop.SpeechLib.dll
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MySql.Data.dll
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
-C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\DrawingClass.dll
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\Evan\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll
