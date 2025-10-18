@@ -22,8 +22,8 @@ using IWshRuntimeLibrary;
 using HIS_DB_Lib;
 using MyUI;
 
-[assembly: AssemblyVersion("1.0.18.0")]
-[assembly: AssemblyFileVersion("1.0.18.0")]
+[assembly: AssemblyVersion("1.0.18.1")]
+[assembly: AssemblyFileVersion("1.0.18.1")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form

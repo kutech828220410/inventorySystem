@@ -52,10 +52,6 @@
     <Reference Include="cjwdev.windowsapi">
       <HintPath>..\0.DLL\cjwdev.windowsapi.dll</HintPath>
     </Reference>
-    <Reference Include="CSkin, Version=10.23.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\0.DLL\CSkin.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
     </Reference>
